@@ -6,7 +6,6 @@ screenshots/
 /.idea/
 /adbLogs/
 /testData/
-src/UITestFramework/Mailer.java
 
 //Compiled class file
 *.class
