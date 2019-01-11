@@ -137,12 +137,12 @@ public class CreateSession {
         capabilities.setCapability("app-wait-activity", ".MobikwikMain");
 
         if (Double.parseDouble(androidOSVersion) < Double.parseDouble("7.0")) {
-            //Log.info("Automation Type : " + "Appium");
-            capabilities.setCapability("automationName", "Appium");
+            Log.info("Automation Type : " + "Appium");
+            //capabilities.setCapability("automationName", "Appium");
 
         } else {
             capabilities.setCapability("automationName", "uiautomator2");
-            //Log.info("Automation Type : " + "uiautomator2");
+            Log.info("Automation Type : " + "uiautomator2");
         }
 
         // capabilities.setCapability("deviceName", "4200ea8cce337347");
@@ -168,9 +168,9 @@ public class CreateSession {
         //sessionId.set("597a3b4af27a41d89b394561139a1dd0");
 
         // Initialize the Appium Event driver
-        EventFiringWebDriver eventFiringWebDriver = new EventFiringWebDriver(getAndroidDriver());
+  /*      EventFiringWebDriver eventFiringWebDriver = new EventFiringWebDriver(getAndroidDriver());
         AppiumDriverListeners eventListener = new AppiumDriverListeners();
-        eventFiringWebDriver.register(eventListener);
+        eventFiringWebDriver.register(eventListener);*/
         //getAndroidDriver() = eventFiringWebDriver;
 
         return androidDriverThread.get();

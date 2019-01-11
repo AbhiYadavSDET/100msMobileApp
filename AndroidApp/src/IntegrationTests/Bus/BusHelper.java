@@ -6,6 +6,8 @@ import UITestFramework.MBKPermissions;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
 import logger.Log;
 import org.json.JSONException;
 import org.openqa.selenium.By;
@@ -52,7 +54,7 @@ public class BusHelper extends BusHelperBase {
 
         // Swipe the homescreen up
         Log.info("SWIPE", "UP");
-        touchAction.press(400, 1000).waitAction(Duration.ofMillis(1500)).moveTo(400, 200).release().perform();
+        touchAction.press(PointOption.point(400, 1000)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000))).moveTo(PointOption.point(400, 200)).release().perform();
 
 
         // Select the Bus option from the Home-screen
@@ -95,8 +97,10 @@ public class BusHelper extends BusHelperBase {
         // Scroll in case the operator is not visible
         reporter.extentReportDisplay("INFO", "STEP " + ++testStepCount + " | " + Log.info("SELECT", "Bus operator : " + "Das & Das Travels"), "");
         Log.info("Scrolling down to search the operator");
-        touchAction.press(400, 1000).waitAction(Duration.ofMillis(1000)).moveTo(400, 200).release().perform();
-        touchAction.press(400, 1000).waitAction(Duration.ofMillis(1000)).moveTo(400, 200).release().perform();
+
+        touchAction.press(PointOption.point(400, 1000)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000))).moveTo(PointOption.point(400, 200)).release().perform();
+        touchAction.press(PointOption.point(400, 1000)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000))).moveTo(PointOption.point(400, 200)).release().perform();
+
         Thread.sleep(5000);
 
         busScreen.findElements(By.xpath("//android.widget.TextView[@text = 'Das & Das Travels']")).get(0).click();
@@ -159,7 +163,8 @@ public class BusHelper extends BusHelperBase {
         String successPageTo = busScreen.getText(By.id("to_city"));
 
         Log.info("Scrolling down to search the pax name");
-        touchAction.press(400, 1000).waitAction(Duration.ofMillis(1000)).moveTo(400, 200).release().perform();
+        touchAction.press(PointOption.point(400, 1000)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000))).moveTo(PointOption.point(400, 200)).release().perform();
+
 
         String successPagePassengerName = busScreen.getText(By.id("txt_passenger_name"));
 
@@ -170,7 +175,8 @@ public class BusHelper extends BusHelperBase {
         busScreen.verifyEqualsExtentReport(successPageTo, "Baripada", "successPageTo | Actual : " + successPageTo + " | Expected : " + "Baripada", true, "Verify successPageTo", directoryName, screenName);
         busScreen.verifyEqualsExtentReport(successPagePassengerName, "IOS Automation", "successPagePassengerName | Actual : " + successPagePassengerName + " | Expected : " + "IOS Automation", true, "Verify successPagePassengerName", directoryName, screenName);
 
-        touchAction.press(400, 200).waitAction(Duration.ofMillis(1000)).moveTo(400, 1000).release().perform();
+        touchAction.press(PointOption.point(400, 200)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000))).moveTo(PointOption.point(400, 1000)).release().perform();
+
         Thread.sleep(3000);
 
 
@@ -181,7 +187,8 @@ public class BusHelper extends BusHelperBase {
         Thread.sleep(3000);
 
 
-        touchAction.press(400, 200).waitAction(Duration.ofMillis(1000)).moveTo(400, 1000).release().perform();
+        touchAction.press(PointOption.point(400, 200)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000))).moveTo(PointOption.point(400, 1000)).release().perform();
+
         Thread.sleep(3000);
 
 
@@ -209,7 +216,8 @@ public class BusHelper extends BusHelperBase {
 
         // Swipe the homescreen up
         Log.info("SWIPE", "UP");
-        touchAction.press(400, 1000).waitAction(Duration.ofMillis(1000)).moveTo(400, 200).release().perform();
+        touchAction.press(PointOption.point(400, 1000)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000))).moveTo(PointOption.point(400, 200)).release().perform();
+
 
         // Select the Bus option from the Home-screen
         reporter.extentReportDisplay("INFO", "STEP " + ++testStepCount + " | " + Log.info("SELECT", "Bus Icon from Homescreen"), "");
@@ -236,7 +244,8 @@ public class BusHelper extends BusHelperBase {
 
                 // Cancel the booking
                 Thread.sleep(2000);
-                touchAction.press(400, 600).waitAction(Duration.ofMillis(1000)).moveTo(400, 200).release().perform();
+                touchAction.press(PointOption.point(200, 600)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000))).moveTo(PointOption.point(400, 200)).release().perform();
+
 
                 reporter.extentReportDisplay("INFO", "STEP " + ++testStepCount + " | " + Log.info("SELECT", "Cancel Ticket CTA"), "");
                 busScreen.selectElement(By.id("cancel_button"));
@@ -252,7 +261,8 @@ public class BusHelper extends BusHelperBase {
 
                 String successPageStatus = busScreen.getText(By.xpath("//android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView"));
                 Double actualAmountToBeRefunded = Double.valueOf(busScreen.findElement(By.id("cancel_refund")).getText().replace("X", "").replace("₹ ", "").replace(",", "")) * 100;
-                touchAction.press(400, 400).waitAction(Duration.ofMillis(1000)).moveTo(400, 200).release().perform();
+                touchAction.press(PointOption.point(400, 400)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000))).moveTo(PointOption.point(400, 200)).release().perform();
+
                 String actualNoteText = busScreen.getText(By.id("suceess_msg"));
 
 

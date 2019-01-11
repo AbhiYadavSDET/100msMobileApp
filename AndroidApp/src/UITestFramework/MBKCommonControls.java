@@ -4,6 +4,8 @@ import IntegrationTests.Screens.OnboardingScreen;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
 import logger.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -83,8 +85,8 @@ public class MBKCommonControls extends MobiKwikScreen {
         }
 
         // Swipe up
-        touchAction.press(400, 1000).waitAction(Duration.ofMillis(1000)).moveTo(400, 500).release().perform();
-        touchAction.press(400, 1000).waitAction(Duration.ofMillis(1000)).moveTo(400, 500).release().perform();
+        touchAction.press(PointOption.point(400, 1000)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000))).moveTo(PointOption.point(400,500)).release().perform();
+        touchAction.press(PointOption.point(400, 1000)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000))).moveTo(PointOption.point(400,500)).release().perform();
 
 
         // Fetch the supercash balance
