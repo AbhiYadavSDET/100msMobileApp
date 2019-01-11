@@ -4,13 +4,20 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.remote.MobileCapabilityType;
 import logger.Log;
+import main.java.utils.AppiumDriverListeners;
+import main.java.utils.Config;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Properties;
@@ -19,6 +26,7 @@ import java.util.Properties;
  * contains all the methods to create a new session and destroy the session
  * after the test(s) execution is over. Each test extends this class.
  */
+
 public class CreateSession {
 
     public AndroidDriver<AndroidElement> driver = null;
@@ -32,6 +40,9 @@ public class CreateSession {
 
     private String reportDirectory = "reports";
     private String reportFormat = "xml";
+
+    protected static Properties properties;
+    protected static Logger log = Logger.getLogger(Config.class);
 
 
     /**
@@ -56,11 +67,15 @@ public class CreateSession {
     @Parameters({"build", "methodName", "portNo", "androidOSVersion", "deviceName", "udid"})
     @BeforeMethod(groups = "setUp", alwaysRun = true)
     public void createDriver(String build, @Optional String methodName, @Optional String portNo, @Optional String androidOSVersion, @Optional String deviceName, @Optional String udid) throws Exception {
-        Log.info("BEFORE");
+
+        // Initializing the test and load the config files
+        initialization();
+
+        /*Log.info("BEFORE");
         System.out.println("portNo : " + portNo);
         System.out.println("androidOSVersion : " + androidOSVersion);
         System.out.println("deviceName : " + deviceName);
-        System.out.println("udid : " + udid);
+        System.out.println("udid : " + udid);*/
 
         if (portNo == null) {
             portNo = this.portNo;
@@ -79,16 +94,16 @@ public class CreateSession {
             udid = this.udid;
         }
 
-        Log.info("AFTER");
+        /*Log.info("AFTER");
         System.out.println("portNo : " + portNo);
         System.out.println("androidOSVersion : " + androidOSVersion);
         System.out.println("deviceName : " + deviceName);
-        System.out.println("udid : " + udid);
+        System.out.println("udid : " + udid);*/
 
 
         String buildPath = choosebuild(build);
         androidDriver(buildPath, methodName, portNo, androidOSVersion, deviceName, udid);
-        Log.info("Android driver created");
+        //Log.info("Android driver created");
 
 
     }
@@ -122,12 +137,12 @@ public class CreateSession {
         capabilities.setCapability("app-wait-activity", ".MobikwikMain");
 
         if (Double.parseDouble(androidOSVersion) < Double.parseDouble("7.0")) {
-            Log.info("Automation Type : " + "Appium");
+            //Log.info("Automation Type : " + "Appium");
             capabilities.setCapability("automationName", "Appium");
 
         } else {
             capabilities.setCapability("automationName", "uiautomator2");
-            Log.info("Automation Type : " + "uiautomator2");
+            //Log.info("Automation Type : " + "uiautomator2");
         }
 
         // capabilities.setCapability("deviceName", "4200ea8cce337347");
@@ -148,12 +163,16 @@ public class CreateSession {
         capabilities.setCapability("app", app.getAbsolutePath());
         capabilities.setCapability("fullReset", true);
 
-        Log.info("http://localhost:" + portNo + "/wd/hub");
+        //Log.info("http://localhost:" + portNo + "/wd/hub");
         androidDriverThread.set(new AndroidDriver(new URL("http://localhost:" + portNo + "/wd/hub"), capabilities));
         //sessionId.set("597a3b4af27a41d89b394561139a1dd0");
 
+        // Initialize the Appium Event driver
+        EventFiringWebDriver eventFiringWebDriver = new EventFiringWebDriver(getAndroidDriver());
+        AppiumDriverListeners eventListener = new AppiumDriverListeners();
+        eventFiringWebDriver.register(eventListener);
+        //getAndroidDriver() = eventFiringWebDriver;
 
-        //androidDriver.get().setLogLevel(Level.INFO);
         return androidDriverThread.get();
 
     }
@@ -193,4 +212,47 @@ public class CreateSession {
      */
 
 
+    public void initialization() {
+        fetchDataFromPropertiesFile();
+    }
+
+    private void fetchDataFromPropertiesFile() {
+
+        String filepath = System.getProperty("user.dir") + "/Parameters/config.properties";
+        fetchConfiguration(filepath);
+        String env = properties.getProperty("Environment", "production").trim().toLowerCase();
+        if (!(env.equals("production") || env.equals(""))) {
+            filepath = System.getProperty("user.dir") + "/Parameters/" + env + ".properties";
+            fetchConfiguration(filepath);
+        }
+
+    }
+
+    private void fetchConfiguration(String filepath) {
+
+        //	String filepath=System.getProperty("user.dir")+"/Parameters/Config.properties";
+
+        properties = new Properties();
+
+        InputStream input = null;
+        try {
+
+            input = new FileInputStream(filepath);
+
+            // load a properties file
+            properties.load(input);
+
+        } catch (IOException ex) {
+            System.out.println("Error while loading property file.\n");
+            ex.printStackTrace();
+        } finally {
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 }
