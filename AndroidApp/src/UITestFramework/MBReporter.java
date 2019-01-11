@@ -1,7 +1,6 @@
 package UITestFramework;
 
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.ios.IOSDriver;
 import logger.Log;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -125,6 +124,55 @@ public class MBReporter {
             } else {
 
                 Reporter.log("<Font Color=red> FAIL </Font> " + message);
+
+            }
+
+            if (exitOnFailure) {
+                Reporter.log("<br>");
+
+                Reporter.log("Exiting this function as exitOnFail flag is set to True. Will move to next test.");
+
+                throw e;
+
+            }
+
+        }
+    }
+
+    /**
+     * method to verify the actual value with expected value
+     *
+     * @param actual              actual text displayed
+     * @param expected            expected text to be displayed
+     * @param stepName            message should be displayed on failure of assertion
+     * @param screenshotOnFailure pass true if screenshot should be taken on failure else false
+     * @param exitOnFailure       pass true if program execution should halt on failure of the
+     *                            condition else false
+     */
+    public void verifyEqualsWithLogging(Object actual, Object expected, String stepName, boolean screenshotOnFailure,
+                                        boolean exitOnFailure) {
+
+        Reporter.log("<br>");
+
+        try {
+            Assert.assertEquals(actual, expected, stepName);
+            Reporter.log("<Font Color=#008000> PASS </Font>" + stepName);
+            Log.info(Log.ANSI_GREEN + "LOG | PASS | " + stepName + " | Actual : " + actual + " | Expected : " + expected + Log.ANSI_RESET);
+
+
+        } catch (AssertionError e) {
+            this.testCaseStatus = false;
+            if (screenshotOnFailure) {
+
+                Reporter.log("<a href='" + screenShot() + "'> <Font Color=red> FAIL </Font> </a>" + stepName);
+                Log.info(Log.ANSI_RED + "LOG | FAIL | " + stepName + " | Actual : " + actual + " | Expected : " + expected + Log.ANSI_RESET);
+
+
+            } else {
+
+                Reporter.log("<Font Color=red> FAIL </Font> " + stepName);
+                Log.info(Log.ANSI_RED + "LOG | FAIL | " + stepName + " | Actual : " + actual + " | Expected : " + expected + Log.ANSI_RESET);
+
 
             }
 
