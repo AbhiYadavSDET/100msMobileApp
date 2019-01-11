@@ -38,6 +38,18 @@ public class HomePage {
     @AndroidFindBy(id = "com.mobikwik_new:id/tx_balance")
     private AndroidElement login_signup_button;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Gold']")
+    private AndroidElement icon_gold;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Boost Loan']")
+    private AndroidElement icon_boostLoan;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Mutual Fund']")
+    private AndroidElement icon_mutualFund;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Insurance']")
+    private AndroidElement icon_insurance;
+
 
     public HomePage(AndroidDriver driver) {
         this.driver = driver;
