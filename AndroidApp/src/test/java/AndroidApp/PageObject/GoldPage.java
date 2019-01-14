@@ -42,7 +42,8 @@ public class GoldPage {
     @AndroidFindBy(id = "com.mobikwik_new:id/btn_gold_actiont")
     private AndroidElement cta_make_payment;
 
-
+    @AndroidFindBy(id = "base_icon_close")
+    private AndroidElement cross_icon;
 
     public GoldPage(AndroidDriver driver) {
         this.driver = driver;
@@ -55,6 +56,39 @@ public class GoldPage {
 
         Log.info("*****On Gold Page*****");
     }
+    public void clickOnBuyGold(){
+        Element.selectElement(driver, button_buy_gold, "Buy Gold Button");
+    }
+
+    public void enterAmount(){
+        Element.enterText(driver, text_box_buy_in_rupees, "1", "Enter Amount For Gold");
+
+    }
+
+    public void clickBuyNowCta(){
+        Element.selectElement(driver, cta_buy_now, "Click on Buy Now.");
+    }
+
+    public void applyPromoCode(){
+        Element.selectElement(driver, have_promo_code, "Have a promo code");
+        Element.enterText(driver, text_box_coupon_code, "TSTAUGL", "Enter Promo Code");
+        Element.selectElement(driver, button_apply_coupon, "Click on Apply Button");
+    }
+
+    public void clickOnMakePaymentCta(){
+        Element.selectElement(driver, cta_make_payment, "Click on Make Payment");
+
+    }
+    //Add Security Pin
+
+    public FiveStarRatingPage clickOnSuccessPageCross(){
+
+        Element.selectElement(driver, cross_icon, "base_icon_close");
+        return new FiveStarRatingPage(driver);
+
+    }
+
+
 
 
 }

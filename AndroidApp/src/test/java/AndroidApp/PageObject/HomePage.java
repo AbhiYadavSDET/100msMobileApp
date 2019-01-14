@@ -38,6 +38,7 @@ public class HomePage {
     @AndroidFindBy(id = "com.mobikwik_new:id/tx_balance")
     private AndroidElement login_signup_button;
 
+
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Gold']")
     private AndroidElement icon_gold;
 
@@ -72,4 +73,11 @@ public class HomePage {
         Element.selectElement(driver, login_signup_button, "Login/Signup Button");
         return new LoginPage(driver);
     }
+
+    public GoldPage clickGoldIcon() {
+        Element.selectElement(driver, icon_gold, "Gold Icon");
+        return new GoldPage(driver);
+    }
+
+
 }

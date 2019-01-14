@@ -6,6 +6,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
 import main.java.utils.Element;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 
 public class FiveStarRatingPage {
@@ -33,6 +34,27 @@ public class FiveStarRatingPage {
          */
 
         Log.info("*****On Five Star Rating Page*****");
+    }
+
+    public boolean isRatingPopUpDisplayed() throws InterruptedException {
+
+        if(Element.isElementPresent(driver, By.id("com.mobikwik_new:id/rating_stars"))){
+            return true;
+
+
+        }else {
+
+            return false;
+        }
+    }
+
+    public void clickOnRateFiveStars(){
+        Element.selectElement(driver, cta_rate_five_stars, "Click on Rate 5 Stars");
+
+    }
+    public void clickOnMaybeLater(){
+        Element.selectElement(driver, cta_maybe_later, "Click on Maybe Later");
+
     }
 
 }
