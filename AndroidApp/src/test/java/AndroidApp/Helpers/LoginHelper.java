@@ -24,7 +24,6 @@ public class LoginHelper {
     AndroidDriver driver;
     OnboardingPage onboardingPage;
     LoginPage loginPage;
-    PermissionHelper permissionHelper;
     ApiCommonControls apiCommonControls;
     public static HashMap<String, String> map;
     String otpMid = "MBK5778";
@@ -61,19 +60,20 @@ public class LoginHelper {
 
         onboardingPage.clickOnGetOtpCta();
 
-        permissionHelper.permissionAllow();
+        new PermissionHelper(driver).permissionAllow();
 
         Thread.sleep(3000);
         apiOtp = apiCommonControls.getOTPfromDB(map.get("email"), map.get("mobile"), otpMid, serviceURL, serviceCode);
-        loginPage.enterOtp(apiOtp.get("otp"));
 
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.enterOtp(apiOtp.get("otp"));
         loginPage.clickOnGetOtpCta();
 
         handleUpiScreenInOnboarding();
 
         mbkCommonControls.handleConscentPopup();
 
-        sideDrawerPage = homePage.clickHamburgerIcon();
+        sideDrawerPage = new HomePage(driver).clickHamburgerIcon();
 
         String actualName = sideDrawerPage.getName();
         String actualEmail = sideDrawerPage.getEmail();
@@ -151,10 +151,6 @@ public class LoginHelper {
             driver.navigate().back();
         }
     }
-
-   /* public void verifyLoggedInUser() {
-        dashboardHelper.verifyUser(map.get("email"), map.get("mobile"));
-    }*/
 
 
 }
