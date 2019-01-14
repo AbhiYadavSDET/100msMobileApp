@@ -7,7 +7,7 @@
     <parameter name="build" value="prod"/>
     <parameter name="level" value="payments"/>
     <parameter name="saucelabs" value="false"></parameter>
-    <parameter name="androidOSVersion" value="6.0"></parameter>
+    <parameter name="androidOSVersion" value="7.0"></parameter>
     <parameter name="methodName" value="onboardingLogin"></parameter>
 
 
