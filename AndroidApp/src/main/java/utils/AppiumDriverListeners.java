@@ -3,6 +3,7 @@ package main.java.utils;
 import UITestFramework.CreateSession;
 import io.appium.java_client.events.api.general.AppiumWebDriverEventListener;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -118,7 +119,37 @@ public class AppiumDriverListeners extends CreateSession implements AppiumWebDri
     }
 
     @Override
+    public void beforeSwitchToWindow(String s, WebDriver webDriver) {
+
+    }
+
+    @Override
+    public void afterSwitchToWindow(String s, WebDriver webDriver) {
+
+    }
+
+    @Override
     public void onException(Throwable throwable, WebDriver webDriver) {
+
+    }
+
+    @Override
+    public <X> void beforeGetScreenshotAs(OutputType<X> outputType) {
+
+    }
+
+    @Override
+    public <X> void afterGetScreenshotAs(OutputType<X> outputType, X x) {
+
+    }
+
+    @Override
+    public void beforeGetText(WebElement webElement, WebDriver webDriver) {
+
+    }
+
+    @Override
+    public void afterGetText(WebElement webElement, WebDriver webDriver, String s) {
 
     }
 }

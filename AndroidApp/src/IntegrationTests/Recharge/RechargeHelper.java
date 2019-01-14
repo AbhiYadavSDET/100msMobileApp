@@ -8,6 +8,8 @@ import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
 import logger.Log;
 import org.json.JSONException;
 import org.openqa.selenium.By;
@@ -387,7 +389,8 @@ public class RechargeHelper extends RechargeHelperBase {
         Thread.sleep(3000);
 
         Log.info("SWIPE", "UP");
-        touchAction.press(400, 800).waitAction(Duration.ofMillis(1000)).moveTo(400, 200).release().perform();
+        touchAction.press(PointOption.point(400, 800)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000))).moveTo(PointOption.point(400, 200)).release().perform();
+
         rechargeScreen.selectElement(By.xpath("//*[@text = 'Vodafone']"));
         rechargeScreen.selectElement(By.xpath("//*[@text = 'Delhi/NCR']"));
 
@@ -470,13 +473,15 @@ public class RechargeHelper extends RechargeHelperBase {
             //if (rechargeScreen.isElementPresent(By.xpath("//*/android.widget.TextView[contains(text()," + connectionNo + ")]"))) {
             if (rechargeScreen.isElementPresent(By.xpath("//*/android.widget.TextView[@text = '7795709569 | Postpaid, Vodafone']"))) {
                 Log.info("SCROLL", "Less");
-                touchAction.press(400, 1000).waitAction(Duration.ofMillis(1000)).moveTo(400, 800).release().perform();
+                touchAction.press(PointOption.point(400, 1000)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000))).moveTo(PointOption.point(400, 800)).release().perform();
+
                 Log.info("SELECT", "Saved Connection");
                 rechargeScreen.selectElement(By.xpath("//*/android.widget.TextView[@text = '7795709569 | Postpaid, Vodafone']"));
                 return true;
             } else {
                 Log.info("SCROLL", "More");
-                touchAction.press(400, 1000).waitAction(Duration.ofMillis(1000)).moveTo(400, 200).release().perform();
+                touchAction.press(PointOption.point(400, 1000)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000))).moveTo(PointOption.point(400, 200)).release().perform();
+
                 Thread.sleep(2000);
             }
         }

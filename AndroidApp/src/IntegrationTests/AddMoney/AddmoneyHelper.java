@@ -5,6 +5,8 @@ import UITestFramework.ExtentReport.Reporter;
 import UITestFramework.MBKPermissions;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
 import logger.Log;
 import org.json.JSONException;
 import org.openqa.selenium.By;
@@ -62,7 +64,7 @@ public class AddmoneyHelper extends AddmoneyHelperBase {
 
             addmoneyScreen.waitForVisibility(By.xpath("//*[@text = 'Select Payment Mode']"));
             Log.info("SWIPE", "UP");
-            touchAction.press(400, 1000).waitAction(Duration.ofMillis(1500)).moveTo(400, 400).release().perform();
+            touchAction.press(PointOption.point(400, 1000)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1500))).moveTo(PointOption.point(400, 400)).release().perform();
 
 
             // Secure payment screen
@@ -133,7 +135,7 @@ public class AddmoneyHelper extends AddmoneyHelperBase {
 
             addmoneyScreen.waitForVisibility(By.xpath("//*[@text = 'Select Payment Mode']"));
             Log.info("SWIPE", "UP");
-            touchAction.press(400, 1000).waitAction(Duration.ofMillis(1500)).moveTo(400, 400).release().perform();
+            touchAction.press(PointOption.point(400, 1000)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1500))).moveTo(PointOption.point(400, 400)).release().perform();
 
 
             reporter.extentReportDisplay("INFO", "STEP " + ++testStepCount + " | " + Log.info("SELECT", "New Debit/Credit Card option"), "");
@@ -219,13 +221,14 @@ public class AddmoneyHelper extends AddmoneyHelperBase {
 
         addmoneyScreen.waitForVisibility(By.xpath("//*[@text = 'Select Payment Mode']"));
         Log.info("SWIPE", "UP");
-        touchAction.press(400, 1000).waitAction(Duration.ofMillis(1500)).moveTo(400, 400).release().perform();
+        touchAction.press(PointOption.point(400, 1000)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000))).moveTo(PointOption.point(400, 400)).release().perform();
 
 
         // Secure payment screen
         reporter.extentReportDisplay("INFO", "STEP " + ++testStepCount + " | " + Log.info("SELECT", "Saved Card option"), "");
         Log.info("SWIPE", "LESS");
-        touchAction.press(500, 1000).waitAction(Duration.ofMillis(646)).moveTo(500, 600).release().perform();
+        touchAction.press(PointOption.point(400, 1000)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000))).moveTo(PointOption.point(500,600)).release().perform();
+
         addmoneyScreen.selectElement(By.xpath("//android.widget.TextView[@text = '4363 XXXX XXXX 4460']"));
 
         reporter.extentReportDisplay("INFO", "STEP " + ++testStepCount + " | " + Log.info("ENTER", "Card Details"), "");
@@ -291,7 +294,8 @@ public class AddmoneyHelper extends AddmoneyHelperBase {
             // Secure payment screen
             reporter.extentReportDisplay("INFO", "STEP " + ++testStepCount + " | " + Log.info("SELECT", "Saved Card option"), "");
             Log.info("SWIPE", "LESS");
-            touchAction.press(500, 1000).waitAction(Duration.ofMillis(646)).moveTo(500, 600).release().perform();
+            touchAction.press(PointOption.point(500, 1000)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000))).moveTo(PointOption.point(500,600)).release().perform();
+
             addmoneyScreen.selectElement(By.xpath("//android.widget.TextView[@text = '4363 XXXX XXXX 4460']"));
 
             reporter.extentReportDisplay("INFO", "STEP " + ++testStepCount + " | " + Log.info("ENTER", "Card Details"), "");

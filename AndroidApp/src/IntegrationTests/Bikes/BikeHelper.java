@@ -7,6 +7,8 @@ import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
 import logger.Log;
 import org.json.JSONException;
 import org.openqa.selenium.By;
@@ -50,7 +52,8 @@ public class BikeHelper extends BikeHelperBase {
 
         // Swipe the homescreen up
         Log.info("SWIPE", "Down");
-        touchAction.press(400, 1000).waitAction(Duration.ofMillis(1000)).moveTo(400, 200).release().perform();
+        touchAction.press(PointOption.point(400, 1000)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000))).moveTo(PointOption.point(400, 200)).release().perform();
+
         Thread.sleep(2000);
 
         reporter.extentReportDisplay("INFO", "STEP " + ++testStepCount + " | " + Log.info("SELECT", "Bike Icon"), "");
@@ -78,7 +81,8 @@ public class BikeHelper extends BikeHelperBase {
             // Reach the end of Page
             Log.info("SWIPE", "Down");
             for (int i = 0; i < 3; i++) {
-                touchAction.press(400, 1000).waitAction(Duration.ofMillis(1000)).moveTo(400, 200).release().perform();
+                touchAction.press(PointOption.point(400, 1000)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000))).moveTo(PointOption.point(400, 200)).release().perform();
+
             }
 
             // Enter the deetyails
