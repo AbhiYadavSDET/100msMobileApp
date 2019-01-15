@@ -74,6 +74,10 @@ public class HomePage {
         return new LoginPage(driver);
     }
 
+    public void clickHomePageMbkLogo() {
+        Element.selectElement(driver, mbk_logo, "MobiKwik Homescreen Logo");
+    }
+
     public GoldPage clickGoldIcon() {
         Element.selectElement(driver, icon_gold, "Gold Icon");
         return new GoldPage(driver);

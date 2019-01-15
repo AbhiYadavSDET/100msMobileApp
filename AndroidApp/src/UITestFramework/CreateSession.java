@@ -2,13 +2,13 @@ package UITestFramework;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.events.EventFiringWebDriverFactory;
 import io.appium.java_client.remote.MobileCapabilityType;
 import logger.Log;
-import main.java.utils.AppiumDriverListeners;
 import main.java.utils.Config;
+import main.java.utils.Listeners.AppiumDriverListeners;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
@@ -164,14 +164,11 @@ public class CreateSession {
         capabilities.setCapability("fullReset", true);
 
         //Log.info("http://localhost:" + portNo + "/wd/hub");
-        androidDriverThread.set(new AndroidDriver(new URL("http://localhost:" + portNo + "/wd/hub"), capabilities));
-        //sessionId.set("597a3b4af27a41d89b394561139a1dd0");
 
-        // Initialize the Appium Event driver
-  /*      EventFiringWebDriver eventFiringWebDriver = new EventFiringWebDriver(getAndroidDriver());
-        AppiumDriverListeners eventListener = new AppiumDriverListeners();
-        eventFiringWebDriver.register(eventListener);*/
-        //getAndroidDriver() = eventFiringWebDriver;
+        driver = new AndroidDriver(new URL("http://localhost:" + portNo + "/wd/hub"), capabilities);
+        driver = EventFiringWebDriverFactory.getEventFiringWebDriver(driver, new AppiumDriverListeners());
+        androidDriverThread.set(driver);
+
 
         return androidDriverThread.get();
 
