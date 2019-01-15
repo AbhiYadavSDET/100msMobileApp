@@ -60,4 +60,8 @@ public class HomePage {
         Element.selectElement(driver, login_signup_button, "Login/Signup Button");
         return new LoginPage(driver);
     }
+
+    public void clickHomePageMbkLogo() {
+        Element.selectElement(driver, mbk_logo, "MobiKwik Homescreen Logo");
+    }
 }

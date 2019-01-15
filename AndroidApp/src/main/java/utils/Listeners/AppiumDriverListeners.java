@@ -1,13 +1,19 @@
-package main.java.utils;
+package main.java.utils.Listeners;
 
 import UITestFramework.CreateSession;
 import io.appium.java_client.events.api.general.AppiumWebDriverEventListener;
+import logger.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class AppiumDriverListeners extends CreateSession implements AppiumWebDriverEventListener {
+
+    private By lastFindBy;
+    private WebElement lastElement;
+
+
     @Override
     public void beforeChangeValueOf(WebElement webElement, WebDriver webDriver) {
 
@@ -80,22 +86,32 @@ public class AppiumDriverListeners extends CreateSession implements AppiumWebDri
 
     @Override
     public void beforeFindBy(By by, WebElement webElement, WebDriver webDriver) {
-
+        lastFindBy = by;
+        if (properties.getProperty("DebugMode").trim().equalsIgnoreCase("true")) {
+            Log.info("Trying to find: '" + lastFindBy + "'.");
+        }
     }
 
     @Override
     public void afterFindBy(By by, WebElement webElement, WebDriver webDriver) {
-
+        lastFindBy = by;
+        if (properties.getProperty("DebugMode").trim().equalsIgnoreCase("true")) {
+            Log.info("Found: '" + lastFindBy + "'.");
+        }
     }
 
     @Override
     public void beforeClickOn(WebElement webElement, WebDriver webDriver) {
-        Config.logComment("Trying to click: '" + webElement + "'");
+        if (properties.getProperty("DebugMode").trim().equalsIgnoreCase("true")) {
+            Log.info("Trying to Click: '" + lastFindBy + "'.");
+        }
     }
 
     @Override
     public void afterClickOn(WebElement webElement, WebDriver webDriver) {
-        Config.logComment("Clicked Element with: '" + webElement + "'");
+        if (properties.getProperty("DebugMode").trim().equalsIgnoreCase("true")) {
+            Log.info("Clicked: '" + lastFindBy + "'.");
+        }
     }
 
     @Override
