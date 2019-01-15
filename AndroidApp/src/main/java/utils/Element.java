@@ -110,6 +110,7 @@ public class Element {
 
     public static void click(AndroidDriver driver, AndroidElement androidElement, String description) {
         try {
+            Log.info("CLICK", description);
             androidElement.click();
         } catch (Exception e) {
             throw e;
@@ -130,11 +131,15 @@ public class Element {
 
     public static void enterText(AndroidDriver driver, AndroidElement androidElement, String text, String description) {
         waitForVisibility(driver, androidElement);
+
+        Log.info("ENTER", description);
         androidElement.sendKeys(text);
     }
 
     public static void clearText(AndroidDriver driver, AndroidElement androidElement, String text, String description) {
         waitForVisibility(driver, androidElement);
+
+        Log.info("CLEAR", description);
         androidElement.clear();
     }
 
@@ -148,6 +153,8 @@ public class Element {
      */
     public String getText(AndroidDriver driver, AndroidElement androidElement, String text, String description) {
         waitForVisibility(driver, androidElement);
+
+        Log.info("GET", description);
         return androidElement.getText();
     }
 

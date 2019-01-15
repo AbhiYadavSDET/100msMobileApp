@@ -83,6 +83,9 @@ public class LoginHelper {
         mbReporter.verifyEqualsWithLogging(actualEmail, map.get("email"), "Verify Email", false, false);
         mbReporter.verifyEqualsWithLogging(actualMobileNo, map.get("mobile"), "Verify Mobile", false, false);
 
+        homePage.clickHomePageMbkLogo();
+
+
     }
 
     public void doLoginViaMobileNo(int rownum) {
@@ -127,6 +130,8 @@ public class LoginHelper {
         mbReporter.verifyEqualsWithLogging(actualName, map.get("name"), "Verify Name", false, false);
         mbReporter.verifyEqualsWithLogging(actualEmail, map.get("email"), "Verify Email", false, false);
         mbReporter.verifyEqualsWithLogging(actualMobileNo, map.get("mobile"), "Verify Mobile", false, false);
+
+        homePage.clickHomePageMbkLogo();
 
 
     }
