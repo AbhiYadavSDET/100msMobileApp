@@ -39,7 +39,7 @@ public class GoldPage {
     private AndroidElement button_apply_coupon;
 
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/btn_gold_actiont")
+    @AndroidFindBy(id = "com.mobikwik_new:id/btn_gold_action")
     private AndroidElement cta_make_payment;
 
     @AndroidFindBy(id = "base_icon_close")

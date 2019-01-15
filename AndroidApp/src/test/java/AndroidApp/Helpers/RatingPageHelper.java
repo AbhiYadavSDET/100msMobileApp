@@ -2,7 +2,10 @@ package test.java.AndroidApp.Helpers;
 
 import UITestFramework.MBKCommonControls;
 import UITestFramework.MBReporter;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
 import logger.Log;
 import main.java.utils.Config;
 import main.java.utils.TestDataReader;
@@ -12,12 +15,14 @@ import test.java.AndroidApp.PageObject.GoldPage;
 import test.java.AndroidApp.PageObject.HomePage;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.HashMap;
 
 public class RatingPageHelper {
 
     AndroidDriver driver;
     HomePage homePage;
+    TouchAction touchAction;
     public static HashMap<String, String> map;
     GoldPage goldPage;
     FiveStarRatingPage fiveStarRatingPage;
@@ -29,6 +34,7 @@ public class RatingPageHelper {
         homePage = new HomePage(driver);
         mbReporter = new MBReporter(driver, "testScreenshotDir");
         mbkCommonControls = new MBKCommonControls(driver);
+        touchAction = new TouchAction(driver);
     }
 
     public void ratingGold(int rownum) throws InterruptedException, IOException, JSONException {
@@ -36,13 +42,19 @@ public class RatingPageHelper {
         Log.info("Fetching Data From Sheet");
         fetchDataFromSheet(rownum);
 
+        // Swipe the homescreen up
+        Log.info("SWIPE", "Down");
+        touchAction.press(PointOption.point(400, 1000)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000))).moveTo(PointOption.point(400, 200)).release().perform();
+
+
+
         goldPage = homePage.clickGoldIcon();
 
         goldPage.clickOnBuyGold();
 
         goldPage.enterAmount();
 
-        goldPage.clickOnBuyGold();
+        goldPage.clickBuyNowCta();
 
         goldPage.applyPromoCode();
 
@@ -51,14 +63,24 @@ public class RatingPageHelper {
         mbkCommonControls.handleSecurityPin("121212");
         Thread.sleep(3000);
 
-        fiveStarRatingPage = goldPage.clickOnSuccessPageCross();
+        FiveStarRatingPage fiveStarRatingPage = new FiveStarRatingPage(driver);
+        boolean status1 = fiveStarRatingPage.isRatingPopUpDisplayed();
 
-        boolean status = fiveStarRatingPage.isRatingPopUpDisplayed();
-
-        mbReporter.verifyTrue(status, "Verify if Rating Pop Up is Displayed", false, false);
-
-        if (status) {
+        if (status1) {
+            // Assert for the 5 stars to be displayed
+            mbReporter.verifyEqualsWithLogging(status1, status1, "Verify Rating Pop Up is Displayed before cross icon", false, false);
             fiveStarRatingPage.clickOnMaybeLater();
+        } else {
+
+            fiveStarRatingPage = goldPage.clickOnSuccessPageCross();
+
+            boolean status2 = fiveStarRatingPage.isRatingPopUpDisplayed();
+
+            if (status2) {
+                // Assert for the 5 stars to be displayed
+                mbReporter.verifyEqualsWithLogging(status2, status2, "Verify Rating Pop Up is Displayed after cross icon", false, false);
+                fiveStarRatingPage.clickOnMaybeLater();
+            }
         }
     }
 
