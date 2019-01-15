@@ -44,7 +44,7 @@ public class RatingPageHelper {
 
         // Swipe the homescreen up
         Log.info("SWIPE", "Down");
-        touchAction.press(PointOption.point(400, 1000)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000))).moveTo(PointOption.point(400, 200)).release().perform();
+        touchAction.press(PointOption.point(400, 1000)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000))).moveTo(PointOption.point(400, 600)).release().perform();
 
 
 
