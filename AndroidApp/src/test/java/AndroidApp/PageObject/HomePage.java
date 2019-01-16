@@ -39,6 +39,19 @@ public class HomePage {
     private AndroidElement login_signup_button;
 
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Gold']")
+    private AndroidElement icon_gold;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Boost Loan']")
+    private AndroidElement icon_boostLoan;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Mutual Fund']")
+    private AndroidElement icon_mutualFund;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Insurance']")
+    private AndroidElement icon_insurance;
+
+
     public HomePage(AndroidDriver driver) {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -64,4 +77,11 @@ public class HomePage {
     public void clickHomePageMbkLogo() {
         Element.selectElement(driver, mbk_logo, "MobiKwik Homescreen Logo");
     }
+
+    public GoldPage clickGoldIcon() {
+        Element.selectElement(driver, icon_gold, "Gold Icon");
+        return new GoldPage(driver);
+    }
+
+
 }

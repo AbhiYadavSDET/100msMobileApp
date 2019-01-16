@@ -4,6 +4,7 @@ import UITestFramework.CreateSession;
 import org.json.JSONException;
 import org.testng.annotations.Test;
 import test.java.AndroidApp.Helpers.LoginHelper;
+import test.java.AndroidApp.Helpers.RatingPageHelper;
 
 import java.io.IOException;
 
@@ -13,6 +14,9 @@ public class Test_Rating extends CreateSession {
     public void Test_RatingGold() throws IOException, JSONException, InterruptedException {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
         loginHelper.doLoginViaEmail(7);
+
+        RatingPageHelper ratingPageHelper=new RatingPageHelper(getAndroidDriver());
+        ratingPageHelper.ratingGold(1);
     }
 
 
