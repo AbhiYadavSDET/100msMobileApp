@@ -7,6 +7,9 @@ screenshots/
 /adbLogs/
 /testData/
 
+Parameters/TestDataSheet.xlsx
+app/
+
 //Compiled class file
 *.class
 
