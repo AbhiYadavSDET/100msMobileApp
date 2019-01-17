@@ -14,9 +14,10 @@ import java.util.List;
 
 public class Element {
     public final static int timeOut = 70;
+    AndroidDriver androidDriver;
 
-    public Element() {
-
+    public Element(AndroidDriver androidDriver) {
+        this.androidDriver = androidDriver;
     }
 
     /**

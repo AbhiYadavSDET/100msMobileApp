@@ -83,5 +83,10 @@ public class HomePage {
         return new GoldPage(driver);
     }
 
+    public AddMoneyPage clickOnAddMoneyButton() throws IOException {
+        Element.selectElement(driver, button_add_money, "Add Money button");
+        return new AddMoneyPage(driver);
+    }
+
 
 }

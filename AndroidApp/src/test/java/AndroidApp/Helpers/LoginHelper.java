@@ -145,6 +145,8 @@ public class LoginHelper {
         map.put("loginUsing", testData.GetData(rownum, "loginUsing"));
         map.put("password", testData.GetData(rownum, "password"));
         map.put("isKycUser", testData.GetData(rownum, "isKycUser"));
+        map.put("securityPin", testData.GetData(rownum, "securityPin"));
+
 
     }
 

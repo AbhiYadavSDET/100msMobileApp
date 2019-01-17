@@ -53,30 +53,30 @@ public class LoginPage {
 
 
     public void enterOtp(String otp) throws InterruptedException {
-        Element.enterText(driver, textbox_otp, otp, "Enter OTP");
+        Element.enterText(driver, textbox_otp, otp, "OTP");
     }
 
     public void clickOnGetOtpCta() {
-        Element.selectElement(driver, cta_submit_otp, "Click on Submit OTP CTA");
+        Element.selectElement(driver, cta_submit_otp, "Submit OTP CTA");
     }
 
     public void clickOnNewUser() {
-        Element.selectElement(driver, link_new_user, "Click on New User");
+        Element.selectElement(driver, link_new_user, "New User");
     }
 
     public void clickOnExistingUser() {
-        Element.selectElement(driver, link_existing_user, "Click on Existing User");
+        Element.selectElement(driver, link_existing_user, "Existing User");
     }
 
     public void enterEmail(String email) throws InterruptedException {
-        Element.enterText(driver, textbox_email, email, "Enter Email");
+        Element.enterText(driver, textbox_email, email, "Email");
     }
 
     public void enterPassword(String password) throws InterruptedException {
-        Element.enterText(driver, textbox_password, password, "Enter Password");
+        Element.enterText(driver, textbox_password, password, "Password");
     }
 
     public void clickOnLoginCta() {
-        Element.selectElement(driver, cta_login, "Click on Login CTA");
+        Element.selectElement(driver, cta_login, "Login CTA");
     }
 }
