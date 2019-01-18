@@ -6,6 +6,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
 import main.java.utils.Element;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
@@ -27,6 +28,9 @@ public class AddMoneyPage {
     @AndroidFindBy(xpath = "//*[@text = 'Net Banking']")
     public AndroidElement label_netbanking;
 
+    @AndroidFindBy(xpath = "//*[@text = 'New Debit/Credit Card']")
+    public AndroidElement label_new_debit_credit_card;
+
     @AndroidFindBy(id = "com.mobikwik_new:id/mkab_title")
     public AndroidElement label_make_payment;
 
@@ -35,6 +39,41 @@ public class AddMoneyPage {
 
     @AndroidFindBy(id = "com.mobikwik_new:id/horizontal_button_1")
     public AndroidElement button_no;
+
+    //Enter card details
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Card Number']/following::android.widget.EditText[1]")
+    private AndroidElement textbox_card_no;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Card Expiry']/following::android.widget.EditText[1]")
+    private AndroidElement textbox_expiry;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'CVV']/following::android.widget.EditText[1]")
+    private AndroidElement textbox_cvv;
+
+    @AndroidFindBy(id = "com.mobikwik_new:id/btn_add_money")
+    public AndroidElement cta_pay_now;
+
+    @AndroidFindBy(xpath = "//android.widget.RadioButton[@content-desc = 'e-Secure Password']")
+    private AndroidElement link_e_secure_password_1;
+
+    @AndroidFindBy(xpath = "//android.widget.RadioButton[@text = 'e-Secure Password']")
+    private AndroidElement link_e_secure_password_2;
+
+    @AndroidFindBy(xpath = "//android.widget.Button")
+    private AndroidElement cta_bankpage_continue;
+
+    @AndroidFindBy(xpath = "//android.widget.EditText")
+    private AndroidElement textbox_bankpage_password;
+
+    @AndroidFindBy(xpath = "//android.widget.Button")
+    private AndroidElement cta_bankpage_submit;
+
+    @AndroidFindBy(id = "com.mobikwik_new:id/base_title")
+    private AndroidElement label_success_page_status;
+
+    @AndroidFindBy(xpath = "//android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView[@index ='0']")
+    private AndroidElement label_success_page_text;
+
 
     public AddMoneyPage(AndroidDriver driver) throws IOException {
         this.driver = driver;
@@ -66,6 +105,10 @@ public class AddMoneyPage {
         Element.selectElement(driver, label_netbanking, "Netbanking");
     }
 
+    public void clickOnNewDebitCreditCard() throws InterruptedException {
+        Element.selectElement(driver, label_new_debit_credit_card, "New Debit/Credit card");
+    }
+
     public void clickOnYesButton() throws InterruptedException {
         Element.selectElement(driver, button_yes, "Yes");
     }
@@ -74,5 +117,48 @@ public class AddMoneyPage {
         Element.selectElement(driver, button_no, "No");
     }
 
+    public void enterCardNo(String cardNo) throws InterruptedException {
+        Element.enterText(driver, textbox_card_no, cardNo, "Card No");
+    }
+
+    public void enterExpiry(String expiry) throws InterruptedException {
+        Element.enterText(driver, textbox_expiry, expiry, "Expiry");
+    }
+
+    public void enterCvv(String cvv) throws InterruptedException {
+        Element.enterText(driver, textbox_cvv, cvv, "CVV");
+    }
+
+    public void clickOnPayNow() throws InterruptedException {
+        Element.selectElement(driver, cta_pay_now, "Pay Now Button");
+    }
+
+    public void clickOnBankPageSecurePassword() throws InterruptedException {
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.RadioButton[@text = 'e-Secure Password']"))) {
+            Element.selectElement(driver, link_e_secure_password_2, "Bank Page Secure Password");
+        } else {
+            Element.selectElement(driver, link_e_secure_password_1, "Bank Page Secure Password");
+        }
+    }
+
+    public void clickOnBankPageContinueButton() throws InterruptedException {
+        Element.selectElement(driver, cta_bankpage_continue, "Bank Page Continue Button");
+    }
+
+    public void enterBankPagePassword(String password) throws InterruptedException {
+        Element.enterText(driver, textbox_bankpage_password, password, "Bank page Password");
+    }
+
+    public void clickOnBankPageSubmitButton() throws InterruptedException {
+        Element.selectElement(driver, cta_bankpage_submit, "Bank Page Submit Button");
+    }
+
+    public String getSuccessPageStatus() throws InterruptedException {
+        return Element.getText(driver, label_success_page_status, "Success page status");
+    }
+
+    public String getSuccessPageText() throws InterruptedException {
+        return Element.getText(driver, label_success_page_text, "Success page text");
+    }
 
 }

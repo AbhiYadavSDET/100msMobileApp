@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class Test_AddMoney extends CreateSession {
 
-    @Test(groups = {"addMoneyNetBankingICICI", "addMoneyNetBanking"}, priority = 0, description = "Add Money via Netbanking ICICI")
+    @Test(groups = {"addMoneyNetBankingICICI", "addMoneyNetBanking", "addMoneySanity"}, priority = 0, description = "Add Money via Netbanking ICICI")
     public void addMoneyNetBankingICICI() throws IOException, JSONException, InterruptedException {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
         loginHelper.doLoginViaEmail(3);
@@ -19,7 +19,7 @@ public class Test_AddMoney extends CreateSession {
         addmoneyHelper.netbanking(1);
     }
 
-    @Test(groups = {"addMoneyNetBankingHDFC", "addMoneyNetBanking"}, priority = 1, description = "Add Money via Netbanking HDFC")
+    @Test(groups = {"addMoneyNetBankingHDFC", "addMoneyNetBanking", "addMoneySanity"}, priority = 1, description = "Add Money via Netbanking HDFC")
     public void addMoneyNetBankingHDFC() throws IOException, JSONException, InterruptedException {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
         loginHelper.doLoginViaEmail(3);
@@ -29,7 +29,7 @@ public class Test_AddMoney extends CreateSession {
     }
 
 
-    @Test(groups = {"addMoneyNetBankingCITI", "addMoneyNetBanking"}, priority = 2, description = "Add Money via Netbanking CITI")
+    @Test(groups = {"addMoneyNetBankingCITI", "addMoneyNetBanking", "addMoneySanity"}, priority = 2, description = "Add Money via Netbanking CITI")
     public void addMoneyNetBankingCITI() throws IOException, JSONException, InterruptedException {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
         loginHelper.doLoginViaEmail(3);
@@ -39,13 +39,31 @@ public class Test_AddMoney extends CreateSession {
     }
 
 
-    @Test(groups = {"addMoneyNetBankingAXIS", "addMoneyNetBanking"}, priority = 3, description = "Add Money via Netbanking AXIS")
+    @Test(groups = {"addMoneyNetBankingAXIS", "addMoneyNetBanking", "addMoneySanity"}, priority = 3, description = "Add Money via Netbanking AXIS")
     public void addMoneyNetBankingAXIS() throws IOException, JSONException, InterruptedException {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
         loginHelper.doLoginViaEmail(3);
 
         AddMoneyHelper addmoneyHelper = new AddMoneyHelper(getAndroidDriver());
         addmoneyHelper.netbanking(4);
+    }
+
+    @Test(groups = {"addMoneyNewCard", "addMoneySanity"}, priority = 4, description = "Add Money via New Card")
+    public void addMoneyNewCard() throws IOException, JSONException, InterruptedException {
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.doLoginViaEmail(3);
+
+        AddMoneyHelper addmoneyHelper = new AddMoneyHelper(getAndroidDriver());
+        addmoneyHelper.addMoneyViaNewCard(5);
+    }
+
+    @Test(groups = {"addMoneySavedCard", "addMoneySanity"}, priority = 5, description = "Add Money via Saved Card")
+    public void addMoneySavedCard() throws IOException, JSONException, InterruptedException {
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.doLoginViaEmail(3);
+
+        AddMoneyHelper addmoneyHelper = new AddMoneyHelper(getAndroidDriver());
+        addmoneyHelper.addMoneyViaSavedCard(6);
     }
 
 

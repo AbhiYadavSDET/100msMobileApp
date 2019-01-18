@@ -26,6 +26,9 @@ public class MbkCommonControlsPage {
     @AndroidFindBy(xpath = "//*[@text='w']")
     private AndroidElement button_up;
 
+    @AndroidFindBy(id = "base_icon_close")
+    private AndroidElement cross_icon;
+
 
     public MbkCommonControlsPage(AndroidDriver driver) throws IOException {
         this.driver = driver;
@@ -41,6 +44,13 @@ public class MbkCommonControlsPage {
 
     public void clickOnUpButton() {
         Element.selectElement(driver, button_up, "Up button");
+    }
+
+
+    public void clickOnSuccessPageCross() {
+
+        Element.selectElement(driver, cross_icon, "base_icon_close");
+
     }
 
 

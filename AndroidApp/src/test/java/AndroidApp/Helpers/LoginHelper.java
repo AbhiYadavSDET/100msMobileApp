@@ -8,6 +8,7 @@ import io.appium.java_client.android.AndroidDriver;
 import logger.Log;
 import main.java.utils.Config;
 import main.java.utils.Element;
+import main.java.utils.Screen;
 import main.java.utils.TestDataReader;
 import org.json.JSONException;
 import org.openqa.selenium.By;
@@ -56,6 +57,8 @@ public class LoginHelper {
         Log.info("Fetching Data From Sheet");
         fetchDataFromSheet(rownum);
 
+        Screen.hideKeyboard(driver);
+
         onboardingPage.enterMobileNo(map.get("mobile"));
 
         onboardingPage.clickOnGetOtpCta();
@@ -100,6 +103,8 @@ public class LoginHelper {
         // Fetch data from sheet
         Log.info("Fetching Data From Sheet");
         fetchDataFromSheet(rownum);
+
+        Screen.hideKeyboard(driver);
 
         homePage = onboardingPage.clickOnSkip();
 

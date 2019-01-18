@@ -51,4 +51,8 @@ public class MBKCommonControlsHelper {
     public void clickUpButton() {
         mbkCommonControlsPage.clickOnUpButton();
     }
+
+    public void returnToHomePageFromSuccessScreen() {
+        mbkCommonControlsPage.clickOnSuccessPageCross();
+    }
 }

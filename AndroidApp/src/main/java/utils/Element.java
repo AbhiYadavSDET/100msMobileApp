@@ -152,7 +152,7 @@ public class Element {
      * @param description
      * @return The text of the element
      */
-    public String getText(AndroidDriver driver, AndroidElement androidElement, String text, String description) {
+    public static String getText(AndroidDriver driver, AndroidElement androidElement, String description) {
         waitForVisibility(driver, androidElement);
 
         Log.info("GET", description);

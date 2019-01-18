@@ -58,18 +58,88 @@ public class AddMoneyHelper {
 
         addMoneyPage.clickOnNetbanking();
 
+        Thread.sleep(2000);
+
         AndroidElement androidElement = element.findElement(driver, By.xpath("//android.widget.TextView[@text = '" + map.get("bankname") + "']"));
         Element.selectElement(driver, androidElement, map.get("bankname"));
 
-        Thread.sleep(10000);
+        //Thread.sleep(10000);
 
         Element.waitForVisibility(driver, addMoneyPage.label_make_payment);
 
-        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath("//android.view.View[@text = '" + map.get("bankpagelocator") + "']")), map.get("bankname") + "Bank Page text", false, false);
+        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath("//android.view.View[@text = '" + map.get("bankpagelocator") + "']")), map.get("bankname") + "Page text", false, false);
 
         mbkCommonControlsHelper.clickUpButton();
 
         addMoneyPage.clickOnYesButton();
+
+
+    }
+
+    public void addMoneyViaNewCard(int rownum) throws InterruptedException, IOException, JSONException {
+        // Fetch data from sheet
+        Log.info("Fetching Data From Sheet");
+        fetchDataFromSheet(rownum);
+
+        addMoneyPage = homePage.clickOnAddMoneyButton();
+
+        addMoneyPage.clickOnAmountTextBox();
+
+        addMoneyPage.enterAmount(map.get("amount"));
+
+        addMoneyPage.clickOnContinueButton();
+
+        Element.waitForVisibility(driver, addMoneyPage.label_select_payment_mode);
+
+        screen.swipeUp();
+
+        addMoneyPage.clickOnNewDebitCreditCard();
+
+        enterCardDetails(map.get("cardno"), map.get("expirymonth"), map.get("expiryyear"), map.get("cvv"));
+
+        addMoneyPage.clickOnPayNow();
+
+        handleIndusindWebView(map.get("password"));
+
+        //Assertions
+        mbReporter.verifyEqualsWithLogging(addMoneyPage.getSuccessPageStatus(), map.get("successpagestatus"), "Success Page Status", false, false);
+        mbReporter.verifyEqualsWithLogging(addMoneyPage.getSuccessPageText(), map.get("successpagetext"), "Success Page Text", false, false);
+
+        mbkCommonControlsHelper.returnToHomePageFromSuccessScreen();
+
+    }
+
+    public void addMoneyViaSavedCard(int rownum) throws InterruptedException, IOException, JSONException {
+        // Fetch data from sheet
+        Log.info("Fetching Data From Sheet");
+        fetchDataFromSheet(rownum);
+
+        addMoneyPage = homePage.clickOnAddMoneyButton();
+
+        addMoneyPage.clickOnAmountTextBox();
+
+        addMoneyPage.enterAmount(map.get("amount"));
+
+        addMoneyPage.clickOnContinueButton();
+
+        Element.waitForVisibility(driver, addMoneyPage.label_select_payment_mode);
+
+        screen.swipeUp();
+
+        AndroidElement androidElement = element.findElement(driver, By.xpath("//android.widget.TextView[@text = '" + map.get("cardno") + "']"));
+        Element.selectElement(driver, androidElement, map.get("bankname"));
+
+        addMoneyPage.enterCvv(map.get("cvv"));
+
+        addMoneyPage.clickOnPayNow();
+
+        handleIndusindWebView(map.get("password"));
+
+        //Assertions
+        mbReporter.verifyEqualsWithLogging(addMoneyPage.getSuccessPageStatus(), map.get("successpagestatus"), "Success Page Status", false, false);
+        mbReporter.verifyEqualsWithLogging(addMoneyPage.getSuccessPageText(), map.get("successpagetext"), "Success Page Text", false, false);
+
+        mbkCommonControlsHelper.returnToHomePageFromSuccessScreen();
 
 
     }
@@ -86,7 +156,27 @@ public class AddMoneyHelper {
         map.put("expiryyear", testData.GetData(rownum, "expiryyear"));
         map.put("cvv", testData.GetData(rownum, "cvv"));
         map.put("password", testData.GetData(rownum, "password"));
-        map.put("successtext", testData.GetData(rownum, "successtext"));
+        map.put("successpagestatus", testData.GetData(rownum, "successpagestatus"));
+        map.put("successpagetext", testData.GetData(rownum, "successpagetext"));
+
+
+    }
+
+    public void enterCardDetails(String cardNo, String expiryMonth, String expiryYear, String cvv) throws InterruptedException {
+        addMoneyPage.enterCardNo(cardNo);
+        addMoneyPage.enterExpiry(expiryMonth + "/" + expiryYear);
+        addMoneyPage.enterCvv(cvv);
+    }
+
+    public void handleIndusindWebView(String password) throws InterruptedException {
+        Element.waitForVisibility(driver, addMoneyPage.label_make_payment);
+
+        addMoneyPage.clickOnBankPageSecurePassword();
+        addMoneyPage.clickOnBankPageContinueButton();
+        addMoneyPage.enterBankPagePassword(password);
+        addMoneyPage.clickOnBankPageSubmitButton();
+
+        Thread.sleep(10000);
 
     }
 
