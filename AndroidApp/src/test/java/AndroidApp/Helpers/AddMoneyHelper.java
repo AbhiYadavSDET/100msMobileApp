@@ -21,11 +21,14 @@ public class AddMoneyHelper {
     AndroidDriver driver;
     HomePage homePage;
     AddMoneyPage addMoneyPage;
-    public static HashMap<String, String> map;
     Screen screen;
     Element element;
     MBKCommonControlsHelper mbkCommonControlsHelper;
     MBReporter mbReporter;
+
+    public static HashMap<String, String> map;
+    public static HashMap<String, String> balanceBefore;
+    public static HashMap<String, String> balanceAfter;
 
 
     public AddMoneyHelper(AndroidDriver driver) throws IOException {
@@ -43,6 +46,9 @@ public class AddMoneyHelper {
         // Fetch data from sheet
         Log.info("Fetching Data From Sheet");
         fetchDataFromSheet(rownum);
+
+        balanceBefore = mbkCommonControlsHelper.getBalance();
+
 
         addMoneyPage = homePage.clickOnAddMoneyButton();
 
@@ -73,6 +79,8 @@ public class AddMoneyHelper {
 
         addMoneyPage.clickOnYesButton();
 
+        balanceAfter = mbkCommonControlsHelper.getBalance();
+
 
     }
 
@@ -80,6 +88,8 @@ public class AddMoneyHelper {
         // Fetch data from sheet
         Log.info("Fetching Data From Sheet");
         fetchDataFromSheet(rownum);
+
+        balanceBefore = mbkCommonControlsHelper.getBalance();
 
         addMoneyPage = homePage.clickOnAddMoneyButton();
 
@@ -106,6 +116,8 @@ public class AddMoneyHelper {
         mbReporter.verifyEqualsWithLogging(addMoneyPage.getSuccessPageText(), map.get("successpagetext"), "Success Page Text", false, false);
 
         mbkCommonControlsHelper.returnToHomePageFromSuccessScreen();
+
+        balanceAfter = mbkCommonControlsHelper.getBalance();
 
     }
 

@@ -69,6 +69,11 @@ public class HomePage {
         return new SideDrawerPage(driver);
     }
 
+    public WalletBalancePage clickOnViewBalance() throws IOException {
+        Element.selectElement(driver, label_view_balance, "View balance label");
+        return new WalletBalancePage(driver);
+    }
+
     public LoginPage clickLoginSignupButton() throws IOException {
         Element.selectElement(driver, login_signup_button, "Login/Signup Button");
         return new LoginPage(driver);

@@ -24,7 +24,7 @@ public class Screen {
     /**
      * swipes the screen-up
      */
-    public void swipeUp() {
+    public static void swipeUp() {
         Log.info("SWIPE", "Up");
         touchAction.press(PointOption.point(400, 1000)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1500))).moveTo(PointOption.point(400, 500)).release().perform();
     }
@@ -32,7 +32,7 @@ public class Screen {
     /**
      * swipes the screen-down
      */
-    public void swipeDown() {
+    public static void swipeDown() {
         Log.info("SWIPE", "Up");
         touchAction.press(PointOption.point(400, 500)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1500))).moveTo(PointOption.point(400, 1000)).release().perform();
     }
@@ -44,7 +44,7 @@ public class Screen {
      * @param yEnd     ending yoffset
      * @param duration
      */
-    public void swipeVertical(int yStart, int yEnd, int duration) {
+    public static void swipeVertical(int yStart, int yEnd, int duration) {
         Log.info("SWIPE", "Vertical");
         touchAction.press(PointOption.point(400, yStart)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(duration))).moveTo(PointOption.point(400, yEnd)).release().perform();
     }
@@ -57,6 +57,14 @@ public class Screen {
     public static void hideKeyboard(AndroidDriver androidDriver) throws InterruptedException {
         if (isKeyboardShown(androidDriver)) {
             androidDriver.hideKeyboard();
+        }
+    }
+
+    public static void pause(int duration) {
+        try {
+            Thread.sleep(duration);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }
