@@ -1,4 +1,4 @@
-package Insurance.Api;
+package AddMoney.Api;
 
 
 import Insurance.Models.requestdto.CrossSellDetailsDto;
@@ -9,9 +9,9 @@ import io.restassured.http.ContentType;
  * @author mayanksuneja
  * @team MobileQA
  */
-public class CrossSellDetails extends BaseApi {
+public class AddMoneyWAPG extends BaseApi {
 
-    public CrossSellDetails(String xMClient, String auth, String acceptEncoding, CrossSellDetailsDto payload) {
+    public AddMoneyWAPG(String xMClient, String auth, String acceptEncoding, CrossSellDetailsDto payload) {
 
         // Set the Request Method
         setHttpMethod(HTTP_METHOD.POST);
@@ -24,7 +24,7 @@ public class CrossSellDetails extends BaseApi {
         getSpecBuilder().addHeader("Authorization", auth);
         getSpecBuilder().addHeader("X-MClient", xMClient);
         getSpecBuilder().addHeader("X-Device-ID", "4F8E8A745B5B61A066A90DCECB483672BA45650F");
-        getSpecBuilder().addHeader("X-App-Ver", "673");
+        getSpecBuilder().addHeader("X-App-Ver", "657");
         getSpecBuilder().addHeader("Accept-Encoding", acceptEncoding);
 
         getSpecBuilder().setContentType(ContentType.JSON);

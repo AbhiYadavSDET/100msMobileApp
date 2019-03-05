@@ -40,7 +40,7 @@ public class CrossSellTest {
 
     // Constants
     String memberId = "9953138474@nocash.mobikwik.com";
-    String auth = "/6hweSfR4OKwEHAm2alBUg==.t6akqqjausb71g4mu58u8mh47s";
+    String auth = "/6hweSfR4OKwEHAm2alBUg==.idigoc531qvk7pjddsq2fjtqsr";
     String xMClient = "3";
     String acceptEncoding = "\n*";
 

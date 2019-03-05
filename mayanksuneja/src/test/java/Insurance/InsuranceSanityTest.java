@@ -40,7 +40,7 @@ public class InsuranceSanityTest {
 
     // Constants
     String memberId = "9953138474@nocash.mobikwik.com";
-    String auth = "/6hweSfR4OKwEHAm2alBUg==.t6akqqjausb71g4mu58u8mh47s";
+    String auth = "/6hweSfR4OKwEHAm2alBUg==.idigoc531qvk7pjddsq2fjtqsr";
     String xMClient = "3";
     String acceptEncoding = "\n*";
 
@@ -50,7 +50,7 @@ public class InsuranceSanityTest {
         int count = 0;
 
         // Initiate the DB - Member Balance
-        update_balance(memberId, "0");
+        update_balance(memberId, "0", 0.0);
 
         InsuranceDetailsV2Dto insuranceDetailsV2Dto = new InsuranceDetailsV2Dto();
         insuranceDetailsV2Dto.setInsuranceCategory("PERSONAL_ACCIDENT");
@@ -95,7 +95,7 @@ public class InsuranceSanityTest {
         int count = 0;
 
         // Initiate the DB - Member Balance
-        update_balance(memberId, "0");
+        update_balance(memberId, "0", 0.0);
 
         InsuranceDetailsV2Dto insuranceDetailsV2Dto = new InsuranceDetailsV2Dto();
         insuranceDetailsV2Dto.setInsuranceCategory("LIFE");
@@ -142,7 +142,7 @@ public class InsuranceSanityTest {
         int count = 0;
 
         // Initiate the DB - Member Balance
-        update_balance(memberId, "0");
+        update_balance(memberId, "0", 0.0);
 
         InsuranceDetailsV2Dto insuranceDetailsV2Dto = new InsuranceDetailsV2Dto();
         insuranceDetailsV2Dto.setInsuranceCategory("CYBER");
@@ -327,7 +327,7 @@ public class InsuranceSanityTest {
         insurancePolicyPurchaseSuccessHelper.verifySuccessResponse();
 
         //Assertions
-        insurancePolicyPurchaseSuccessHelper.verifyData(false, "Mayank Suneja", "ICICI Lombard", "Rs. 50000", "99.0", "Online Fraud Insurance", "INCOMPLETE_DETAILS", "You have successfully paid for your insurance policy. Now, you are just one step away from getting your insurance cover");
+        insurancePolicyPurchaseSuccessHelper.verifyData(false, "Mayank Suneja", "ICICI Lombard", "Rs. 50000", "99.0", "Online Fraud Protection", "INCOMPLETE_DETAILS", "You have successfully paid for your insurance policy. Now, you are just one step away from getting your insurance cover");
         insurancePolicyPurchaseSuccessHelper.verifyStartEndDate(1);
 
 
@@ -401,7 +401,7 @@ public class InsuranceSanityTest {
         InsuranceDetailsV2Helper insuranceDetailsV2Helper = new InsuranceDetailsV2Helper(response.getBody().asString());
         insuranceDetailsV2Helper.verifySuccessResponse();
 
-        insuranceDetailsV2Helper.verifyFixedInsuranceDetails("INCOMPLETE_DETAILS", "Online Fraud Insurance", "ICICI Lombard");
+        insuranceDetailsV2Helper.verifyFixedInsuranceDetails("INCOMPLETE_DETAILS", "Online Fraud Protection", "ICICI Lombard");
 
     }
 
@@ -438,7 +438,7 @@ public class InsuranceSanityTest {
         crossSellDetailsHelper.setVariables(0);
 
         // Initiate the DB - Member Balance
-        update_balance(memberId, "21");
+        update_balance(memberId, "100");
 
 
         List<CrossSellTxn> txnsResponse = new ArrayList<CrossSellTxn>();
@@ -462,8 +462,8 @@ public class InsuranceSanityTest {
         crossSellTransactionHelper.verifySuccessResponse();
         crossSellTransactionHelper.verifyInsuranceSuccessResponse(1);
         crossSellTransactionHelper.verifyRechargeSuccessResponse(0);
-        crossSellTransactionHelper.verifyPolicyPurchaseData(1, false, "Mayank Suneja", "ICICI Lombard", "Rs. 1 Lakh", "20.0", "Personal Accident Insurance", "INCOMPLETE_DETAILS", "You have successfully paid for your insurance policy. Now, you are just one step away from getting your insurance cover");
-        crossSellTransactionHelper.verifyPolicyPurchaseStartEndDate(1, 12);
+        crossSellTransactionHelper.verifyPolicyPurchaseData(1, false, "Mayank Suneja", "ICICI Lombard", "Rs. 50000", "99.0", "Online Fraud Protection", "INCOMPLETE_DETAILS", "You have successfully paid for your insurance policy. Now, you are just one step away from getting your insurance cover");
+        crossSellTransactionHelper.verifyPolicyPurchaseStartEndDate(1, 1);
         crossSellTransactionHelper.verifyRechargeData(0, "RECHARGESUCCESSPENDING", "recharge successful", 1.0);
 
     }
@@ -501,7 +501,7 @@ public class InsuranceSanityTest {
         crossSellDetailsHelper.setVariables(0);
 
         // Initiate the DB - Member Balance
-        update_balance(memberId, "0");
+        update_balance(memberId, "0", 0.0);
 
 
         List<CrossSellTxn> txnsResponse = new ArrayList<CrossSellTxn>();
@@ -523,7 +523,7 @@ public class InsuranceSanityTest {
         CrossSellTransactionHelper crossSellTransactionHelper = new CrossSellTransactionHelper(response.getBody().asString());
         crossSellTransactionHelper.verifyFalseResponse();
         crossSellTransactionHelper.verifyMessage("ADD_MONEY", "Please add Money");
-        crossSellTransactionHelper.verifyRequiredAmount(21.0);
+        crossSellTransactionHelper.verifyRequiredAmount(100.0);
 
     }
 
@@ -560,14 +560,20 @@ public class InsuranceSanityTest {
 
         crossSellDetailsHelper.verifySuccessResponse();
         crossSellDetailsHelper.setVariables(0);
-        crossSellDetailsHelper.verifyCrossSellInsuranceTitle("Personal Accident Insurance cover of Rs.1 Lakh");
-        crossSellDetailsHelper.verifyFixedCrossSellDetails("NEW_PURCHASE", "Personal Accident Insurance", "ICICI Lombard");
-        crossSellDetailsHelper.verifyVariableCrossSellDetails(0, 20, "Rs. 1 Lakh", 12);
+        crossSellDetailsHelper.verifyCrossSellInsuranceTitle("Protect yourself from fraudulent online transactions upto Rs.50000");
+        crossSellDetailsHelper.verifyFixedCrossSellDetails("NEW_PURCHASE", "Online Fraud Protection", "ICICI Lombard");
+        crossSellDetailsHelper.verifyVariableCrossSellDetails(0, 99, "Rs. 50  Thousands", 1);
 
     }
 
     public void update_balance(String memberId, String amount) {
         databaseSqlHelper.updateWalletMainBalance(memberId, amount);
+    }
+
+    public void update_balance(String memberId, String mainBalance, Double bucket6Balance) {
+        databaseSqlHelper.updateWalletMainBalance(memberId, mainBalance);
+        databaseSqlHelper.updateWalletBucket6Balance(memberId, bucket6Balance);
+
     }
 
     public CrossSellTxn initiateRechargeTxn() {
