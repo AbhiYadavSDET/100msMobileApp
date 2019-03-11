@@ -1,8 +1,9 @@
 package GiftCard.Api;
 
 
+import Config.Configuration;
 import GiftCard.Models.requestdto.TransactionsRequestDto;
-import apiutil.BaseApi;
+import Utils.BaseApi;
 import io.restassured.http.ContentType;
 
 /**
@@ -11,20 +12,20 @@ import io.restassured.http.ContentType;
  */
 public class Transactions extends BaseApi {
 
-    public Transactions(String xMClient, String auth, String deviceId, TransactionsRequestDto payload) {
+    public Transactions(TransactionsRequestDto payload) {
 
         // Set the Request Method
-        setHttpMethod(HTTP_METHOD.POST);
+        setHttpMethod(BaseApi.HTTP_METHOD.POST);
 
         // Set the Base URI and Path
-        getSpecBuilder().setBaseUri(getBaseUri(true, "giftcard.mobikwik.com", "null"));
+        getSpecBuilder().setBaseUri(getBaseUri(Configuration.GiftCard.IS_HTTPS_REQUIRED, Configuration.GiftCard.HOST, Configuration.GiftCard.PORT));
         getSpecBuilder().setBasePath("transactions");
 
         //Set the headers
-        getSpecBuilder().addHeader("Authorization", auth);
-        getSpecBuilder().addHeader("X-MClient", xMClient);
-        getSpecBuilder().addHeader("X-Device-ID", deviceId);
-        getSpecBuilder().addHeader("X-App-Ver", "676");
+        getSpecBuilder().addHeader("Authorization", Configuration.GiftCard.AUTH);
+        getSpecBuilder().addHeader("X-MClient", Configuration.GiftCard.X_MCLIENT);
+        getSpecBuilder().addHeader("X-Device-ID", Configuration.GiftCard.DEVICE_ID);
+        getSpecBuilder().addHeader("X-App-Ver", Configuration.GiftCard.X_App_Version);
 
 
         getSpecBuilder().setContentType(ContentType.JSON);

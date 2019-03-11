@@ -1,14 +1,13 @@
 package Insurance.Api;
 
 
-import apiutil.BaseApi;
 import io.restassured.http.ContentType;
 
 /**
  * @author mayanksuneja
  * @team MobileQA
  */
-public class GetInsuranceHome extends BaseApi {
+public class GetInsuranceHome extends Utils.BaseApi {
 
     public GetInsuranceHome(String xMClient) {
         // Set the Request Method

@@ -36,10 +36,6 @@ public class GiftCardTest {
 
 
     // Constants
-    String memberId = "9953138474@nocash.mobikwik.com";
-    String auth = "hoZWfVYS0oB1WrKJ7bbHQw==.vr8gqok0ko0at03mv0aepl2re1";
-    String xMClient = "3";
-    String deviceId = "5BB5A8A44A1C5E98E280C697D29758548CAF193E";
 
 
     @Test(groups = "insuranceSanity", priority = 1)
@@ -47,7 +43,7 @@ public class GiftCardTest {
         int count = 0;
 
 
-        Categories categories = new Categories(xMClient, auth, deviceId);
+        Categories categories = new Categories();
         response = categories.execute();
 
         System.out.println(response.getBody().asString());
@@ -114,7 +110,7 @@ public class GiftCardTest {
         transactionsRequestDto.setUserDetails(userDetails);
 
 
-        Transactions transactions = new Transactions(xMClient, auth, deviceId, transactionsRequestDto);
+        Transactions transactions = new Transactions(transactionsRequestDto);
         response = transactions.execute();
 
         System.out.println(response.getBody().asString());
