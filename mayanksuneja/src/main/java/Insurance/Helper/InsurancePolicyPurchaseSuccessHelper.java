@@ -53,4 +53,11 @@ public class InsurancePolicyPurchaseSuccessHelper {
         Log.info("VERIFIED", "Start and End dates");
 
     }
+
+    public void setPolicyId() {
+        //Log.info("SET", "Policy ID");
+        String policyId = insurancePolicyPurchaseSuccessResponseDto.getData().getPolicyNo();
+        //Log.info(policyId);
+        InsuranceDetailsV2Helper.map.put("policyId", policyId);
+    }
 }

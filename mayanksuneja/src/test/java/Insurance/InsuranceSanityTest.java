@@ -1,9 +1,6 @@
 package Insurance;
 
-import Insurance.Api.CrossSellDetails;
-import Insurance.Api.CrossSellTransaction;
-import Insurance.Api.InsuranceDetailsV2;
-import Insurance.Api.InsurancePolicyPurchase;
+import Insurance.Api.*;
 import Insurance.Helper.*;
 import Insurance.Models.requestdto.*;
 import Utils.DatabaseSqlHelper;
@@ -565,6 +562,212 @@ public class InsuranceSanityTest {
         crossSellDetailsHelper.verifyVariableCrossSellDetails(0, 99, "Rs. 50  Thousands", 1);
 
     }
+
+    @Test(groups = "policyPurchase", priority = 14)
+    public void Test14_verify_li_enter_policy_details() {
+        int count = 0;
+
+        // Initiate the DB - Member Balance
+        update_balance(memberId, "20");
+
+
+        InsuranceDetailsV2Dto insuranceDetailsV2Dto = new InsuranceDetailsV2Dto();
+        insuranceDetailsV2Dto.setInsuranceCategory("LIFE");
+        insuranceDetailsV2Dto.setInsuranceSellingPlatform("APP_ICON");
+
+        InsuranceDetailsV2 insuranceDetailsV2 = new InsuranceDetailsV2(xMClient, auth, insuranceDetailsV2Dto);
+        response = insuranceDetailsV2.execute();
+
+        System.out.println(response.getBody().asString());
+
+        //Status code validator
+        StatusCodeValidator.validate200(response);
+
+        // Success response Validator
+        InsuranceDetailsV2Helper insuranceDetailsV2Helper = new InsuranceDetailsV2Helper(response.getBody().asString());
+        insuranceDetailsV2Helper.verifySuccessResponse();
+
+        // Set the scope ID
+        insuranceDetailsV2Helper.setVariables(count);
+
+        InsurancePolicyPurchaseDto insurancePolicyPurchaseDto = new InsurancePolicyPurchaseDto();
+        insurancePolicyPurchaseDto.setInsuranceId(InsuranceDetailsV2Helper.map.get("insuranceId_" + count));
+        insurancePolicyPurchaseDto.setAutoRenew(true);
+
+        InsurancePolicyPurchase insurancePolicyPurchase = new InsurancePolicyPurchase(xMClient, auth, InsuranceDetailsV2Helper.map.get("scopeId"), insurancePolicyPurchaseDto);
+        response = insurancePolicyPurchase.execute();
+
+        System.out.println(response.getBody().asString());
+
+        //Status code validator
+        StatusCodeValidator.validate200(response);
+
+        //Success response Validator
+        InsurancePolicyPurchaseSuccessHelper insurancePolicyPurchaseSuccessHelper = new InsurancePolicyPurchaseSuccessHelper(response.getBody().asString());
+        insurancePolicyPurchaseSuccessHelper.verifySuccessResponse();
+
+        insurancePolicyPurchaseSuccessHelper.setPolicyId();
+
+        PolicyDetailsDto policyDetailsDto = new PolicyDetailsDto();
+        initialiseRequestBody(policyDetailsDto);
+
+        PolicyDetails policyDetails = new PolicyDetails(xMClient, auth, policyDetailsDto);
+        response = policyDetails.execute();
+
+        System.out.println(response.getBody().asString());
+
+        //Status code validator
+        StatusCodeValidator.validate200(response);
+
+        //Success response Validator
+        PolicyDetailsHelper policyDetailsHelper = new PolicyDetailsHelper(response.getBody().asString());
+        policyDetailsHelper.verifySuccessResponse();
+
+
+    }
+
+    @Test(groups = "policyPurchase", priority = 13)
+    public void Test13_verify_pa_enter_policy_details() {
+        int count = 0;
+
+        // Initiate the DB - Member Balance
+        update_balance(memberId, "20");
+
+        InsuranceDetailsV2Dto insuranceDetailsV2Dto = new InsuranceDetailsV2Dto();
+        insuranceDetailsV2Dto.setInsuranceCategory("PERSONAL_ACCIDENT");
+        insuranceDetailsV2Dto.setInsuranceSellingPlatform("APP_ICON");
+
+        InsuranceDetailsV2 insuranceDetailsV2 = new InsuranceDetailsV2(xMClient, auth, insuranceDetailsV2Dto);
+        response = insuranceDetailsV2.execute();
+
+        System.out.println(response.getBody().asString());
+
+        //Status code validator
+        StatusCodeValidator.validate200(response);
+
+        // Success response Validator
+        InsuranceDetailsV2Helper insuranceDetailsV2Helper = new InsuranceDetailsV2Helper(response.getBody().asString());
+        insuranceDetailsV2Helper.verifySuccessResponse();
+
+        // Set the scope ID
+        insuranceDetailsV2Helper.setVariables(count);
+
+        InsurancePolicyPurchaseDto insurancePolicyPurchaseDto = new InsurancePolicyPurchaseDto();
+        insurancePolicyPurchaseDto.setInsuranceId(InsuranceDetailsV2Helper.map.get("insuranceId_" + count));
+        insurancePolicyPurchaseDto.setAutoRenew(true);
+
+        InsurancePolicyPurchase insurancePolicyPurchase = new InsurancePolicyPurchase(xMClient, auth, InsuranceDetailsV2Helper.map.get("scopeId"), insurancePolicyPurchaseDto);
+        response = insurancePolicyPurchase.execute();
+
+        System.out.println(response.getBody().asString());
+
+        //Status code validator
+        StatusCodeValidator.validate200(response);
+
+        //Success response Validator
+        InsurancePolicyPurchaseSuccessHelper insurancePolicyPurchaseSuccessHelper = new InsurancePolicyPurchaseSuccessHelper(response.getBody().asString());
+        insurancePolicyPurchaseSuccessHelper.verifySuccessResponse();
+
+        insurancePolicyPurchaseSuccessHelper.setPolicyId();
+
+        PolicyDetailsDto policyDetailsDto = new PolicyDetailsDto();
+        initialiseRequestBody(policyDetailsDto);
+
+        PolicyDetails policyDetails = new PolicyDetails(xMClient, auth, policyDetailsDto);
+        response = policyDetails.execute();
+
+        System.out.println(response.getBody().asString());
+
+        //Status code validator
+        StatusCodeValidator.validate200(response);
+
+        //Success response Validator
+        PolicyDetailsHelper policyDetailsHelper = new PolicyDetailsHelper(response.getBody().asString());
+        policyDetailsHelper.verifySuccessResponse();
+
+
+    }
+
+    @Test(groups = "policyPurchase", priority = 15)
+    public void Test15_verify_cyber_enter_policy_details() {
+        int count = 0;
+
+        // Initiate the DB - Member Balance
+        update_balance(memberId, "99");
+
+
+        InsuranceDetailsV2Dto insuranceDetailsV2Dto = new InsuranceDetailsV2Dto();
+        insuranceDetailsV2Dto.setInsuranceCategory("CYBER");
+        insuranceDetailsV2Dto.setInsuranceSellingPlatform("APP_ICON");
+
+        InsuranceDetailsV2 insuranceDetailsV2 = new InsuranceDetailsV2(xMClient, auth, insuranceDetailsV2Dto);
+        response = insuranceDetailsV2.execute();
+
+        System.out.println(response.getBody().asString());
+
+        //Status code validator
+        StatusCodeValidator.validate200(response);
+
+        // Success response Validator
+        InsuranceDetailsV2Helper insuranceDetailsV2Helper = new InsuranceDetailsV2Helper(response.getBody().asString());
+        insuranceDetailsV2Helper.verifySuccessResponse();
+
+        // Set the scope ID
+        insuranceDetailsV2Helper.setVariables(count);
+
+        InsurancePolicyPurchaseDto insurancePolicyPurchaseDto = new InsurancePolicyPurchaseDto();
+        insurancePolicyPurchaseDto.setInsuranceId(InsuranceDetailsV2Helper.map.get("insuranceId_" + count));
+        insurancePolicyPurchaseDto.setAutoRenew(true);
+
+        InsurancePolicyPurchase insurancePolicyPurchase = new InsurancePolicyPurchase(xMClient, auth, InsuranceDetailsV2Helper.map.get("scopeId"), insurancePolicyPurchaseDto);
+        response = insurancePolicyPurchase.execute();
+
+        System.out.println(response.getBody().asString());
+
+        //Status code validator
+        StatusCodeValidator.validate200(response);
+
+        //Success response Validator
+        InsurancePolicyPurchaseSuccessHelper insurancePolicyPurchaseSuccessHelper = new InsurancePolicyPurchaseSuccessHelper(response.getBody().asString());
+        insurancePolicyPurchaseSuccessHelper.verifySuccessResponse();
+
+        insurancePolicyPurchaseSuccessHelper.setPolicyId();
+
+        PolicyDetailsDto policyDetailsDto = new PolicyDetailsDto();
+        initialiseRequestBody(policyDetailsDto);
+
+        PolicyDetails policyDetails = new PolicyDetails(xMClient, auth, policyDetailsDto);
+        response = policyDetails.execute();
+
+        System.out.println(response.getBody().asString());
+
+        //Status code validator
+        StatusCodeValidator.validate200(response);
+
+        //Success response Validator
+        PolicyDetailsHelper policyDetailsHelper = new PolicyDetailsHelper(response.getBody().asString());
+        policyDetailsHelper.verifySuccessResponse();
+
+
+    }
+
+    public PolicyDetailsDto initialiseRequestBody(PolicyDetailsDto policyDetailsDto) {
+        policyDetailsDto.setAddress("H No - 1560, sector 46, Gurgaon");
+        policyDetailsDto.setNomineeName("Neelam Suneja");
+        policyDetailsDto.setFullName("Mayank Suneja");
+        policyDetailsDto.setNomineeAge("58");
+        policyDetailsDto.setPincode("122002");
+        policyDetailsDto.setDob("20/11/1989");
+        policyDetailsDto.setNomineeRelationship("Mother");
+        policyDetailsDto.setPolicyId(InsuranceDetailsV2Helper.map.get("policyId"));
+        policyDetailsDto.setEmail("mayank.suneja@gmail.com");
+        policyDetailsDto.setPhone("9953138474");
+        policyDetailsDto.setState("Haryana");
+        policyDetailsDto.setGender("Male");
+
+        return policyDetailsDto;
+    }
+
 
     public void update_balance(String memberId, String amount) {
         databaseSqlHelper.updateWalletMainBalance(memberId, amount);

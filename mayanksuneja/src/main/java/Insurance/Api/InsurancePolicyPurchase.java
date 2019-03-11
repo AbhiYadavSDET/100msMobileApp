@@ -17,7 +17,7 @@ public class InsurancePolicyPurchase extends BaseApi {
         setHttpMethod(HTTP_METHOD.POST);
 
         // Set the Base URI and Path
-        getSpecBuilder().setBaseUri(getBaseUri(true, "insuranceapi-stag2.mobikwik.com", "null"));
+        getSpecBuilder().setBaseUri(getBaseUri(true, "insuranceapi-stag.mobikwik.com", "null"));
         getSpecBuilder().setBasePath("api/policy/purchase");
 
         //Set the headers
