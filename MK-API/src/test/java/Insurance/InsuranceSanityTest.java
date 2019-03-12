@@ -751,6 +751,27 @@ public class InsuranceSanityTest {
 
     }
 
+
+    @Test(groups = "policyPurchase", priority = 16)
+    public void Test16_verify_config_already_filled() {
+        int count = 0;
+
+
+        Config config = new Config();
+
+
+        response = config.execute();
+        System.out.println(response.getBody().asString());
+
+        //Status code validator
+        StatusCodeValidator.validate200(response);
+
+        ConfigHelper configHelper = new ConfigHelper(response.getBody().asString());
+        configHelper.verifySuccessResponse();
+        configHelper.verifyPrimaryPolicyDetails();
+
+    }
+
     public PolicyDetailsDto initialiseRequestBody(PolicyDetailsDto policyDetailsDto) {
         policyDetailsDto.setAddress("H No - 1560, sector 46, Gurgaon");
         policyDetailsDto.setNomineeName("Neelam Suneja");
