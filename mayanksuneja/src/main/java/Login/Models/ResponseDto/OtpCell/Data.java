@@ -11,7 +11,7 @@ import java.util.Map;
         "registeredMobileNumber"
 })
 public class Data {
-
+//test
     @JsonProperty("generalMessage")
     private String generalMessage;
     @JsonProperty("registeredMobileNumber")
