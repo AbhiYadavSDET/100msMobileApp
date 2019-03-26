@@ -29,7 +29,7 @@ public class InsuranceTest {
     @Test(priority = 0)
     public void Test01_verify_success_response_for_insurance_home() {
 
-        GetInsuranceHome getInsuranceHome = new GetInsuranceHome("3");
+        GetInsuranceHome getInsuranceHome = new GetInsuranceHome();
         response = getInsuranceHome.execute();
 
         System.out.println(response.getBody().asString());
@@ -54,7 +54,7 @@ public class InsuranceTest {
         insuranceDetailsV2Dto.setInsuranceSellingPlatform("APP_ICON");
 
 
-        InsuranceDetailsV2 insuranceDetailsV2 = new InsuranceDetailsV2("3", "1dHBnn/bvplhi9fYJgyf8g==.rktf42pkckf8h0005dqrgjtn2", insuranceDetailsV2Dto);
+        InsuranceDetailsV2 insuranceDetailsV2 = new InsuranceDetailsV2(insuranceDetailsV2Dto);
         response = insuranceDetailsV2.execute();
 
         System.out.println(response.getBody().asString());
@@ -82,7 +82,7 @@ public class InsuranceTest {
         insurancePolicyPurchaseDto.setInsuranceId("INSCG8DDF3DH61FAD");
         insurancePolicyPurchaseDto.setAutoRenew(true);
 
-        InsurancePolicyPurchase insurancePolicyPurchase = new InsurancePolicyPurchase("3", "1dHBnn/bvplhi9fYJgyf8g==.rktf42pkckf8h0005dqrgjtn2", InsuranceDetailsV2Helper.map.get("scopeId"), insurancePolicyPurchaseDto);
+        InsurancePolicyPurchase insurancePolicyPurchase = new InsurancePolicyPurchase(InsuranceDetailsV2Helper.map.get("scopeId"), insurancePolicyPurchaseDto);
         response = insurancePolicyPurchase.execute();
 
         System.out.println(response.getBody().asString());
@@ -105,7 +105,7 @@ public class InsuranceTest {
         insurancePolicyPurchaseDto.setInsuranceId("INSCG8DDF3DH61FAD");
         insurancePolicyPurchaseDto.setAutoRenew(true);
 
-        InsurancePolicyPurchase insurancePolicyPurchase = new InsurancePolicyPurchase("3", "1dHBnn/bvplhi9fYJgyf8g==.rktf42pkckf8h0005dqrgjtn2", InsuranceDetailsV2Helper.map.get("scopeId"), insurancePolicyPurchaseDto);
+        InsurancePolicyPurchase insurancePolicyPurchase = new InsurancePolicyPurchase(InsuranceDetailsV2Helper.map.get("scopeId"), insurancePolicyPurchaseDto);
         response = insurancePolicyPurchase.execute();
 
         System.out.println(response.getBody().asString());
@@ -127,7 +127,7 @@ public class InsuranceTest {
         insuranceDetailsV2Dto.setInsuranceCategory("LIFE");
         insuranceDetailsV2Dto.setInsuranceSellingPlatform("APP_ICON");
 
-        InsuranceDetailsV2 insuranceDetailsV2 = new InsuranceDetailsV2("3", "1dHBnn/bvplhi9fYJgyf8g==.rktf42pkckf8h0005dqrgjtn2", insuranceDetailsV2Dto);
+        InsuranceDetailsV2 insuranceDetailsV2 = new InsuranceDetailsV2(insuranceDetailsV2Dto);
         response = insuranceDetailsV2.execute();
 
         System.out.println(response.getBody().asString());

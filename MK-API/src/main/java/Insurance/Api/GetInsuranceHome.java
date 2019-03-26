@@ -1,6 +1,7 @@
 package Insurance.Api;
 
 
+import Config.Configuration;
 import io.restassured.http.ContentType;
 
 /**
@@ -9,16 +10,16 @@ import io.restassured.http.ContentType;
  */
 public class GetInsuranceHome extends Utils.BaseApi {
 
-    public GetInsuranceHome(String xMClient) {
+    public GetInsuranceHome() {
         // Set the Request Method
         setHttpMethod(HTTP_METHOD.GET);
 
         // Set the Base URI and Path
-        getSpecBuilder().setBaseUri(getBaseUri(true, "insurance.mobikwik.com", "null"));
+        getSpecBuilder().setBaseUri(getBaseUri(Configuration.Insurance.IS_HTTPS_REQUIRED, Configuration.Insurance.HOST, Configuration.Insurance.PORT));
         getSpecBuilder().setBasePath("api/insurance/home");
 
         //Set the headers
-        getSpecBuilder().addHeader("X-MClient", xMClient);
+        getSpecBuilder().addHeader("X-MClient", Configuration.Insurance.X_MCLIENT);
         getSpecBuilder().addHeader("X-Device-ID", "E816B70013702137C8E27EE9131CD357E0912D23");
         getSpecBuilder().addHeader("X-App-Ver", "657");
 

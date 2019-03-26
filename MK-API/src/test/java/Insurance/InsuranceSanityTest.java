@@ -37,8 +37,6 @@ public class InsuranceSanityTest {
 
     // Constants
     String memberId = "9953138474@nocash.mobikwik.com";
-    String auth = "/6hweSfR4OKwEHAm2alBUg==.idigoc531qvk7pjddsq2fjtqsr";
-    String xMClient = "3";
     String acceptEncoding = "\n*";
 
 
@@ -53,7 +51,7 @@ public class InsuranceSanityTest {
         insuranceDetailsV2Dto.setInsuranceCategory("PERSONAL_ACCIDENT");
         insuranceDetailsV2Dto.setInsuranceSellingPlatform("APP_ICON");
 
-        InsuranceDetailsV2 insuranceDetailsV2 = new InsuranceDetailsV2(xMClient, auth, insuranceDetailsV2Dto);
+        InsuranceDetailsV2 insuranceDetailsV2 = new InsuranceDetailsV2(insuranceDetailsV2Dto);
         response = insuranceDetailsV2.execute();
 
         System.out.println(response.getBody().asString());
@@ -72,7 +70,7 @@ public class InsuranceSanityTest {
         insurancePolicyPurchaseDto.setInsuranceId(InsuranceDetailsV2Helper.map.get("insuranceId_" + count));
         insurancePolicyPurchaseDto.setAutoRenew(true);
 
-        InsurancePolicyPurchase insurancePolicyPurchase = new InsurancePolicyPurchase(xMClient, auth, InsuranceDetailsV2Helper.map.get("scopeId"), insurancePolicyPurchaseDto);
+        InsurancePolicyPurchase insurancePolicyPurchase = new InsurancePolicyPurchase(InsuranceDetailsV2Helper.map.get("scopeId"), insurancePolicyPurchaseDto);
         response = insurancePolicyPurchase.execute();
 
         System.out.println(response.getBody().asString());
@@ -98,7 +96,7 @@ public class InsuranceSanityTest {
         insuranceDetailsV2Dto.setInsuranceCategory("LIFE");
         insuranceDetailsV2Dto.setInsuranceSellingPlatform("APP_ICON");
 
-        InsuranceDetailsV2 insuranceDetailsV2 = new InsuranceDetailsV2(xMClient, auth, insuranceDetailsV2Dto);
+        InsuranceDetailsV2 insuranceDetailsV2 = new InsuranceDetailsV2(insuranceDetailsV2Dto);
         response = insuranceDetailsV2.execute();
 
         System.out.println(response.getBody().asString());
@@ -117,7 +115,7 @@ public class InsuranceSanityTest {
         insurancePolicyPurchaseDto.setInsuranceId(InsuranceDetailsV2Helper.map.get("insuranceId_" + count));
         insurancePolicyPurchaseDto.setAutoRenew(true);
 
-        InsurancePolicyPurchase insurancePolicyPurchase = new InsurancePolicyPurchase("3", auth, InsuranceDetailsV2Helper.map.get("scopeId"), insurancePolicyPurchaseDto);
+        InsurancePolicyPurchase insurancePolicyPurchase = new InsurancePolicyPurchase(InsuranceDetailsV2Helper.map.get("scopeId"), insurancePolicyPurchaseDto);
         response = insurancePolicyPurchase.execute();
 
         System.out.println(response.getBody().asString());
@@ -145,7 +143,7 @@ public class InsuranceSanityTest {
         insuranceDetailsV2Dto.setInsuranceCategory("CYBER");
         insuranceDetailsV2Dto.setInsuranceSellingPlatform("APP_ICON");
 
-        InsuranceDetailsV2 insuranceDetailsV2 = new InsuranceDetailsV2(xMClient, auth, insuranceDetailsV2Dto);
+        InsuranceDetailsV2 insuranceDetailsV2 = new InsuranceDetailsV2(insuranceDetailsV2Dto);
         response = insuranceDetailsV2.execute();
 
         System.out.println(response.getBody().asString());
@@ -164,7 +162,7 @@ public class InsuranceSanityTest {
         insurancePolicyPurchaseDto.setInsuranceId(InsuranceDetailsV2Helper.map.get("insuranceId_" + count));
         insurancePolicyPurchaseDto.setAutoRenew(true);
 
-        InsurancePolicyPurchase insurancePolicyPurchase = new InsurancePolicyPurchase("3", auth, InsuranceDetailsV2Helper.map.get("scopeId"), insurancePolicyPurchaseDto);
+        InsurancePolicyPurchase insurancePolicyPurchase = new InsurancePolicyPurchase(InsuranceDetailsV2Helper.map.get("scopeId"), insurancePolicyPurchaseDto);
         response = insurancePolicyPurchase.execute();
 
         System.out.println(response.getBody().asString());
@@ -193,7 +191,7 @@ public class InsuranceSanityTest {
         insuranceDetailsV2Dto.setInsuranceCategory("LIFE");
         insuranceDetailsV2Dto.setInsuranceSellingPlatform("APP_ICON");
 
-        InsuranceDetailsV2 insuranceDetailsV2 = new InsuranceDetailsV2(xMClient, auth, insuranceDetailsV2Dto);
+        InsuranceDetailsV2 insuranceDetailsV2 = new InsuranceDetailsV2(insuranceDetailsV2Dto);
         response = insuranceDetailsV2.execute();
 
         System.out.println(response.getBody().asString());
@@ -212,7 +210,7 @@ public class InsuranceSanityTest {
         insurancePolicyPurchaseDto.setInsuranceId(InsuranceDetailsV2Helper.map.get("insuranceId_" + count));
         insurancePolicyPurchaseDto.setAutoRenew(true);
 
-        InsurancePolicyPurchase insurancePolicyPurchase = new InsurancePolicyPurchase(xMClient, auth, InsuranceDetailsV2Helper.map.get("scopeId"), insurancePolicyPurchaseDto);
+        InsurancePolicyPurchase insurancePolicyPurchase = new InsurancePolicyPurchase(InsuranceDetailsV2Helper.map.get("scopeId"), insurancePolicyPurchaseDto);
         response = insurancePolicyPurchase.execute();
 
         System.out.println(response.getBody().asString());
@@ -242,7 +240,7 @@ public class InsuranceSanityTest {
         insuranceDetailsV2Dto.setInsuranceCategory("PERSONAL_ACCIDENT");
         insuranceDetailsV2Dto.setInsuranceSellingPlatform("APP_ICON");
 
-        InsuranceDetailsV2 insuranceDetailsV2 = new InsuranceDetailsV2(xMClient, auth, insuranceDetailsV2Dto);
+        InsuranceDetailsV2 insuranceDetailsV2 = new InsuranceDetailsV2(insuranceDetailsV2Dto);
         response = insuranceDetailsV2.execute();
 
         System.out.println(response.getBody().asString());
@@ -261,7 +259,7 @@ public class InsuranceSanityTest {
         insurancePolicyPurchaseDto.setInsuranceId(InsuranceDetailsV2Helper.map.get("insuranceId_" + count));
         insurancePolicyPurchaseDto.setAutoRenew(true);
 
-        InsurancePolicyPurchase insurancePolicyPurchase = new InsurancePolicyPurchase(xMClient, auth, InsuranceDetailsV2Helper.map.get("scopeId"), insurancePolicyPurchaseDto);
+        InsurancePolicyPurchase insurancePolicyPurchase = new InsurancePolicyPurchase(InsuranceDetailsV2Helper.map.get("scopeId"), insurancePolicyPurchaseDto);
         response = insurancePolicyPurchase.execute();
 
         System.out.println(response.getBody().asString());
@@ -292,7 +290,7 @@ public class InsuranceSanityTest {
         insuranceDetailsV2Dto.setInsuranceCategory("CYBER");
         insuranceDetailsV2Dto.setInsuranceSellingPlatform("APP_ICON");
 
-        InsuranceDetailsV2 insuranceDetailsV2 = new InsuranceDetailsV2(xMClient, auth, insuranceDetailsV2Dto);
+        InsuranceDetailsV2 insuranceDetailsV2 = new InsuranceDetailsV2(insuranceDetailsV2Dto);
         response = insuranceDetailsV2.execute();
 
         System.out.println(response.getBody().asString());
@@ -311,7 +309,7 @@ public class InsuranceSanityTest {
         insurancePolicyPurchaseDto.setInsuranceId(InsuranceDetailsV2Helper.map.get("insuranceId_" + count));
         insurancePolicyPurchaseDto.setAutoRenew(true);
 
-        InsurancePolicyPurchase insurancePolicyPurchase = new InsurancePolicyPurchase(xMClient, auth, InsuranceDetailsV2Helper.map.get("scopeId"), insurancePolicyPurchaseDto);
+        InsurancePolicyPurchase insurancePolicyPurchase = new InsurancePolicyPurchase(InsuranceDetailsV2Helper.map.get("scopeId"), insurancePolicyPurchaseDto);
         response = insurancePolicyPurchase.execute();
 
         System.out.println(response.getBody().asString());
@@ -338,7 +336,7 @@ public class InsuranceSanityTest {
         insuranceDetailsV2Dto.setInsuranceCategory("LIFE");
         insuranceDetailsV2Dto.setInsuranceSellingPlatform("APP_ICON");
 
-        InsuranceDetailsV2 insuranceDetailsV2 = new InsuranceDetailsV2(xMClient, auth, insuranceDetailsV2Dto);
+        InsuranceDetailsV2 insuranceDetailsV2 = new InsuranceDetailsV2(insuranceDetailsV2Dto);
         response = insuranceDetailsV2.execute();
 
         System.out.println(response.getBody().asString());
@@ -362,7 +360,7 @@ public class InsuranceSanityTest {
         insuranceDetailsV2Dto.setInsuranceCategory("PERSONAL_ACCIDENT");
         insuranceDetailsV2Dto.setInsuranceSellingPlatform("APP_ICON");
 
-        InsuranceDetailsV2 insuranceDetailsV2 = new InsuranceDetailsV2(xMClient, auth, insuranceDetailsV2Dto);
+        InsuranceDetailsV2 insuranceDetailsV2 = new InsuranceDetailsV2(insuranceDetailsV2Dto);
         response = insuranceDetailsV2.execute();
 
         System.out.println(response.getBody().asString());
@@ -386,7 +384,7 @@ public class InsuranceSanityTest {
         insuranceDetailsV2Dto.setInsuranceCategory("CYBER");
         insuranceDetailsV2Dto.setInsuranceSellingPlatform("APP_ICON");
 
-        InsuranceDetailsV2 insuranceDetailsV2 = new InsuranceDetailsV2(xMClient, auth, insuranceDetailsV2Dto);
+        InsuranceDetailsV2 insuranceDetailsV2 = new InsuranceDetailsV2(insuranceDetailsV2Dto);
         response = insuranceDetailsV2.execute();
 
         System.out.println(response.getBody().asString());
@@ -420,7 +418,7 @@ public class InsuranceSanityTest {
         crossSellDetailsDto.setTxns(txns);
 
 
-        CrossSellDetails crossSellDetails = new CrossSellDetails(xMClient, auth, acceptEncoding, crossSellDetailsDto);
+        CrossSellDetails crossSellDetails = new CrossSellDetails(acceptEncoding, crossSellDetailsDto);
         response = crossSellDetails.execute();
 
         System.out.println(response.getBody().asString());
@@ -435,7 +433,7 @@ public class InsuranceSanityTest {
         crossSellDetailsHelper.setVariables(0);
 
         // Initiate the DB - Member Balance
-        update_balance(memberId, "100");
+        update_balance(memberId, "21");
 
 
         List<CrossSellTxn> txnsResponse = new ArrayList<CrossSellTxn>();
@@ -446,7 +444,7 @@ public class InsuranceSanityTest {
         CrossSellTransactionDto crossSellTransactionDto = new CrossSellTransactionDto();
         crossSellTransactionDto.setTxns(txnsResponse);
 
-        CrossSellTransaction crossSellTransaction = new CrossSellTransaction(xMClient, auth, acceptEncoding, CrossSellDetailsHelper.map.get("scopeId"), crossSellTransactionDto);
+        CrossSellTransaction crossSellTransaction = new CrossSellTransaction(acceptEncoding, CrossSellDetailsHelper.map.get("scopeId"), crossSellTransactionDto);
         response = crossSellTransaction.execute();
 
         System.out.println(response.getBody().asString());
@@ -459,8 +457,8 @@ public class InsuranceSanityTest {
         crossSellTransactionHelper.verifySuccessResponse();
         crossSellTransactionHelper.verifyInsuranceSuccessResponse(1);
         crossSellTransactionHelper.verifyRechargeSuccessResponse(0);
-        crossSellTransactionHelper.verifyPolicyPurchaseData(1, false, "Mayank Suneja", "ICICI Lombard", "Rs. 50000", "99.0", "Online Fraud Protection", "INCOMPLETE_DETAILS", "You have successfully paid for your insurance policy. Now, you are just one step away from getting your insurance cover");
-        crossSellTransactionHelper.verifyPolicyPurchaseStartEndDate(1, 1);
+        crossSellTransactionHelper.verifyPolicyPurchaseData(1, false, "Mayank Suneja", "ICICI Lombard", "Rs. 1 Lakh", "20.0", "Personal Accident Insurance", "INCOMPLETE_DETAILS", "You have successfully paid for your insurance policy. Now, you are just one step away from getting your insurance cover");
+        crossSellTransactionHelper.verifyPolicyPurchaseStartEndDate(1, 12);
         crossSellTransactionHelper.verifyRechargeData(0, "RECHARGESUCCESSPENDING", "recharge successful", 1.0);
 
     }
@@ -483,7 +481,7 @@ public class InsuranceSanityTest {
         crossSellDetailsDto.setTxns(txns);
 
 
-        CrossSellDetails crossSellDetails = new CrossSellDetails(xMClient, auth, acceptEncoding, crossSellDetailsDto);
+        CrossSellDetails crossSellDetails = new CrossSellDetails(acceptEncoding, crossSellDetailsDto);
         response = crossSellDetails.execute();
 
         System.out.println(response.getBody().asString());
@@ -509,7 +507,7 @@ public class InsuranceSanityTest {
         CrossSellTransactionDto crossSellTransactionDto = new CrossSellTransactionDto();
         crossSellTransactionDto.setTxns(txnsResponse);
 
-        CrossSellTransaction crossSellTransaction = new CrossSellTransaction(xMClient, auth, acceptEncoding, CrossSellDetailsHelper.map.get("scopeId"), crossSellTransactionDto);
+        CrossSellTransaction crossSellTransaction = new CrossSellTransaction(acceptEncoding, CrossSellDetailsHelper.map.get("scopeId"), crossSellTransactionDto);
         response = crossSellTransaction.execute();
 
         System.out.println(response.getBody().asString());
@@ -520,7 +518,7 @@ public class InsuranceSanityTest {
         CrossSellTransactionHelper crossSellTransactionHelper = new CrossSellTransactionHelper(response.getBody().asString());
         crossSellTransactionHelper.verifyFalseResponse();
         crossSellTransactionHelper.verifyMessage("ADD_MONEY", "Please add Money");
-        crossSellTransactionHelper.verifyRequiredAmount(100.0);
+        crossSellTransactionHelper.verifyRequiredAmount(21.0);
 
     }
 
@@ -544,7 +542,7 @@ public class InsuranceSanityTest {
         crossSellDetailsDto.setTxns(txns);
 
 
-        CrossSellDetails crossSellDetails = new CrossSellDetails(xMClient, auth, acceptEncoding, crossSellDetailsDto);
+        CrossSellDetails crossSellDetails = new CrossSellDetails(acceptEncoding, crossSellDetailsDto);
         response = crossSellDetails.execute();
 
         System.out.println(response.getBody().asString());
@@ -557,9 +555,9 @@ public class InsuranceSanityTest {
 
         crossSellDetailsHelper.verifySuccessResponse();
         crossSellDetailsHelper.setVariables(0);
-        crossSellDetailsHelper.verifyCrossSellInsuranceTitle("Protect yourself from fraudulent online transactions upto Rs.50000");
-        crossSellDetailsHelper.verifyFixedCrossSellDetails("NEW_PURCHASE", "Online Fraud Protection", "ICICI Lombard");
-        crossSellDetailsHelper.verifyVariableCrossSellDetails(0, 99, "Rs. 50  Thousands", 1);
+        crossSellDetailsHelper.verifyCrossSellInsuranceTitle("Personal Accident Insurance cover of Rs.1 Lakh");
+        crossSellDetailsHelper.verifyFixedCrossSellDetails("NEW_PURCHASE", "Personal Accident Insurance", "ICICI Lombard");
+        crossSellDetailsHelper.verifyVariableCrossSellDetails(0, 20, "Rs. 1 Lakh", 12);
 
     }
 
@@ -575,7 +573,7 @@ public class InsuranceSanityTest {
         insuranceDetailsV2Dto.setInsuranceCategory("LIFE");
         insuranceDetailsV2Dto.setInsuranceSellingPlatform("APP_ICON");
 
-        InsuranceDetailsV2 insuranceDetailsV2 = new InsuranceDetailsV2(xMClient, auth, insuranceDetailsV2Dto);
+        InsuranceDetailsV2 insuranceDetailsV2 = new InsuranceDetailsV2(insuranceDetailsV2Dto);
         response = insuranceDetailsV2.execute();
 
         System.out.println(response.getBody().asString());
@@ -594,7 +592,7 @@ public class InsuranceSanityTest {
         insurancePolicyPurchaseDto.setInsuranceId(InsuranceDetailsV2Helper.map.get("insuranceId_" + count));
         insurancePolicyPurchaseDto.setAutoRenew(true);
 
-        InsurancePolicyPurchase insurancePolicyPurchase = new InsurancePolicyPurchase(xMClient, auth, InsuranceDetailsV2Helper.map.get("scopeId"), insurancePolicyPurchaseDto);
+        InsurancePolicyPurchase insurancePolicyPurchase = new InsurancePolicyPurchase(InsuranceDetailsV2Helper.map.get("scopeId"), insurancePolicyPurchaseDto);
         response = insurancePolicyPurchase.execute();
 
         System.out.println(response.getBody().asString());
@@ -611,7 +609,7 @@ public class InsuranceSanityTest {
         PolicyDetailsDto policyDetailsDto = new PolicyDetailsDto();
         initialiseRequestBody(policyDetailsDto);
 
-        PolicyDetails policyDetails = new PolicyDetails(xMClient, auth, policyDetailsDto);
+        PolicyDetails policyDetails = new PolicyDetails(policyDetailsDto);
         response = policyDetails.execute();
 
         System.out.println(response.getBody().asString());
@@ -637,7 +635,7 @@ public class InsuranceSanityTest {
         insuranceDetailsV2Dto.setInsuranceCategory("PERSONAL_ACCIDENT");
         insuranceDetailsV2Dto.setInsuranceSellingPlatform("APP_ICON");
 
-        InsuranceDetailsV2 insuranceDetailsV2 = new InsuranceDetailsV2(xMClient, auth, insuranceDetailsV2Dto);
+        InsuranceDetailsV2 insuranceDetailsV2 = new InsuranceDetailsV2(insuranceDetailsV2Dto);
         response = insuranceDetailsV2.execute();
 
         System.out.println(response.getBody().asString());
@@ -656,7 +654,7 @@ public class InsuranceSanityTest {
         insurancePolicyPurchaseDto.setInsuranceId(InsuranceDetailsV2Helper.map.get("insuranceId_" + count));
         insurancePolicyPurchaseDto.setAutoRenew(true);
 
-        InsurancePolicyPurchase insurancePolicyPurchase = new InsurancePolicyPurchase(xMClient, auth, InsuranceDetailsV2Helper.map.get("scopeId"), insurancePolicyPurchaseDto);
+        InsurancePolicyPurchase insurancePolicyPurchase = new InsurancePolicyPurchase(InsuranceDetailsV2Helper.map.get("scopeId"), insurancePolicyPurchaseDto);
         response = insurancePolicyPurchase.execute();
 
         System.out.println(response.getBody().asString());
@@ -673,7 +671,7 @@ public class InsuranceSanityTest {
         PolicyDetailsDto policyDetailsDto = new PolicyDetailsDto();
         initialiseRequestBody(policyDetailsDto);
 
-        PolicyDetails policyDetails = new PolicyDetails(xMClient, auth, policyDetailsDto);
+        PolicyDetails policyDetails = new PolicyDetails(policyDetailsDto);
         response = policyDetails.execute();
 
         System.out.println(response.getBody().asString());
@@ -700,7 +698,7 @@ public class InsuranceSanityTest {
         insuranceDetailsV2Dto.setInsuranceCategory("CYBER");
         insuranceDetailsV2Dto.setInsuranceSellingPlatform("APP_ICON");
 
-        InsuranceDetailsV2 insuranceDetailsV2 = new InsuranceDetailsV2(xMClient, auth, insuranceDetailsV2Dto);
+        InsuranceDetailsV2 insuranceDetailsV2 = new InsuranceDetailsV2(insuranceDetailsV2Dto);
         response = insuranceDetailsV2.execute();
 
         System.out.println(response.getBody().asString());
@@ -719,7 +717,7 @@ public class InsuranceSanityTest {
         insurancePolicyPurchaseDto.setInsuranceId(InsuranceDetailsV2Helper.map.get("insuranceId_" + count));
         insurancePolicyPurchaseDto.setAutoRenew(true);
 
-        InsurancePolicyPurchase insurancePolicyPurchase = new InsurancePolicyPurchase(xMClient, auth, InsuranceDetailsV2Helper.map.get("scopeId"), insurancePolicyPurchaseDto);
+        InsurancePolicyPurchase insurancePolicyPurchase = new InsurancePolicyPurchase(InsuranceDetailsV2Helper.map.get("scopeId"), insurancePolicyPurchaseDto);
         response = insurancePolicyPurchase.execute();
 
         System.out.println(response.getBody().asString());
@@ -736,7 +734,7 @@ public class InsuranceSanityTest {
         PolicyDetailsDto policyDetailsDto = new PolicyDetailsDto();
         initialiseRequestBody(policyDetailsDto);
 
-        PolicyDetails policyDetails = new PolicyDetails(xMClient, auth, policyDetailsDto);
+        PolicyDetails policyDetails = new PolicyDetails(policyDetailsDto);
         response = policyDetails.execute();
 
         System.out.println(response.getBody().asString());

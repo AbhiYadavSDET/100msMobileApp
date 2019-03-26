@@ -24,16 +24,16 @@ public class TeamListHelper {
     }
 
 
-    public void verifySuccessResponse() {
+    public void verifySuccessResponse() throws IOException {
         Log.info("VERIFY", "Success Response");
-        MbkReporter.verifyTrueWithLogging(teamListResponseDto.getSuccess(), "Verify Success Response", false);
+        MbkReporter.verifyTrueWithLoggingExtentReport(teamListResponseDto.getSuccess(), "Verify Success Response", "Response code = 200", false);
         Log.info("VERIFIED", "Success Response");
     }
 
-    public void verifyListOfCategoriesSize(int size) {
+    public void verifyListOfCategoriesSize(int size) throws IOException {
         Log.info("VERIFY", "Number of teams");
         int noOfCategories = teamListResponseDto.getData().getTeams().size();
-        MbkReporter.verifyEqualsWithLogging(noOfCategories, size, "Verify No Of teams", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(noOfCategories, size, "Verify No Of teams", false);
         Log.info("VERIFIED", "Number of teams");
 
     }

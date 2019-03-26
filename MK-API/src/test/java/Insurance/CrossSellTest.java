@@ -64,7 +64,7 @@ public class CrossSellTest {
         crossSellDetailsDto.setTxns(txns);
 
 
-        CrossSellDetails crossSellDetails = new CrossSellDetails(xMClient, auth, acceptEncoding, crossSellDetailsDto);
+        CrossSellDetails crossSellDetails = new CrossSellDetails(acceptEncoding, crossSellDetailsDto);
         response = crossSellDetails.execute();
 
         System.out.println(response.getBody().asString());
@@ -99,7 +99,7 @@ public class CrossSellTest {
         CrossSellTransactionDto crossSellTransactionDto = new CrossSellTransactionDto();
         crossSellTransactionDto.setTxns(txns);
 
-        CrossSellTransaction crossSellTransaction = new CrossSellTransaction(xMClient, auth, acceptEncoding, CrossSellDetailsHelper.map.get("scopeId"), crossSellTransactionDto);
+        CrossSellTransaction crossSellTransaction = new CrossSellTransaction(acceptEncoding, CrossSellDetailsHelper.map.get("scopeId"), crossSellTransactionDto);
         response = crossSellTransaction.execute();
 
         System.out.println(response.getBody().asString());
@@ -135,7 +135,7 @@ public class CrossSellTest {
         CrossSellTransactionDto crossSellTransactionDto = new CrossSellTransactionDto();
         crossSellTransactionDto.setTxns(txns);
 
-        CrossSellTransaction crossSellTransaction = new CrossSellTransaction(xMClient, auth, acceptEncoding, CrossSellDetailsHelper.map.get("scopeId"), crossSellTransactionDto);
+        CrossSellTransaction crossSellTransaction = new CrossSellTransaction(acceptEncoding, CrossSellDetailsHelper.map.get("scopeId"), crossSellTransactionDto);
         response = crossSellTransaction.execute();
 
         System.out.println(response.getBody().asString());

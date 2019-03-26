@@ -1,6 +1,7 @@
 package Insurance.Api;
 
 
+import Config.Configuration;
 import Insurance.Models.requestdto.PolicyDetailsDto;
 import apiutil.BaseApi;
 import io.restassured.http.ContentType;
@@ -11,18 +12,18 @@ import io.restassured.http.ContentType;
  */
 public class PolicyDetails extends BaseApi {
 
-    public PolicyDetails(String xMClient, String auth, PolicyDetailsDto payload) {
+    public PolicyDetails(PolicyDetailsDto payload) {
 
         // Set the Request Method
         setHttpMethod(HTTP_METHOD.POST);
 
         // Set the Base URI and Path
-        getSpecBuilder().setBaseUri(getBaseUri(true, "insuranceapi-stag.mobikwik.com", "null"));
+        getSpecBuilder().setBaseUri(getBaseUri(Configuration.Insurance.IS_HTTPS_REQUIRED, Configuration.Insurance.HOST, Configuration.Insurance.PORT));
         getSpecBuilder().setBasePath("api/policy/details");
 
         //Set the headers
-        getSpecBuilder().addHeader("Authorization", auth);
-        getSpecBuilder().addHeader("X-MClient", xMClient);
+        getSpecBuilder().addHeader("Authorization", Configuration.Insurance.AUTH);
+        getSpecBuilder().addHeader("X-MClient", Configuration.Insurance.X_MCLIENT);
         getSpecBuilder().addHeader("X-Device-ID", "4F8E8A745B5B61A066A90DCECB483672BA45650F");
         getSpecBuilder().addHeader("X-App-Ver", "657");
 

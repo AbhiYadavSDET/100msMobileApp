@@ -142,6 +142,60 @@ public final class Configuration {
         }
     }
 
+    public static class Insurance {
+        public static final Boolean IS_HTTPS_REQUIRED;
+        public static final String HOST;
+        public static final String PORT;
+        public static final String RETRY_FAILURE_CASES_COUNT;
+        public static final String X_MCLIENT;
+        public static final String X_App_Version;
+        public static final String DEVICE_ID;
+        public static final String AUTH;
+
+
+        public Insurance() {
+        }
+
+        static {
+            IS_HTTPS_REQUIRED = Boolean.valueOf(Configuration.handler.getValue("insurance.is.https.required"));
+            HOST = Configuration.handler.getValue("insurance.api.host");
+            PORT = Configuration.handler.getValue("insurance.api.port");
+            X_MCLIENT = Configuration.handler.getValue("insurance.xmClient");
+            X_App_Version = Configuration.handler.getValue("insurance.xAppVersion");
+            RETRY_FAILURE_CASES_COUNT = Configuration.handler.getValue("insurance.retry.failure.cases.count");
+            DEVICE_ID = Configuration.handler.getValue("insurance.deviceId");
+            AUTH = Configuration.handler.getValue("insurance.auth");
+
+        }
+    }
+
+    public static class Stargate {
+        public static final Boolean IS_HTTPS_REQUIRED;
+        public static final String HOST;
+        public static final String PORT;
+        public static final String RETRY_FAILURE_CASES_COUNT;
+        public static final String X_MCLIENT;
+        public static final String X_App_Version;
+        public static final String DEVICE_ID;
+        public static final String AUTH;
+
+
+        public Stargate() {
+        }
+
+        static {
+            IS_HTTPS_REQUIRED = Boolean.valueOf(Configuration.handler.getValue("stargate.is.https.required"));
+            HOST = Configuration.handler.getValue("stargate.api.host");
+            PORT = Configuration.handler.getValue("stargate.api.port");
+            X_MCLIENT = Configuration.handler.getValue("stargate.xmClient");
+            X_App_Version = Configuration.handler.getValue("stargate.xAppVersion");
+            RETRY_FAILURE_CASES_COUNT = Configuration.handler.getValue("stargate.retry.failure.cases.count");
+            DEVICE_ID = Configuration.handler.getValue("stargate.deviceId");
+            AUTH = Configuration.handler.getValue("stargate.auth");
+
+        }
+    }
+
     public static class APIDefaults {
         public static final boolean IS_HTTPS_REQUIRED;
         public static final String HOST;
