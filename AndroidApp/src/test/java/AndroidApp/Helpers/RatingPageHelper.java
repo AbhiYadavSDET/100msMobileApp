@@ -4,10 +4,9 @@ import UITestFramework.MBKCommonControls;
 import UITestFramework.MBReporter;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.touch.WaitOptions;
-import io.appium.java_client.touch.offset.PointOption;
 import logger.Log;
 import main.java.utils.Config;
+import main.java.utils.Screen;
 import main.java.utils.TestDataReader;
 import org.json.JSONException;
 import test.java.AndroidApp.PageObject.FiveStarRatingPage;
@@ -15,7 +14,6 @@ import test.java.AndroidApp.PageObject.GoldPage;
 import test.java.AndroidApp.PageObject.HomePage;
 
 import java.io.IOException;
-import java.time.Duration;
 import java.util.HashMap;
 
 public class RatingPageHelper {
@@ -28,6 +26,7 @@ public class RatingPageHelper {
     FiveStarRatingPage fiveStarRatingPage;
     MBReporter mbReporter;
     MBKCommonControls mbkCommonControls;
+    MBKCommonControlsHelper mbkCommonControlsHelper;
 
     public RatingPageHelper(AndroidDriver driver) throws IOException {
         this.driver = driver;
@@ -35,6 +34,8 @@ public class RatingPageHelper {
         mbReporter = new MBReporter(driver, "testScreenshotDir");
         mbkCommonControls = new MBKCommonControls(driver);
         touchAction = new TouchAction(driver);
+
+        mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
     }
 
     public void ratingGold(int rownum) throws InterruptedException, IOException, JSONException {
@@ -43,10 +44,8 @@ public class RatingPageHelper {
         fetchDataFromSheet(rownum);
 
         // Swipe the homescreen up
-        Log.info("SWIPE", "Down");
-        touchAction.press(PointOption.point(400, 1000)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000))).moveTo(PointOption.point(400, 600)).release().perform();
-
-
+        Thread.sleep(2000);
+        new Screen(driver).swipeUp();
 
         goldPage = homePage.clickGoldIcon();
 
@@ -56,11 +55,11 @@ public class RatingPageHelper {
 
         goldPage.clickBuyNowCta();
 
-        goldPage.applyPromoCode();
+        mbkCommonControlsHelper.applyPromoCodeGold(map.get("coupon"));
 
         goldPage.clickOnMakePaymentCta();
 
-        mbkCommonControls.handleSecurityPin("121212");
+        mbkCommonControlsHelper.handleSecurityPin(LoginHelper.map.get("securityPin"));
         Thread.sleep(3000);
 
         FiveStarRatingPage fiveStarRatingPage = new FiveStarRatingPage(driver);

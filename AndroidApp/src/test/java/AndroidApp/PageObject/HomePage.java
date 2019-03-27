@@ -69,6 +69,11 @@ public class HomePage {
         return new SideDrawerPage(driver);
     }
 
+    public WalletBalancePage clickOnViewBalance() throws IOException {
+        Element.selectElement(driver, label_view_balance, "View balance label");
+        return new WalletBalancePage(driver);
+    }
+
     public LoginPage clickLoginSignupButton() throws IOException {
         Element.selectElement(driver, login_signup_button, "Login/Signup Button");
         return new LoginPage(driver);
@@ -81,6 +86,11 @@ public class HomePage {
     public GoldPage clickGoldIcon() {
         Element.selectElement(driver, icon_gold, "Gold Icon");
         return new GoldPage(driver);
+    }
+
+    public AddMoneyPage clickOnAddMoneyButton() throws IOException {
+        Element.selectElement(driver, button_add_money, "Add Money button");
+        return new AddMoneyPage(driver);
     }
 
 
