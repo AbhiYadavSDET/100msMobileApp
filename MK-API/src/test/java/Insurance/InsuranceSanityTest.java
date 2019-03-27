@@ -3,9 +3,11 @@ package Insurance;
 import Insurance.Api.*;
 import Insurance.Helper.*;
 import Insurance.Models.requestdto.*;
+import Utils.DatabaseMongoHelper;
 import Utils.DatabaseSqlHelper;
 import Utils.Log;
 import apiutil.StatusCodeValidator;
+import customexception.PolicyNotFoundInPolicyCollection;
 import io.restassured.response.Response;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -22,10 +24,12 @@ public class InsuranceSanityTest {
     Response response;
     InsuranceDetailsV2Helper insuranceDetailsV2Helper;
     DatabaseSqlHelper databaseSqlHelper = new DatabaseSqlHelper();
+    DatabaseMongoHelper databaseMongoHelper = new DatabaseMongoHelper();
 
     @BeforeClass(alwaysRun = true)
     public void BeforeClass() {
         databaseSqlHelper.initiateMemberBalance();
+        databaseMongoHelper.initiatePolicy();
     }
 
 
@@ -39,13 +43,19 @@ public class InsuranceSanityTest {
     String memberId = "9953138474@nocash.mobikwik.com";
     String acceptEncoding = "\n*";
 
+    @Test(groups = {"insuranceSanity", "crossSellSanity"}, priority = 0)
+    public void Test00_setup() throws PolicyNotFoundInPolicyCollection {
+        deletePolicies("9953138474@nocash.mobikwik.com");
+    }
+
 
     @Test(groups = "insuranceSanity", priority = 1)
-    public void Test01_verify_insufficient_pa_policy_purchase() {
+    public void Test01_verify_insufficient_pa_policy_purchase() throws PolicyNotFoundInPolicyCollection {
         int count = 0;
 
         // Initiate the DB - Member Balance
         update_balance(memberId, "0", 0.0);
+
 
         InsuranceDetailsV2Dto insuranceDetailsV2Dto = new InsuranceDetailsV2Dto();
         insuranceDetailsV2Dto.setInsuranceCategory("PERSONAL_ACCIDENT");
@@ -770,6 +780,13 @@ public class InsuranceSanityTest {
 
     }
 
+    @Test(groups = "detepolicies", priority = 16)
+    public void Test16_test() throws PolicyNotFoundInPolicyCollection {
+
+        deletePolicies("9953138474@nocash.mobikwik.com");
+
+    }
+
     public PolicyDetailsDto initialiseRequestBody(PolicyDetailsDto policyDetailsDto) {
         policyDetailsDto.setAddress("H No - 1560, sector 46, Gurgaon");
         policyDetailsDto.setNomineeName("Neelam Suneja");
@@ -795,6 +812,11 @@ public class InsuranceSanityTest {
     public void update_balance(String memberId, String mainBalance, Double bucket6Balance) {
         databaseSqlHelper.updateWalletMainBalance(memberId, mainBalance);
         databaseSqlHelper.updateWalletBucket6Balance(memberId, bucket6Balance);
+
+    }
+
+    public void deletePolicies(String memberId) throws PolicyNotFoundInPolicyCollection {
+        databaseMongoHelper.deletePolicies(memberId);
 
     }
 

@@ -99,21 +99,32 @@ public final class Configuration {
     }
 
     public static class Payment {
-        public static final int MAX_TOKEN_ATTEMPTS;
         public static final Boolean IS_HTTPS_REQUIRED;
         public static final String HOST;
         public static final String PORT;
+        public static final String RETRY_FAILURE_CASES_COUNT;
+        public static final String X_MCLIENT;
+        public static final String X_App_Version;
+        public static final String DEVICE_ID;
+        public static final String AUTH;
+
 
         public Payment() {
         }
 
         static {
-            MAX_TOKEN_ATTEMPTS = Integer.valueOf(Configuration.handler.getValue("token.retry.attempts"));
-            IS_HTTPS_REQUIRED = Boolean.valueOf(Configuration.handler.getValue("payment.https.required"));
+            IS_HTTPS_REQUIRED = Boolean.valueOf(Configuration.handler.getValue("payment.is.https.required"));
             HOST = Configuration.handler.getValue("payment.api.host");
             PORT = Configuration.handler.getValue("payment.api.port");
+            X_MCLIENT = Configuration.handler.getValue("payment.xmClient");
+            X_App_Version = Configuration.handler.getValue("payment.xAppVersion");
+            RETRY_FAILURE_CASES_COUNT = Configuration.handler.getValue("payment.retry.failure.cases.count");
+            DEVICE_ID = Configuration.handler.getValue("payment.deviceId");
+            AUTH = Configuration.handler.getValue("payment.auth");
+
         }
     }
+
 
     public static class GiftCard {
         public static final Boolean IS_HTTPS_REQUIRED;

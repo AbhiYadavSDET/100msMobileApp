@@ -32,7 +32,7 @@ public class OtpCellHelper {
     public void verifyData() {
         Log.info("VERIFY", "Verify Data");
         MbkReporter.verifyEqualsWithLogging(otpCellResponseDto.getData().getGeneralMessage(), "OTP is sent successfully to your primary number ending in *******474", "Verify general Message", false);
-        MbkReporter.verifyEqualsWithLogging(otpCellResponseDto.getData().getRegisteredMobileNumber(), false, "Verify registered Mobile Number", false);
+        MbkReporter.verifyEqualsWithLogging(otpCellResponseDto.getData().getRegisteredMobileNumber(), true, "Verify registered Mobile Number", false);
         Log.info("VERIFIED", "Verify Data");
 
     }
