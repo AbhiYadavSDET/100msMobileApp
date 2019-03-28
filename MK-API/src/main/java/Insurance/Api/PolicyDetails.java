@@ -3,14 +3,13 @@ package Insurance.Api;
 
 import Config.Configuration;
 import Insurance.Models.requestdto.PolicyDetailsDto;
-import apiutil.BaseApi;
 import io.restassured.http.ContentType;
 
 /**
  * @author mayanksuneja
  * @team MobileQA
  */
-public class PolicyDetails extends BaseApi {
+public class PolicyDetails extends Utils.BaseApi {
 
     public PolicyDetails(PolicyDetailsDto payload) {
 
