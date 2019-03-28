@@ -2,7 +2,10 @@ package MutualFund.Api;
 
 
 import Config.Configuration;
+import Utils.ExtentReport;
 import io.restassured.http.ContentType;
+
+import java.io.IOException;
 
 /**
  * @author mayanksuneja
@@ -10,14 +13,17 @@ import io.restassured.http.ContentType;
  */
 public class Bank extends Utils.BaseApi {
 
-    public Bank(String investmentType) {
+    String host = Configuration.Mf.HOST;
+    String basePath = "api/mf/profile/bank";
+
+    public Bank(String investmentType) throws IOException {
 
         // Set the Request Method
         setHttpMethod(HTTP_METHOD.GET);
 
         // Set the Base URI and Path
-        getSpecBuilder().setBaseUri(getBaseUri(Configuration.Mf.IS_HTTPS_REQUIRED, Configuration.Mf.HOST, Configuration.Mf.PORT));
-        getSpecBuilder().setBasePath("api/mf/profile/bank");
+        getSpecBuilder().setBaseUri(getBaseUri(Configuration.Mf.IS_HTTPS_REQUIRED, host, Configuration.Mf.PORT));
+        getSpecBuilder().setBasePath(basePath);
         getSpecBuilder().addParam("investmentType", investmentType);
 
 
@@ -26,6 +32,9 @@ public class Bank extends Utils.BaseApi {
         getSpecBuilder().addHeader("X-MClient", Configuration.Mf.X_MCLIENT);
         getSpecBuilder().addHeader("X-Device-ID", Configuration.Mf.DEVICE_ID);
         getSpecBuilder().addHeader("X-App-Ver", Configuration.Mf.X_App_Version);
+
+        //Log in Extent Report
+        ExtentReport.extentReportDisplay(ExtentReport.Status.INFO, "Request", host + basePath);
 
 
         getSpecBuilder().setContentType(ContentType.JSON);

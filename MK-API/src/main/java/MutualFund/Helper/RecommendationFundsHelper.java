@@ -30,10 +30,10 @@ public class RecommendationFundsHelper {
         Log.info("VERIFIED", "Success Response");
     }
 
-    public void verifyData(int fundsCount) {
+    public void verifyData(int fundsCount) throws IOException {
         Log.info("VERIFY", "Count of funds");
         int size = recommendationFundsResponseDto.getData().size();
-        MbkReporter.verifyEqualsWithLogging(size, fundsCount, "Count", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(size, fundsCount, "Count", false);
         Log.info("VERIFIED", "Count of funds");
 
     }

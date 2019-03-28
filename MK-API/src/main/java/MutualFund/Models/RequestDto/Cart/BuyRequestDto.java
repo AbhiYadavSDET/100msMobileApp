@@ -23,4 +23,10 @@ public class BuyRequestDto {
         this.paymentMode = paymentMode;
     }
 
+    @Override
+    public String toString() {
+        return "BuyRequestDto{" +
+                "paymentMode=" + paymentMode +
+                '}';
+    }
 }

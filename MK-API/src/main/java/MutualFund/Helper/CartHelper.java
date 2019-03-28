@@ -32,9 +32,9 @@ public class CartHelper {
         Log.info("VERIFIED", "Success Response");
     }
 
-    public void verifyNavDate(int noOfDays) {
+    public void verifyNavDate(int noOfDays) throws IOException {
         Log.info("VERIFY", "AutoPayBank");
-        MbkReporter.verifyEqualsWithLogging(cartResponseDto.getData().getNavDate().substring(0, 11), DateHelper.getDateAterNDays(DateFormatEnums.DD_MMM_YYYY, noOfDays), "beneficiaryName", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(cartResponseDto.getData().getNavDate().substring(0, 11), DateHelper.getDateAterNDays(DateFormatEnums.DD_MMM_YYYY, noOfDays), "beneficiaryName", false);
         Log.info("VERIFIED", "AutoPayBank");
     }
 

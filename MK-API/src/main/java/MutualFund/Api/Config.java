@@ -2,7 +2,10 @@ package MutualFund.Api;
 
 
 import Config.Configuration;
+import Utils.ExtentReport;
 import io.restassured.http.ContentType;
+
+import java.io.IOException;
 
 /**
  * @author mayanksuneja
@@ -10,14 +13,20 @@ import io.restassured.http.ContentType;
  */
 public class Config extends Utils.BaseApi {
 
-    public Config() {
+    String host = Configuration.Mf.HOST;
+    String basePath = "api/anonymous/v2/config";
+
+    public Config() throws IOException {
 
         // Set the Request Method
         setHttpMethod(HTTP_METHOD.GET);
 
         // Set the Base URI and Path
-        getSpecBuilder().setBaseUri(getBaseUri(Configuration.Mf.IS_HTTPS_REQUIRED, Configuration.Mf.HOST, Configuration.Mf.PORT));
-        getSpecBuilder().setBasePath("api/anonymous/v2/config");
+        getSpecBuilder().setBaseUri(getBaseUri(Configuration.Mf.IS_HTTPS_REQUIRED, host, Configuration.Mf.PORT));
+        getSpecBuilder().setBasePath(basePath);
+
+        //Log in Extent Report
+        ExtentReport.extentReportDisplay(ExtentReport.Status.INFO, "Request", host + basePath);
 
         //Set the headers
         getSpecBuilder().addHeader("Authorization", Configuration.Mf.AUTH);

@@ -3,7 +3,10 @@ package MutualFund.Api;
 
 import Config.Configuration;
 import MutualFund.Models.RequestDto.Cart.CartRequestDto;
+import Utils.ExtentReport;
 import io.restassured.http.ContentType;
+
+import java.io.IOException;
 
 /**
  * @author mayanksuneja
@@ -11,14 +14,20 @@ import io.restassured.http.ContentType;
  */
 public class Cart extends Utils.BaseApi {
 
-    public Cart(CartRequestDto payload) {
+    String host = Configuration.Mf.HOST;
+    String basePath = "api/mf/cart";
+
+    public Cart(CartRequestDto payload) throws IOException {
 
         // Set the Request Method
         setHttpMethod(HTTP_METHOD.POST);
 
         // Set the Base URI and Path
-        getSpecBuilder().setBaseUri(getBaseUri(Configuration.Mf.IS_HTTPS_REQUIRED, Configuration.Mf.HOST, Configuration.Mf.PORT));
-        getSpecBuilder().setBasePath("api/mf/cart");
+        getSpecBuilder().setBaseUri(getBaseUri(Configuration.Mf.IS_HTTPS_REQUIRED, host, Configuration.Mf.PORT));
+        getSpecBuilder().setBasePath(basePath);
+
+        //Log in Extent Report
+        ExtentReport.extentReportDisplay(ExtentReport.Status.INFO, "Request", host + basePath);
 
 
         //Set the headers

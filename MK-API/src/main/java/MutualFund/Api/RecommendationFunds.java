@@ -2,7 +2,10 @@ package MutualFund.Api;
 
 
 import Config.Configuration;
+import Utils.ExtentReport;
 import io.restassured.http.ContentType;
+
+import java.io.IOException;
 
 /**
  * @author mayanksuneja
@@ -10,14 +13,17 @@ import io.restassured.http.ContentType;
  */
 public class RecommendationFunds extends Utils.BaseApi {
 
-    public RecommendationFunds(String amount, String type, String riskTypeId, String timeInMonths, String targetAmount, String fundCategory) {
+    String host = Configuration.Mf.HOST;
+    String basePath = "api/anonymous/recommendation/funds";
+
+    public RecommendationFunds(String amount, String type, String riskTypeId, String timeInMonths, String targetAmount, String fundCategory) throws IOException {
 
         // Set the Request Method
         setHttpMethod(HTTP_METHOD.GET);
 
         // Set the Base URI and Path
-        getSpecBuilder().setBaseUri(getBaseUri(Configuration.Mf.IS_HTTPS_REQUIRED, Configuration.Mf.HOST, Configuration.Mf.PORT));
-        getSpecBuilder().setBasePath("api/anonymous/recommendation/funds");
+        getSpecBuilder().setBaseUri(getBaseUri(Configuration.Mf.IS_HTTPS_REQUIRED, host, Configuration.Mf.PORT));
+        getSpecBuilder().setBasePath(basePath);
         getSpecBuilder().addParam("amount", amount);
         getSpecBuilder().addParam("type", type);
         getSpecBuilder().addParam("riskTypeId", riskTypeId);
@@ -30,6 +36,9 @@ public class RecommendationFunds extends Utils.BaseApi {
         getSpecBuilder().addHeader("X-MClient", Configuration.Mf.X_MCLIENT);
         getSpecBuilder().addHeader("X-Device-ID", Configuration.Mf.DEVICE_ID);
         getSpecBuilder().addHeader("X-App-Ver", Configuration.Mf.X_App_Version);
+
+        //Log in Extent Report
+        ExtentReport.extentReportDisplay(ExtentReport.Status.INFO, "Request", host + basePath);
 
 
         getSpecBuilder().setContentType(ContentType.JSON);

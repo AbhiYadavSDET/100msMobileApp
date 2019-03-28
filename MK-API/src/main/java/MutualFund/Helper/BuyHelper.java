@@ -32,18 +32,18 @@ public class BuyHelper {
         Log.info("VERIFIED", "Success Response");
     }
 
-    public void verifyDetails(String desc, String title, String subtitle) {
+    public void verifyDetails(String desc, String title, String subtitle) throws IOException {
         Log.info("VERIFY", "Details");
-        MbkReporter.verifyEqualsWithLogging(buyResponseDto.getData().getDesc(), desc, "Description", false);
-        MbkReporter.verifyEqualsWithLogging(buyResponseDto.getData().getTitle(), title, "Title", false);
-        MbkReporter.verifyEqualsWithLogging(buyResponseDto.getData().getSubTitle(), subtitle, "Subtitle", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(buyResponseDto.getData().getDesc(), desc, "Description", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(buyResponseDto.getData().getTitle(), title, "Title", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(buyResponseDto.getData().getSubTitle(), subtitle, "Subtitle", false);
         Log.info("VERIFIED", "Details");
     }
 
-    public void verifyDisplayValues(String amount, int noOfDays) {
+    public void verifyDisplayValues(String amount, int noOfDays) throws IOException {
         Log.info("VERIFY", "Details");
-        MbkReporter.verifyEqualsWithLogging(buyResponseDto.getData().getDisplayValues().get(0).getValue(), amount, "Amount", false);
-        MbkReporter.verifyEqualsWithLogging(buyResponseDto.getData().getDisplayValues().get(1).getValue().substring(0, 11), DateHelper.getDateAterNDays(DateFormatEnums.DD_MMM_YYYY, noOfDays), "Nav Date", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(buyResponseDto.getData().getDisplayValues().get(0).getValue(), amount, "Amount", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(buyResponseDto.getData().getDisplayValues().get(1).getValue().substring(0, 11), DateHelper.getDateAterNDays(DateFormatEnums.DD_MMM_YYYY, noOfDays), "Nav Date", false);
         Log.info("VERIFIED", "Details");
     }
 

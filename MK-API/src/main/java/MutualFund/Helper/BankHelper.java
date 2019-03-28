@@ -30,25 +30,25 @@ public class BankHelper {
         Log.info("VERIFIED", "Success Response");
     }
 
-    public void verifyAutoPayBank(String beneficiaryName, String accountNumber, String ifsc, String bankName, String bankLogo, Boolean mandateApproved) {
+    public void verifyAutoPayBank(String beneficiaryName, String accountNumber, String ifsc, String bankName, String bankLogo, Boolean mandateApproved) throws IOException {
         Log.info("VERIFY", "AutoPayBank");
-        MbkReporter.verifyEqualsWithLogging(bankResponseDto.getData().getAutoPayBank().getBeneficiaryName(), beneficiaryName, "beneficiaryName", false);
-        MbkReporter.verifyEqualsWithLogging(bankResponseDto.getData().getAutoPayBank().getAccountNumber(), accountNumber, "accountNumber", false);
-        MbkReporter.verifyEqualsWithLogging(bankResponseDto.getData().getAutoPayBank().getIfscCode(), ifsc, "ifsc", false);
-        MbkReporter.verifyEqualsWithLogging(bankResponseDto.getData().getAutoPayBank().getBankName(), bankName, "bankName", false);
-        MbkReporter.verifyEqualsWithLogging(bankResponseDto.getData().getAutoPayBank().getBankLogo(), bankLogo, "bankLogo", false);
-        MbkReporter.verifyEqualsWithLogging(bankResponseDto.getData().getAutoPayBank().getMandateApproved(), mandateApproved, "mandateApproved", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(bankResponseDto.getData().getAutoPayBank().getBeneficiaryName(), beneficiaryName, "beneficiaryName", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(bankResponseDto.getData().getAutoPayBank().getAccountNumber(), accountNumber, "accountNumber", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(bankResponseDto.getData().getAutoPayBank().getIfscCode(), ifsc, "ifsc", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(bankResponseDto.getData().getAutoPayBank().getBankName(), bankName, "bankName", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(bankResponseDto.getData().getAutoPayBank().getBankLogo(), bankLogo, "bankLogo", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(bankResponseDto.getData().getAutoPayBank().getMandateApproved(), mandateApproved, "mandateApproved", false);
         Log.info("VERIFIED", "AutoPayBank");
     }
 
-    public void verifyNetBankingBank(String beneficiaryName, String accountNumber, String ifsc, String bankName, String bankLogo, Boolean mandateApproved) {
+    public void verifyNetBankingBank(String beneficiaryName, String accountNumber, String ifsc, String bankName, String bankLogo, Boolean mandateApproved) throws IOException {
         Log.info("VERIFY", "NetBankingBank");
-        MbkReporter.verifyEqualsWithLogging(bankResponseDto.getData().getNetBankingBank().getBeneficiaryName(), beneficiaryName, "beneficiaryName", false);
-        MbkReporter.verifyEqualsWithLogging(bankResponseDto.getData().getNetBankingBank().getAccountNumber(), accountNumber, "accountNumber", false);
-        MbkReporter.verifyEqualsWithLogging(bankResponseDto.getData().getNetBankingBank().getIfscCode(), ifsc, "ifsc", false);
-        MbkReporter.verifyEqualsWithLogging(bankResponseDto.getData().getNetBankingBank().getBankName(), bankName, "bankName", false);
-        MbkReporter.verifyEqualsWithLogging(bankResponseDto.getData().getNetBankingBank().getBankLogo(), bankLogo, "bankLogo", false);
-        MbkReporter.verifyEqualsWithLogging(bankResponseDto.getData().getNetBankingBank().getMandateApproved(), mandateApproved, "mandateApproved", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(bankResponseDto.getData().getNetBankingBank().getBeneficiaryName(), beneficiaryName, "beneficiaryName", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(bankResponseDto.getData().getNetBankingBank().getAccountNumber(), accountNumber, "accountNumber", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(bankResponseDto.getData().getNetBankingBank().getIfscCode(), ifsc, "ifsc", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(bankResponseDto.getData().getNetBankingBank().getBankName(), bankName, "bankName", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(bankResponseDto.getData().getNetBankingBank().getBankLogo(), bankLogo, "bankLogo", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(bankResponseDto.getData().getNetBankingBank().getMandateApproved(), mandateApproved, "mandateApproved", false);
         Log.info("VERIFIED", "NetBankingBank");
     }
 

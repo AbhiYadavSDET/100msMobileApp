@@ -3,22 +3,31 @@ package MutualFund.Api;
 
 import Config.Configuration;
 import MutualFund.Models.RequestDto.Cart.BuyRequestDto;
+import Utils.ExtentReport;
 import io.restassured.http.ContentType;
+
+import java.io.IOException;
 
 /**
  * @author mayanksuneja
  * @team MobileQA
  */
 public class Buy extends Utils.BaseApi {
+    String host = Configuration.Mf.HOST;
+    String basePath = "api/mf/buy";
 
-    public Buy(BuyRequestDto payload) {
+    public Buy(BuyRequestDto payload) throws IOException {
 
         // Set the Request Method
         setHttpMethod(HTTP_METHOD.POST);
 
         // Set the Base URI and Path
-        getSpecBuilder().setBaseUri(getBaseUri(Configuration.Mf.IS_HTTPS_REQUIRED, Configuration.Mf.HOST, Configuration.Mf.PORT));
-        getSpecBuilder().setBasePath("api/mf/buy");
+        getSpecBuilder().setBaseUri(getBaseUri(Configuration.Mf.IS_HTTPS_REQUIRED, host, Configuration.Mf.PORT));
+        getSpecBuilder().setBasePath(basePath);
+
+        //Log in Extent Report
+        ExtentReport.extentReportDisplay(ExtentReport.Status.INFO, "Request", host + basePath);
+        ExtentReport.extentReportDisplay(ExtentReport.Status.INFO, "Request Body", payload.toString());
 
 
         //Set the headers

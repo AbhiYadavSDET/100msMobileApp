@@ -30,14 +30,14 @@ public class ConfigHelper {
         Log.info("VERIFIED", "Success Response");
     }
 
-    public void verifyData(boolean hasPortfolio, Boolean showInvestorProfilePage, Boolean bankVerification, Boolean eNash, Boolean isKYCed, int kycFlowState) {
+    public void verifyData(boolean hasPortfolio, Boolean showInvestorProfilePage, Boolean bankVerification, Boolean eNash, Boolean isKYCed, int kycFlowState) throws IOException {
         Log.info("VERIFY", "Data");
-        MbkReporter.verifyEqualsWithLogging(configResponseDto.getData().getHasPortfolio(), hasPortfolio, "Has Portfolio", false);
-        MbkReporter.verifyEqualsWithLogging(configResponseDto.getData().getShowInvestorProfilePage(), showInvestorProfilePage, "show Invester Profile Page", false);
-        MbkReporter.verifyEqualsWithLogging(configResponseDto.getData().getBankVerification(), bankVerification, "bank Verification", false);
-        MbkReporter.verifyEqualsWithLogging(configResponseDto.getData().getENach(), eNash, "E-Nash", false);
-        MbkReporter.verifyEqualsWithLogging(configResponseDto.getData().getIsKYCed(), isKYCed, "is KYC", false);
-        MbkReporter.verifyEqualsWithLogging(configResponseDto.getData().getKycFlowState(), kycFlowState, "KYC Flow state", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(configResponseDto.getData().getHasPortfolio(), hasPortfolio, "Has Portfolio", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(configResponseDto.getData().getShowInvestorProfilePage(), showInvestorProfilePage, "show Invester Profile Page", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(configResponseDto.getData().getBankVerification(), bankVerification, "bank Verification", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(configResponseDto.getData().getENach(), eNash, "E-Nash", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(configResponseDto.getData().getIsKYCed(), isKYCed, "is KYC", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(configResponseDto.getData().getKycFlowState(), kycFlowState, "KYC Flow state", false);
         Log.info("VERIFIED", "Data");
 
     }
