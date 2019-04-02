@@ -185,5 +185,59 @@ public class MutualFundTest {
         ExtentReport.EXTENTREPORT.endTest(ExtentReport.EXTENTTEST);
     }
 
+    @Test(groups = "mutualFundSanity", priority = 6)
+    public void Test06_check_if_we_can_sell() throws IOException {
+        int count = 0;
+
+
+        // Start the test
+        ExtentReport.EXTENTTEST = ExtentReport.EXTENTREPORT.startTest("Test06_check_if_we_can_sell");
+
+        FlexiSip flexiSip = new FlexiSip();
+        response = flexiSip.execute();
+
+        System.out.println(response.getBody().asString());
+        //Log in Extent Report
+        ExtentReport.extentReportDisplay(ExtentReport.Status.INFO, "Response", response.getBody().asString());
+
+        //Status code validator
+        StatusCodeValidator.validate200(response);
+
+        //Assertions
+        FlexiSipHelper flexiSipHelper = new FlexiSipHelper(response.getBody().asString());
+        flexiSipHelper.verifySuccessResponse();
+
+
+        // End the test
+        ExtentReport.EXTENTREPORT.endTest(ExtentReport.EXTENTTEST);
+    }
+
+    @Test(groups = "mutualFundSanityy", priority = 7)
+    public void Test07_sell_fund_details() throws IOException {
+        int count = 0;
+
+
+        // Start the test
+        ExtentReport.EXTENTTEST = ExtentReport.EXTENTREPORT.startTest("Test07_check_if_we_can_sell");
+
+        FlexiSipSell flexiSipSell = new FlexiSipSell();
+        response = flexiSipSell.execute();
+
+        System.out.println(response.getBody().asString());
+        //Log in Extent Report
+        ExtentReport.extentReportDisplay(ExtentReport.Status.INFO, "Response", response.getBody().asString());
+
+        //Status code validator
+        StatusCodeValidator.validate200(response);
+
+        //Assertions
+        FlexiSipSellHelper flexiSipSellHelper = new FlexiSipSellHelper(response.getBody().asString());
+        flexiSipSellHelper.verifySuccessResponse();
+
+
+        // End the test
+        ExtentReport.EXTENTREPORT.endTest(ExtentReport.EXTENTTEST);
+    }
+
 
 }

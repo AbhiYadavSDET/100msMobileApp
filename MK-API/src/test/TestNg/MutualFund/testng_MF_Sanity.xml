@@ -4,7 +4,7 @@
     <test verbose="2" preserve-order="true" name="IPL Sanity">
         <groups>
             <run>
-                <include name="mutualFundSanity"/>
+                <include name="mutualFundSanityy"/>
             </run>
         </groups>
 
