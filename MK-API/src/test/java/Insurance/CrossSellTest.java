@@ -996,6 +996,263 @@ public class CrossSellTest {
 
     }
 
+    @Test(groups = "crossSellWalletFlows", priority = 13)
+    public void Test13_insufficient_recharge_success_insurance_success() {
+        int count = 0;
+
+        Txn_ txn_ = new Txn_();
+        txn_.setSenderToWalletEnum("SENDER_TO_WALLET_HOME");
+        txn_.setInsuranceSellingPlatform("APP_RECHARGE_CROSS_SELL");
+
+        Txn txn = new Txn();
+        txn.setId("rch");
+        txn.setTxn(txn_);
+
+        List<Txn> txns = new ArrayList<Txn>();
+        txns.add(txn);
+        CrossSellDetailsDto crossSellDetailsDto = new CrossSellDetailsDto();
+        crossSellDetailsDto.setTxns(txns);
+
+
+        CrossSellDetails crossSellDetails = new CrossSellDetails(acceptEncoding, crossSellDetailsDto);
+        response = crossSellDetails.execute();
+
+        System.out.println(response.getBody().asString());
+
+        //Status code validator
+        StatusCodeValidator.validate200(response);
+
+
+        CrossSellDetailsHelper crossSellDetailsHelper = new CrossSellDetailsHelper(response.getBody().asString());
+
+        crossSellDetailsHelper.verifySuccessResponse();
+        crossSellDetailsHelper.setVariables(0);
+
+        // Initiate the DB - Member Balance
+        update_balance(memberId, "0");
+
+
+        List<CrossSellTxn> txnsResponse = new ArrayList<CrossSellTxn>();
+        txnsResponse.add(initiateRechargeTxn("rch", "1", "5", "9650200338", true, true, "29", false, true));
+        txnsResponse.add(initiateInsurancetxn(CrossSellDetailsHelper.map.get("insuranceId_" + count)));
+
+
+        CrossSellTransactionDto crossSellTransactionDto = new CrossSellTransactionDto();
+        crossSellTransactionDto.setTxns(txnsResponse);
+
+        CrossSellTransaction crossSellTransaction = new CrossSellTransaction(acceptEncoding, CrossSellDetailsHelper.map.get("scopeId"), crossSellTransactionDto);
+        response = crossSellTransaction.execute();
+
+        System.out.println(response.getBody().asString());
+
+        //Status code validator
+        StatusCodeValidator.validate200(response);
+
+        CrossSellTransactionHelper crossSellTransactionHelper = new CrossSellTransactionHelper(response.getBody().asString());
+
+        crossSellTransactionHelper.verifyFalseResponse();
+        crossSellTransactionHelper.verifyInsuranceSuccessResponse(1, false);
+        crossSellTransactionHelper.verifyRechargeSuccessResponse(0, false);
+        crossSellTransactionHelper.verifyPgOptions(3, "cc", "dc", "upi");
+        crossSellTransactionHelper.verifyRequiredAmount(21.00);
+        crossSellTransactionHelper.verifyMessage("ADD_MONEY", "Please add Money");
+
+
+    }
+
+    @Test(groups = "crossSellWalletFlows", priority = 14)
+    public void Test14_insufficient_recharge_fail_insurance_success() {
+        int count = 0;
+
+        Txn_ txn_ = new Txn_();
+        txn_.setSenderToWalletEnum("SENDER_TO_WALLET_HOME");
+        txn_.setInsuranceSellingPlatform("APP_RECHARGE_CROSS_SELL");
+
+        Txn txn = new Txn();
+        txn.setId("rch");
+        txn.setTxn(txn_);
+
+        List<Txn> txns = new ArrayList<Txn>();
+        txns.add(txn);
+        CrossSellDetailsDto crossSellDetailsDto = new CrossSellDetailsDto();
+        crossSellDetailsDto.setTxns(txns);
+
+
+        CrossSellDetails crossSellDetails = new CrossSellDetails(acceptEncoding, crossSellDetailsDto);
+        response = crossSellDetails.execute();
+
+        System.out.println(response.getBody().asString());
+
+        //Status code validator
+        StatusCodeValidator.validate200(response);
+
+
+        CrossSellDetailsHelper crossSellDetailsHelper = new CrossSellDetailsHelper(response.getBody().asString());
+
+        crossSellDetailsHelper.verifySuccessResponse();
+        crossSellDetailsHelper.setVariables(0);
+
+        // Initiate the DB - Member Balance
+        update_balance(memberId, "0");
+
+
+        List<CrossSellTxn> txnsResponse = new ArrayList<CrossSellTxn>();
+        txnsResponse.add(initiateRechargeTxn("rch", "20", "", "9953138474", true, true, "19", false, true));
+        txnsResponse.add(initiateInsurancetxn("ins", CrossSellDetailsHelper.map.get("insuranceId_" + count), false, true));
+
+
+        CrossSellTransactionDto crossSellTransactionDto = new CrossSellTransactionDto();
+        crossSellTransactionDto.setTxns(txnsResponse);
+
+        CrossSellTransaction crossSellTransaction = new CrossSellTransaction(acceptEncoding, CrossSellDetailsHelper.map.get("scopeId"), crossSellTransactionDto);
+        response = crossSellTransaction.execute();
+
+        System.out.println(response.getBody().asString());
+
+        //Status code validator
+        StatusCodeValidator.validate200(response);
+
+        CrossSellTransactionHelper crossSellTransactionHelper = new CrossSellTransactionHelper(response.getBody().asString());
+
+        crossSellTransactionHelper.verifyFalseResponse();
+        crossSellTransactionHelper.verifyInsuranceSuccessResponse(1, false);
+        crossSellTransactionHelper.verifyRechargeSuccessResponse(0, false);
+        crossSellTransactionHelper.verifyPgOptions(3, "cc", "dc", "upi");
+        crossSellTransactionHelper.verifyRequiredAmount(40.00);
+        crossSellTransactionHelper.verifyMessage("ADD_MONEY", "Please add Money");
+
+    }
+
+    @Test(groups = "crossSellWalletFlows", priority = 15)
+    public void Test15_insufficient_recharge_success_insurance_fail() {
+        int count = 0;
+
+        Txn_ txn_ = new Txn_();
+        txn_.setSenderToWalletEnum("SENDER_TO_WALLET_HOME");
+        txn_.setInsuranceSellingPlatform("APP_RECHARGE_CROSS_SELL");
+
+        Txn txn = new Txn();
+        txn.setId("rch");
+        txn.setTxn(txn_);
+
+        List<Txn> txns = new ArrayList<Txn>();
+        txns.add(txn);
+        CrossSellDetailsDto crossSellDetailsDto = new CrossSellDetailsDto();
+        crossSellDetailsDto.setTxns(txns);
+
+
+        CrossSellDetails crossSellDetails = new CrossSellDetails(acceptEncoding, crossSellDetailsDto);
+        response = crossSellDetails.execute();
+
+        System.out.println(response.getBody().asString());
+
+        //Status code validator
+        StatusCodeValidator.validate200(response);
+
+
+        CrossSellDetailsHelper crossSellDetailsHelper = new CrossSellDetailsHelper(response.getBody().asString());
+
+        crossSellDetailsHelper.verifySuccessResponse();
+        crossSellDetailsHelper.setVariables(0);
+
+        // Initiate the DB - Member Balance
+        update_balance(memberId, "0");
+
+
+        List<CrossSellTxn> txnsResponse = new ArrayList<CrossSellTxn>();
+        txnsResponse.add(initiateRechargeTxn("rch", "1", "5", "8527797582", true, true, "29", false, true));
+        txnsResponse.add(initiateInsurancetxn("ins", CrossSellDetailsHelper.map.get("insuranceId_" + count), false, true));
+
+
+        CrossSellTransactionDto crossSellTransactionDto = new CrossSellTransactionDto();
+        crossSellTransactionDto.setTxns(txnsResponse);
+
+        CrossSellTransaction crossSellTransaction = new CrossSellTransaction(acceptEncoding, "scopeId", crossSellTransactionDto);
+        response = crossSellTransaction.execute();
+
+        System.out.println(response.getBody().asString());
+
+        //Status code validator
+        StatusCodeValidator.validate200(response);
+
+        CrossSellTransactionHelper crossSellTransactionHelper = new CrossSellTransactionHelper(response.getBody().asString());
+
+        crossSellTransactionHelper.verifyFalseResponse();
+        crossSellTransactionHelper.verifyInsuranceSuccessResponse(1, false);
+        crossSellTransactionHelper.verifyRechargeSuccessResponse(0, false);
+        crossSellTransactionHelper.verifyPgOptions(3, "cc", "dc", "upi");
+        crossSellTransactionHelper.verifyRequiredAmount(1.00);
+        crossSellTransactionHelper.verifyInsuranceDataForTC_03(1, "INVL_SCP", "Invalid Scope ");
+        crossSellTransactionHelper.verifyMessage("ADD_MONEY", "Please add Money");
+
+
+    }
+
+    @Test(groups = "crossSellWalletFlows", priority = 16)
+    public void Test16_insufficient_recharge_fail_insurance_fail() {
+        int count = 0;
+
+        Txn_ txn_ = new Txn_();
+        txn_.setSenderToWalletEnum("SENDER_TO_WALLET_HOME");
+        txn_.setInsuranceSellingPlatform("APP_RECHARGE_CROSS_SELL");
+
+        Txn txn = new Txn();
+        txn.setId("rch");
+        txn.setTxn(txn_);
+
+        List<Txn> txns = new ArrayList<Txn>();
+        txns.add(txn);
+        CrossSellDetailsDto crossSellDetailsDto = new CrossSellDetailsDto();
+        crossSellDetailsDto.setTxns(txns);
+
+
+        CrossSellDetails crossSellDetails = new CrossSellDetails(acceptEncoding, crossSellDetailsDto);
+        response = crossSellDetails.execute();
+
+        System.out.println(response.getBody().asString());
+
+        //Status code validator
+        StatusCodeValidator.validate200(response);
+
+
+        CrossSellDetailsHelper crossSellDetailsHelper = new CrossSellDetailsHelper(response.getBody().asString());
+
+        crossSellDetailsHelper.verifySuccessResponse();
+        crossSellDetailsHelper.setVariables(0);
+
+        // Initiate the DB - Member Balance
+        update_balance(memberId, "0");
+
+
+        List<CrossSellTxn> txnsResponse = new ArrayList<CrossSellTxn>();
+        txnsResponse.add(initiateRechargeTxn("rch", "20", "", "9953138474", true, true, "19", false, true));
+        txnsResponse.add(initiateInsurancetxn("ins", CrossSellDetailsHelper.map.get("insuranceId_" + count), false, true));
+
+
+        CrossSellTransactionDto crossSellTransactionDto = new CrossSellTransactionDto();
+        crossSellTransactionDto.setTxns(txnsResponse);
+
+        CrossSellTransaction crossSellTransaction = new CrossSellTransaction(acceptEncoding, "scopeId", crossSellTransactionDto);
+        response = crossSellTransaction.execute();
+
+        System.out.println(response.getBody().asString());
+
+        //Status code validator
+        StatusCodeValidator.validate200(response);
+
+        CrossSellTransactionHelper crossSellTransactionHelper = new CrossSellTransactionHelper(response.getBody().asString());
+
+        crossSellTransactionHelper.verifyFalseResponse();
+        crossSellTransactionHelper.verifyInsuranceSuccessResponse(1, false);
+        crossSellTransactionHelper.verifyRechargeSuccessResponse(0, false);
+        crossSellTransactionHelper.verifyRequiredAmount(20.00);
+        crossSellTransactionHelper.verifyInsuranceDataForTC_03(1, "INVL_SCP", "Invalid Scope ");
+        crossSellTransactionHelper.verifyMessage("ADD_MONEY", "Please add Money");
+
+
+    }
+
+
     // ----------------------------------------------------------------------------
 
 }
