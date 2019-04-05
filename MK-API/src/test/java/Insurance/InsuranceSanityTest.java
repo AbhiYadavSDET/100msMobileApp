@@ -13,6 +13,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
@@ -411,7 +412,7 @@ public class InsuranceSanityTest {
     }
 
     @Test(groups = "crossSellSanity", priority = 12)
-    public void Test12_verify_cross_sell_transaction_sufficient_balance() {
+    public void Test12_verify_cross_sell_transaction_sufficient_balance() throws IOException {
         int count = 0;
 
         Txn_ txn_ = new Txn_();
@@ -474,7 +475,7 @@ public class InsuranceSanityTest {
     }
 
     @Test(groups = "crossSellSanity", priority = 11)
-    public void Test11_verify_cross_sell_transaction_insufficient_balance() {
+    public void Test11_verify_cross_sell_transaction_insufficient_balance() throws IOException {
         int count = 0;
 
         Txn_ txn_ = new Txn_();
@@ -571,9 +572,12 @@ public class InsuranceSanityTest {
 
     }
 
-    @Test(groups = "policyPurchase", priority = 14)
-    public void Test14_verify_li_enter_policy_details() {
+    @Test(groups = {"policyPurchase", "insuranceSanity"}, priority = 14)
+    public void Test14_verify_li_enter_policy_details() throws PolicyNotFoundInPolicyCollection {
         int count = 0;
+
+        deletePolicies("9953138474@nocash.mobikwik.com");
+
 
         // Initiate the DB - Member Balance
         update_balance(memberId, "20");
@@ -634,9 +638,10 @@ public class InsuranceSanityTest {
 
     }
 
-    @Test(groups = "policyPurchase", priority = 13)
-    public void Test13_verify_pa_enter_policy_details() {
+    @Test(groups = {"policyPurchase", "insuranceSanity"}, priority = 13)
+    public void Test13_verify_pa_enter_policy_details() throws PolicyNotFoundInPolicyCollection {
         int count = 0;
+        deletePolicies("9953138474@nocash.mobikwik.com");
 
         // Initiate the DB - Member Balance
         update_balance(memberId, "20");
@@ -696,9 +701,10 @@ public class InsuranceSanityTest {
 
     }
 
-    @Test(groups = "policyPurchase", priority = 15)
-    public void Test15_verify_cyber_enter_policy_details() {
+    @Test(groups = {"policyPurchase", "insuranceSanity"}, priority = 15)
+    public void Test15_verify_cyber_enter_policy_details() throws PolicyNotFoundInPolicyCollection {
         int count = 0;
+        deletePolicies("9953138474@nocash.mobikwik.com");
 
         // Initiate the DB - Member Balance
         update_balance(memberId, "99");
