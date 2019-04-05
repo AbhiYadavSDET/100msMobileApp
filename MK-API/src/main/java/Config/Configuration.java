@@ -207,6 +207,33 @@ public final class Configuration {
         }
     }
 
+    public static class Mf {
+        public static final Boolean IS_HTTPS_REQUIRED;
+        public static final String HOST;
+        public static final String PORT;
+        public static final String RETRY_FAILURE_CASES_COUNT;
+        public static final String X_MCLIENT;
+        public static final String X_App_Version;
+        public static final String DEVICE_ID;
+        public static final String AUTH;
+
+
+        public Mf() {
+        }
+
+        static {
+            IS_HTTPS_REQUIRED = Boolean.valueOf(Configuration.handler.getValue("mf.is.https.required"));
+            HOST = Configuration.handler.getValue("mf.api.host");
+            PORT = Configuration.handler.getValue("mf.api.port");
+            X_MCLIENT = Configuration.handler.getValue("mf.xmClient");
+            X_App_Version = Configuration.handler.getValue("mf.xAppVersion");
+            RETRY_FAILURE_CASES_COUNT = Configuration.handler.getValue("mf.retry.failure.cases.count");
+            DEVICE_ID = Configuration.handler.getValue("mf.deviceId");
+            AUTH = Configuration.handler.getValue("mf.auth");
+
+        }
+    }
+
     public static class APIDefaults {
         public static final boolean IS_HTTPS_REQUIRED;
         public static final String HOST;

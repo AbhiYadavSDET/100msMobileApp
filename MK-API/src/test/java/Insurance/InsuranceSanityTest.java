@@ -43,7 +43,7 @@ public class InsuranceSanityTest {
     String memberId = "9953138474@nocash.mobikwik.com";
     String acceptEncoding = "\n*";
 
-    @Test(groups = {"insuranceSanity", "crossSellSanity"}, priority = 0)
+    @Test(groups = {"insuranceSanity", "crossSellSanity", "insurancePallaviDataSetup"}, priority = 0)
     public void Test00_setup() throws PolicyNotFoundInPolicyCollection {
         deletePolicies("9953138474@nocash.mobikwik.com");
     }
@@ -856,5 +856,66 @@ public class InsuranceSanityTest {
         return crossSellTxnIns;
     }
 
+    @Test(groups = "insurancePallaviDataSetup", priority = 13)
+    public void Test_insurancePallaviDataSetup() {
+        int count = 0;
+
+        // Initiate the DB - Member Balance
+        update_balance(memberId, "20");
+
+        InsuranceDetailsV2Dto insuranceDetailsV2Dto = new InsuranceDetailsV2Dto();
+        insuranceDetailsV2Dto.setInsuranceCategory("PERSONAL_ACCIDENT");
+        insuranceDetailsV2Dto.setInsuranceSellingPlatform("APP_ICON");
+
+        InsuranceDetailsV2 insuranceDetailsV2 = new InsuranceDetailsV2(insuranceDetailsV2Dto);
+        response = insuranceDetailsV2.execute();
+
+        System.out.println(response.getBody().asString());
+
+        //Status code validator
+        StatusCodeValidator.validate200(response);
+
+        // Success response Validator
+        InsuranceDetailsV2Helper insuranceDetailsV2Helper = new InsuranceDetailsV2Helper(response.getBody().asString());
+        insuranceDetailsV2Helper.verifySuccessResponse();
+
+        // Set the scope ID
+        insuranceDetailsV2Helper.setVariables(count);
+
+        InsurancePolicyPurchaseDto insurancePolicyPurchaseDto = new InsurancePolicyPurchaseDto();
+        insurancePolicyPurchaseDto.setInsuranceId(InsuranceDetailsV2Helper.map.get("insuranceId_" + count));
+        insurancePolicyPurchaseDto.setAutoRenew(true);
+
+        InsurancePolicyPurchase insurancePolicyPurchase = new InsurancePolicyPurchase(InsuranceDetailsV2Helper.map.get("scopeId"), insurancePolicyPurchaseDto);
+        response = insurancePolicyPurchase.execute();
+
+        System.out.println(response.getBody().asString());
+
+        //Status code validator
+        StatusCodeValidator.validate200(response);
+
+        //Success response Validator
+        InsurancePolicyPurchaseSuccessHelper insurancePolicyPurchaseSuccessHelper = new InsurancePolicyPurchaseSuccessHelper(response.getBody().asString());
+        insurancePolicyPurchaseSuccessHelper.verifySuccessResponse();
+
+        insurancePolicyPurchaseSuccessHelper.setPolicyId();
+
+        PolicyDetailsDto policyDetailsDto = new PolicyDetailsDto();
+        initialiseRequestBody(policyDetailsDto);
+
+        PolicyDetails policyDetails = new PolicyDetails(policyDetailsDto);
+        response = policyDetails.execute();
+
+        System.out.println(response.getBody().asString());
+
+        //Status code validator
+        StatusCodeValidator.validate200(response);
+
+        //Success response Validator
+        PolicyDetailsHelper policyDetailsHelper = new PolicyDetailsHelper(response.getBody().asString());
+        policyDetailsHelper.verifySuccessResponse();
+
+
+    }
 
 }

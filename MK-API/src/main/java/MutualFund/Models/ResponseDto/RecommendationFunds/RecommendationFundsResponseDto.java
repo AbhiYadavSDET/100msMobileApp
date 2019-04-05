@@ -1,23 +1,22 @@
-package Insurance.Models.responsedto.CrossSellTransaction;
+package MutualFund.Models.ResponseDto.RecommendationFunds;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import java.util.List;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
         "success",
-        "message",
         "data"
 })
-public class ApiResponse {
+public class RecommendationFundsResponseDto {
 
     @JsonProperty("success")
     private Boolean success;
-    @JsonProperty("message")
-    private Message message;
     @JsonProperty("data")
-    private Data_ data;
+    private List<Datum> data = null;
 
     @JsonProperty("success")
     public Boolean getSuccess() {
@@ -29,23 +28,13 @@ public class ApiResponse {
         this.success = success;
     }
 
-    @JsonProperty("message")
-    public Message getMessage() {
-        return message;
-    }
-
-    @JsonProperty("message")
-    public void setMessage(Message message) {
-        this.message = message;
-    }
-
     @JsonProperty("data")
-    public Data_ getData() {
+    public List<Datum> getData() {
         return data;
     }
 
     @JsonProperty("data")
-    public void setData(Data_ data) {
+    public void setData(List<Datum> data) {
         this.data = data;
     }
 

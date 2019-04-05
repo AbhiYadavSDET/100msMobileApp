@@ -37,4 +37,13 @@ public class CrossSellTransactionDto {
         this.additionalProperties.put(name, value);
     }
 
+    @Override
+    public String toString() {
+        return "CrossSellTransactionDto{" +
+                "txns=" + txns +
+                ", additionalProperties=" + additionalProperties +
+                '}';
+    }
+
+
 }

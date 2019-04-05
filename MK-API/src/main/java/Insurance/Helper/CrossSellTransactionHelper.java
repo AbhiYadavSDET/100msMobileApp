@@ -44,9 +44,21 @@ public class CrossSellTransactionHelper {
         Log.info("VERIFIED", "Recharge success Response");
     }
 
+    public void verifyRechargeSuccessResponse(int category, Boolean expected) {
+        Log.info("VERIFY", "Recharge Success Response");
+        MbkReporter.verifyEqualsWithLogging(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getSuccess(), expected, "Verify Success Response", false);
+        Log.info("VERIFIED", "Recharge success Response");
+    }
+
     public void verifyInsuranceSuccessResponse(int category) {
         Log.info("VERIFY", "Insurance Success Response");
         MbkReporter.verifyTrueWithLogging(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getSuccess(), "Verify Success Response", false);
+        Log.info("VERIFIED", "Insurance success Response");
+    }
+
+    public void verifyInsuranceSuccessResponse(int category, Boolean expected) {
+        Log.info("VERIFY", "Insurance Success Response");
+        MbkReporter.verifyEqualsWithLogging(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getSuccess(), expected, "Verify Success Response", false);
         Log.info("VERIFIED", "Insurance success Response");
     }
 
@@ -96,5 +108,47 @@ public class CrossSellTransactionHelper {
 
     }
 
+    public void verifyRechargeDataForTC_02(int category, String code, String text) {
+        Log.info("VERIFY", "Recharge Data for TC_02");
+        MbkReporter.verifyEqualsWithLogging(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getMessage().getCode(), code, "Verify Recharge Error Code", false);
+        MbkReporter.verifyEqualsWithLogging(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getMessage().getText(), text, "Verify Recharge Error Message", false);
+        Log.info("VERIFIED", "Recharge Data for TC_02");
+
+    }
+
+    public void verifyInsuranceDataForTC_03(int category, String code, String text) {
+        Log.info("VERIFY", "Insurance Data for TC_03");
+        MbkReporter.verifyEqualsWithLogging(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getMessage().getCode(), code, "Error code", false);
+        MbkReporter.verifyEqualsWithLogging(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getMessage().getText(), text, "Error message", false);
+        Log.info("VERIFIED", "Insurance Data for TC_03");
+
+    }
+
+    public void verifyPgOptions(int count, String option1, String option2, String option3) {
+        Log.info("VERIFY", "PG Options");
+        MbkReporter.verifyEqualsWithLogging(crossSellTransactionDto.getData().getWalletAsPG().getPgOptions().size(), count, "Verify PG Options count", false);
+        if (crossSellTransactionDto.getData().getWalletAsPG().getPgOptions().size() == count) {
+            MbkReporter.verifyEqualsWithLogging(crossSellTransactionDto.getData().getWalletAsPG().getPgOptions().get(0), option1, "Verify PG Options 1", false);
+            MbkReporter.verifyEqualsWithLogging(crossSellTransactionDto.getData().getWalletAsPG().getPgOptions().get(1), option2, "Verify PG Options 2", false);
+            MbkReporter.verifyEqualsWithLogging(crossSellTransactionDto.getData().getWalletAsPG().getPgOptions().get(2), option3, "Verify PG Options 3", false);
+        }
+        Log.info("VERIFIED", "PG Options");
+
+    }
+
+    public void verifyAmountToAdd(Double amount) {
+        Log.info("VERIFY", "Amount to be Added");
+        MbkReporter.verifyEqualsWithLogging(crossSellTransactionDto.getData().getRequiredAmount(), amount, "Verify Amount to be added", false);
+        Log.info("VERIFIED", "Amount to be Added");
+
+    }
+
+    public void verifyAddMoneyMessage(String errorCode, String errorMessage) {
+        Log.info("VERIFY", "Add Money Message");
+        MbkReporter.verifyEqualsWithLogging(crossSellTransactionDto.getMessage().getCode(), errorCode, "Verify code", false);
+        MbkReporter.verifyEqualsWithLogging(crossSellTransactionDto.getMessage().getText(), errorMessage, "Verify message", false);
+        Log.info("VERIFIED", "Add Money Message");
+
+    }
 
 }

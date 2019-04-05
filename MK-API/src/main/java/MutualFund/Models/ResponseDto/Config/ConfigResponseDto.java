@@ -1,4 +1,4 @@
-package Insurance.Models.responsedto.CrossSellTransaction;
+package MutualFund.Models.ResponseDto.Config;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -7,17 +7,14 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
         "success",
-        "message",
         "data"
 })
-public class ApiResponse {
+public class ConfigResponseDto {
 
     @JsonProperty("success")
     private Boolean success;
-    @JsonProperty("message")
-    private Message message;
     @JsonProperty("data")
-    private Data_ data;
+    private Data data;
 
     @JsonProperty("success")
     public Boolean getSuccess() {
@@ -29,24 +26,15 @@ public class ApiResponse {
         this.success = success;
     }
 
-    @JsonProperty("message")
-    public Message getMessage() {
-        return message;
-    }
-
-    @JsonProperty("message")
-    public void setMessage(Message message) {
-        this.message = message;
-    }
-
     @JsonProperty("data")
-    public Data_ getData() {
+    public Data getData() {
         return data;
     }
 
     @JsonProperty("data")
-    public void setData(Data_ data) {
+    public void setData(Data data) {
         this.data = data;
     }
 
 }
+
