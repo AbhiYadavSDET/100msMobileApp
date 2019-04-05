@@ -4,10 +4,10 @@ import Insurance.Api.CrossSellDetails;
 import Insurance.Api.CrossSellTransaction;
 import Insurance.Helper.CrossSellDetailsHelper;
 import Insurance.Helper.CrossSellTransactionHelper;
-import Insurance.Helper.InsuranceDetailsV2Helper;
 import Insurance.Models.requestdto.*;
 import Utils.DatabaseMongoHelper;
 import Utils.DatabaseSqlHelper;
+import Utils.ExtentReport;
 import Utils.Log;
 import apiutil.StatusCodeValidator;
 import customexception.PolicyNotFoundInPolicyCollection;
@@ -16,6 +16,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,6 @@ public class CrossSellTest {
 
 
     Response response;
-    InsuranceDetailsV2Helper insuranceDetailsV2Helper;
     DatabaseSqlHelper databaseSqlHelper = new DatabaseSqlHelper();
     DatabaseMongoHelper databaseMongoHelper = new DatabaseMongoHelper();
 
@@ -48,7 +48,7 @@ public class CrossSellTest {
 
     @Test(groups = {"insuranceSanity", "crossSellSanity", "insurancePallaviDataSetup", "crossSellWalletFlows"}, priority = 0)
     public void Test00_setup() throws PolicyNotFoundInPolicyCollection {
-        //deletePolicies("9953138474@nocash.mobikwik.com");
+        deletePolicies("9953138474@nocash.mobikwik.com");
     }
 
     public void deletePolicies(String memberId) throws PolicyNotFoundInPolicyCollection {
@@ -61,6 +61,8 @@ public class CrossSellTest {
     public void Test01_verify_cross_sell_details() {
         int count = 0;
 
+        // Start the test
+        ExtentReport.EXTENTTEST = ExtentReport.EXTENTREPORT.startTest("Test01_verify_cross_sell_details");
 
         Txn_ txn_ = new Txn_();
         txn_.setSenderToWalletEnum("SENDER_TO_WALLET_HOME");
@@ -93,11 +95,16 @@ public class CrossSellTest {
         crossSellDetailsHelper.verifyFixedCrossSellDetails("NEW_PURCHASE", "Online Fraud Insurance", "ICICI Lombard");
         crossSellDetailsHelper.verifyVariableCrossSellDetails(0, 99, "Rs. 50  Thousands", 1);
 
+        // End the test
+        ExtentReport.EXTENTREPORT.endTest(ExtentReport.EXTENTTEST);
     }
 
     @Test(groups = "crossSellSanity", priority = 2, dependsOnMethods = "Test01_verify_cross_sell_details")
-    public void Test02_verify_cross_sell_transaction_sufficient_balance() {
+    public void Test02_verify_cross_sell_transaction_sufficient_balance() throws IOException {
         int count = 0;
+
+        // Start the test
+        ExtentReport.EXTENTTEST = ExtentReport.EXTENTREPORT.startTest("Test01_verify_cross_sell_details");
 
         // Initiate the DB - Member Balance
         update_balance(memberId, "100");
@@ -128,13 +135,17 @@ public class CrossSellTest {
         crossSellTransactionHelper.verifyPolicyPurchaseStartEndDate(1, 1);
         crossSellTransactionHelper.verifyRechargeData(0, "RECHARGESUCCESSPENDING", "recharge successful", 1.0);
 
-
+        // End the test
+        ExtentReport.EXTENTREPORT.endTest(ExtentReport.EXTENTTEST);
     }
 
 
     @Test(groups = "crossSellSanity", priority = 4, dependsOnMethods = "Test01_cross_sell_details")
-    public void Test04_sufficient_recharge_fail_insurance_success() {
+    public void Test04_sufficient_recharge_fail_insurance_success() throws IOException {
         int count = 0;
+
+        // Start the test
+        ExtentReport.EXTENTTEST = ExtentReport.EXTENTREPORT.startTest("Test01_verify_cross_sell_details");
 
         // Initiate the DB - Member Balance
         update_balance(memberId, "0");
@@ -161,6 +172,8 @@ public class CrossSellTest {
         crossSellTransactionHelper.verifyMessage("ADD_MONEY", "Please add Money");
         crossSellTransactionHelper.verifyRequiredAmount(100.0);
 
+        // End the test
+        ExtentReport.EXTENTREPORT.endTest(ExtentReport.EXTENTTEST);
     }
 
     public CrossSellTxn initiateRechargeTxn() {
@@ -243,8 +256,11 @@ public class CrossSellTest {
 
     //--------------------- Cross Sell Wallet flows --------------------------------
     @Test(groups = "crossSellWalletFlows", priority = 1)
-    public void Test01_sufficient_recharge_success_insurance_success() {
+    public void Test01_sufficient_recharge_success_insurance_success() throws IOException {
         int count = 0;
+
+        // Start the test
+        ExtentReport.EXTENTTEST = ExtentReport.EXTENTREPORT.startTest("Test01_sufficient_recharge_success_insurance_success");
 
         Txn_ txn_ = new Txn_();
         txn_.setSenderToWalletEnum("SENDER_TO_WALLET_HOME");
@@ -294,6 +310,9 @@ public class CrossSellTest {
         //Status code validator
         StatusCodeValidator.validate200(response);
 
+        //Log in Extent Report
+        ExtentReport.extentReportDisplay(ExtentReport.Status.INFO, "Response", response.getBody().asString());
+
         CrossSellTransactionHelper crossSellTransactionHelper = new CrossSellTransactionHelper(response.getBody().asString());
 
         crossSellTransactionHelper.verifySuccessResponse();
@@ -303,12 +322,17 @@ public class CrossSellTest {
         crossSellTransactionHelper.verifyPolicyPurchaseStartEndDate(1, 12);
         crossSellTransactionHelper.verifyRechargeData(0, "RECHARGESUCCESSPENDING", "recharge successful", 1.0);
 
+        // End the test
+        ExtentReport.EXTENTREPORT.endTest(ExtentReport.EXTENTTEST);
     }
 
 
     @Test(groups = "crossSellWalletFlows", priority = 2)
-    public void Test02_sufficient_recharge_fail_insurance_success() {
+    public void Test02_sufficient_recharge_fail_insurance_success() throws IOException {
         int count = 0;
+
+        // Start the test
+        ExtentReport.EXTENTTEST = ExtentReport.EXTENTREPORT.startTest("Test02_sufficient_recharge_fail_insurance_success");
 
         Txn_ txn_ = new Txn_();
         txn_.setSenderToWalletEnum("SENDER_TO_WALLET_HOME");
@@ -358,6 +382,9 @@ public class CrossSellTest {
         //Status code validator
         StatusCodeValidator.validate200(response);
 
+        //Log in Extent Report
+        ExtentReport.extentReportDisplay(ExtentReport.Status.INFO, "Response", response.getBody().asString());
+
         CrossSellTransactionHelper crossSellTransactionHelper = new CrossSellTransactionHelper(response.getBody().asString());
 
         crossSellTransactionHelper.verifySuccessResponse();
@@ -367,11 +394,16 @@ public class CrossSellTest {
         crossSellTransactionHelper.verifyPolicyPurchaseStartEndDate(1, 12);
         crossSellTransactionHelper.verifyRechargeDataForTC_02(0, "500", "txn is mocked hence failed user readable error");
 
+        // End the test
+        ExtentReport.EXTENTREPORT.endTest(ExtentReport.EXTENTTEST);
     }
 
     @Test(groups = "crossSellWalletFlows", priority = 3)
-    public void Test03_sufficient_recharge_success_insurance_fail() {
+    public void Test03_sufficient_recharge_success_insurance_fail() throws IOException {
         int count = 0;
+
+        // Start the test
+        ExtentReport.EXTENTTEST = ExtentReport.EXTENTREPORT.startTest("Test03_sufficient_recharge_success_insurance_fail");
 
         Txn_ txn_ = new Txn_();
         txn_.setSenderToWalletEnum("SENDER_TO_WALLET_HOME");
@@ -417,9 +449,12 @@ public class CrossSellTest {
         response = crossSellTransaction.execute();
 
         System.out.println(response.getBody().asString());
+        //Log in Extent Report
+        ExtentReport.extentReportDisplay(ExtentReport.Status.INFO, "Response", response.getBody().asString());
 
         //Status code validator
         StatusCodeValidator.validate200(response);
+
 
         CrossSellTransactionHelper crossSellTransactionHelper = new CrossSellTransactionHelper(response.getBody().asString());
 
@@ -428,11 +463,17 @@ public class CrossSellTest {
         crossSellTransactionHelper.verifyRechargeSuccessResponse(0, true);
         crossSellTransactionHelper.verifyRechargeData(0, "RECHARGESUCCESSPENDING", "recharge successful", 1.0);
         crossSellTransactionHelper.verifyInsuranceDataForTC_03(1, "INVL_SCP", "Invalid Scope ");
+
+        // End the test
+        ExtentReport.EXTENTREPORT.endTest(ExtentReport.EXTENTTEST);
     }
 
     @Test(groups = "crossSellWalletFlows", priority = 4)
-    public void Test04_sufficient_recharge_fail_insurance_fail() {
+    public void Test04_sufficient_recharge_fail_insurance_fail() throws IOException {
         int count = 0;
+
+        // Start the test
+        ExtentReport.EXTENTTEST = ExtentReport.EXTENTREPORT.startTest("Test04_sufficient_recharge_fail_insurance_fail");
 
         Txn_ txn_ = new Txn_();
         txn_.setSenderToWalletEnum("SENDER_TO_WALLET_HOME");
@@ -478,6 +519,8 @@ public class CrossSellTest {
         response = crossSellTransaction.execute();
 
         System.out.println(response.getBody().asString());
+        //Log in Extent Report
+        ExtentReport.extentReportDisplay(ExtentReport.Status.INFO, "Response", response.getBody().asString());
 
         //Status code validator
         StatusCodeValidator.validate200(response);
@@ -489,11 +532,17 @@ public class CrossSellTest {
         crossSellTransactionHelper.verifyRechargeSuccessResponse(0, false);
         crossSellTransactionHelper.verifyRechargeDataForTC_02(0, "500", "txn is mocked hence failed user readable error");
         crossSellTransactionHelper.verifyInsuranceDataForTC_03(1, "INVL_SCP", "Invalid Scope ");
+
+        // End the test
+        ExtentReport.EXTENTREPORT.endTest(ExtentReport.EXTENTTEST);
     }
 
     @Test(groups = "crossSellWalletFlows", priority = 5)
-    public void Test05_sufficientForRecharge_recharge_pass_insurance_pass() {
+    public void Test05_sufficientForRecharge_recharge_pass_insurance_pass() throws IOException {
         int count = 0;
+
+        // Start the test
+        ExtentReport.EXTENTTEST = ExtentReport.EXTENTREPORT.startTest("Test05_sufficientForRecharge_recharge_pass_insurance_pass");
 
         Txn_ txn_ = new Txn_();
         txn_.setSenderToWalletEnum("SENDER_TO_WALLET_HOME");
@@ -539,6 +588,8 @@ public class CrossSellTest {
         response = crossSellTransaction.execute();
 
         System.out.println(response.getBody().asString());
+        //Log in Extent Report
+        ExtentReport.extentReportDisplay(ExtentReport.Status.INFO, "Response", response.getBody().asString());
 
         //Status code validator
         StatusCodeValidator.validate200(response);
@@ -551,11 +602,16 @@ public class CrossSellTest {
         crossSellTransactionHelper.verifyPgOptions(3, "cc", "dc", "upi");
         crossSellTransactionHelper.verifyRequiredAmount(20.00);
 
+        // End the test
+        ExtentReport.EXTENTREPORT.endTest(ExtentReport.EXTENTTEST);
     }
 
     @Test(groups = "crossSellWalletFlows", priority = 6)
-    public void Test06_sufficientForRecharge_recharge_fail_insurance_pass() {
+    public void Test06_sufficientForRecharge_recharge_fail_insurance_pass() throws IOException {
         int count = 0;
+
+        // Start the test
+        ExtentReport.EXTENTTEST = ExtentReport.EXTENTREPORT.startTest("Test06_sufficientForRecharge_recharge_fail_insurance_pass");
 
         Txn_ txn_ = new Txn_();
         txn_.setSenderToWalletEnum("SENDER_TO_WALLET_HOME");
@@ -602,6 +658,9 @@ public class CrossSellTest {
 
         System.out.println(response.getBody().asString());
 
+        //Log in Extent Report
+        ExtentReport.extentReportDisplay(ExtentReport.Status.INFO, "Response", response.getBody().asString());
+
         //Status code validator
         StatusCodeValidator.validate200(response);
 
@@ -614,11 +673,16 @@ public class CrossSellTest {
         crossSellTransactionHelper.verifyPolicyPurchaseStartEndDate(1, 12);
         crossSellTransactionHelper.verifyRechargeDataForTC_02(0, "500", "txn is mocked hence failed user readable error");
 
+        // End the test
+        ExtentReport.EXTENTREPORT.endTest(ExtentReport.EXTENTTEST);
     }
 
     @Test(groups = "crossSellWalletFlows", priority = 7)
-    public void Test07_sufficientForRecharge_recharge_pass_insurance_fail() {
+    public void Test07_sufficientForRecharge_recharge_pass_insurance_fail() throws IOException {
         int count = 0;
+
+        // Start the test
+        ExtentReport.EXTENTTEST = ExtentReport.EXTENTREPORT.startTest("Test07_sufficientForRecharge_recharge_pass_insurance_fail");
 
         Txn_ txn_ = new Txn_();
         txn_.setSenderToWalletEnum("SENDER_TO_WALLET_HOME");
@@ -664,6 +728,8 @@ public class CrossSellTest {
         response = crossSellTransaction.execute();
 
         System.out.println(response.getBody().asString());
+        //Log in Extent Report
+        ExtentReport.extentReportDisplay(ExtentReport.Status.INFO, "Response", response.getBody().asString());
 
         //Status code validator
         StatusCodeValidator.validate200(response);
@@ -676,11 +742,16 @@ public class CrossSellTest {
         crossSellTransactionHelper.verifyInsuranceDataForTC_03(1, "INVL_SCP", "Invalid Scope ");
         crossSellTransactionHelper.verifyRechargeData(0, "RECHARGESUCCESSPENDING", "recharge successful", 1.0);
 
+        // End the test
+        ExtentReport.EXTENTREPORT.endTest(ExtentReport.EXTENTTEST);
     }
 
     @Test(groups = "crossSellWalletFlows", priority = 8)
-    public void Test08_sufficientForRecharge_recharge_fail_insurance_fail() {
+    public void Test08_sufficientForRecharge_recharge_fail_insurance_fail() throws IOException {
         int count = 0;
+
+        // Start the test
+        ExtentReport.EXTENTTEST = ExtentReport.EXTENTREPORT.startTest("Test08_sufficientForRecharge_recharge_fail_insurance_fail");
 
         Txn_ txn_ = new Txn_();
         txn_.setSenderToWalletEnum("SENDER_TO_WALLET_HOME");
@@ -726,6 +797,8 @@ public class CrossSellTest {
         response = crossSellTransaction.execute();
 
         System.out.println(response.getBody().asString());
+        //Log in Extent Report
+        ExtentReport.extentReportDisplay(ExtentReport.Status.INFO, "Response", response.getBody().asString());
 
         //Status code validator
         StatusCodeValidator.validate200(response);
@@ -738,11 +811,16 @@ public class CrossSellTest {
         crossSellTransactionHelper.verifyInsuranceDataForTC_03(1, "INVL_SCP", "Invalid Scope ");
         crossSellTransactionHelper.verifyRechargeDataForTC_02(0, "500", "txn is mocked hence failed user readable error");
 
+        // End the test
+        ExtentReport.EXTENTREPORT.endTest(ExtentReport.EXTENTTEST);
     }
 
     @Test(groups = "crossSellWalletFlows", priority = 9)
-    public void Test09_sufficientForInsurance_recharge_pass_insurance_pass() {
+    public void Test09_sufficientForInsurance_recharge_pass_insurance_pass() throws IOException {
         int count = 0;
+
+        // Start the test
+        ExtentReport.EXTENTTEST = ExtentReport.EXTENTREPORT.startTest("Test09_sufficientForInsurance_recharge_pass_insurance_pass");
 
         Txn_ txn_ = new Txn_();
         txn_.setSenderToWalletEnum("SENDER_TO_WALLET_HOME");
@@ -788,6 +866,8 @@ public class CrossSellTest {
         response = crossSellTransaction.execute();
 
         System.out.println(response.getBody().asString());
+        //Log in Extent Report
+        ExtentReport.extentReportDisplay(ExtentReport.Status.INFO, "Response", response.getBody().asString());
 
         //Status code validator
         StatusCodeValidator.validate200(response);
@@ -801,12 +881,16 @@ public class CrossSellTest {
         crossSellTransactionHelper.verifyRequiredAmount(30.00);
         crossSellTransactionHelper.verifyMessage("ADD_MONEY", "Please add Money");
 
-
+        // End the test
+        ExtentReport.EXTENTREPORT.endTest(ExtentReport.EXTENTTEST);
     }
 
     @Test(groups = "crossSellWalletFlows", priority = 10)
-    public void Test10_sufficientForInsurance_recharge_fail_insurance_pass() {
+    public void Test10_sufficientForInsurance_recharge_fail_insurance_pass() throws IOException {
         int count = 0;
+
+        // Start the test
+        ExtentReport.EXTENTTEST = ExtentReport.EXTENTREPORT.startTest("Test10_sufficientForInsurance_recharge_fail_insurance_pass");
 
         Txn_ txn_ = new Txn_();
         txn_.setSenderToWalletEnum("SENDER_TO_WALLET_HOME");
@@ -852,6 +936,8 @@ public class CrossSellTest {
         response = crossSellTransaction.execute();
 
         System.out.println(response.getBody().asString());
+        //Log in Extent Report
+        ExtentReport.extentReportDisplay(ExtentReport.Status.INFO, "Response", response.getBody().asString());
 
         //Status code validator
         StatusCodeValidator.validate200(response);
@@ -865,11 +951,16 @@ public class CrossSellTest {
         crossSellTransactionHelper.verifyRequiredAmount(30.00);
         crossSellTransactionHelper.verifyMessage("ADD_MONEY", "Please add Money");
 
+        // End the test
+        ExtentReport.EXTENTREPORT.endTest(ExtentReport.EXTENTTEST);
     }
 
     @Test(groups = "crossSellWalletFlows", priority = 11)
-    public void Test11_sufficientForInsurance_recharge_pass_insurance_fail() {
+    public void Test11_sufficientForInsurance_recharge_pass_insurance_fail() throws IOException {
         int count = 0;
+
+        // Start the test
+        ExtentReport.EXTENTTEST = ExtentReport.EXTENTREPORT.startTest("Test11_sufficientForInsurance_recharge_pass_insurance_fail");
 
         Txn_ txn_ = new Txn_();
         txn_.setSenderToWalletEnum("SENDER_TO_WALLET_HOME");
@@ -915,6 +1006,8 @@ public class CrossSellTest {
         response = crossSellTransaction.execute();
 
         System.out.println(response.getBody().asString());
+        //Log in Extent Report
+        ExtentReport.extentReportDisplay(ExtentReport.Status.INFO, "Response", response.getBody().asString());
 
         //Status code validator
         StatusCodeValidator.validate200(response);
@@ -929,12 +1022,16 @@ public class CrossSellTest {
         crossSellTransactionHelper.verifyInsuranceDataForTC_03(1, "INVL_SCP", "Invalid Scope ");
         crossSellTransactionHelper.verifyMessage("ADD_MONEY", "Please add Money");
 
-
+        // End the test
+        ExtentReport.EXTENTREPORT.endTest(ExtentReport.EXTENTTEST);
     }
 
     @Test(groups = "crossSellWalletFlows", priority = 12)
-    public void Test12_sufficientForInsurance_recharge_fail_insurance_fail() {
+    public void Test12_sufficientForInsurance_recharge_fail_insurance_fail() throws IOException {
         int count = 0;
+
+        // Start the test
+        ExtentReport.EXTENTTEST = ExtentReport.EXTENTREPORT.startTest("Test12_sufficientForInsurance_recharge_fail_insurance_fail");
 
         Txn_ txn_ = new Txn_();
         txn_.setSenderToWalletEnum("SENDER_TO_WALLET_HOME");
@@ -980,6 +1077,8 @@ public class CrossSellTest {
         response = crossSellTransaction.execute();
 
         System.out.println(response.getBody().asString());
+        //Log in Extent Report
+        ExtentReport.extentReportDisplay(ExtentReport.Status.INFO, "Response", response.getBody().asString());
 
         //Status code validator
         StatusCodeValidator.validate200(response);
@@ -993,12 +1092,17 @@ public class CrossSellTest {
         crossSellTransactionHelper.verifyInsuranceDataForTC_03(1, "INVL_SCP", "Invalid Scope ");
         crossSellTransactionHelper.verifyMessage("ADD_MONEY", "Please add Money");
 
+        // End the test
+        ExtentReport.EXTENTREPORT.endTest(ExtentReport.EXTENTTEST);
 
     }
 
     @Test(groups = "crossSellWalletFlows", priority = 13)
-    public void Test13_insufficient_recharge_success_insurance_success() {
+    public void Test13_insufficient_recharge_success_insurance_success() throws IOException {
         int count = 0;
+
+        // Start the test
+        ExtentReport.EXTENTTEST = ExtentReport.EXTENTREPORT.startTest("Test13_insufficient_recharge_success_insurance_success");
 
         Txn_ txn_ = new Txn_();
         txn_.setSenderToWalletEnum("SENDER_TO_WALLET_HOME");
@@ -1044,6 +1148,8 @@ public class CrossSellTest {
         response = crossSellTransaction.execute();
 
         System.out.println(response.getBody().asString());
+        //Log in Extent Report
+        ExtentReport.extentReportDisplay(ExtentReport.Status.INFO, "Response", response.getBody().asString());
 
         //Status code validator
         StatusCodeValidator.validate200(response);
@@ -1057,12 +1163,16 @@ public class CrossSellTest {
         crossSellTransactionHelper.verifyRequiredAmount(21.00);
         crossSellTransactionHelper.verifyMessage("ADD_MONEY", "Please add Money");
 
-
+        // End the test
+        ExtentReport.EXTENTREPORT.endTest(ExtentReport.EXTENTTEST);
     }
 
     @Test(groups = "crossSellWalletFlows", priority = 14)
-    public void Test14_insufficient_recharge_fail_insurance_success() {
+    public void Test14_insufficient_recharge_fail_insurance_success() throws IOException {
         int count = 0;
+
+        // Start the test
+        ExtentReport.EXTENTTEST = ExtentReport.EXTENTREPORT.startTest("Test14_insufficient_recharge_fail_insurance_success");
 
         Txn_ txn_ = new Txn_();
         txn_.setSenderToWalletEnum("SENDER_TO_WALLET_HOME");
@@ -1108,6 +1218,8 @@ public class CrossSellTest {
         response = crossSellTransaction.execute();
 
         System.out.println(response.getBody().asString());
+        //Log in Extent Report
+        ExtentReport.extentReportDisplay(ExtentReport.Status.INFO, "Response", response.getBody().asString());
 
         //Status code validator
         StatusCodeValidator.validate200(response);
@@ -1121,11 +1233,16 @@ public class CrossSellTest {
         crossSellTransactionHelper.verifyRequiredAmount(40.00);
         crossSellTransactionHelper.verifyMessage("ADD_MONEY", "Please add Money");
 
+        // End the test
+        ExtentReport.EXTENTREPORT.endTest(ExtentReport.EXTENTTEST);
     }
 
     @Test(groups = "crossSellWalletFlows", priority = 15)
-    public void Test15_insufficient_recharge_success_insurance_fail() {
+    public void Test15_insufficient_recharge_success_insurance_fail() throws IOException {
         int count = 0;
+
+        // Start the test
+        ExtentReport.EXTENTTEST = ExtentReport.EXTENTREPORT.startTest("Test15_insufficient_recharge_success_insurance_fail");
 
         Txn_ txn_ = new Txn_();
         txn_.setSenderToWalletEnum("SENDER_TO_WALLET_HOME");
@@ -1171,6 +1288,8 @@ public class CrossSellTest {
         response = crossSellTransaction.execute();
 
         System.out.println(response.getBody().asString());
+        //Log in Extent Report
+        ExtentReport.extentReportDisplay(ExtentReport.Status.INFO, "Response", response.getBody().asString());
 
         //Status code validator
         StatusCodeValidator.validate200(response);
@@ -1185,12 +1304,16 @@ public class CrossSellTest {
         crossSellTransactionHelper.verifyInsuranceDataForTC_03(1, "INVL_SCP", "Invalid Scope ");
         crossSellTransactionHelper.verifyMessage("ADD_MONEY", "Please add Money");
 
-
+        // End the test
+        ExtentReport.EXTENTREPORT.endTest(ExtentReport.EXTENTTEST);
     }
 
     @Test(groups = "crossSellWalletFlows", priority = 16)
-    public void Test16_insufficient_recharge_fail_insurance_fail() {
+    public void Test16_insufficient_recharge_fail_insurance_fail() throws IOException {
         int count = 0;
+
+        // Start the test
+        ExtentReport.EXTENTTEST = ExtentReport.EXTENTREPORT.startTest("Test16_insufficient_recharge_fail_insurance_fail");
 
         Txn_ txn_ = new Txn_();
         txn_.setSenderToWalletEnum("SENDER_TO_WALLET_HOME");
@@ -1236,6 +1359,8 @@ public class CrossSellTest {
         response = crossSellTransaction.execute();
 
         System.out.println(response.getBody().asString());
+        //Log in Extent Report
+        ExtentReport.extentReportDisplay(ExtentReport.Status.INFO, "Response", response.getBody().asString());
 
         //Status code validator
         StatusCodeValidator.validate200(response);
@@ -1249,7 +1374,8 @@ public class CrossSellTest {
         crossSellTransactionHelper.verifyInsuranceDataForTC_03(1, "INVL_SCP", "Invalid Scope ");
         crossSellTransactionHelper.verifyMessage("ADD_MONEY", "Please add Money");
 
-
+        // End the test
+        ExtentReport.EXTENTREPORT.endTest(ExtentReport.EXTENTTEST);
     }
 
 

@@ -11,6 +11,8 @@
 
         <classes>
             <class name="Insurance.CrossSellTest"/>
+            <class name="Utils.ExtentReport"/>
+
         </classes>
     </test>
 </suite>

@@ -26,127 +26,127 @@ public class CrossSellTransactionHelper {
     }
 
 
-    public void verifySuccessResponse() {
+    public void verifySuccessResponse() throws IOException {
         Log.info("VERIFY", "Success Response");
-        MbkReporter.verifyTrueWithLogging(crossSellTransactionDto.getSuccess(), "Verify Success=true Response", false);
+        MbkReporter.verifyTrueWithLoggingExtentReport(crossSellTransactionDto.getSuccess(), "Verify Success Response", "Expected = true", false);
         Log.info("VERIFIED", "Success Response");
     }
 
-    public void verifyFalseResponse() {
+    public void verifyFalseResponse() throws IOException {
         Log.info("VERIFY", "Success Response");
-        MbkReporter.verifyTrueWithLogging(!crossSellTransactionDto.getSuccess(), "Verify Success=false Response", false);
+        MbkReporter.verifyTrueWithLoggingExtentReport(!crossSellTransactionDto.getSuccess(), "Verify Success Response", "Expected = false", false);
         Log.info("VERIFIED", "Success Response");
     }
 
-    public void verifyRechargeSuccessResponse(int category) {
+    public void verifyRechargeSuccessResponse(int category) throws IOException {
         Log.info("VERIFY", "Recharge Success Response");
-        MbkReporter.verifyTrueWithLogging(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getSuccess(), "Verify Success Response", false);
+        MbkReporter.verifyTrueWithLoggingExtentReport(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getSuccess(), "Verify Recharge Success Response", "Expected = true", false);
         Log.info("VERIFIED", "Recharge success Response");
     }
 
-    public void verifyRechargeSuccessResponse(int category, Boolean expected) {
+    public void verifyRechargeSuccessResponse(int category, Boolean expected) throws IOException {
         Log.info("VERIFY", "Recharge Success Response");
-        MbkReporter.verifyEqualsWithLogging(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getSuccess(), expected, "Verify Success Response", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getSuccess(), expected, "Verify Recharge Success Response", false);
         Log.info("VERIFIED", "Recharge success Response");
     }
 
-    public void verifyInsuranceSuccessResponse(int category) {
+    public void verifyInsuranceSuccessResponse(int category) throws IOException {
         Log.info("VERIFY", "Insurance Success Response");
-        MbkReporter.verifyTrueWithLogging(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getSuccess(), "Verify Success Response", false);
+        MbkReporter.verifyTrueWithLoggingExtentReport(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getSuccess(), "Verify Insurance Success Response", "Expected = true", false);
         Log.info("VERIFIED", "Insurance success Response");
     }
 
-    public void verifyInsuranceSuccessResponse(int category, Boolean expected) {
+    public void verifyInsuranceSuccessResponse(int category, Boolean expected) throws IOException {
         Log.info("VERIFY", "Insurance Success Response");
-        MbkReporter.verifyEqualsWithLogging(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getSuccess(), expected, "Verify Success Response", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getSuccess(), expected, "Verify Insurance Success Response", false);
         Log.info("VERIFIED", "Insurance success Response");
     }
 
 
-    public void verifyPolicyPurchaseData(int category, Boolean kyc, String policyHolderName, String insurer, String sumAssured, String price, String insuranceCategory, String responseType, String congratulationsMessage) {
+    public void verifyPolicyPurchaseData(int category, Boolean kyc, String policyHolderName, String insurer, String sumAssured, String price, String insuranceCategory, String responseType, String congratulationsMessage) throws IOException {
         Log.info("VERIFY", "Data");
-        MbkReporter.verifyEqualsWithLogging(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getData().getFixedInsuranceDetails().getPolicyPurchaseResponse().getKyc(), kyc, "Verify KYC", false);
-        MbkReporter.verifyEqualsWithLogging(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getData().getFixedInsuranceDetails().getPolicyPurchaseResponse().getInsurer(), insurer, "Verify Insurer", false);
-        MbkReporter.verifyEqualsWithLogging(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getData().getFixedInsuranceDetails().getPolicyPurchaseResponse().getSumAssured(), sumAssured, "Verify Sum assured", false);
-        MbkReporter.verifyEqualsWithLogging(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getData().getFixedInsuranceDetails().getPolicyPurchaseResponse().getPrice(), price, "Verify Price", false);
-        MbkReporter.verifyEqualsWithLogging(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getData().getFixedInsuranceDetails().getPolicyPurchaseResponse().getInsuranceCategory(), insuranceCategory, "Verify Insurance Category", false);
-        MbkReporter.verifyEqualsWithLogging(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getData().getFixedInsuranceDetails().getPolicyPurchaseResponse().getResponseType(), responseType, "Verify Response Type", false);
-        MbkReporter.verifyEqualsWithLogging(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getData().getFixedInsuranceDetails().getPolicyPurchaseResponse().getConratulationsMessage(), congratulationsMessage, "Verify Congratulation Message", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getData().getFixedInsuranceDetails().getPolicyPurchaseResponse().getKyc(), kyc, "Verify KYC", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getData().getFixedInsuranceDetails().getPolicyPurchaseResponse().getInsurer(), insurer, "Verify Insurer", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getData().getFixedInsuranceDetails().getPolicyPurchaseResponse().getSumAssured(), sumAssured, "Verify Sum assured", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getData().getFixedInsuranceDetails().getPolicyPurchaseResponse().getPrice(), price, "Verify Price", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getData().getFixedInsuranceDetails().getPolicyPurchaseResponse().getInsuranceCategory(), insuranceCategory, "Verify Insurance Category", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getData().getFixedInsuranceDetails().getPolicyPurchaseResponse().getResponseType(), responseType, "Verify Response Type", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getData().getFixedInsuranceDetails().getPolicyPurchaseResponse().getConratulationsMessage(), congratulationsMessage, "Verify Congratulation Message", false);
         Log.info("VERIFIED", "Data");
 
     }
 
-    public void verifyPolicyPurchaseStartEndDate(int category, int policyDurationInMonths) {
+    public void verifyPolicyPurchaseStartEndDate(int category, int policyDurationInMonths) throws IOException {
         Log.info("VERIFY", "Policy Purchase Start and End dates");
-        MbkReporter.verifyEqualsWithLogging(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getData().getFixedInsuranceDetails().getPolicyPurchaseResponse().getStartDate().substring(0, 11), Utils.DateHelper.getCurrentDate(DateFormatEnums.DD_MMM_YYYY), "Verify Start-Date", false);
-        MbkReporter.verifyEqualsWithLogging(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getData().getFixedInsuranceDetails().getPolicyPurchaseResponse().getEndDate().substring(0, 11), Utils.DateHelper.getDateAterNMonthsMinusMDays(DateFormatEnums.DD_MMM_YYYY, policyDurationInMonths, 1), "Verify End-Date", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getData().getFixedInsuranceDetails().getPolicyPurchaseResponse().getStartDate().substring(0, 11), Utils.DateHelper.getCurrentDate(DateFormatEnums.DD_MMM_YYYY), "Verify Start-Date", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getData().getFixedInsuranceDetails().getPolicyPurchaseResponse().getEndDate().substring(0, 11), Utils.DateHelper.getDateAterNMonthsMinusMDays(DateFormatEnums.DD_MMM_YYYY, policyDurationInMonths, 1), "Verify End-Date", false);
         Log.info("VERIFIED", "Policy Purchase Start and End dates");
 
     }
 
-    public void verifyRechargeData(int category, String status, String description, Double discountedPrice) {
+    public void verifyRechargeData(int category, String status, String description, Double discountedPrice) throws IOException {
         Log.info("VERIFY", "Recharge Data");
-        MbkReporter.verifyEqualsWithLogging(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getData().getStatus(), status, "Verify Recharge Status", false);
-        MbkReporter.verifyEqualsWithLogging(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getData().getDescription(), description, "Verify Recharge Description", false);
-        MbkReporter.verifyEqualsWithLogging(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getData().getDiscountedPrice(), discountedPrice, "Verify Recharge Amount", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getData().getStatus(), status, "Verify Recharge Status", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getData().getDescription(), description, "Verify Recharge Description", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getData().getDiscountedPrice(), discountedPrice, "Verify Recharge Amount", false);
         Log.info("VERIFIED", "Recharge Data");
 
     }
 
-    public void verifyMessage(String code, String text) {
+    public void verifyMessage(String code, String text) throws IOException {
         Log.info("VERIFY", "Insufficient Message");
-        MbkReporter.verifyEqualsWithLogging(crossSellTransactionDto.getMessage().getCode(), code, "Verify Message Code", false);
-        MbkReporter.verifyEqualsWithLogging(crossSellTransactionDto.getMessage().getText(), text, "Verify Message text", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(crossSellTransactionDto.getMessage().getCode(), code, "Verify Message Code", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(crossSellTransactionDto.getMessage().getText(), text, "Verify Message text", false);
         Log.info("VERIFIED", "Insufficient Message");
 
     }
 
-    public void verifyRequiredAmount(Double amount) {
+    public void verifyRequiredAmount(Double amount) throws IOException {
         Log.info("VERIFY", "Required Amount");
-        MbkReporter.verifyEqualsWithLogging(crossSellTransactionDto.getData().getRequiredAmount(), amount, "Verify Required Amount", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(crossSellTransactionDto.getData().getRequiredAmount(), amount, "Verify Required Amount", false);
         Log.info("VERIFIED", "Required Amount");
 
     }
 
-    public void verifyRechargeDataForTC_02(int category, String code, String text) {
+    public void verifyRechargeDataForTC_02(int category, String code, String text) throws IOException {
         Log.info("VERIFY", "Recharge Data for TC_02");
-        MbkReporter.verifyEqualsWithLogging(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getMessage().getCode(), code, "Verify Recharge Error Code", false);
-        MbkReporter.verifyEqualsWithLogging(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getMessage().getText(), text, "Verify Recharge Error Message", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getMessage().getCode(), code, "Verify Recharge Error Code", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getMessage().getText(), text, "Verify Recharge Error Message", false);
         Log.info("VERIFIED", "Recharge Data for TC_02");
 
     }
 
-    public void verifyInsuranceDataForTC_03(int category, String code, String text) {
+    public void verifyInsuranceDataForTC_03(int category, String code, String text) throws IOException {
         Log.info("VERIFY", "Insurance Data for TC_03");
-        MbkReporter.verifyEqualsWithLogging(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getMessage().getCode(), code, "Error code", false);
-        MbkReporter.verifyEqualsWithLogging(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getMessage().getText(), text, "Error message", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getMessage().getCode(), code, "Error code", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(crossSellTransactionDto.getData().getTxnResponses().get(category).getApiResponse().getMessage().getText(), text, "Error message", false);
         Log.info("VERIFIED", "Insurance Data for TC_03");
 
     }
 
-    public void verifyPgOptions(int count, String option1, String option2, String option3) {
+    public void verifyPgOptions(int count, String option1, String option2, String option3) throws IOException {
         Log.info("VERIFY", "PG Options");
-        MbkReporter.verifyEqualsWithLogging(crossSellTransactionDto.getData().getWalletAsPG().getPgOptions().size(), count, "Verify PG Options count", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(crossSellTransactionDto.getData().getWalletAsPG().getPgOptions().size(), count, "Verify PG Options count", false);
         if (crossSellTransactionDto.getData().getWalletAsPG().getPgOptions().size() == count) {
-            MbkReporter.verifyEqualsWithLogging(crossSellTransactionDto.getData().getWalletAsPG().getPgOptions().get(0), option1, "Verify PG Options 1", false);
-            MbkReporter.verifyEqualsWithLogging(crossSellTransactionDto.getData().getWalletAsPG().getPgOptions().get(1), option2, "Verify PG Options 2", false);
-            MbkReporter.verifyEqualsWithLogging(crossSellTransactionDto.getData().getWalletAsPG().getPgOptions().get(2), option3, "Verify PG Options 3", false);
+            MbkReporter.verifyEqualsWithLoggingExtentReport(crossSellTransactionDto.getData().getWalletAsPG().getPgOptions().get(0), option1, "Verify PG Options 1", false);
+            MbkReporter.verifyEqualsWithLoggingExtentReport(crossSellTransactionDto.getData().getWalletAsPG().getPgOptions().get(1), option2, "Verify PG Options 2", false);
+            MbkReporter.verifyEqualsWithLoggingExtentReport(crossSellTransactionDto.getData().getWalletAsPG().getPgOptions().get(2), option3, "Verify PG Options 3", false);
         }
         Log.info("VERIFIED", "PG Options");
 
     }
 
-    public void verifyAmountToAdd(Double amount) {
+    public void verifyAmountToAdd(Double amount) throws IOException {
         Log.info("VERIFY", "Amount to be Added");
-        MbkReporter.verifyEqualsWithLogging(crossSellTransactionDto.getData().getRequiredAmount(), amount, "Verify Amount to be added", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(crossSellTransactionDto.getData().getRequiredAmount(), amount, "Verify Amount to be added", false);
         Log.info("VERIFIED", "Amount to be Added");
 
     }
 
-    public void verifyAddMoneyMessage(String errorCode, String errorMessage) {
+    public void verifyAddMoneyMessage(String errorCode, String errorMessage) throws IOException {
         Log.info("VERIFY", "Add Money Message");
-        MbkReporter.verifyEqualsWithLogging(crossSellTransactionDto.getMessage().getCode(), errorCode, "Verify code", false);
-        MbkReporter.verifyEqualsWithLogging(crossSellTransactionDto.getMessage().getText(), errorMessage, "Verify message", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(crossSellTransactionDto.getMessage().getCode(), errorCode, "Verify code", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(crossSellTransactionDto.getMessage().getText(), errorMessage, "Verify message", false);
         Log.info("VERIFIED", "Add Money Message");
 
     }
