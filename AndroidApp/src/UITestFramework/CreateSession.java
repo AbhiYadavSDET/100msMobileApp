@@ -33,7 +33,7 @@ public class CreateSession {
 
     public Properties testDataFile;
 
-    String androidOSVersion = "7.0";
+    String androidOSVersion = "8.0";
     String portNo = "5000";
     String udid = "330062db17b4a48b";
     String deviceName = "Samsung J7";

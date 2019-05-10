@@ -36,6 +36,7 @@ public class LoginHelper {
     SideDrawerPage sideDrawerPage;
     MBReporter mbReporter;
     MobiKwikScreen mobiKwikScreen;
+    PermissionHelper permissionHelper;
 
 
     public LoginHelper(AndroidDriver driver) throws IOException {
@@ -48,6 +49,7 @@ public class LoginHelper {
 
         // Starting page declaration
         onboardingPage = new OnboardingPage(driver);
+        permissionHelper = new PermissionHelper(driver);
 
 
     }
@@ -109,6 +111,7 @@ public class LoginHelper {
         homePage = onboardingPage.clickOnSkip();
 
         mbkCommonControls.handleConscentPopup();
+        permissionHelper.permissionAllow();
 
         loginPage = homePage.clickLoginSignupButton();
 
@@ -122,7 +125,7 @@ public class LoginHelper {
 
         loginPage.clickOnLoginCta();
 
-        new PermissionHelper(driver).permissionAllow();
+        permissionHelper.permissionAllow();
 
         mbkCommonControls.handleMagicPopup();
 
@@ -162,6 +165,39 @@ public class LoginHelper {
             Log.info("Handle", "UPI Popup in Onboarding");
             driver.navigate().back();
         }
+    }
+
+    public void quickLoginViaEmail(int rownum) throws InterruptedException, IOException {
+        // Fetch data from sheet
+        Log.info("Fetching Data From Sheet");
+        fetchDataFromSheet(rownum);
+
+        Screen.hideKeyboard(driver);
+
+        homePage = onboardingPage.clickOnSkip();
+
+        mbkCommonControls.handleConscentPopup();
+        permissionHelper.permissionAllow();
+
+        loginPage = homePage.clickLoginSignupButton();
+
+        loginPage.clickOnExistingUser();
+
+        // Enter Email
+        loginPage.enterEmail(map.get("email"));
+
+        // Enter Password
+        loginPage.enterPassword(map.get("password"));
+
+        loginPage.clickOnLoginCta();
+
+        //permissionHelper.permissionAllow();
+        //mbkCommonControls.handleMagicPopup();
+
+
+        //homePage.clickHomePageMbkLogo();
+
+
     }
 
 

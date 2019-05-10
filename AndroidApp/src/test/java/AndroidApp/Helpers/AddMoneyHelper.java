@@ -64,6 +64,7 @@ public class AddMoneyHelper {
 
         addMoneyPage.clickOnNetbanking();
 
+        Log.info("Sleeping for 2 seconds");
         Thread.sleep(2000);
 
         AndroidElement androidElement = element.findElement(driver, By.xpath("//android.widget.TextView[@text = '" + map.get("bankname") + "']"));
@@ -162,7 +163,7 @@ public class AddMoneyHelper {
         TestDataReader testData = Config.getCachedTestDataReaderObject("addmoney");
         map.put("amount", testData.GetData(rownum, "amount"));
         map.put("bankname", testData.GetData(rownum, "bankname"));
-        map.put("bankpagelocator", testData.GetData(rownum, "bankpagelocator"));
+        map.put("bankpagelocator", testData.GetData(rownum, "bankurl"));
         map.put("cardno", testData.GetData(rownum, "cardno"));
         map.put("expirymonth", testData.GetData(rownum, "expirymonth"));
         map.put("expiryyear", testData.GetData(rownum, "expiryyear"));

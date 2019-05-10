@@ -6,7 +6,6 @@ import UITestFramework.ExtentReport.Reporter;
 import UITestFramework.MBKPermissions;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.ios.IOSDriver;
 import logger.Log;
 import org.json.JSONException;
 import org.openqa.selenium.By;
@@ -328,6 +327,51 @@ public class OnboardingHelper extends OnboardingHelperBase {
             throw e;
 
         }
+
+
+    }
+
+    public void quickLoginViaPassword(String userName, String password) throws
+            InterruptedException, IOException, JSONException {
+
+        int testStepCount = 0;
+
+        mbkCommonControls.handleCTOverlay();
+
+
+        reporter.extentReportDisplay("INFO", "STEP " + ++testStepCount + " | " + Log.info("SKIP", "Onboarding flow"), "");
+        onboardingScreen.selectElement(By.id("com.mobikwik_new:id/skip"));
+
+        mbkCommonControls.handleConscentPopup();
+
+        reporter.extentReportDisplay("INFO", "STEP " + ++testStepCount + " | " + Log.info("SELECT", "Login/Signup button"), "");
+        onboardingScreen.selectElement(By.id("tx_balance"));
+
+        reporter.extentReportDisplay("INFO", "STEP " + ++testStepCount + " | " + Log.info("ENTER", "Login Details"), "");
+        onboardingScreen.selectElement(By.xpath("//android.widget.TextView[@text='EXISTING USER']"));
+
+
+        Log.info("ENTER", "Email");
+        onboardingScreen.findElement(By.id("edit_text_mket")).sendKeys(userName);
+
+        Thread.sleep(3000);
+        Log.info("ENTER", "Password");
+        onboardingScreen.waitForVisibility(By.xpath("//*/android.widget.TextView[@text = 'Password']/following::android.widget.EditText"));
+        onboardingScreen.findElement(By.xpath("//*/android.widget.TextView[@text = 'Password']/following::android.widget.EditText")).sendKeys(password);
+
+
+        reporter.extentReportDisplay("INFO", "STEP " + ++testStepCount + " | " + Log.info("SELECT", "Login CTA"), "");
+        onboardingScreen.hideKeyboard();
+        onboardingScreen.selectElement(By.id("btnLogin"));
+        Thread.sleep(3000);
+
+        mbkCommonControls.allowPermission(true, "SMS");
+
+        mbkCommonControls.handleKycConcent();
+
+        mbkCommonControls.handleMagicPopup();
+
+        mbkCommonControls.handleUpiPopup();
 
 
     }
