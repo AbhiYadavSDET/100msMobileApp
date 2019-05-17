@@ -4,10 +4,7 @@ import UITestFramework.MBReporter;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import logger.Log;
-import main.java.utils.Config;
-import main.java.utils.Element;
-import main.java.utils.Screen;
-import main.java.utils.TestDataReader;
+import main.java.utils.*;
 import org.json.JSONException;
 import org.openqa.selenium.By;
 import test.java.AndroidApp.PageObject.AddMoneyPage;
@@ -42,19 +39,13 @@ public class AddMoneyHelper {
 
     }
 
-    public void netbanking(int rownum) throws InterruptedException, IOException, JSONException {
-        // Fetch data from sheet
-        Log.info("Fetching Data From Sheet");
-        fetchDataFromSheet(rownum);
-
-        balanceBefore = mbkCommonControlsHelper.getBalance();
-
+    public void netbanking(String amount, String bankName, String bankPageLocator) throws InterruptedException, IOException, JSONException {
 
         addMoneyPage = homePage.clickOnAddMoneyButton();
 
         addMoneyPage.clickOnAmountTextBox();
 
-        addMoneyPage.enterAmount(map.get("amount"));
+        addMoneyPage.enterAmount(amount);
 
         addMoneyPage.clickOnContinueButton();
 
@@ -64,31 +55,26 @@ public class AddMoneyHelper {
 
         addMoneyPage.clickOnNetbanking();
 
-        Log.info("Sleeping for 2 seconds");
-        Thread.sleep(2000);
+//        Log.info("Sleeping for 2 seconds");
+//        Thread.sleep(2000);
 
-        AndroidElement androidElement = element.findElement(driver, By.xpath("//android.widget.TextView[@text = '" + map.get("bankname") + "']"));
-        Element.selectElement(driver, androidElement, map.get("bankname"));
+        AndroidElement androidElement = element.findElement(driver, By.xpath("//android.widget.TextView[@text = '" + bankName + "']"));
+        Element.selectElement(driver, androidElement, bankName);
 
-        //Thread.sleep(10000);
 
         Element.waitForVisibility(driver, addMoneyPage.label_make_payment);
 
-        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath("//android.view.View[@text = '" + map.get("bankpagelocator") + "']")), map.get("bankname") + "Page text", false, false);
+        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath(bankPageLocator)), "Bank Screen | Verify Locator", false, false);
 
         mbkCommonControlsHelper.clickUpButton();
 
         addMoneyPage.clickOnYesButton();
 
-        balanceAfter = mbkCommonControlsHelper.getBalance();
-
 
     }
 
-    public void addMoneyViaNewCard(int rownum) throws InterruptedException, IOException, JSONException {
-        // Fetch data from sheet
-        Log.info("Fetching Data From Sheet");
-        fetchDataFromSheet(rownum);
+
+    public void addMoneyViaNewCard(String amount, String cardNo, String expiryMonth, String expiryYear, String cvv, String bankPassword, String successPageStatus, String successPageText) throws InterruptedException, IOException, JSONException {
 
         balanceBefore = mbkCommonControlsHelper.getBalance();
 
@@ -96,7 +82,7 @@ public class AddMoneyHelper {
 
         addMoneyPage.clickOnAmountTextBox();
 
-        addMoneyPage.enterAmount(map.get("amount"));
+        addMoneyPage.enterAmount(amount);
 
         addMoneyPage.clickOnContinueButton();
 
@@ -106,32 +92,42 @@ public class AddMoneyHelper {
 
         addMoneyPage.clickOnNewDebitCreditCard();
 
-        enterCardDetails(map.get("cardno"), map.get("expirymonth"), map.get("expiryyear"), map.get("cvv"));
+        enterCardDetails(cardNo, expiryMonth, expiryYear, cvv);
 
         addMoneyPage.clickOnPayNow();
 
-        handleIndusindWebView(map.get("password"));
+        handleIndusindWebView(bankPassword);
 
         //Assertions
-        mbReporter.verifyEqualsWithLogging(addMoneyPage.getSuccessPageStatus(), map.get("successpagestatus"), "Success Page Status", false, false);
-        mbReporter.verifyEqualsWithLogging(addMoneyPage.getSuccessPageText(), map.get("successpagetext"), "Success Page Text", false, false);
+        Double expectedMainBalance = (Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100) + Double.parseDouble(amount) * 100;
+        Double actualMainBalance = Double.parseDouble(addMoneyPage.getSuccessPageWalletBalance().replace("New Wallet Balance X", "").replace(",", "")) * 100;
+        mbReporter.verifyEqualsWithLogging(addMoneyPage.getSuccessPageStatus(), successPageStatus, "Success Screen | Verify Status", false, false);
+        mbReporter.verifyEqualsWithLogging(addMoneyPage.getSuccessPageText(), successPageText, "Success Screen | Verify Text", false, false);
+        mbReporter.verifyEqualsWithLogging(actualMainBalance, expectedMainBalance, "Success Screen | Verify Main Balance", false, false);
 
         mbkCommonControlsHelper.returnToHomePageFromSuccessScreen();
 
+        // POST TRX Assertions
         balanceAfter = mbkCommonControlsHelper.getBalance();
+        Double actualMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100;
+        Double actualSuperCashBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
+        Double expectedMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100 + Double.parseDouble(amount) * 100;
+        Double expectedSuperCashBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
+        mbReporter.verifyEqualsWithLogging(actualMainBalanceAfter, expectedMainBalanceAfter, "After TRX | Verify Wallet Main Balance", false, false);
+        mbReporter.verifyEqualsWithLogging(actualSuperCashBalanceAfter, expectedSuperCashBalanceAfter, "After TRX | Verify Supercash Balance", false, false);
 
     }
 
-    public void addMoneyViaSavedCard(int rownum) throws InterruptedException, IOException, JSONException {
-        // Fetch data from sheet
-        Log.info("Fetching Data From Sheet");
-        fetchDataFromSheet(rownum);
+
+    public void addMoneyViaSavedCard(String amount, String cardNo, String expiryMonth, String expiryYear, String cvv, String bankPassword, String successPageStatus, String successPageText, Boolean promoCodeStatus, String promoCode) throws InterruptedException, IOException, JSONException {
+
+        balanceBefore = mbkCommonControlsHelper.getBalance();
 
         addMoneyPage = homePage.clickOnAddMoneyButton();
 
         addMoneyPage.clickOnAmountTextBox();
 
-        addMoneyPage.enterAmount(map.get("amount"));
+        addMoneyPage.enterAmount(amount);
 
         addMoneyPage.clickOnContinueButton();
 
@@ -139,24 +135,47 @@ public class AddMoneyHelper {
 
         screen.swipeUp();
 
-        AndroidElement androidElement = element.findElement(driver, By.xpath("//android.widget.TextView[@text = '" + map.get("cardno") + "']"));
-        Element.selectElement(driver, androidElement, map.get("bankname"));
+        AndroidElement androidElement = element.findElement(driver, By.xpath("//android.widget.TextView[@text = '" + cardNo + "']"));
+        Element.selectElement(driver, androidElement, "Select Bank");
 
-        addMoneyPage.enterCvv(map.get("cvv"));
+        addMoneyPage.enterCvv(cvv);
+
+        if (promoCodeStatus) {
+            mbkCommonControlsHelper.applyPromoCodeAddMoney(promoCode);
+        }
 
         addMoneyPage.clickOnPayNow();
 
-        handleIndusindWebView(map.get("password"));
+        handleIndusindWebView(bankPassword);
 
-        //Assertions
-        mbReporter.verifyEqualsWithLogging(addMoneyPage.getSuccessPageStatus(), map.get("successpagestatus"), "Success Page Status", false, false);
-        mbReporter.verifyEqualsWithLogging(addMoneyPage.getSuccessPageText(), map.get("successpagetext"), "Success Page Text", false, false);
+        // Success Page Assertions
+        mbReporter.verifyEqualsWithLogging(addMoneyPage.getSuccessPageStatus(), successPageStatus, "Success Screen | Verify Status", false, false);
+        mbReporter.verifyEqualsWithLogging(addMoneyPage.getSuccessPageText(), successPageText, "Success Page Text", false, false);
+
+        if (promoCodeStatus) {
+            String actualBalanceText = addMoneyPage.getSuccessPageWalletBalance().replace(",", "");
+            Double bal = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) + Double.parseDouble(amount);
+            String expectedBalanceText = "New Wallet Balance X" + Helper.formatString(bal).replace(",", "") + ". Coupon " + promoCode.toUpperCase() + " was redeemed successfully for SuperCash of  " + "1";
+            mbReporter.verifyEqualsWithLogging(actualBalanceText, expectedBalanceText, "Success screen | Verify Balance text", false, false);
+        } else {
+            Double expectedMainBalance = (Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100) + Double.parseDouble(amount) * 100;
+            Double actualMainBalance = Double.parseDouble(addMoneyPage.getSuccessPageWalletBalance().replace("New Wallet Balance X", "").replace(",", "")) * 100;
+            mbReporter.verifyEqualsWithLogging(actualMainBalance, expectedMainBalance, "Success Screen | Verify Main Balance", false, false);
+        }
 
         mbkCommonControlsHelper.returnToHomePageFromSuccessScreen();
 
+        // POST TRX Assertions
+        balanceAfter = mbkCommonControlsHelper.getBalance();
+        Double actualMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100;
+        Double actualSuperCashBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
+        Double expectedMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100 + Double.parseDouble(amount) * 100;
+        Double expectedSuperCashBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100 + 1 * 100;
+        mbReporter.verifyEqualsWithLogging(actualMainBalanceAfter, expectedMainBalanceAfter, "After TRX | Verify Wallet Main Balance", false, false);
+        mbReporter.verifyEqualsWithLogging(actualSuperCashBalanceAfter, expectedSuperCashBalanceAfter, "After TRX | Verify Supercash Balance", false, false);
+
 
     }
-
 
     public void fetchDataFromSheet(int rownum) {
         map = new HashMap<String, String>();
@@ -190,6 +209,7 @@ public class AddMoneyHelper {
         addMoneyPage.clickOnBankPageSubmitButton();
 
         Thread.sleep(10000);
+
 
     }
 

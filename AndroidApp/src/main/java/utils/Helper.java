@@ -12,6 +12,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -417,6 +418,22 @@ public class Helper {
         } else {
             return input;
         }
+
+    }
+
+    /**
+     *
+     * @param val
+     * @return returns a string with the specified Decimal places
+     */
+    public static String formatString(Double val) {
+
+        DecimalFormat format = new DecimalFormat();
+        format.setDecimalSeparatorAlwaysShown(false);
+        format.setMaximumFractionDigits(2);
+        format.setMinimumFractionDigits(2);
+
+        return format.format(val);
 
     }
 

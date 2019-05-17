@@ -20,7 +20,7 @@ public class PermissionHelper {
     }
 
     public boolean isPermissionPopUpPresent() throws InterruptedException {
-        Thread.sleep(5000);
+        Thread.sleep(3000);
 
         if (Element.isElementPresent(driver, By.id("com.android.packageinstaller:id/dialog_container"))) {
             return true;
@@ -30,9 +30,27 @@ public class PermissionHelper {
         }
     }
 
+    public boolean isHintForMobileNoVisible() throws InterruptedException {
+        Thread.sleep(2000);
+
+        if (Element.isElementPresent(driver, By.id("com.google.android.gms:id/credential_picker_layout"))) {
+            return true;
+        } else {
+            Log.info("Hint For Mobile No. Popup is not present");
+            return false;
+        }
+
+    }
+
     public void permissionAllow() throws InterruptedException {
         if (isPermissionPopUpPresent()) {
             permissionPage.clickOnPermissionAllow();
+        }
+    }
+
+    public void dismissHintPopup() throws InterruptedException {
+        if (isHintForMobileNoVisible()) {
+            permissionPage.clickOnCancelHint();
         }
     }
 

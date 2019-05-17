@@ -201,4 +201,38 @@ public class LoginHelper {
     }
 
 
+    public void quickLoginViaEmail(String email, String password) throws InterruptedException, IOException {
+        // Fetch data from sheet
+
+        Screen.hideKeyboard(driver);
+        permissionHelper.dismissHintPopup();
+        Screen.hideKeyboard(driver);
+
+        homePage = onboardingPage.clickOnSkip();
+
+        mbkCommonControls.handleConscentPopup();
+        permissionHelper.permissionAllow();
+
+        loginPage = homePage.clickLoginSignupButton();
+
+        loginPage.clickOnExistingUser();
+
+        // Enter Email
+        loginPage.enterEmail(email);
+
+        // Enter Password
+        loginPage.enterPassword(password);
+
+        loginPage.clickOnLoginCta();
+
+        //permissionHelper.permissionAllow();
+        //mbkCommonControls.handleMagicPopup();
+
+
+        //homePage.clickHomePageMbkLogo();
+
+
+    }
+
+
 }

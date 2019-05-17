@@ -29,6 +29,18 @@ public class MbkCommonControlsPage {
     @AndroidFindBy(id = "base_icon_close")
     private AndroidElement cross_icon;
 
+    @AndroidFindBy(id = "com.mobikwik_new:id/btn_have_promo")
+    private AndroidElement label_have_a_promo_code;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Enter Promo Code']/following::android.widget.EditText")
+    private AndroidElement textbox_promo_code;
+
+    @AndroidFindBy(xpath = "//android.widget.RelativeLayout[@index = '0']/android.widget.ImageView[@index = '1']")
+    private AndroidElement cross_ct_overlay;
+
+    @AndroidFindBy(id = "com.mobikwik_new:id/close_button")
+    private AndroidElement ratings_cross_icon;
+
 
     public MbkCommonControlsPage(AndroidDriver driver) throws IOException {
         this.driver = driver;
@@ -46,10 +58,38 @@ public class MbkCommonControlsPage {
         Element.selectElement(driver, button_up, "Up button");
     }
 
+    public void clickOnHavePromoCode() {
+        Element.selectElement(driver, label_have_a_promo_code, "Have a promo code");
+    }
+
 
     public void clickOnSuccessPageCross() {
 
         Element.selectElement(driver, cross_icon, "base_icon_close");
+
+    }
+
+    public void enterPromoCode(String code) {
+
+        Element.enterText(driver, textbox_promo_code, code, "Promo code");
+
+    }
+
+    public void clickOnApplyButton() {
+
+        Element.selectElement(driver, button_apply_coupon, "Apply Button");
+
+    }
+
+    public void clickOnCtOverLayCross() {
+
+        Element.selectElement(driver, cross_ct_overlay, "CT Overlay Cross");
+
+    }
+
+    public void clickOnCross() {
+
+        Element.selectElement(driver, ratings_cross_icon, "Cross Icon");
 
     }
 

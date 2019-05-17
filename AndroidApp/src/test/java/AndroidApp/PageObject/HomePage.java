@@ -51,6 +51,12 @@ public class HomePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Insurance']")
     private AndroidElement icon_insurance;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Mobile']")
+    private AndroidElement icon_mobile;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='DTH']")
+    private AndroidElement icon_dth;
+
 
     public HomePage(AndroidDriver driver) {
         this.driver = driver;
@@ -91,6 +97,16 @@ public class HomePage {
     public AddMoneyPage clickOnAddMoneyButton() throws IOException {
         Element.selectElement(driver, button_add_money, "Add Money button");
         return new AddMoneyPage(driver);
+    }
+
+    public RechargePage clickOnMobileButton() throws IOException {
+        Element.selectElement(driver, icon_mobile, "Mobile button");
+        return new RechargePage(driver);
+    }
+
+    public RechargePage clickOnDthButton() throws IOException {
+        Element.selectElement(driver, icon_dth, "Dth button");
+        return new RechargePage(driver);
     }
 
 
