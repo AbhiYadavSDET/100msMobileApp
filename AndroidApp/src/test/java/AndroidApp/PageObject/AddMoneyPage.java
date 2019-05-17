@@ -71,8 +71,11 @@ public class AddMoneyPage {
     @AndroidFindBy(id = "com.mobikwik_new:id/base_title")
     private AndroidElement label_success_page_status;
 
-    @AndroidFindBy(xpath = "//android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView[@index ='0']")
+    @AndroidFindBy(xpath = "//android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.TextView[@index ='0']")
     private AndroidElement label_success_page_text;
+
+    @AndroidFindBy(xpath = "//android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.TextView[@index ='1']")
+    private AndroidElement label_success_page_wallet_balance;
 
 
     public AddMoneyPage(AndroidDriver driver) throws IOException {
@@ -161,4 +164,7 @@ public class AddMoneyPage {
         return Element.getText(driver, label_success_page_text, "Success page text");
     }
 
+    public String getSuccessPageWalletBalance() throws InterruptedException {
+        return Element.getText(driver, label_success_page_wallet_balance, "Success page Wallet Balance");
+    }
 }

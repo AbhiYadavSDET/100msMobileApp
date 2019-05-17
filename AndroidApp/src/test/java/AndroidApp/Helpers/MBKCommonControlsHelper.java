@@ -11,6 +11,7 @@ import test.java.AndroidApp.PageObject.MbkCommonControlsPage;
 import test.java.AndroidApp.PageObject.WalletBalancePage;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -20,6 +21,35 @@ public class MBKCommonControlsHelper {
     MbkCommonControlsPage mbkCommonControlsPage;
     Element element;
     WalletBalancePage walletBalancePage;
+
+    enum BalanceType {
+        MAINBALANCE,
+        FOODBALANCE,
+        SUPERCASH,
+        MONEYADDED,
+    }
+
+    public String getBalance(HashMap<String, String> balance, BalanceType balanceType) {
+        switch (balanceType) {
+            case MAINBALANCE:
+                return balance.get("Available Balance");
+            case SUPERCASH:
+                return balance.get("SuperCash");
+
+
+            case MONEYADDED:
+                return balance.get("Money Added");
+
+
+            case FOODBALANCE:
+                return balance.get("Food Reimbursement");
+
+            default:
+                return "Empty";
+
+        }
+    }
+
 
     public MBKCommonControlsHelper(AndroidDriver driver) throws IOException {
         this.driver = driver;
@@ -37,7 +67,16 @@ public class MBKCommonControlsHelper {
 
     }
 
-    public void applyPromoCodeAddMoney() {
+    public void applyPromoCodeAddMoney(String promoCode) {
+
+        // Click on Have a Promo code
+        mbkCommonControlsPage.clickOnHavePromoCode();
+
+        // Enter Code
+        mbkCommonControlsPage.enterPromoCode(promoCode);
+
+        // Click on Apply button
+        mbkCommonControlsPage.clickOnApplyButton();
 
     }
 
@@ -59,8 +98,14 @@ public class MBKCommonControlsHelper {
         mbkCommonControlsPage.clickOnUpButton();
     }
 
-    public void returnToHomePageFromSuccessScreen() {
+    public void returnToHomePageFromSuccessScreen() throws InterruptedException {
         mbkCommonControlsPage.clickOnSuccessPageCross();
+    }
+
+    public void returnToHomePageFromRechargeSuccessScreen() throws InterruptedException {
+        mbkCommonControlsPage.clickOnSuccessPageCross();
+        handleRatingsPopUp();
+        handleNPS();
     }
 
     public LinkedHashMap<String, String> getBalance()
@@ -137,5 +182,36 @@ public class MBKCommonControlsHelper {
         //Handle Expense Manager Bottom sheet
 
         return walletBalance;
+    }
+
+    public void handleCTOverlay() throws InterruptedException {
+        Thread.sleep(3000);
+
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.RelativeLayout[@index = '0']/android.widget" +
+                ".ImageView[@index = '1']"))) {
+
+            Log.info("Handle", "CT Overlay");
+            mbkCommonControlsPage.clickOnCtOverLayCross();
+        }
+    }
+
+    // Added by MS@10 Oct, 2018 to handle the NPS Pop-on pressing back from the success screens
+    public void handleNPS() throws InterruptedException {
+        Thread.sleep(3000);
+        if (Element.isElementPresent(driver, By.id("com.mobikwik_new:id/rating_seekbar"))) {
+            Log.info("Handle", "NPS Screen");
+            mbkCommonControlsPage.clickOnCross();
+            mbkCommonControlsPage.clickOnSuccessPageCross();
+        }
+    }
+
+    // Added by MS@10 Oct, 2018 to handle the Rating Pop-on pressing back from the success screens
+    public void handleRatingsPopUp() throws InterruptedException {
+        Thread.sleep(3000);
+        if (Element.isElementPresent(driver, By.id("com.mobikwik_new:id/content_root"))) {
+            Log.info("Handle", "Ratings PopUp");
+            mbkCommonControlsPage.clickOnCross();
+            mbkCommonControlsPage.clickOnSuccessPageCross();
+        }
     }
 }

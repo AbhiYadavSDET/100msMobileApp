@@ -31,7 +31,7 @@ public class LoginPage {
     @AndroidFindBy(id = "com.mobikwik_new:id/edit_text_mket")
     private AndroidElement textbox_email;
 
-    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Password']/following::android.widget.EditText")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Password']/following::android.widget.EditText")
     private AndroidElement textbox_password;
 
     @AndroidFindBy(id = "com.mobikwik_new:id/btnLogin")

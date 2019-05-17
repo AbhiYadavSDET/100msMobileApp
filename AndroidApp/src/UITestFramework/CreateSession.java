@@ -33,9 +33,9 @@ public class CreateSession {
 
     public Properties testDataFile;
 
-    String androidOSVersion = "7.0";
+    String androidOSVersion = "8.0";
     String portNo = "5000";
-    String udid = "330062db17b4a48b";
+    String udid = "ZY322HJ929";
     String deviceName = "Samsung J7";
 
     private String reportDirectory = "reports";
@@ -215,7 +215,7 @@ public class CreateSession {
 
     private void fetchDataFromPropertiesFile() {
 
-        String filepath = System.getProperty("user.dir") + "/Parameters/config.properties";
+        String filepath = System.getProperty("user.dir") + "/src/main/resources/config.properties";
         fetchConfiguration(filepath);
         String env = properties.getProperty("Environment", "production").trim().toLowerCase();
         if (!(env.equals("production") || env.equals(""))) {

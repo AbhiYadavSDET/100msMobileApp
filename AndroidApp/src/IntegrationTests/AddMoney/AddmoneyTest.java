@@ -3,7 +3,6 @@ package IntegrationTests.AddMoney;
 import IntegrationTests.Onboarding.OnboardingHelper;
 import UITestFramework.CreateSession;
 import UITestFramework.ExtentReport.Reporter;
-import io.appium.java_client.android.AndroidDriver;
 import logger.Log;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
@@ -50,7 +49,7 @@ public class AddmoneyTest extends CreateSession {
         Log.infoStartTest("Addmoney Netbanking");
         Reporter.extentTest = Reporter.extentReports.createTest("addmoneyViaNetbanking");
 
-        onboardingHelper.quickLogin("8527797582", "mayank.suneja@mobikwik.com", "T.C. Suneja");
+        onboardingHelper.quickLoginViaPassword("rush2ash@gmail.com", "Tuesday20");
 
 
         // ExcelUtils excelUtils = new ExcelUtils("TestData.xlsx", "login");
