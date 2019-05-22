@@ -208,6 +208,7 @@ public class LoginHelper {
         permissionHelper.dismissHintPopup();
         Screen.hideKeyboard(driver);
 
+        Screen.swipeUpMore(driver);
         homePage = onboardingPage.clickOnSkip();
 
         mbkCommonControls.handleConscentPopup();

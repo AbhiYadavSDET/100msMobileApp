@@ -148,9 +148,7 @@ public class MBKCommonControlsHelper {
 
         }
 
-        // Swipe up
-        Screen.swipeUp();
-        Screen.swipeUp();
+        Screen.swipeUpMore(driver);
 
 
         // Fetch the supercash balance

@@ -40,6 +40,20 @@ public class Element {
         }
     }
 
+    public static boolean waitForVisibility(AndroidDriver driver, By targetElement) {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, timeOut);
+            wait.until(ExpectedConditions.visibilityOfElementLocated(targetElement));
+            return true;
+        } catch (TimeoutException e) {
+            System.out.println("Element is not visible: " + targetElement);
+            System.out.println();
+            System.out.println(e.getMessage());
+            throw e;
+
+        }
+    }
+
     /**
      * method to wait for an element until it is invisible
      *

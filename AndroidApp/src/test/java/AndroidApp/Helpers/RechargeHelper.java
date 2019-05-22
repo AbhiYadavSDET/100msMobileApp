@@ -196,7 +196,7 @@ public class RechargeHelper {
 
     }
 
-    public boolean selectSavedConnection(String operator) throws InterruptedException {
+    public boolean selectSavedConnection(String mobileNo, String category, String operator) throws InterruptedException {
 
 
         for (int i = 0; i < 6; i++) {
@@ -239,24 +239,41 @@ public class RechargeHelper {
 
         String actualSuccessScreenOperator = rechargePage.getSuccessScreenOperator();
         String actualSuccessScreenNumber = rechargePage.getSuccessScreenNumber();
-        String actualSuccessScreenOAmount = rechargePage.getSuccessScreenAmount();
+        String actualSuccessScreenAmount = rechargePage.getSuccessScreenAmount();
 
+        mbReporter.verifyEqualsWithLogging(actualSuccessScreenOperator, operator, "Success Page | Verify Operator", false, false);
+        mbReporter.verifyEqualsWithLogging(actualSuccessScreenNumber, mobileNo, "Success Page | Verify Number", false, false);
+        mbReporter.verifyTrueWithLogging(Double.parseDouble(actualSuccessScreenAmount) > 0, "Success Page | Verify Amount greater than 0", false, false);
 
-        rechargePage.enterMobileNo(mobileNo);
+        mbkCommonControlsHelper.clickUpButton();
+        mbkCommonControlsHelper.clickUpButton();
+
+    }
+
+    public void viewBillMtnlDelhi(String operator, String mobileNo) throws InterruptedException, IOException, JSONException {
+
+        //balanceBefore = mbkCommonControlsHelper.getBalance();
+
+        homePage.clickMoreIcon();
+        rechargePage = homePage.clickLandlineIcon();
+
+        permissionHelper.permissionAllow();
+
+        rechargePage.clickOnDropDown();
+
+        rechargePage.selectOperator(operator);
+
+        rechargePage.enterBpNumber(mobileNo);
 
         rechargePage.clickOnCtaContinue2();
 
-        Element.waitForVisibility(driver, rechargePage.popup);
+        String actualSuccessScreenOperator = rechargePage.getSuccessScreenOperator();
+        String actualSuccessScreenNumber = rechargePage.getSuccessScreenNumber();
+        String actualSuccessScreenAmount = rechargePage.getSuccessScreenAmount();
 
-        // Assertions
-        String actualPopupError = rechargePage.getPopupError();
-        String actualPopupText = rechargePage.getPopupText();
-
-        mbReporter.verifyEqualsWithLogging(actualPopupError, popupError, "Success Page | Verify Connection number", false, false);
-        mbReporter.verifyEqualsWithLogging(actualPopupText, popupText, "Success Page | Verify category", false, false);
-
-
-        rechargePage.clickOnPopupCross();
+        mbReporter.verifyEqualsWithLogging(actualSuccessScreenOperator, operator, "Success Page | Verify Operator", false, false);
+        mbReporter.verifyEqualsWithLogging(actualSuccessScreenNumber, mobileNo, "Success Page | Verify Number", false, false);
+        mbReporter.verifyTrueWithLogging(Double.parseDouble(actualSuccessScreenAmount) > 0, "Success Page | Verify Amount greater than 0", false, false);
 
         mbkCommonControlsHelper.clickUpButton();
         mbkCommonControlsHelper.clickUpButton();

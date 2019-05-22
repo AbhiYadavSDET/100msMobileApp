@@ -93,13 +93,13 @@ public class RechargePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'BP Number']/following::android.widget.EditText[1]")
     public AndroidElement textbox_bp_number;
 
-    @AndroidFindBy(xpath = "com.mobikwik_new:id/connection_detail_textView_name")
+    @AndroidFindBy(id = "com.mobikwik_new:id/connection_detail_textView_name")
     public AndroidElement label_success_screen_operator;
 
-    @AndroidFindBy(xpath = "com.mobikwik_new:id/connection_detail_textView_company")
+    @AndroidFindBy(id = "com.mobikwik_new:id/connection_detail_textView_company")
     public AndroidElement label_success_screen_number;
 
-    @AndroidFindBy(xpath = "com.mobikwik_new:id/fixed_amount_value")
+    @AndroidFindBy(id = "com.mobikwik_new:id/fixed_amount_value")
     public AndroidElement label_success_screen_amount;
 
     public RechargePage(AndroidDriver driver) throws IOException {
@@ -131,6 +131,7 @@ public class RechargePage {
     }
 
     public void selectOperator(String operator) throws InterruptedException {
+        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text = '" + operator + "']"));
         AndroidElement androidElement = new Element(driver).findElement(driver, By.xpath("//android.widget.TextView[@text = '" + operator + "']"));
         Element.selectElement(driver, androidElement, "Operator");
     }

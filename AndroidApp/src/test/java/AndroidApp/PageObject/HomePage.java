@@ -60,6 +60,9 @@ public class HomePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Gas']")
     private AndroidElement icon_gas;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Landline']")
+    private AndroidElement icon_landline;
+
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='More']")
     private AndroidElement icon_more;
@@ -118,6 +121,11 @@ public class HomePage {
 
     public RechargePage clickGasIcon() throws IOException {
         Element.selectElement(driver, icon_gas, "Gas Icon");
+        return new RechargePage(driver);
+    }
+
+    public RechargePage clickLandlineIcon() throws IOException {
+        Element.selectElement(driver, icon_landline, "Landline Icon");
         return new RechargePage(driver);
     }
 
