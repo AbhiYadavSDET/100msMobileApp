@@ -6,6 +6,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
 import main.java.utils.Element;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
@@ -27,7 +28,7 @@ public class RechargePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Haryana']")
     private AndroidElement label_haryana;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Enter any amount']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Amount (in X)']/following::android.widget.TextView[@text = 'Enter any amount']")
     private AndroidElement textbox_enter_amount;
 
     @AndroidFindBy(id = "com.mobikwik_new:id/amount_field")
@@ -83,6 +84,23 @@ public class RechargePage {
     @AndroidFindBy(id = "com.mobikwik_new:id/connection_detail_button_recharge")
     public AndroidElement button_dth_continue;
 
+    @AndroidFindBy(id = "com.mobikwik_new:id/txt_promo_result_desc")
+    public AndroidElement label_promo_code_text;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'More']")
+    public AndroidElement label_more;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'BP Number']/following::android.widget.EditText[1]")
+    public AndroidElement textbox_bp_number;
+
+    @AndroidFindBy(id = "com.mobikwik_new:id/connection_detail_textView_name")
+    public AndroidElement label_success_screen_operator;
+
+    @AndroidFindBy(id = "com.mobikwik_new:id/connection_detail_textView_company")
+    public AndroidElement label_success_screen_number;
+
+    @AndroidFindBy(id = "com.mobikwik_new:id/fixed_amount_value")
+    public AndroidElement label_success_screen_amount;
 
     public RechargePage(AndroidDriver driver) throws IOException {
         this.driver = driver;
@@ -110,6 +128,12 @@ public class RechargePage {
 
     public void selectOperator() throws InterruptedException {
         Element.selectElement(driver, label_vodafone, "Operator");
+    }
+
+    public void selectOperator(String operator) throws InterruptedException {
+        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text = '" + operator + "']"));
+        AndroidElement androidElement = new Element(driver).findElement(driver, By.xpath("//android.widget.TextView[@text = '" + operator + "']"));
+        Element.selectElement(driver, androidElement, "Operator");
     }
 
     public void selectCircle() throws InterruptedException {
@@ -182,6 +206,26 @@ public class RechargePage {
 
     public void enterDthAmount(String amount) throws InterruptedException {
         Element.enterText(driver, textbox_enter_dth_amount, amount, "Enter Amount");
+    }
+
+    public String getPromoCodeTextOnSuccessScreen() throws InterruptedException {
+        return Element.getText(driver, label_promo_code_text, "Success Screen | Verify promo text");
+    }
+
+    public String getSuccessScreenOperator() throws InterruptedException {
+        return Element.getText(driver, label_success_screen_operator, "Success Screen | Verify Operator");
+    }
+
+    public String getSuccessScreenNumber() throws InterruptedException {
+        return Element.getText(driver, label_success_screen_number, "Success Screen | Verify Number");
+    }
+
+    public String getSuccessScreenAmount() throws InterruptedException {
+        return Element.getText(driver, label_success_screen_amount, "Success Screen | Verify Amount");
+    }
+
+    public void enterBpNumber(String number) throws InterruptedException {
+        Element.enterText(driver, textbox_bp_number, number, "Enter Number");
     }
 
 }

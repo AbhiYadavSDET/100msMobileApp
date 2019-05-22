@@ -6,6 +6,7 @@ import io.appium.java_client.android.AndroidElement;
 import logger.Log;
 import main.java.utils.Element;
 import main.java.utils.Screen;
+import net.sourceforge.tess4j.TesseractException;
 import org.json.JSONException;
 import org.openqa.selenium.By;
 import test.java.AndroidApp.PageObject.HomePage;
@@ -42,7 +43,7 @@ public class RechargeHelper {
 
     }
 
-    public void prepaidRecharge(String mobileNo, String amount, String category, String operator, String totalPayment, String trxStatus, String securityPin) throws InterruptedException, IOException, JSONException {
+    public void prepaidRecharge(String mobileNo, String amount, String category, String operator, String totalPayment, String trxStatus, String securityPin, Boolean promoCodeStatus, String promoCode, String promoCodeText) throws InterruptedException, IOException, JSONException {
 
         balanceBefore = mbkCommonControlsHelper.getBalance();
 
@@ -65,6 +66,11 @@ public class RechargeHelper {
 
         rechargePage.clickOnContinue();
 
+        // Apply coupon code if applicable
+        if (promoCodeStatus) {
+            mbkCommonControlsHelper.applyPromoCodeRecharge(promoCode);
+        }
+
         rechargePage.clickOnCtaCotinue();
 
         mbkCommonControlsHelper.handleSecurityPin(securityPin);
@@ -79,6 +85,14 @@ public class RechargeHelper {
         mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessPageAmount().replace("₹ ", ""), amount, "Success Page | Verify amount", false, false);
         mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessPageTotalPayment().replace("₹ ", ""), totalPayment, "Success Page | Verify totalPayment", false, false);
 
+
+        // Assert the Success page in case promo code is applied
+        if (promoCodeStatus) {
+            String actualPromoCodeText = rechargePage.getPromoCodeTextOnSuccessScreen();
+            String expectedPromoCodeText = "Congrats! SuperCash worth ₹ " + promoCodeText + " will be credited within 48 hours";
+            mbReporter.verifyEqualsWithLogging(actualPromoCodeText, expectedPromoCodeText, "After TRX | Verify Promo Code Text", false, false);
+
+        }
 
         mbkCommonControlsHelper.returnToHomePageFromRechargeSuccessScreen();
 
@@ -148,7 +162,7 @@ public class RechargeHelper {
 
     }
 
-    public void rechargeDthInvalidAmount(String mobileNo, String amount, String securityPin) throws InterruptedException, IOException, JSONException {
+    public void rechargeDthInvalidAmount(String mobileNo, String amount, String securityPin, String errorMessage) throws InterruptedException, IOException, JSONException, TesseractException {
 
         //balanceBefore = mbkCommonControlsHelper.getBalance();
 
@@ -165,11 +179,19 @@ public class RechargeHelper {
 
         rechargePage.clickOnCtaCotinue();
 
+        mbkCommonControlsHelper.handleSecurityPin(securityPin);
 
-        Thread.sleep(5000);
-        mbReporter.screenShot1("toast", "rechargeInvalidAmount");
+        Thread.sleep(3000);
+        String path = mbReporter.screenShot1("toast", "rechargeInvalidAmount");
+        Log.info(path);
+        String[] text = screen.readToastMessage("screenshots/toast", path).split("\\r?\\n");
+        int len = text.length;
 
-        // Handle the toast message
+        for (String e : text) {
+            Log.info(e);
+        }
+        String actualErrorText = text[len - 2] + text[len - 1];
+        mbReporter.verifyEqualsWithLogging(actualErrorText, errorMessage, "Verify Error Message", false, false);
 
 
     }
@@ -197,5 +219,65 @@ public class RechargeHelper {
         return false;
     }
 
+
+    public void viewBillGas(String operator, String mobileNo) throws InterruptedException, IOException, JSONException {
+
+        //balanceBefore = mbkCommonControlsHelper.getBalance();
+
+        homePage.clickMoreIcon();
+        rechargePage = homePage.clickGasIcon();
+
+        permissionHelper.permissionAllow();
+
+        rechargePage.clickOnDropDown();
+
+        rechargePage.selectOperator(operator);
+
+        rechargePage.enterBpNumber(mobileNo);
+
+        rechargePage.clickOnCtaContinue2();
+
+        String actualSuccessScreenOperator = rechargePage.getSuccessScreenOperator();
+        String actualSuccessScreenNumber = rechargePage.getSuccessScreenNumber();
+        String actualSuccessScreenAmount = rechargePage.getSuccessScreenAmount();
+
+        mbReporter.verifyEqualsWithLogging(actualSuccessScreenOperator, operator, "Success Page | Verify Operator", false, false);
+        mbReporter.verifyEqualsWithLogging(actualSuccessScreenNumber, mobileNo, "Success Page | Verify Number", false, false);
+        mbReporter.verifyTrueWithLogging(Double.parseDouble(actualSuccessScreenAmount) > 0, "Success Page | Verify Amount greater than 0", false, false);
+
+        mbkCommonControlsHelper.clickUpButton();
+        mbkCommonControlsHelper.clickUpButton();
+
+    }
+
+    public void viewBillMtnlDelhi(String operator, String mobileNo) throws InterruptedException, IOException, JSONException {
+
+        //balanceBefore = mbkCommonControlsHelper.getBalance();
+
+        homePage.clickMoreIcon();
+        rechargePage = homePage.clickLandlineIcon();
+
+        permissionHelper.permissionAllow();
+
+        rechargePage.clickOnDropDown();
+
+        rechargePage.selectOperator(operator);
+
+        rechargePage.enterBpNumber(mobileNo);
+
+        rechargePage.clickOnCtaContinue2();
+
+        String actualSuccessScreenOperator = rechargePage.getSuccessScreenOperator();
+        String actualSuccessScreenNumber = rechargePage.getSuccessScreenNumber();
+        String actualSuccessScreenAmount = rechargePage.getSuccessScreenAmount();
+
+        mbReporter.verifyEqualsWithLogging(actualSuccessScreenOperator, operator, "Success Page | Verify Operator", false, false);
+        mbReporter.verifyEqualsWithLogging(actualSuccessScreenNumber, mobileNo, "Success Page | Verify Number", false, false);
+        mbReporter.verifyTrueWithLogging(Double.parseDouble(actualSuccessScreenAmount) > 0, "Success Page | Verify Amount greater than 0", false, false);
+
+        mbkCommonControlsHelper.clickUpButton();
+        mbkCommonControlsHelper.clickUpButton();
+
+    }
 
 }

@@ -1,34 +1,30 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Appium-Framework">
     <listeners>
         <listener class-name="UITestFramework.retryLogic.RetryListener"/>
-        <listener class-name="UITestFramework.retryLogic.TestListener"/>
+        <listener class-name="main.java.utils.Listeners.TestListener"/>
     </listeners>
     <parameter name="build" value="prod"/>
     <parameter name="level" value="payments"/>
     <parameter name="saucelabs" value="false"></parameter>
-    <parameter name="portNo" value="4500"></parameter>
-    <parameter name="androidOSVersion" value="7.0"></parameter>
-    <parameter name="methodName" value="mobilePrepaid"></parameter>
+    <parameter name="methodName" value="ViewBillGas"></parameter>
 
 
     <test name="Mobikwik Automation Tests">
         <groups>
             <run>
-                <include name="appiumStart"/>
                 <include name="setUp"/>
                 <include name="instantiateHelpers"/>
-                <include name="mobilePrepaid"/>
+                <include name="ViewBillGas"/>
                 <include name="tearDown"/>
-                <include name="appiumStop"/>
             </run>
         </groups>
 
         <classes>
             <class name="UITestFramework.CreateSession"/>
             <class name="UITestFramework.ExtentReport.Reporter"/>
+            <class name="test.java.AndroidApp.Test.Recharge.Test_Recharge"/>
         </classes>
-        <packages>
-            <package name="IntegrationTests.Recharge"/>
-        </packages>
+
     </test>
 </suite>

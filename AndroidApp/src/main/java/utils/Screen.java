@@ -5,7 +5,13 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import logger.Log;
+import net.sourceforge.tess4j.ITesseract;
+import net.sourceforge.tess4j.Tesseract;
+import net.sourceforge.tess4j.TesseractException;
+import net.sourceforge.tess4j.util.LoadLibs;
+import org.openqa.selenium.Dimension;
 
+import java.io.File;
 import java.time.Duration;
 
 public class Screen {
@@ -27,6 +33,45 @@ public class Screen {
     public static void swipeUp() {
         Log.info("SWIPE", "Up");
         touchAction.press(PointOption.point(400, 1000)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1500))).moveTo(PointOption.point(400, 500)).release().perform();
+    }
+
+    public static void swipeUpMore(AndroidDriver driver) {
+        try {
+            Dimension dimension = driver.manage().window().getSize();
+            Double screenHeightStart = dimension.getHeight() * 0.8; //50
+            int heightStart = screenHeightStart.intValue();
+            //Log.info("start : " + heightStart);
+            Double screenHeightEnd = dimension.getHeight() * 0.2; //20
+            int heightEnd = screenHeightEnd.intValue();
+            //Log.info("End : " + heightEnd);
+
+
+            Log.info("SWIPE", "Up");
+            touchAction.press(PointOption.point(0, heightStart)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1500))).moveTo(PointOption.point(0, heightEnd)).release().perform();
+
+        } catch (NullPointerException e) {
+            Log.info("Screen is not Swipable");
+        }
+    }
+
+    public static void swipeUpLess(AndroidDriver driver) {
+        try {
+
+            Dimension dimension = driver.manage().window().getSize();
+            Double screenHeightStart = dimension.getHeight() * 0.4; //50
+            int heightStart = screenHeightStart.intValue();
+            //Log.info("start : " + heightStart);
+            Double screenHeightEnd = dimension.getHeight() * 0.2; //20
+            int heightEnd = screenHeightEnd.intValue();
+            //Log.info("End : " + heightEnd);
+
+
+            Log.info("SWIPE", "Up");
+            touchAction.press(PointOption.point(0, heightStart)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1500))).moveTo(PointOption.point(0, heightEnd)).release().perform();
+
+        } catch (NullPointerException e) {
+            Log.info("Screen is not Swipable");
+        }
     }
 
     /**
@@ -66,5 +111,31 @@ public class Screen {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public String readToastMessage(String screenShotDir, String screenShotName) throws TesseractException {
+        String imgName = screenShotName;
+        String result = null;
+        File imageFile = new File(screenShotDir, imgName);
+        System.out.println("Image name is :" + imageFile.toString());
+        ITesseract instance = new Tesseract();
+
+        File tessDataFolder = LoadLibs.extractTessResources("tessdata"); // Extracts
+        // Tessdata
+        // folder
+        // from
+        // referenced
+        // tess4j
+        // jar
+        // for
+        // language
+        // support
+        instance.setDatapath(tessDataFolder.getAbsolutePath()); // sets tessData
+        // path
+
+        result = instance.
+                doOCR(imageFile);
+        System.out.println(result);
+        return result;
     }
 }
