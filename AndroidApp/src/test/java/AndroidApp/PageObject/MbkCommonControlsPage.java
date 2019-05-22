@@ -62,6 +62,12 @@ public class MbkCommonControlsPage {
         Element.selectElement(driver, label_have_a_promo_code, "Have a promo code");
     }
 
+    public void applyRechargePromoCode(String promoCode) {
+        Element.selectElement(driver, have_promo_code, "Have a promo code");
+        Element.enterText(driver, text_box_coupon_code, promoCode, "Promo Code");
+        Element.selectElement(driver, button_apply_coupon, "Apply Button");
+    }
+
 
     public void clickOnSuccessPageCross() {
 

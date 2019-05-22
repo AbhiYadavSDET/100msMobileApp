@@ -63,8 +63,8 @@ public class MBKCommonControlsHelper {
         mbkCommonControlsPage.applyPromoCode(promoCode);
     }
 
-    public void applyPromoCodeRecharge() {
-
+    public void applyPromoCodeRecharge(String promoCode) {
+        mbkCommonControlsPage.applyRechargePromoCode(promoCode);
     }
 
     public void applyPromoCodeAddMoney(String promoCode) {

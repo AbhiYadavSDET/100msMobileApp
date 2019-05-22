@@ -57,6 +57,13 @@ public class HomePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='DTH']")
     private AndroidElement icon_dth;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Gas']")
+    private AndroidElement icon_gas;
+
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='More']")
+    private AndroidElement icon_more;
+
 
     public HomePage(AndroidDriver driver) {
         this.driver = driver;
@@ -107,6 +114,15 @@ public class HomePage {
     public RechargePage clickOnDthButton() throws IOException {
         Element.selectElement(driver, icon_dth, "Dth button");
         return new RechargePage(driver);
+    }
+
+    public RechargePage clickGasIcon() throws IOException {
+        Element.selectElement(driver, icon_gas, "Gas Icon");
+        return new RechargePage(driver);
+    }
+
+    public void clickMoreIcon() throws IOException {
+        Element.selectElement(driver, icon_more, "More Icon");
     }
 
 

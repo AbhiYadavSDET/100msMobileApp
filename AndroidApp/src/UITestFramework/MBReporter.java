@@ -74,7 +74,7 @@ public class MBReporter {
             screenshotPath = "";
         }
         String s = "http://" + ownIP.getHostAddress() + ":80/userContent/screenshot/" + screenshotPath;
-        return s;
+        return screenshotPath;
     }
 
     /**
