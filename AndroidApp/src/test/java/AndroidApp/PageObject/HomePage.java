@@ -67,6 +67,24 @@ public class HomePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='More']")
     private AndroidElement icon_more;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Wallet']")
+    private AndroidElement button_wallet;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='History']")
+    private AndroidElement button_history;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Expense']")
+    private AndroidElement button_expense;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Home']")
+    private AndroidElement button_home;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Offers']")
+    private AndroidElement button_offers;
+
+    @AndroidFindBy(id = "com.mobikwik_new:id/btn_logout")
+    private AndroidElement label_logout;
+
 
     public HomePage(AndroidDriver driver) {
         this.driver = driver;
@@ -133,5 +151,28 @@ public class HomePage {
         Element.selectElement(driver, icon_more, "More Icon");
     }
 
+    public void clickOnBottomBarHome() throws IOException {
+        Element.selectElement(driver, button_home, "Botton Bar Home");
+    }
+
+    public void clickOnBottomBarExpense() throws IOException {
+        Element.selectElement(driver, button_expense, "Botton Bar Expense");
+    }
+
+    public void clickOnBottomBarOffers() throws IOException {
+        Element.selectElement(driver, button_offers, "Botton Bar Offers");
+    }
+
+    public void clickOnBottomBarHistory() throws IOException {
+        Element.selectElement(driver, button_history, "Botton Bar History");
+    }
+
+    public void clickOnBottomBarWallet() throws IOException {
+        Element.selectElement(driver, button_wallet, "Botton Bar Wallet");
+    }
+
+    public void clickOnlogout() throws IOException {
+        Element.selectElement(driver, label_logout, "Logout Button");
+    }
 
 }

@@ -21,6 +21,7 @@ public class MBKCommonControlsHelper {
     MbkCommonControlsPage mbkCommonControlsPage;
     Element element;
     WalletBalancePage walletBalancePage;
+    Screen screen;
 
     enum BalanceType {
         MAINBALANCE,
@@ -55,6 +56,7 @@ public class MBKCommonControlsHelper {
         this.driver = driver;
         mbkCommonControlsPage = new MbkCommonControlsPage(driver);
         element = new Element(driver);
+        screen = new Screen(driver);
 
     }
 
@@ -148,7 +150,7 @@ public class MBKCommonControlsHelper {
 
         }
 
-        Screen.swipeUpMore(driver);
+        screen.swipeUpMore(driver);
 
 
         // Fetch the supercash balance
