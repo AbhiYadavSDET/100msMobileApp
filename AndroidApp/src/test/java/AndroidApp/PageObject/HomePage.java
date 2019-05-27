@@ -141,8 +141,9 @@ public class HomePage {
         Element.selectElement(driver, icon_more, "More Icon");
     }
 
-    public void clickOffers() throws IOException {
+    public OfferPage clickOffers() throws IOException {
         Element.selectElement(driver, offers_tab, "Offers");
+        return new OfferPage(driver);
     }
 
     public void clickMutualFunds() throws IOException {
