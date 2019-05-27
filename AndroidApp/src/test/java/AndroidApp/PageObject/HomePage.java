@@ -44,7 +44,7 @@ public class HomePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Boost Loan']")
     private AndroidElement icon_boostLoan;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Mutual Fund']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Mutual Funds']")
     private AndroidElement icon_mutualFund;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Insurance']")
@@ -145,8 +145,9 @@ public class HomePage {
         return new OfferPage(driver);
     }
 
-    public void clickMutualFunds() throws IOException {
+    public MutualFundPage clickMutualFunds() throws IOException {
         Element.selectElement(driver, icon_mutualFund, "Mutual Funds");
+        return new MutualFundPage(driver);
     }
 
     public TransactionHistoryPage clickHistory() throws IOException {
