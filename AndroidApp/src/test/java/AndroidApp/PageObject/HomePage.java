@@ -63,9 +63,17 @@ public class HomePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Landline']")
     private AndroidElement icon_landline;
 
-
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='More']")
     private AndroidElement icon_more;
+
+    @AndroidFindBy(id = "com.mobikwik_new:id/navigation_history")
+    private AndroidElement history_tab;
+
+    @AndroidFindBy(id = "com.mobikwik_new:id/navigation_history")
+    private AndroidElement offers_tab;
+
+    @AndroidFindBy(id="com.mobikwik_new:id/skip")
+    public AndroidElement skip_button;
 
 
     public HomePage(AndroidDriver driver) {
@@ -133,5 +141,21 @@ public class HomePage {
         Element.selectElement(driver, icon_more, "More Icon");
     }
 
+    public void clickOffers() throws IOException {
+        Element.selectElement(driver, offers_tab, "Offers");
+    }
+
+    public void clickMutualFunds() throws IOException {
+        Element.selectElement(driver, icon_mutualFund, "Mutual Funds");
+    }
+
+    public TransactionHistoryPage clickHistory() throws IOException {
+        Element.selectElement(driver, history_tab, "History");
+        return new TransactionHistoryPage(driver);
+    }
+
+    public void clickOnSkip() throws InterruptedException {
+        Element.selectElement(driver, skip_button, "Skip");
+    }
 
 }

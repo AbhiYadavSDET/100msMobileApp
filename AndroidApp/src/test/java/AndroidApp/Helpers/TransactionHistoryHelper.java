@@ -4,12 +4,15 @@ import IntegrationTests.Screens.AddmoneyScreen;
 import IntegrationTests.Screens.P2MScreen;
 import IntegrationTests.TransactionHistory.TransactionHistoryHelperBase;
 import UITestFramework.MBKPermissions;
+import UITestFramework.MBReporter;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import logger.Log;
 import org.json.JSONException;
 import org.openqa.selenium.By;
+import test.java.AndroidApp.PageObject.HomePage;
+import test.java.AndroidApp.PageObject.TransactionHistoryPage;
 
 import java.io.IOException;
 
@@ -17,14 +20,16 @@ public class TransactionHistoryHelper {
     TouchAction touchAction;
     MBKPermissions mbkPermissions;
     UITestFramework.MBKCommonControls mbkCommonControls;
-    P2MScreen p2MScreen;
-
+    TransactionHistoryPage transactionHistoryPage;
+    HomePage homePage;
+    MBReporter mbReporter;
 
     public TransactionHistoryHelper(AndroidDriver driver) throws IOException {
-        p2MScreen = new P2MScreen(driver);
         touchAction = new TouchAction(driver);
         mbkPermissions = new MBKPermissions(driver);
         mbkCommonControls = new UITestFramework.MBKCommonControls(driver);
+        homePage = new HomePage(driver);
+        mbReporter = new MBReporter(driver, "testScreenshotDir");
 
     }
 
@@ -38,13 +43,13 @@ public class TransactionHistoryHelper {
         Thread.sleep(3000);
 
         Log.info("SELECT     | Select Transaction History Tab");
-        p2MScreen.selectElement(By.id("com.mobikwik_new:id/navigation_history"));
+        transactionHistoryPage = homePage.clickHistory();
         Thread.sleep(3000);
 
-        int txnCount = p2MScreen.findElements(By.xpath("//android.support.v7.widget.RecyclerView/android.widget.LinearLayout")).size();
+        int txnCount = transactionHistoryPage.getListSize();
         Log.info("VERIFY     | Transaction list count must be non-zero  " + txnCount);
 
-        p2MScreen.verifyTrue(txnCount > 0, "List must be non-empty", false, false);
+        mbReporter.verifyTrue(txnCount > 0, "List must be non-empty", false, false);
     }
 
     public void transactionHistoryVerificationLoggedOut() throws InterruptedException, IOException, JSONException {
@@ -56,16 +61,16 @@ public class TransactionHistoryHelper {
         Thread.sleep(3000);
 
         Log.info("SKIP       | Click on 'Skip' on onboarding screen");
-        p2MScreen.findElement(By.id("com.mobikwik_new:id/skip")).click();
+        homePage.clickOnSkip();
 
         Log.info("SELECT     | Select Transaction History Tab");
-        p2MScreen.selectElement(By.id("com.mobikwik_new:id/navigation_history"));
+        transactionHistoryPage = homePage.clickHistory();
         Thread.sleep(3000);
 
-        String text = p2MScreen.findElement(By.id("com.mobikwik_new:id/btnVerfiySignUp")).getText();
+        String text =  transactionHistoryPage.getCTAText();
 
         Log.info("VERIFY     | User is logged-out");
-        p2MScreen.verifyEquals(text, "Verify & Sign Up", "Description | Actual : " + text + " | " + "Expected : " + "Verify & Sign Up", false, false);
+        mbReporter.verifyEquals(text, "Verify & Sign Up", "Description | Actual : " + text + " | " + "Expected : " + "Verify & Sign Up", false, false);
 
     }
 }
