@@ -29,7 +29,15 @@ public class OfferPage {
     @AndroidFindBy(xpath="//android.widget.LinearLayout/android.view.ViewGroup")
     private AndroidElement offer_list2;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Redeem SuperCash']")
+    private AndroidElement redeemOffer;
+
     String close = "close_button";
+
+    String categoryText = "text";
+
+    String redeemOfferList = "com.mobikwik_new:id/click_view";
+
 
     public OfferPage(AndroidDriver driver) throws IOException {
         this.driver = driver;
@@ -57,8 +65,24 @@ public class OfferPage {
         return Element.waitForVisibility(driver, By.id(close));
     }
 
+    public int fetchCategoryList() throws InterruptedException{
+        return Element.findElements(driver, By.id(categoryText)).size();
+    }
 
+    public void clickOnRedeemOffer() throws InterruptedException{
+        Element.selectElement(driver, redeemOffer, "redeem offer");
+    }
 
+    public int fetchRedeemOffers() throws InterruptedException{
+        return Element.findElements(driver, By.id(redeemOfferList)).size();
+    }
+
+/*
+
+    public void navigateBack() throws InterruptedException{
+        Element.
+    }
+*/
 
 
 }

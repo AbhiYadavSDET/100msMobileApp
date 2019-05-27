@@ -38,7 +38,6 @@ public class HomePage {
     @AndroidFindBy(id = "com.mobikwik_new:id/tx_balance")
     private AndroidElement login_signup_button;
 
-
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Gold']")
     private AndroidElement icon_gold;
 
@@ -69,7 +68,7 @@ public class HomePage {
     @AndroidFindBy(id = "com.mobikwik_new:id/navigation_history")
     private AndroidElement history_tab;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/navigation_history")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Offers']")
     private AndroidElement offers_tab;
 
     @AndroidFindBy(id="com.mobikwik_new:id/skip")

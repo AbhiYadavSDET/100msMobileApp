@@ -5,6 +5,7 @@ import IntegrationTests.Screens.OnboardingScreen;
 import UITestFramework.Api.ApiCommonControls;
 import UITestFramework.ExtentReport.Reporter;
 import UITestFramework.MBKPermissions;
+import UITestFramework.MBReporter;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
@@ -12,6 +13,8 @@ import io.appium.java_client.ios.IOSElement;
 import logger.Log;
 import org.json.JSONException;
 import org.openqa.selenium.By;
+import test.java.AndroidApp.PageObject.HomePage;
+import test.java.AndroidApp.PageObject.OfferPage;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -29,8 +32,9 @@ public class OfferHelper{
     ApiCommonControls apiCommonControls;
     Reporter reporter = new Reporter();
     OfferScreen offerScreen;
-    Set<IOSElement> setCategory = new HashSet<>();
-
+    HomePage homePage;
+    OfferPage offerPage;
+    MBReporter mbReporter;
 
     public OfferHelper(AndroidDriver driver) throws IOException {
         offerScreen = new OfferScreen(driver);
@@ -38,6 +42,8 @@ public class OfferHelper{
         mbkPermissions = new MBKPermissions(driver);
         mbkCommonControls = new UITestFramework.MBKCommonControls(driver);
         apiCommonControls = new ApiCommonControls();
+        homePage = new HomePage(driver);
+        mbReporter = new MBReporter(driver, "testScreenshotDir");
 
 
     }
@@ -50,43 +56,41 @@ public class OfferHelper{
         mbkPermissions.handleKYCScreen(directoryName, screenName, testStepCount);
 
         // Step 1 | Goto Offers page
-        offerScreen.selectElement(By.xpath("//android.widget.TextView[@text = 'Offers']"));
+        offerPage = homePage.clickOffers();
 
         // Step 2 | Select the search option
-        offerScreen.selectElement(By.id("btn_search"));
+        offerPage.clickOnSearchOption();
 
         // Step 3 | Enter the offer name
-        offerScreen.waitForVisibility(By.id("offerSearchView"));
-        offerScreen.findElement(By.id("offerSearchView")).sendKeys(offerName);
+        offerPage.sendOfferName(offerName);
         Thread.sleep(3000);
-        offerScreen.navigateBack();
 
         // Step 4 | Verify the number of results
-        int noOfOffers = offerScreen.findElements(By.xpath("//android.widget.LinearLayout/android.view.ViewGroup")).size();
-
-        offerScreen.verifyTrue(noOfOffers > 0, "Actual : " + noOfOffers + " | Expected : > 1", false, false);
+        int noOfOffers = offerPage.noOfOffers();
+        mbReporter.verifyTrue(noOfOffers > 0, "Actual : " + noOfOffers + " | Expected : > 1", false, false);
 
     }
 
     public void offerCategoryCheck(String directoryName, String screenName) throws InterruptedException, IOException, JSONException {
         int testStepCount = 0;
+        int noOfCategories = 0;
 
         // Handle the KYC Popup
         mbkPermissions.handleKYCScreen(directoryName, screenName, testStepCount);
 
         // Step 1 | Goto Offers page
-        offerScreen.selectElement(By.xpath("//android.widget.TextView[@text = 'Offers']"));
+        offerPage = homePage.clickOffers();
 
-        // Step 2 : Select the Category option
-        offerScreen.selectElement(By.id("btn_categories"));
+        // Step 2 | Select the Category option
+        offerPage.selectCategoryOption();
 
         // Step 3 | Fetch all the categories that are getting displayed
-        offerScreen.waitForVisibility(By.id("close_button"));
-        List<AndroidElement> listCategory = offerScreen.findElements(By.id("text"));
-        int noOfCategories = listCategory.size();
+        if (offerPage.isCloseButtonVisible()){
+            noOfCategories = offerPage.fetchCategoryList();
+        }
 
         // Step 4 | Apply the assertions
-        offerScreen.verifyTrue(noOfCategories > 0, "Actual : " + noOfCategories + " | Expected > 0", false, false);
+        mbReporter.verifyTrue(noOfCategories > 0, "Actual : " + noOfCategories + " | Expected > 0", false, false);
 
     }
 
@@ -97,17 +101,16 @@ public class OfferHelper{
         mbkPermissions.handleKYCScreen(directoryName, screenName, testStepCount);
 
         // Step 1 | Goto Offers page
-        offerScreen.selectElement(By.xpath("//android.widget.TextView[@text = 'Offers']"));
+        offerPage = homePage.clickOffers();
 
         // Step 2 | Go to redeem offer tab
-        offerScreen.selectElement(By.xpath("//android.widget.TextView[@text = 'Redeem SuperCash']"));
+        offerPage.clickOnRedeemOffer();
 
         // Step 3 | Fetch the list of offers
-        List<AndroidElement> list = offerScreen.findElements(By.id("com.mobikwik_new:id/click_view"));
-        int listSize = list.size();
+        int listSize = offerPage.fetchRedeemOffers();
 
-        // Step 3 | Apply the assertions
-        offerScreen.verifyTrue(listSize > 0, "Actual : " + listSize + " | Expected > 0", false, false);
+        // Step 4 | Apply the assertions
+        mbReporter.verifyTrue(listSize > 0, "Actual : " + listSize + " | Expected > 0", false, false);
 
 
     }
