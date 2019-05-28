@@ -110,6 +110,13 @@ public class MBKCommonControlsHelper {
         handleNPS();
     }
 
+    public void returnToHomePageFromP2MSuccessScreen() throws InterruptedException {
+        mbkCommonControlsPage.clickOnSuccessPageCross();
+        handleRatingsPopUp();
+        handleNPS();
+        //mbkCommonControlsPage.clickOnSuccessPageCross();
+    }
+
     public LinkedHashMap<String, String> getBalance()
             throws InterruptedException, IOException {
         LinkedHashMap<String, String> walletBalance = new LinkedHashMap<>();

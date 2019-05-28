@@ -98,6 +98,11 @@ public class HomePage {
         Log.info("*****On Home Page*****");
     }
 
+    public P2MPage clickOnButtonPayToMerchant() throws InterruptedException, IOException {
+        Element.selectElement(driver, button_pay_to_merchant, "Pay To Merchant");
+        return new P2MPage(driver);
+    }
+
     public SideDrawerPage clickHamburgerIcon() {
         Element.selectElement(driver, sidedrawer_icon, "Hamburger Icon");
         return new SideDrawerPage(driver);
