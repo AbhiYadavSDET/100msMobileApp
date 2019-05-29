@@ -67,6 +67,12 @@ public class HomePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='More']")
     private AndroidElement icon_more;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='More Services']/following::android.widget.TextView[@text='More']")
+    private AndroidElement icon_service_more;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Bus']")
+    private AndroidElement icon_bus;
+
 
     public HomePage(AndroidDriver driver) {
         this.driver = driver;
@@ -132,6 +138,16 @@ public class HomePage {
     public void clickMoreIcon() throws IOException {
         Element.selectElement(driver, icon_more, "More Icon");
     }
+
+    public void clickMoreServicesIcon() throws IOException {
+        Element.selectElement(driver, icon_service_more, "More Services Icon under More Services");
+    }
+
+    public BusPage clickBusIcon() throws IOException {
+        Element.selectElement(driver, icon_bus, "Bus Icon");
+        return new BusPage(driver);
+    }
+
 
 
 }
