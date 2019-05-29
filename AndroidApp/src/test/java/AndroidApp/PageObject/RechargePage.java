@@ -102,6 +102,12 @@ public class RechargePage {
     @AndroidFindBy(id = "com.mobikwik_new:id/fixed_amount_value")
     public AndroidElement label_success_screen_amount;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Telephone Number (Without STD Code)']/following::android.widget.EditText[1]")
+    public AndroidElement textbox_telephone_no;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Telephone Number (Without STD Code)']/following::android.widget.EditText[2]")
+    public AndroidElement textbox_can;
+
     public RechargePage(AndroidDriver driver) throws IOException {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -227,5 +233,15 @@ public class RechargePage {
     public void enterBpNumber(String number) throws InterruptedException {
         Element.enterText(driver, textbox_bp_number, number, "Enter Number");
     }
+
+    public void enterTelephoneNumber(String telephoneNo) throws InterruptedException {
+        Element.enterText(driver, textbox_telephone_no, telephoneNo, "Enter Telephone Number");
+    }
+
+
+    public void enterCanNumber(String can) throws InterruptedException {
+        Element.enterText(driver, textbox_can, can, "Enter can");
+    }
+
 
 }

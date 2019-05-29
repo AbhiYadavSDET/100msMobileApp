@@ -21,6 +21,7 @@ public class MBKCommonControlsHelper {
     MbkCommonControlsPage mbkCommonControlsPage;
     Element element;
     WalletBalancePage walletBalancePage;
+    Screen screen;
 
     enum BalanceType {
         MAINBALANCE,
@@ -55,6 +56,7 @@ public class MBKCommonControlsHelper {
         this.driver = driver;
         mbkCommonControlsPage = new MbkCommonControlsPage(driver);
         element = new Element(driver);
+        screen = new Screen(driver);
 
     }
 
@@ -108,6 +110,13 @@ public class MBKCommonControlsHelper {
         handleNPS();
     }
 
+    public void returnToHomePageFromP2MSuccessScreen() throws InterruptedException {
+        mbkCommonControlsPage.clickOnSuccessPageCross();
+        handleRatingsPopUp();
+        handleNPS();
+        //mbkCommonControlsPage.clickOnSuccessPageCross();
+    }
+
     public LinkedHashMap<String, String> getBalance()
             throws InterruptedException, IOException {
         LinkedHashMap<String, String> walletBalance = new LinkedHashMap<>();
@@ -148,7 +157,7 @@ public class MBKCommonControlsHelper {
 
         }
 
-        Screen.swipeUpMore(driver);
+        screen.swipeUpMore(driver);
 
 
         // Fetch the supercash balance
