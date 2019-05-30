@@ -2,15 +2,12 @@
 <suite name="sanitySuit">
     <listeners>
         <listener class-name="UITestFramework.retryLogic.RetryListener"/>
-        <listener class-name="UITestFramework.retryLogic.TestListener"/>
+        <listener class-name="main.java.utils.Listeners.TestListener"/>
     </listeners>
     <parameter name="build" value="prod"/>
     <parameter name="level" value="payments"/>
     <parameter name="saucelabs" value="false"></parameter>
-    <parameter name="androidOSVersion" value="7.0"></parameter>
     <parameter name="methodName" value="sanity"></parameter>
-    <parameter name="udid" value="330062db17b4a48b"></parameter>
-    <parameter name="deviceName" value="Moto G5"></parameter>
 
 
     <test name="loginSanity">
@@ -18,63 +15,30 @@
             <run>
                 <include name="setUp"/>
                 <include name="instantiateHelpers"/>
-                <include name="loginSanity"/>
+                <include name="logout"/>
                 <include name="tearDown"/>
             </run>
         </groups>
         <classes>
             <class name="UITestFramework.CreateSession"/>
-            <class name="IntegrationTests.Onboarding.OnboardingTest"/>
             <class name="UITestFramework.ExtentReport.Reporter"/>
+            <class name="test.java.AndroidApp.Test.Login.Test_login"/>
         </classes>
     </test>
 
-    <test name="signUpSanity">
+    <test name="addMoneySanity">
         <groups>
             <run>
                 <include name="setUp"/>
                 <include name="instantiateHelpers"/>
-                <include name="signUpSanity"/>
+                <include name="addMoneySanity"/>
                 <include name="tearDown"/>
             </run>
         </groups>
         <classes>
             <class name="UITestFramework.CreateSession"/>
-            <class name="IntegrationTests.SignUp.SignUpTest"/>
             <class name="UITestFramework.ExtentReport.Reporter"/>
-        </classes>
-    </test>
-
-
-    <test name="addmoneySanity">
-        <groups>
-            <run>
-                <include name="setUp"/>
-                <include name="instantiateHelpers"/>
-                <include name="addmoneySanity"/>
-                <include name="tearDown"/>
-            </run>
-        </groups>
-        <classes>
-            <class name="UITestFramework.CreateSession"/>
-            <class name="IntegrationTests.AddMoney.AddmoneyTest"/>
-            <class name="UITestFramework.ExtentReport.Reporter"/>
-        </classes>
-    </test>
-
-    <test name="offerSanity">
-        <groups>
-            <run>
-                <include name="setUp"/>
-                <include name="instantiateHelpers"/>
-                <include name="offerSanity"/>
-                <include name="tearDown"/>
-            </run>
-        </groups>
-        <classes>
-            <class name="UITestFramework.CreateSession"/>
-            <class name="IntegrationTests.Offer.OfferTest"/>
-            <class name="UITestFramework.ExtentReport.Reporter"/>
+            <class name="test.java.AndroidApp.Test.AddMoney.Test_AddMoney"/>
         </classes>
     </test>
 
@@ -89,140 +53,8 @@
         </groups>
         <classes>
             <class name="UITestFramework.CreateSession"/>
-            <class name="IntegrationTests.Recharge.RechargeTest"/>
             <class name="UITestFramework.ExtentReport.Reporter"/>
-        </classes>
-    </test>
-
-    <test name="viewBillSanity">
-        <groups>
-            <run>
-                <include name="setUp"/>
-                <include name="instantiateHelpers"/>
-                <include name="viewBillSanity"/>
-                <include name="tearDown"/>
-            </run>
-        </groups>
-        <classes>
-            <class name="UITestFramework.CreateSession"/>
-            <class name="IntegrationTests.ViewBill.ViewBillTest"/>
-            <class name="UITestFramework.ExtentReport.Reporter"/>
-        </classes>
-    </test>
-
-    <test name="p2pSanity">
-        <groups>
-            <run>
-                <include name="setUp"/>
-                <include name="instantiateHelpers"/>
-                <include name="p2pSanity"/>
-                <include name="tearDown"/>
-            </run>
-        </groups>
-        <classes>
-            <class name="UITestFramework.CreateSession"/>
-            <class name="IntegrationTests.P2P.P2PTest"/>
-            <class name="UITestFramework.ExtentReport.Reporter"/>
-        </classes>
-    </test>
-
-    <test name="p2mSanity">
-        <groups>
-            <run>
-                <include name="setUp"/>
-                <include name="instantiateHelpers"/>
-                <include name="p2mSanity"/>
-                <include name="tearDown"/>
-            </run>
-        </groups>
-        <classes>
-            <class name="UITestFramework.CreateSession"/>
-            <class name="IntegrationTests.P2M.P2MTest"/>
-            <class name="UITestFramework.ExtentReport.Reporter"/>
-        </classes>
-    </test>
-
-    <test name="nearBySanity">
-        <groups>
-            <run>
-                <include name="setUp"/>
-                <include name="instantiateHelpers"/>
-                <include name="nearBySanity"/>
-                <include name="tearDown"/>
-            </run>
-        </groups>
-        <classes>
-            <class name="UITestFramework.CreateSession"/>
-            <class name="IntegrationTests.NearBy.NearByTest"/>
-            <class name="UITestFramework.ExtentReport.Reporter"/>
-        </classes>
-    </test>
-
-    <test name="olaSanity">
-        <groups>
-            <run>
-                <include name="setUp"/>
-                <include name="instantiateHelpers"/>
-                <include name="olaSanity"/>
-                <include name="tearDown"/>
-            </run>
-        </groups>
-
-        <classes>
-            <class name="UITestFramework.CreateSession"/>
-            <class name="IntegrationTests.Ola.OlaTest"/>
-            <class name="UITestFramework.ExtentReport.Reporter"/>
-        </classes>
-    </test>
-    <test name="busSanity">
-        <groups>
-            <run>
-                <include name="setUp"/>
-                <include name="instantiateHelpers"/>
-                <include name="busSanity"/>
-                <include name="tearDown"/>
-            </run>
-        </groups>
-
-        <classes>
-            <class name="UITestFramework.CreateSession"/>
-            <class name="IntegrationTests.Bus.BusTest"/>
-            <class name="UITestFramework.ExtentReport.Reporter"/>
-        </classes>
-    </test>
-
-
-    <test name="impsSanity">
-        <groups>
-            <run>
-                <include name="setUp"/>
-                <include name="instantiateHelpers"/>
-                <include name="impsTransfer"/>
-                <include name="tearDown"/>
-            </run>
-        </groups>
-
-        <classes>
-            <class name="UITestFramework.CreateSession"/>
-            <class name="IntegrationTests.Imps.ImpsTest"/>
-            <class name="UITestFramework.ExtentReport.Reporter"/>
-        </classes>
-    </test>
-
-    <test name="bikeSanity">
-        <groups>
-            <run>
-                <include name="setUp"/>
-                <include name="instantiateHelpers"/>
-                <include name="bikeBook"/>
-                <include name="tearDown"/>
-            </run>
-        </groups>
-
-        <classes>
-            <class name="UITestFramework.CreateSession"/>
-            <class name="IntegrationTests.Bikes.BikeTest"/>
-            <class name="UITestFramework.ExtentReport.Reporter"/>
+            <class name="test.java.AndroidApp.Test.Recharge.Test_Recharge"/>
         </classes>
     </test>
 

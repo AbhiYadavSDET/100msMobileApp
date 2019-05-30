@@ -3,7 +3,6 @@ package test.java.AndroidApp.Helpers;
 import UITestFramework.Api.ApiCommonControls;
 import UITestFramework.MBKCommonControls;
 import UITestFramework.MBReporter;
-import UITestFramework.MobiKwikScreen;
 import io.appium.java_client.android.AndroidDriver;
 import logger.Log;
 import main.java.utils.Config;
@@ -35,8 +34,8 @@ public class LoginHelper {
     HomePage homePage;
     SideDrawerPage sideDrawerPage;
     MBReporter mbReporter;
-    MobiKwikScreen mobiKwikScreen;
     PermissionHelper permissionHelper;
+    Screen screen;
 
 
     public LoginHelper(AndroidDriver driver) throws IOException {
@@ -45,11 +44,11 @@ public class LoginHelper {
         apiOtp = new HashMap<>();
         mbkCommonControls = new MBKCommonControls(driver);
         mbReporter = new MBReporter(driver, "testScreenshotDir");
-        mobiKwikScreen = new MobiKwikScreen(driver);
 
         // Starting page declaration
         onboardingPage = new OnboardingPage(driver);
         permissionHelper = new PermissionHelper(driver);
+        screen = new Screen(driver);
 
 
     }
@@ -208,7 +207,6 @@ public class LoginHelper {
         permissionHelper.dismissHintPopup();
         Screen.hideKeyboard(driver);
 
-        Screen.swipeUpMore(driver);
         homePage = onboardingPage.clickOnSkip();
 
         mbkCommonControls.handleConscentPopup();
@@ -231,6 +229,25 @@ public class LoginHelper {
 
 
         //homePage.clickHomePageMbkLogo();
+
+
+    }
+
+    public void logout() throws IOException, InterruptedException {
+        HomePage homePage = new HomePage(driver);
+
+        homePage.clickOnBottomBarWallet();
+
+        //Swipe to the botton of the screen
+        Thread.sleep(2000);
+        screen.swipeUpMore(driver);
+        screen.swipeUpMore(driver);
+        Thread.sleep(2000);
+
+
+        homePage.clickOnlogout();
+
+        // Apply the assertions
 
 
     }

@@ -250,9 +250,13 @@ public class RechargeHelper {
 
     }
 
-    public void viewBillMtnlDelhi(String operator, String mobileNo) throws InterruptedException, IOException, JSONException {
+    public void viewBillMtnlDelhi(String operator, String telephoneNo) throws InterruptedException, IOException, JSONException {
 
         //balanceBefore = mbkCommonControlsHelper.getBalance();
+
+        String[] arr = telephoneNo.split("\\|");
+        String expectedtelephoneNo = arr[arr.length - 2];
+        String expectedCan = arr[arr.length - 1];
 
         homePage.clickMoreIcon();
         rechargePage = homePage.clickLandlineIcon();
@@ -263,7 +267,9 @@ public class RechargeHelper {
 
         rechargePage.selectOperator(operator);
 
-        rechargePage.enterBpNumber(mobileNo);
+        rechargePage.enterTelephoneNumber(expectedtelephoneNo);
+
+        rechargePage.enterCanNumber(expectedCan);
 
         rechargePage.clickOnCtaContinue2();
 
@@ -272,7 +278,7 @@ public class RechargeHelper {
         String actualSuccessScreenAmount = rechargePage.getSuccessScreenAmount();
 
         mbReporter.verifyEqualsWithLogging(actualSuccessScreenOperator, operator, "Success Page | Verify Operator", false, false);
-        mbReporter.verifyEqualsWithLogging(actualSuccessScreenNumber, mobileNo, "Success Page | Verify Number", false, false);
+        mbReporter.verifyEqualsWithLogging(actualSuccessScreenNumber, expectedCan, "Success Page | Verify Telephone Number", false, false);
         mbReporter.verifyTrueWithLogging(Double.parseDouble(actualSuccessScreenAmount) > 0, "Success Page | Verify Amount greater than 0", false, false);
 
         mbkCommonControlsHelper.clickUpButton();
