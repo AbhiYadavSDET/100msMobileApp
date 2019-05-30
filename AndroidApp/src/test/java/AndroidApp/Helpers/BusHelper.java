@@ -4,6 +4,7 @@ import UITestFramework.MBReporter;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import logger.Log;
+import main.java.utils.DateHelper;
 import main.java.utils.Element;
 import main.java.utils.Screen;
 import net.sourceforge.tess4j.TesseractException;
@@ -11,8 +12,8 @@ import org.json.JSONException;
 import org.openqa.selenium.By;
 import test.java.AndroidApp.PageObject.BusPage;
 import test.java.AndroidApp.PageObject.HomePage;
-
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 
 
@@ -28,6 +29,11 @@ public class BusHelper {
     BusPage busPage;
     PermissionHelper permissionHelper;
 
+
+    public static HashMap<String, String> map;
+    public static HashMap<String, String> balanceBefore;
+    public static HashMap<String, String> balanceAfter;
+
     public BusHelper(AndroidDriver driver) throws IOException {
         this.driver = driver;
 
@@ -42,23 +48,35 @@ public class BusHelper {
 
     public void busBook() throws InterruptedException, IOException, JSONException {
 
-        Screen.swipeUpMore(driver);
+        balanceBefore = mbkCommonControlsHelper.getBalance();
+
+        Element.waitForVisibility(driver, homePage.icon_mobile);
+
+        screen.swipeUpMore(driver);
 
         homePage.clickMoreServicesIcon();
 
         busPage = homePage.clickBusIcon();
 
-        busPage.selectDepartureCity();
+        busPage.selectDepartureCityBox();
 
         busPage.enterDepartureCity("bhubaneswar");
 
-        busPage.selectDestinationCity();
+        busPage.selectDepartureCity();
 
         busPage.enterDestinationCity("baripada");
 
+        busPage.selectDestinationCity();
+
+        screen.swipeUpMore(driver);
+
+//        DateHelper.getDateAterNDays("dd-mm-yyyy", 10);
+
+
+
+
         busPage.selectDate();
 
-        Screen.swipeUpMore(driver);
 
         busPage.selectBus();
 

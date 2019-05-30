@@ -52,7 +52,7 @@ public class HomePage {
     private AndroidElement icon_insurance;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Mobile']")
-    private AndroidElement icon_mobile;
+    public AndroidElement icon_mobile;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='DTH']")
     private AndroidElement icon_dth;

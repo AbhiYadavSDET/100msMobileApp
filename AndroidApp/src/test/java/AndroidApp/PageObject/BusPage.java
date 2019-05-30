@@ -23,7 +23,7 @@ public class BusPage {
 
     //Select Location Page
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Departure']/following::android.widget.TextView[@text = 'Enter City Name']")
+    @AndroidFindBy(id = "com.mobikwik_new:id/txt_departure_city")
     private AndroidElement textbox_enter_departure_city;
 
     //Departure City = bhubaneswar
@@ -31,7 +31,7 @@ public class BusPage {
     @AndroidFindBy(id = "com.mobikwik_new:id/txt_title")
     private AndroidElement select_departure_city;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Destination']/following::android.widget.TextView[@text = 'Enter City Name']")
+    @AndroidFindBy(id = "com.mobikwik_new:id/txt_destination_city")
     private AndroidElement textbox_enter_destination_city;
 
     //Destination City = baripada
@@ -42,6 +42,9 @@ public class BusPage {
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = '15']")
     private AndroidElement select_date;
+
+    @AndroidFindBy(id = "com.mobikwik_new:id/textActionButton")
+    public AndroidElement cta_modify;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Das & Das Travels']")
     private AndroidElement select_bus;
@@ -161,6 +164,10 @@ public class BusPage {
 
     public void selectDate() throws InterruptedException{
         Element.selectElement(driver, select_date,"Select Date");
+    }
+
+    public void clickOnModify() throws InterruptedException{
+        Element.selectElement(driver, cta_modify, "Modify CTA");
     }
 
     public void selectBus() throws InterruptedException{
