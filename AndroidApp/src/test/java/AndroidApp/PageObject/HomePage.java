@@ -45,7 +45,7 @@ public class HomePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Boost Loan']")
     private AndroidElement icon_boostLoan;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Mutual Fund']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Mutual Funds']")
     private AndroidElement icon_mutualFund;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Insurance']")
@@ -66,6 +66,15 @@ public class HomePage {
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='More']")
     private AndroidElement icon_more;
+
+    @AndroidFindBy(id = "com.mobikwik_new:id/navigation_history")
+    private AndroidElement history_tab;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Offers']")
+    private AndroidElement offers_tab;
+
+    @AndroidFindBy(id="com.mobikwik_new:id/skip")
+    public AndroidElement skip_button;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Wallet']")
     private AndroidElement button_wallet;
@@ -178,6 +187,24 @@ public class HomePage {
 
     public void clickOnlogout() throws IOException {
         Element.selectElement(driver, label_logout, "Logout Button");
+    }
+    public OfferPage clickOffers() throws IOException {
+        Element.selectElement(driver, offers_tab, "Offers");
+        return new OfferPage(driver);
+    }
+
+    public MutualFundPage clickMutualFunds() throws IOException {
+        Element.selectElement(driver, icon_mutualFund, "Mutual Funds");
+        return new MutualFundPage(driver);
+    }
+
+    public TransactionHistoryPage clickHistory() throws IOException {
+        Element.selectElement(driver, history_tab, "History");
+        return new TransactionHistoryPage(driver);
+    }
+
+    public void clickOnSkip() throws InterruptedException {
+        Element.selectElement(driver, skip_button, "Skip");
     }
 
 }
