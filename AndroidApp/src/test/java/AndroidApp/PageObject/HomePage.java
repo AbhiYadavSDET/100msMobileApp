@@ -45,7 +45,7 @@ public class HomePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Boost Loan']")
     private AndroidElement icon_boostLoan;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Mutual Fund']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Mutual Funds']")
     private AndroidElement icon_mutualFund;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Insurance']")

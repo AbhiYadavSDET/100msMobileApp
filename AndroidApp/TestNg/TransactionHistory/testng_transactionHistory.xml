@@ -6,8 +6,7 @@
     </listeners>
     <parameter name="build" value="prod"/>
     <parameter name="level" value="payments"/>
-    <parameter name="saucelabs" value="false"></parameter>
-    <parameter name="portNo" value="4500"></parameter>
+
 
     <test name="Mobikwik Automation Tests">
         <groups>
@@ -21,7 +20,7 @@
         <classes>
             <class name="UITestFramework.CreateSession"/>
             <class name="UITestFramework.ExtentReport.Reporter"/>
-            <class name ="test.java.AndroidApp.Test.Test_History"/>
+            <class name="test.java.AndroidApp.Test.Test_History"/>
         </classes>
 
     </test>

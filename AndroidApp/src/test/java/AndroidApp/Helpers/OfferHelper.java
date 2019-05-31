@@ -67,7 +67,7 @@ public class OfferHelper{
 
         // Step 4 | Verify the number of results
         int noOfOffers = offerPage.noOfOffers();
-        mbReporter.verifyTrue(noOfOffers > 0, "Actual : " + noOfOffers + " | Expected : > 1", false, false);
+        mbReporter.verifyTrueWithLogging(noOfOffers > 0, "Actual : " + noOfOffers + " | Expected : > 1", false, false);
 
     }
 
@@ -90,7 +90,7 @@ public class OfferHelper{
         }
 
         // Step 4 | Apply the assertions
-        mbReporter.verifyTrue(noOfCategories > 0, "Actual : " + noOfCategories + " | Expected > 0", false, false);
+        mbReporter.verifyTrueWithLogging(noOfCategories > 0, "Actual : " + noOfCategories + " | Expected > 0", false, false);
 
     }
 
@@ -110,7 +110,7 @@ public class OfferHelper{
         int listSize = offerPage.fetchRedeemOffers();
 
         // Step 4 | Apply the assertions
-        mbReporter.verifyTrue(listSize > 0, "Actual : " + listSize + " | Expected > 0", false, false);
+        mbReporter.verifyTrueWithLogging(listSize > 0, "Actual : " + listSize + " | Expected > 0", false, false);
 
 
     }
