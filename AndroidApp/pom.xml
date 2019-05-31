@@ -43,11 +43,11 @@
     <distributionManagement>
         <repository>
             <id>mbk</id>
-            <url>http://mbk-jenkins.southindia.cloudapp.azure.com:8081/artifactory/libs-release-local</url>
+            <url>https://artifactory.mobikwik.com/artifactory/libs-release-local</url>
         </repository>
         <snapshotRepository>
             <id>mbk</id>
-            <url>http://mbk-jenkins.southindia.cloudapp.azure.com:8081/artifactory/libs-snapshot-local</url>
+            <url>https://artifactory.mobikwik.com/artifactory/libs-snapshot-local</url>
         </snapshotRepository>
     </distributionManagement>
     <repositories>
@@ -68,7 +68,7 @@
         <repository>
             <id>ext-release</id>
             <name>ext-libs-releases</name>
-            <url>http://mbk-jenkins.southindia.cloudapp.azure.com:8081/artifactory/ext-release-local</url>
+            <url>https://artifactory.mobikwik.com/artifactory/ext-release-local</url>
         </repository>
         <repository>
             <snapshots>
@@ -76,26 +76,26 @@
             </snapshots>
             <id>release</id>
             <name>libs-release</name>
-            <url>http://mbk-jenkins.southindia.cloudapp.azure.com:8081/artifactory/libs-release-local</url>
+            <url>https://artifactory.mobikwik.com/artifactory/libs-release-local</url>
         </repository>
         <repository>
             <id>snapshot</id>
             <name>libs-snapshot</name>
-            <url>http://mbk-jenkins.southindia.cloudapp.azure.com:8081/artifactory/libs-snapshot-local</url>
+            <url>https://artifactory.mobikwik.com/artifactory/libs-snapshot-local</url>
         </repository>
     </repositories>
     <dependencies>
-        <dependency>
-            <groupId>com.mobikwik.automation</groupId>
-            <artifactId>framework</artifactId>
-            <version>5.6</version>
-        </dependency>
+
         <dependency>
             <groupId>io.appium</groupId>
             <artifactId>java-client</artifactId>
             <version>7.0.0</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.mobikwik.automation</groupId>
+            <artifactId>framework</artifactId>
+            <version>5.7</version>
+        </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
