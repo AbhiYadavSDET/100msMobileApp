@@ -100,6 +100,8 @@ public class HomePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Bus']")
     private AndroidElement icon_bus;
 
+    @AndroidFindBy(id = "com.mobikwik_new:id/navigation_wallet")
+    private AndroidElement navigate_wallet_page;
 
     public HomePage(AndroidDriver driver) {
         this.driver = driver;
@@ -221,6 +223,10 @@ public class HomePage {
         return new BusPage(driver);
     }
 
+    public WalletPage clickWalletNavigate() throws IOException{
+        Element.selectElement(driver, navigate_wallet_page, "Navigate to Wallet Page");
+        return new WalletPage(driver);
+    }
 
 
 }
