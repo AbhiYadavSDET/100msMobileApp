@@ -17,6 +17,11 @@ public abstract class DateHelper {
         return simpleDateFormat.format(new Date());
     }
 
+    public static int getDayFromCurrentDate() {
+        Calendar calendar = Calendar.getInstance();
+        return calendar.get(Calendar.DAY_OF_MONTH);
+    }
+
     public static String getDateAterNDays(DateFormatEnums dateFormat, int daysAfterCurrentDate) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormat.getValue());
         Calendar calendar = Calendar.getInstance();
