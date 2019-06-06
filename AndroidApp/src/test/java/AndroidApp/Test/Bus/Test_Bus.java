@@ -26,5 +26,15 @@ public class Test_Bus extends CreateSession {
 
     }
 
+    @Test(groups = {"busCancel", "busSanity"}, priority = 0)
+    public void Bus_Cancel() throws IOException, JSONException, InterruptedException {
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaEmail("parajjain@gmail.com", "Test@1234");
+
+        BusHelper busHelper = new BusHelper(getAndroidDriver());
+        busHelper.busCancel();
+
+    }
+
 
 }

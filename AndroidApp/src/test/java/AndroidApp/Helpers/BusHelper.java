@@ -123,7 +123,39 @@ public class BusHelper {
     }
 
 
+    public void busCancel() throws InterruptedException, IOException, JSONException {
 
+        balanceBefore = mbkCommonControlsHelper.getBalance();
+
+        Element.waitForVisibility(driver, homePage.icon_mobile);
+
+        screen.swipeUp();
+
+        homePage.clickMoreServicesIcon();
+
+        busPage = homePage.clickBusIcon();
+
+        busPage.clickOnBookingsCta();
+
+        busPage.selectTicketForCancellation();
+
+        screen.swipeUp();
+
+        busPage.clickOnCancelTicketCta();
+
+        busPage.clickOnCancelCompleteTicketCta();
+
+        busPage.clickOnConfirmCancelTicketCta();
+
+        String actualCancellationSuccessMessage = busPage.getCancellationSuccess();
+        String actualCancellationRefundMessage = busPage.getCancellationRefund();
+
+
+
+        Log.info(actualCancellationSuccessMessage);
+        Log.info(actualCancellationRefundMessage);
+
+    }
 
 
 
