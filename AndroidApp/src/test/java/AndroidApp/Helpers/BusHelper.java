@@ -2,19 +2,17 @@ package test.java.AndroidApp.Helpers;
 
 import UITestFramework.MBReporter;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
 import logger.Log;
 import main.java.utils.DateFormatEnums;
 import main.java.utils.DateHelper;
 import main.java.utils.Element;
 import main.java.utils.Screen;
-import net.sourceforge.tess4j.TesseractException;
 import org.json.JSONException;
 import org.openqa.selenium.By;
 import test.java.AndroidApp.PageObject.BusPage;
 import test.java.AndroidApp.PageObject.HomePage;
+
 import java.io.IOException;
-import java.util.Date;
 import java.util.HashMap;
 
 
@@ -55,7 +53,7 @@ public class BusHelper {
 
         screen.swipeUp();
 
-        homePage.clickMoreServicesIcon();
+        //homePage.clickMoreServicesIcon();
 
         busPage = homePage.clickBusIcon();
 
@@ -69,16 +67,13 @@ public class BusHelper {
 
         busPage.selectDestinationCity();
 
-//        screen.swipeUpMore(driver);
-
 
         Log.info(DateHelper.getCurrentDate(DateFormatEnums.DD_MM_YYYY));
 
 
         busPage.selectDateLater();
 
-        Thread.sleep(2000);
-
+        Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/journey_info"));
 
         screen.swipeUp();
 
@@ -93,9 +88,7 @@ public class BusHelper {
 
         busPage.selectDropPoint();
 
-//        busPage.enterPassengerName("Paraj Jain");
-
-        busPage.clickOnPassengerDetailsConfirmCta();
+        busPage.enterPassengerName("Paraj Jain");
 
         busPage.enterPassengerAge("28");
 
@@ -118,6 +111,8 @@ public class BusHelper {
         Log.info(actualOnwardBookingId);
         Log.info(actualOnwardOperator);
         Log.info(actualOnwardRoute);
+
+        mbkCommonControlsHelper.returnToHomePageFromSuccessScreen();
 
 
     }
@@ -151,23 +146,10 @@ public class BusHelper {
         String actualCancellationRefundMessage = busPage.getCancellationRefund();
 
 
-
         Log.info(actualCancellationSuccessMessage);
         Log.info(actualCancellationRefundMessage);
 
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-    }
+}

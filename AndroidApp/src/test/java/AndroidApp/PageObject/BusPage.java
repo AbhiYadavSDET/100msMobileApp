@@ -6,7 +6,6 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
 import main.java.utils.Element;
-import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
@@ -67,8 +66,7 @@ public class BusPage {
     private AndroidElement select_dropping_point;
 
     //Passenger Details Screen
-
-    @AndroidFindBy(xpath = "//android.widget.TextView[contains(text(), 'Primary Passenger')]/following::android.widget.EditText[]")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Passenger Details']/following::android.widget.EditText[1]")
     private AndroidElement enter_passenger_name;
 
     @AndroidFindBy(xpath = "//android.widget.EditText[@text = 'Age']")
@@ -81,7 +79,6 @@ public class BusPage {
     private AndroidElement cta_continue;
 
     //Confirm Details Screen
-
     @AndroidFindBy(id = "com.mobikwik_new:id/pay_btn")
     private AndroidElement cta_pay_amount;
 
@@ -149,79 +146,79 @@ public class BusPage {
     }
 
 
-    public void enterDepartureCity(String departureCity) throws InterruptedException{
+    public void enterDepartureCity(String departureCity) throws InterruptedException {
         Element.enterText(driver, textbox_enter_departure_city, departureCity, "Enter Departure City");
     }
 
-    public void selectDepartureCity() throws InterruptedException{
+    public void selectDepartureCity() throws InterruptedException {
         Element.selectElement(driver, select_departure_city, "Select Departure city from List");
     }
 
-    public void enterDestinationCity(String destinationCity) throws InterruptedException{
+    public void enterDestinationCity(String destinationCity) throws InterruptedException {
         Element.enterText(driver, textbox_enter_destination_city, destinationCity, "Enter Destination City");
     }
 
 
-    public void selectDestinationCity() throws InterruptedException{
-        Element.selectElement(driver, select_destination_city,"Select Destination city from List");
+    public void selectDestinationCity() throws InterruptedException {
+        Element.selectElement(driver, select_destination_city, "Select Destination city from List");
     }
 
-    public void selectDateLater() throws InterruptedException{
-        Element.selectElement(driver, select_date_later,"Later Date selected");
+    public void selectDateLater() throws InterruptedException {
+        Element.selectElement(driver, select_date_later, "Later Date selected");
     }
 
 
-    public void selectDateEarlier() throws InterruptedException{
-        Element.selectElement(driver, select_date_earlier,"Earlier Date selected");
+    public void selectDateEarlier() throws InterruptedException {
+        Element.selectElement(driver, select_date_earlier, "Earlier Date selected");
     }
 
-    public void clickOnModify() throws InterruptedException{
+    public void clickOnModify() throws InterruptedException {
         Element.selectElement(driver, cta_modify, "Modify CTA");
     }
 
-    public void selectBus() throws InterruptedException{
-        Element.selectElement(driver, select_bus,"Select Bus");
+    public void selectBus() throws InterruptedException {
+        Element.selectElement(driver, select_bus, "Select Bus");
     }
 
-    public void selectNoPassengers() throws InterruptedException{
+    public void selectNoPassengers() throws InterruptedException {
         Element.selectElement(driver, select_number_of_passenger, "Select no of Passengers");
     }
 
-    public void clickOnConfirmSeatsCta() throws InterruptedException{
-        Element.selectElement(driver, button_confirm_seats,"Click on Confirm Seats button");
+    public void clickOnConfirmSeatsCta() throws InterruptedException {
+        Element.selectElement(driver, button_confirm_seats, "Click on Confirm Seats button");
     }
 
-    public void selectBoardingPoint() throws InterruptedException{
-        Element.selectElement(driver, select_boarding_point,"Select Boarding Point");
+    public void selectBoardingPoint() throws InterruptedException {
+        Element.selectElement(driver, select_boarding_point, "Select Boarding Point");
     }
 
-    public void selectDropPoint() throws InterruptedException{
-        Element.selectElement(driver, select_dropping_point,"Select Dropping Point");
+    public void selectDropPoint() throws InterruptedException {
+        Element.selectElement(driver, select_dropping_point, "Select Dropping Point");
     }
 
-    public void enterPassengerName(String name) throws InterruptedException{
-        Element.enterText(driver,enter_passenger_name, name, "Enter Passenger Name");
+    public void enterPassengerName(String name) throws InterruptedException {
+        Element.enterText(driver, enter_passenger_name, name, "Enter Passenger Name");
     }
 
-    public void enterPassengerAge(String age) throws InterruptedException{
-        Element.enterText(driver,enter_passenger_age, age, "Enter Passenger Age");
+    public void enterPassengerAge(String age) throws InterruptedException {
+        Element.enterText(driver, enter_passenger_age, age, "Enter Passenger Age");
     }
 
-    public void selectGender() throws InterruptedException{
-        Element.selectElement(driver, select_gender,"Select Gender");
+    public void selectGender() throws InterruptedException {
+        Element.selectElement(driver, select_gender, "Select Gender");
     }
 
-    public void clickOnPassengerDetailsConfirmCta() throws InterruptedException{
-        Element.selectElement(driver, cta_continue,"Proceed with Passenger Details");
+    public void clickOnPassengerDetailsConfirmCta() throws InterruptedException {
+        Element.selectElement(driver, cta_continue, "Proceed with Passenger Details");
     }
 
 
-    public void clickOnPayAmountCta() throws InterruptedException{
-        Element.selectElement(driver, cta_pay_amount,"Tap on Pay amount on Confirm Details Creen");
+    public void clickOnPayAmountCta() throws InterruptedException {
+        Element.selectElement(driver, cta_pay_amount, "Tap on Pay amount on Confirm Details Creen");
     }
 
-    public void clickOnConfirmBookingCta() throws InterruptedException{
-        Element.selectElement(driver, cta_confirm_book_now,"Confirm and Proceed with bus booking");
+    public void clickOnConfirmBookingCta() throws InterruptedException {
+        Element.selectElement(driver, cta_confirm_book_now, "Confirm and Proceed with bus booking");
     }
 
 
@@ -241,24 +238,24 @@ public class BusPage {
         return Element.getText(driver, text_onward_booking_id, "Success Screen | Verify Onward Booking Id");
     }
 
-    public void clickOnBookingsCta() throws InterruptedException{
-        Element.selectElement(driver, cta_bookings,"Navigate to Bookings Page");
+    public void clickOnBookingsCta() throws InterruptedException {
+        Element.selectElement(driver, cta_bookings, "Navigate to Bookings Page");
     }
 
-    public void selectTicketForCancellation() throws InterruptedException{
-        Element.selectElement(driver, select_ticket_for_cancellation,"Select Ticket for Cancellation ");
+    public void selectTicketForCancellation() throws InterruptedException {
+        Element.selectElement(driver, select_ticket_for_cancellation, "Select Ticket for Cancellation ");
     }
 
-    public void clickOnCancelTicketCta() throws InterruptedException{
-        Element.selectElement(driver, cta_cancel_ticket,"Click on Cancel Ticket");
+    public void clickOnCancelTicketCta() throws InterruptedException {
+        Element.selectElement(driver, cta_cancel_ticket, "Click on Cancel Ticket");
     }
 
-    public void clickOnCancelCompleteTicketCta() throws InterruptedException{
-        Element.selectElement(driver, cta_cancel_complete_ticket,"Click on Cancel Complete Ticket");
+    public void clickOnCancelCompleteTicketCta() throws InterruptedException {
+        Element.selectElement(driver, cta_cancel_complete_ticket, "Click on Cancel Complete Ticket");
     }
 
-    public void clickOnConfirmCancelTicketCta() throws InterruptedException{
-        Element.selectElement(driver, cta_confirm_cancel_ticket,"Click on Comfirm Cancel Ticket");
+    public void clickOnConfirmCancelTicketCta() throws InterruptedException {
+        Element.selectElement(driver, cta_confirm_cancel_ticket, "Click on Comfirm Cancel Ticket");
     }
 
     public String getCancellationSuccess() throws InterruptedException {
@@ -268,9 +265,6 @@ public class BusPage {
     public String getCancellationRefund() throws InterruptedException {
         return Element.getText(driver, refund_message, "Cancellation Success Screen | Verify Refund");
     }
-
-
-
 
 
 }

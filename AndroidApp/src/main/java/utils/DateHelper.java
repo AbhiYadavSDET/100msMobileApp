@@ -19,7 +19,7 @@ public abstract class DateHelper {
 
     public static int getDayFromCurrentDate() {
         Calendar calendar = Calendar.getInstance();
-        return calendar.get(Calendar.DAY_OF_MONTH);
+        return calendar.get(Calendar.DATE);
     }
 
     public static String getDateAterNDays(DateFormatEnums dateFormat, int daysAfterCurrentDate) {
