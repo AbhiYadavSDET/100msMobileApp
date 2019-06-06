@@ -40,8 +40,12 @@ public class BusPage {
     private AndroidElement select_destination_city;
 
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = '15']")
-    private AndroidElement select_date;
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = '25']")
+    private AndroidElement select_date_later;
+
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = '5']")
+    private AndroidElement select_date_earlier;
 
     @AndroidFindBy(id = "com.mobikwik_new:id/textActionButton")
     public AndroidElement cta_modify;
@@ -64,10 +68,10 @@ public class BusPage {
 
     //Passenger Details Screen
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[contains(text(), 'Primary Passenger']/following::android.widget.EditText[1]")
+    @AndroidFindBy(xpath = "//android.widget.TextView[contains(text(), 'Primary Passenger')]/following::android.widget.EditText[]")
     private AndroidElement enter_passenger_name;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[contains(text(), 'Primary Passenger']/following::android.widget.EditText[2]")
+    @AndroidFindBy(xpath = "//android.widget.EditText[@text = 'Age']")
     private AndroidElement enter_passenger_age;
 
     @AndroidFindBy(id = "com.mobikwik_new:id/btnFirst")
@@ -162,8 +166,13 @@ public class BusPage {
         Element.selectElement(driver, select_destination_city,"Select Destination city from List");
     }
 
-    public void selectDate() throws InterruptedException{
-        Element.selectElement(driver, select_date,"Select Date");
+    public void selectDateLater() throws InterruptedException{
+        Element.selectElement(driver, select_date_later,"Later Date selected");
+    }
+
+
+    public void selectDateEarlier() throws InterruptedException{
+        Element.selectElement(driver, select_date_earlier,"Earlier Date selected");
     }
 
     public void clickOnModify() throws InterruptedException{

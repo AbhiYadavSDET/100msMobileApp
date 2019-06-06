@@ -4,6 +4,7 @@ import UITestFramework.MBReporter;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import logger.Log;
+import main.java.utils.DateFormatEnums;
 import main.java.utils.DateHelper;
 import main.java.utils.Element;
 import main.java.utils.Screen;
@@ -52,7 +53,7 @@ public class BusHelper {
 
         Element.waitForVisibility(driver, homePage.icon_mobile);
 
-        screen.swipeUpMore(driver);
+        screen.swipeUp();
 
         homePage.clickMoreServicesIcon();
 
@@ -68,14 +69,18 @@ public class BusHelper {
 
         busPage.selectDestinationCity();
 
-        screen.swipeUpMore(driver);
-
-//        DateHelper.getDateAterNDays("dd-mm-yyyy", 10);
+//        screen.swipeUpMore(driver);
 
 
+        Log.info(DateHelper.getCurrentDate(DateFormatEnums.DD_MM_YYYY));
 
 
-        busPage.selectDate();
+        busPage.selectDateLater();
+
+        Thread.sleep(2000);
+
+
+        screen.swipeUp();
 
 
         busPage.selectBus();
@@ -88,7 +93,9 @@ public class BusHelper {
 
         busPage.selectDropPoint();
 
-        busPage.enterPassengerName("Paraj Jain");
+//        busPage.enterPassengerName("Paraj Jain");
+
+        busPage.clickOnPassengerDetailsConfirmCta();
 
         busPage.enterPassengerAge("28");
 
@@ -101,7 +108,7 @@ public class BusHelper {
         busPage.clickOnConfirmBookingCta();
 
 
-        String actualSuccessPageHeading=busPage.getSuccessPageHeading();
+        String actualSuccessPageHeading = busPage.getSuccessPageHeading();
         String actualOnwardBookingId = busPage.getOnwardBookingId();
         String actualOnwardOperator = busPage.getOnwardOperator();
         String actualOnwardRoute = busPage.getOnwardRoute();
