@@ -39,7 +39,6 @@ public class MutualFundsHelper {
     }
 
     public void mutualFundsVerification() throws InterruptedException, IOException, JSONException {
-        int ssCount = 0;
 
         balanceBefore = mbkCommonControlsHelper.getBalance();
 
@@ -47,10 +46,8 @@ public class MutualFundsHelper {
         Thread.sleep(2000);
         screen.swipeUp();
 
-        Log.info("SELECT     | Click on Mutual Funds");
         mutualFundPage = homePage.clickMutualFunds();
 
-        //p2MScreen.selectElement(By.xpath("//android.widget.TextView[@text = 'Mutual Funds']"));
         boolean isVisible = mutualFundPage.isViewAllFunds();
 
         // Verify by putting assertion
