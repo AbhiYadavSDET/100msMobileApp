@@ -1,11 +1,14 @@
 package test.java.AndroidApp.PageObject;
 
+import main.java.utils.Element;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
 import org.openqa.selenium.support.PageFactory;
+
+import java.io.IOException;
 
 public class SideDrawerPage {
 
@@ -35,6 +38,9 @@ public class SideDrawerPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Payment Reminders']")
     private AndroidElement link_payment_reminders;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Help']")
+    private AndroidElement help;
+
 
     public SideDrawerPage(AndroidDriver driver) {
         this.driver = driver;
@@ -60,5 +66,8 @@ public class SideDrawerPage {
         return label_mobile.getText();
     }
 
-
+    public HelpPage clickOnHelp() throws IOException {
+        Element.selectElement(driver, help, "Click on Help");
+        return new HelpPage(driver);
+    }
 }
