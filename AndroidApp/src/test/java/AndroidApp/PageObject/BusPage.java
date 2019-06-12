@@ -99,8 +99,8 @@ public class BusPage {
     private AndroidElement text_onward_operator;
 
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/onward_booking_id")
-    private AndroidElement text_onward_booking_id;
+    @AndroidFindBy(id = "com.mobikwik_new:id/total_amount_paid")
+    private AndroidElement total_amount_paid;
 
     //Cancel Booking
 
@@ -238,8 +238,8 @@ public class BusPage {
         return Element.getText(driver, text_onward_operator, "Success Screen | Verify Onward Operator");
     }
 
-    public String getOnwardBookingId() throws InterruptedException {
-        return Element.getText(driver, text_onward_booking_id, "Success Screen | Verify Onward Booking Id");
+    public String getTotalAmountPaid() throws InterruptedException {
+        return Element.getText(driver, total_amount_paid, "Success Screen | Verify Total Amount Paid");
     }
 
     public void clickOnBookingsCta() throws InterruptedException {

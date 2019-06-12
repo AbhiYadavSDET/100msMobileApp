@@ -142,17 +142,24 @@ public class BusHelper {
 
 
         String actualSuccessPageHeading = busPage.getSuccessPageHeading();
-        String actualOnwardBookingId = busPage.getOnwardBookingId();
-//        String actualOnwardOperator = busPage.getOnwardOperator();
         String actualOnwardRoute = busPage.getOnwardRoute();
+        String actualTotalAmountPaid = busPage.getTotalAmountPaid();
 
 
-        Log.info(actualSuccessPageHeading);
-        Log.info(actualOnwardBookingId);
-//        Log.info(actualOnwardOperator);
-        Log.info(actualOnwardRoute);
+        String expectedOnwardRoute= departureCity+" to "+ destinationCity;
+
+        mbReporter.verifyEqualsWithLogging(actualSuccessPageHeading, "Payment Successful", "Success Screen | Verify Status", false, false);
+        mbReporter.verifyEqualsWithLogging(actualOnwardRoute, expectedOnwardRoute, "Success Screen | Verify Route", false, false);
+
 
         mbkCommonControlsHelper.returnToHomePageFromSuccessScreen();
+
+        balanceAfter = mbkCommonControlsHelper.getBalance();
+
+        Double actualMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100;
+        Double expectedMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100 - Double.parseDouble(actualTotalAmountPaid) * 100;
+
+        mbReporter.verifyEqualsWithLogging(actualMainBalanceAfter, expectedMainBalanceAfter, "After TRX | Verify Wallet Main Balance", false, false);
 
 
     }
@@ -166,9 +173,14 @@ public class BusHelper {
 
         screen.swipeUp();
 
-        homePage.clickMoreServicesIcon();
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Bus']"))==true) {
+            busPage = homePage.clickBusIcon();
 
-        busPage = homePage.clickBusIcon();
+        }else {
+
+            homePage.clickMoreServicesIcon();
+            busPage = homePage.clickBusIcon();
+        }
 
         busPage.clickOnBookingsCta();
 
@@ -188,9 +200,8 @@ public class BusHelper {
         String actualCancellationRefundMessage = busPage.getCancellationRefund();
 
 
-        Log.info(actualCancellationSuccessMessage);
+        mbReporter.verifyEqualsWithLogging(actualCancellationSuccessMessage,"", "Success Message", false, false);
         Log.info(actualCancellationRefundMessage);
-
 
         busPage.clickBackToHome();
 
