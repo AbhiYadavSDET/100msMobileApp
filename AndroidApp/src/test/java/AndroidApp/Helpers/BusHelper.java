@@ -2,6 +2,8 @@ package test.java.AndroidApp.Helpers;
 
 import UITestFramework.MBReporter;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidElement;
+import jdk.internal.org.objectweb.asm.Handle;
 import logger.Log;
 import main.java.utils.DateFormatEnums;
 import main.java.utils.DateHelper;
@@ -14,6 +16,7 @@ import test.java.AndroidApp.PageObject.HomePage;
 
 import java.io.IOException;
 import java.util.HashMap;
+
 
 
 public class BusHelper {
@@ -45,7 +48,7 @@ public class BusHelper {
 
     }
 
-    public void busBook(String DepartureCity, String DestinationCity, String PassengerName, String PassengerAge) throws InterruptedException, IOException, JSONException {
+    public void busBook(String departureCity, String destinationCity, String passengerName, String passengerAge, String pin) throws InterruptedException, IOException, JSONException {
 
         balanceBefore = mbkCommonControlsHelper.getBalance();
 
@@ -53,25 +56,60 @@ public class BusHelper {
 
         screen.swipeUp();
 
-        homePage.clickMoreServicesIcon();
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Bus']"))==true) {
+            busPage = homePage.clickBusIcon();
 
-        busPage = homePage.clickBusIcon();
+        }else {
+
+            homePage.clickMoreServicesIcon();
+            busPage = homePage.clickBusIcon();
+        }
 
         busPage.selectDepartureCityBox();
 
-        busPage.enterDepartureCity(DepartureCity);
+        busPage.enterDepartureCity(departureCity);
 
         busPage.selectDepartureCity();
 
-        busPage.enterDestinationCity(DestinationCity);
+        busPage.enterDestinationCity(destinationCity);
 
         busPage.selectDestinationCity();
 
 
-        Log.info(DateHelper.getCurrentDate(DateFormatEnums.DD_MM_YYYY));
+        int date = DateHelper.getDayFromCurrentDate();
+
+        if (date<15){
+
+            busPage.selectDateLater();
+
+        }else{
 
 
-        busPage.selectDateLater();
+            int month = DateHelper.getCurrentMonthInteger();
+            if (month<12){
+
+                month= month +1;
+
+            }else {
+
+                month=1;
+
+            }
+
+            int year = DateHelper.getCurrentYearInteger();
+
+            String monthString= DateHelper.getMonthInStringFromInteger(month);
+
+            String selectMonth= monthString + " " + year;
+
+            AndroidElement androidElement = element.findElement(driver, By.xpath("//android.widget.TextView[@text = '"+ selectMonth +"']/following::android.widget.TextView[@text = '5']"));
+            Element.selectElement(driver, androidElement ,"select modified date" );
+
+
+
+        }
+
+
 
         Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/journey_info"));
 
@@ -88,15 +126,17 @@ public class BusHelper {
 
         busPage.selectDropPoint();
 
-        busPage.enterPassengerName(PassengerName);
+        busPage.enterPassengerName(passengerName);
 
-        busPage.enterPassengerAge(PassengerAge);
+        busPage.enterPassengerAge(passengerAge);
 
         busPage.selectGender();
 
         busPage.clickOnPassengerDetailsConfirmCta();
 
         busPage.clickOnPayAmountCta();
+
+        mbkCommonControlsHelper.handleSecurityPin(pin);
 
         busPage.clickOnConfirmBookingCta();
 

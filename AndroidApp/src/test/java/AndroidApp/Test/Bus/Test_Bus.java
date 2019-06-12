@@ -22,7 +22,7 @@ public class Test_Bus extends CreateSession {
         loginHelper.quickLoginViaEmail("parajjain@gmail.com", "Test@1234");
 
         BusHelper busHelper = new BusHelper(getAndroidDriver());
-        busHelper.busBook("bhubaneswar", "baripada", "Paraj Jain", "28");
+        busHelper.busBook("bhubaneswar", "baripada", "Paraj Jain", "28", "525252");
 
     }
 
