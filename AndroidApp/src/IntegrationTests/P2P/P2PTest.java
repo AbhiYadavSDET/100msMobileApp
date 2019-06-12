@@ -48,10 +48,9 @@ public class P2PTest extends CreateSession {
     @Test(groups = {"p2pSanity", "p2pSufficient"}, priority = 0)
     public void p2pSufficient(@Optional String androidOSVersion) throws Exception {
         Log.infoStartTest("p2pSufficient");
-
         reporter.extentTest = reporter.extentReports.createTest("p2pSufficient");
 
-        onboardingHelper.quickLogin("8527797582", "mayank.suneja@mobikwik.com", "T.C. Suneja");
+        onboardingHelper.quickLoginViaPassword("rush2ash@gmail.com", "Tuesday20");
 
         // ExcelUtils excelUtils = new ExcelUtils("TestData.xlsx", "login");
 
@@ -69,7 +68,7 @@ public class P2PTest extends CreateSession {
                     + "directoryName : " + directoryName + "/" + androidOSVersion + " | " + "screenshotName : "
                     + screenshotName);*/
 
-        p2pHelperBase.p2pSufficient("8527226361", "Saurabh Gupta", "5", "p2p", "p2pSufficient");
+        p2pHelperBase.p2pSufficient("7838785757", "Saurabh Gupta", "5", "p2p", "p2pSufficient");
 
 
 
