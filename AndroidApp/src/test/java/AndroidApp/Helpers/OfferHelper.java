@@ -35,6 +35,7 @@ public class OfferHelper{
     HomePage homePage;
     OfferPage offerPage;
     MBReporter mbReporter;
+    PermissionHelper permissionHelper;
 
     public OfferHelper(AndroidDriver driver) throws IOException {
         offerScreen = new OfferScreen(driver);
@@ -44,16 +45,15 @@ public class OfferHelper{
         apiCommonControls = new ApiCommonControls();
         homePage = new HomePage(driver);
         mbReporter = new MBReporter(driver, "testScreenshotDir");
-
+        permissionHelper = new PermissionHelper(driver);
 
     }
 
 
     public void offerSearch(String offerName, String directoryName, String screenName) throws InterruptedException, IOException, JSONException {
-        int testStepCount = 0;
 
-        // Handle the KYC Popup
-        mbkPermissions.handleKYCScreen(directoryName, screenName, testStepCount);
+        mbkCommonControls.handleConscentPopup();
+        permissionHelper.permissionAllow();
 
         // Step 1 | Goto Offers page
         offerPage = homePage.clickOffers();
@@ -72,11 +72,10 @@ public class OfferHelper{
     }
 
     public void offerCategoryCheck(String directoryName, String screenName) throws InterruptedException, IOException, JSONException {
-        int testStepCount = 0;
         int noOfCategories = 0;
 
-        // Handle the KYC Popup
-        mbkPermissions.handleKYCScreen(directoryName, screenName, testStepCount);
+        mbkCommonControls.handleConscentPopup();
+        permissionHelper.permissionAllow();
 
         // Step 1 | Goto Offers page
         offerPage = homePage.clickOffers();
@@ -95,10 +94,9 @@ public class OfferHelper{
     }
 
     public void redeemOffersCheck(String directoryName, String screenName) throws InterruptedException, IOException, JSONException{
-        int testStepCount = 0;
 
-        // Handle the KYC Popup
-        mbkPermissions.handleKYCScreen(directoryName, screenName, testStepCount);
+        mbkCommonControls.handleConscentPopup();
+        permissionHelper.permissionAllow();
 
         // Step 1 | Goto Offers page
         offerPage = homePage.clickOffers();

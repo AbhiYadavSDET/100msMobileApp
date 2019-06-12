@@ -33,13 +33,9 @@ public class TransactionHistoryHelper {
 
     public void transactionHistoryVerificationLoggedIn() throws InterruptedException, IOException, JSONException {
 
-        int ssCount = 0;
+        mbkCommonControls.handleConscentPopup();
+        permissionHelper.permissionAllow();
 
-        Log.info("Handle     | KYC Popup");
-        mbkPermissions.handleKYCScreen("directoryName", "screenName", ssCount);
-        Thread.sleep(3000);
-
-        Log.info("SELECT     | Select Transaction History Tab");
         transactionHistoryPage = homePage.clickHistory();
         Thread.sleep(3000);
 
@@ -51,23 +47,16 @@ public class TransactionHistoryHelper {
 
     public void transactionHistoryVerificationLoggedOut() throws InterruptedException, IOException, JSONException {
 
-        int ssCount = 0;
-
-
-        Log.info("SKIP       | Click on 'Skip' on onboarding screen");
         homePage.clickOnSkip();
-
 
         mbkCommonControls.handleConscentPopup();
         permissionHelper.permissionAllow();
 
-        Log.info("SELECT     | Select Transaction History Tab");
         transactionHistoryPage = homePage.clickHistory();
         Thread.sleep(3000);
 
         String text = transactionHistoryPage.getCTAText();
 
-        Log.info("VERIFY     | User is logged-out");
         mbReporter.verifyEqualsWithLogging(text, "Verify & Sign Up", "Description | Actual : " + text + " | " + "Expected : " + "Verify & Sign Up", false, false);
 
     }

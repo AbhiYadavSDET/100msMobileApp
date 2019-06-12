@@ -19,7 +19,6 @@ public class MutualFundPage {
     public MutualFundPage(AndroidDriver driver) throws IOException {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
-        Log.info("*****Offer Page*****");
     }
 
     public boolean isViewAllFunds() throws InterruptedException{
