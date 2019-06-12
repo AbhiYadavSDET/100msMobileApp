@@ -10,22 +10,6 @@
     <parameter name="methodName" value="sanity"></parameter>
 
 
-    <test name="loginSanity">
-        <groups>
-            <run>
-                <include name="setUp"/>
-                <include name="instantiateHelpers"/>
-                <include name="logout"/>
-                <include name="tearDown"/>
-            </run>
-        </groups>
-        <classes>
-            <class name="UITestFramework.CreateSession"/>
-            <class name="UITestFramework.ExtentReport.Reporter"/>
-            <class name="test.java.AndroidApp.Test.Login.Test_login"/>
-        </classes>
-    </test>
-
     <test name="addMoneySanity">
         <groups>
             <run>
@@ -56,6 +40,95 @@
             <class name="UITestFramework.ExtentReport.Reporter"/>
             <class name="test.java.AndroidApp.Test.Recharge.Test_Recharge"/>
         </classes>
+    </test>
+
+
+    <test name="helpSanity">
+        <groups>
+            <run>
+                <include name="setUp"/>
+                <include name="instantiateHelpers"/>
+                <include name="helpSanity"/>
+                <include name="tearDown"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="UITestFramework.CreateSession"/>
+            <class name="UITestFramework.ExtentReport.Reporter"/>
+            <class name ="test.java.AndroidApp.Test.Test_Help"/>
+        </classes>
+
+    </test>
+
+    <test name="mfSanity">
+        <groups>
+            <run>
+                <include name="setUp"/>
+                <include name="instantiateHelpers"/>
+                <include name="mfSanity"/>
+                <include name="tearDown"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="UITestFramework.CreateSession"/>
+            <class name="UITestFramework.ExtentReport.Reporter"/>
+            <class name ="test.java.AndroidApp.Test.Test_MutualFunds"/>
+        </classes>
+
+    </test>
+
+    <test name="offerSanity">
+        <groups>
+            <run>
+                <include name="setUp"/>
+                <include name="instantiateHelpers"/>
+                <include name="offerSanity"/>
+                <include name="tearDown"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="UITestFramework.CreateSession"/>
+            <class name="UITestFramework.ExtentReport.Reporter"/>
+            <class name ="test.java.AndroidApp.Test.Test_Offer"/>
+        </classes>
+
+    </test>
+
+    <test name="historySanity">
+        <groups>
+            <run>
+                <include name="setUp"/>
+                <include name="instantiateHelpers"/>
+                <include name="transactionHistoryVerification"/>
+                <include name="tearDown"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="UITestFramework.CreateSession"/>
+            <class name="UITestFramework.ExtentReport.Reporter"/>
+            <class name="test.java.AndroidApp.Test.Test_History"/>
+        </classes>
+
+    </test>
+
+    <test name="p2mSanity">
+    <groups>
+        <run>
+            <include name="setUp"/>
+            <include name="instantiateHelpers"/>
+            <include name="sendMoney"/>
+            <include name="tearDown"/>
+        </run>
+    </groups>
+
+    <classes>
+        <class name="UITestFramework.CreateSession"/>
+        <class name="UITestFramework.ExtentReport.Reporter"/>
+        <class name="test.java.AndroidApp.Test.P2M.Test_P2M"/>
+    </classes>
     </test>
 
 
