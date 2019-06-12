@@ -125,6 +125,10 @@ public class BusPage {
     @AndroidFindBy(id = "com.mobikwik_new:id/suceess_msg")
     private AndroidElement refund_message;
 
+    @AndroidFindBy(id = "com.mobikwik_new:id/home_button")
+    private AndroidElement home_button;
+
+
 
     public BusPage(AndroidDriver driver) throws IOException {
 
@@ -266,6 +270,9 @@ public class BusPage {
         return Element.getText(driver, refund_message, "Cancellation Success Screen | Verify Refund");
     }
 
+    public String clickBackToHome() throws InterruptedException {
+        return Element.getText(driver, home_button, "Navigate back to Home");
+    }
 
 }
 

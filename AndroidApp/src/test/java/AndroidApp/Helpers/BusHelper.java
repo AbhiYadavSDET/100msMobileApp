@@ -45,7 +45,7 @@ public class BusHelper {
 
     }
 
-    public void busBook() throws InterruptedException, IOException, JSONException {
+    public void busBook(String DepartureCity, String DestinationCity, String PassengerName, String PassengerAge) throws InterruptedException, IOException, JSONException {
 
         balanceBefore = mbkCommonControlsHelper.getBalance();
 
@@ -53,17 +53,17 @@ public class BusHelper {
 
         screen.swipeUp();
 
-        //homePage.clickMoreServicesIcon();
+        homePage.clickMoreServicesIcon();
 
         busPage = homePage.clickBusIcon();
 
         busPage.selectDepartureCityBox();
 
-        busPage.enterDepartureCity("bhubaneswar");
+        busPage.enterDepartureCity(DepartureCity);
 
         busPage.selectDepartureCity();
 
-        busPage.enterDestinationCity("baripada");
+        busPage.enterDestinationCity(DestinationCity);
 
         busPage.selectDestinationCity();
 
@@ -88,9 +88,9 @@ public class BusHelper {
 
         busPage.selectDropPoint();
 
-        busPage.enterPassengerName("Paraj Jain");
+        busPage.enterPassengerName(PassengerName);
 
-        busPage.enterPassengerAge("28");
+        busPage.enterPassengerAge(PassengerAge);
 
         busPage.selectGender();
 
@@ -103,13 +103,13 @@ public class BusHelper {
 
         String actualSuccessPageHeading = busPage.getSuccessPageHeading();
         String actualOnwardBookingId = busPage.getOnwardBookingId();
-        String actualOnwardOperator = busPage.getOnwardOperator();
+//        String actualOnwardOperator = busPage.getOnwardOperator();
         String actualOnwardRoute = busPage.getOnwardRoute();
 
 
         Log.info(actualSuccessPageHeading);
         Log.info(actualOnwardBookingId);
-        Log.info(actualOnwardOperator);
+//        Log.info(actualOnwardOperator);
         Log.info(actualOnwardRoute);
 
         mbkCommonControlsHelper.returnToHomePageFromSuccessScreen();
@@ -134,6 +134,8 @@ public class BusHelper {
 
         busPage.selectTicketForCancellation();
 
+        Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/btn_download_tkt"));
+
         screen.swipeUp();
 
         busPage.clickOnCancelTicketCta();
@@ -148,6 +150,12 @@ public class BusHelper {
 
         Log.info(actualCancellationSuccessMessage);
         Log.info(actualCancellationRefundMessage);
+
+
+        busPage.clickBackToHome();
+
+
+        Log.info("Test Completed");
 
     }
 
