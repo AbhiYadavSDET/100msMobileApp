@@ -23,7 +23,7 @@ public class HomePage {
     @AndroidFindBy(id = "com.mobikwik_new:id/tx_balance")
     private AndroidElement label_view_balance;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/btn_p2m")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Pay to Merchant']")
     private AndroidElement button_pay_to_merchant;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Via Wallet']/preceding-sibling::android.widget.FrameLayout")
