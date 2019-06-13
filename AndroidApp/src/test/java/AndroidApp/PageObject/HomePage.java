@@ -52,7 +52,7 @@ public class HomePage {
     private AndroidElement icon_insurance;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Mobile']")
-    private AndroidElement icon_mobile;
+    public AndroidElement icon_mobile;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='DTH']")
     private AndroidElement icon_dth;
@@ -94,6 +94,14 @@ public class HomePage {
     @AndroidFindBy(id = "com.mobikwik_new:id/btn_logout")
     private AndroidElement label_logout;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='More Services']/following::android.widget.TextView[@text='More']")
+    private AndroidElement icon_service_more;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Bus']")
+    private AndroidElement icon_bus;
+
+    @AndroidFindBy(id = "com.mobikwik_new:id/navigation_wallet")
+    private AndroidElement navigate_wallet_page;
 
     public HomePage(AndroidDriver driver) {
         this.driver = driver;
@@ -214,5 +222,19 @@ public class HomePage {
     public void clickOnSkip() throws InterruptedException {
         Element.selectElement(driver, skip_button, "Skip");
     }
+    public void clickMoreServicesIcon() throws IOException {
+        Element.selectElement(driver, icon_service_more, "More Services Icon under More Services");
+    }
+
+    public BusPage clickBusIcon() throws IOException {
+        Element.selectElement(driver, icon_bus, "Bus Icon");
+        return new BusPage(driver);
+    }
+
+    public WalletPage clickWalletNavigate() throws IOException{
+        Element.selectElement(driver, navigate_wallet_page, "Navigate to Wallet Page");
+        return new WalletPage(driver);
+    }
+
 
 }
