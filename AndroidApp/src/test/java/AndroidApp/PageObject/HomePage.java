@@ -73,7 +73,7 @@ public class HomePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Offers']")
     private AndroidElement offers_tab;
 
-    @AndroidFindBy(id="com.mobikwik_new:id/skip")
+    @AndroidFindBy(id = "com.mobikwik_new:id/skip")
     public AndroidElement skip_button;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Wallet']")
@@ -195,6 +195,7 @@ public class HomePage {
     public void clickOnlogout() throws IOException {
         Element.selectElement(driver, label_logout, "Logout Button");
     }
+
     public OfferPage clickOffers() throws IOException {
         Element.selectElement(driver, offers_tab, "Offers");
         return new OfferPage(driver);

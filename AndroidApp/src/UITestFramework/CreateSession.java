@@ -35,7 +35,7 @@ public class CreateSession {
 
     String androidOSVersion = "8.0";
     String portNo = "5000";
-    String udid = "909aaa06";
+    String udid = "ZY223F3MP3";
     String deviceName = "Samsung J7";
 
     private String reportDirectory = "reports";
