@@ -20,13 +20,13 @@ public class HomePage {
     @AndroidFindBy(id = "com.mobikwik_new:id/icon")
     private AndroidElement mbk_logo;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/tx_view_balance")
+    @AndroidFindBy(id = "com.mobikwik_new:id/tx_balance")
     private AndroidElement label_view_balance;
 
     @AndroidFindBy(id = "com.mobikwik_new:id/btn_p2m")
     private AndroidElement button_pay_to_merchant;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/btn_p2p")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Via Wallet']/preceding-sibling::android.widget.FrameLayout")
     private AndroidElement button_transfer_money;
 
     @AndroidFindBy(id = "com.mobikwik_new:id/tx_add_money")
@@ -73,7 +73,7 @@ public class HomePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Offers']")
     private AndroidElement offers_tab;
 
-    @AndroidFindBy(id="com.mobikwik_new:id/skip")
+    @AndroidFindBy(id = "com.mobikwik_new:id/skip")
     public AndroidElement skip_button;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Wallet']")
@@ -118,6 +118,13 @@ public class HomePage {
     public P2MPage clickOnButtonPayToMerchant() throws InterruptedException, IOException {
         Element.selectElement(driver, button_pay_to_merchant, "Pay To Merchant");
         return new P2MPage(driver);
+    }
+
+    public TransferPage clickOnButtonP2P() throws IOException {
+        Element.selectElement(driver,button_transfer_money, "Pay Via Wallet");
+        return new TransferPage(driver);
+
+
     }
 
     public SideDrawerPage clickHamburgerIcon() {
@@ -196,6 +203,7 @@ public class HomePage {
     public void clickOnlogout() throws IOException {
         Element.selectElement(driver, label_logout, "Logout Button");
     }
+
     public OfferPage clickOffers() throws IOException {
         Element.selectElement(driver, offers_tab, "Offers");
         return new OfferPage(driver);
