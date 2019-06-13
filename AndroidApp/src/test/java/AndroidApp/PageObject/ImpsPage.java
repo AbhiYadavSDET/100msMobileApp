@@ -6,6 +6,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
 import main.java.utils.Element;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
@@ -14,36 +15,25 @@ public class ImpsPage {
 
     AndroidDriver driver;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Enter Mobile Number or Merchant Code']")
-    private AndroidElement label_enter_mobile_number;
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Via Wallet']")
+    private AndroidElement via_Wallet;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/search_edittext")
-    private AndroidElement textbox_search;
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Wallet to Bank']")
+    private AndroidElement wallet_to_bank;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/image_tse")
-    private AndroidElement image_merchant;
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = '167795709569']")
+    private AndroidElement bank;
 
     @AndroidFindBy(id = "com.mobikwik_new:id/edt_txt_transfer_amount")
-    private AndroidElement enter_amount;
+    private AndroidElement amount_box;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/btn_p2p_action")
-    private AndroidElement cta_confirm_transfer;
+    @AndroidFindBy(xpath = "//android.widget.Button[@text = 'Continue']")
+    private AndroidElement continueButton;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/base_title")
-    private AndroidElement label_success_page_status;
+    @AndroidFindBy(xpath = "//android.widget.Button[@text = 'Confirm']")
+    private AndroidElement confirm;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/amount_value")
-    private AndroidElement label_amount;
-
-    @AndroidFindBy(id = "com.mobikwik_new:id/total_amount_value")
-    private AndroidElement label_total_payment;
-
-    @AndroidFindBy(id = "com.mobikwik_new:id/txt_info")
-    private AndroidElement label_success_screen_name;
-
-    @AndroidFindBy(id = "com.mobikwik_new:id/txt_cn_value")
-    private AndroidElement label_success_screen_code;
-
+    String success_text = "android.widget.TextView[@text = 'Money sent successfully']";
 
     public ImpsPage(AndroidDriver driver) throws IOException {
         this.driver = driver;
@@ -55,43 +45,49 @@ public class ImpsPage {
         wait for Page load to be added
          */
 
-        Log.info("*****P2M Page*****");
+        Log.info("*****Imps Page*****");
+    }
+
+    public void clickOnViaWallet() throws InterruptedException{
+        Element.selectElement(driver, via_Wallet, "Via Wallet on home page");
+    }
+
+    public void clickOnWalletToBank() throws InterruptedException{
+        Element.selectElement(driver, wallet_to_bank, "Wallet to bank");
+    }
+
+    public void clickOnBank() throws InterruptedException{
+        Element.selectElement(driver, bank, "Bank Account");
+    }
+
+    public void sendAmount() throws InterruptedException{
+        Element.enterText(driver, amount_box, "50", "Transfer amount");
+    }
+
+    public void clickOnContinue() throws InterruptedException{
+        Element.selectElement(driver, continueButton, "Bank Account");
+    }
+
+    public void clickOnConfirm() throws InterruptedException{
+        Element.selectElement(driver, confirm, "Bank Account");
+    }
+
+
+    public By returnLocator() throws InterruptedException{
+        return By.xpath(success_text);
     }
 
 
 
 
-    public void clickOnLabelEnterMerchantCode() throws InterruptedException {
-        Element.selectElement(driver, label_enter_mobile_number, "Click on Merchant Code");
-    }
 
-    public void enterMerchantCode(String merchantCode) throws InterruptedException {
-        Element.enterText(driver, textbox_search, merchantCode, "Enter Merchant Code");
-    }
 
-    public void clickOnMerchantCodeFromList() throws InterruptedException {
-        Element.selectElement(driver, image_merchant, "Click on Merchant Code from List");
-    }
 
-    public void enterAmount(String amount) throws InterruptedException {
-        Element.enterText(driver, enter_amount, amount, "Enter Amount");
-    }
 
-    public void clickOnCtaConfirmTransfer() throws InterruptedException {
-        Element.selectElement(driver, cta_confirm_transfer, "Click on Cta Confirm Transfer");
-    }
 
-    public String getSuccessPageStatus() throws InterruptedException {
-        return Element.getText(driver, label_success_page_status, "Success page Status");
-    }
 
-    public String getSuccessPageName() throws InterruptedException {
-        return Element.getText(driver, label_success_screen_name, "Success page name");
-    }
 
-    public String getSuccessPageCode() throws InterruptedException {
-        return Element.getText(driver, label_success_screen_code, "Success page Code");
-    }
+
 
 
 }

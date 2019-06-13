@@ -5,7 +5,9 @@ import io.appium.java_client.android.AndroidDriver;
 import main.java.utils.Element;
 import main.java.utils.Screen;
 import org.json.JSONException;
+import org.openqa.selenium.By;
 import test.java.AndroidApp.PageObject.HomePage;
+import test.java.AndroidApp.PageObject.ImpsPage;
 import test.java.AndroidApp.PageObject.P2MPage;
 
 import java.io.IOException;
@@ -21,6 +23,7 @@ public class ImpsHelper {
     MBReporter mbReporter;
     P2MPage p2mPage;
     PermissionHelper permissionHelper;
+    ImpsPage impsPage;
 
     public static HashMap<String, String> map;
     public static HashMap<String, String> balanceBefore;
@@ -36,56 +39,36 @@ public class ImpsHelper {
         mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
         mbReporter = new MBReporter(driver, "testScreenshotDir");
         permissionHelper = new PermissionHelper(driver);
+        impsPage = new ImpsPage(driver);
 
     }
 
 
-    public void p2mSendMoney(String merchantCode, String amount, String securityPin, String successPageStatus, String successPageName) throws InterruptedException, IOException, JSONException {
+    public void verifyImps() throws InterruptedException, IOException, JSONException {
+        //driver.navigate().back();
 
-        balanceBefore = mbkCommonControlsHelper.getBalance();
+        impsPage.clickOnViaWallet();
 
-        p2mPage = homePage.clickOnButtonPayToMerchant();
+        impsPage.clickOnWalletToBank();
 
-        permissionHelper.permissionAllow();
+        // Swipe the homescreen up
+        Thread.sleep(2000);
+        screen.swipeUp();
 
-        p2mPage.clickOnLabelEnterMerchantCode();
+        impsPage.clickOnBank();
 
-        permissionHelper.permissionAllow();
+        impsPage.sendAmount();
+        Thread.sleep(2000);
 
-        p2mPage.enterMerchantCode(merchantCode);
+        impsPage.clickOnContinue();
 
-        Thread.sleep(3000);
+        impsPage.clickOnConfirm();
 
-        p2mPage.clickOnMerchantCodeFromList();
-
-        p2mPage.enterAmount(amount);
-
-        p2mPage.clickOnCtaConfirmTransfer();
-
-        mbkCommonControlsHelper.handleSecurityPin(securityPin);
-
-        // Assertion on the success screen
-        String actualSuccessScreenStatus = p2mPage.getSuccessPageStatus();
-        String actualSuccessScreenName = p2mPage.getSuccessPageName();
-        String actualSuccessScreenCode = p2mPage.getSuccessPageCode();
-
-        mbReporter.verifyEqualsWithLogging(actualSuccessScreenStatus, successPageStatus, "Success Screen | Verify Status", false, false);
-        mbReporter.verifyEqualsWithLogging(actualSuccessScreenName, successPageName, "Success Screen | Verify Name", false, false);
-        mbReporter.verifyEqualsWithLogging(actualSuccessScreenCode.toLowerCase(), merchantCode.toLowerCase(), "Success Screen | Verify Code", false, false);
-
-        // Test
+        mbkCommonControlsHelper.handleSecurityPin("123456");
         Thread.sleep(5000);
 
-        mbkCommonControlsHelper.returnToHomePageFromP2MSuccessScreen();
-
-        // POST TRX Assertions
-        balanceAfter = mbkCommonControlsHelper.getBalance();
-        Double actualMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100;
-        Double actualSuperCashBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
-        Double expectedMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100 - Double.parseDouble(amount) * 100;
-        Double expectedSuperCashBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
-        mbReporter.verifyEqualsWithLogging(actualMainBalanceAfter, expectedMainBalanceAfter, "After TRX | Verify Wallet Main Balance", false, false);
-        mbReporter.verifyEqualsWithLogging(actualSuperCashBalanceAfter, expectedSuperCashBalanceAfter, "After TRX | Verify Supercash Balance", false, false);
+        boolean flag = Element.isElementPresent(driver, impsPage.returnLocator());
+        mbReporter.verifyTrueWithLogging(flag, "verify imps success screen", false, false);
 
     }
 
