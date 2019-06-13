@@ -46,6 +46,8 @@ public class AddMoneyHelper {
 
         addMoneyPage.enterAmount(amount);
 
+        screen.hideKeyboard(driver);
+
         addMoneyPage.clickOnContinueButton();
 
         Element.waitForVisibility(driver, addMoneyPage.label_select_payment_mode);
@@ -82,6 +84,8 @@ public class AddMoneyHelper {
         addMoneyPage.clickOnAmountTextBox();
 
         addMoneyPage.enterAmount(amount);
+
+        screen.hideKeyboard(driver);
 
         addMoneyPage.clickOnContinueButton();
 
@@ -127,6 +131,8 @@ public class AddMoneyHelper {
         addMoneyPage.clickOnAmountTextBox();
 
         addMoneyPage.enterAmount(amount);
+
+        screen.hideKeyboard(driver);
 
         addMoneyPage.clickOnContinueButton();
 
