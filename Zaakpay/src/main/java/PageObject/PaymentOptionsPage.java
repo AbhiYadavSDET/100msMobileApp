@@ -1,5 +1,6 @@
 package PageObject;
 
+import Helpers.TransactionApiHelper;
 import Utils.Browser;
 import Utils.Config;
 import Utils.Element;
@@ -27,6 +28,24 @@ public class PaymentOptionsPage {
     @FindBy(xpath = "//h2[text() = 'Payment Options']")
     private WebElement page_load_text;
 
+    @FindBy(xpath = "//input[@id = 'panId']")
+    private WebElement textbox_cardno;
+
+    @FindBy(xpath = "//select[@name = 'expiry_month']")
+    private WebElement select_expiry_month;
+
+    @FindBy(xpath = "//select[@name = 'expiry_year']")
+    private WebElement select_expiry_year;
+
+    @FindBy(xpath = "//input[@id = 'cvvnum']")
+    private WebElement textbox_cvv;
+
+    @FindBy(xpath = "//input[@value = 'Make Payment']")
+    private WebElement button_make_payment;
+
+    @FindBy(xpath = "//em")
+    private WebElement label_order_id;
+
 
     public PaymentOptionsPage(WebDriver driver) {
         this.driver = driver;
@@ -51,6 +70,56 @@ public class PaymentOptionsPage {
         Element.selectElement(driver, label_mobikwik_wallet, "MobiKwik Wallet");
     }
 
+    public void enterCardNo(String cardNo) {
+        Element.enterText(driver, textbox_cardno, cardNo, "Card No");
+    }
+
+    public void selectExpiryMonth(String expirymonth) {
+        //1
+        Element.selectValue(driver, select_expiry_month, expirymonth, "Expiry Month");
+    }
+
+    public void selectExpiryYear(String expiryyear) {
+        //2019
+        Element.selectValue(driver, select_expiry_year, expiryyear, "Expiry Year");
+    }
+
+    public void enterCvv(String cvv) {
+        Element.enterText(driver, textbox_cvv, cvv, "Cvv");
+    }
+
+    public Object clickOnMakePayment(TransactionApiHelper.flowType flowType) {
+        Element.selectElement(driver, button_make_payment, "Make Payment");
+
+        switch (flowType) {
+            case AMEX:
+                // Amex payment
+                return new AmexPaymentPage(driver);
+
+
+            case HDFC:
+                // HDFC payment
+                return new SuccessPage(driver);
+
+
+            case CCAVENUE:
+                // CCAvenue payment
+                return new CcAvenuePaymentPage(driver);
+
+
+            case CYBERSOURCE:
+                // CyberSource
+                return new AmexPaymentPage(driver);
+
+
+        }
+        return new AmexPaymentPage(driver);
+
+    }
+
+    public String getOrderId() {
+        return Element.getText(driver, label_order_id, "Order id");
+    }
 
 }
 
