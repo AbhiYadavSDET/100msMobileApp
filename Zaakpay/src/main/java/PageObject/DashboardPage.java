@@ -37,8 +37,9 @@ public class DashboardPage {
         return new TransactionApiHomePage(driver);
     }
 
-    public void clickOnUpdateTrxApiLink() {
-        Element.selectElement(driver, link_transact_api, "Update Trx Api Link");
+    public RefundPage clickOnUpdateTrxApiLink() {
+        Element.selectElement(driver, link_update_transaction_api, "Update Trx Api Link");
+        return new RefundPage(driver);
     }
 
     public void clickOnCheckTxnApiLink() {

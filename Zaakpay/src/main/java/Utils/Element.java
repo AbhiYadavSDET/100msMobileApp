@@ -339,6 +339,7 @@ public class Element extends TestBase {
         Config.logComment("Retrieve all the Options selected for this specified Select WebElement");
         Select sel = new Select(element);
 
+
         List<WebElement> elements = sel.getAllSelectedOptions();
         List<String> options = new ArrayList<String>(elements.size());
 
@@ -892,5 +893,6 @@ public class Element extends TestBase {
         Boolean isPresent = driver.findElements(targetElement).size() > 0;
         return isPresent;
     }
+
 
 }
