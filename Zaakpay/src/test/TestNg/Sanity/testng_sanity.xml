@@ -4,6 +4,7 @@
     <test verbose="2" preserve-order="true" name="IPL Sanity">
         <groups>
             <run>
+                <include name="refundFlowSanity"/>
                 <include name="basicFlowSanity"/>
             </run>
         </groups>
