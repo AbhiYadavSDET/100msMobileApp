@@ -23,7 +23,7 @@ public class SuccessPage {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
         Browser.waitForPageLoad(driver, page_load_text);
-        Config.logComment("*****On Amex Success Page*****");
+        Config.logComment("*****On Success Page*****");
     }
 
 

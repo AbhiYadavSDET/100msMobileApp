@@ -84,6 +84,53 @@ public class TransactionApiHelper {
 
     }
 
+    public void transactionViaNetBanking(String email, String amount, String expectedDescription) throws InterruptedException {
+
+        // Select the Flow Type
+        transactionApiHomePage = dashboardPage.clickOnTransactApiLink();
+
+        // Enter the Email
+        transactionApiHomePage.enterEmail(email);
+
+        // Enter the Amount
+        transactionApiHomePage.enterAmount(amount);
+
+        // Click on Submit button
+        paymentOptionsPage = transactionApiHomePage.clickOnButtonPayViaZaakpay();
+
+        // Set the needed values in Map
+        transactionMap.put("email", email);
+        transactionMap.put("amount", amount);
+        String orderId = paymentOptionsPage.getOrderId();
+        Log.info("Order Id : " + orderId);
+        transactionMap.put("orderId", orderId);
+
+        // Select the Credit card option
+        paymentOptionsPage.clickOnNetBanking();
+        Thread.sleep(3000);
+
+
+        paymentNetbanking(expectedDescription);
+
+
+    }
+
+
+    public void paymentNetbanking(String expectedDescription) {
+        // select the bank
+        paymentOptionsPage.selectBank("CCTEST");
+
+        // Click on the CTA
+        ccAvenuePaymentPage = paymentOptionsPage.clickOnMakePaymentNetbanking();
+
+        successPage = ccAvenuePaymentPage.clickOnReturnToMerchantSite();
+
+
+        //Assertion on the success page
+        String actualDescription = successPage.getDescription();
+        mbkReporter.verifyEqualsWithLogging(actualDescription, expectedDescription, "Success Page Description", false);
+
+    }
 
     public void paymentAmex(String cardNo, String expiryMonth, String expiryYear, String cvv, String expectedDescription) {
         // Enter the card details
