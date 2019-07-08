@@ -36,11 +36,19 @@ public class TransactionTest extends TestBase {
         transactionApiHelper.transactionViaCreditCard(TransactionApiHelper.flowType.CYBERSOURCE, "mayank.suneja@gmail.com", "5", "4000000000000002", "12", "2021", "123", "The transaction was completed successfully.");
     }
 
-    @Test(groups = {"basicFlowSanity", "refundFlowSanity"}, priority = 4, description = "Verify Refund Transaction", dependsOnMethods = "Test_Transaction_Via_Credit_Card_Amex")
+    @Test(groups = {"basicFlowSanity", "refundFlowSanity"}, priority = 5, description = "Verify Refund Transaction", dependsOnMethods = "Test_Transaction_Via_Credit_Card_Amex")
     public void Test_Refund_Transaction() throws InterruptedException {
 
         RefundHelper refundHelper = new RefundHelper(driver);
         refundHelper.refundTransaction(TransactionApiHelper.transactionMap.get("orderId"), "14", "MerchantIdentifier not valid.");
+    }
+
+    @Test(groups = {"basicFlowSanity1"}, priority = 4, description = "Verify Transaction Flow via Net Banking")
+    public void Test_Transaction_Via_Netbanking() throws InterruptedException {
+
+        TransactionApiHelper transactionApiHelper = new TransactionApiHelper(driver);
+        transactionApiHelper.transactionViaNetBanking("mayank.suneja@gmail.com", "5", "The transaction was completed successfully.");
+
     }
 
 

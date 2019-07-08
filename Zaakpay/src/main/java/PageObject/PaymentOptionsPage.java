@@ -4,6 +4,7 @@ import Helpers.TransactionApiHelper;
 import Utils.Browser;
 import Utils.Config;
 import Utils.Element;
+import Utils.Log;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -46,6 +47,12 @@ public class PaymentOptionsPage {
     @FindBy(xpath = "//em")
     private WebElement label_order_id;
 
+    @FindBy(xpath = "//select[@name = 'banksList']")
+    private WebElement select_bank;
+
+    @FindBy(xpath = "//label[text()= 'Other Banks']/following::input[@value = 'Make Payment'][1]")
+    private WebElement button_make_payment_netbanking;
+
 
     public PaymentOptionsPage(WebDriver driver) {
         this.driver = driver;
@@ -62,7 +69,7 @@ public class PaymentOptionsPage {
         Element.selectElement(driver, label_credit_card, "Credit Card");
     }
 
-    public void clickOnNetBankingCard() {
+    public void clickOnNetBanking() {
         Element.selectElement(driver, label_net_banking, "Net Banking");
     }
 
@@ -82,6 +89,14 @@ public class PaymentOptionsPage {
     public void selectExpiryYear(String expiryyear) {
         //2019
         Element.selectValue(driver, select_expiry_year, expiryyear, "Expiry Year");
+    }
+
+    public void selectBank(String bankValue) {
+        //2019
+        Log.info("select start");
+        Element.selectValue(driver, select_bank, bankValue, "Bank");
+        Log.info("select end");
+
     }
 
     public void enterCvv(String cvv) {
@@ -114,6 +129,12 @@ public class PaymentOptionsPage {
 
         }
         return new AmexPaymentPage(driver);
+
+    }
+
+    public CcAvenuePaymentPage clickOnMakePaymentNetbanking() {
+        Element.selectElement(driver, button_make_payment_netbanking, "Make Payment");
+        return new CcAvenuePaymentPage(driver);
 
     }
 
