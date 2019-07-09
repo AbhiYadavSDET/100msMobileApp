@@ -1,5 +1,6 @@
-package IntegrationTests.Ola;
+package test.java.AndroidApp.Helpers;
 
+import IntegrationTests.Ola.OlaHelperBase;
 import IntegrationTests.Screens.OlaScreen;
 import UITestFramework.ExtentReport.Reporter;
 import UITestFramework.MBKPermissions;
@@ -10,6 +11,8 @@ import io.appium.java_client.touch.offset.PointOption;
 import logger.Log;
 import org.json.JSONException;
 import org.openqa.selenium.By;
+import test.java.AndroidApp.Helpers.PermissionHelper;
+import test.java.AndroidApp.PageObject.HomePage;
 
 import java.io.IOException;
 import java.time.Duration;
@@ -26,6 +29,8 @@ public class OlaHelper extends OlaHelperBase {
     UITestFramework.MBKCommonControls mbkCommonControls;
     Reporter reporter = new Reporter();
     Map<String, String> walletBalance = new HashMap<>();
+    HomePage homePage;
+    PermissionHelper permissionHelper;
 
 
     public OlaHelper(AndroidDriver driver) throws IOException {
@@ -33,6 +38,8 @@ public class OlaHelper extends OlaHelperBase {
         touchAction = new TouchAction(driver);
         mbkPermissions = new MBKPermissions(driver);
         mbkCommonControls = new UITestFramework.MBKCommonControls(driver);
+        homePage=new HomePage(driver);
+        permissionHelper=new PermissionHelper(driver);
 
 
     }
@@ -42,17 +49,19 @@ public class OlaHelper extends OlaHelperBase {
     public void olaBook(String to, String passengerName, String directoryName, String screenName) throws InterruptedException, IOException {
         int testStepCount = 0;
         String categoryNumber = "2";
+        homePage.clickOnCrossButton();
 
 
         // Fetch the wallet balance before
         walletBalance = mbkCommonControls.getBalance(directoryName, screenName, testStepCount);
         Double totalBalanceBefore = Double.valueOf(walletBalance.get("Available Balance")) * 100;
-        Double moneyAddedBefore = Double.valueOf(walletBalance.get("Money Added")) * 100;
+        //Double moneyAddedBefore = Double.valueOf(walletBalance.get("Money Added")) * 100;
 
         // Swipe the homescreen up
         Log.info("SWIPE", "UP");
         touchAction.press(PointOption.point(400, 1000)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1500))).moveTo(PointOption.point(400,200)).release().perform();
 
+        homePage.clickMoreServicesIcon();
 
 
         // Select the Ola cabs option from the Home-screen
@@ -62,13 +71,15 @@ public class OlaHelper extends OlaHelperBase {
 
         //Allow the location permission to the app
         Log.info("ALLOW", "Location Permission");
-        olaScreen.selectElement(By.xpath("//*[@text='Go to Settings']"));
-        olaScreen.selectElement(By.xpath("//*/android.widget.TextView[@text='Permissions']"));
-        olaScreen.selectElement(By.xpath("//*/android.widget.TextView[@text='Location']"));
+        //olaScreen.selectElement(By.xpath("//*[@text='Go to Settings']"));
+        //olaScreen.selectElement(By.xpath("//*/android.widget.TextView[@text='Permissions']"));
         Thread.sleep(2000);
-        olaScreen.navigateBack();
+
+        permissionHelper.permissionAllow();
         Thread.sleep(2000);
-        olaScreen.navigateBack();
+        //olaScreen.navigateBack();
+        Thread.sleep(2000);
+        //olaScreen.navigateBack();
         Thread.sleep(5000);
 
         // If the device location is not given
@@ -199,12 +210,20 @@ public class OlaHelper extends OlaHelperBase {
     public void olaCancel(String directoryName, String screenName) throws InterruptedException, IOException, JSONException {
 
         int ssCount = 0;
+        homePage.clickOnCrossButton();
 
         // Handle the KYC Popup
         mbkPermissions.handleKYCScreen("directoryName", "screenName", ssCount);
+        touchAction.press(PointOption.point(400, 1000)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1500))).moveTo(PointOption.point(400,200)).release().perform();
+
 
         // Select the ola Icon from the Home-screen
-        olaScreen.selectElement(By.name("Ola Cabs"));
+        homePage.clickMoreServicesIcon();
+
+        olaScreen.selectElement(By.xpath("//android.widget.TextView[@text = 'Ola Cabs']"));
+        Thread.sleep(2000);
+
+        permissionHelper.permissionAllow();
 
 
         if (olaScreen.isElementPresent(By.xpath("//*[@text='Cancel Ride']"))) {

@@ -3,11 +3,15 @@ package IntegrationTests.Bus;
 import IntegrationTests.Onboarding.OnboardingHelper;
 import UITestFramework.CreateSession;
 import UITestFramework.ExtentReport.Reporter;
+import io.appium.java_client.android.AndroidElement;
 import logger.Log;
+import main.java.utils.Element;
+import org.openqa.selenium.By;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import test.java.AndroidApp.Helpers.LoginHelper;
 
 import java.io.IOException;
 
@@ -50,8 +54,18 @@ public class BusTest extends CreateSession {
         Log.infoStartTest("busBook");
 
         reporter.extentTest = reporter.extentReports.createTest("offerSearch");
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
 
-        onboardingHelper.quickLogin("8527797582", "mayank.suneja@mobikwik.com", "T.C. Suneja");
+        loginHelper.quickLoginViaEmail("8447405515@nocash.mobikwik.com", "priyanka123");
+        Thread.sleep(3000);
+
+        if(Element.isElementPresent(driver,(By.id("cross_button")))) {
+            Element.selectElement(driver, (AndroidElement) driver.findElement(By.id("cross_button")), "Cross Button");
+        }
+        Thread.sleep(1000);
+
+
+        //onboardingHelper.quickLogin("8527797582", "mayank.suneja@mobikwik.com", "T.C. Suneja");
 
         // ExcelUtils excelUtils = new ExcelUtils("TestData.xlsx", "login");
 
@@ -90,8 +104,16 @@ public class BusTest extends CreateSession {
         Log.infoStartTest("busCancel");
 
         reporter.extentTest = reporter.extentReports.createTest("busCancel");
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
 
-        onboardingHelper.quickLogin("8527797582", "mayank.suneja@mobikwik.com", "T.C. Suneja");
+        loginHelper.quickLoginViaEmail("8447405515@nocash.mobikwik.com", "priyanka123");
+        Thread.sleep(3000);
+
+        if(Element.isElementPresent(driver,(By.id("cross_button")))) {
+            Element.selectElement(driver, (AndroidElement) driver.findElement(By.id("cross_button")), "Cross Button");
+        }
+        Thread.sleep(1000);
+        //onboardingHelper.quickLogin("8527797582", "mayank.suneja@mobikwik.com", "T.C. Suneja");
 
         // ExcelUtils excelUtils = new ExcelUtils("TestData.xlsx", "login");
 

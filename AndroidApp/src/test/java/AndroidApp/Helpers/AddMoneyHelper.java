@@ -39,14 +39,21 @@ public class AddMoneyHelper {
     }
 
     public void netbanking(String amount, String bankName, String bankPageLocator) throws InterruptedException, IOException, JSONException {
+        Thread.sleep(3000);
+        homePage.clickOnCrossButton();
+        Thread.sleep(1000);
 
         addMoneyPage = homePage.clickOnAddMoneyButton();
 
         addMoneyPage.clickOnAmountTextBox();
 
         addMoneyPage.enterAmount(amount);
+        Thread.sleep(1000);
 
-        screen.hideKeyboard(driver);
+
+        //screen.hideKeyboard(driver);
+        //Thread.sleep(1000);
+
 
         addMoneyPage.clickOnContinueButton();
 
@@ -76,16 +83,23 @@ public class AddMoneyHelper {
 
 
     public void addMoneyViaNewCard(String amount, String cardNo, String expiryMonth, String expiryYear, String cvv, String bankPassword, String successPageStatus, String successPageText) throws InterruptedException, IOException, JSONException {
+        Thread.sleep(2000);
 
+        homePage.clickOnCrossButton();
+        Thread.sleep(1000);
         balanceBefore = mbkCommonControlsHelper.getBalance();
 
         addMoneyPage = homePage.clickOnAddMoneyButton();
 
         addMoneyPage.clickOnAmountTextBox();
 
+
         addMoneyPage.enterAmount(amount);
 
-        screen.hideKeyboard(driver);
+
+       // screen.hideKeyboard(driver);
+        Thread.sleep(1000);
+
 
         addMoneyPage.clickOnContinueButton();
 
@@ -96,6 +110,8 @@ public class AddMoneyHelper {
         addMoneyPage.clickOnNewDebitCreditCard();
 
         enterCardDetails(cardNo, expiryMonth, expiryYear, cvv);
+        //enterCardDetails("6521600162735389", "08","22" , "801");
+
 
         addMoneyPage.clickOnPayNow();
 
@@ -123,6 +139,9 @@ public class AddMoneyHelper {
 
 
     public void addMoneyViaSavedCard(String amount, String cardNo, String expiryMonth, String expiryYear, String cvv, String bankPassword, String successPageStatus, String successPageText, Boolean promoCodeStatus, String promoCode) throws InterruptedException, IOException, JSONException {
+        Thread.sleep(1000);
+        homePage.clickOnCrossButton();
+        Thread.sleep(1000);
 
         balanceBefore = mbkCommonControlsHelper.getBalance();
 
@@ -132,7 +151,7 @@ public class AddMoneyHelper {
 
         addMoneyPage.enterAmount(amount);
 
-        screen.hideKeyboard(driver);
+        //screen.hideKeyboard(driver);
 
         addMoneyPage.clickOnContinueButton();
 
@@ -194,6 +213,7 @@ public class AddMoneyHelper {
     }
 
     public void fetchDataFromSheet(int rownum) {
+
         map = new HashMap<String, String>();
         TestDataReader testData = Config.getCachedTestDataReaderObject("addmoney");
         map.put("amount", testData.GetData(rownum, "amount"));

@@ -29,7 +29,7 @@ public class Test_Offer extends CreateSession {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
 
         //loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
-        loginHelper.quickLoginViaEmail("rashia15@gmail.com", "india@123");
+        loginHelper.quickLoginViaEmail("priyankaigdtuw@gmail.com", "priyanka123");
 
         offerHelperBase = new OfferHelper(getAndroidDriver());
 
@@ -46,7 +46,7 @@ public class Test_Offer extends CreateSession {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
 
         //loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
-        loginHelper.quickLoginViaEmail("rashia15@gmail.com", "india@123");
+        loginHelper.quickLoginViaEmail("priyankaigdtuw@gmail.com", "priyanka123");
 
         offerHelperBase = new OfferHelper(getAndroidDriver());
 
@@ -63,7 +63,7 @@ public class Test_Offer extends CreateSession {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
 
         //loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
-        loginHelper.quickLoginViaEmail("rashia15@gmail.com", "india@123");
+        loginHelper.quickLoginViaEmail("priyankaigdtuw@gmail.com", "priyanka123");
 
         offerHelperBase = new OfferHelper(getAndroidDriver());
         offerHelperBase.redeemOffersCheck("Offer", "redeemOffer");

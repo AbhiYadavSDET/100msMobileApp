@@ -1,5 +1,6 @@
-package IntegrationTests.Ola;
+package test.java.AndroidApp.Test.Ola;
 
+import IntegrationTests.Ola.OlaHelperBase;
 import IntegrationTests.Onboarding.OnboardingHelper;
 import UITestFramework.CreateSession;
 import UITestFramework.ExtentReport.Reporter;
@@ -8,6 +9,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import test.java.AndroidApp.Helpers.LoginHelper;
+import test.java.AndroidApp.Helpers.OlaHelper;
 
 import java.io.IOException;
 
@@ -19,6 +22,7 @@ public class OlaTest extends CreateSession {
     OlaHelperBase olaHelperBase;
     Reporter reporter = new Reporter();
     OnboardingHelper onboardingHelper;
+    LoginHelper loginHelper;
 
 
     /**
@@ -35,6 +39,8 @@ public class OlaTest extends CreateSession {
 
         olaHelperBase = new OlaHelper(getAndroidDriver());
         onboardingHelper = new OnboardingHelper(getAndroidDriver());
+        loginHelper = new LoginHelper(getAndroidDriver());
+
 
 
     }
@@ -50,8 +56,9 @@ public class OlaTest extends CreateSession {
         Log.infoStartTest("olaBook");
 
         reporter.extentTest = reporter.extentReports.createTest("olaBook");
+        loginHelper.quickLoginViaEmail("8447405515@nocash.mobikwik.com", "priyanka123");
 
-        onboardingHelper.quickLogin("8527797582", "mayank.suneja@mobikwik.com", "T.C. Suneja");
+        //onboardingHelper.quickLogin("8527797582", "mayank.suneja@mobikwik.com", "T.C. Suneja");
 
         // ExcelUtils excelUtils = new ExcelUtils("TestData.xlsx", "login");
 
@@ -104,6 +111,8 @@ public class OlaTest extends CreateSession {
             Log.info("userName : " + userName + " | " + "Password : " + password + " | " + "mobile : " + mobile + " | "
                     + "directoryName : " + directoryName + "/" + androidOSVersion + " | " + "screenshotName : "
                     + screenshotName);*/
+        //reporter.extentTest = reporter.extentReports.createTest("olaCancel");
+        loginHelper.quickLoginViaEmail("8447405515@nocash.mobikwik.com", "priyanka123");
 
         olaHelperBase.olaCancel("directoryName", "screenName");
 

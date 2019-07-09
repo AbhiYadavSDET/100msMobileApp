@@ -37,6 +37,7 @@ public class HelpHelper {
     }
 
     public void helpVerification() throws InterruptedException, IOException, JSONException {
+        homePage.clickOnCrossButton();
 
         mbkCommonControls.handleConscentPopup();
         permissionHelper.permissionAllow();

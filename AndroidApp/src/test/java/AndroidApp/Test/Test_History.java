@@ -38,7 +38,7 @@ public class Test_History extends CreateSession {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
 
         //loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
-        loginHelper.quickLoginViaEmail("rashia15@gmail.com", "india@123");
+        loginHelper.quickLoginViaEmail("priyankaigdtuw@gmail.com", "priyanka123");
 
         transactionHistoryHelperBase = new TransactionHistoryHelper(getAndroidDriver());
 

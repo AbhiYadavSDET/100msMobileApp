@@ -1,22 +1,26 @@
-package IntegrationTests.NearBy;
+package test.java.AndroidApp.Helpers;
 
 import java.io.IOException;
 
-import IntegrationTests.Screens.NearByScreen;
+import main.java.utils.Screen;
+import test.java.AndroidApp.PageObject.NearByHelperBase;
+import test.java.AndroidApp.PageObject.NearByScreen;
 import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
 import logger.Log;
 import org.json.JSONException;
 
-import IntegrationTests.Screens.OfferScreen;
 import IntegrationTests.Screens.OnboardingScreen;
 import UITestFramework.MBKPermissions;
 import UITestFramework.Api.ApiCommonControls;
 import UITestFramework.ExtentReport.Reporter;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
-import org.omg.PortableServer.THREAD_POLICY_ID;
 import org.openqa.selenium.By;
+import test.java.AndroidApp.PageObject.HomePage;
 
+import java.time.Duration;
 import java.util.List;
 
 public class NearByHelper extends NearByHelperBase {
@@ -27,6 +31,8 @@ public class NearByHelper extends NearByHelperBase {
     ApiCommonControls apiCommonControls;
     Reporter reporter = new Reporter();
     NearByScreen nearByScreen;
+    HomePage homePage;
+    Screen screen;
 
     public NearByHelper(AndroidDriver driver) throws IOException {
         //offerScreen = new OfferScreen(driver);
@@ -35,6 +41,8 @@ public class NearByHelper extends NearByHelperBase {
         mbkCommonControls = new UITestFramework.MBKCommonControls(driver);
         apiCommonControls = new ApiCommonControls();
         nearByScreen = new NearByScreen(driver);
+        homePage=new HomePage(driver);
+        screen=new Screen(driver);
     }
 
     @Override
@@ -42,10 +50,14 @@ public class NearByHelper extends NearByHelperBase {
             throws InterruptedException, IOException, JSONException {
         int testStepCount = 0;
         int noOfstores = 0;
+        homePage.clickOnCrossButton();
+        Log.info("SWIPE", "UP");
+        touchAction.press(PointOption.point(400, 1000)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000))).moveTo(PointOption.point(400, 200)).release().perform();
+        homePage.clickMoreServicesIcon();
 
         // go to services
-        Log.info("SELECT", "Services Tab");
-        nearByScreen.selectElement(nearByScreen.services);
+        //Log.info("SELECT", "Services Tab");
+        //nearByScreen.selectElement(nearByScreen.services);
 
         // click on near by icon
         reporter.extentReportDisplay("INFO", "STEP " + ++testStepCount + " | " + Log.info("SELECT", "Click on nearby icon"), "");
@@ -83,9 +95,10 @@ public class NearByHelper extends NearByHelperBase {
         int testStepCount = 0;
         int noOfstores = 0;
 
-        // go to services
-        Log.info("SELECT", "Services Tab");
-        nearByScreen.selectElement(nearByScreen.services);
+        homePage.clickOnCrossButton();
+        Log.info("SWIPE", "UP");
+        touchAction.press(PointOption.point(400, 1000)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000))).moveTo(PointOption.point(400, 200)).release().perform();
+        homePage.clickMoreServicesIcon();
 
         // click on near by icon
         reporter.extentReportDisplay("INFO", "STEP " + ++testStepCount + " | " + Log.info("SELECT", "Click on nearby icon"), "");
@@ -95,15 +108,15 @@ public class NearByHelper extends NearByHelperBase {
 
         // If the device location is not given
         Thread.sleep(3000);
-        if (nearByScreen.isElementPresent(By.id("button1"))) {
+       /* if (nearByScreen.isElementPresent(By.id("button1"))) {
             nearByScreen.selectElement(By.id("button1"));
-        }
+        }*/
 
         // wait for fetching of stores
-        nearByScreen.waitForVisibility(nearByScreen.storesByAdd);
+        //nearByScreen.waitForVisibility(nearByScreen.storesByAdd);
 
         // select category
-        nearByScreen.selectElement(By.xpath("//android.widget.TextView[@text = '" + categoryName + "']"));
+        nearByScreen.selectElement(nearByScreen.searchIcon);
         reporter.extentReportDisplay("INFO", "STEP " + ++testStepCount + " | " + Log.info("SELECT", "Searching for stores under category"), "");
 
         // wait for list of stores
@@ -129,15 +142,16 @@ public class NearByHelper extends NearByHelperBase {
         int noOfstores = 0;
 
         // go to services
-        Log.info("SELECT", "Services Tab");
-        nearByScreen.selectElement(nearByScreen.services);
+        homePage.clickOnCrossButton();
+        Log.info("SWIPE", "UP");
+        touchAction.press(PointOption.point(400, 1000)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000))).moveTo(PointOption.point(400, 200)).release().perform();
+        homePage.clickMoreServicesIcon();
 
         // click on near by icon
         reporter.extentReportDisplay("INFO", "STEP " + ++testStepCount + " | " + Log.info("SELECT", "Click on nearby icon"), "");
         nearByScreen.selectElement(nearByScreen.nearbyIcon);
 
         mbkCommonControls.allowPermission(true, "Location");
-
         // If the device location is not given
         Thread.sleep(3000);
         if (nearByScreen.isElementPresent(By.id("button1"))) {
@@ -145,8 +159,9 @@ public class NearByHelper extends NearByHelperBase {
         }
 
         // wait for fetching of stores
-        nearByScreen.waitForVisibility(nearByScreen.storesByAdd);
-
+        //nearByScreen.waitForVisibility(nearByScreen.storesByAdd);
+        screen.swipeUp();
+        Thread.sleep(3000);
         nearByScreen.selectElement(nearByScreen.searchIcon);
         reporter.extentReportDisplay("INFO", "STEP " + ++testStepCount + " | " + Log.info("SELECT", "Click on search icon"), "");
 

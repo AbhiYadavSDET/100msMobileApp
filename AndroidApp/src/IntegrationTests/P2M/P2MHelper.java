@@ -10,6 +10,7 @@ import io.appium.java_client.ios.IOSDriver;
 import logger.Log;
 import org.json.JSONException;
 import org.openqa.selenium.By;
+import test.java.AndroidApp.PageObject.HomePage;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -26,7 +27,7 @@ public class P2MHelper extends P2MHelperBase {
     P2MScreen p2MScreen;
     LinkedHashMap<String, String> walletBalance = new LinkedHashMap<>();
     Reporter reporter;
-
+    HomePage homePage;
 
     public P2MHelper(AndroidDriver driver) throws IOException {
         p2MScreen = new P2MScreen(driver);
@@ -34,6 +35,7 @@ public class P2MHelper extends P2MHelperBase {
         mbkPermissions = new MBKPermissions(driver);
         mbkCommonControls = new UITestFramework.MBKCommonControls(driver);
         reporter = new Reporter();
+        homePage = new HomePage(driver);
 
     }
 

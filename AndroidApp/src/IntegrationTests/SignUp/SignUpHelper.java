@@ -49,7 +49,7 @@ public class SignUpHelper extends SignUpHelperBase {
 
         int testStepCount = 0;
         long n = Math.round(Math.random() * 1000000);
-        String mobileNo = "8216" + n;
+        String mobileNo = "8447405515";
         String userName = mobileNo + "@nocash.mobikwik.com";
 
 

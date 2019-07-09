@@ -35,7 +35,7 @@ public class CreateSession {
 
     String androidOSVersion = "8.0";
     String portNo = "5000";
-    String udid = "330062db17b4a48b";
+    String udid = "77d5274b";
     String deviceName = "Samsung J7";
 
     private String reportDirectory = "reports";
@@ -190,6 +190,10 @@ public class CreateSession {
 
         if (build.equals("beta")) {
             String appPath = "src/app/MobiKwik_beta.apk";
+            return appPath;
+        }
+        if (build.equals("alpha")) {
+            String appPath = "src/app/MobiKwik_alpha.apk";
             return appPath;
         }
 

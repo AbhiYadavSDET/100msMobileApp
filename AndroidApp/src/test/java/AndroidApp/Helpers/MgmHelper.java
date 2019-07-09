@@ -1,6 +1,7 @@
-package IntegrationTests.Mgm;
+package test.java.AndroidApp.Helpers;
 
-import IntegrationTests.Screens.MgmScreen;
+import test.java.AndroidApp.PageObject.MgmHelperBase;
+import test.java.AndroidApp.PageObject.MgmScreen;
 import IntegrationTests.Screens.OnboardingScreen;
 import UITestFramework.Api.ApiCommonControls;
 import UITestFramework.ExtentReport.Reporter;
@@ -9,10 +10,11 @@ import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import logger.Log;
 import org.json.JSONException;
+import test.java.AndroidApp.PageObject.HomePage;
 
 import java.io.IOException;
 
-public class MgmHelper extends MgmHelperBase{
+public class MgmHelper extends MgmHelperBase {
     TouchAction touchAction;
     MBKPermissions mbkPermissions;
     UITestFramework.MBKCommonControls mbkCommonControls;
@@ -20,6 +22,7 @@ public class MgmHelper extends MgmHelperBase{
     ApiCommonControls apiCommonControls;
     Reporter reporter = new Reporter();
     MgmScreen mgmScreen;
+    HomePage homePage;
 
     public MgmHelper(AndroidDriver driver) throws IOException {
 
@@ -34,6 +37,7 @@ public class MgmHelper extends MgmHelperBase{
             throws InterruptedException, IOException, JSONException{
         int testStepCount = 0;
         boolean found = false;
+        homePage.clickOnCrossButton();
 
         // go to wallet
         Log.info("SELECT       | Wallet Tab");

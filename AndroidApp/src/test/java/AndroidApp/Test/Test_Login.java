@@ -24,7 +24,7 @@ public class Test_Login extends CreateSession {
     @Test(groups = {"successfulLoginViaEmail"}, description = "Successful Login via Email")
     public void Test_SuccessFulLoginViaEmail() throws IOException, InterruptedException {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.doLoginViaEmail(3);
+        loginHelper.quickLoginViaEmail("priyankaigdtuw@gmail.com", "priyanka123");
     }
 
 }

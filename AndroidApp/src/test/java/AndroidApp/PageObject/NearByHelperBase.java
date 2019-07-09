@@ -1,4 +1,4 @@
-package IntegrationTests.NearBy;
+package test.java.AndroidApp.PageObject;
 
 import org.json.JSONException;
 

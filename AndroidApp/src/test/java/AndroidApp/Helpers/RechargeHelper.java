@@ -8,6 +8,7 @@ import main.java.utils.Element;
 import main.java.utils.Screen;
 import net.sourceforge.tess4j.TesseractException;
 import org.json.JSONException;
+import org.omg.PortableServer.THREAD_POLICY_ID;
 import org.openqa.selenium.By;
 import test.java.AndroidApp.PageObject.HomePage;
 import test.java.AndroidApp.PageObject.RechargePage;
@@ -44,6 +45,8 @@ public class RechargeHelper {
     }
 
     public void prepaidRecharge(String mobileNo, String amount, String category, String operator, String totalPayment, String trxStatus, String securityPin, Boolean promoCodeStatus, String promoCode, String promoCodeText) throws InterruptedException, IOException, JSONException {
+        Thread.sleep(2000);
+        homePage.clickOnCrossButton();
 
         balanceBefore = mbkCommonControlsHelper.getBalance();
 
@@ -59,6 +62,10 @@ public class RechargeHelper {
         rechargePage.selectOperator();
 
         rechargePage.selectCircle();
+        screen.swipeUp();
+        screen.swipeDown();
+        screen.swipeUp();
+        screen.swipeDown();
 
         rechargePage.selectAmount();
 
@@ -112,14 +119,19 @@ public class RechargeHelper {
     public void postpaidPayment(String mobileNo, String popupError, String popupText) throws InterruptedException, IOException, JSONException {
 
         //balanceBefore = mbkCommonControlsHelper.getBalance();
+        homePage.clickOnCrossButton();
 
         rechargePage = homePage.clickOnMobileButton();
 
         permissionHelper.permissionAllow();
 
         rechargePage.enterMobileNo(mobileNo);
+        Thread.sleep(3000);
+        rechargePage.clickOnPostPaid();
+
 
         rechargePage.clickOnCtaContinue2();
+
 
         Element.waitForVisibility(driver, rechargePage.popup);
 
@@ -141,6 +153,7 @@ public class RechargeHelper {
     public void postpaidPaymentViaSavedConnection(String mobileNo, String popupText, String category, String operator) throws InterruptedException, IOException, JSONException {
 
         //balanceBefore = mbkCommonControlsHelper.getBalance();
+        homePage.clickOnCrossButton();
 
         rechargePage = homePage.clickOnMobileButton();
 
@@ -156,7 +169,7 @@ public class RechargeHelper {
 
         } else {
             Log.info("The saved connection is not present");
-            mbkCommonControlsHelper.clickUpButton();
+            //mbkCommonControlsHelper.clickUpButton();
         }
 
 
@@ -165,41 +178,47 @@ public class RechargeHelper {
     public void rechargeDthInvalidAmount(String mobileNo, String amount, String securityPin, String errorMessage) throws InterruptedException, IOException, JSONException, TesseractException {
 
         //balanceBefore = mbkCommonControlsHelper.getBalance();
+        homePage.clickOnCrossButton();
 
         rechargePage = homePage.clickOnDthButton();
 
         permissionHelper.permissionAllow();
+        Thread.sleep(5000);
+        if(Element.isElementPresent(driver,By.xpath("//android.widget.TextView[@text = '1114514100']"))) {
+            AndroidElement androidElement = element.findElement(driver, By.xpath("//android.widget.TextView[@text = '1114514100']"));
+            Element.selectElement(driver, androidElement, "Select Saved Connection");
 
-        AndroidElement androidElement = element.findElement(driver, By.xpath("//android.widget.TextView[@text = '" + mobileNo + "']"));
-        Element.selectElement(driver, androidElement, "Select Saved Connection");
+            rechargePage.enterDthAmount(amount);
 
-        rechargePage.enterDthAmount(amount);
+            rechargePage.clickOnDthContinueCta();
 
-        rechargePage.clickOnDthContinueCta();
+            rechargePage.clickOnCtaCotinue();
 
-        rechargePage.clickOnCtaCotinue();
+            mbkCommonControlsHelper.handleSecurityPin(securityPin);
 
-        mbkCommonControlsHelper.handleSecurityPin(securityPin);
+            Thread.sleep(3000);
+            String path = mbReporter.screenShot1("toast", "rechargeInvalidAmount");
+            Log.info(path);
+            String[] text = screen.readToastMessage("screenshots/toast", path).split("\\r?\\n");
+            int len = text.length;
 
-        Thread.sleep(3000);
-        String path = mbReporter.screenShot1("toast", "rechargeInvalidAmount");
-        Log.info(path);
-        String[] text = screen.readToastMessage("screenshots/toast", path).split("\\r?\\n");
-        int len = text.length;
-
-        for (String e : text) {
-            Log.info(e);
+            for (String e : text) {
+                Log.info(e);
+            }
+            String actualErrorText = text[len - 2] + text[len - 1];
+            mbReporter.verifyEqualsWithLogging(actualErrorText, errorMessage, "Verify Error Message", false, false);
         }
-        String actualErrorText = text[len - 2] + text[len - 1];
-        mbReporter.verifyEqualsWithLogging(actualErrorText, errorMessage, "Verify Error Message", false, false);
-
+        else
+        {
+            Log.info("Connection not present");
+        }
 
     }
 
     public boolean selectSavedConnection(String mobileNo, String category, String operator) throws InterruptedException {
 
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 3; i++) {
             if (Element.isElementPresent(driver, By.xpath("//*/android.widget.TextView[@text = '7795709569 | Postpaid, Vodafone']"))) {
                 Log.info("SCROLL", "Screen");
                 Screen.swipeUp();
@@ -223,6 +242,7 @@ public class RechargeHelper {
     public void viewBillGas(String operator, String mobileNo) throws InterruptedException, IOException, JSONException {
 
         //balanceBefore = mbkCommonControlsHelper.getBalance();
+        homePage.clickOnCrossButton();
 
         homePage.clickMoreIcon();
         rechargePage = homePage.clickGasIcon();
@@ -236,6 +256,9 @@ public class RechargeHelper {
         rechargePage.enterBpNumber(mobileNo);
 
         rechargePage.clickOnCtaContinue2();
+        Thread.sleep(3000);
+        if(!(Element.isElementPresent(driver, By.xpath("//*/android.widget.TextView[@text = 'No dues']"))))
+        {
 
         String actualSuccessScreenOperator = rechargePage.getSuccessScreenOperator();
         String actualSuccessScreenNumber = rechargePage.getSuccessScreenNumber();
@@ -246,7 +269,11 @@ public class RechargeHelper {
         mbReporter.verifyTrueWithLogging(Double.parseDouble(actualSuccessScreenAmount) > 0, "Success Page | Verify Amount greater than 0", false, false);
 
         mbkCommonControlsHelper.clickUpButton();
-        mbkCommonControlsHelper.clickUpButton();
+        mbkCommonControlsHelper.clickUpButton();}
+        else
+        {
+            Log.info("No dues");
+        }
 
     }
 
@@ -257,6 +284,7 @@ public class RechargeHelper {
         String[] arr = telephoneNo.split("\\|");
         String expectedtelephoneNo = arr[arr.length - 2];
         String expectedCan = arr[arr.length - 1];
+        homePage.clickOnCrossButton();
 
         homePage.clickMoreIcon();
         rechargePage = homePage.clickLandlineIcon();

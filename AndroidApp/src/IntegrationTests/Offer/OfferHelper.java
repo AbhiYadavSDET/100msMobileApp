@@ -13,6 +13,7 @@ import io.appium.java_client.ios.IOSElement;
 import logger.Log;
 import org.json.JSONException;
 import org.openqa.selenium.By;
+import test.java.AndroidApp.PageObject.HomePage;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -31,6 +32,7 @@ public class OfferHelper extends OfferHelperBase {
     MBReporter mbReporter;
     OfferScreen offerScreen;
     Set<IOSElement> setCategory = new HashSet<>();
+    HomePage homePage;
 
 
     public OfferHelper(AndroidDriver driver) throws IOException {
@@ -39,6 +41,7 @@ public class OfferHelper extends OfferHelperBase {
         mbkCommonControls = new UITestFramework.MBKCommonControls(driver);
         apiCommonControls = new ApiCommonControls();
         mbReporter = new MBReporter(driver, "testScreenshotDir");
+        homePage=new HomePage(driver);
     }
 
 
@@ -46,6 +49,7 @@ public class OfferHelper extends OfferHelperBase {
     public void offerSearch(String offerName, String directoryName, String screenName) throws InterruptedException, IOException, JSONException {
         int testStepCount = 0;
 
+        homePage.clickOnCrossButton();
         // Handle the KYC Popup
         mbkPermissions.handleKYCScreen(directoryName, screenName, testStepCount);
 
@@ -74,7 +78,7 @@ public class OfferHelper extends OfferHelperBase {
     @Override
     public void offerCategoryCheck(String directoryName, String screenName) throws InterruptedException, IOException, JSONException {
         int testStepCount = 0;
-
+        homePage.clickOnCrossButton();
         // Handle the KYC Popup
         mbkPermissions.handleKYCScreen(directoryName, screenName, testStepCount);
 

@@ -1,4 +1,4 @@
-package IntegrationTests.Screens;
+package test.java.AndroidApp.PageObject;
 import UITestFramework.MobiKwikScreen;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;

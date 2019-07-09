@@ -15,6 +15,7 @@ import org.json.JSONException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.WebElement;
+import test.java.AndroidApp.PageObject.HomePage;
 
 import java.io.IOException;
 import java.time.Duration;
@@ -32,6 +33,7 @@ public class RechargeHelper extends RechargeHelperBase {
     MBKCommonControls mbkCommonControls;
     Map<String, String> walletBalance = new HashMap<>();
     Reporter reporter;
+    HomePage homePage;
 
 
     public RechargeHelper(AndroidDriver driver) throws IOException {
@@ -45,6 +47,7 @@ public class RechargeHelper extends RechargeHelperBase {
 
     public void prepaidRecharge(String cell, String amount, String category, String operator, String directoryName, String screenName) throws InterruptedException, IOException, JSONException {
         int testStepCount = 0;
+        homePage.clickOnCrossButton();
 
         // Handle the KYC Popup
         mbkPermissions.handleKYCScreen("directoryName", "screenName", testStepCount);
@@ -144,6 +147,8 @@ public class RechargeHelper extends RechargeHelperBase {
     @Override
     public void creditCardBillPayment(String amount, String directoryName, String screenName) throws InterruptedException, IOException, JSONException {
         int testStepCount = 0;
+        homePage.clickOnCrossButton();
+
 
         // Fetch the wallet balance before
         walletBalance = mbkCommonControls.getBalance(directoryName, screenName, testStepCount);
@@ -181,6 +186,8 @@ public class RechargeHelper extends RechargeHelperBase {
     public void mobilePostpaidSavedConnection(String cell, String amount, String category, String operator, String directoryName, String screenName) throws InterruptedException, IOException, JSONException {
 
         int testStepCount = 0;
+        homePage.clickOnCrossButton();
+
 
         // Handle the KYC Popup
         mbkPermissions.handleKYCScreen("directoryName", "screenName", testStepCount);
@@ -271,6 +278,8 @@ public class RechargeHelper extends RechargeHelperBase {
 
     public void bsnlSpecial(String cell, String operator, String directoryName, String screenName) throws InterruptedException, IOException, JSONException {
         int testStepCount = 0;
+        homePage.clickOnCrossButton();
+
 
         // Handle the KYC Popup
         mbkPermissions.handleKYCScreen("directoryName", "screenName", testStepCount);
@@ -362,6 +371,8 @@ public class RechargeHelper extends RechargeHelperBase {
     public void postpaidPaymentWithPromocode(String cell, String amount, boolean promocodeFlag, String promocode, String directoryName, String screenName) throws InterruptedException, IOException, JSONException {
 
         int testStepCount = 0;
+        homePage.clickOnCrossButton();
+
 
         // Handle the KYC Popup
         mbkPermissions.handleKYCScreen("directoryName", "screenName", testStepCount);

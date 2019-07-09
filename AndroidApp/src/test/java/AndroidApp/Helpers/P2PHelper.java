@@ -52,6 +52,10 @@ public class P2PHelper {
     public void p2pSufficient(String mobile, String amount, String securityPin, String successPageStatus, String successPageName) throws InterruptedException, IOException,
             JSONException {
 
+        Thread.sleep(2000);
+        homePage.clickOnCrossButton();
+
+
         balanceBefore = mbkCommonControlsHelper.getBalance();
         transferPage = homePage.clickOnButtonP2P();
         transferPage.clickOnLabelEnterMobileNumber();

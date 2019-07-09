@@ -1,21 +1,20 @@
-package IntegrationTests.Bikes;
+package test.java.AndroidApp.Helpers;
 
-import IntegrationTests.Screens.BikesScreen;
+import test.java.AndroidApp.PageObject.BikeHelperBase;
+import test.java.AndroidApp.PageObject.BikesScreen;
 import UITestFramework.ExtentReport.Reporter;
 import UITestFramework.MBKPermissions;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
-import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import logger.Log;
 import org.json.JSONException;
 import org.openqa.selenium.By;
+import test.java.AndroidApp.PageObject.HomePage;
 
 import java.io.IOException;
 import java.time.Duration;
-import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,6 +28,7 @@ public class BikeHelper extends BikeHelperBase {
     UITestFramework.MBKCommonControls mbkCommonControls;
     Map<String, String> walletBalance = new HashMap<>();
     Reporter reporter = new Reporter();
+    HomePage homePage;
 
 
     public BikeHelper(AndroidDriver driver) throws IOException {
@@ -36,6 +36,7 @@ public class BikeHelper extends BikeHelperBase {
         touchAction = new TouchAction(driver);
         mbkPermissions = new MBKPermissions(driver);
         mbkCommonControls = new UITestFramework.MBKCommonControls(driver);
+        homePage=new HomePage(driver);
 
     }
 
@@ -44,6 +45,7 @@ public class BikeHelper extends BikeHelperBase {
 
         int testStepCount = 0;
         boolean found = false;
+        homePage.clickOnCrossButton();
 
         // Handle the KYC Popup
         mbkPermissions.handleKYCScreen("directoryName", "screenName", testStepCount);
@@ -55,6 +57,7 @@ public class BikeHelper extends BikeHelperBase {
         touchAction.press(PointOption.point(400, 1000)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000))).moveTo(PointOption.point(400, 200)).release().perform();
 
         Thread.sleep(2000);
+        homePage.clickMoreServicesIcon();
 
         reporter.extentReportDisplay("INFO", "STEP " + ++testStepCount + " | " + Log.info("SELECT", "Bike Icon"), "");
         bikeScreen.selectElement(By.xpath("//*/android.view.ViewGroup/android.widget.TextView[@text='Bikes']"));
@@ -84,6 +87,7 @@ public class BikeHelper extends BikeHelperBase {
                 touchAction.press(PointOption.point(400, 1000)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000))).moveTo(PointOption.point(400, 200)).release().perform();
 
             }
+            Thread.sleep(5000);
 
             // Enter the deetyails
             reporter.extentReportDisplay("INFO", "STEP " + ++testStepCount + " | " + Log.info("ENTER", "Details"), "");
@@ -99,6 +103,7 @@ public class BikeHelper extends BikeHelperBase {
             bikeScreen.findElement(By.xpath("//android.widget.TextView[@text='Email']/following::android.widget.EditText")).clear();
             mbkCommonControls.sendText(By.xpath("//android.widget.TextView[@text='Email']/following::android.widget.EditText"), "mobitest313@gmail.com");
             bikeScreen.hideKeyboard();
+            Thread.sleep(2000);
 
 
             reporter.extentReportDisplay("INFO", "STEP " + ++testStepCount + " | " + Log.info("SELECT", "T & C check box"), "");

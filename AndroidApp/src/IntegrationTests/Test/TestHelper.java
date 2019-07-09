@@ -10,6 +10,7 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import logger.Log;
 import org.json.JSONException;
+import test.java.AndroidApp.PageObject.HomePage;
 
 import java.io.IOException;
 
@@ -22,6 +23,7 @@ public class TestHelper extends TestHelperBase {
     UITestFramework.MBKCommonControls mbkCommonControls;
     P2MScreen p2MScreen;
     Reporter reporter;
+    HomePage homePage;
 
 
     public TestHelper(AndroidDriver driver) throws IOException {
@@ -30,6 +32,7 @@ public class TestHelper extends TestHelperBase {
         mbkPermissions = new MBKPermissions(driver);
         mbkCommonControls = new UITestFramework.MBKCommonControls(driver);
         reporter = new Reporter();
+        homePage=new HomePage(driver);
 
 
     }

@@ -9,6 +9,7 @@ import main.java.utils.Screen;
 import org.json.JSONException;
 import test.java.AndroidApp.PageObject.HomePage;
 import test.java.AndroidApp.PageObject.MutualFundPage;
+import test.java.AndroidApp.PageObject.WalletBalancePage;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -26,6 +27,8 @@ public class MutualFundsHelper {
     public static HashMap<String, String> balanceAfter;
     MBKCommonControlsHelper mbkCommonControlsHelper;
     AndroidDriver driver;
+    WalletBalancePage walletBalancePage;
+
 
     public MutualFundsHelper(AndroidDriver driver) throws IOException {
         homePage = new HomePage(driver);
@@ -39,6 +42,8 @@ public class MutualFundsHelper {
     }
 
     public void mutualFundsVerification() throws InterruptedException, IOException, JSONException {
+        homePage.clickOnCrossButton();
+
 
         balanceBefore = mbkCommonControlsHelper.getBalance();
 

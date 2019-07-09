@@ -3,7 +3,7 @@
         <listener class-name="UITestFramework.retryLogic.RetryListener"/>
         <listener class-name="UITestFramework.retryLogic.TestListener"/>
     </listeners>
-    <parameter name="build" value="prod"/>
+    <parameter name="build" value="stag"/>
     <parameter name="level" value="payments"/>
     <parameter name="saucelabs" value="false"></parameter>
     <parameter name="androidOSVersion" value="7.1"></parameter>
@@ -25,9 +25,10 @@
         <classes>
             <class name="UITestFramework.CreateSession"/>
             <class name="UITestFramework.ExtentReport.Reporter"/>
+            <class name="test.java.AndroidApp.Test.Bus.Test_Bus"/>
         </classes>
         <packages>
-            <package name="IntegrationTests.Bus"/>
+            <package name="test.java.AndroidApp.Test.Bus.Test_Bus"/>
         </packages>
     </test>
 </suite>

@@ -10,6 +10,7 @@ import io.appium.java_client.ios.IOSDriver;
 import logger.Log;
 import org.json.JSONException;
 import org.openqa.selenium.By;
+import test.java.AndroidApp.PageObject.HomePage;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -26,6 +27,7 @@ public class P2PHelper extends P2PHelperBase {
     P2MScreen p2MScreen;
     Map<String, String> walletBalance = new HashMap<>();
     Reporter reporter = new Reporter();
+    HomePage homePage;
 
 
     public P2PHelper(AndroidDriver driver) throws IOException {
@@ -33,6 +35,7 @@ public class P2PHelper extends P2PHelperBase {
         touchAction = new TouchAction(driver);
         mbkPermissions = new MBKPermissions(driver);
         mbkCommonControls = new UITestFramework.MBKCommonControls(driver);
+        homePage=new HomePage(driver);
 
     }
 
@@ -40,6 +43,7 @@ public class P2PHelper extends P2PHelperBase {
     public void p2pSufficient(String mCode, String mName, String amount, String directoryName, String screenName) throws InterruptedException, IOException, JSONException {
 
         int testStepCount = 0;
+        homePage.clickOnCrossButton();
 
         // Handle the KYC Popup
         mbkPermissions.handleKYCScreen("directoryName", "screenName", testStepCount);

@@ -1,5 +1,6 @@
 package main.java.utils;
 
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import logger.Log;
@@ -26,7 +27,7 @@ public class Element {
      * @param targetElement element to be visible
      * @return true if element is visible else throws TimeoutException
      */
-    public static boolean waitForVisibility(AndroidDriver driver, AndroidElement targetElement) {
+    public static boolean waitForVisibility(AndroidDriver driver, MobileElement targetElement) {
         try {
             WebDriverWait wait = new WebDriverWait(driver, timeOut);
             wait.until(ExpectedConditions.visibilityOf(targetElement));

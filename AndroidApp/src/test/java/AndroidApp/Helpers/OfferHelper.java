@@ -51,10 +51,13 @@ public class OfferHelper{
 
 
     public void offerSearch(String offerName, String directoryName, String screenName) throws InterruptedException, IOException, JSONException {
+        homePage.clickOnCrossButton();
 
         mbkCommonControls.handleConscentPopup();
         permissionHelper.permissionAllow();
-
+        Thread.sleep(3000);
+        homePage.clickOnCrossButton();
+        Thread.sleep(1000);
         // Step 1 | Goto Offers page
         offerPage = homePage.clickOffers();
 
@@ -76,7 +79,9 @@ public class OfferHelper{
 
         mbkCommonControls.handleConscentPopup();
         permissionHelper.permissionAllow();
-
+        Thread.sleep(3000);
+        homePage.clickOnCrossButton();
+        Thread.sleep(1000);
         // Step 1 | Goto Offers page
         offerPage = homePage.clickOffers();
 
@@ -94,10 +99,13 @@ public class OfferHelper{
     }
 
     public void redeemOffersCheck(String directoryName, String screenName) throws InterruptedException, IOException, JSONException{
+        homePage.clickOnCrossButton();
 
         mbkCommonControls.handleConscentPopup();
         permissionHelper.permissionAllow();
-
+        Thread.sleep(3000);
+        homePage.clickOnCrossButton();
+        Thread.sleep(1000);
         // Step 1 | Goto Offers page
         offerPage = homePage.clickOffers();
 

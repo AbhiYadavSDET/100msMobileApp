@@ -50,7 +50,7 @@ public class MBKCommonControls extends MobiKwikScreen {
         Log.info("START", "Fetch Wallet balance");
 
         // Goto balance details screen
-        onboardingScreen.selectElement(By.id("tx_view_balance"));
+        onboardingScreen.selectElement(By.id("tx_balance"));
 
         // fetch the balance and add to Map
         onboardingScreen.waitForVisibility(By.xpath("//android.widget.TextView[@text = 'Available Balance']"));
@@ -242,7 +242,7 @@ public class MBKCommonControls extends MobiKwikScreen {
     public void handleUpiPopup() throws InterruptedException {
         Thread.sleep(3000);
         if (onboardingScreen.isElementPresent(By.id("com.mobikwik_new:id/cashback_tnc"))) {
-            Log.info("Handle", "UPI Popup");
+            Log.info("Handle", "Sanity Popup");
             onboardingScreen.navigateBack();
         }
     }
@@ -250,7 +250,7 @@ public class MBKCommonControls extends MobiKwikScreen {
     public void handleUpiInOnboarding() throws InterruptedException {
         Thread.sleep(3000);
         if (onboardingScreen.isElementPresent(By.id("upi_icon"))) {
-            Log.info("Handle", "UPI Popup in Onboarding");
+            Log.info("Handle", "Sanity Popup in Onboarding");
             onboardingScreen.navigateBack();
         }
     }

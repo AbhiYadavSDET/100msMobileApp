@@ -42,12 +42,14 @@ public class RatingPageHelper {
         // Fetch data from sheet
         Log.info("Fetching Data From Sheet");
         fetchDataFromSheet(rownum);
+        homePage.clickOnCrossButton();
 
         // Swipe the homescreen up
         Thread.sleep(2000);
         new Screen(driver).swipeUp();
 
         goldPage = homePage.clickGoldIcon();
+        Thread.sleep(3000);
 
         goldPage.clickOnBuyGold();
 

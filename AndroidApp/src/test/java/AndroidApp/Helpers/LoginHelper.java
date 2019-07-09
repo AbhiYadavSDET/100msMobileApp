@@ -161,7 +161,7 @@ public class LoginHelper {
         Thread.sleep(3000);
 
         if (Element.isElementPresent(driver, By.id("upi_icon"))) {
-            Log.info("Handle", "UPI Popup in Onboarding");
+            Log.info("Handle", "Sanity Popup in Onboarding");
             driver.navigate().back();
         }
     }
@@ -235,6 +235,8 @@ public class LoginHelper {
 
     public void logout() throws IOException, InterruptedException {
         HomePage homePage = new HomePage(driver);
+        homePage.clickOnCrossButton();
+
 
         homePage.clickOnBottomBarWallet();
 

@@ -9,6 +9,7 @@ import io.appium.java_client.ios.IOSDriver;
 import logger.Log;
 import org.json.JSONException;
 import org.openqa.selenium.By;
+import test.java.AndroidApp.PageObject.HomePage;
 
 import java.io.IOException;
 
@@ -20,6 +21,7 @@ public class TransactionHistoryHelper extends TransactionHistoryHelperBase {
     MBKPermissions mbkPermissions;
     UITestFramework.MBKCommonControls mbkCommonControls;
     P2MScreen p2MScreen;
+    HomePage homePage;
 
 
     public TransactionHistoryHelper(AndroidDriver driver) throws IOException {
@@ -27,11 +29,13 @@ public class TransactionHistoryHelper extends TransactionHistoryHelperBase {
         touchAction = new TouchAction(driver);
         mbkPermissions = new MBKPermissions(driver);
         mbkCommonControls = new UITestFramework.MBKCommonControls(driver);
+        homePage=new HomePage(driver);
 
     }
 
 
     public void transactionHistoryVerification(String expectedDescription, String expectedDate, String expectedAmount, String transactionType, String directoryName, String screenName) throws InterruptedException, IOException, JSONException {
+        homePage.clickOnCrossButton();
 
         int ssCount = 0;
         String sign;

@@ -1,6 +1,5 @@
-package IntegrationTests.NearBy;
+package test.java.AndroidApp.Test.NearBy;
 
-import IntegrationTests.Offer.OfferHelper;
 import IntegrationTests.Onboarding.OnboardingHelper;
 import UITestFramework.CreateSession;
 import UITestFramework.ExtentReport.Reporter;
@@ -9,6 +8,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import test.java.AndroidApp.Helpers.LoginHelper;
+import test.java.AndroidApp.Helpers.NearByHelper;
+import test.java.AndroidApp.PageObject.NearByHelperBase;
+
 import java.io.IOException;
 
 /**
@@ -20,6 +23,7 @@ public class NearByTest extends CreateSession {
     NearByHelperBase nearHelperBase;
     Reporter reporter;
     OnboardingHelper onboardingHelper;
+    NearByHelper nearByHelper;
 
     /**
      * this method instantiate required helpers for Platform : Android
@@ -36,6 +40,7 @@ public class NearByTest extends CreateSession {
         nearHelperBase = new NearByHelper(getAndroidDriver());
         reporter = new Reporter();
         onboardingHelper = new OnboardingHelper(getAndroidDriver());
+        nearByHelper=new NearByHelper(getAndroidDriver());
 
     }
 
@@ -46,10 +51,12 @@ public class NearByTest extends CreateSession {
         reporter.extentTest = reporter.extentReports.createTest("nearby home");
 
         // login in app
-        onboardingHelper.quickLogin("8527797582", "mayank.suneja@mobikwik.com", "T.C. Suneja");
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaEmail("8447405515@nocash.mobikwik.com", "priyanka123");
+        //onboardingHelper.quickLogin("8527797582", "mayank.suneja@mobikwik.com", "T.C. Suneja");
 
         // verify nearby home page
-        nearHelperBase.nearbyStoreListMap("nearby", "nearbyHome");
+        nearByHelper.nearbyStoreListMap("nearby", "nearbyHome");
 
         Log.infoEndTest("nearby home");
     }
@@ -61,10 +68,12 @@ public class NearByTest extends CreateSession {
         reporter.extentTest = reporter.extentReports.createTest("nearby category");
 
         // login in app
-        onboardingHelper.quickLogin("8527797582", "mayank.suneja@mobikwik.com", "T.C. Suneja");
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaEmail("8447405515@nocash.mobikwik.com", "priyanka123");
+        //onboardingHelper.quickLogin("8527797582", "mayank.suneja@mobikwik.com", "T.C. Suneja");
 
         // verify nearby category
-        nearHelperBase.nearbySearchCategory("Grocery", "nearby", "nearbyCategory");
+        nearByHelper.nearbySearchCategory("Grocery", "nearby", "nearbyCategory");
 
         Log.infoEndTest("nearby search category");
     }
@@ -76,10 +85,12 @@ public class NearByTest extends CreateSession {
         reporter.extentTest = reporter.extentReports.createTest("nearby store");
 
         // login in app
-        onboardingHelper.quickLogin("8527797582", "mayank.suneja@mobikwik.com", "T.C. Suneja");
+       // onboardingHelper.quickLogin("8527797582", "mayank.suneja@mobikwik.com", "T.C. Suneja");
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaEmail("8447405515@nocash.mobikwik.com", "priyanka123");
 
         // verify nearby stores
-        nearHelperBase.nearbySearchStore("food", "nearby", "nearbyCategory");
+        nearByHelper.nearbySearchStore("food", "nearby", "nearbyCategory");
 
         Log.infoEndTest("nearby search store");
     }

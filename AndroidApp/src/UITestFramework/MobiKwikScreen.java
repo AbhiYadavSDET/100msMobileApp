@@ -4,6 +4,7 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import logger.Log;
+import main.java.utils.Element;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -239,6 +240,7 @@ public class MobiKwikScreen extends MBReporter {
 
     public void selectElement(By target) throws InterruptedException {
         waitForVisibility(target);
+        //Element.click(driver,findElement(target), "Element Clicked");
         findElement(target).click();
     }
 

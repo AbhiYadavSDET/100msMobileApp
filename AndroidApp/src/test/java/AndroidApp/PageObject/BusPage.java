@@ -66,7 +66,10 @@ public class BusPage {
     private AndroidElement select_dropping_point;
 
     //Passenger Details Screen
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Passenger Details']/following::android.widget.EditText[1]")
+
+    //@AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Passenger Details']/following::android.widget.EditText[1]")
+
+    @AndroidFindBy(xpath = "//android.widget.EditText[@text = 'Full Name']")
     private AndroidElement enter_passenger_name;
 
     @AndroidFindBy(xpath = "//android.widget.EditText[@text = 'Age']")
