@@ -45,14 +45,14 @@ public class MgmTest extends CreateSession {
 
     @Parameters({"androidOSVersion"})
     @Test(groups = {"verifyMgm"}, priority = 0, dataProvider = "mgmData", dataProviderClass = MgmDataProviderClass.class)
-    public void verifyMgm(FrontEndEntity frontEndEntity, @Optional String androidOSVersion) throws Exception
+    public void verifyMgm(String username, String password, @Optional String androidOSVersion) throws Exception
     {
         Log.infoStartTest("verify mgm");
         reporter.extentTest = reporter.extentReports.createTest("max get more");
 
         // login in app
         //onboardingHelper.quickLogin("8527797582", "mayank.suneja@mobikwik.com", "T.C. Test");
-        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+        loginHelper.quickLoginViaEmail(username, password);
 
         // verify mgm functionality
         mgmHelper.verifyMgm("mgm","redeem mgm points");
