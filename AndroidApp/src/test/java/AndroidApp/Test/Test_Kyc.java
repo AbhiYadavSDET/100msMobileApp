@@ -17,7 +17,7 @@ public class Test_Kyc extends CreateSession {
     @Test(groups = {"noKycCheck", "kycSanity"}, priority = 0)
     public void No_kyc_check() throws IOException, JSONException, InterruptedException {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail("test19191@gmail.com", "Test@12345");
+        loginHelper.quickLoginViaEmail("priyankaigdtuw@gmail.com", "priyanka123");
 
         WalletPageHelper walletPageHelper = new WalletPageHelper(driver);
         walletPageHelper.checkIfNoKycUser();

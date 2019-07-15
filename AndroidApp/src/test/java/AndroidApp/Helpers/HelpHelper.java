@@ -4,7 +4,6 @@ import UITestFramework.MBKPermissions;
 import UITestFramework.MBReporter;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
-import logger.Log;
 import main.java.utils.Screen;
 import org.json.JSONException;
 import test.java.AndroidApp.PageObject.HelpPage;
@@ -16,29 +15,32 @@ import java.io.IOException;
 public class HelpHelper {
     TouchAction touchAction;
     MBKPermissions mbkPermissions;
-    UITestFramework.MBKCommonControls mbkCommonControls;
     HomePage homePage;
     Screen screen;
     MBReporter mbReporter;
     HelpPage helpPage;
     SideDrawerPage sideDrawerPage;
     PermissionHelper permissionHelper;
+    MBKCommonControlsHelper mbkCommonControlsHelper;
+    AndroidDriver driver;
 
 
-    public HelpHelper (AndroidDriver driver) throws IOException{
+    public HelpHelper(AndroidDriver driver) throws IOException {
+        this.driver = driver;
         homePage = new HomePage(driver);
         touchAction = new TouchAction(driver);
         mbkPermissions = new MBKPermissions(driver);
-        mbkCommonControls = new UITestFramework.MBKCommonControls(driver);
         mbReporter = new MBReporter(driver, "testScreenshotDir");
         helpPage = new HelpPage(driver);
         permissionHelper = new PermissionHelper(driver);
+        mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
 
     }
 
     public void helpVerification() throws InterruptedException, IOException, JSONException {
 
-        mbkCommonControls.handleConscentPopup();
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+
         permissionHelper.permissionAllow();
 
         // Open Help from drawer
@@ -57,7 +59,8 @@ public class HelpHelper {
 
         boolean isTicket = helpPage.isTicketIDVisible();
 
-        mbReporter.verifyEqualsWithLogging(isTicket, "true", "Description | Actual : " + isTicket + " | " + "Expected : " + "true", false, false);
+//        mbReporter.verifyEqualsWithLogging(isTicket, true, "Description | Actual : " + isTicket + " | " + "Expected : " + "true", false, false);
+        mbReporter.verifyEqualsWithLogging(isTicket, true, "Verify If ticket ID is visible", false, false);
 
     }
 

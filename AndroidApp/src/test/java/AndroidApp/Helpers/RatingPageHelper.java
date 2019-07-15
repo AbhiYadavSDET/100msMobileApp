@@ -1,6 +1,5 @@
 package test.java.AndroidApp.Helpers;
 
-import UITestFramework.MBKCommonControls;
 import UITestFramework.MBReporter;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
@@ -25,14 +24,12 @@ public class RatingPageHelper {
     GoldPage goldPage;
     FiveStarRatingPage fiveStarRatingPage;
     MBReporter mbReporter;
-    MBKCommonControls mbkCommonControls;
     MBKCommonControlsHelper mbkCommonControlsHelper;
 
     public RatingPageHelper(AndroidDriver driver) throws IOException {
         this.driver = driver;
         homePage = new HomePage(driver);
         mbReporter = new MBReporter(driver, "testScreenshotDir");
-        mbkCommonControls = new MBKCommonControls(driver);
         touchAction = new TouchAction(driver);
 
         mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
@@ -42,12 +39,14 @@ public class RatingPageHelper {
         // Fetch data from sheet
         Log.info("Fetching Data From Sheet");
         fetchDataFromSheet(rownum);
+        homePage.clickOnCrossButton();
 
         // Swipe the homescreen up
         Thread.sleep(2000);
         new Screen(driver).swipeUp();
 
         goldPage = homePage.clickGoldIcon();
+        Thread.sleep(3000);
 
         goldPage.clickOnBuyGold();
 

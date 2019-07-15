@@ -1,7 +1,6 @@
 package test.java.AndroidApp.Helpers;
 
 import UITestFramework.Api.ApiCommonControls;
-import UITestFramework.MBKCommonControls;
 import UITestFramework.MBReporter;
 import io.appium.java_client.android.AndroidDriver;
 import logger.Log;
@@ -30,7 +29,6 @@ public class LoginHelper {
     String serviceURL = "https://wallet.mobikwik.com/getotpandtokendata/";
     String serviceCode = "0";
     HashMap<String, String> apiOtp;
-    MBKCommonControls mbkCommonControls;
     HomePage homePage;
     SideDrawerPage sideDrawerPage;
     MBReporter mbReporter;
@@ -42,7 +40,6 @@ public class LoginHelper {
         this.driver = driver;
         apiCommonControls = new ApiCommonControls();
         apiOtp = new HashMap<>();
-        mbkCommonControls = new MBKCommonControls(driver);
         mbReporter = new MBReporter(driver, "testScreenshotDir");
 
         // Starting page declaration
@@ -75,7 +72,7 @@ public class LoginHelper {
 
         handleUpiScreenInOnboarding();
 
-        mbkCommonControls.handleConscentPopup();
+//        mbkCommonControls.handleConscentPopup();
 
         sideDrawerPage = new HomePage(driver).clickHamburgerIcon();
 
@@ -109,7 +106,7 @@ public class LoginHelper {
 
         homePage = onboardingPage.clickOnSkip();
 
-        mbkCommonControls.handleConscentPopup();
+//        mbkCommonControls.handleConscentPopup();
         permissionHelper.permissionAllow();
 
         loginPage = homePage.clickLoginSignupButton();
@@ -126,7 +123,7 @@ public class LoginHelper {
 
         permissionHelper.permissionAllow();
 
-        mbkCommonControls.handleMagicPopup();
+//        mbkCommonControls.handleMagicPopup();
 
         sideDrawerPage = homePage.clickHamburgerIcon();
 
@@ -161,7 +158,7 @@ public class LoginHelper {
         Thread.sleep(3000);
 
         if (Element.isElementPresent(driver, By.id("upi_icon"))) {
-            Log.info("Handle", "UPI Popup in Onboarding");
+            Log.info("Handle", "Sanity Popup in Onboarding");
             driver.navigate().back();
         }
     }
@@ -175,7 +172,7 @@ public class LoginHelper {
 
         homePage = onboardingPage.clickOnSkip();
 
-        mbkCommonControls.handleConscentPopup();
+//        mbkCommonControls.handleConscentPopup();
         permissionHelper.permissionAllow();
 
         loginPage = homePage.clickLoginSignupButton();
@@ -209,7 +206,7 @@ public class LoginHelper {
 
         homePage = onboardingPage.clickOnSkip();
 
-        mbkCommonControls.handleConscentPopup();
+//        mbkCommonControls.handleConscentPopup();
         permissionHelper.permissionAllow();
 
         loginPage = homePage.clickLoginSignupButton();
@@ -235,6 +232,8 @@ public class LoginHelper {
 
     public void logout() throws IOException, InterruptedException {
         HomePage homePage = new HomePage(driver);
+        homePage.clickOnCrossButton();
+
 
         homePage.clickOnBottomBarWallet();
 

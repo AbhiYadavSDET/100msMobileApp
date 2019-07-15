@@ -1,60 +1,52 @@
 package test.java.AndroidApp.Helpers;
 
-import IntegrationTests.Screens.OfferScreen;
-import IntegrationTests.Screens.OnboardingScreen;
 import UITestFramework.Api.ApiCommonControls;
 import UITestFramework.ExtentReport.Reporter;
 import UITestFramework.MBKPermissions;
 import UITestFramework.MBReporter;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
-import io.appium.java_client.ios.IOSElement;
-import logger.Log;
 import org.json.JSONException;
-import org.openqa.selenium.By;
 import test.java.AndroidApp.PageObject.HomePage;
 import test.java.AndroidApp.PageObject.OfferPage;
 
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 /**
  * contains all methods to test Add Money Flow
  */
-public class OfferHelper{
+public class OfferHelper {
     TouchAction touchAction;
     MBKPermissions mbkPermissions;
-    UITestFramework.MBKCommonControls mbkCommonControls;
-    OnboardingScreen onboardingScreen;
     ApiCommonControls apiCommonControls;
     Reporter reporter = new Reporter();
-    OfferScreen offerScreen;
     HomePage homePage;
     OfferPage offerPage;
     MBReporter mbReporter;
     PermissionHelper permissionHelper;
+    AndroidDriver driver;
+    MBKCommonControlsHelper mbkCommonControlsHelper;
 
     public OfferHelper(AndroidDriver driver) throws IOException {
-        offerScreen = new OfferScreen(driver);
+        this.driver = driver;
         touchAction = new TouchAction(driver);
         mbkPermissions = new MBKPermissions(driver);
-        mbkCommonControls = new UITestFramework.MBKCommonControls(driver);
         apiCommonControls = new ApiCommonControls();
         homePage = new HomePage(driver);
         mbReporter = new MBReporter(driver, "testScreenshotDir");
         permissionHelper = new PermissionHelper(driver);
+        mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
 
     }
 
 
     public void offerSearch(String offerName, String directoryName, String screenName) throws InterruptedException, IOException, JSONException {
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
-        mbkCommonControls.handleConscentPopup();
         permissionHelper.permissionAllow();
-
+        Thread.sleep(3000);
+        homePage.clickOnCrossButton();
+        Thread.sleep(1000);
         // Step 1 | Goto Offers page
         offerPage = homePage.clickOffers();
 
@@ -67,16 +59,19 @@ public class OfferHelper{
 
         // Step 4 | Verify the number of results
         int noOfOffers = offerPage.noOfOffers();
-        mbReporter.verifyTrueWithLogging(noOfOffers > 0, "Actual : " + noOfOffers + " | Expected : > 1", false, false);
+        mbReporter.verifyTrueWithLogging(noOfOffers > 0, "Actual : " + noOfOffers + " | Expected : > 0", false, false);
 
     }
 
     public void offerCategoryCheck(String directoryName, String screenName) throws InterruptedException, IOException, JSONException {
         int noOfCategories = 0;
 
-        mbkCommonControls.handleConscentPopup();
-        permissionHelper.permissionAllow();
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
+        permissionHelper.permissionAllow();
+        Thread.sleep(3000);
+        homePage.clickOnCrossButton();
+        Thread.sleep(1000);
         // Step 1 | Goto Offers page
         offerPage = homePage.clickOffers();
 
@@ -84,7 +79,7 @@ public class OfferHelper{
         offerPage.selectCategoryOption();
 
         // Step 3 | Fetch all the categories that are getting displayed
-        if (offerPage.isCloseButtonVisible()){
+        if (offerPage.isCloseButtonVisible()) {
             noOfCategories = offerPage.fetchCategoryList();
         }
 
@@ -93,11 +88,13 @@ public class OfferHelper{
 
     }
 
-    public void redeemOffersCheck(String directoryName, String screenName) throws InterruptedException, IOException, JSONException{
+    public void redeemOffersCheck(String directoryName, String screenName) throws InterruptedException, IOException, JSONException {
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
-        mbkCommonControls.handleConscentPopup();
         permissionHelper.permissionAllow();
-
+        Thread.sleep(3000);
+        homePage.clickOnCrossButton();
+        Thread.sleep(1000);
         // Step 1 | Goto Offers page
         offerPage = homePage.clickOffers();
 

@@ -6,6 +6,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
 import main.java.utils.Element;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
@@ -119,6 +120,11 @@ public class HomePage {
         Element.selectElement(driver, button_pay_to_merchant, "Pay To Merchant");
         return new P2MPage(driver);
     }
+
+    public void clickOnCrossButton() throws InterruptedException, IOException {
+        if(Element.isElementPresent(driver,(By.id("cross_button")))) {
+        Element.selectElement(driver, (AndroidElement) driver.findElement(By.id("cross_button")), "Cross Button");
+    }}
 
     public TransferPage clickOnButtonP2P() throws IOException {
         Element.selectElement(driver,button_transfer_money, "Pay Via Wallet");

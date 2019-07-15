@@ -14,28 +14,29 @@ import java.io.IOException;
 public class TransactionHistoryHelper {
     TouchAction touchAction;
     MBKPermissions mbkPermissions;
-    UITestFramework.MBKCommonControls mbkCommonControls;
     TransactionHistoryPage transactionHistoryPage;
     HomePage homePage;
     MBReporter mbReporter;
     PermissionHelper permissionHelper;
+    MBKCommonControlsHelper mbkCommonControlsHelper;
+    AndroidDriver driver;
 
     public TransactionHistoryHelper(AndroidDriver driver) throws IOException {
         touchAction = new TouchAction(driver);
         mbkPermissions = new MBKPermissions(driver);
-        mbkCommonControls = new UITestFramework.MBKCommonControls(driver);
         homePage = new HomePage(driver);
         mbReporter = new MBReporter(driver, "testScreenshotDir");
         permissionHelper = new PermissionHelper(driver);
+        mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
+        this.driver = driver;
 
     }
 
 
     public void transactionHistoryVerificationLoggedIn() throws InterruptedException, IOException, JSONException {
 
-        mbkCommonControls.handleConscentPopup();
         permissionHelper.permissionAllow();
-
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
         transactionHistoryPage = homePage.clickHistory();
         Thread.sleep(3000);
 
@@ -49,7 +50,7 @@ public class TransactionHistoryHelper {
 
         homePage.clickOnSkip();
 
-        mbkCommonControls.handleConscentPopup();
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
         permissionHelper.permissionAllow();
 
         transactionHistoryPage = homePage.clickHistory();

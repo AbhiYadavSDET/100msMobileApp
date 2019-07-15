@@ -17,15 +17,16 @@ public class Test_Imps extends CreateSession {
     DatabaseSqlHelper databaseSqlHelper = new DatabaseSqlHelper();
 
     @Test(groups = {"sendMoney", "impsSanity"}, priority = 0, dataProvider = "impsData", dataProviderClass = ImpsDataProviderClass.class)
-    public void Test01_imps(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
+    public void Test02_imps(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
 
         Log.info("START : Imps sanity test");
 
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
         loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+        //loginHelper.quickLoginViaEmail("priyankaigdtuw@gmail.com", "priyanka123");
 
         AddMoneyHelper addmoneyHelper = new AddMoneyHelper(getAndroidDriver());
-        addmoneyHelper.addMoneyViaNewCard("50", frontEndEntity.getCardNo(), frontEndEntity.getExpiryMonth(), frontEndEntity.getExpiryYear(), frontEndEntity.getCvv(), frontEndEntity.getCardPassword(), frontEndEntity.getSuccessPageStatus(), frontEndEntity
+        addmoneyHelper.addMoneyViaNewCard("5", frontEndEntity.getCardNo(), frontEndEntity.getExpiryMonth(), frontEndEntity.getExpiryYear(), frontEndEntity.getCvv(), frontEndEntity.getCardPassword(), frontEndEntity.getSuccessPageStatus(), frontEndEntity
                 .getSuccessPageText());
 
         ImpsHelper impsHelper = new ImpsHelper(getAndroidDriver());

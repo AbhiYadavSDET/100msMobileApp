@@ -14,12 +14,10 @@
     <test name="Mobikwik Automation Tests">
         <groups>
             <run>
-                <include name="appiumStart"/>
                 <include name="setUp"/>
                 <include name="instantiateHelpers"/>
                 <include name="testExtentReport"/>
                 <include name="tearDown"/>
-                <include name="appiumStop"/>
             </run>
         </groups>
 

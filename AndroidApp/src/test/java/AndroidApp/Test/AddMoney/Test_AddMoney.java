@@ -19,7 +19,9 @@ public class Test_AddMoney extends CreateSession {
     @Test(groups = {"addMoneyNetBanking", "addMoneySanity"}, priority = 0, dataProvider = "addMoneyData", dataProviderClass = AddMoneyProviderClass.class)
     public void Test01_netbanking(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        //loginHelper.quickLoginViaEmail("8447405515@nocash.mobikwik.com", "priyanka123");
         loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+
 
         AddMoneyHelper addmoneyHelper = new AddMoneyHelper(getAndroidDriver());
         addmoneyHelper.netbanking(frontEndEntity.getAmount(), frontEndEntity.getBankName(), frontEndEntity.getBankPageLocator());
@@ -31,6 +33,8 @@ public class Test_AddMoney extends CreateSession {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
         loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
 
+        //loginHelper.quickLoginViaEmail("8447405515@nocash.mobikwik.com", "priyanka123");
+
         AddMoneyHelper addmoneyHelper = new AddMoneyHelper(getAndroidDriver());
         addmoneyHelper.addMoneyViaNewCard(frontEndEntity.getAmount(), frontEndEntity.getCardNo(), frontEndEntity.getExpiryMonth(), frontEndEntity.getExpiryYear(), frontEndEntity.getCvv(), frontEndEntity.getCardPassword(), frontEndEntity.getSuccessPageStatus(), frontEndEntity
                 .getSuccessPageText());
@@ -40,6 +44,7 @@ public class Test_AddMoney extends CreateSession {
     public void Test03_addMoneySavedCard(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
         loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+        //loginHelper.quickLoginViaEmail("8447405515@nocash.mobikwik.com", "priyanka123");
 
         Log.info("Password : " + frontEndEntity.getPassword());
 
@@ -52,6 +57,8 @@ public class Test_AddMoney extends CreateSession {
     public void Test04_addMoneySavedCardWithPromo(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
         loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+        //loginHelper.quickLoginViaEmail("8447405515@nocash.mobikwik.com", "priyanka123");
+
 
         AddMoneyHelper addmoneyHelper = new AddMoneyHelper(getAndroidDriver());
         addmoneyHelper.addMoneyViaSavedCard(frontEndEntity.getAmount(), frontEndEntity.getCardNo(), frontEndEntity.getExpiryMonth(), frontEndEntity.getExpiryYear(), frontEndEntity.getCvv(), frontEndEntity.getCardPassword(), frontEndEntity.getSuccessPageStatus(), frontEndEntity

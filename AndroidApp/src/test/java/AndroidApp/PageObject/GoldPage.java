@@ -15,7 +15,7 @@ public class GoldPage {
     AndroidDriver driver;
 
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/buy_gold_button_registered")
+    @AndroidFindBy(id = "com.mobikwik_new:id/buy_gold_button_registered_price")
     private AndroidElement button_buy_gold;
 
     @AndroidFindBy(xpath = "//android.widget.EditText[@text='₹']")

@@ -1,23 +1,16 @@
 package test.java.AndroidApp.Helpers;
 
-import IntegrationTests.Screens.AddmoneyScreen;
-import IntegrationTests.Screens.P2MScreen;
-import UITestFramework.ExtentReport.Reporter;
+
 import UITestFramework.MBKPermissions;
 import UITestFramework.MBReporter;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.ios.IOSDriver;
-import logger.Log;
 import org.json.JSONException;
-import org.openqa.selenium.By;
 import test.java.AndroidApp.PageObject.HomePage;
 import test.java.AndroidApp.PageObject.TransferPage;
 
-import javax.sound.midi.Track;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * contains all methods to test Add Money Flow
@@ -26,8 +19,6 @@ public class P2PHelper {
     AndroidDriver driver;
     TouchAction touchAction;
     MBKPermissions mbkPermissions;
-    UITestFramework.MBKCommonControls mbkCommonControls;
-    P2MScreen p2MScreen;
     MBReporter mbReporter;
     MBKCommonControlsHelper mbkCommonControlsHelper;
     HomePage homePage;
@@ -39,7 +30,6 @@ public class P2PHelper {
 
     public P2PHelper(AndroidDriver driver) throws IOException {
         this.driver = driver;
-        p2MScreen = new P2MScreen(driver);
         touchAction = new TouchAction(driver);
         mbkPermissions = new MBKPermissions(driver);
         mbReporter = new MBReporter(driver, "testScreenshotDir");
@@ -51,6 +41,10 @@ public class P2PHelper {
 
     public void p2pSufficient(String mobile, String amount, String securityPin, String successPageStatus, String successPageName) throws InterruptedException, IOException,
             JSONException {
+
+        homePage.clickOnCrossButton();
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+
 
         balanceBefore = mbkCommonControlsHelper.getBalance();
         transferPage = homePage.clickOnButtonP2P();
@@ -83,7 +77,6 @@ public class P2PHelper {
         Double expectedSuperCashBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
         mbReporter.verifyEqualsWithLogging(actualMainBalanceAfter, expectedMainBalanceAfter, "After TRX | Verify Wallet Main Balance", false, false);
         mbReporter.verifyEqualsWithLogging(actualSuperCashBalanceAfter, expectedSuperCashBalanceAfter, "After TRX | Verify Supercash Balance", false, false);
-
 
 
     }

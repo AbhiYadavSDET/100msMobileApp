@@ -31,6 +31,9 @@ public class AddMoneyPage {
     @AndroidFindBy(xpath = "//*[@text = 'New Debit/Credit Card']")
     public AndroidElement label_new_debit_credit_card;
 
+    @AndroidFindBy(xpath = "//*[@text = 'Debit or Credit Card']")
+    public AndroidElement label_debit_credit_card;
+
     @AndroidFindBy(id = "com.mobikwik_new:id/mkab_title")
     public AndroidElement label_make_payment;
 
@@ -41,17 +44,22 @@ public class AddMoneyPage {
     public AndroidElement button_no;
 
     //Enter card details
-    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Card Number']/following::android.widget.EditText[1]")
-    private AndroidElement textbox_card_no;
+    @AndroidFindBy(xpath = "//*[@text = 'Debit or Credit Card']/following::android.widget.EditText[1]")
+    public AndroidElement textbox_card_no_new;
+    //Enter card details
+    @AndroidFindBy(xpath = "//*[@text = 'Card Number']/following::android.widget.EditText[1]")
+    public AndroidElement textbox_card_no;
 
-    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Card Expiry']/following::android.widget.EditText[1]")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Card Expiry']/following::android.widget.EditText[1]")
     private AndroidElement textbox_expiry;
 
-    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'CVV']/following::android.widget.EditText[1]")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'CVV']/following::android.widget.EditText[1]")
     private AndroidElement textbox_cvv;
 
     @AndroidFindBy(id = "com.mobikwik_new:id/btn_add_money")
     public AndroidElement cta_pay_now;
+    @AndroidFindBy(id = "com.mobikwik_new:id/new_card_btn_pay")
+    public AndroidElement cta_pay_now_new;
 
     @AndroidFindBy(xpath = "//android.widget.RadioButton[@content-desc = 'e-Secure Password']")
     private AndroidElement link_e_secure_password_1;
@@ -108,9 +116,21 @@ public class AddMoneyPage {
         Element.selectElement(driver, label_netbanking, "Netbanking");
     }
 
-    public void clickOnNewDebitCreditCard() throws InterruptedException {
-        Element.selectElement(driver, label_new_debit_credit_card, "New Debit/Credit card");
+    public void clickOnNewDebitCreditCard() throws InterruptedException
+    {
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Debit or Credit Card']")))
+        {
+            Element.selectElement(driver, label_debit_credit_card, "Debit/Credit card");
+        }
+        else
+            {
+            Element.selectElement(driver, label_new_debit_credit_card, "New Debit or Credit card");
+            }
     }
+    public void clickOnDebitCreditCard() throws InterruptedException {
+        Element.selectElement(driver, label_debit_credit_card, "Debit/Credit card");
+    }
+
 
     public void clickOnYesButton() throws InterruptedException {
         Element.selectElement(driver, button_yes, "Yes");
@@ -121,7 +141,14 @@ public class AddMoneyPage {
     }
 
     public void enterCardNo(String cardNo) throws InterruptedException {
-        Element.enterText(driver, textbox_card_no, cardNo, "Card No");
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Debit or Credit Card']")))
+        {
+            Element.enterText(driver, textbox_card_no_new, cardNo, "Card No");
+        }
+        else
+        {
+            Element.enterText(driver, textbox_card_no, cardNo, "Card No");
+        }
     }
 
     public void enterExpiry(String expiry) throws InterruptedException {
@@ -133,7 +160,16 @@ public class AddMoneyPage {
     }
 
     public void clickOnPayNow() throws InterruptedException {
-        Element.selectElement(driver, cta_pay_now, "Pay Now Button");
+        if (Element.isElementPresent(driver, By.id("com.mobikwik_new:id/new_card_btn_pay")))
+        {
+            Element.selectElement(driver, cta_pay_now_new, "Pay Now Button");
+
+        }
+        else
+        {
+            Element.selectElement(driver, cta_pay_now, "Pay Now Button");
+
+        }
     }
 
     public void clickOnBankPageSecurePassword() throws InterruptedException {

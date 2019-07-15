@@ -28,8 +28,11 @@ public class RechargePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Haryana']")
     private AndroidElement label_haryana;
 
+    //@AndroidFindBy(id = "com.mobikwik_new:id/edit_text_mket")
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Amount (in X)']/following::android.widget.TextView[@text = 'Enter any amount']")
-    private AndroidElement textbox_enter_amount;
+    //@AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Amount (in ₹)'/following::android.widget.TextView[@text = 'Enter any amount']")
+    public AndroidElement textbox_enter_amount;
+
 
     @AndroidFindBy(id = "com.mobikwik_new:id/amount_field")
     private AndroidElement textbox_enter_amount2;
@@ -39,6 +42,10 @@ public class RechargePage {
 
     @AndroidFindBy(id = "com.mobikwik_new:id/cta")
     private AndroidElement cta_continue;
+
+
+    @AndroidFindBy(id = "com.mobikwik_new:id/iconview_checkbox")
+    private AndroidElement postPaid;
 
     // Success screen
 
@@ -130,6 +137,9 @@ public class RechargePage {
 
     public void clickOnDropDown() throws InterruptedException {
         Element.selectElement(driver, link_drop_down, "Drop down");
+    }
+    public void clickOnPostPaid() throws InterruptedException {
+        Element.selectElement(driver, postPaid, "Postpaid");
     }
 
     public void selectOperator() throws InterruptedException {

@@ -4,8 +4,8 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import logger.Log;
 import main.java.utils.Element;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
@@ -16,12 +16,20 @@ public class MutualFundPage {
     @AndroidFindBy(id = "com.mobikwik_new:id/viewAllFunds")
     private AndroidElement viewFunds;
 
+    @AndroidFindBy(id = "com.mobikwik_new:id/mkiv_image")
+    private AndroidElement image_growth;
+
+
     public MutualFundPage(AndroidDriver driver) throws IOException {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
-    public boolean isViewAllFunds() throws InterruptedException{
-        return Element.waitForVisibility(driver, viewFunds);
+    public boolean isViewAllFunds() throws InterruptedException {
+        return (Element.isElementPresent(driver, (By.id("viewAllFunds"))));
+    }
+
+    public boolean isVisibleGrowthImage() throws InterruptedException {
+        return (Element.isElementPresent(driver, By.id("mkiv_image")));
     }
 }

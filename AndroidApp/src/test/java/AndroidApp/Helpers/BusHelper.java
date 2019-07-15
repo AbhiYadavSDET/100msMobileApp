@@ -3,9 +3,7 @@ package test.java.AndroidApp.Helpers;
 import UITestFramework.MBReporter;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
-import jdk.internal.org.objectweb.asm.Handle;
 import logger.Log;
-import main.java.utils.DateFormatEnums;
 import main.java.utils.DateHelper;
 import main.java.utils.Element;
 import main.java.utils.Screen;
@@ -49,7 +47,7 @@ public class BusHelper {
     }
 
     public void busBook(String departureCity, String destinationCity, String passengerName, String passengerAge, String pin) throws InterruptedException, IOException, JSONException {
-
+        homePage.clickOnCrossButton();
         balanceBefore = mbkCommonControlsHelper.getBalance();
 
         Element.waitForVisibility(driver, homePage.icon_mobile);
@@ -166,6 +164,7 @@ public class BusHelper {
 
 
     public void busCancel() throws InterruptedException, IOException, JSONException {
+        homePage.clickOnCrossButton();
 
         balanceBefore = mbkCommonControlsHelper.getBalance();
 

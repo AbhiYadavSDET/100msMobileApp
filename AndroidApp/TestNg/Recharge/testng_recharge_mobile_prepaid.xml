@@ -4,7 +4,7 @@
         <listener class-name="UITestFramework.retryLogic.RetryListener"/>
         <listener class-name="main.java.utils.Listeners.TestListener"/>
     </listeners>
-    <parameter name="build" value="prod"/>
+    <parameter name="build" value="stag"/>
     <parameter name="level" value="payments"/>
     <parameter name="saucelabs" value="false"></parameter>
     <parameter name="methodName" value="rechargePrepaid"></parameter>
