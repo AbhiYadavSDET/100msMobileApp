@@ -16,12 +16,20 @@ public class MutualFundPage {
     @AndroidFindBy(id = "com.mobikwik_new:id/viewAllFunds")
     private AndroidElement viewFunds;
 
+    @AndroidFindBy(id = "com.mobikwik_new:id/mkiv_image")
+    private AndroidElement image_growth;
+
+
     public MutualFundPage(AndroidDriver driver) throws IOException {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
-    public boolean isViewAllFunds() throws InterruptedException{
-        return(Element.isElementPresent(driver,(By.id("viewAllFunds"))));
+    public boolean isViewAllFunds() throws InterruptedException {
+        return (Element.isElementPresent(driver, (By.id("viewAllFunds"))));
+    }
+
+    public boolean isVisibleGrowthImage() throws InterruptedException {
+        return (Element.isElementPresent(driver, By.id("mkiv_image")));
     }
 }

@@ -10,13 +10,12 @@ public class Test_Help extends CreateSession {
     HelpHelper helpHelper;
 
     @Test(groups = {"helpSanity"}, priority = 1)
-    public void transactionHistoryVerificationLoggedOut() throws Exception {
+    public void helpRaiseTicket() throws Exception {
         Log.info("START : Help sanity test");
 
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
 
-        //loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
-        loginHelper.quickLoginViaEmail("priya.pn.912@gmail.com", "priyanka123");
+        loginHelper.quickLoginViaEmail("mayank.suneja@mobikwik.com", "Tuesday20");
 
         helpHelper = new HelpHelper(getAndroidDriver());
 

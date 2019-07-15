@@ -1,15 +1,10 @@
 package test.java.AndroidApp.Test;
 
 import UITestFramework.CreateSession;
-import UITestFramework.ExtentReport.Reporter;
 import logger.Log;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import test.java.AndroidApp.Helpers.LoginHelper;
 import test.java.AndroidApp.Helpers.OfferHelper;
-import java.io.IOException;
 
 /**
  * automated test to verify Offers
@@ -27,9 +22,7 @@ public class Test_Offer extends CreateSession {
     public void offerSearch() throws Exception {
         Log.infoStartTest("offerSearch");
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-
-        //loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
-        loginHelper.quickLoginViaEmail("priyankaigdtuw@gmail.com", "priyanka123");
+        loginHelper.quickLoginViaEmail("mayank.suneja@mobikwik.com", "Tuesday20");
 
         offerHelperBase = new OfferHelper(getAndroidDriver());
 
@@ -44,9 +37,7 @@ public class Test_Offer extends CreateSession {
         Log.infoStartTest("offerCategoryCheck");
 
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-
-        //loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
-        loginHelper.quickLoginViaEmail("priyankaigdtuw@gmail.com", "priyanka123");
+        loginHelper.quickLoginViaEmail("mayank.suneja@mobikwik.com", "Tuesday20");
 
         offerHelperBase = new OfferHelper(getAndroidDriver());
 
@@ -61,9 +52,7 @@ public class Test_Offer extends CreateSession {
         Log.infoStartTest("redeemOffersCheck");
 
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-
-        //loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
-        loginHelper.quickLoginViaEmail("priyankaigdtuw@gmail.com", "priyanka123");
+        loginHelper.quickLoginViaEmail("mayank.suneja@mobikwik.com", "Tuesday20");
 
         offerHelperBase = new OfferHelper(getAndroidDriver());
         offerHelperBase.redeemOffersCheck("Offer", "redeemOffer");
@@ -71,8 +60,6 @@ public class Test_Offer extends CreateSession {
         Log.infoEndTest("redeemOffersCheck");
 
     }
-
-
 
 
 }

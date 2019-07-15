@@ -1,6 +1,5 @@
 package test.java.AndroidApp.Helpers;
 
-import IntegrationTests.Screens.P2MScreen;
 import UITestFramework.MBKPermissions;
 import UITestFramework.MBReporter;
 import io.appium.java_client.android.AndroidDriver;
@@ -9,7 +8,6 @@ import logger.Log;
 import main.java.utils.Element;
 import main.java.utils.Screen;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.annotations.Parameters;
 import test.java.AndroidApp.PageObject.HomePage;
 import test.java.AndroidApp.PageObject.PermissionPage;
@@ -19,7 +17,6 @@ import java.io.IOException;
 public class DeepLinkHelper {
     AndroidDriver driver;
     MBKPermissions mbkPermissions;
-    UITestFramework.MBKCommonControls mbkCommonControls;
     MBReporter mbReporter;
     HomePage homePage;
     Screen screen;
@@ -31,25 +28,25 @@ public class DeepLinkHelper {
     public DeepLinkHelper(AndroidDriver driver) throws IOException {
         this.driver = driver;
         mbkPermissions = new MBKPermissions(driver);
-        mbkCommonControls = new UITestFramework.MBKCommonControls(driver);
         mbReporter = new MBReporter(driver, "testScreenshotDir");
         screen = new Screen(driver);
-        permissionPage=new PermissionPage(driver);
-        permissionHelper=new PermissionHelper(driver);
-        homePage=new HomePage(driver);
+        permissionPage = new PermissionPage(driver);
+        permissionHelper = new PermissionHelper(driver);
+        homePage = new HomePage(driver);
 
     }
+
     @Parameters({"deeplinkstring", "deeplinkverify", "elementID"})
     public void getdeeplink(String deeplinkstring, String deeplinkverify, String elementID) throws InterruptedException, IOException {
         homePage.clickOnCrossButton();
         //For Merchant
-        if(Element.isElementPresent(driver,(By.id("cross_button")))) {
+        if (Element.isElementPresent(driver, (By.id("cross_button")))) {
             Element.selectElement(driver, (AndroidElement) driver.findElement(By.id("cross_button")), "Cross Button");
         }
-        if(Element.isElementPresent(driver,(By.id("next_button")))) {
+        if (Element.isElementPresent(driver, (By.id("next_button")))) {
             Element.selectElement(driver, (AndroidElement) driver.findElement(By.id("next_button")), "Next Button");
         }
-        if(Element.isElementPresent(driver,(By.id("next_button")))) {
+        if (Element.isElementPresent(driver, (By.id("next_button")))) {
             Element.selectElement(driver, (AndroidElement) driver.findElement(By.id("next_button")), "Next Button");
         }
 
@@ -60,11 +57,11 @@ public class DeepLinkHelper {
         Thread.sleep(2000);
         //For Sanity
         driver.get(deeplinkstring);
-        if(Element.isElementPresent(driver,(By.id("add_account_button")))) {
+        if (Element.isElementPresent(driver, (By.id("add_account_button")))) {
             Element.selectElement(driver, (AndroidElement) driver.findElement(By.id("add_account_button")), "Add Account Button");
         }
 
-        if(Element.isElementPresent(driver,(By.id("start_button")))) {
+        if (Element.isElementPresent(driver, (By.id("start_button")))) {
             Element.selectElement(driver, (AndroidElement) driver.findElement(By.id("start_button")), "Let's get started");
         }
         Thread.sleep(3000);
@@ -75,7 +72,6 @@ public class DeepLinkHelper {
         permissionHelper.permissionAllow();
 
 
-
         Thread.sleep(2000);
 
 
@@ -84,13 +80,12 @@ public class DeepLinkHelper {
         Log.info(deeplinkverify);
 
 
-        mbReporter.verifyEqualsWithLogging(textview2, deeplinkverify, "VerifyDeepLink",false, true);
+        mbReporter.verifyEqualsWithLogging(textview2, deeplinkverify, "VerifyDeepLink", false, true);
 
 
         Log.info("deeplink verfied");
         Thread.sleep(2000);
         driver.navigate().back();
-
 
 
     }

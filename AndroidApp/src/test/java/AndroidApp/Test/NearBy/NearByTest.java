@@ -1,6 +1,5 @@
 package test.java.AndroidApp.Test.NearBy;
 
-import IntegrationTests.Onboarding.OnboardingHelper;
 import UITestFramework.CreateSession;
 import UITestFramework.ExtentReport.Reporter;
 import logger.Log;
@@ -22,7 +21,6 @@ import java.io.IOException;
 public class NearByTest extends CreateSession {
     NearByHelperBase nearHelperBase;
     Reporter reporter;
-    OnboardingHelper onboardingHelper;
     NearByHelper nearByHelper;
 
     /**
@@ -39,14 +37,13 @@ public class NearByTest extends CreateSession {
 
         nearHelperBase = new NearByHelper(getAndroidDriver());
         reporter = new Reporter();
-        onboardingHelper = new OnboardingHelper(getAndroidDriver());
-        nearByHelper=new NearByHelper(getAndroidDriver());
+        nearByHelper = new NearByHelper(getAndroidDriver());
 
     }
 
     @Parameters({"androidOSVersion"})
     @Test(groups = {"nearBySanity", "nearByHome"}, priority = 0, enabled = true)
-    public void nearbyStoreListMap(@Optional String androidOSVersion)throws Exception{
+    public void nearbyStoreListMap(@Optional String androidOSVersion) throws Exception {
         Log.infoStartTest("nearby home");
         reporter.extentTest = reporter.extentReports.createTest("nearby home");
 
@@ -63,7 +60,7 @@ public class NearByTest extends CreateSession {
 
     @Parameters({"androidOSVersion"})
     @Test(groups = {"nearBySanity", "nearbySearchCategory"}, priority = 1, enabled = true)
-    public void nearbySearchCategory(@Optional String androidOSVersion)throws Exception{
+    public void nearbySearchCategory(@Optional String androidOSVersion) throws Exception {
         Log.infoStartTest("nearby search category");
         reporter.extentTest = reporter.extentReports.createTest("nearby category");
 
@@ -80,12 +77,12 @@ public class NearByTest extends CreateSession {
 
     @Parameters({"androidOSVersion"})
     @Test(groups = {"nearBySanity", "nearbySearchKeyword"}, priority = 2, enabled = true)
-    public void nearbySearchStore(@Optional String androidOSVersion)throws Exception{
+    public void nearbySearchStore(@Optional String androidOSVersion) throws Exception {
         Log.infoStartTest("nearby search store");
         reporter.extentTest = reporter.extentReports.createTest("nearby store");
 
         // login in app
-       // onboardingHelper.quickLogin("8527797582", "mayank.suneja@mobikwik.com", "T.C. Suneja");
+        // onboardingHelper.quickLogin("8527797582", "mayank.suneja@mobikwik.com", "T.C. Suneja");
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
         loginHelper.quickLoginViaEmail("8447405515@nocash.mobikwik.com", "priyanka123");
 

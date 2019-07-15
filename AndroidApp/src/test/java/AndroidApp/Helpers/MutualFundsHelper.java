@@ -4,9 +4,10 @@ import UITestFramework.MBKPermissions;
 import UITestFramework.MBReporter;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
-import logger.Log;
+import main.java.utils.Element;
 import main.java.utils.Screen;
 import org.json.JSONException;
+import org.openqa.selenium.By;
 import test.java.AndroidApp.PageObject.HomePage;
 import test.java.AndroidApp.PageObject.MutualFundPage;
 import test.java.AndroidApp.PageObject.WalletBalancePage;
@@ -17,7 +18,6 @@ import java.util.HashMap;
 public class MutualFundsHelper {
     TouchAction touchAction;
     MBKPermissions mbkPermissions;
-    UITestFramework.MBKCommonControls mbkCommonControls;
     HomePage homePage;
     Screen screen;
     MBReporter mbReporter;
@@ -34,7 +34,6 @@ public class MutualFundsHelper {
         homePage = new HomePage(driver);
         touchAction = new TouchAction(driver);
         mbkPermissions = new MBKPermissions(driver);
-        mbkCommonControls = new UITestFramework.MBKCommonControls(driver);
         mbReporter = new MBReporter(driver, "testScreenshotDir");
         screen = new Screen(driver);
         mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
@@ -42,21 +41,27 @@ public class MutualFundsHelper {
     }
 
     public void mutualFundsVerification() throws InterruptedException, IOException, JSONException {
-        homePage.clickOnCrossButton();
-
-
-        balanceBefore = mbkCommonControlsHelper.getBalance();
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
         // Swipe the homescreen up
         Thread.sleep(2000);
         screen.swipeUp();
 
         mutualFundPage = homePage.clickMutualFunds();
+        Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/mkab_title"));
 
-        boolean isVisible = mutualFundPage.isViewAllFunds();
+        boolean isVisible = false;
+        // Check for the 1st element
+        if (mutualFundPage.isViewAllFunds()) {
+            isVisible = true;
+        }
+        // Check for the 2nd element
+        if (mutualFundPage.isVisibleGrowthImage()) {
+            isVisible = true;
+        }
 
         // Verify by putting assertion
-        mbReporter.verifyTrueWithLogging(isVisible, "Actual : " + isVisible + " | Expected : true", false, false);
+        mbReporter.verifyEqualsWithLogging(isVisible, true, "Verify if the Element is present", false, false);
 
     }
 

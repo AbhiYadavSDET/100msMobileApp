@@ -1,8 +1,5 @@
 package test.java.AndroidApp.Helpers;
 
-import test.java.AndroidApp.PageObject.MgmHelperBase;
-import test.java.AndroidApp.PageObject.MgmScreen;
-import IntegrationTests.Screens.OnboardingScreen;
 import UITestFramework.Api.ApiCommonControls;
 import UITestFramework.ExtentReport.Reporter;
 import UITestFramework.MBKPermissions;
@@ -11,14 +8,14 @@ import io.appium.java_client.android.AndroidDriver;
 import logger.Log;
 import org.json.JSONException;
 import test.java.AndroidApp.PageObject.HomePage;
+import test.java.AndroidApp.PageObject.MgmHelperBase;
+import test.java.AndroidApp.PageObject.MgmScreen;
 
 import java.io.IOException;
 
 public class MgmHelper extends MgmHelperBase {
     TouchAction touchAction;
     MBKPermissions mbkPermissions;
-    UITestFramework.MBKCommonControls mbkCommonControls;
-    OnboardingScreen onboardingScreen;
     ApiCommonControls apiCommonControls;
     Reporter reporter = new Reporter();
     MgmScreen mgmScreen;
@@ -28,13 +25,12 @@ public class MgmHelper extends MgmHelperBase {
 
         touchAction = new TouchAction(driver);
         mbkPermissions = new MBKPermissions(driver);
-        mbkCommonControls = new UITestFramework.MBKCommonControls(driver);
         apiCommonControls = new ApiCommonControls();
         mgmScreen = new MgmScreen(driver);
     }
 
     public void verifyMgm(String directoryName, String screenName)
-            throws InterruptedException, IOException, JSONException{
+            throws InterruptedException, IOException, JSONException {
         int testStepCount = 0;
         boolean found = false;
         homePage.clickOnCrossButton();

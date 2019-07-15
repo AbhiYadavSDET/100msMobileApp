@@ -42,6 +42,7 @@ public class P2MHelper {
 
     public void p2mSendMoney(String merchantCode, String amount, String securityPin, String successPageStatus, String successPageName) throws InterruptedException, IOException, JSONException {
         homePage.clickOnCrossButton();
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
         balanceBefore = mbkCommonControlsHelper.getBalance();
 

@@ -34,9 +34,9 @@ public class CreateSession {
     public Properties testDataFile;
 
     String androidOSVersion = "8.0";
-    String portNo = "5000";
-    String udid = "77d5274b";
-    String deviceName = "Samsung J7";
+    String portNo = "4723";
+    String udid = "ZY322HJ929";
+    String deviceName = "Motorola G5";
 
     private String reportDirectory = "reports";
     private String reportFormat = "xml";
@@ -145,15 +145,6 @@ public class CreateSession {
             Log.info("Automation Type : " + "uiautomator2");
         }
 
-        // capabilities.setCapability("deviceName", "4200ea8cce337347");
-
-
-        //Moto G3
-       /* capabilities.setCapability("deviceName", "MotoG3");
-        capabilities.setCapability(MobileCapabilityType.UDID, "ZY2227VCMX");*/
-
-/*        capabilities.setCapability("deviceName", "Moto G (5S) Plus");
-        capabilities.setCapability(MobileCapabilityType.UDID, "192.168.4.73:5656");*/
 
         capabilities.setCapability("deviceName", deviceName);
         capabilities.setCapability(MobileCapabilityType.UDID, udid);
@@ -190,10 +181,6 @@ public class CreateSession {
 
         if (build.equals("beta")) {
             String appPath = "src/app/MobiKwik_beta.apk";
-            return appPath;
-        }
-        if (build.equals("alpha")) {
-            String appPath = "src/app/MobiKwik_alpha.apk";
             return appPath;
         }
 

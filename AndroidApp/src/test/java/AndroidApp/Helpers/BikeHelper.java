@@ -1,7 +1,5 @@
 package test.java.AndroidApp.Helpers;
 
-import test.java.AndroidApp.PageObject.BikeHelperBase;
-import test.java.AndroidApp.PageObject.BikesScreen;
 import UITestFramework.ExtentReport.Reporter;
 import UITestFramework.MBKPermissions;
 import io.appium.java_client.TouchAction;
@@ -11,6 +9,8 @@ import io.appium.java_client.touch.offset.PointOption;
 import logger.Log;
 import org.json.JSONException;
 import org.openqa.selenium.By;
+import test.java.AndroidApp.PageObject.BikeHelperBase;
+import test.java.AndroidApp.PageObject.BikesScreen;
 import test.java.AndroidApp.PageObject.HomePage;
 
 import java.io.IOException;
@@ -25,7 +25,6 @@ public class BikeHelper extends BikeHelperBase {
     BikesScreen bikeScreen;
     TouchAction touchAction;
     MBKPermissions mbkPermissions;
-    UITestFramework.MBKCommonControls mbkCommonControls;
     Map<String, String> walletBalance = new HashMap<>();
     Reporter reporter = new Reporter();
     HomePage homePage;
@@ -35,8 +34,7 @@ public class BikeHelper extends BikeHelperBase {
         bikeScreen = new BikesScreen(driver);
         touchAction = new TouchAction(driver);
         mbkPermissions = new MBKPermissions(driver);
-        mbkCommonControls = new UITestFramework.MBKCommonControls(driver);
-        homePage=new HomePage(driver);
+        homePage = new HomePage(driver);
 
     }
 
@@ -47,8 +45,6 @@ public class BikeHelper extends BikeHelperBase {
         boolean found = false;
         homePage.clickOnCrossButton();
 
-        // Handle the KYC Popup
-        mbkPermissions.handleKYCScreen("directoryName", "screenName", testStepCount);
 
         Log.info("Home Page");
 
@@ -92,16 +88,16 @@ public class BikeHelper extends BikeHelperBase {
             // Enter the deetyails
             reporter.extentReportDisplay("INFO", "STEP " + ++testStepCount + " | " + Log.info("ENTER", "Details"), "");
             bikeScreen.findElement(By.xpath("//*/android.widget.TextView[@text = 'Enter Full Name']/following::android.widget.EditText[1]")).clear();
-            mbkCommonControls.sendText(By.xpath("//*/android.widget.TextView[@text = 'Enter Full Name']/following::android.widget.EditText[1]"), mName);
+            //mbkCommonControls.sendText(By.xpath("//*/android.widget.TextView[@text = 'Enter Full Name']/following::android.widget.EditText[1]"), mName);
             bikeScreen.hideKeyboard();
 
             bikeScreen.findElement(By.xpath("//android.widget.TextView[@text='Driving Licence No']/following::android.widget.EditText")).clear();
-            mbkCommonControls.sendText(By.xpath("//android.widget.TextView[@text='Driving Licence No']/following::android.widget.EditText"), drivinglic);
+//            mbkCommonControls.sendText(By.xpath("//android.widget.TextView[@text='Driving Licence No']/following::android.widget.EditText"), drivinglic);
             bikeScreen.hideKeyboard();
 
 
             bikeScreen.findElement(By.xpath("//android.widget.TextView[@text='Email']/following::android.widget.EditText")).clear();
-            mbkCommonControls.sendText(By.xpath("//android.widget.TextView[@text='Email']/following::android.widget.EditText"), "mobitest313@gmail.com");
+//            mbkCommonControls.sendText(By.xpath("//android.widget.TextView[@text='Email']/following::android.widget.EditText"), "mobitest313@gmail.com");
             bikeScreen.hideKeyboard();
             Thread.sleep(2000);
 
@@ -113,15 +109,15 @@ public class BikeHelper extends BikeHelperBase {
             bikeScreen.selectElement(By.id("com.mobikwik_new:id/btnConfirmButton"));
 
             // Handle the security PIN
-            mbkCommonControls.handleSecurityPin("123456");
+//            mbkCommonControls.handleSecurityPin("123456");
 
             Thread.sleep(10000);
 
 
             reporter.extentReportDisplay("INFO", "STEP " + ++testStepCount + Log.info("ASSERT", "Details"), "");
 
-            String text = mbkCommonControls.getText(By.id("com.mobikwik_new:id/title_view"));
-            bikeScreen.verifyEqualsExtentReport(text, "Otp Sent Successfully on mobile " + mobNo, "otpText | Actual : " + text + " | Expected :  Otp Sent Successfully on mobile " + mobNo, true, " Verify otpText", directoryName, screenName);
+//            String text = mbkCommonControls.getText(By.id("com.mobikwik_new:id/title_view"));
+//            bikeScreen.verifyEqualsExtentReport(text, "Otp Sent Successfully on mobile " + mobNo, "otpText | Actual : " + text + " | Expected :  Otp Sent Successfully on mobile " + mobNo, true, " Verify otpText", directoryName, screenName);
 
         }
     }

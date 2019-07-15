@@ -1,48 +1,40 @@
 package test.java.AndroidApp.Helpers;
 
-import java.io.IOException;
-
-import main.java.utils.Screen;
-import test.java.AndroidApp.PageObject.NearByHelperBase;
-import test.java.AndroidApp.PageObject.NearByScreen;
-import io.appium.java_client.android.AndroidElement;
-import io.appium.java_client.touch.WaitOptions;
-import io.appium.java_client.touch.offset.PointOption;
-import logger.Log;
-import org.json.JSONException;
-
-import IntegrationTests.Screens.OnboardingScreen;
-import UITestFramework.MBKPermissions;
 import UITestFramework.Api.ApiCommonControls;
 import UITestFramework.ExtentReport.Reporter;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
+import logger.Log;
+import main.java.utils.Screen;
+import org.json.JSONException;
 import org.openqa.selenium.By;
 import test.java.AndroidApp.PageObject.HomePage;
+import test.java.AndroidApp.PageObject.NearByHelperBase;
+import test.java.AndroidApp.PageObject.NearByScreen;
 
+import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
 
 public class NearByHelper extends NearByHelperBase {
     TouchAction touchAction;
-    MBKPermissions mbkPermissions;
-    UITestFramework.MBKCommonControls mbkCommonControls;
-    OnboardingScreen onboardingScreen;
     ApiCommonControls apiCommonControls;
     Reporter reporter = new Reporter();
     NearByScreen nearByScreen;
     HomePage homePage;
     Screen screen;
+    PermissionHelper permissionHelper;
 
     public NearByHelper(AndroidDriver driver) throws IOException {
-        //offerScreen = new OfferScreen(driver);
         touchAction = new TouchAction(driver);
-        mbkPermissions = new MBKPermissions(driver);
-        mbkCommonControls = new UITestFramework.MBKCommonControls(driver);
         apiCommonControls = new ApiCommonControls();
         nearByScreen = new NearByScreen(driver);
-        homePage=new HomePage(driver);
-        screen=new Screen(driver);
+        homePage = new HomePage(driver);
+        screen = new Screen(driver);
+        permissionHelper = new PermissionHelper(driver);
     }
 
     @Override
@@ -63,7 +55,7 @@ public class NearByHelper extends NearByHelperBase {
         reporter.extentReportDisplay("INFO", "STEP " + ++testStepCount + " | " + Log.info("SELECT", "Click on nearby icon"), "");
         nearByScreen.selectElement(nearByScreen.nearbyIcon);
 
-        mbkCommonControls.allowPermission(true, "Location");
+        permissionHelper.permissionAllow();
 
         // If the device location is not given
         Thread.sleep(3000);
@@ -104,7 +96,7 @@ public class NearByHelper extends NearByHelperBase {
         reporter.extentReportDisplay("INFO", "STEP " + ++testStepCount + " | " + Log.info("SELECT", "Click on nearby icon"), "");
         nearByScreen.selectElement(nearByScreen.nearbyIcon);
 
-        mbkCommonControls.allowPermission(true, "Location");
+        permissionHelper.permissionAllow();
 
         // If the device location is not given
         Thread.sleep(3000);
@@ -151,7 +143,7 @@ public class NearByHelper extends NearByHelperBase {
         reporter.extentReportDisplay("INFO", "STEP " + ++testStepCount + " | " + Log.info("SELECT", "Click on nearby icon"), "");
         nearByScreen.selectElement(nearByScreen.nearbyIcon);
 
-        mbkCommonControls.allowPermission(true, "Location");
+        permissionHelper.permissionAllow();
         // If the device location is not given
         Thread.sleep(3000);
         if (nearByScreen.isElementPresent(By.id("button1"))) {

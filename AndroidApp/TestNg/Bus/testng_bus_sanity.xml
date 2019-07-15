@@ -1,24 +1,22 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Appium-Framework">
     <listeners>
         <listener class-name="UITestFramework.retryLogic.RetryListener"/>
-        <listener class-name="UITestFramework.retryLogic.TestListener"/>
+        <listener class-name="main.java.utils.Listeners.TestListener"/>
     </listeners>
-    <parameter name="build" value="stag"/>
+    <parameter name="build" value="prod"/>
     <parameter name="level" value="payments"/>
     <parameter name="saucelabs" value="false"></parameter>
-    <parameter name="androidOSVersion" value="7.1"></parameter>
     <parameter name="methodName" value="busSanity"></parameter>
 
 
     <test name="Mobikwik Automation Tests">
         <groups>
             <run>
-                <include name="appiumStart"/>
                 <include name="setUp"/>
                 <include name="instantiateHelpers"/>
                 <include name="busSanity"/>
                 <include name="tearDown"/>
-                <include name="appiumStop"/>
             </run>
         </groups>
 
@@ -27,8 +25,5 @@
             <class name="UITestFramework.ExtentReport.Reporter"/>
             <class name="test.java.AndroidApp.Test.Bus.Test_Bus"/>
         </classes>
-        <packages>
-            <package name="test.java.AndroidApp.Test.Bus.Test_Bus"/>
-        </packages>
     </test>
 </suite>

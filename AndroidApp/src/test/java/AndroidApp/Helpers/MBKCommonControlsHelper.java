@@ -186,7 +186,7 @@ public class MBKCommonControlsHelper {
         Log.info("END : Fetch Wallet balance");
 
         // TO DO
-        //Handle Expense Manager Bottom sheet
+        dismissAllOnHomePage(driver);
 
         return walletBalance;
     }
@@ -221,4 +221,27 @@ public class MBKCommonControlsHelper {
             mbkCommonControlsPage.clickOnSuccessPageCross();
         }
     }
+
+    public void handleReferAndEarnBottomSheet() throws InterruptedException {
+        Thread.sleep(3000);
+        if (Element.isElementPresent(driver, By.id("com.mobikwik_new:id/cta"))) {
+            Log.info("Handle", "Refer & Earn Bottom sheet");
+            mbkCommonControlsPage.clickOnReferAndEarnBottonSheetCross();
+        }
+    }
+
+    public void handleUpiBottomSheet(AndroidDriver driver) throws InterruptedException {
+        Thread.sleep(3000);
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Link Your Bank Account']"))) {
+            Log.info("Handle", "Upi Bottom sheet");
+            driver.navigate().back();
+        }
+    }
+
+    public void dismissAllOnHomePage(AndroidDriver driver) throws InterruptedException {
+        //Handle Expense Manager Bottom sheet
+        handleUpiBottomSheet(driver);
+        handleReferAndEarnBottomSheet();
+    }
+
 }
