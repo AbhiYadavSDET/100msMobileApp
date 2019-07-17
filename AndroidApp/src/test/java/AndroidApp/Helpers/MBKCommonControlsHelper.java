@@ -128,8 +128,7 @@ public class MBKCommonControlsHelper {
 
         // fetch the balance and add to Map
         Element.waitForVisibility(driver, walletBalancePage.label_available_balance);
-        int noOfBalance = Element.findElements(driver, By.xpath("//*/android.widget.ScrollView[@index = '1']/android.widget" +
-                ".FrameLayout[@index = 0]/android.widget.LinearLayout[@index = 0]/android.widget.LinearLayout[@index = 0]/android.widget.LinearLayout")).size();
+        int noOfBalance = Element.findElements(driver, By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.support.v4.view.ViewPager/android.widget.ScrollView/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.LinearLayout")).size();
         Log.info("noOfBalance - " + noOfBalance);
 
         // Fetch the total balance
@@ -143,13 +142,9 @@ public class MBKCommonControlsHelper {
         for (int i = 1; i <= noOfBalance; i++) {
 
 
-            String balanceText = element.findElement(driver, By.xpath("//*/android.widget.ScrollView/android.widget" +
-                    ".FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget" +
-                    ".LinearLayout[" + i + "]/android.widget.LinearLayout/android.widget.RelativeLayout/android" +
+            String balanceText = element.findElement(driver, By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.support.v4.view.ViewPager/android.widget.ScrollView/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.LinearLayout[" + i + "]/android.widget.LinearLayout/android.widget.RelativeLayout/android" +
                     ".widget.TextView[@index = '0']")).getText().replace(" “", "").trim();
-            String balanceValue = element.findElement(driver, By.xpath("//*/android.widget.ScrollView/android.widget" +
-                    ".FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget" +
-                    ".LinearLayout[" + i + "]/android.widget.LinearLayout/android.widget.RelativeLayout/android" +
+            String balanceValue = element.findElement(driver, By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.support.v4.view.ViewPager/android.widget.ScrollView/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.LinearLayout[" + i + "]/android.widget.LinearLayout/android.widget.RelativeLayout/android" +
                     ".widget.TextView[@index = '1']")).getText().replace("X", "").replace(",", "");
 
 
@@ -223,7 +218,7 @@ public class MBKCommonControlsHelper {
     }
 
     public void handleReferAndEarnBottomSheet() throws InterruptedException {
-        Thread.sleep(3000);
+        Thread.sleep(4000);
         if (Element.isElementPresent(driver, By.id("com.mobikwik_new:id/cta"))) {
             Log.info("Handle", "Refer & Earn Bottom sheet");
             mbkCommonControlsPage.clickOnReferAndEarnBottonSheetCross();
@@ -231,7 +226,7 @@ public class MBKCommonControlsHelper {
     }
 
     public void handleUpiBottomSheet(AndroidDriver driver) throws InterruptedException {
-        Thread.sleep(3000);
+        Thread.sleep(4000);
         if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Link Your Bank Account']"))) {
             Log.info("Handle", "Upi Bottom sheet");
             driver.navigate().back();

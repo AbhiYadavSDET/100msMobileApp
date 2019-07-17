@@ -8,7 +8,6 @@ import main.java.utils.Element;
 import main.java.utils.Screen;
 import net.sourceforge.tess4j.TesseractException;
 import org.json.JSONException;
-import org.omg.PortableServer.THREAD_POLICY_ID;
 import org.openqa.selenium.By;
 import test.java.AndroidApp.PageObject.HomePage;
 import test.java.AndroidApp.PageObject.RechargePage;
@@ -58,14 +57,12 @@ public class RechargeHelper {
 
         rechargePage.clickOnDropDown();
 
+        Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/mkab_title"));
         screen.swipeUp();
         rechargePage.selectOperator();
 
+        Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/mkab_title"));
         rechargePage.selectCircle();
-        screen.swipeUp();
-        screen.swipeDown();
-        screen.swipeUp();
-        screen.swipeDown();
 
         rechargePage.selectAmount();
 
@@ -184,7 +181,7 @@ public class RechargeHelper {
 
         permissionHelper.permissionAllow();
         Thread.sleep(5000);
-        if(Element.isElementPresent(driver,By.xpath("//android.widget.TextView[@text = '1114514100']"))) {
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = '1114514100']"))) {
             AndroidElement androidElement = element.findElement(driver, By.xpath("//android.widget.TextView[@text = '1114514100']"));
             Element.selectElement(driver, androidElement, "Select Saved Connection");
 
@@ -207,9 +204,7 @@ public class RechargeHelper {
             }
             String actualErrorText = text[len - 2] + text[len - 1];
             mbReporter.verifyEqualsWithLogging(actualErrorText, errorMessage, "Verify Error Message", false, false);
-        }
-        else
-        {
+        } else {
             Log.info("Connection not present");
         }
 
@@ -257,21 +252,19 @@ public class RechargeHelper {
 
         rechargePage.clickOnCtaContinue2();
         Thread.sleep(3000);
-        if(!(Element.isElementPresent(driver, By.xpath("//*/android.widget.TextView[@text = 'No dues']"))))
-        {
+        if (!(Element.isElementPresent(driver, By.xpath("//*/android.widget.TextView[@text = 'No dues']")))) {
 
-        String actualSuccessScreenOperator = rechargePage.getSuccessScreenOperator();
-        String actualSuccessScreenNumber = rechargePage.getSuccessScreenNumber();
-        String actualSuccessScreenAmount = rechargePage.getSuccessScreenAmount();
+            String actualSuccessScreenOperator = rechargePage.getSuccessScreenOperator();
+            String actualSuccessScreenNumber = rechargePage.getSuccessScreenNumber();
+            String actualSuccessScreenAmount = rechargePage.getSuccessScreenAmount();
 
-        mbReporter.verifyEqualsWithLogging(actualSuccessScreenOperator, operator, "Success Page | Verify Operator", false, false);
-        mbReporter.verifyEqualsWithLogging(actualSuccessScreenNumber, mobileNo, "Success Page | Verify Number", false, false);
-        mbReporter.verifyTrueWithLogging(Double.parseDouble(actualSuccessScreenAmount) > 0, "Success Page | Verify Amount greater than 0", false, false);
+            mbReporter.verifyEqualsWithLogging(actualSuccessScreenOperator, operator, "Success Page | Verify Operator", false, false);
+            mbReporter.verifyEqualsWithLogging(actualSuccessScreenNumber, mobileNo, "Success Page | Verify Number", false, false);
+            mbReporter.verifyTrueWithLogging(Double.parseDouble(actualSuccessScreenAmount) > 0, "Success Page | Verify Amount greater than 0", false, false);
 
-        mbkCommonControlsHelper.clickUpButton();
-        mbkCommonControlsHelper.clickUpButton();}
-        else
-        {
+            mbkCommonControlsHelper.clickUpButton();
+            mbkCommonControlsHelper.clickUpButton();
+        } else {
             Log.info("No dues");
         }
 

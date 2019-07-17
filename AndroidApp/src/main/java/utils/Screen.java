@@ -32,7 +32,8 @@ public class Screen {
      */
     public static void swipeUp() {
         Log.info("SWIPE", "Up");
-        touchAction.press(PointOption.point(400, 1000)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1500))).moveTo(PointOption.point(400, 500)).release().perform();
+        touchAction.press(PointOption.point(400, 1000)).moveTo(PointOption.point(400, 500)).release().perform();
+
     }
 
     public static void swipeUpMore(AndroidDriver driver) {
