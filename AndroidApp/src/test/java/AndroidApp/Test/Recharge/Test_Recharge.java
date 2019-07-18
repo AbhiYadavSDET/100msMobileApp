@@ -20,8 +20,6 @@ public class Test_Recharge extends CreateSession {
     public void Test01_prepaid_recharge(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
         loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
-        //loginHelper.quickLoginViaEmail("8447405515@nocash.mobikwik.com", "priyanka123");
-
 
         RechargeHelper rechargeHelper = new RechargeHelper(getAndroidDriver());
         rechargeHelper.prepaidRecharge(frontEndEntity.getMobileNo(), frontEndEntity.getAmount(), frontEndEntity.getCategory(), frontEndEntity.getOperator(), frontEndEntity.getTotalPayment(), frontEndEntity.getSuccessPageStatus(), frontEndEntity.getSecurityPin(), false, "N/A", frontEndEntity.getPromoCodeText());
@@ -35,7 +33,7 @@ public class Test_Recharge extends CreateSession {
 
 
         RechargeHelper rechargeHelper = new RechargeHelper(getAndroidDriver());
-        rechargeHelper.postpaidPayment("9554033335", frontEndEntity.getPopupError(), frontEndEntity.getPopupText());
+        rechargeHelper.postpaidPayment(frontEndEntity.getMobileNo(), frontEndEntity.getPopupError(), frontEndEntity.getPopupText());
     }
 
     @Test(groups = {"PostpaidRechargeSavedConnection", "rechargeSanity"}, priority = 2, dataProvider = "rechargeData", dataProviderClass = RechargeDataProviderClass.class)
@@ -44,7 +42,7 @@ public class Test_Recharge extends CreateSession {
         loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
 
         RechargeHelper rechargeHelper = new RechargeHelper(getAndroidDriver());
-        rechargeHelper.postpaidPaymentViaSavedConnection("9554033335", frontEndEntity.getPopupText(), frontEndEntity.getCategory(), frontEndEntity.getOperator());
+        rechargeHelper.postpaidPaymentViaSavedConnection(frontEndEntity.getMobileNo(), frontEndEntity.getPopupText(), frontEndEntity.getCategory(), frontEndEntity.getOperator());
     }
 
     @Test(groups = {"RechargeDthInvalidAmount", "rechargeSanity"}, priority = 3, dataProvider = "rechargeData", dataProviderClass = RechargeDataProviderClass.class)

@@ -44,7 +44,7 @@ public class RechargePage {
     private AndroidElement cta_continue;
 
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/iconview_checkbox")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Postpaid']")
     private AndroidElement postPaid;
 
     // Success screen
@@ -138,6 +138,7 @@ public class RechargePage {
     public void clickOnDropDown() throws InterruptedException {
         Element.selectElement(driver, link_drop_down, "Drop down");
     }
+
     public void clickOnPostPaid() throws InterruptedException {
         Element.selectElement(driver, postPaid, "Postpaid");
     }

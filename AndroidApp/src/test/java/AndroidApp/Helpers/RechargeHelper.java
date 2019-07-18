@@ -115,7 +115,6 @@ public class RechargeHelper {
 
     public void postpaidPayment(String mobileNo, String popupError, String popupText) throws InterruptedException, IOException, JSONException {
 
-        //balanceBefore = mbkCommonControlsHelper.getBalance();
         homePage.clickOnCrossButton();
 
         rechargePage = homePage.clickOnMobileButton();
@@ -160,7 +159,7 @@ public class RechargeHelper {
         if (selectSavedConnection(mobileNo, category, operator)) {
 
             String actualViewBillText = rechargePage.getViewBillText();
-            mbReporter.verifyEqualsWithLogging(actualViewBillText, popupText, "View Bill | Verify text", false, false);
+            mbReporter.verifyEqualsWithLogging(actualViewBillText, popupText, "Verify Pop Up text", false, false);
             mbkCommonControlsHelper.clickUpButton();
             mbkCommonControlsHelper.clickUpButton();
 
@@ -181,8 +180,8 @@ public class RechargeHelper {
 
         permissionHelper.permissionAllow();
         Thread.sleep(5000);
-        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = '1114514100']"))) {
-            AndroidElement androidElement = element.findElement(driver, By.xpath("//android.widget.TextView[@text = '1114514100']"));
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = '" + mobileNo + "']"))) {
+            AndroidElement androidElement = element.findElement(driver, By.xpath("//android.widget.TextView[@text = '" + mobileNo + "']"));
             Element.selectElement(driver, androidElement, "Select Saved Connection");
 
             rechargePage.enterDthAmount(amount);
@@ -246,12 +245,17 @@ public class RechargeHelper {
 
         rechargePage.clickOnDropDown();
 
-        rechargePage.selectOperator(operator);
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = '" + operator + "']"))) {
+            rechargePage.selectOperator(operator);
+        } else {
+            screen.swipeUp();
+            rechargePage.selectOperator(operator);
+        }
 
         rechargePage.enterBpNumber(mobileNo);
 
         rechargePage.clickOnCtaContinue2();
-        Thread.sleep(3000);
+        Thread.sleep(10000);
         if (!(Element.isElementPresent(driver, By.xpath("//*/android.widget.TextView[@text = 'No dues']")))) {
 
             String actualSuccessScreenOperator = rechargePage.getSuccessScreenOperator();
@@ -266,6 +270,18 @@ public class RechargeHelper {
             mbkCommonControlsHelper.clickUpButton();
         } else {
             Log.info("No dues");
+            // Assertions
+            String actualPopupError = rechargePage.getPopupError();
+            String actualPopupText = rechargePage.getPopupText();
+
+            mbReporter.verifyEqualsWithLogging(actualPopupError, "Error", "Popup | Error message", false, false);
+            mbReporter.verifyEqualsWithLogging(actualPopupText, "No dues", "Popup | Message", false, false);
+
+
+            rechargePage.clickOnPopupCross();
+
+            mbkCommonControlsHelper.clickUpButton();
+            mbkCommonControlsHelper.clickUpButton();
         }
 
     }

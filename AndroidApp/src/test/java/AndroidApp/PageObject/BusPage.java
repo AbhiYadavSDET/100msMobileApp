@@ -55,7 +55,7 @@ public class BusPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = '1']")
     private AndroidElement select_number_of_passenger;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/proceed_button")
+    @AndroidFindBy(id = "com.mobikwik_new:id/continue_button")
     private AndroidElement button_confirm_seats;
 
 
@@ -66,10 +66,7 @@ public class BusPage {
     private AndroidElement select_dropping_point;
 
     //Passenger Details Screen
-
-    //@AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Passenger Details']/following::android.widget.EditText[1]")
-
-    @AndroidFindBy(xpath = "//android.widget.EditText[@text = 'Full Name']")
+    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.RelativeLayout[1]/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.EditText")
     private AndroidElement enter_passenger_name;
 
     @AndroidFindBy(xpath = "//android.widget.EditText[@text = 'Age']")
@@ -130,7 +127,6 @@ public class BusPage {
 
     @AndroidFindBy(id = "com.mobikwik_new:id/home_button")
     private AndroidElement home_button;
-
 
 
     public BusPage(AndroidDriver driver) throws IOException {

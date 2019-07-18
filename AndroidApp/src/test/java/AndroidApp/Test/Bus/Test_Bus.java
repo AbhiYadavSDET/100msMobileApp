@@ -15,24 +15,20 @@ public class Test_Bus extends CreateSession {
     DatabaseSqlHelper databaseSqlHelper = new DatabaseSqlHelper();
 
     @Test(groups = {"busBook", "busSanity"}, priority = 0, dataProvider = "busData", dataProviderClass = BusProviderClass.class)
-
     public void Bus_book(String userName, String password) throws IOException, JSONException, InterruptedException {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
         loginHelper.quickLoginViaEmail(userName, password);
 
 
         BusHelper busHelper = new BusHelper(getAndroidDriver());
-        busHelper.busBook("bhubaneswar", "baripada", "Paraj Jain", "28", "525252");
+        busHelper.busBook("bhubaneswar", "baripada", "Paraj Jain", "28", "123456");
 
     }
 
     @Test(groups = {"busBook", "busSanity"}, priority = 1, dataProvider = "busData", dataProviderClass = BusProviderClass.class, dependsOnMethods = "Bus_book")
-
     public void Bus_Cancel(String userName, String password) throws IOException, JSONException, InterruptedException {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
         loginHelper.quickLoginViaEmail(userName, password);
-
-        //loginHelper.quickLoginViaEmail("8447405515@nocash.mobikwik.com", "priyanka123");
 
         BusHelper busHelper = new BusHelper(getAndroidDriver());
         busHelper.busCancel();

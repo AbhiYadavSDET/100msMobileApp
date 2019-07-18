@@ -35,7 +35,7 @@ public class CreateSession {
 
     String androidOSVersion = "8.0";
     String portNo = "4723";
-    String udid = "ZY322HJ929";
+    String udid = "ZY223F3MP3";
     String deviceName = "Motorola G5";
 
     private String reportDirectory = "reports";
