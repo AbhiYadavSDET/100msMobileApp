@@ -17,6 +17,9 @@ public class BusPage {
 
     //Intro Page
 
+    @AndroidFindBy(id= "com.mobikwik_new:id/mkab_icon_1")
+    private AndroidElement buspage_back_button;
+
     @AndroidFindBy(id = "com.mobikwik_new:id/txt_departure_city")
     private AndroidElement textbox_departure_city;
 
@@ -146,6 +149,11 @@ public class BusPage {
 
         Log.info("*****Bus Page*****");
 
+    }
+
+
+    public void selectBackButton() throws InterruptedException {
+        Element.selectElement(driver, buspage_back_button, "Press Back Button");
     }
 
     public void selectDepartureCityBox() throws InterruptedException {
