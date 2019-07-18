@@ -16,7 +16,6 @@ import java.io.IOException;
 import java.util.HashMap;
 
 
-
 public class BusHelper {
 
 
@@ -54,17 +53,15 @@ public class BusHelper {
 
         screen.swipeUp();
 
-        if(Element.isElementPresent(driver,By.xpath("//android.widget.TextView[@text='More Services']/following::android.widget.TextView[@text='More']"))==false )
-        {
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='More Services']/following::android.widget.TextView[@text='More']")) == false) {
             screen.swipeUp();
         }
 
 
-
-        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Bus']"))==true) {
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Bus']")) == true) {
             busPage = homePage.clickBusIcon();
 
-        }else {
+        } else {
 
             homePage.clickMoreServicesIcon();
             busPage = homePage.clickBusIcon();
@@ -83,37 +80,35 @@ public class BusHelper {
 
         int date = DateHelper.getDayFromCurrentDate();
 
-        if (date<15){
+        if (date < 15) {
 
             busPage.selectDateLater();
 
-        }else{
+        } else {
 
 
             int month = DateHelper.getCurrentMonthInteger();
-            if (month<12){
+            if (month < 12) {
 
-                month= month +1;
+                month = month + 1;
 
-            }else {
+            } else {
 
-                month=1;
+                month = 1;
 
             }
 
             int year = DateHelper.getCurrentYearInteger();
 
-            String monthString= DateHelper.getMonthInStringFromInteger(month);
+            String monthString = DateHelper.getMonthInStringFromInteger(month);
 
-            String selectMonth= monthString + " " + year;
+            String selectMonth = monthString + " " + year;
 
-            AndroidElement androidElement = element.findElement(driver, By.xpath("//android.widget.TextView[@text = '"+ selectMonth +"']/following::android.widget.TextView[@text = '5']"));
-            Element.selectElement(driver, androidElement ,"select modified date" );
-
+            AndroidElement androidElement = element.findElement(driver, By.xpath("//android.widget.TextView[@text = '" + selectMonth + "']/following::android.widget.TextView[@text = '5']"));
+            Element.selectElement(driver, androidElement, "select modified date");
 
 
         }
-
 
 
         Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/journey_info"));
@@ -125,7 +120,12 @@ public class BusHelper {
 
         busPage.selectNoPassengers();
 
-        busPage.clickOnConfirmSeatsCta();
+        Thread.sleep(2000);
+        if (Element.isElementPresent(driver, By.id("com.mobikwik_new:id/continue_button"))) {
+            busPage.clickOnContinueSeatsCta();
+        } else {
+            busPage.clickOnConfirmSeatsCta();
+        }
 
         busPage.selectBoardingPoint();
 
@@ -153,12 +153,12 @@ public class BusHelper {
 
         String actualSuccessPageHeading = busPage.getSuccessPageHeading();
         String actualOnwardRoute = busPage.getOnwardRoute().toLowerCase();
-        String actualTotalAmountPaid = busPage.getTotalAmountPaid().replace("X","");
+        String actualTotalAmountPaid = busPage.getTotalAmountPaid().replace("X", "");
 
-        String expectedOnwardRoute= (departureCity+" to "+ destinationCity).toLowerCase();
+        String expectedOnwardRoute = (departureCity + " to " + destinationCity).toLowerCase();
 
         mbReporter.verifyEqualsWithLogging(actualSuccessPageHeading, "Payment Successful", "Success Screen | Verify Status", false, false);
-        mbReporter.verifyEqualsWithLogging(actualOnwardRoute, expectedOnwardRoute, "Success Screen | Verify Route", false, false);
+        mbReporter.verifyEqualsWithLogging(actualOnwardRoute.toUpperCase(), expectedOnwardRoute.toUpperCase(), "Success Screen | Verify Route", false, false);
 
 
         mbkCommonControlsHelper.returnToHomePageFromP2MSuccessScreen();
@@ -169,11 +169,10 @@ public class BusHelper {
 
         Screen.swipeDown();
 
-        if(Element.isElementPresent(driver,By.xpath("//android.widget.TextView[@text = 'Available Balance']"))==false )
-        {
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Available Balance']")) == false) {
             Screen.swipeDown();
         }
-        if(Element.isElementPresent(driver,By.xpath("//android.widget.TextView[@text = 'Available Balance']"))==false ){
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Available Balance']")) == false) {
             Screen.swipeDown();
         }
 
@@ -190,7 +189,7 @@ public class BusHelper {
     }
 
 
-    public void busCancel() throws InterruptedException, IOException, JSONException {
+    public void busCancel(String message) throws InterruptedException, IOException, JSONException {
         homePage.clickOnCrossButton();
 
         balanceBefore = mbkCommonControlsHelper.getBalance();
@@ -199,21 +198,22 @@ public class BusHelper {
 
         screen.swipeUp();
 
-        if(Element.isElementPresent(driver,By.xpath("//android.widget.TextView[@text='More Services']/following::android.widget.TextView[@text='More']"))==false )
-        {
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='More Services']/following::android.widget.TextView[@text='More']")) == false) {
             screen.swipeUp();
         }
 
-        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Bus']"))==true) {
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Bus']")) == true) {
             busPage = homePage.clickBusIcon();
 
-        }else {
+        } else {
 
             homePage.clickMoreServicesIcon();
             busPage = homePage.clickBusIcon();
         }
 
         busPage.clickOnBookingsCta();
+
+        Thread.sleep(2000);
 
         busPage.selectTicketForCancellation();
 
@@ -231,7 +231,7 @@ public class BusHelper {
         String actualCancellationRefundMessage = busPage.getCancellationRefund();
 
 
-        mbReporter.verifyEqualsWithLogging(actualCancellationSuccessMessage,"", "Success Message", false, false);
+        mbReporter.verifyEqualsWithLogging(actualCancellationSuccessMessage, message, "Success Message", false, false);
         Log.info(actualCancellationRefundMessage);
 
         busPage.clickBackToHome();

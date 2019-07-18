@@ -15,6 +15,6 @@ public class BusProviderClass {
     @DataProvider(name = "busData")
     public Object[][] getFrontEndTestData(Method method) throws SQLException, TestParametersNotFound {
         //return new Object[][]{{"8447405515@nocash.mobikwik.com","priyanka123"}};
-        return new Object[][]{{"parajjain@gmail.com", "Test@1234"}};
+        return new Object[][]{{"mayank.suneja@mobikwik.com", "Tuesday20"}};
     }
 }

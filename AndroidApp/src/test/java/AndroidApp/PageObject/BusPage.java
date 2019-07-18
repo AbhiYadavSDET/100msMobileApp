@@ -17,7 +17,7 @@ public class BusPage {
 
     //Intro Page
 
-    @AndroidFindBy(id= "com.mobikwik_new:id/mkab_icon_1")
+    @AndroidFindBy(id = "com.mobikwik_new:id/mkab_icon_1")
     private AndroidElement buspage_back_button;
 
     @AndroidFindBy(id = "com.mobikwik_new:id/txt_departure_city")
@@ -59,7 +59,10 @@ public class BusPage {
     private AndroidElement select_number_of_passenger;
 
     @AndroidFindBy(id = "com.mobikwik_new:id/proceed_button")
-    private AndroidElement button_confirm_seats;
+    private AndroidElement button_confirm_seats_1;
+
+    @AndroidFindBy(id = "com.mobikwik_new:id/continue_button")
+    private AndroidElement button_confirm_seats_2;
 
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Bermunda Bus Stand']")
@@ -72,7 +75,7 @@ public class BusPage {
 
     //@AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Passenger Details']/following::android.widget.EditText[1]")
 
-    @AndroidFindBy(xpath = "//android.widget.EditText[@text = 'Full Name']")
+    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.RelativeLayout[1]/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.EditText")
     private AndroidElement enter_passenger_name;
 
     @AndroidFindBy(xpath = "//android.widget.EditText[@text = 'Age']")
@@ -133,7 +136,6 @@ public class BusPage {
 
     @AndroidFindBy(id = "com.mobikwik_new:id/home_button")
     private AndroidElement home_button;
-
 
 
     public BusPage(AndroidDriver driver) throws IOException {
@@ -200,7 +202,11 @@ public class BusPage {
     }
 
     public void clickOnConfirmSeatsCta() throws InterruptedException {
-        Element.selectElement(driver, button_confirm_seats, "Click on Confirm Seats button");
+        Element.selectElement(driver, button_confirm_seats_1, "Click on Confirm Seats button");
+    }
+
+    public void clickOnContinueSeatsCta() throws InterruptedException {
+        Element.selectElement(driver, button_confirm_seats_2, "Click on Confirm Seats button");
     }
 
     public void selectBoardingPoint() throws InterruptedException {

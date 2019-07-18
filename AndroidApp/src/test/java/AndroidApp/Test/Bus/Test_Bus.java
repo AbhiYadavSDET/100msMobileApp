@@ -22,7 +22,7 @@ public class Test_Bus extends CreateSession {
 
 
         BusHelper busHelper = new BusHelper(getAndroidDriver());
-        busHelper.busBook("bhubaneswar", "baripada", "Paraj Jain", "28", "525252");
+        busHelper.busBook("bhubaneswar", "baripada", "Paraj Jain", "28", "123456");
 
     }
 
@@ -32,10 +32,8 @@ public class Test_Bus extends CreateSession {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
         loginHelper.quickLoginViaEmail(userName, password);
 
-        //loginHelper.quickLoginViaEmail("8447405515@nocash.mobikwik.com", "priyanka123");
-
         BusHelper busHelper = new BusHelper(getAndroidDriver());
-        busHelper.busCancel();
+        busHelper.busCancel("Your Ticket has been Cancelled");
 
     }
 
