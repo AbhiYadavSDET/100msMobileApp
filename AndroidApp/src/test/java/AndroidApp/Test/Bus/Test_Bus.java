@@ -31,7 +31,7 @@ public class Test_Bus extends CreateSession {
         loginHelper.quickLoginViaEmail(userName, password);
 
         BusHelper busHelper = new BusHelper(getAndroidDriver());
-        busHelper.busCancel();
+        busHelper.busCancel("Your Ticket has been Cancelled");
 
     }
 

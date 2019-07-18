@@ -51,14 +51,18 @@ public class BusHelper {
 
         Element.waitForVisibility(driver, homePage.icon_mobile);
 
-        Thread.sleep(2000);
-        screen.swipeUpMore(driver);
+        screen.swipeUp();
+
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='More Services']/following::android.widget.TextView[@text='More']")) == false) {
+            screen.swipeUp();
+        }
 
 
         if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Bus']")) == true) {
             busPage = homePage.clickBusIcon();
 
         } else {
+
             homePage.clickMoreServicesIcon();
             busPage = homePage.clickBusIcon();
         }
@@ -116,7 +120,12 @@ public class BusHelper {
 
         busPage.selectNoPassengers();
 
-        busPage.clickOnConfirmSeatsCta();
+        Thread.sleep(2000);
+        if (Element.isElementPresent(driver, By.id("com.mobikwik_new:id/continue_button"))) {
+            busPage.clickOnContinueSeatsCta();
+        } else {
+            busPage.clickOnConfirmSeatsCta();
+        }
 
         busPage.selectBoardingPoint();
 
@@ -136,19 +145,25 @@ public class BusHelper {
 
         busPage.clickOnConfirmBookingCta();
 
+        Thread.sleep(2000);
+
+        mbkCommonControlsHelper.handleNPS();
+
+        mbkCommonControlsHelper.handleRatingsPopUp();
 
         String actualSuccessPageHeading = busPage.getSuccessPageHeading();
-        String actualOnwardRoute = busPage.getOnwardRoute();
-        String actualTotalAmountPaid = busPage.getTotalAmountPaid();
+        String actualOnwardRoute = busPage.getOnwardRoute().toLowerCase();
+        String actualTotalAmountPaid = busPage.getTotalAmountPaid().replace("X", "");
 
-
-        String expectedOnwardRoute = departureCity + " to " + destinationCity;
+        String expectedOnwardRoute = (departureCity + " to " + destinationCity).toLowerCase();
 
         mbReporter.verifyEqualsWithLogging(actualSuccessPageHeading, "Payment Successful", "Success Screen | Verify Status", false, false);
         mbReporter.verifyEqualsWithLogging(actualOnwardRoute.toUpperCase(), expectedOnwardRoute.toUpperCase(), "Success Screen | Verify Route", false, false);
 
+
         mbkCommonControlsHelper.returnToHomePageFromP2MSuccessScreen();
 
+        busPage.selectBackButton();
 
         driver.navigate().back();
 
@@ -169,10 +184,12 @@ public class BusHelper {
         mbReporter.verifyEqualsWithLogging(actualMainBalanceAfter, expectedMainBalanceAfter, "After TRX | Verify Wallet Main Balance", false, false);
 
 
+        Thread.sleep(2000);
+
     }
 
 
-    public void busCancel() throws InterruptedException, IOException, JSONException {
+    public void busCancel(String message) throws InterruptedException, IOException, JSONException {
         homePage.clickOnCrossButton();
 
         balanceBefore = mbkCommonControlsHelper.getBalance();
@@ -180,6 +197,10 @@ public class BusHelper {
         Element.waitForVisibility(driver, homePage.icon_mobile);
 
         screen.swipeUp();
+
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='More Services']/following::android.widget.TextView[@text='More']")) == false) {
+            screen.swipeUp();
+        }
 
         if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Bus']")) == true) {
             busPage = homePage.clickBusIcon();
@@ -191,6 +212,8 @@ public class BusHelper {
         }
 
         busPage.clickOnBookingsCta();
+
+        Thread.sleep(2000);
 
         busPage.selectTicketForCancellation();
 
@@ -208,7 +231,7 @@ public class BusHelper {
         String actualCancellationRefundMessage = busPage.getCancellationRefund();
 
 
-        mbReporter.verifyEqualsWithLogging(actualCancellationSuccessMessage, "", "Success Message", false, false);
+        mbReporter.verifyEqualsWithLogging(actualCancellationSuccessMessage, message, "Success Message", false, false);
         Log.info(actualCancellationRefundMessage);
 
         busPage.clickBackToHome();
