@@ -104,6 +104,7 @@ public class HomePage {
     @AndroidFindBy(id = "com.mobikwik_new:id/navigation_wallet")
     private AndroidElement navigate_wallet_page;
 
+
     public HomePage(AndroidDriver driver) {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -122,12 +123,13 @@ public class HomePage {
     }
 
     public void clickOnCrossButton() throws InterruptedException, IOException {
-        if(Element.isElementPresent(driver,(By.id("cross_button")))) {
-        Element.selectElement(driver, (AndroidElement) driver.findElement(By.id("cross_button")), "Cross Button");
-    }}
+        if (Element.isElementPresent(driver, (By.id("cross_button")))) {
+            Element.selectElement(driver, (AndroidElement) driver.findElement(By.id("cross_button")), "Cross Button");
+        }
+    }
 
     public TransferPage clickOnButtonP2P() throws IOException {
-        Element.selectElement(driver,button_transfer_money, "Pay Via Wallet");
+        Element.selectElement(driver, button_transfer_money, "Pay Via Wallet");
         return new TransferPage(driver);
 
 
@@ -228,6 +230,7 @@ public class HomePage {
     public void clickOnSkip() throws InterruptedException {
         Element.selectElement(driver, skip_button, "Skip");
     }
+
     public void clickMoreServicesIcon() throws IOException {
         Element.selectElement(driver, icon_service_more, "More Services Icon under More Services");
     }
@@ -237,7 +240,12 @@ public class HomePage {
         return new BusPage(driver);
     }
 
-    public WalletPage clickWalletNavigate() throws IOException{
+    public InsurancePage clickOnInsuranceIcon() throws IOException {
+        Element.selectElement(driver, icon_insurance, "Insurance Icon");
+        return new InsurancePage(driver);
+    }
+
+    public WalletPage clickWalletNavigate() throws IOException {
         Element.selectElement(driver, navigate_wallet_page, "Navigate to Wallet Page");
         return new WalletPage(driver);
     }

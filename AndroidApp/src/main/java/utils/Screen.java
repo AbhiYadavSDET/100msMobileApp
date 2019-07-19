@@ -32,7 +32,8 @@ public class Screen {
      */
     public static void swipeUp() {
         Log.info("SWIPE", "Up");
-        touchAction.press(PointOption.point(400, 1000)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1500))).moveTo(PointOption.point(400, 500)).release().perform();
+        touchAction.press(PointOption.point(400, 900)).moveTo(PointOption.point(400, 300)).release().perform();
+
     }
 
     public static void swipeUpMore(AndroidDriver driver) {
@@ -46,7 +47,7 @@ public class Screen {
             //Log.info("End : " + heightEnd);
 
 
-            Log.info("SWIPE", "Up");
+            Log.info("SWIPE", "Up More");
             touchAction.press(PointOption.point(0, heightStart)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1500))).moveTo(PointOption.point(0, heightEnd)).release().perform();
 
         } catch (NullPointerException e) {
