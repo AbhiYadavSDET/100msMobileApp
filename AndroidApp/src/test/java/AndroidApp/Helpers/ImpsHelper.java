@@ -2,10 +2,10 @@ package test.java.AndroidApp.Helpers;
 
 import UITestFramework.MBReporter;
 import io.appium.java_client.android.AndroidDriver;
+import logger.Log;
 import main.java.utils.Element;
 import main.java.utils.Screen;
 import org.json.JSONException;
-import org.openqa.selenium.By;
 import test.java.AndroidApp.PageObject.HomePage;
 import test.java.AndroidApp.PageObject.ImpsPage;
 import test.java.AndroidApp.PageObject.P2MPage;
@@ -44,8 +44,9 @@ public class ImpsHelper {
     }
 
 
-    public void verifyImps() throws InterruptedException, IOException, JSONException {
+    public void verifyImps(String accountName, String accountNo, String ifsc, String amount) throws InterruptedException, IOException, JSONException {
         //driver.navigate().back();
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
         impsPage.clickOnViaWallet();
 
@@ -55,10 +56,17 @@ public class ImpsHelper {
         Thread.sleep(2000);
         screen.swipeUp();
 
-        impsPage.clickOnBank();
 
-        impsPage.sendAmount();
-        Thread.sleep(2000);
+        // Enter the bank details
+        impsPage.enterBeneficiaryName(accountName);
+        impsPage.enterAccountNo(accountNo);
+        impsPage.enterIfsc(ifsc);
+
+
+        impsPage.clickOnCtaContinue();
+
+        impsPage.sendAmount(amount);
+        Thread.sleep(5000);
 
         impsPage.clickOnContinue();
 
@@ -67,8 +75,21 @@ public class ImpsHelper {
         mbkCommonControlsHelper.handleSecurityPin("123456");
         Thread.sleep(5000);
 
-        boolean flag = Element.isElementPresent(driver, impsPage.returnLocator());
-        mbReporter.verifyTrueWithLogging(flag, "verify imps success screen", false, false);
+        // Enter the OTP
+        Log.info("Enter the OTP");
+        Thread.sleep(30000);
+
+        //Assertion on the success page
+        //fetch the values
+        String actualMessage = impsPage.getSuccessMessage();
+        String actualAccountNo = impsPage.getSuccessPageAccountNo();
+        String actualAmount = impsPage.getSuccessSuccessPageAmount();
+
+        mbReporter.verifyEqualsWithLogging(actualMessage, "Money sent successfully", "Success Page | Message", false, false);
+        mbReporter.verifyEqualsWithLogging(actualAccountNo, accountNo, "Success Page | Account No", false, false);
+        mbReporter.verifyEqualsWithLogging(actualAmount, "X50.0", "Success Page | Amount", false, false);
+
+        mbkCommonControlsHelper.returnToHomePageFromP2MSuccessScreen();
 
     }
 

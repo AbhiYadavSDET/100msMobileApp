@@ -132,7 +132,7 @@
         </classes>
     </test>
 
-    <!--######### Transaction History #############-->
+    <!--######### Recharge #############-->
     <test name="rechargeSanity">
         <groups>
             <run>
@@ -149,5 +149,56 @@
         </classes>
     </test>
 
+    <!--######### Bus #############-->
+    <test name="busSanity">
+        <groups>
+            <run>
+                <include name="setUp"/>
+                <include name="instantiateHelpers"/>
+                <include name="busSanity"/>
+                <include name="tearDown"/>
+            </run>
+        </groups>
 
+        <classes>
+            <class name="UITestFramework.CreateSession"/>
+            <class name="UITestFramework.ExtentReport.Reporter"/>
+            <class name="test.java.AndroidApp.Test.Bus.Test_Bus"/>
+        </classes>
+    </test>
+
+    <!--######### Imps #############-->
+    <test name="Imps Sanity">
+        <groups>
+            <run>
+                <include name="setUp"/>
+                <include name="instantiateHelpers"/>
+                <include name="impsSanity"/>
+                <include name="tearDown"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="UITestFramework.CreateSession"/>
+            <class name="UITestFramework.ExtentReport.Reporter"/>
+            <class name="test.java.AndroidApp.Test.IMPS.Test_Imps"/>
+        </classes>
+    </test>
+
+    <!--######### Insurance #############-->
+    <test name="Insurance Sanity">
+        <groups>
+            <run>
+                <include name="setUp"/>
+                <include name="instantiateHelpers"/>
+                <include name="insuranceSanity"/>
+                <include name="tearDown"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="UITestFramework.CreateSession"/>
+            <class name="UITestFramework.ExtentReport.Reporter"/>
+            <class name="test.java.AndroidApp.Test.Insurance.Test_Insurance"/>
+        </classes>
+    </test>
 </suite>

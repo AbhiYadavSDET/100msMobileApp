@@ -35,7 +35,30 @@ public class ImpsPage {
 
     String success_text = "android.widget.TextView[@text = 'Money sent successfully']";
 
+    @AndroidFindBy(id = "com.mobikwik_new:id/beneficiary_name")
+    private AndroidElement textbox_beneficiary_name;
+
+    @AndroidFindBy(id = "com.mobikwik_new:id/account_number")
+    private AndroidElement textbox_account_no;
+
+    @AndroidFindBy(id = "com.mobikwik_new:id/ifsc_code")
+    private AndroidElement textbox_ifsc;
+
+    @AndroidFindBy(id = "com.mobikwik_new:id/continue_button")
+    private AndroidElement cta_continue;
+
+    @AndroidFindBy(id = "com.mobikwik_new:id/base_title")
+    private AndroidElement label_success_message;
+
+    @AndroidFindBy(id = "com.mobikwik_new:id/txt_cn_value")
+    private AndroidElement label_account_no;
+
+    @AndroidFindBy(id = "com.mobikwik_new:id/txt_amount_value")
+    private AndroidElement label_amount;
+
+
     public ImpsPage(AndroidDriver driver) throws IOException {
+
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
 
@@ -48,46 +71,61 @@ public class ImpsPage {
         Log.info("*****Imps Page*****");
     }
 
-    public void clickOnViaWallet() throws InterruptedException{
+    public void clickOnViaWallet() throws InterruptedException {
         Element.selectElement(driver, via_Wallet, "Via Wallet on home page");
     }
 
-    public void clickOnWalletToBank() throws InterruptedException{
+    public void clickOnWalletToBank() throws InterruptedException {
         Element.selectElement(driver, wallet_to_bank, "Wallet to bank");
     }
 
-    public void clickOnBank() throws InterruptedException{
+    public void clickOnBank() throws InterruptedException {
         Element.selectElement(driver, bank, "Bank Account");
     }
 
-    public void sendAmount() throws InterruptedException{
-        Element.enterText(driver, amount_box, "50", "Transfer amount");
+    public void sendAmount(String amount) throws InterruptedException {
+        Element.enterText(driver, amount_box, amount, "Transfer amount");
     }
 
-    public void clickOnContinue() throws InterruptedException{
+    public void clickOnContinue() throws InterruptedException {
         Element.selectElement(driver, continueButton, "Bank Account");
     }
 
-    public void clickOnConfirm() throws InterruptedException{
+    public void clickOnConfirm() throws InterruptedException {
         Element.selectElement(driver, confirm, "Bank Account");
     }
 
-
-    public By returnLocator() throws InterruptedException{
-        return By.xpath(success_text);
+    public void clickOnCtaContinue() throws InterruptedException {
+        Element.selectElement(driver, cta_continue, "Cta Continue");
     }
 
 
+    public By returnLocator() throws InterruptedException {
+        return By.xpath(success_text);
+    }
 
+    public void enterBeneficiaryName(String name) {
+        Element.enterText(driver, textbox_beneficiary_name, name, "Beneficiary Name");
+    }
 
+    public void enterAccountNo(String account) {
+        Element.enterText(driver, textbox_account_no, account, "Account No");
+    }
 
+    public void enterIfsc(String ifsc) {
+        Element.enterText(driver, textbox_ifsc, ifsc, "IFSC");
+    }
 
+    public String getSuccessMessage() {
+        return Element.getText(driver, label_success_message, "Success Message");
+    }
 
+    public String getSuccessPageAccountNo() {
+        return Element.getText(driver, label_account_no, "Success Page | Account No");
+    }
 
-
-
-
-
-
+    public String getSuccessSuccessPageAmount() {
+        return Element.getText(driver, label_amount, "Success Page | Amount");
+    }
 
 }
