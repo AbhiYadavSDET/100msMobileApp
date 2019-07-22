@@ -248,7 +248,7 @@ public class RechargeHelper {
         if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = '" + operator + "']"))) {
             rechargePage.selectOperator(operator);
         } else {
-            screen.swipeUp();
+            screen.swipeUpMedium(driver);
             rechargePage.selectOperator(operator);
         }
 

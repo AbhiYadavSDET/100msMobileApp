@@ -55,6 +55,25 @@ public class Screen {
         }
     }
 
+    public static void swipeUpMedium(AndroidDriver driver) {
+        try {
+            Dimension dimension = driver.manage().window().getSize();
+            Double screenHeightStart = dimension.getHeight() * 0.6; //50
+            int heightStart = screenHeightStart.intValue();
+            //Log.info("start : " + heightStart);
+            Double screenHeightEnd = dimension.getHeight() * 0.2; //20
+            int heightEnd = screenHeightEnd.intValue();
+            //Log.info("End : " + heightEnd);
+
+
+            Log.info("SWIPE", "Up More");
+            touchAction.press(PointOption.point(0, heightStart)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1500))).moveTo(PointOption.point(0, heightEnd)).release().perform();
+
+        } catch (NullPointerException e) {
+            Log.info("Screen is not Swipable");
+        }
+    }
+
     public static void swipeUpLess(AndroidDriver driver) {
         try {
 

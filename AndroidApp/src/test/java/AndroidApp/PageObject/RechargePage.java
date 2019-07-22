@@ -37,7 +37,7 @@ public class RechargePage {
     @AndroidFindBy(id = "com.mobikwik_new:id/amount_field")
     private AndroidElement textbox_enter_amount2;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/actual_continue")
+    @AndroidFindBy(id = "com.mobikwik_new:id/actionbar_continue_button")
     private AndroidElement button_continue;
 
     @AndroidFindBy(id = "com.mobikwik_new:id/cta")
