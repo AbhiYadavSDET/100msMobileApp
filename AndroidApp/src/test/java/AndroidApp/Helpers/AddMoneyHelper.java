@@ -58,6 +58,7 @@ public class AddMoneyHelper {
 
         addMoneyPage.clickOnNetbanking();
 
+        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text = '" + bankName + "']"));
         AndroidElement androidElement = element.findElement(driver, By.xpath("//android.widget.TextView[@text = '" + bankName + "']"));
         Element.selectElement(driver, androidElement, bankName);
 

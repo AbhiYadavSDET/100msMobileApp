@@ -79,8 +79,11 @@ public class RechargeHelper {
 
         mbkCommonControlsHelper.handleSecurityPin(securityPin);
 
-        mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessPageStatus(), trxStatus, "Success Page | Verify Status", false, false);
+        // Wait for the success screen
+        Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/base_title"));
+
         mbkCommonControlsHelper.handleCTOverlay();
+        mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessPageStatus(), trxStatus, "Success Page | Verify Status", false, false);
 
         // Assertions on the success screen
         mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessPageConnectionNo(), mobileNo, "Success Page | Verify Connection number", false, false);
@@ -113,7 +116,7 @@ public class RechargeHelper {
 
     }
 
-    public void postpaidPayment(String mobileNo, String popupError, String popupText) throws InterruptedException, IOException, JSONException {
+    public void postpaidPayment(String mobileNo, String popupError, String popupText, String operator) throws InterruptedException, IOException, JSONException {
 
         homePage.clickOnCrossButton();
 
@@ -127,26 +130,40 @@ public class RechargeHelper {
 
 
         rechargePage.clickOnCtaContinue2();
+        Thread.sleep(10000);
+
+        if (!(Element.isElementPresent(driver, By.xpath("//*/android.widget.TextView[@text = 'No dues']")))) {
+
+            String actualSuccessScreenOperator = rechargePage.getSuccessScreenOperator();
+            String actualSuccessScreenNumber = rechargePage.getSuccessScreenNumber();
+            String actualSuccessScreenAmount = rechargePage.getSuccessScreenAmount();
+
+            mbReporter.verifyEqualsWithLogging(actualSuccessScreenOperator, operator, "Success Page | Verify Operator", false, false);
+            mbReporter.verifyEqualsWithLogging(actualSuccessScreenNumber, mobileNo, "Success Page | Verify Number", false, false);
+            mbReporter.verifyTrueWithLogging(Double.parseDouble(actualSuccessScreenAmount) > 0, "Success Page | Verify Amount greater than 0", false, false);
+
+            mbkCommonControlsHelper.clickUpButton();
+            mbkCommonControlsHelper.clickUpButton();
+        } else {
+            Log.info("No dues");
+            // Assertions
+            String actualPopupError = rechargePage.getPopupError();
+            String actualPopupText = rechargePage.getPopupText();
+
+            mbReporter.verifyEqualsWithLogging(actualPopupError, "Error", "Popup | Error message", false, false);
+            mbReporter.verifyEqualsWithLogging(actualPopupText, "No dues", "Popup | Message", false, false);
 
 
-        Element.waitForVisibility(driver, rechargePage.popup);
+            rechargePage.clickOnPopupCross();
 
-        // Assertions
-        String actualPopupError = rechargePage.getPopupError();
-        String actualPopupText = rechargePage.getPopupText();
+            mbkCommonControlsHelper.clickUpButton();
+            mbkCommonControlsHelper.clickUpButton();
+        }
 
-        mbReporter.verifyEqualsWithLogging(actualPopupError, popupError, "Success Page | Verify Connection number", false, false);
-        mbReporter.verifyEqualsWithLogging(actualPopupText, popupText, "Success Page | Verify category", false, false);
-
-
-        rechargePage.clickOnPopupCross();
-
-        mbkCommonControlsHelper.clickUpButton();
-        mbkCommonControlsHelper.clickUpButton();
 
     }
 
-    public void postpaidPaymentViaSavedConnection(String mobileNo, String popupText, String category, String operator) throws InterruptedException, IOException, JSONException {
+    public void postpaidPaymentViaSavedConnection(String mobileNo, String popupText, String category, String operator, String successScreenOperatorText) throws InterruptedException, IOException, JSONException {
 
         //balanceBefore = mbkCommonControlsHelper.getBalance();
         homePage.clickOnCrossButton();
@@ -158,14 +175,39 @@ public class RechargeHelper {
 
         if (selectSavedConnection(mobileNo, category, operator)) {
 
-            String actualViewBillText = rechargePage.getViewBillText();
-            mbReporter.verifyEqualsWithLogging(actualViewBillText, popupText, "Verify Pop Up text", false, false);
-            mbkCommonControlsHelper.clickUpButton();
-            mbkCommonControlsHelper.clickUpButton();
+            Thread.sleep(10000);
+
+            if (!(Element.isElementPresent(driver, By.xpath("//*/android.widget.TextView[@text = 'No dues']")))) {
+
+                String actualSuccessScreenOperator = rechargePage.getSuccessScreenOperator();
+                String actualSuccessScreenNumber = rechargePage.getSuccessScreenNumber();
+                String actualSuccessScreenAmount = rechargePage.getSuccessScreenAmount();
+
+                mbReporter.verifyEqualsWithLogging(actualSuccessScreenOperator, successScreenOperatorText, "Success Page | Verify Operator", false, false);
+                mbReporter.verifyEqualsWithLogging(actualSuccessScreenNumber, mobileNo, "Success Page | Verify Number", false, false);
+                mbReporter.verifyTrueWithLogging(Double.parseDouble(actualSuccessScreenAmount) > 0, "Success Page | Verify Amount greater than 0", false, false);
+
+                mbkCommonControlsHelper.clickUpButton();
+                mbkCommonControlsHelper.clickUpButton();
+            } else {
+                Log.info("No dues");
+                // Assertions
+                String actualPopupError = rechargePage.getPopupError();
+                String actualPopupText = rechargePage.getPopupText();
+
+                mbReporter.verifyEqualsWithLogging(actualPopupError, "Error", "Popup | Error message", false, false);
+                mbReporter.verifyEqualsWithLogging(actualPopupText, "No dues", "Popup | Message", false, false);
+
+
+                rechargePage.clickOnPopupCross();
+
+                mbkCommonControlsHelper.clickUpButton();
+                mbkCommonControlsHelper.clickUpButton();
+            }
+
 
         } else {
             Log.info("The saved connection is not present");
-            //mbkCommonControlsHelper.clickUpButton();
         }
 
 
