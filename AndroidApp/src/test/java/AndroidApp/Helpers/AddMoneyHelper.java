@@ -50,25 +50,16 @@ public class AddMoneyHelper {
         addMoneyPage.enterAmount(amount);
         Thread.sleep(1000);
 
-
-        //screen.hideKeyboard(driver);
-        //Thread.sleep(1000);
-
-
         addMoneyPage.clickOnContinueButton();
 
         Element.waitForVisibility(driver, addMoneyPage.label_select_payment_mode);
 
-        screen.swipeUp();
+        screen.swipeUpMore(driver);
 
         addMoneyPage.clickOnNetbanking();
 
-//        Log.info("Sleeping for 2 seconds");
-//        Thread.sleep(2000);
-
         AndroidElement androidElement = element.findElement(driver, By.xpath("//android.widget.TextView[@text = '" + bankName + "']"));
         Element.selectElement(driver, androidElement, bankName);
-
 
         Element.waitForVisibility(driver, addMoneyPage.label_make_payment);
 
@@ -77,7 +68,6 @@ public class AddMoneyHelper {
         mbkCommonControlsHelper.clickUpButton();
 
         addMoneyPage.clickOnYesButton();
-
 
     }
 
@@ -96,21 +86,17 @@ public class AddMoneyHelper {
 
         addMoneyPage.enterAmount(amount);
 
-
-       // screen.hideKeyboard(driver);
         Thread.sleep(1000);
-
 
         addMoneyPage.clickOnContinueButton();
 
         Element.waitForVisibility(driver, addMoneyPage.label_select_payment_mode);
 
-        screen.swipeUp();
+        screen.swipeUpMore(driver);
 
         addMoneyPage.clickOnNewDebitCreditCard();
 
         enterCardDetails(cardNo, expiryMonth, expiryYear, cvv);
-        //enterCardDetails("6521600162735389", "08","22" , "801");
 
 
         addMoneyPage.clickOnPayNow();
@@ -124,7 +110,7 @@ public class AddMoneyHelper {
         mbReporter.verifyEqualsWithLogging(addMoneyPage.getSuccessPageText(), successPageText, "Success Screen | Verify Text", false, false);
         mbReporter.verifyEqualsWithLogging(actualMainBalance, expectedMainBalance, "Success Screen | Verify Main Balance", false, false);
 
-        mbkCommonControlsHelper.returnToHomePageFromSuccessScreen();
+        mbkCommonControlsHelper.returnToHomePageFromP2MSuccessScreen();
 
         // POST TRX Assertions
         balanceAfter = mbkCommonControlsHelper.getBalance();
@@ -151,13 +137,11 @@ public class AddMoneyHelper {
 
         addMoneyPage.enterAmount(amount);
 
-        //screen.hideKeyboard(driver);
-
         addMoneyPage.clickOnContinueButton();
 
         Element.waitForVisibility(driver, addMoneyPage.label_select_payment_mode);
 
-        screen.swipeUp();
+        screen.swipeUpMedium(driver);
 
         AndroidElement androidElement = element.findElement(driver, By.xpath("//android.widget.TextView[@text = '" + cardNo + "']"));
         Element.selectElement(driver, androidElement, "Select Bank");
@@ -187,7 +171,7 @@ public class AddMoneyHelper {
             mbReporter.verifyEqualsWithLogging(actualMainBalance, expectedMainBalance, "Success Screen | Verify Main Balance", false, false);
         }
 
-        mbkCommonControlsHelper.returnToHomePageFromSuccessScreen();
+        mbkCommonControlsHelper.returnToHomePageFromP2MSuccessScreen();
 
         // POST TRX Assertions
         balanceAfter = mbkCommonControlsHelper.getBalance();
