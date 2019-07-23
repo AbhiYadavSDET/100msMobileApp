@@ -16,7 +16,7 @@ public class HomePage {
     AndroidDriver driver;
 
     @AndroidFindBy(id = "com.mobikwik_new:id/icon_drawer")
-    private AndroidElement sidedrawer_icon;
+    public AndroidElement sidedrawer_icon;
 
     @AndroidFindBy(id = "com.mobikwik_new:id/icon")
     private AndroidElement mbk_logo;

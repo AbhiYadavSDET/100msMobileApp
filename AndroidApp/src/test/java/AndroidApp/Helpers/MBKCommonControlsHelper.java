@@ -187,7 +187,7 @@ public class MBKCommonControlsHelper {
     }
 
     public void handleCTOverlay() throws InterruptedException {
-        Thread.sleep(3000);
+        Thread.sleep(4000);
 
         if (Element.isElementPresent(driver, By.xpath("//android.widget.RelativeLayout[@index = '0']/android.widget" +
                 ".ImageView[@index = '1']"))) {
