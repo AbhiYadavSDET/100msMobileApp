@@ -66,7 +66,7 @@ public class Screen {
             //Log.info("End : " + heightEnd);
 
 
-            Log.info("SWIPE", "Up More");
+            Log.info("SWIPE", "Up Medium");
             touchAction.press(PointOption.point(0, heightStart)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1500))).moveTo(PointOption.point(0, heightEnd)).release().perform();
 
         } catch (NullPointerException e) {
@@ -86,7 +86,66 @@ public class Screen {
             //Log.info("End : " + heightEnd);
 
 
-            Log.info("SWIPE", "Up");
+            Log.info("SWIPE", "Up Less");
+            touchAction.press(PointOption.point(0, heightStart)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1500))).moveTo(PointOption.point(0, heightEnd)).release().perform();
+
+        } catch (NullPointerException e) {
+            Log.info("Screen is not Swipable");
+        }
+    }
+
+
+    public static void swipeDownMore(AndroidDriver driver) {
+        try {
+            Dimension dimension = driver.manage().window().getSize();
+            Double screenHeightStart = dimension.getHeight() * 0.2; //50
+            int heightStart = screenHeightStart.intValue();
+            //Log.info("start : " + heightStart);
+            Double screenHeightEnd = dimension.getHeight() * 0.8; //20
+            int heightEnd = screenHeightEnd.intValue();
+            //Log.info("End : " + heightEnd);
+
+
+            Log.info("SWIPE", "Down More");
+            touchAction.press(PointOption.point(0, heightStart)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1500))).moveTo(PointOption.point(0, heightEnd)).release().perform();
+
+        } catch (NullPointerException e) {
+            Log.info("Screen is not Swipable");
+        }
+    }
+
+    public static void swipeDownMedium(AndroidDriver driver) {
+        try {
+            Dimension dimension = driver.manage().window().getSize();
+            Double screenHeightStart = dimension.getHeight() * 0.2; //50
+            int heightStart = screenHeightStart.intValue();
+            //Log.info("start : " + heightStart);
+            Double screenHeightEnd = dimension.getHeight() * 0.6; //20
+            int heightEnd = screenHeightEnd.intValue();
+            //Log.info("End : " + heightEnd);
+
+
+            Log.info("SWIPE", "Down Medium");
+            touchAction.press(PointOption.point(0, heightStart)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1500))).moveTo(PointOption.point(0, heightEnd)).release().perform();
+
+        } catch (NullPointerException e) {
+            Log.info("Screen is not Swipable");
+        }
+    }
+
+    public static void swipeDownLess(AndroidDriver driver) {
+        try {
+
+            Dimension dimension = driver.manage().window().getSize();
+            Double screenHeightStart = dimension.getHeight() * 0.2; //50
+            int heightStart = screenHeightStart.intValue();
+            //Log.info("start : " + heightStart);
+            Double screenHeightEnd = dimension.getHeight() * 0.4; //20
+            int heightEnd = screenHeightEnd.intValue();
+            //Log.info("End : " + heightEnd);
+
+
+            Log.info("SWIPE", "Down Less");
             touchAction.press(PointOption.point(0, heightStart)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1500))).moveTo(PointOption.point(0, heightEnd)).release().perform();
 
         } catch (NullPointerException e) {

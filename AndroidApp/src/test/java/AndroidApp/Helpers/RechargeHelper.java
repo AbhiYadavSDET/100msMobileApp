@@ -58,7 +58,7 @@ public class RechargeHelper {
         rechargePage.clickOnDropDown();
 
         Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/mkab_title"));
-        screen.swipeUp();
+        screen.swipeUpMedium(driver);
         rechargePage.selectOperator();
 
         Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/mkab_title"));
@@ -257,16 +257,14 @@ public class RechargeHelper {
         for (int i = 0; i < 3; i++) {
             if (Element.isElementPresent(driver, By.xpath("//*/android.widget.TextView[@text = '7795709569 | Postpaid, Vodafone']"))) {
                 Log.info("SCROLL", "Screen");
-                Screen.swipeUp();
+                Screen.swipeUpMedium(driver);
 
                 Log.info("SELECT", "Saved Connection");
                 AndroidElement androidElement = element.findElement(driver, By.xpath("//*/android.widget.TextView[@text = '7795709569 | Postpaid, Vodafone']"));
                 Element.selectElement(driver, androidElement, "Select Connection");
                 return true;
             } else {
-                Log.info("SCROLL", "More");
-                Screen.swipeUp();
-
+                Screen.swipeUpMedium(driver);
                 Thread.sleep(2000);
             }
         }

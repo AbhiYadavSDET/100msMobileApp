@@ -54,7 +54,7 @@ public class ImpsHelper {
 
         // Swipe the homescreen up
         Thread.sleep(2000);
-        screen.swipeUp();
+        screen.swipeUpLess(driver);
 
 
         // Enter the bank details

@@ -46,7 +46,7 @@ public class InsuranceHelper {
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
         Element.waitForVisibility(driver, homePage.icon_mobile);
-        screen.swipeUp();
+        screen.swipeUpMedium(driver);
 
         insurancePage = homePage.clickOnInsuranceIcon();
 

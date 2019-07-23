@@ -47,25 +47,10 @@ public class BusHelper {
 
     public void busBook(String departureCity, String destinationCity, String passengerName, String passengerAge, String pin) throws InterruptedException, IOException, JSONException {
         homePage.clickOnCrossButton();
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
         balanceBefore = mbkCommonControlsHelper.getBalance();
 
-        Element.waitForVisibility(driver, homePage.icon_mobile);
-
-        screen.swipeUp();
-
-        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='More Services']/following::android.widget.TextView[@text='More']")) == false) {
-            screen.swipeUp();
-        }
-
-
-        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Bus']")) == true) {
-            busPage = homePage.clickBusIcon();
-
-        } else {
-
-            homePage.clickMoreServicesIcon();
-            busPage = homePage.clickBusIcon();
-        }
+        busPage = reachBusHomeScreen();
 
         busPage.selectDepartureCityBox();
 
@@ -113,7 +98,7 @@ public class BusHelper {
 
         Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/journey_info"));
 
-        screen.swipeUp();
+        screen.swipeUpMedium(driver);
 
 
         busPage.selectBus();
@@ -167,13 +152,13 @@ public class BusHelper {
 
         driver.navigate().back();
 
-        Screen.swipeDown();
+        Screen.swipeDownMedium(driver);
 
         if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Available Balance']")) == false) {
-            Screen.swipeDown();
+            Screen.swipeDownMedium(driver);
         }
         if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Available Balance']")) == false) {
-            Screen.swipeDown();
+            Screen.swipeDownMedium(driver);
         }
 
         balanceAfter = mbkCommonControlsHelper.getBalance();
@@ -183,33 +168,16 @@ public class BusHelper {
 
         mbReporter.verifyEqualsWithLogging(actualMainBalanceAfter, expectedMainBalanceAfter, "After TRX | Verify Wallet Main Balance", false, false);
 
-
-        Thread.sleep(2000);
-
     }
 
 
     public void busCancel(String message) throws InterruptedException, IOException, JSONException {
         homePage.clickOnCrossButton();
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
         balanceBefore = mbkCommonControlsHelper.getBalance();
 
-        Element.waitForVisibility(driver, homePage.icon_mobile);
-
-        screen.swipeUp();
-
-        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='More Services']/following::android.widget.TextView[@text='More']")) == false) {
-            screen.swipeUp();
-        }
-
-        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Bus']")) == true) {
-            busPage = homePage.clickBusIcon();
-
-        } else {
-
-            homePage.clickMoreServicesIcon();
-            busPage = homePage.clickBusIcon();
-        }
+        busPage = reachBusHomeScreen();
 
         busPage.clickOnBookingsCta();
 
@@ -219,7 +187,7 @@ public class BusHelper {
 
         Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/btn_download_tkt"));
 
-        screen.swipeUp();
+        screen.swipeUpMedium(driver);
 
         busPage.clickOnCancelTicketCta();
 
@@ -236,9 +204,27 @@ public class BusHelper {
 
         busPage.clickBackToHome();
 
-
         Log.info("Test Completed");
 
+    }
+
+
+    public BusPage reachBusHomeScreen() throws InterruptedException, IOException {
+        Element.waitForVisibility(driver, homePage.sidedrawer_icon);
+        screen.swipeUpMedium(driver);
+
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='More Services']/following::android.widget.TextView[@text='More']")) == false) {
+            screen.swipeUpMedium(driver);
+        }
+
+
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Bus']")) == true) {
+            return busPage = homePage.clickBusIcon();
+
+        } else {
+            homePage.clickMoreServicesIcon();
+            return busPage = homePage.clickBusIcon();
+        }
     }
 
 

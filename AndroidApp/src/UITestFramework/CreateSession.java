@@ -35,7 +35,7 @@ public class CreateSession {
 
     String androidOSVersion = "8.0";
     String portNo = "4723";
-    String udid = "ZY223F3MP3";
+    String udid = "42005a14c2f26383";
     String deviceName = "Motorola G5";
 
     private String reportDirectory = "reports";
@@ -71,12 +71,6 @@ public class CreateSession {
         // Initializing the test and load the config files
         initialization();
 
-        /*Log.info("BEFORE");
-        System.out.println("portNo : " + portNo);
-        System.out.println("androidOSVersion : " + androidOSVersion);
-        System.out.println("deviceName : " + deviceName);
-        System.out.println("udid : " + udid);*/
-
         if (portNo == null) {
             portNo = this.portNo;
 
@@ -94,16 +88,8 @@ public class CreateSession {
             udid = this.udid;
         }
 
-        /*Log.info("AFTER");
-        System.out.println("portNo : " + portNo);
-        System.out.println("androidOSVersion : " + androidOSVersion);
-        System.out.println("deviceName : " + deviceName);
-        System.out.println("udid : " + udid);*/
-
-
         String buildPath = choosebuild(build);
         androidDriver(buildPath, methodName, portNo, androidOSVersion, deviceName, udid);
-        //Log.info("Android driver created");
 
 
     }
@@ -132,9 +118,9 @@ public class CreateSession {
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("platformVersion", androidOSVersion);
 
-        capabilities.setCapability("app-package", "com.mobikwik_new");
+       /* capabilities.setCapability("app-package", "com.mobikwik_new");
         capabilities.setCapability("app-activity", ".MobikwikMain");
-        capabilities.setCapability("app-wait-activity", ".MobikwikMain");
+        capabilities.setCapability("app-wait-activity", ".MobikwikMain");*/
 
         if (Double.parseDouble(androidOSVersion) < Double.parseDouble("7.0")) {
             Log.info("Automation Type : " + "Appium");

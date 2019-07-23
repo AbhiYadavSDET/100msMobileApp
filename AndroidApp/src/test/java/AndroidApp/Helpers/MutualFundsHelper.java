@@ -45,7 +45,7 @@ public class MutualFundsHelper {
 
         // Swipe the homescreen up
         Thread.sleep(2000);
-        screen.swipeUp();
+        screen.swipeUpMedium(driver);
 
         mutualFundPage = homePage.clickMutualFunds();
         Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/mkab_title"));

@@ -234,5 +234,37 @@ public class AddMoneyHelper {
 
     }
 
+    public void addMoneyViaSavedCardWithinFlow(String amount, String cardNo, String cvv, String bankPassword) throws InterruptedException, IOException, JSONException {
+        Thread.sleep(1000);
+        homePage.clickOnCrossButton();
+        Thread.sleep(1000);
+
+        balanceBefore = mbkCommonControlsHelper.getBalance();
+
+        addMoneyPage = homePage.clickOnAddMoneyButton();
+
+        addMoneyPage.clickOnAmountTextBox();
+
+        addMoneyPage.enterAmount(amount);
+
+        addMoneyPage.clickOnContinueButton();
+
+        Element.waitForVisibility(driver, addMoneyPage.label_select_payment_mode);
+
+        screen.swipeUpMedium(driver);
+
+        AndroidElement androidElement = element.findElement(driver, By.xpath("//android.widget.TextView[@text = '" + cardNo + "']"));
+        Element.selectElement(driver, androidElement, "Select Bank");
+
+        addMoneyPage.enterCvv(cvv);
+
+        addMoneyPage.clickOnPayNow();
+
+        handleIndusindWebView(bankPassword);
+
+        mbkCommonControlsHelper.returnToHomePageFromP2MSuccessScreen();
+
+    }
+
 
 }
