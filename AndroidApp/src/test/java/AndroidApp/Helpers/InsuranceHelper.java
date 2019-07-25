@@ -2,12 +2,14 @@ package test.java.AndroidApp.Helpers;
 
 import UITestFramework.MBReporter;
 import io.appium.java_client.android.AndroidDriver;
+import logger.Log;
 import main.java.utils.Element;
 import main.java.utils.Screen;
 import org.json.JSONException;
 import org.openqa.selenium.By;
 import test.java.AndroidApp.PageObject.HomePage;
 import test.java.AndroidApp.PageObject.InsurancePage;
+import test.java.AndroidApp.PageObject.TransactionHistoryPage;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -22,6 +24,7 @@ public class InsuranceHelper {
     MBReporter mbReporter;
     PermissionHelper permissionHelper;
     InsurancePage insurancePage;
+    TransactionHistoryPage transactionHistoryPage;
 
     public static HashMap<String, String> map;
     public static HashMap<String, String> balanceBefore;
@@ -41,7 +44,7 @@ public class InsuranceHelper {
     }
 
 
-    public void buyInsurance(String expectedHeader, String expectedDescription) throws InterruptedException, IOException, JSONException {
+    public String buyInsurance(String expectedHeader, String expectedDescription) throws InterruptedException, IOException, JSONException {
 
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
@@ -65,6 +68,9 @@ public class InsuranceHelper {
         String actualHeader = insurancePage.getFillDetailsHeader();
         String actualDescription = insurancePage.getFillDetailsDescription();
 
+        // fetch the policy ID
+        String policyId;
+
         mbReporter.verifyEqualsWithLogging(actualHeader, expectedHeader, "Fill details Screen | Header", false, false);
         mbReporter.verifyEqualsWithLogging(actualDescription, expectedDescription, "Fill details Screen | Description", false, false);
 
@@ -73,6 +79,16 @@ public class InsuranceHelper {
         mbkCommonControlsHelper.clickUpButton();
         mbkCommonControlsHelper.clickUpButton();
 
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+
+        // Goto History Tab
+        transactionHistoryPage = homePage.clickHistory();
+
+        transactionHistoryPage.clickOnFirstElementInTheList();
+
+        policyId = transactionHistoryPage.getTrxId();
+        Log.info("Policy Id : " + policyId);
+        return policyId;
     }
 
 

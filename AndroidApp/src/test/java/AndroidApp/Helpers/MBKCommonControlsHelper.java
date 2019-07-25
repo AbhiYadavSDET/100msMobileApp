@@ -96,7 +96,8 @@ public class MBKCommonControlsHelper {
         }
     }
 
-    public void clickUpButton() {
+    public void clickUpButton() throws InterruptedException {
+        Thread.sleep(1000);
         mbkCommonControlsPage.clickOnUpButton();
     }
 

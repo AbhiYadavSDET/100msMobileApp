@@ -23,7 +23,7 @@ public class MbkCommonControlsPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Apply']")
     private AndroidElement button_apply_coupon;
 
-    @AndroidFindBy(xpath = "//*[@text='w']")
+    @AndroidFindBy(id = "com.mobikwik_new:id/mkab_icon_1")
     private AndroidElement button_up;
 
     @AndroidFindBy(id = "base_icon_close")

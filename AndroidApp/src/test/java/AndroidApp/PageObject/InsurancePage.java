@@ -18,7 +18,7 @@ public class InsurancePage {
     @AndroidFindBy(id = "com.mobikwik_new:id/mkab_title")
     public AndroidElement top_bar;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Home Insurance (Gas)']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Home InsuranceApi (Gas)']")
     private AndroidElement image_gas_insurance;
 
     @AndroidFindBy(id = "com.mobikwik_new:id/btnPrice")
@@ -45,7 +45,7 @@ public class InsurancePage {
         wait for Page load to be added
          */
 
-        Log.info("*****Insurance Page*****");
+        Log.info("*****InsuranceApi Page*****");
     }
 
     public void clickOnButtonPrice() throws InterruptedException {
@@ -57,7 +57,7 @@ public class InsurancePage {
     }
 
     public void clickOnImageGasInsurance() throws InterruptedException {
-        Element.selectElement(driver, image_gas_insurance, "Gas Insurance Image");
+        Element.selectElement(driver, image_gas_insurance, "Gas InsuranceApi Image");
     }
 
     public String getFillDetailsHeader() {
