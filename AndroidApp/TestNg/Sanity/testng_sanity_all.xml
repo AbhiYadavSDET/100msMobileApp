@@ -184,7 +184,7 @@
         </classes>
     </test>
 
-    <!--######### Insurance #############-->
+    <!--######### InsuranceApi #############-->
     <test name="Insurance Sanity">
         <groups>
             <run>

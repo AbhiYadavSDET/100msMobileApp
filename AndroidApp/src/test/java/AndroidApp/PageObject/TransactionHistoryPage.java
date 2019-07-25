@@ -19,6 +19,14 @@ public class TransactionHistoryPage {
     @AndroidFindBy(id = "com.mobikwik_new:id/btnVerfiySignUp")
     public AndroidElement CTA_text;
 
+
+    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.support.v7.widget.RecyclerView/android.widget.LinearLayout[1]")
+    public AndroidElement first_element_in_list;
+
+    @AndroidFindBy(id = "com.mobikwik_new:id/txt_txn_id")
+    public AndroidElement txn_id;
+
+
     public TransactionHistoryPage(AndroidDriver driver) throws IOException {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -34,5 +42,12 @@ public class TransactionHistoryPage {
         return Element.getText(driver, CTA_text, "Get CTA text").toString();
     }
 
+    public void clickOnFirstElementInTheList() throws InterruptedException {
+        Element.selectElement(driver, first_element_in_list, "First Element");
+    }
+
+    public String getTrxId() throws InterruptedException {
+        return Element.getText(driver, txn_id, "Get CTA text").replace("Order ID: ", "");
+    }
 
 }

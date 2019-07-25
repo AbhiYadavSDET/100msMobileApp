@@ -241,7 +241,7 @@ public class HomePage {
     }
 
     public InsurancePage clickOnInsuranceIcon() throws IOException {
-        Element.selectElement(driver, icon_insurance, "Insurance Icon");
+        Element.selectElement(driver, icon_insurance, "InsuranceApi Icon");
         return new InsurancePage(driver);
     }
 

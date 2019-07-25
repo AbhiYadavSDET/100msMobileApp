@@ -35,7 +35,7 @@ public class CreateSession {
 
     String androidOSVersion = "8.0";
     String portNo = "4723";
-    String udid = "42005a14c2f26383";
+    String udid = "ZY223F3MP3";
     String deviceName = "Motorola G5";
 
     private String reportDirectory = "reports";
@@ -118,9 +118,11 @@ public class CreateSession {
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("platformVersion", androidOSVersion);
 
-       /* capabilities.setCapability("app-package", "com.mobikwik_new");
-        capabilities.setCapability("app-activity", ".MobikwikMain");
-        capabilities.setCapability("app-wait-activity", ".MobikwikMain");*/
+        capabilities.setCapability("appPackage", "com.mobikwik_new");
+        capabilities.setCapability("appActivity", ".MobikwikMain");
+        capabilities.setCapability("appWaitActivity", ".MobikwikMain");
+        capabilities.setCapability("appWaitPackage", "com.mobikwik_new");
+
 
         if (Double.parseDouble(androidOSVersion) < Double.parseDouble("7.0")) {
             Log.info("Automation Type : " + "Appium");
@@ -138,7 +140,8 @@ public class CreateSession {
         capabilities.setCapability("reportDirectory", reportDirectory);
         capabilities.setCapability("reportFormat", reportFormat);
         capabilities.setCapability("app", app.getAbsolutePath());
-        capabilities.setCapability("fullReset", true);
+//        capabilities.setCapability("fullReset", false);
+        capabilities.setCapability("noReset", true);
 
         //Log.info("http://localhost:" + portNo + "/wd/hub");
 
