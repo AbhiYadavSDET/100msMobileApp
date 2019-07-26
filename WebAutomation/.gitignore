@@ -1,0 +1,14 @@
+/target/
+
+# Ignore output folder
+test-output/
+
+# Ignore .idea folder
+.idea/
+.idea/vcs.xml
+
+#igone lock file
+Parameters/.~lock.TestDataSheet.xlsx#
+
+*main.iml
+*test.iml

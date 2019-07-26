@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Mobikwik WebAutomation">
+
+	<listeners>
+		<listener class-name="Utils.ExtentReportListener" />
+		<listener class-name="Utils.TestListener" />
+		<listener class-name="Utils.CustomizedEmailableReport" />
+	</listeners>
+
+	<test name="Web Sanity Tests">
+		<classes>
+			<class name="WebAutomation.Test.Test_Signup"></class>
+			<class name="WebAutomation.Test.Test_Login"></class>
+			<class name="WebAutomation.Test.Test_BusTickets"></class>
+			<class name="WebAutomation.Test.Test_AddDeleteCard"></class>
+			<class name="WebAutomation.Test.Test_P2P"></class>
+			<class name="WebAutomation.Test.Test_Addmoney"></class>
+			<class name="WebAutomation.Test.Recharge.Test_RechargePostpaid"></class>
+			<class name="WebAutomation.Test.Recharge.Test_RechargeDTH"></class>
+			<class name="WebAutomation.Test.Recharge.Test_RechargePrepaid"></class>
+			<class name="WebAutomation.Test.Recharge.Test_ViewbillElectricity"></class>
+			<class name="WebAutomation.Test.Recharge.Test_ViewbillGas"></class>
+			<class name="WebAutomation.Test.Recharge.Test_ViewbillInsurance"></class>
+			<class name="WebAutomation.Test.Recharge.Test_ViewbillLandline"></class>
+			<class name="WebAutomation.Test.Recharge.Test_ViewbillWater"></class>
+		</classes>
+	</test>
+</suite>
