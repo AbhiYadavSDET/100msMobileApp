@@ -19,9 +19,11 @@ public class MbkCommonControlsPage {
     @AndroidFindBy(id = "com.mobikwik_new:id/edit_text_mket")
     private AndroidElement text_box_coupon_code;
 
-
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Apply']")
     private AndroidElement button_apply_coupon;
+
+    @AndroidFindBy(id = "com.mobikwik_new:id/back_button")
+    private AndroidElement button_up_2;
 
     @AndroidFindBy(id = "com.mobikwik_new:id/mkab_icon_1")
     private AndroidElement button_up;
@@ -62,6 +64,10 @@ public class MbkCommonControlsPage {
 
     public void clickOnUpButton() {
         Element.selectElement(driver, button_up, "Up button");
+    }
+
+    public void clickOnUpButton2() {
+        Element.selectElement(driver, button_up_2, "Up button");
     }
 
     public void clickOnHavePromoCode() {

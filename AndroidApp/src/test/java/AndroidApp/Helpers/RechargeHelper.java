@@ -192,11 +192,9 @@ public class RechargeHelper {
             } else {
                 Log.info("No dues");
                 // Assertions
-                String actualPopupError = rechargePage.getPopupError();
-                String actualPopupText = rechargePage.getPopupText();
+                String viewBillText = rechargePage.getViewBillText();
 
-                mbReporter.verifyEqualsWithLogging(actualPopupError, "Error", "Popup | Error message", false, false);
-                mbReporter.verifyEqualsWithLogging(actualPopupText, "No dues", "Popup | Message", false, false);
+                mbReporter.verifyEqualsWithLogging(viewBillText, "No dues", "ViewBill | text", false, false);
 
 
                 rechargePage.clickOnPopupCross();

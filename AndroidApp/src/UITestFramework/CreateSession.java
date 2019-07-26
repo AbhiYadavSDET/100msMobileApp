@@ -141,7 +141,7 @@ public class CreateSession {
         capabilities.setCapability("reportFormat", reportFormat);
         capabilities.setCapability("app", app.getAbsolutePath());
 //        capabilities.setCapability("fullReset", false);
-        capabilities.setCapability("noReset", true);
+        capabilities.setCapability("noReset", false);
 
         //Log.info("http://localhost:" + portNo + "/wd/hub");
 

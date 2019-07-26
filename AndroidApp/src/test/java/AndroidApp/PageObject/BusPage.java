@@ -94,9 +94,7 @@ public class BusPage {
     @AndroidFindBy(id = "com.mobikwik_new:id/primary_button")
     private AndroidElement cta_confirm_book_now;
 
-
     //Booking success
-
     @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'Payment Successful']")
     private AndroidElement text_heading_payment_successfull;
 
