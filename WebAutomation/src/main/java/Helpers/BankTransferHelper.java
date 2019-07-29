@@ -30,7 +30,7 @@ public class BankTransferHelper {
 
     public void bankTransfer(String accountName, String accountNumber, String ifsc, String amount, String expectedMessage) throws InterruptedException {
 
-        String balanceBefore = homePage.getAvailableBalance();
+        int balanceBefore =Integer.parseInt(homePage.getAvailableBalance());
 
         bankTransferPage= dashboardPage.clickOnBankTransferSideDrawer();
 
@@ -67,10 +67,16 @@ public class BankTransferHelper {
         mbkReporter.verifyEqualsWithLogging(amountPaid, amount, "Validated amount transfer", true);
 
 
-        String balanceAfter= homePage.getAvailableBalance();
+        int balanceAfter= Integer.parseInt(homePage.getAvailableBalance());
+
+        int paidAmount= Integer.parseInt(amountPaid);
+
+        int expectedAmount= balanceBefore-paidAmount;
+
+        mbkReporter.verifyEqualsWithLogging(expectedAmount, balanceAfter, "Amount Validated", true);
 
 
-
+        
         homePage.clickOnLogoMbk();
 
 
