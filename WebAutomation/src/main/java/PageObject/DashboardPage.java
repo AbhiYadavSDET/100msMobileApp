@@ -12,47 +12,71 @@ public class DashboardPage {
 
     WebDriver driver;
 
-    @FindBy(xpath = "//a[text() = 'Transact API']")
-    private WebElement link_transact_api;
 
-    @FindBy(xpath = "//a[text() = 'Update Txn API']")
-    private WebElement link_update_transaction_api;
+    @FindBy(xpath = "//span[text()='Recharge & Bill Pay']")
+    private WebElement side_drawer_recharge;
 
-    @FindBy(xpath = "//a[text() = 'Check Txn API']")
-    private WebElement link_check_transaction_api;
+    @FindBy(xpath = "//span[text()='Transfer to Bank']")
+    private WebElement side_drawer_bank_transfer;
 
-    @FindBy(xpath = "//td[@colspan = '3']")
-    private WebElement label_page_load_text;
+
+    @FindBy(xpath = "//span[text()='Bus Tickets']")
+    private WebElement side_drawer_bus;
+
+    @FindBy(xpath = "//span[text()='Offers & Deals']")
+    private WebElement side_drawer_offers;
+
+    @FindBy(xpath = "//span[text()='Wallet Transfer']")
+    private WebElement side_drawer_wallet_transfer;
+
+    @FindBy(xpath = "//span[text()='Insurance']")
+    private WebElement side_drawer_insurance;
+
 
 
     public DashboardPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
-        Browser.waitForPageLoad(driver, label_page_load_text);
-        Config.logComment("*****On Dashboard Page*****");
+        // Browser.waitForPageLoad(driver, label_page_load_text);
+        //Config.logComment("*****On Dashboard Page*****");
     }
 
-    public TransactionApiHomePage clickOnTransactApiLink() {
-        Element.selectElement(driver, link_transact_api, "Transact Api Link");
-        return new TransactionApiHomePage(driver);
+    public RechargePage clickOnRechargeSideDrawer() {
+        Element.selectElement(driver, side_drawer_recharge, "Recharge page");
+        return new RechargePage(driver);
     }
 
-    public RefundPage clickOnUpdateTrxApiLink() {
-        Element.selectElement(driver, link_update_transaction_api, "Update Trx Api Link");
-        return new RefundPage(driver);
+    public BankTransferPage clickOnBankTransferSideDrawer() {
+        Element.selectElement(driver, side_drawer_bank_transfer, "Recharge page");
+        return new BankTransferPage(driver);
     }
 
-    public void clickOnCheckTxnApiLink() {
-        Element.selectElement(driver, link_transact_api, "Check Trx Api Link");
+
+    public BusPage clickOnBusSideDrawer() {
+        Element.selectElement(driver, side_drawer_bus, "Recharge page");
+        return new BusPage(driver);
     }
+
+
+    public OffersPage clickOnOffersSideDrawer() {
+        Element.selectElement(driver, side_drawer_offers, "Recharge page");
+        return new OffersPage(driver);
+    }
+
+
+    public WalletTransferPage clickOnWalletTransferSideDrawer() {
+        Element.selectElement(driver, side_drawer_wallet_transfer, "Recharge page");
+        return new WalletTransferPage(driver);
+    }
+
+
+    public InsurancePage clickOnInsuranceSideDrawer() {
+        Element.selectElement(driver, side_drawer_insurance, "Recharge page");
+        return new InsurancePage(driver);
+    }
+
+
+
 
 
 }
-
-
-
-
-
-
-
-
