@@ -33,8 +33,9 @@ public class LoginPage {
     }
 
 
-    public void enterMobileNumber() {
-        Element.selectElement(driver, enter_mobile_number, "Enter Mobile Number");
+    public void enterMobileNumber(String mobileNumber) {
+        Element.enterText(driver, enter_mobile_number, mobileNumber, "Enter Mobile Number");
+
     }
 
     public void clickGetOtp() {
