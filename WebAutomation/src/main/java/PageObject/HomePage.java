@@ -75,6 +75,9 @@ public class HomePage {
     @FindBy(xpath = "//span[@class = 'dpInBLockMid ft11 mar2 mbottom mg mtop pad8 pleft pright themecolor mg_icotriangle_arrow_down csrPtr']")
     private WebElement dropdown_balance;
 
+    @FindBy(xpath="//a[@class=\"mg mg_icomenu mnuicon gradbg7_bf csrPtr noblur\"]")
+    private  WebElement profile_icon;
+
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
@@ -154,6 +157,24 @@ public class HomePage {
 
     public void clickOnBalanceDropdown() {
         Element.selectElement(driver, dropdown_balance, "Balance Dropdown");
+    }
+
+
+    public LoginPage clickOnLoginButton() {
+
+        Element.selectElement(driver, label_login, "Login Page");
+        return new LoginPage(driver);
+    }
+
+//    public SignupPage clickOnSignupButton() {
+//
+//        Element.selectElement(driver, label_signup, "SignUP Page");
+//        return new SignupPage(driver);
+//    }
+
+    public SideDrawerPage cliclOnProfileIcon(){
+        Element.selectElement(driver, profile_icon, "Side Drawer");
+        return new SideDrawerPage(driver);
     }
 
 

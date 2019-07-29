@@ -41,39 +41,39 @@ public class DashboardPage {
         //Config.logComment("*****On Dashboard Page*****");
     }
 
-    public RechargePage clickOnRechargeSideDrawer() {
-        Element.selectElement(driver, side_drawer_recharge, "Recharge page");
-        return new RechargePage(driver);
-    }
-
-    public BankTransferPage clickOnBankTransferSideDrawer() {
-        Element.selectElement(driver, side_drawer_bank_transfer, "Recharge page");
-        return new BankTransferPage(driver);
-    }
-
-
-    public BusPage clickOnBusSideDrawer() {
-        Element.selectElement(driver, side_drawer_bus, "Recharge page");
-        return new BusPage(driver);
-    }
-
-
-    public OffersPage clickOnOffersSideDrawer() {
-        Element.selectElement(driver, side_drawer_offers, "Recharge page");
-        return new OffersPage(driver);
-    }
-
-
-    public WalletTransferPage clickOnWalletTransferSideDrawer() {
-        Element.selectElement(driver, side_drawer_wallet_transfer, "Recharge page");
-        return new WalletTransferPage(driver);
-    }
-
-
-    public InsurancePage clickOnInsuranceSideDrawer() {
-        Element.selectElement(driver, side_drawer_insurance, "Recharge page");
-        return new InsurancePage(driver);
-    }
+//    public RechargePage clickOnRechargeSideDrawer() {
+//        Element.selectElement(driver, side_drawer_recharge, "Recharge page");
+//        return new RechargePage(driver);
+//    }
+//
+//    public BankTransferPage clickOnBankTransferSideDrawer() {
+//        Element.selectElement(driver, side_drawer_bank_transfer, "Recharge page");
+//        return new BankTransferPage(driver);
+//    }
+//
+//
+//    public BusPage clickOnBusSideDrawer() {
+//        Element.selectElement(driver, side_drawer_bus, "Recharge page");
+//        return new BusPage(driver);
+//    }
+//
+//
+//    public OffersPage clickOnOffersSideDrawer() {
+//        Element.selectElement(driver, side_drawer_offers, "Recharge page");
+//        return new OffersPage(driver);
+//    }
+//
+//
+//    public WalletTransferPage clickOnWalletTransferSideDrawer() {
+//        Element.selectElement(driver, side_drawer_wallet_transfer, "Recharge page");
+//        return new WalletTransferPage(driver);
+//    }
+//
+//
+//    public InsurancePage clickOnInsuranceSideDrawer() {
+//        Element.selectElement(driver, side_drawer_insurance, "Recharge page");
+//        return new InsurancePage(driver);
+//    }
 
 
 
