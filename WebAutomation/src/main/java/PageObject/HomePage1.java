@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class HomePage {
+public class HomePage1 {
 
     WebDriver driver;
 
@@ -76,7 +76,7 @@ public class HomePage {
     private WebElement dropdown_balance;
 
 
-    public HomePage(WebDriver driver) {
+    public HomePage1(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
         Browser.waitForPageLoad(driver, load_homepage);

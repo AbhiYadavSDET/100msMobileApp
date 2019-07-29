@@ -33,6 +33,15 @@ public class MoneyTransferPage {
     @FindBy(xpath = "//span[text() = 'Send Money']")
     private WebElement cta_send_money;
 
+    @FindBy(xpath = "//i[@class = 'mg mg_icotick fnlgrp tgreen2']")
+    private WebElement tick_icon;
+
+    @FindBy(xpath = "//i[@class = 'mg mg_icotick fnlgrp tgreen2']/following::div[1]")
+    private WebElement label_trx_status;
+
+    @FindBy(xpath = "//div[@class = 'col-md-6 ft15 tright fw600']")
+    private WebElement label_total_amount_paid;
+
 
     public MoneyTransferPage(WebDriver driver) {
         this.driver = driver;
@@ -64,6 +73,18 @@ public class MoneyTransferPage {
 
     public void clickOnCtaSendMoney() {
         Element.selectElement(driver, cta_send_money, "Cta Send Money");
+    }
+
+    public void waitForTickIcon() {
+        Element.waitForVisibility(driver, tick_icon, "Tick Icon");
+    }
+
+    public String getTrxStatus() {
+        return Element.getText(driver, label_trx_status, "TRX Status");
+    }
+
+    public String getTotalAmountPaid() {
+        return Element.getText(driver, label_total_amount_paid, "Total Amount paid").replace("₹ ", "");
     }
 
 
