@@ -1,7 +1,5 @@
 package PageObject;
 
-import Utils.Browser;
-import Utils.Config;
 import Utils.Element;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -31,7 +29,6 @@ public class DashboardPage {
 
     @FindBy(xpath = "//span[text()='Insurance']")
     private WebElement side_drawer_insurance;
-
 
 
     public DashboardPage(WebDriver driver) {
@@ -64,9 +61,9 @@ public class DashboardPage {
     }
 
 
-    public WalletTransferPage clickOnWalletTransferSideDrawer() {
-        Element.selectElement(driver, side_drawer_wallet_transfer, "Recharge page");
-        return new WalletTransferPage(driver);
+    public MoneyTransferPage clickOnWalletTransferSideDrawer() {
+        Element.selectElement(driver, side_drawer_wallet_transfer, "Wallet Trasnfer from Dashboard");
+        return new MoneyTransferPage(driver);
     }
 
 
@@ -74,9 +71,6 @@ public class DashboardPage {
         Element.selectElement(driver, side_drawer_insurance, "Recharge page");
         return new InsurancePage(driver);
     }
-
-
-
 
 
 }
