@@ -46,10 +46,10 @@ public class DashboardPage {
 //        return new RechargePage(driver);
 //    }
 //
-//    public BankTransferPage clickOnBankTransferSideDrawer() {
-//        Element.selectElement(driver, side_drawer_bank_transfer, "Recharge page");
-//        return new BankTransferPage(driver);
-//    }
+    public BankTransferPage clickOnBankTransferSideDrawer() {
+        Element.selectElement(driver, side_drawer_bank_transfer, "Recharge page");
+        return new BankTransferPage(driver);
+    }
 //
 //
 //    public BusPage clickOnBusSideDrawer() {

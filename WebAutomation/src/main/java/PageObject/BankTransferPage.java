@@ -16,32 +16,36 @@ public class BankTransferPage {
     @FindBy(xpath = "//h1[text()= 'Transfer Money To Bank']")
     private WebElement load_bank_transfer;
 
-    //input[@id='accName']
+    @FindBy(xpath="//input[@id='accName']")
+    private WebElement enter_account_name;
 
-    //input[@id='accNum']
-
-    //input[@id='ifsc']
-
-    //add delay so that available balance can be updated greater than 0.
+    @FindBy(xpath="//input[@id='accNum']")
+    private WebElement enter_account_number;
 
 
+    @FindBy(xpath="//input[@id='ifsc']")
+    private WebElement enter_ifsc;
 
-    //input[@id='amount']
-
-    //span[text() ='Go']
-
-
-
+    @FindBy(xpath="//input[@id='amount']")
+    private WebElement enter_amount;
 
 
-    //span[text() ='Send Money']
+    @FindBy(xpath = "//span[@class= 'tgreydark spleft6 dpInBLockMid']")
+    private WebElement processing_fee;
+
+    @FindBy(xpath="//span[text() ='Go']")
+    private WebElement button_go;
+
+    @FindBy(xpath="//span[text() ='Send Money']")
+    private WebElement button_send_money;
 
 
+    @FindBy(xpath="//input[@placeholder = 'Enter OTP']")
+    private WebElement enter_otp;
 
 
-    //input[@placeholder = 'Enter OTP']
-
-    //span[text() ='Submit OTP']
+    @FindBy(xpath="//span[text() ='Submit OTP']")
+    private WebElement button_submit_otp;
 
 
 //Success Page
@@ -69,7 +73,40 @@ public class BankTransferPage {
     }
 
 
+    public void enterAccountName(String accountName){
+        Element.enterText(driver, enter_account_name,accountName,"Enter Account Name");
+    }
 
+    public void enterAccountNumber(String accountNumber){
+        Element.enterText(driver, enter_account_number,accountNumber,"Enter Account Number");
+    }
+
+    public void enterIfsc(String ifsc){
+        Element.enterText(driver, enter_ifsc,ifsc,"Enter IFSC");
+    }
+
+    public void enterAmount(String amount){
+        Element.enterText(driver, enter_amount,amount,"Enter amount to Transfer");
+    }
+
+    public void clickGo(){
+        Element.selectElement(driver,button_go, "Submit Details");
+    }
+
+    public void clickSendMoney(){
+        Element.selectElement(driver,button_send_money, "Confirm Sending Money");
+    }
+
+    public void enterOtp() {
+
+        Element.selectElement(driver, enter_otp, "Enter OTP");
+    }
+
+    public void clickSubmitOtp() {
+        Element.selectElement(driver, button_submit_otp, "Submit OTP");
+    }
+
+    //Success Page
 
     public void waitForTickIcon() {
         Element.waitForVisibility(driver, tick_icon, "Tick Icon");
@@ -82,12 +119,6 @@ public class BankTransferPage {
     public String getAmountPaid() {
         return Element.getText(driver, amount_bank_transfer, "Amount paid").replace("₹ ", "");
     }
-
-
-
-
-
-
 
 
 }

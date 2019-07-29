@@ -71,6 +71,11 @@ public class LoginHelper {
         mbkReporter.verifyEqualsWithLogging(actualCellNumber,expectedCellNumber, "User Cell Number Displayed", true);
 
 
+        Thread.sleep(1000);
+
+        homePage.clickOnLogoMbk();
+
+        Thread.sleep(1000);
 
     }
 }
