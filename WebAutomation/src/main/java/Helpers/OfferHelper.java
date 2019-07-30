@@ -1,4 +1,4 @@
 package Helpers;
 
-public class OfferHeper {
+public class OfferHelper {
 }

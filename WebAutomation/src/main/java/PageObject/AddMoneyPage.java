@@ -44,7 +44,7 @@ public class AddMoneyPage {
     public AddMoneyPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
-        Browser.waitForPageLoad(driver, label_insurance_page_load);
+        Browser.waitForPageLoad(driver, textbox_amount);
         Config.logComment("*****On Insurance Page*****");
     }
 

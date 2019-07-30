@@ -3,11 +3,8 @@ package Helpers;
 import PageObject.HomePage;
 import PageObject.LoginPage;
 import PageObject.SideDrawerPage;
-import Utils.Element;
-import Utils.Log;
 import Utils.MbkReporter;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.FindBy;
 
 public class LoginHelper {
 
@@ -17,7 +14,6 @@ public class LoginHelper {
     MbkReporter mbkReporter;
     LoginPage loginPage;
     SideDrawerPage sideDrawerPage;
-
 
 
     public LoginHelper(WebDriver driver) {
@@ -31,7 +27,7 @@ public class LoginHelper {
 
 
         //click on login on home page
-        loginPage= homePage.clickOnLoginButton();
+        loginPage = homePage.clickOnLoginButton();
 
         // enter mobile number
 
@@ -54,21 +50,21 @@ public class LoginHelper {
 
         Thread.sleep(1000);
 
-        sideDrawerPage= homePage.cliclOnProfileIcon();
+        sideDrawerPage = homePage.clickOnProfileIcon();
 
         Thread.sleep(2000);
 
-        String actualName= sideDrawerPage.getUserName();
+        String actualName = sideDrawerPage.getUserName();
 //        Log.info(actualName);
-        String actualEmailId= sideDrawerPage.getEmailId();
+        String actualEmailId = sideDrawerPage.getEmailId();
 //        Log.info(actualEmailId);
-        String actualCellNumber= sideDrawerPage.getUserCellNumber();
+        String actualCellNumber = sideDrawerPage.getUserCellNumber();
 //        Log.info(actualCellNumber);
 
 
-        mbkReporter.verifyEqualsWithLogging(actualName, expectedName, "User name displayed", true);
-        mbkReporter.verifyEqualsWithLogging(actualEmailId, expectedEmailId, "User Email ID displayed", true);
-        mbkReporter.verifyEqualsWithLogging(actualCellNumber,expectedCellNumber, "User Cell Number Displayed", true);
+        mbkReporter.verifyEqualsWithLogging(actualName, expectedName, "User name displayed", false);
+        mbkReporter.verifyEqualsWithLogging(actualEmailId, expectedEmailId, "User Email ID displayed", false);
+        mbkReporter.verifyEqualsWithLogging(actualCellNumber, expectedCellNumber, "User Cell Number Displayed", false);
 
 
         sideDrawerPage.clickDarkOverlay();
