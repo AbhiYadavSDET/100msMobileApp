@@ -1,7 +1,5 @@
 package PageObject;
 
-import Utils.Browser;
-import Utils.Config;
 import Utils.Element;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -33,7 +31,6 @@ public class DashboardPage {
     private WebElement side_drawer_insurance;
 
 
-
     public DashboardPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
@@ -41,6 +38,17 @@ public class DashboardPage {
         //Config.logComment("*****On Dashboard Page*****");
     }
 
+
+    public MoneyTransferPage clickOnWalletTransferSideDrawer() {
+        Element.selectElement(driver, side_drawer_wallet_transfer, "Wallet Trasnfer from Dashboard");
+        return new MoneyTransferPage(driver);
+    }
+
+
+    public InsurancePage clickOnInsuranceSideDrawer() {
+        Element.selectElement(driver, side_drawer_insurance, "Recharge page");
+        return new InsurancePage(driver);
+    }
 //    public RechargePage clickOnRechargeSideDrawer() {
 //        Element.selectElement(driver, side_drawer_recharge, "Recharge page");
 //        return new RechargePage(driver);
@@ -74,9 +82,6 @@ public class DashboardPage {
 //        Element.selectElement(driver, side_drawer_insurance, "Recharge page");
 //        return new InsurancePage(driver);
 //    }
-
-
-
 
 
 }
