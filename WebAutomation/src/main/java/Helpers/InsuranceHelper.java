@@ -4,7 +4,6 @@ package Helpers;
 import PageObject.DashboardPage;
 import PageObject.HomePage;
 import PageObject.InsurancePage;
-import PageObject.MoneyTransferPage;
 import Utils.MbkReporter;
 import org.openqa.selenium.WebDriver;
 
@@ -13,7 +12,6 @@ public class InsuranceHelper {
     WebDriver driver;
     DashboardPage dashboardPage;
     HomePage homePage;
-    MoneyTransferPage moneyTransferPage;
     MbkReporter mbkReporter;
     InsurancePage insurancePage;
 

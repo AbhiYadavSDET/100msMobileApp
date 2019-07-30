@@ -147,8 +147,9 @@ public class HomePage {
         Element.selectElement(driver, label_history, "History");
     }
 
-    public void clickOnAddMoney() {
+    public AddMoneyPage clickOnAddMoney() {
         Element.selectElement(driver, button_add_money, "Add Money");
+        return new AddMoneyPage(driver);
     }
 
     public String getAvailableBalance() {

@@ -1,5 +1,7 @@
 package PageObject;
 
+import Utils.Browser;
+import Utils.Config;
 import Utils.Element;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -34,8 +36,8 @@ public class DashboardPage {
     public DashboardPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
-        // Browser.waitForPageLoad(driver, label_page_load_text);
-        //Config.logComment("*****On Dashboard Page*****");
+        Browser.waitForPageLoad(driver, side_drawer_recharge);
+        Config.logComment("*****On Dashboard Page*****");
     }
 
 
@@ -46,10 +48,11 @@ public class DashboardPage {
 
 
     public InsurancePage clickOnInsuranceSideDrawer() {
-        Element.selectElement(driver, side_drawer_insurance, "Recharge page");
+        Element.selectElement(driver, side_drawer_insurance, "Insurance From page");
         return new InsurancePage(driver);
     }
-//    public RechargePage clickOnRechargeSideDrawer() {
+
+    //    public RechargePage clickOnRechargeSideDrawer() {
 //        Element.selectElement(driver, side_drawer_recharge, "Recharge page");
 //        return new RechargePage(driver);
 //    }
