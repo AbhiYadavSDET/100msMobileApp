@@ -15,12 +15,11 @@ public class InsurancePage {
     @FindBy(xpath = "//p[text() = 'Home Insurance (Gas)']")
     private WebElement label_insurance_gas;
 
-    @FindBy(xpath = "//p[text() = 'Secure your future with Insurance']")
+    @FindBy(xpath = "//p[text() = 'Insurance helps you in protecting your financial loss.']")
     private WebElement label_insurance_page_load;
 
     @FindBy(xpath = "//i[@class = 'mg mg_icotick fnlgrp tgreen2']")
     private WebElement tick_icon;
-
 
     @FindBy(xpath = "//i[@class = 'mg mg_icotick fnlgrp tgreen2']/following::div[1]")
     private WebElement label_trx_status;
