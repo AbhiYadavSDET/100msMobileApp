@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Login Flow">
-    <test verbose="2" preserve-order="true" name="LoginTest.java">
+<suite name="Bank Transfer Flow">
+    <test verbose="2" preserve-order="true" name="BankTransferTest.java">
         <groups>
             <run>
-                <include name="loginFlow"/>
+                <include name="bankTransferFlow"/>
             </run>
         </groups>
 
 
         <classes>
-            <class name="LoginFlow.LoginTest"/>
+            <class name="BankTransferFlow.BankTransferTest"/>
         </classes>
     </test>
 

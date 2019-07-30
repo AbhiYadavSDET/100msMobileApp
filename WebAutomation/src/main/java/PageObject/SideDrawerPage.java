@@ -20,6 +20,9 @@ public class SideDrawerPage {
     @FindBy(xpath = "//i[@class='mg mg_icouser ft20 ln40 sptop2 gradbg7_bf']/following::p[3]")
     private WebElement user_cell_number;
 
+    @FindBy(xpath= "//div[@class= 'overlaybgDark zi6']")
+    private WebElement dark_overlay;
+
 
 
     public SideDrawerPage(WebDriver driver) {
@@ -43,10 +46,15 @@ public class SideDrawerPage {
     }
 
 
-    public  String getUserCellNumber() {
+    public  String getUserCellNumber()
+    {
         return Element.getText(driver, user_cell_number, "User Cell Number");
     }
 
+    public void clickDarkOverlay(){
+
+        Element.selectElement(driver, dark_overlay, "Click on greyed out area");
+    }
 
 
 }

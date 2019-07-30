@@ -152,7 +152,7 @@ public class HomePage {
     }
 
     public String getAvailableBalance() {
-        return Element.getText(driver, label_available_balance, "Available Balance");
+        return Element.getText(driver, label_available_balance, "Available Balance").replace("₹ ", "");
     }
 
     public void clickOnBalanceDropdown() {

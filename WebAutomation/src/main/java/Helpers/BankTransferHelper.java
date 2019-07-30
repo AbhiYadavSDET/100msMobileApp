@@ -30,7 +30,7 @@ public class BankTransferHelper {
 
     public void bankTransfer(String accountName, String accountNumber, String ifsc, String amount, String expectedMessage) throws InterruptedException {
 
-        int balanceBefore =Integer.parseInt(homePage.getAvailableBalance());
+        Double balanceBefore =Double.parseDouble(homePage.getAvailableBalance());
 
         bankTransferPage= dashboardPage.clickOnBankTransferSideDrawer();
 
@@ -41,6 +41,9 @@ public class BankTransferHelper {
         bankTransferPage.enterIfsc(ifsc);
 
         bankTransferPage.enterAmount(amount);
+
+        //For Processing Fee to Get Load
+        Thread.sleep(2000);
 
         bankTransferPage.clickGo();
 
@@ -60,23 +63,22 @@ public class BankTransferHelper {
 
         String actualMessage= bankTransferPage.getTrxStatus();
 
-        mbkReporter.verifyEqualsWithLogging(actualMessage, expectedMessage, "Bank transfer success", true );
+        mbkReporter.verifyEqualsWithLogging(actualMessage, expectedMessage, "Bank transfer success", false );
 
         String amountPaid= bankTransferPage.getAmountPaid();
 
-        mbkReporter.verifyEqualsWithLogging(amountPaid, amount, "Validated amount transfer", true);
+        mbkReporter.verifyEqualsWithLogging(amountPaid, amount, "Validated amount transfer", false);
 
 
-        int balanceAfter= Integer.parseInt(homePage.getAvailableBalance());
+        Double balanceAfter= Double.parseDouble(homePage.getAvailableBalance());
 
-        int paidAmount= Integer.parseInt(amountPaid);
+        Double paidAmount= Double.parseDouble(amountPaid);
 
-        int expectedAmount= balanceBefore-paidAmount;
+        Double expectedAmount= balanceBefore-paidAmount;
 
-        mbkReporter.verifyEqualsWithLogging(expectedAmount, balanceAfter, "Amount Validated", true);
+        mbkReporter.verifyEqualsWithLogging(expectedAmount, balanceAfter, "Amount Validated", false);
 
 
-        
         homePage.clickOnLogoMbk();
 
 
