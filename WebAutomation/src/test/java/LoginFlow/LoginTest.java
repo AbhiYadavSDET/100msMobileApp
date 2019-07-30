@@ -1,5 +1,6 @@
 package LoginFlow;
 
+import Helpers.BankTransferHelper;
 import Helpers.LoginHelper;
 import Utils.TestBase;
 import org.testng.annotations.Test;
@@ -13,9 +14,11 @@ public class LoginTest extends TestBase {
         LoginHelper loginHelper= new LoginHelper(driver);
         loginHelper.loginViaOtp("7795709569", "para jain", "par.ajjain@gmail.com", "7795709569");
 
+        BankTransferHelper bankTransferHelper= new BankTransferHelper(driver);
+        bankTransferHelper.bankTransfer("Paraj Jain", "218101502680", "ICIC0002181", "50", "Money sent successfully");
+
+
     }
-
-
 
 
 }

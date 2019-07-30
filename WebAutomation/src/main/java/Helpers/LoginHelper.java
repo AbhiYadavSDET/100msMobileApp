@@ -71,6 +71,8 @@ public class LoginHelper {
         mbkReporter.verifyEqualsWithLogging(actualCellNumber,expectedCellNumber, "User Cell Number Displayed", true);
 
 
+        sideDrawerPage.clickDarkOverlay();
+
         Thread.sleep(1000);
 
         homePage.clickOnLogoMbk();
