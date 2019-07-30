@@ -89,6 +89,10 @@ public class BankTransferPage {
         Element.enterText(driver, enter_amount,amount,"Enter amount to Transfer");
     }
 
+    public String getProcessingFee() {
+        return Element.getText(driver, processing_fee, "Processing Fee").replace("₹ ", "");
+    }
+
     public void clickGo(){
         Element.selectElement(driver,button_go, "Submit Details");
     }
