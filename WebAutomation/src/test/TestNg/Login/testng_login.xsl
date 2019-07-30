@@ -13,4 +13,5 @@
             <class name="LoginFlow.LoginTest"/>
         </classes>
     </test>
+
 </suite>
