@@ -63,11 +63,11 @@ public class BankTransferHelper {
 
         String actualMessage= bankTransferPage.getTrxStatus();
 
-        mbkReporter.verifyEqualsWithLogging(actualMessage, expectedMessage, "Bank transfer success", true );
+        mbkReporter.verifyEqualsWithLogging(actualMessage, expectedMessage, "Bank transfer success", false );
 
         String amountPaid= bankTransferPage.getAmountPaid();
 
-        mbkReporter.verifyEqualsWithLogging(amountPaid, amount, "Validated amount transfer", true);
+        mbkReporter.verifyEqualsWithLogging(amountPaid, amount, "Validated amount transfer", false);
 
 
         Double balanceAfter= Double.parseDouble(homePage.getAvailableBalance());
@@ -76,7 +76,7 @@ public class BankTransferHelper {
 
         Double expectedAmount= balanceBefore-paidAmount;
 
-        mbkReporter.verifyEqualsWithLogging(expectedAmount, balanceAfter, "Amount Validated", true);
+        mbkReporter.verifyEqualsWithLogging(expectedAmount, balanceAfter, "Amount Validated", false);
 
 
         homePage.clickOnLogoMbk();
