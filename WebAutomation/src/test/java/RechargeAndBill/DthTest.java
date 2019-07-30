@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 public class DthTest extends TestBase {
     @Test(groups = {"recharge"}, priority = 0, description = "Verify Dth bill")
-    public void Test_Gas() throws InterruptedException {
+    public void Test_Dth() throws InterruptedException {
         LoginHelper loginHelper = new LoginHelper(driver);
         loginHelper.loginViaOtp("9958314430", "Rashi Agarwal", "amanagarwal30@gmail.com", "9958314430");
 

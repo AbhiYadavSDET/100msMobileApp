@@ -28,7 +28,7 @@ public class LandlinePage {
     @FindBy(id = "cn")
     private WebElement can;
 
-    @FindBy(xpath = "//button[@type='submit']")
+    @FindBy(xpath = "//span[text()='Go']")
     private WebElement ctaGo;
 
     String billText = "//div[@class='col-md-9']/p[1]";

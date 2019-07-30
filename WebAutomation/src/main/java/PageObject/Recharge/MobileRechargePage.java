@@ -31,7 +31,7 @@ public class MobileRechargePage {
     @FindBy(xpath = "//input[@placeholder='amount']")
     private WebElement amount;
 
-    @FindBy(xpath = "//button[@type='submit']")
+    @FindBy(xpath = "//span[text()='Go']")
     private WebElement ctaGo;
 
     public MobileRechargePage(WebDriver driver) {

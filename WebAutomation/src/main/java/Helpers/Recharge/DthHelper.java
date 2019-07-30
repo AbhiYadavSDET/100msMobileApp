@@ -33,8 +33,8 @@ public class DthHelper {
 
         dthPage.clickMakePayment();
 
-        /*mbkReporter.verifyTrue(gasPage.getOperator().contains(op), "Verify same operator", true);
-        mbkReporter.verifyTrue(gasPage.getCNo().contains(bpNo), "Verify same cno", true);
-        mbkReporter.verifyTrue(gasPage.ifTextPresent(), "Check if bill text present", true);*/
+        /*mbkReporter.verifyEqualsWithLogging(cNo, dthPage.getCNo(), "compare cNo", true);
+        mbkReporter.verifyTrue(dthPage.ifTextPresent(), "Check if bill text present", true);
+*/
     }
 }

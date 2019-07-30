@@ -23,7 +23,7 @@ public class GasPage {
     @FindBy(id = "cn")
     private WebElement bpNo;
 
-    @FindBy(xpath = "//button[@type='submit']")
+    @FindBy(xpath = "//span[text()='Go']")
     private WebElement ctaGo;
 
     @FindBy(xpath = "//div[@class='col-md-9']/p[2]")

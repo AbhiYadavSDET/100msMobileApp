@@ -12,7 +12,7 @@ public class LandlineTest extends TestBase {
         loginHelper.loginViaOtp("9958314430", "Rashi Agarwal", "amanagarwal30@gmail.com", "9958314430");
 
         LandlineHelper landlineHelper = new LandlineHelper(driver);
-        landlineHelper.verifyLandlineBill("Mtnl Delhi", "23693162", "2061533162");
+        landlineHelper.verifyLandlineBill("Delhi", "23693162", "2061533162");
 
     }
 }

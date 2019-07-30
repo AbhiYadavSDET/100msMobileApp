@@ -37,6 +37,5 @@ public class GasHelper {
         mbkReporter.verifyTrue(gasPage.getCNo().contains(bpNo), "Verify same cno", true);
         mbkReporter.verifyTrue(gasPage.ifTextPresent(), "Check if bill text present", true);
 
-
     }
 }
