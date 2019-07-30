@@ -10,7 +10,7 @@
 
 
         <classes>
-            <class name="RechargeAndBill.LandlineTest"/>
+            <class name="RechargeAndBill.DthTest"/>
         </classes>
     </test>
 </suite>

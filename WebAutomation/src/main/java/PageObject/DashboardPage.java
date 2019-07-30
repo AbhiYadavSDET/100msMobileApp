@@ -1,5 +1,6 @@
 package PageObject;
 
+import PageObject.Recharge.RechargePage;
 import Utils.Browser;
 import Utils.Config;
 import Utils.Element;
@@ -32,7 +33,8 @@ public class DashboardPage {
     @FindBy(xpath = "//span[text()='Insurance']")
     private WebElement side_drawer_insurance;
 
-
+    @FindBy(xpath = "//span[text()='Local Stores']")
+    private WebElement side_local_store;
 
     public DashboardPage(WebDriver driver) {
         this.driver = driver;
@@ -41,11 +43,11 @@ public class DashboardPage {
         //Config.logComment("*****On Dashboard Page*****");
     }
 
-//    public RechargePage clickOnRechargeSideDrawer() {
-//        Element.selectElement(driver, side_drawer_recharge, "Recharge page");
-//        return new RechargePage(driver);
-//    }
-//
+    public RechargePage clickOnRechargeSideDrawer() {
+        Element.selectElement(driver, side_drawer_recharge, "Recharge page");
+       return new RechargePage(driver);
+    }
+
     public BankTransferPage clickOnBankTransferSideDrawer() {
         Element.selectElement(driver, side_drawer_bank_transfer, "Recharge page");
         return new BankTransferPage(driver);
@@ -58,10 +60,15 @@ public class DashboardPage {
 //    }
 //
 //
-//    public OffersPage clickOnOffersSideDrawer() {
-//        Element.selectElement(driver, side_drawer_offers, "Recharge page");
-//        return new OffersPage(driver);
-//    }
+      public OffersPage clickOnOffersSideDrawer() {
+          Element.selectElement(driver, side_drawer_offers, "Offers page");
+          return new OffersPage(driver);
+      }
+
+      public NearByPage clickOnLocalStoreSideDrawer() {
+          Element.selectElement(driver, side_local_store, "Local Store page");
+          return new NearByPage(driver);
+      }
 //
 //
 //    public WalletTransferPage clickOnWalletTransferSideDrawer() {
