@@ -25,7 +25,6 @@ public class LandlineHelper {
         rechargePage = dashboardPage.clickOnRechargeSideDrawer();
 
         landlinePage = rechargePage.clickOnLandline();
-
         landlinePage.selectOperator(operator);
 
         landlinePage.enterTelNo(mobNo);
@@ -33,7 +32,6 @@ public class LandlineHelper {
         landlinePage.enterCAN(cNo);
 
         landlinePage.clickGo();
-        System.out.print("Rashi" + landlinePage.getOperator());
 
         mbkReporter.verifyTrue(landlinePage.ifBillExists(), "Check if bill opens", true);
         mbkReporter.verifyTrue(landlinePage.getOperator().contains(operator), "Verify same operator", true);

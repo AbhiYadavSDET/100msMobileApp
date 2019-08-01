@@ -31,10 +31,11 @@ public class DthHelper {
 
         dthPage.clickGo();
 
+        mbkReporter.verifyEqualsWithLogging(cNo, dthPage.getCNo(), "compare cNo", true);
+        mbkReporter.verifyEqualsWithLogging(cNo, dthPage.getAmt(), "compare Amt", true);
+
         dthPage.clickMakePayment();
 
-        /*mbkReporter.verifyEqualsWithLogging(cNo, dthPage.getCNo(), "compare cNo", true);
         mbkReporter.verifyTrue(dthPage.ifTextPresent(), "Check if bill text present", true);
-*/
     }
 }

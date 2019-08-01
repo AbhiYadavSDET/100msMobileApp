@@ -28,8 +28,11 @@ public class DthPage {
     @FindBy(xpath = "//span[text()='Make Payment']")
     private WebElement makePayment;
 
-    @FindBy(xpath = "//section//div[text()='Connection Number']//following::div[1]")
+    @FindBy(xpath = "//div[text()='Customer Id']//following-sibling::div")
     private WebElement getCNo;
+
+    @FindBy(xpath = "//div[text()='Amount']//following-sibling::div")
+    private WebElement getAmt;
 
     String text = "//p[text()='Invalid Denomination']";
 
@@ -51,6 +54,10 @@ public class DthPage {
 
     public String getCNo(){
         return Element.getText(driver, getCNo, "Get operator on bill");
+    }
+
+    public String getAmt(){
+        return Element.getText(driver, getCNo, "Get operator on bill").replace("₹ ", "");
     }
 
     public boolean ifTextPresent(){
