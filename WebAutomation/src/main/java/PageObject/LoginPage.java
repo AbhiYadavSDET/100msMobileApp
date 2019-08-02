@@ -1,5 +1,7 @@
 package PageObject;
 
+import Utils.Browser;
+import Utils.Config;
 import Utils.Element;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -24,11 +26,15 @@ public class LoginPage {
     @FindBy(xpath = "//span[text() ='Submit OTP']")
     private WebElement button_submit_otp;
 
+    @FindBy(xpath = "//p[text() = 'Login']")
+    public WebElement load_login_page;
 
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
+        Browser.waitForPageLoad(driver, load_login_page);
+        Config.logComment("*****On Login-Page*****");
 
     }
 

@@ -1,0 +1,32 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Sanity">
+
+    <!--######### Login #############-->
+    <test name="Login Flow">
+        <classes>
+            <class name="LoginFlow.LoginTest"/>
+        </classes>
+    </test>
+
+    <!--######### Add Money #############-->
+    <test name="Add-Money Flow">
+        <classes>
+            <class name="AddMoney.AddMoneyTest"/>
+        </classes>
+    </test>
+
+    <!--######### Insurance #############-->
+    <test name="Insurance">
+        <classes>
+            <class name="Insurance.InsuranceTest"/>
+        </classes>
+    </test>
+
+    <!--######### P2P #############-->
+    <test name="P2P">
+        <classes>
+            <class name="P2P.P2PTest"/>
+        </classes>
+    </test>
+
+</suite>

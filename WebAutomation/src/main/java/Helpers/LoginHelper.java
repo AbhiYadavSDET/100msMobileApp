@@ -24,8 +24,6 @@ public class LoginHelper {
 
 
     public void loginViaOtp(String mobileNumber, String expectedName, String expectedEmailId, String expectedCellNumber) throws InterruptedException {
-
-
         //click on login on home page
         loginPage = homePage.clickOnLoginButton();
 
@@ -47,7 +45,6 @@ public class LoginHelper {
         //submit otp
 
         loginPage.clickSubmitOtp();
-
         Thread.sleep(1000);
 
         sideDrawerPage = homePage.clickOnProfileIcon();
