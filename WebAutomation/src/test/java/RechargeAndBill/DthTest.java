@@ -10,7 +10,7 @@ public class DthTest extends TestBase {
     @Test(groups = {"recharge"}, priority = 0, description = "Verify Dth bill")
     public void Test_Dth() throws InterruptedException {
         LoginHelper loginHelper = new LoginHelper(driver);
-        loginHelper.loginViaOtp("9958314430", "Rashi Agarwal", "amanagarwal30@gmail.com", "9958314430");
+        loginHelper.loginViaOtp("8527797582", "T.C. Suneja", "mayank.suneja@mobikwik.com", "8527797582");
 
         DthHelper dthHelper = new DthHelper(driver);
         dthHelper.verifyInvalidDthBill("1043233392", "1");

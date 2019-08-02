@@ -29,4 +29,11 @@
         </classes>
     </test>
 
+    <!--######### IMPS #############-->
+    <test name="IMPS">
+        <classes>
+            <class name="BankTransferFlow.BankTransferTest"/>
+        </classes>
+    </test>
+
 </suite>

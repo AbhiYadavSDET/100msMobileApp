@@ -1,5 +1,6 @@
 package PageObject;
 
+import PageObject.Recharge.RechargePage;
 import Utils.Browser;
 import Utils.Config;
 import Utils.Element;
@@ -54,11 +55,11 @@ public class DashboardPage {
         return new InsurancePage(driver);
     }
 
-//    public RechargePage clickOnRechargeSideDrawer() {
-//        Element.selectElement(driver, side_drawer_recharge, "Recharge page");
-//        return new RechargePage(driver);
-//    }
-//
+    public RechargePage clickOnRechargeSideDrawer() {
+        Element.selectElement(driver, side_drawer_recharge, "Recharge page");
+        return new RechargePage(driver);
+    }
+
     public BankTransferPage clickOnBankTransferSideDrawer() {
         Element.selectElement(driver, side_drawer_bank_transfer, "Recharge page");
         return new BankTransferPage(driver);

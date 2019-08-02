@@ -10,7 +10,7 @@ public class OffersTest extends TestBase {
     public void Test_Offers() throws InterruptedException {
 
         LoginHelper loginHelper = new LoginHelper(driver);
-        loginHelper.loginViaOtp("9958314430", "Rashi Agarwal", "amanagarwal30@gmail.com", "9958314430");
+        loginHelper.loginViaOtp("8527797582", "T.C. Suneja", "mayank.suneja@mobikwik.com", "8527797582");
 
         OfferHelper offerHelper = new OfferHelper(driver);
         offerHelper.verifyOffers("makemytrip");

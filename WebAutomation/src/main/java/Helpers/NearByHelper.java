@@ -31,7 +31,7 @@ public class NearByHelper {
 
         nearByPage.clickSearch();
 
-        mbkReporter.verifyTrue(nearByPage.noOfStores() > 0, "Page Reloaded | Verify no of local stores", true);
+        mbkReporter.verifyTrueWithLogging(nearByPage.noOfStores() > 0, "Page Reloaded | Verify no of local stores", true);
         Log.info("Count of stores" + nearByPage.noOfStores());
 
     }
