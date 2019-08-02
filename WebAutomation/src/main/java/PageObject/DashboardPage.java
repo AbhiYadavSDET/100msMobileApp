@@ -32,6 +32,8 @@ public class DashboardPage {
     @FindBy(xpath = "//span[text()='Insurance']")
     private WebElement side_drawer_insurance;
 
+    @FindBy(xpath = "//span[text()='Local Stores']")
+    private WebElement side_local_store;
 
     public DashboardPage(WebDriver driver) {
         this.driver = driver;
@@ -52,7 +54,7 @@ public class DashboardPage {
         return new InsurancePage(driver);
     }
 
-    //    public RechargePage clickOnRechargeSideDrawer() {
+//    public RechargePage clickOnRechargeSideDrawer() {
 //        Element.selectElement(driver, side_drawer_recharge, "Recharge page");
 //        return new RechargePage(driver);
 //    }
@@ -69,10 +71,15 @@ public class DashboardPage {
 //    }
 //
 //
-//    public OffersPage clickOnOffersSideDrawer() {
-//        Element.selectElement(driver, side_drawer_offers, "Recharge page");
-//        return new OffersPage(driver);
-//    }
+      public OffersPage clickOnOffersSideDrawer() {
+          Element.selectElement(driver, side_drawer_offers, "Offers page");
+          return new OffersPage(driver);
+      }
+
+      public NearByPage clickOnLocalStoreSideDrawer() {
+          Element.selectElement(driver, side_local_store, "Local Store page");
+          return new NearByPage(driver);
+      }
 //
 //
 //    public WalletTransferPage clickOnWalletTransferSideDrawer() {
@@ -85,6 +92,9 @@ public class DashboardPage {
 //        Element.selectElement(driver, side_drawer_insurance, "Recharge page");
 //        return new InsurancePage(driver);
 //    }
+
+
+
 
 
 }

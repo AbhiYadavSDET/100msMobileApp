@@ -8,24 +8,24 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class OffersPage {
+public class NearByPage {
     WebDriver driver;
 
-    public OffersPage(WebDriver driver) {
+    public NearByPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
         Browser.waitForPageLoad(driver, searchBox);
-        Config.logComment("*****On money Transfer Page*****");
+        Config.logComment("*****On near by Page*****");
     }
 
-    @FindBy(xpath = "//input[@name='searchText']")
+    @FindBy(xpath = "//input[@name='searchArea']")
     private WebElement searchBox;
 
 
-    @FindBy(xpath = "//input[@name='searchText']//following::a[1]")
+    @FindBy(xpath = "//input[@name='searchArea']//following::a[1]")
     private WebElement searchButton;
 
-    String noOfOffers = "//div//content";
+    String noOfStores = "//div//content";
 
     public void enterSearchBox(String text){
         Element.enterText(driver, searchBox, text, "Enter search text");
@@ -37,8 +37,8 @@ public class OffersPage {
     }
 
 
-    public int noOfOffers(){
-        return Element.getListOfElements(driver, Element.How.xPath, noOfOffers).size();
+    public int noOfStores(){
+        return Element.getListOfElements(driver, Element.How.xPath, noOfStores).size();
     }
 
 
