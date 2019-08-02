@@ -13,6 +13,5 @@ public class LandlineTest extends TestBase {
 
         LandlineHelper landlineHelper = new LandlineHelper(driver);
         landlineHelper.verifyLandlineBill("Delhi", "23693162", "2061533162");
-
     }
 }

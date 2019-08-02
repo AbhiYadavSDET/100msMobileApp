@@ -28,11 +28,19 @@ public class MobileRechargePage {
     @FindBy(xpath = "//label[@title='Operator']//following::input[@role='combobox'][2]")
     private WebElement circle;
 
-    @FindBy(xpath = "//input[@placeholder='amount']")
+    @FindBy(xpath = "//input[@placeholder='Amount']")
     private WebElement amount;
 
     @FindBy(xpath = "//span[text()='Go']")
     private WebElement ctaGo;
+
+    @FindBy(xpath = "//div[text()='Mobile Number (+91)']//following-sibling::div")
+    private WebElement getNo;
+
+    @FindBy(xpath = "//span[text()='Make Payment']")
+    private WebElement makePayment;
+
+    String successMsg = "//mbk-recharge-status//p[text()='Recharge Successful']";
 
     public MobileRechargePage(WebDriver driver) {
         this.driver = driver;
@@ -56,24 +64,44 @@ public class MobileRechargePage {
     }
 
     public void enterOperator(String op){
+
         Element.enterText(driver, operator, op, "enter operator");
+        Element.pressEnter(driver);
     }
 
     public void enterCircle(String circleStr){
         Element.enterText(driver, circle, circleStr, "enter circle");
+        Element.pressEnter(driver);
     }
 
-    public void enterAmount(String amount){
-        Element.enterText(driver, operator, amount, "enter circle");
+    public void enterAmount(String amt){
+        Element.enterText(driver, amount, amt, "enter amount");
     }
 
     public void clickGo(){
         Element.click(driver, ctaGo, "Click on Go");
     }
 
-    public boolean ifTextPresent(){
+    public String getNo(){
+        return Element.getText(driver, getNo, "Get mobile on bill");
+    }
+
+    public void clickMakePayment(){
+        Element.click(driver, makePayment, "Click on Make Payment");
+    }
+
+    public boolean ifConfirmRechargePresent(){
         try {
             return Element.isElementPresent(driver, By.xpath(confirmRecharge));
+        }catch (InterruptedException e){
+            Log.info(e.getMessage().toString());
+        }
+        return false;
+    }
+
+    public boolean ifSuccessTextPresent(){
+        try {
+            return Element.isElementPresent(driver, By.xpath(successMsg));
         }catch (InterruptedException e){
             Log.info(e.getMessage().toString());
         }

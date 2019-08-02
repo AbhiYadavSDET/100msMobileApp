@@ -1,6 +1,7 @@
 package Helpers.Recharge;
 
 import PageObject.DashboardPage;
+import PageObject.HomePage;
 import PageObject.Recharge.DthPage;
 import PageObject.Recharge.GasPage;
 import PageObject.Recharge.RechargePage;
@@ -13,14 +14,17 @@ public class DthHelper {
     MbkReporter mbkReporter;
     DthPage dthPage;
     RechargePage rechargePage;
+    HomePage homePage;
 
     public DthHelper(WebDriver driver) {
         this.driver = driver;
         dashboardPage = new DashboardPage(driver);
         mbkReporter = new MbkReporter();
+        homePage = new HomePage(driver);
     }
 
     public void verifyInvalidDthBill(String cNo, String amt) {
+
         rechargePage = dashboardPage.clickOnRechargeSideDrawer();
 
         dthPage = rechargePage.clickOnDth();
@@ -32,10 +36,12 @@ public class DthHelper {
         dthPage.clickGo();
 
         mbkReporter.verifyEqualsWithLogging(cNo, dthPage.getCNo(), "compare cNo", true);
-        mbkReporter.verifyEqualsWithLogging(cNo, dthPage.getAmt(), "compare Amt", true);
+        mbkReporter.verifyEqualsWithLogging(amt, dthPage.getAmt(), "compare Amt", true);
 
         dthPage.clickMakePayment();
 
-        mbkReporter.verifyTrue(dthPage.ifTextPresent(), "Check if bill text present", true);
+        mbkReporter.verifyTrueWithLogging(dthPage.ifTextPresent(), "Check if bill text present", true);
+
+        homePage.clickOnLogoMbk();
     }
 }
