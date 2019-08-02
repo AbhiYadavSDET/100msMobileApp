@@ -1,6 +1,7 @@
 package Helpers.Recharge;
 
 import PageObject.DashboardPage;
+import PageObject.HomePage;
 import PageObject.OffersPage;
 import PageObject.Recharge.GasPage;
 import PageObject.Recharge.RechargePage;
@@ -14,12 +15,13 @@ public class GasHelper {
     MbkReporter mbkReporter;
     GasPage gasPage;
     RechargePage rechargePage;
-
+    HomePage homePage;
 
     public GasHelper(WebDriver driver) {
         this.driver = driver;
         dashboardPage = new DashboardPage(driver);
         mbkReporter = new MbkReporter();
+        homePage = new HomePage(driver);
     }
 
     public void verifyGasBill(String op, String bpNo){
@@ -33,9 +35,10 @@ public class GasHelper {
 
         gasPage.clickGo();
 
-        mbkReporter.verifyTrue(gasPage.getOperator().contains(op), "Verify same operator", true);
-        mbkReporter.verifyTrue(gasPage.getCNo().contains(bpNo), "Verify same cno", true);
-        mbkReporter.verifyTrue(gasPage.ifTextPresent(), "Check if bill text present", true);
+        mbkReporter.verifyTrueWithLogging(gasPage.getOperator().contains(op), "Verify same operator", true);
+        mbkReporter.verifyTrueWithLogging(gasPage.getCNo().contains(bpNo), "Verify same cno", true);
+        mbkReporter.verifyTrueWithLogging(gasPage.ifTextPresent(), "Check if bill text present", true);
+
 
     }
 }

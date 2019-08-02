@@ -57,7 +57,7 @@ public class DthPage {
     }
 
     public String getAmt(){
-        return Element.getText(driver, getCNo, "Get operator on bill").replace("₹ ", "");
+        return Element.getText(driver, getAmt, "Get operator on bill").replace("₹ ", "");
     }
 
     public boolean ifTextPresent(){
