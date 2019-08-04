@@ -75,7 +75,8 @@ public class HomePage {
     @FindBy(xpath = "//span[@class = 'dpInBLockMid ft11 mar2 mbottom mg mtop pad8 pleft pright themecolor mg_icotriangle_arrow_down csrPtr']")
     private WebElement dropdown_balance;
 
-    @FindBy(xpath="//a[@class=\"mg mg_icomenu mnuicon gradbg7_bf csrPtr noblur\"]")
+    //@FindBy(xpath="//a[@class=\"mg mg_icomenu mnuicon gradbg7_bf csrPtr noblur\"]")
+    @FindBy(xpath="(//mbk-header//a)[5]")
     private  WebElement profile_icon;
 
 

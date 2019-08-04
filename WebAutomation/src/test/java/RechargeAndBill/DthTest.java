@@ -13,7 +13,7 @@ public class DthTest extends TestBase {
         loginHelper.loginViaOtp("9958314430", "Rashi Agarwal", "amanagarwal30@gmail.com", "9958314430");
 
         DthHelper dthHelper = new DthHelper(driver);
-        dthHelper.verifyInvalidDthBill("1043233392", "1");
+        dthHelper.verifyInvalidDthBill("tata","1043233392", "1");
 
     }
 }

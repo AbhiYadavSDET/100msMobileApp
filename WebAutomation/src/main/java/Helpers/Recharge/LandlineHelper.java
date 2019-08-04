@@ -35,11 +35,11 @@ public class LandlineHelper {
 
         landlinePage.clickGo();
 
-        mbkReporter.verifyTrueWithLogging(landlinePage.ifBillExists(), "Check if bill opens", true);
-        mbkReporter.verifyTrueWithLogging(landlinePage.getOperator().contains(operator), "Verify same operator", true);
-        mbkReporter.verifyTrueWithLogging(landlinePage.getMNo().contains(mobNo), "Verify same mob no", true);
-        mbkReporter.verifyTrueWithLogging(landlinePage.getCNo().contains(cNo), "Verify same cno", true);
-        mbkReporter.verifyTrueWithLogging(landlinePage.ifTextPresent(), "Check if bill text present", true);
+        mbkReporter.verifyTrueWithLogging(landlinePage.ifBillExists(), "Check if bill opens", false);
+        mbkReporter.verifyTrueWithLogging(landlinePage.getOperator().contains(operator), "Verify same operator", false);
+        mbkReporter.verifyTrueWithLogging(landlinePage.getMNo().contains(mobNo), "Verify same mob no", false);
+        mbkReporter.verifyTrueWithLogging(landlinePage.getCNo().contains(cNo), "Verify same cno", false);
+        mbkReporter.verifyTrueWithLogging(landlinePage.ifTextPresent(), "Check if bill text present", false);
 
     }
 }

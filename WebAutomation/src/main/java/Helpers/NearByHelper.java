@@ -27,14 +27,14 @@ public class NearByHelper {
     public void verifyLocalStores(String text){
         nearByPage = dashboardPage.clickOnLocalStoreSideDrawer();
 
-        mbkReporter.verifyTrueWithLogging(nearByPage.noOfStores() > 0, "Page Loaded | Verify no of local stores", true);
+        mbkReporter.verifyTrueWithLogging(nearByPage.noOfStores() > 0, "Page Loaded | Verify no of local stores", false);
         Log.info("Count of stores" + nearByPage.noOfStores());
 
         nearByPage.enterSearchBox(text);
 
         nearByPage.clickSearch();
 
-        mbkReporter.verifyTrueWithLogging(nearByPage.noOfStores() > 0, "Page Reloaded | Verify no of local stores", true);
+        mbkReporter.verifyTrueWithLogging(nearByPage.noOfStores() > 0, "Page Reloaded | Verify no of local stores", false);
         Log.info("Count of stores" + nearByPage.noOfStores());
 
         homePage.clickOnLogoMbk();

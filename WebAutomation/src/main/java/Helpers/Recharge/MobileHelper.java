@@ -42,12 +42,12 @@ public class MobileHelper {
 
         mobileRechargePage.clickGo();
 
-        mbkReporter.verifyTrueWithLogging(mobileRechargePage.ifConfirmRechargePresent(), "bill text present", true);
-        mbkReporter.verifyEqualsWithLogging(mobNo, mobileRechargePage.getNo(), "compare number", true);
+        mbkReporter.verifyTrueWithLogging(mobileRechargePage.ifConfirmRechargePresent(), "bill text present", false);
+        mbkReporter.verifyEqualsWithLogging(mobNo, mobileRechargePage.getPrepaidNo(), "compare number", false);
 
         mobileRechargePage.clickMakePayment();
 
-        mbkReporter.verifyTrueWithLogging(mobileRechargePage.ifSuccessTextPresent(), "bill text present", true);
+        mbkReporter.verifyTrueWithLogging(mobileRechargePage.ifSuccessTextPresent(), "success text present", false);
         homePage.clickOnLogoMbk();
 
 
@@ -67,17 +67,12 @@ public class MobileHelper {
 
         mobileRechargePage.enterCircle(circle);
 
-        mobileRechargePage.enterAmount(amount);
+        //mobileRechargePage.enterAmount(amount);
 
         mobileRechargePage.clickGo();
 
-        mbkReporter.verifyTrueWithLogging(mobileRechargePage.ifConfirmRechargePresent(), "bill text present", true);
-        mbkReporter.verifyEqualsWithLogging(mobNo, mobileRechargePage.getNo(), "compare number", true);
+        mbkReporter.verifyEqualsWithLogging(mobNo, mobileRechargePage.getNo(), "compare number", false);
+        mbkReporter.verifyTrueWithLogging(mobileRechargePage.isPostSuccess(), "compare success text", false);
 
-        mobileRechargePage.clickMakePayment();
-
-        mbkReporter.verifyTrueWithLogging(mobileRechargePage.ifSuccessTextPresent(), "bill text present", true);
-
-        homePage.clickOnLogoMbk();
     }
 }
