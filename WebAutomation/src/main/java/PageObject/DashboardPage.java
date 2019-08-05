@@ -63,10 +63,10 @@ public class DashboardPage {
     }
 //
 //
-//    public BusPage clickOnBusSideDrawer() {
-//        Element.selectElement(driver, side_drawer_bus, "Recharge page");
-//        return new BusPage(driver);
-//    }
+    public BusPage clickOnBusSideDrawer() {
+        Element.selectElement(driver, side_drawer_bus, "Recharge page");
+        return new BusPage(driver);
+    }
 //
 //
 //    public OffersPage clickOnOffersSideDrawer() {
