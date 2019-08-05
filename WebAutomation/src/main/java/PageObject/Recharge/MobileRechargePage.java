@@ -34,13 +34,23 @@ public class MobileRechargePage {
     @FindBy(xpath = "//span[text()='Go']")
     private WebElement ctaGo;
 
-    @FindBy(xpath = "//div[text()='Mobile Number (+91)']//following-sibling::div")
+    @FindBy(xpath = " //div[text()='Mobile Number (+91)']//following-sibling::div")
+    private WebElement getPrepaidNo;
+
+    @FindBy(xpath = "(//mbk-view-payment//p)[2]")
     private WebElement getNo;
 
     @FindBy(xpath = "//span[text()='Make Payment']")
     private WebElement makePayment;
 
+    @FindBy(xpath="(//mbk-view-payment//p)[1]")
+    private WebElement successMssg;
+
     String successMsg = "//mbk-recharge-status//p[text()='Recharge Successful']";
+
+    String confirmRecharge = "//form/p[text()='Confirm Recharge ']";
+
+    String successPostMssg = "No Bills Found";
 
     public MobileRechargePage(WebDriver driver) {
         this.driver = driver;
@@ -49,7 +59,6 @@ public class MobileRechargePage {
         Config.logComment("*****On money Transfer Page*****");
     }
 
-    String confirmRecharge = "//form/p[text()='Confirm Recharge ']";
 
     public void enterMobileNumber(String mobileNo){
         Element.enterText(driver, mobileNumber, mobileNo, "enter mobile no");
@@ -86,6 +95,10 @@ public class MobileRechargePage {
         return Element.getText(driver, getNo, "Get mobile on bill");
     }
 
+    public String getPrepaidNo(){
+        return Element.getText(driver, getPrepaidNo, "Get mobile on bill");
+    }
+
     public void clickMakePayment(){
         Element.click(driver, makePayment, "Click on Make Payment");
     }
@@ -106,6 +119,10 @@ public class MobileRechargePage {
             Log.info(e.getMessage().toString());
         }
         return false;
+    }
+
+    public boolean isPostSuccess(){
+        return Element.getText(driver, successMssg, "compare success mssg").equalsIgnoreCase(successPostMssg);
     }
 
 }

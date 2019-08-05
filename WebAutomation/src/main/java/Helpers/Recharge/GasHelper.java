@@ -35,9 +35,9 @@ public class GasHelper {
 
         gasPage.clickGo();
 
-        mbkReporter.verifyTrueWithLogging(gasPage.getOperator().contains(op), "Verify same operator", true);
-        mbkReporter.verifyTrueWithLogging(gasPage.getCNo().contains(bpNo), "Verify same cno", true);
-        mbkReporter.verifyTrueWithLogging(gasPage.ifTextPresent(), "Check if bill text present", true);
+        mbkReporter.verifyTrueWithLogging(gasPage.getOperator().contains(op), "Verify same operator", false);
+        mbkReporter.verifyTrueWithLogging(gasPage.getCNo().contains(bpNo), "Verify same cno", false);
+        mbkReporter.verifyTrueWithLogging(gasPage.ifTextPresent(), "Check if bill text present", false);
 
 
     }

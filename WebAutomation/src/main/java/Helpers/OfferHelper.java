@@ -30,7 +30,7 @@ public class OfferHelper {
 
         offersPage.clickSearch();
 
-        mbkReporter.verifyTrueWithLogging(offersPage.noOfOffers() > 0, "Verify no of offers", true);
+        mbkReporter.verifyTrueWithLogging(offersPage.noOfOffers() > 0, "Verify no of offers", false);
         Log.info("Count of offers" + offersPage.noOfOffers());
 
         homePage.clickOnLogoMbk();
