@@ -1,8 +1,6 @@
 package RechargeAndBill;
 
-import Helpers.LoginHelper;
 import Helpers.Recharge.DthHelper;
-import Helpers.Recharge.GasHelper;
 import Utils.TestBase;
 import org.testng.annotations.Test;
 
@@ -12,8 +10,8 @@ public class DthTest extends TestBase {
 //        LoginHelper loginHelper = new LoginHelper(driver);
 //        loginHelper.loginViaOtp("8527797582", "T.C. Suneja", "mayank.suneja@mobikwik.com", "8527797582");
 
-        DthHelper dthHelper = new DthHelper(driver);
-        dthHelper.verifyInvalidDthBill("tata","1043233392", "1");
+        DthHelper dthHelper = new DthHelper(getWebDriver());
+        dthHelper.verifyInvalidDthBill("tata", "1043233392", "1");
 
     }
 }

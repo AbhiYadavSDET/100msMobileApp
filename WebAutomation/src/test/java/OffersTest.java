@@ -10,7 +10,7 @@ public class OffersTest extends TestBase {
 //        LoginHelper loginHelper = new LoginHelper(driver);
 //        loginHelper.loginViaOtp("8527797582", "T.C. Suneja", "mayank.suneja@mobikwik.com", "8527797582");
 
-        OfferHelper offerHelper = new OfferHelper(driver);
+        OfferHelper offerHelper = new OfferHelper(getWebDriver());
         offerHelper.verifyOffers("makemytrip");
     }
 }

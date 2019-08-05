@@ -1,6 +1,5 @@
 package RechargeAndBill;
 
-import Helpers.LoginHelper;
 import Helpers.Recharge.MobileHelper;
 import Utils.TestBase;
 import org.testng.annotations.Test;
@@ -12,7 +11,7 @@ public class MobileRechargeTest extends TestBase {
 //        LoginHelper loginHelper = new LoginHelper(driver);
 //        loginHelper.loginViaOtp("8527797582", "T.C. Suneja", "mayank.suneja@mobikwik.com", "8527797582");
 
-        MobileHelper mobileHelper = new MobileHelper(driver);
+        MobileHelper mobileHelper = new MobileHelper(getWebDriver());
         mobileHelper.verifyPrepaid("vodafone", "9953138474", "haryana", "10");
 
     }
@@ -22,7 +21,7 @@ public class MobileRechargeTest extends TestBase {
 //        LoginHelper loginHelper = new LoginHelper(driver);
 //        loginHelper.loginViaOtp("8527797582", "T.C. Suneja", "mayank.suneja@mobikwik.com", "8527797582");
 
-        MobileHelper mobileHelper = new MobileHelper(driver);
+        MobileHelper mobileHelper = new MobileHelper(getWebDriver());
         mobileHelper.verifyPostpaid("Vodafone", "7795709569", "Delhi", "1");
 
     }
