@@ -24,7 +24,7 @@ public class GasHelper {
         homePage = new HomePage(driver);
     }
 
-    public void verifyGasBill(String op, String bpNo){
+    public void verifyGasBill(String op, String bpNo, String text){
         rechargePage = dashboardPage.clickOnRechargeSideDrawer();
 
         gasPage = rechargePage.clickOnGas();
@@ -37,8 +37,11 @@ public class GasHelper {
 
         mbkReporter.verifyTrueWithLogging(gasPage.getOperator().contains(op), "Verify same operator", false);
         mbkReporter.verifyTrueWithLogging(gasPage.getCNo().contains(bpNo), "Verify same cno", false);
-        mbkReporter.verifyTrueWithLogging(gasPage.ifTextPresent(), "Check if bill text present", false);
+        mbkReporter.verifyEqualsWithLogging(text, gasPage.getSuccessText(), "compare bill text", false);
 
+        gasPage.closeBill();
+
+        homePage.clickOnLogoMbk();
 
     }
 }
