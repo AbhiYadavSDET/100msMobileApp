@@ -28,12 +28,12 @@ public class OffersPage {
     String noOfOffers = "//div//content";
 
     public void enterSearchBox(String text){
-        Element.enterText(driver, searchBox, text, "Enter search text");
+        Element.enterText(driver, searchBox, text, "search text");
 
     }
 
     public void clickSearch(){
-        Element.click(driver, searchButton, "Click on search button");
+        Element.click(driver, searchButton, "search button");
     }
 
 

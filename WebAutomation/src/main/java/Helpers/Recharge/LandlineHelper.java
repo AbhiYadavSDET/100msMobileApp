@@ -41,5 +41,6 @@ public class LandlineHelper {
         mbkReporter.verifyTrueWithLogging(landlinePage.getCNo().contains(cNo), "Verify same cno", false);
         mbkReporter.verifyTrueWithLogging(landlinePage.ifTextPresent(), "Check if bill text present", false);
 
+        homePage.clickOnLogoMbk();
     }
 }
