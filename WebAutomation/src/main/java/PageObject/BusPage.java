@@ -59,11 +59,14 @@ public class BusPage {
     private WebElement seat_selecter;
 
 
-    @FindBy(xpath = "//div[text()= 'Select Boarding Point']")
+    @FindBy(xpath = "//ng-select[@placeholder= 'Select Boarding Point']")
     private WebElement select_boarding_point;
 
 
-    @FindBy(xpath = "//div[text()= 'Select Drop Point']")
+//    @FindBy(xpath = "//span[@class='ng-option-label']")
+//    private WebElement select_option_from_dropdown;
+
+    @FindBy(xpath = "//ng-select[@placeholder= 'Select Drop Point']")
     private WebElement select_droping_point;
 
     @FindBy(xpath = "//span[text()= 'Continue']")
@@ -124,7 +127,8 @@ public class BusPage {
     private WebElement label_net_refundable_amount;
 
 
-
+    @FindBy(xpath = "//span[text()= 'Back to Home']")
+    private WebElement button_back_to_home;
 
 
     public BusPage(WebDriver driver) {
@@ -170,14 +174,18 @@ public class BusPage {
    }
 
 
-   public void selectSeats(){
-        Element.selectElement(driver, seat_selecter, "Seat Selecter");
-   }
+//   public void selectSeats(){
+//        Element.selectElement(driver, seat_selecter, "Seat Selecter");
+//   }
 
    public void  selectBoardingPoint(){
         Element.selectElement(driver,select_boarding_point, "Select Boarding Point");
         Element.pressEnter(driver);
    }
+
+//   public void selectOptionFromDropdown(){
+//        Element.selectElement(driver, select_option_from_dropdown, "select any option from Dropdown");
+//   }
 
     public void  selectDropPoint(){
         Element.selectElement(driver,select_droping_point, "Select Drop Point");
@@ -247,4 +255,10 @@ public class BusPage {
     public String getRefundedAmount(){
         return Element.getText(driver, label_net_refundable_amount, "Net refundable amount").replace("₹ ", "");
     }
+
+    public void clickOnBackToHome(){
+        Element.selectElement(driver,button_back_to_home, "Click on Back to Home button");
+    }
+
+
 }

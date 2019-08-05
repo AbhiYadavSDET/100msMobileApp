@@ -3,6 +3,7 @@ package Helpers;
 import PageObject.*;
 import Utils.DateHelper;
 import Utils.Element;
+import Utils.Log;
 import Utils.MbkReporter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -42,15 +43,24 @@ public class BusHelper {
 
         busPage.enterDate();
 
+        busPage.selectDate();
+
         busPage.clickSearch();
 
         busPage.clickSelectSeats();
 
+        Thread.sleep(300);
+
         busPage.selectSeat();
+
+        Thread.sleep(200);
 
         busPage.selectBoardingPoint();
 
+        Thread.sleep(1000);
+
         busPage.selectDropPoint();
+        Thread.sleep(1000);
 
         busPage.clickConfirmSeats();
 
@@ -68,18 +78,29 @@ public class BusHelper {
 
         String actualMessage= busPage.getBusSuccess();
 
-        mbkReporter.verifyEqualsWithLogging(actualMessage, expectedMessage, "Bank transfer success", false );
+        mbkReporter.verifyEqualsWithLogging(actualMessage, expectedMessage, "Bus booking success", false );
 
         String amountPaid= busPage.getTotalAmountPaid();
 
+//        Log.info(amountPaid);
+
+       homePage.clickOnLogoMbk();
 
         Double balanceAfter= Double.parseDouble(homePage.getAvailableBalance())*100;
 
+//        System.out.println(balanceAfter);
+
         Double paidAmount= Double.parseDouble(amountPaid)*100;
 
-        Double expectedAmount= (balanceBefore-paidAmount);
+//        System.out.println(paidAmount);
 
-        mbkReporter.verifyEqualsWithLogging(expectedAmount, balanceAfter, "Amount Validated", false);
+//        System.out.println(balanceBefore);
+
+        Double expectedAmount= balanceBefore-paidAmount;
+
+//        System.out.println(expectedAmount);
+
+        mbkReporter.verifyEqualsWithLogging(balanceAfter, balanceBefore-paidAmount, "Amount Validated", false);
 
         homePage.clickOnLogoMbk();
 
@@ -108,19 +129,22 @@ public class BusHelper {
 
         String actualMessage= busPage.getCancellationStatus();
 
-        mbkReporter.verifyEqualsWithLogging(actualMessage, expectedMessage, "Bank transfer success", false );
+        mbkReporter.verifyEqualsWithLogging(actualMessage, expectedMessage, "Bank Cancellation success", false );
 
 
         String amountRefund= busPage.getRefundedAmount();
 
+//        Log.info(amountRefund);
+
+        busPage.clickOnBackToHome();
 
         Double balanceAfter= Double.parseDouble(homePage.getAvailableBalance())*100;
 
         Double refundedAmount= Double.parseDouble(amountRefund)*100;
 
-        Double expectedAmount= (balanceBefore+refundedAmount);
+        Double expectedAmount= balanceBefore+refundedAmount;
 
-        mbkReporter.verifyEqualsWithLogging(expectedAmount, balanceAfter, "Amount Validated", false);
+        mbkReporter.verifyEqualsWithLogging(balanceAfter, expectedAmount, "Amount Validated", false);
 
         homePage.clickOnLogoMbk();
 
