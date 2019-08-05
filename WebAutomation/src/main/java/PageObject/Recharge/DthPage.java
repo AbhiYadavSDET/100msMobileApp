@@ -41,11 +41,11 @@ public class DthPage {
 
     public void enterBpNo(String bp){
 
-        Element.enterText(driver, bpNo, bp, "Enter telephone no");
+        Element.enterText(driver, bpNo, bp, "telephone no");
     }
 
     public void enterOperator(String opt){
-        Element.enterText(driver, operator, opt, "Enter operator");
+        Element.enterText(driver, operator, opt, "operator");
         Element.pressEnter(driver);
     }
 
@@ -54,19 +54,19 @@ public class DthPage {
     }
 
     public void clickGo(){
-        Element.click(driver, ctaGo, "Click on Go");
+        Element.click(driver, ctaGo, "Go");
     }
 
     public void clickMakePayment(){
-        Element.click(driver, makePayment, "Click on Make Payment");
+        Element.click(driver, makePayment, "Make Payment");
     }
 
     public String getCNo(){
-        return Element.getText(driver, getCNo, "Get operator on bill");
+        return Element.getText(driver, getCNo, "operator on bill");
     }
 
     public String getAmt(){
-        return Element.getText(driver, getAmt, "Get operator on bill").replace("₹ ", "");
+        return Element.getText(driver, getAmt, "amount on bill").replace("₹ ", "");
     }
 
     public boolean ifTextPresent(){

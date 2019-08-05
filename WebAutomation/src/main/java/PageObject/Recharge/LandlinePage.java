@@ -45,32 +45,32 @@ public class LandlinePage {
     String bill = "//mbk-view-payment/section";
 
     public void selectOperator(String op){
-        Element.enterText(driver, operator, op, "Select MTNL Delhi");
+        Element.enterText(driver, operator, op, "MTNL Delhi");
         Element.pressEnter(driver);
     }
 
     public void enterTelNo(String mobNo){
-        Element.enterText(driver, telNo, mobNo, "Enter telephone no");
+        Element.enterText(driver, telNo, mobNo, "telephone no");
     }
 
     public void enterCAN(String cNo){
-        Element.enterText(driver, can, cNo, "Enter telephone no");
+        Element.enterText(driver, can, cNo, "operator");
     }
 
     public void clickGo(){
-        Element.click(driver, ctaGo, "Click on Go");
+        Element.click(driver, ctaGo, "Go");
     }
 
     public String getOperator(){
-        return Element.getText(driver, op, "Get operator on bill");
+        return Element.getText(driver, op, "operator on bill");
     }
 
     public String getCNo(){
-        return Element.getText(driver, cNo, "Get Cno on bill");
+        return Element.getText(driver, cNo, "Cno on bill");
     }
 
     public String getMNo(){
-        return Element.getText(driver, mNo, "Get Mob No on bill");
+        return Element.getText(driver, mNo, "Mob No on bill");
     }
 
     public boolean ifBillExists(){

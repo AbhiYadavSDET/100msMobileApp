@@ -50,6 +50,7 @@ public class MobileHelper {
         mbkReporter.verifyTrueWithLogging(mobileRechargePage.ifSuccessTextPresent(), "success text present", false);
         homePage.clickOnLogoMbk();
 
+        homePage.clickOnLogoMbk();
 
     }
 
@@ -73,6 +74,8 @@ public class MobileHelper {
 
         mbkReporter.verifyEqualsWithLogging(mobNo, mobileRechargePage.getNo(), "compare number", false);
         mbkReporter.verifyTrueWithLogging(mobileRechargePage.isPostSuccess(), "compare success text", false);
+
+        homePage.clickOnLogoMbk();
 
     }
 }

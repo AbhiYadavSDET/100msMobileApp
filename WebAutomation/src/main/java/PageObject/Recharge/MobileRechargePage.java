@@ -56,51 +56,51 @@ public class MobileRechargePage {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
         Browser.waitForPageLoad(driver, mobileNumber);
-        Config.logComment("*****On money Transfer Page*****");
+        Config.logComment("*****On mobile Recharge Page*****");
     }
 
 
     public void enterMobileNumber(String mobileNo){
-        Element.enterText(driver, mobileNumber, mobileNo, "enter mobile no");
+        Element.enterText(driver, mobileNumber, mobileNo, "mobile no");
     }
 
     public void selectPrepaid(){
-        Element.click(driver, prepaid, "Select prepaid");
+        Element.click(driver, prepaid, "prepaid");
     }
 
     public void selectPostpaid(){
-        Element.click(driver, postpaid, "Select postpaid");
+        Element.click(driver, postpaid, "postpaid");
     }
 
     public void enterOperator(String op){
 
-        Element.enterText(driver, operator, op, "enter operator");
+        Element.enterText(driver, operator, op, "operator");
         Element.pressEnter(driver);
     }
 
     public void enterCircle(String circleStr){
-        Element.enterText(driver, circle, circleStr, "enter circle");
+        Element.enterText(driver, circle, circleStr, "circle");
         Element.pressEnter(driver);
     }
 
     public void enterAmount(String amt){
-        Element.enterText(driver, amount, amt, "enter amount");
+        Element.enterText(driver, amount, amt, "amount");
     }
 
     public void clickGo(){
-        Element.click(driver, ctaGo, "Click on Go");
+        Element.click(driver, ctaGo, "Go");
     }
 
     public String getNo(){
-        return Element.getText(driver, getNo, "Get mobile on bill");
+        return Element.getText(driver, getNo, "mobile on bill");
     }
 
     public String getPrepaidNo(){
-        return Element.getText(driver, getPrepaidNo, "Get mobile on bill");
+        return Element.getText(driver, getPrepaidNo, "mobile on bill");
     }
 
     public void clickMakePayment(){
-        Element.click(driver, makePayment, "Click on Make Payment");
+        Element.click(driver, makePayment, "Make Payment");
     }
 
     public boolean ifConfirmRechargePresent(){
