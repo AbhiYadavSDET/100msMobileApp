@@ -1,8 +1,6 @@
 package PageObject.Recharge;
 
 import Utils.Element;
-import Utils.Log;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -32,42 +30,51 @@ public class GasPage {
     @FindBy(xpath = "//div[@class='col-md-9']/p[3]")
     private WebElement op;
 
-    @FindBy(xpath = "(//mbk-view-payment//button//div)[1]")
+    @FindBy(xpath = "//button[@class = 'cmat cls mg mg_icoclose mat-icon-button']")
     private WebElement crossButton;
 
     @FindBy(xpath = "//div[@class='col-md-9']/p[1]")
     private WebElement successMssg;
 
+    @FindBy(xpath = "//mbk-view-payment")
+    private WebElement window_view_bill;
+
     String billText = "No Bills Found";
 
-    public void selectOperator(String op){
+    public void selectOperator(String op) {
         Element.enterText(driver, operator, op, "MTNL Delhi");
         Element.pressEnter(driver);
     }
 
-    public void enterBpNo(String bp){
+    public void enterBpNo(String bp) {
         Element.enterText(driver, bpNo, bp, "telephone no");
     }
 
-    public void clickGo(){
+    public void clickGo() {
         Element.click(driver, ctaGo, "Go");
     }
 
-    public String getOperator(){
+    public String getOperator() {
         return Element.getText(driver, op, "operator on bill");
     }
 
-    public String getCNo(){
+    public String getCNo() {
         return Element.getText(driver, cNo, "Cno on bill");
     }
 
-    public void closeBill(){
-        Element.click(driver, crossButton, "cross button");
+    public void closeBill() {
+        Element.selectElement(driver, crossButton, "cross button");
     }
 
-    public String getSuccessText(){
+    public String getSuccessText() {
         return Element.getText(driver, successMssg, "success message");
     }
+
+    public void waitForViewBillWindow() {
+        Element.waitForVisibility(driver, crossButton, "Cross Icon");
+    }
+
+
 
 
 }

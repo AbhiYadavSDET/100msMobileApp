@@ -1,5 +1,9 @@
 package PageObject;
 
+import PageObject.Recharge.DthPage;
+import PageObject.Recharge.GasPage;
+import PageObject.Recharge.LandlinePage;
+import PageObject.Recharge.MobileRechargePage;
 import Utils.Browser;
 import Utils.Config;
 import Utils.Element;
@@ -91,20 +95,23 @@ public class HomePage {
         Element.selectElement(driver, button_add_money, "Add Money Button");
     }
 
-    public void clickOnMobile() {
+    public MobileRechargePage clickOnMobile() {
         Element.selectElement(driver, icon_mobile, "Icon Mobile");
+        return new MobileRechargePage(driver);
     }
 
-    public void clickOnDth() {
+    public DthPage clickOnDth() {
         Element.selectElement(driver, icon_dth, "Icon Dth");
+        return new DthPage(driver);
     }
 
     public void clickOnDataCard() {
         Element.selectElement(driver, icon_datacard, "Icon Datacard");
     }
 
-    public void clickOnLandline() {
+    public LandlinePage clickOnLandline() {
         Element.selectElement(driver, icon_landline, "Icon Landline");
+        return new LandlinePage(driver);
     }
 
     public void clickOnBroadband() {
@@ -115,8 +122,9 @@ public class HomePage {
         Element.selectElement(driver, icon_electricity, "Icon Electricity");
     }
 
-    public void clickOnGas() {
+    public GasPage clickOnGas() {
         Element.selectElement(driver, icon_gas, "Icon Gas");
+        return new GasPage(driver);
     }
 
     public void clickOnInsurance() {

@@ -43,7 +43,7 @@ public class MobileRechargePage {
     @FindBy(xpath = "//span[text()='Make Payment']")
     private WebElement makePayment;
 
-    @FindBy(xpath="(//mbk-view-payment//p)[1]")
+    @FindBy(xpath = "(//mbk-view-payment//p)[1]")
     private WebElement successMssg;
 
     String successMsg = "//mbk-recharge-status//p[text()='Recharge Successful']";
@@ -51,6 +51,9 @@ public class MobileRechargePage {
     String confirmRecharge = "//form/p[text()='Confirm Recharge ']";
 
     String successPostMssg = "No Bills Found";
+
+    @FindBy(xpath = "//button[@class = 'cmat cls mg mg_icoclose mat-icon-button']")
+    private WebElement crossButton;
 
     public MobileRechargePage(WebDriver driver) {
         this.driver = driver;
@@ -60,69 +63,78 @@ public class MobileRechargePage {
     }
 
 
-    public void enterMobileNumber(String mobileNo){
+    public void enterMobileNumber(String mobileNo) {
         Element.enterText(driver, mobileNumber, mobileNo, "mobile no");
     }
 
-    public void selectPrepaid(){
+    public void selectPrepaid() {
         Element.click(driver, prepaid, "prepaid");
     }
 
-    public void selectPostpaid(){
+    public void selectPostpaid() {
         Element.click(driver, postpaid, "postpaid");
     }
 
-    public void enterOperator(String op){
+    public void enterOperator(String op) {
 
         Element.enterText(driver, operator, op, "operator");
         Element.pressEnter(driver);
     }
 
-    public void enterCircle(String circleStr){
+    public void enterCircle(String circleStr) {
         Element.enterText(driver, circle, circleStr, "circle");
         Element.pressEnter(driver);
     }
 
-    public void enterAmount(String amt){
+    public void enterAmount(String amt) {
         Element.enterText(driver, amount, amt, "amount");
     }
 
-    public void clickGo(){
+    public void clickGo() {
         Element.click(driver, ctaGo, "Go");
     }
 
-    public String getNo(){
+    public String getNo() {
         return Element.getText(driver, getNo, "mobile on bill");
     }
 
-    public String getPrepaidNo(){
+    public void waitForWindowToOpen() {
+        Element.waitForVisibility(driver, getNo, "View Bill Window");
+    }
+
+    public String getPrepaidNo() {
         return Element.getText(driver, getPrepaidNo, "mobile on bill");
     }
 
-    public void clickMakePayment(){
+    public void clickMakePayment() {
         Element.click(driver, makePayment, "Make Payment");
     }
 
-    public boolean ifConfirmRechargePresent(){
+    public boolean ifConfirmRechargePresent() {
         try {
             return Element.isElementPresent(driver, By.xpath(confirmRecharge));
-        }catch (InterruptedException e){
+        } catch (InterruptedException e) {
             Log.info(e.getMessage().toString());
         }
         return false;
     }
 
-    public boolean ifSuccessTextPresent(){
+    public boolean ifSuccessTextPresent() {
         try {
             return Element.isElementPresent(driver, By.xpath(successMsg));
-        }catch (InterruptedException e){
+        } catch (InterruptedException e) {
             Log.info(e.getMessage().toString());
         }
         return false;
     }
 
-    public boolean isPostSuccess(){
+    public boolean isPostSuccess() {
         return Element.getText(driver, successMssg, "compare success mssg").equalsIgnoreCase(successPostMssg);
     }
+
+    public void closeBill() {
+        Element.selectElement(driver, crossButton, "cross button");
+    }
+
 
 }

@@ -1,8 +1,6 @@
 package RechargeAndBill;
 
-import Helpers.LoginHelper;
 import Helpers.Recharge.GasHelper;
-import Helpers.Recharge.LandlineHelper;
 import Utils.TestBase;
 import org.testng.annotations.Test;
 
@@ -13,7 +11,7 @@ public class GasTest extends TestBase {
 //        loginHelper.loginViaOtp("8527797582", "T.C. Suneja", "mayank.suneja@mobikwik.com", "8527797582");
 
         GasHelper gasHelper = new GasHelper(getWebDriver());
-        gasHelper.verifyGasBill("Indraprastha", "4000013890", "No Bills Found");
+        gasHelper.verifyGasBill("Indraprastha", "4000013890", "No Bills Found", "Indraprastha Gas Limited (IGL)");
 
     }
 }

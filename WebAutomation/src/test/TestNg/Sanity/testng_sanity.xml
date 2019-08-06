@@ -9,21 +9,21 @@
     </test>
     <!--######### Add Money #############-->
     <!--<test name="Add-Money Flow">-->
-        <!--<classes>-->
-            <!--<class name="AddMoney.AddMoneyTest"/>-->
-        <!--</classes>-->
+    <!--<classes>-->
+    <!--<class name="AddMoney.AddMoneyTest"/>-->
+    <!--</classes>-->
     <!--</test>-->
     <!--######### Insurance #############-->
     <!--<test name="Insurance">-->
-        <!--<classes>-->
-            <!--<class name="Insurance.InsuranceTest"/>-->
-        <!--</classes>-->
+    <!--<classes>-->
+    <!--<class name="Insurance.InsuranceTest"/>-->
+    <!--</classes>-->
     <!--</test>-->
     <!--######### P2P #############-->
     <!--<test name="P2P">-->
-        <!--<classes>-->
-            <!--<class name="P2P.P2PTest"/>-->
-        <!--</classes>-->
+    <!--<classes>-->
+    <!--<class name="P2P.P2PTest"/>-->
+    <!--</classes>-->
     <!--</test>-->
     <!--######### IMPS #############-->
     <!--<test name="IMPS">-->
@@ -32,39 +32,39 @@
     <!--</classes>-->
     <!--</test>-->
     <!--######### Recharge #############-->
-    <!--<test name="Recharge-Mobile">-->
-        <!--<classes>-->
-            <!--<class name="RechargeAndBill.MobileRechargeTest"/>-->
-        <!--</classes>-->
-    <!--</test>-->
+    <test name="Recharge-Mobile">
+        <classes>
+            <class name="RechargeAndBill.MobileRechargeTest"/>
+        </classes>
+    </test>
     <!--<test name="Recharge-DTH">-->
-        <!--<classes>-->
-            <!--<class name="RechargeAndBill.DthTest"/>-->
-        <!--</classes>-->
+    <!--<classes>-->
+    <!--<class name="RechargeAndBill.DthTest"/>-->
+    <!--</classes>-->
     <!--</test>-->
     <!--######### Bill Payment #############-->
-    <test name="Bill Payment-Gas">
-        <classes>
-            <class name="RechargeAndBill.GasTest"/>
-        </classes>
-    </test>
-    <test name="Bill Payment-Landline">
-        <classes>
-            <class name="RechargeAndBill.LandlineTest"/>
-        </classes>
-    </test>
-    <!--#########  Nearby #############-->
-    <test name="Nearby">
-        <classes>
-            <class name="NearByTest"/>
-        </classes>
-    </test>
+    <!--<test name="Bill Payment-Gas">-->
+        <!--<classes>-->
+            <!--<class name="RechargeAndBill.GasTest"/>-->
+        <!--</classes>-->
+    <!--</test>-->
+    <!--<test name="Bill Payment-Landline">-->
+        <!--<classes>-->
+            <!--<class name="RechargeAndBill.LandlineTest"/>-->
+        <!--</classes>-->
+    <!--</test>-->
+    <!--######### Nearby #############-->
+    <!--<test name="Nearby">-->
+        <!--<classes>-->
+            <!--<class name="NearByTest"/>-->
+        <!--</classes>-->
+    <!--</test>-->
     <!--#########  Offers #############-->
-    <test name="Offers">
-        <classes>
-            <class name="OffersTest"/>
-        </classes>
-    </test>
+    <!--<test name="Offers">-->
+        <!--<classes>-->
+            <!--<class name="OffersTest"/>-->
+        <!--</classes>-->
+    <!--</test>-->
 
 
 </suite>
