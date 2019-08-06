@@ -2,8 +2,8 @@ package PageObject;
 
 import Utils.Browser;
 import Utils.Config;
+import Utils.DateHelper;
 import Utils.Element;
-import common.DateHelper;
 import org.hibernate.validator.internal.engine.messageinterpolation.parser.ELState;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -46,6 +46,12 @@ public class BusPage {
 
     @FindBy(xpath = "//span[text()= '22']")
     private WebElement date_22;
+
+    @FindBy(xpath = "//span[text()= '10']")
+    private WebElement date_10;
+
+    @FindBy(xpath = "//span[text()= '5']")
+    private WebElement date_05;
 
     @FindBy(xpath = "//span[text()= 'Search']")
     private WebElement button_search;
@@ -156,7 +162,24 @@ public class BusPage {
    }
 
    public void selectDate(){
-        Element.selectElement(driver, date_22,"Select 22 on current calender");
+
+        int currentDate= DateHelper.getDayFromCurrentDate();
+
+        if(currentDate<15){
+
+            Element.selectElement(driver, date_22,"Select 22 on current calender");
+
+        }else if (currentDate>15 && currentDate<25){
+
+            Element.selectElement(driver, date_next, "Go to Next Month");
+            Element.selectElement(driver, date_05,"Select 10 on current calender");
+        }else if (currentDate> 25){
+
+            Element.selectElement(driver, date_next, "Go to Next Month");
+            Element.selectElement(driver, date_10,"Select 10 on current calender");
+        }
+
+
 
    }
 
