@@ -32,22 +32,22 @@
     <!--</classes>-->
     <!--</test>-->
     <!--######### Recharge #############-->
-    <test name="Recharge-Mobile">
-        <classes>
-            <class name="RechargeAndBill.MobileRechargeTest"/>
-        </classes>
-    </test>
+    <!--<test name="Recharge-Mobile">-->
+        <!--<classes>-->
+            <!--<class name="RechargeAndBill.MobileRechargeTest"/>-->
+        <!--</classes>-->
+    <!--</test>-->
     <!--<test name="Recharge-DTH">-->
     <!--<classes>-->
     <!--<class name="RechargeAndBill.DthTest"/>-->
     <!--</classes>-->
     <!--</test>-->
     <!--######### Bill Payment #############-->
-    <!--<test name="Bill Payment-Gas">-->
-        <!--<classes>-->
-            <!--<class name="RechargeAndBill.GasTest"/>-->
-        <!--</classes>-->
-    <!--</test>-->
+    <test name="Bill Payment-Gas">
+        <classes>
+            <class name="RechargeAndBill.GasTest"/>
+        </classes>
+    </test>
     <!--<test name="Bill Payment-Landline">-->
         <!--<classes>-->
             <!--<class name="RechargeAndBill.LandlineTest"/>-->

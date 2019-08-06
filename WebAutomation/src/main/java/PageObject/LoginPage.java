@@ -29,6 +29,9 @@ public class LoginPage {
     @FindBy(xpath = "//p[text() = 'Login']")
     public WebElement load_login_page;
 
+    @FindBy(xpath = "//span[text() = '+ Add Money']")
+    public WebElement addmoney_button;
+
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
@@ -54,6 +57,10 @@ public class LoginPage {
 
     public void clickSubmitOtp() {
         Element.selectElement(driver, button_submit_otp, "Submit OTP");
+    }
+
+    public void waitForAddMoneyButton() {
+        Element.waitForVisibility(driver, addmoney_button, "Add money Button");
     }
 
 

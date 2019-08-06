@@ -30,7 +30,7 @@ public class LoginHelper {
         //click on login on home page
 
 
-        if(Element.isElementPresent(driver, By.xpath("//a[text() = 'Login']"))) {
+        if (Element.isElementPresent(driver, By.xpath("//a[text() = 'Login']"))) {
 
             Log.info("User is Logged out, Proceed to Login In");
 
@@ -41,31 +41,25 @@ public class LoginHelper {
             loginPage.enterMobileNumber(mobileNumber);
 
             //click on get otp
-
-            Thread.sleep(1000);
-
             loginPage.clickGetOtp();
-            //enter otp
 
+            //enter otp
             loginPage.enterOtp();
 
-            Thread.sleep(20000);
+            //Thread.sleep(20000);
 
             //submit otp
+            //loginPage.clickSubmitOtp();
 
-            loginPage.clickSubmitOtp();
-            Thread.sleep(1000);
+            // Wait for Balance Icon
+            loginPage.waitForAddMoneyButton();
 
             sideDrawerPage = homePage.clickOnProfileIcon();
 
             Thread.sleep(2000);
-
             String actualName = sideDrawerPage.getUserName();
-//        Log.info(actualName);
             String actualEmailId = sideDrawerPage.getEmailId();
-//        Log.info(actualEmailId);
             String actualCellNumber = sideDrawerPage.getUserCellNumber();
-//        Log.info(actualCellNumber);
 
 
             mbkReporter.verifyEqualsWithLogging(actualName, expectedName, "User name displayed", false);
@@ -75,13 +69,9 @@ public class LoginHelper {
 
             sideDrawerPage.clickDarkOverlay();
 
-            Thread.sleep(1000);
-
             homePage.clickOnLogoMbk();
 
-            Thread.sleep(1000);
-
-        }else{
+        } else {
             Log.info("User is already Logged In");
             homePage.clickOnLogoMbk();
 
