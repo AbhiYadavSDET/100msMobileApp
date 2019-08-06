@@ -3,6 +3,7 @@ package PageObject;
 import Utils.Browser;
 import Utils.Config;
 import Utils.Element;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -179,13 +180,14 @@ public class HomePage {
     }
 
 
-    public boolean waitForLogin(){
-        Element.waitForVisibility(driver, label_login, "Validating if user is already logged in");
+    public boolean waitForLogin() throws InterruptedException {
+
+        Element.isElementPresent(driver, By.xpath("//a[text() = 'Login']"));
         return true;
     }
 
-    public boolean waitForBalance(){
-        Element.waitForVisibility(driver, label_available_balance, "Validating if user is already logged in");
+    public boolean waitForBalance() throws InterruptedException {
+        Element.isElementPresent(driver, By.xpath("//span[text() = 'Available Balance:']/following::span[1]"));
         return true;
     }
 

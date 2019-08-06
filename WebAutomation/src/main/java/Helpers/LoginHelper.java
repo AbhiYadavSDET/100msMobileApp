@@ -6,6 +6,7 @@ import PageObject.SideDrawerPage;
 import Utils.Element;
 import Utils.Log;
 import Utils.MbkReporter;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class LoginHelper {
@@ -29,9 +30,9 @@ public class LoginHelper {
         //click on login on home page
 
 
-        if(homePage.waitForLogin()==true) {
+        if(Element.isElementPresent(driver, By.xpath("//a[text() = 'Login']"))) {
 
-            Log.info("User is already Logged out, Proceed to Login In");
+            Log.info("User is Logged out, Proceed to Login In");
 
             loginPage = homePage.clickOnLoginButton();
 
@@ -80,8 +81,7 @@ public class LoginHelper {
 
             Thread.sleep(1000);
 
-        }else if(homePage.waitForBalance()==true){
-
+        }else{
             Log.info("User is already Logged In");
             homePage.clickOnLogoMbk();
 
