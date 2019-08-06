@@ -83,7 +83,7 @@ public class AddMoneyHelper {
 
     }
 
-    public void addMoneyViaNewcard(String amount, String cardNo, String expiryMonth, String expiryYear, String cvv, String bankPassword, String successPageStatus, String successPageText){
+    public void addMoneyViaNewcard(String amount, String cardNo, String cvv, String bankPassword, String expectedSuccessScreenStatus) throws InterruptedException {
 
         // Click on Add Money button
         addMoneyPage = homePage.clickOnAddMoney();
@@ -95,11 +95,117 @@ public class AddMoneyHelper {
         addMoneyPage.clickOnCtaContinue();
 
         // Click on the New Debit/Credit card
+        addMoneyPage.clickOnDebitCards();
+
+        // Click in new Card
+        addMoneyPage.clickOnNewCard();
+
+        // Enter the card
+        addMoneyPage.enterCardNo(cardNo);
+        addMoneyPage.enterExpiryMonth();
+        addMoneyPage.enterExpiryYear();
+
+        Thread.sleep(2000);
+        addMoneyPage.enterCvv(cvv);
+
+        // Click on the Proceed button
+        addMoneyPage.clickOnProceedToPay2();
+
+        // Handle the Indusind page
+        handleIndusindWebView(bankPassword);
+
+        //Assertions
+        // Wait for visibility of the tick icon
+        addMoneyPage.waitForTickIcon();
+
+        // Assertion on the success screen
+        String actualSuccessScreenStatus = addMoneyPage.getTrxStatus();
+        String actualSuccessScreenTotalAmount = addMoneyPage.getTotalAmountPaid();
+
+        mbkReporter.verifyEqualsWithLogging(actualSuccessScreenStatus, expectedSuccessScreenStatus, "Success Screen | TRX Status", false);
+        mbkReporter.verifyEqualsWithLogging(actualSuccessScreenTotalAmount, amount, "Success Screen | Total Amount Paid", false);
+
+        // Come back to the homepage
+        homePage.clickOnLogoMbk();
+
+    }
+
+    public void addMoneyViaSavedcard(String amount, String cvv, String bankPassword, String expectedSuccessScreenStatus, Boolean promoCodeStatus, String promoCode, String promoCodeText) throws InterruptedException {
+
+        // Click on Add Money button
+        addMoneyPage = homePage.clickOnAddMoney();
+
+        // Enter the amount
+        addMoneyPage.enterAmount(amount);
+
+        // Click on continue button
+        addMoneyPage.clickOnCtaContinue();
+
+        // Click on the New Debit/Credit card
+        addMoneyPage.clickOnDebitCards();
 
 
+        // Select the Saved card
+        addMoneyPage.clickOnSavedCard();
+
+        // Enter the CVV
+        addMoneyPage.enterSavedCardCvv(cvv);
+
+        if (promoCodeStatus) {
+            applyPromoCodeAddMoney(promoCode, promoCodeText);
+        }
+
+        // Click on the Proceed button
+        addMoneyPage.clickOnPayNow();
+
+        // Handle the Indusind page
+        handleIndusindWebView(bankPassword);
+
+        //Assertions
+        // Wait for visibility of the tick icon
+        addMoneyPage.waitForTickIcon();
+
+        // Assertion on the success screen
+        String actualSuccessScreenStatus = addMoneyPage.getTrxStatus();
+        String actualSuccessScreenTotalAmount = addMoneyPage.getTotalAmountPaid();
+
+        mbkReporter.verifyEqualsWithLogging(actualSuccessScreenStatus, expectedSuccessScreenStatus, "Success Screen | TRX Status", false);
+        mbkReporter.verifyEqualsWithLogging(actualSuccessScreenTotalAmount, amount, "Success Screen | Total Amount Paid", false);
+
+        // Come back to the homepage
+        homePage.clickOnLogoMbk();
+
+    }
+
+    public void handleIndusindWebView(String password) throws InterruptedException {
+        Element.waitForVisibility(driver, addMoneyPage.indusInd_logo, "IndusInd Logo");
+
+        addMoneyPage.clickOnBankPageSecurePassword();
+        addMoneyPage.clickOnBankPageContinueButton();
+        addMoneyPage.enterBankPagePassword(password);
+        addMoneyPage.clickOnBankPageSubmitButton();
+
+        Thread.sleep(10000);
 
 
     }
 
+    public void applyPromoCodeAddMoney(String promoCode, String expectedText) throws InterruptedException {
+        // Click on Apply a coupon code
+        addMoneyPage.clickOnApplyACouponCode();
+
+        // Enter the code
+        addMoneyPage.enterCoupon(promoCode);
+
+        // Click on Apply
+        addMoneyPage.clickOnApply();
+
+        Thread.sleep(3000);
+
+        // Assert the promocode text
+        String actualCouponCodeText = addMoneyPage.getCouponCodeText();
+
+        mbkReporter.verifyEqualsWithLogging(actualCouponCodeText, expectedText, "Coupon Code Text", false);
+    }
 
 }
