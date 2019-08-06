@@ -42,53 +42,74 @@ public class LandlinePage {
     @FindBy(xpath = "//div[@class='col-md-9']/p[3]")
     private WebElement op;
 
+    @FindBy(xpath = "/mbk-view-payment/section")
+    private WebElement bill_window;
+
+    @FindBy(xpath = "//div[@class='col-md-9']/p[1]")
+    private WebElement bill_text;
+
+    @FindBy(xpath = "//button[@class = 'cmat cls mg mg_icoclose mat-icon-button']")
+    private WebElement crossButton;
+
     String bill = "//mbk-view-payment/section";
 
-    public void selectOperator(String op){
+    public void selectOperator(String op) {
         Element.enterText(driver, operator, op, "MTNL Delhi");
         Element.pressEnter(driver);
     }
 
-    public void enterTelNo(String mobNo){
+    public void enterTelNo(String mobNo) {
         Element.enterText(driver, telNo, mobNo, "telephone no");
     }
 
-    public void enterCAN(String cNo){
-        Element.enterText(driver, can, cNo, "operator");
+    public void enterCAN(String cNo) {
+        Element.enterText(driver, can, cNo, "cn");
     }
 
-    public void clickGo(){
+    public void clickGo() {
         Element.click(driver, ctaGo, "Go");
     }
 
-    public String getOperator(){
+    public String getOperator() {
         return Element.getText(driver, op, "operator on bill");
     }
 
-    public String getCNo(){
+    public String getCNo() {
         return Element.getText(driver, cNo, "Cno on bill");
     }
 
-    public String getMNo(){
+    public String getMNo() {
         return Element.getText(driver, mNo, "Mob No on bill");
     }
 
-    public boolean ifBillExists(){
+    public String getBillText() {
+        return Element.getText(driver, bill_text, "Bill Text");
+    }
+
+    public boolean ifBillExists() {
         try {
             return Element.isElementPresent(driver, By.xpath(bill));
-        }catch (InterruptedException e){
+        } catch (InterruptedException e) {
             Log.info(e.getMessage().toString());
         }
         return false;
     }
 
-    public boolean ifTextPresent(){
+    public boolean ifTextPresent() {
         try {
             return Element.isElementPresent(driver, By.xpath(billText));
-        }catch (InterruptedException e){
+        } catch (InterruptedException e) {
             Log.info(e.getMessage().toString());
         }
         return false;
+    }
+
+    public void waitForBillWindow() {
+        Element.waitForVisibility(driver, crossButton, "Bill Window");
+    }
+
+    public void closeBill() {
+        Element.selectElement(driver, crossButton, "cross button");
     }
 
 }

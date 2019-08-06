@@ -1,46 +1,53 @@
 package Helpers.Recharge;
 
-import PageObject.DashboardPage;
 import PageObject.HomePage;
-import PageObject.OffersPage;
 import PageObject.Recharge.GasPage;
-import PageObject.Recharge.RechargePage;
-import Utils.Log;
 import Utils.MbkReporter;
 import org.openqa.selenium.WebDriver;
 
 public class GasHelper {
     WebDriver driver;
-    DashboardPage dashboardPage;
     MbkReporter mbkReporter;
     GasPage gasPage;
-    RechargePage rechargePage;
     HomePage homePage;
 
     public GasHelper(WebDriver driver) {
         this.driver = driver;
-        dashboardPage = new DashboardPage(driver);
         mbkReporter = new MbkReporter();
         homePage = new HomePage(driver);
     }
 
-    public void verifyGasBill(String op, String bpNo, String text){
-        rechargePage = dashboardPage.clickOnRechargeSideDrawer();
+    public void verifyGasBill(String op, String bpNo, String text, String expectedOperatorText) throws InterruptedException {
+        // Click on Gas Page
+        gasPage = homePage.clickOnGas();
 
-        gasPage = rechargePage.clickOnGas();
-
+        // Select the Operator
         gasPage.selectOperator(op);
 
+        // Enter the Bp No
         gasPage.enterBpNo(bpNo);
 
+        // Click on Go
         gasPage.clickGo();
 
-        mbkReporter.verifyTrueWithLogging(gasPage.getOperator().contains(op), "Verify same operator", false);
-        mbkReporter.verifyTrueWithLogging(gasPage.getCNo().contains(bpNo), "Verify same cno", false);
-        mbkReporter.verifyEqualsWithLogging(text, gasPage.getSuccessText(), "compare bill text", false);
+        // Wait for View Bill window to open
+        gasPage.waitForViewBillWindow();
 
+        // fetch the values on the window
+        String actualStatus = gasPage.getSuccessText();
+        String actualBpNo = gasPage.getCNo();
+        String actualOperator = gasPage.getOperator();
+
+        //Assertions
+        mbkReporter.verifyEqualsWithLogging(actualBpNo, bpNo, "Verify Bp No", false);
+        mbkReporter.verifyEqualsWithLogging(actualOperator, expectedOperatorText, "Verify Operator", false);
+        mbkReporter.verifyEqualsWithLogging(actualStatus, text, "Verify Message", false);
+
+        // Click on the close Icon
+        Thread.sleep(3000);
         gasPage.closeBill();
 
+        // return back to the Hom screen
         homePage.clickOnLogoMbk();
 
     }

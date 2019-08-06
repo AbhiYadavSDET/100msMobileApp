@@ -1,8 +1,13 @@
 package PageObject;
 
+import PageObject.Recharge.DthPage;
+import PageObject.Recharge.GasPage;
+import PageObject.Recharge.LandlinePage;
+import PageObject.Recharge.MobileRechargePage;
 import Utils.Browser;
 import Utils.Config;
 import Utils.Element;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -91,20 +96,23 @@ public class HomePage {
         Element.selectElement(driver, button_add_money, "Add Money Button");
     }
 
-    public void clickOnMobile() {
+    public MobileRechargePage clickOnMobile() {
         Element.selectElement(driver, icon_mobile, "Icon Mobile");
+        return new MobileRechargePage(driver);
     }
 
-    public void clickOnDth() {
+    public DthPage clickOnDth() {
         Element.selectElement(driver, icon_dth, "Icon Dth");
+        return new DthPage(driver);
     }
 
     public void clickOnDataCard() {
         Element.selectElement(driver, icon_datacard, "Icon Datacard");
     }
 
-    public void clickOnLandline() {
+    public LandlinePage clickOnLandline() {
         Element.selectElement(driver, icon_landline, "Icon Landline");
+        return new LandlinePage(driver);
     }
 
     public void clickOnBroadband() {
@@ -115,8 +123,9 @@ public class HomePage {
         Element.selectElement(driver, icon_electricity, "Icon Electricity");
     }
 
-    public void clickOnGas() {
+    public GasPage clickOnGas() {
         Element.selectElement(driver, icon_gas, "Icon Gas");
+        return new GasPage(driver);
     }
 
     public void clickOnInsurance() {
@@ -153,7 +162,7 @@ public class HomePage {
     }
 
     public String getAvailableBalance() {
-        return Element.getText(driver, label_available_balance, "Available Balance").replace("₹ ", "");
+        return Element.getText(driver, label_available_balance, "Available Balance").replace("₹ ", "").replace(",", "");
     }
 
     public void clickOnBalanceDropdown() {
@@ -177,6 +186,19 @@ public class HomePage {
         Element.selectElement(driver, profile_icon, "Side Drawer");
         return new SideDrawerPage(driver);
     }
+
+
+    public boolean waitForLogin() throws InterruptedException {
+
+        Element.isElementPresent(driver, By.xpath("//a[text() = 'Login']"));
+        return true;
+    }
+
+    public boolean waitForBalance() throws InterruptedException {
+        Element.isElementPresent(driver, By.xpath("//span[text() = 'Available Balance:']/following::span[1]"));
+        return true;
+    }
+
 
 
 }

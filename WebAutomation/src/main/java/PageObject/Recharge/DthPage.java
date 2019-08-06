@@ -39,42 +39,46 @@ public class DthPage {
 
     String text = "//div//p[text()='Minimum recharge amount should be Rs.20']";
 
-    public void enterBpNo(String bp){
+    public void enterBpNo(String bp) {
 
         Element.enterText(driver, bpNo, bp, "telephone no");
     }
 
-    public void enterOperator(String opt){
+    public void enterOperator(String opt) {
         Element.enterText(driver, operator, opt, "operator");
         Element.pressEnter(driver);
     }
 
-    public void enterAmount(String amt){
+    public void enterAmount(String amt) {
         Element.enterText(driver, amount, amt, "enter amount");
     }
 
-    public void clickGo(){
+    public void clickGo() {
         Element.click(driver, ctaGo, "Go");
     }
 
-    public void clickMakePayment(){
+    public void clickMakePayment() {
         Element.click(driver, makePayment, "Make Payment");
     }
 
-    public String getCNo(){
+    public String getCNo() {
         return Element.getText(driver, getCNo, "operator on bill");
     }
 
-    public String getAmt(){
+    public String getAmt() {
         return Element.getText(driver, getAmt, "amount on bill").replace("₹ ", "");
     }
 
-    public boolean ifTextPresent(){
+    public boolean ifTextPresent() {
         try {
             return Element.isElementPresent(driver, By.xpath(text));
-        }catch (InterruptedException e){
+        } catch (InterruptedException e) {
             Log.info(e.getMessage().toString());
         }
         return false;
+    }
+
+    public void waitForMakePaymentScreen() {
+        Element.waitForVisibility(driver, getCNo, "Make Payment Screen");
     }
 }

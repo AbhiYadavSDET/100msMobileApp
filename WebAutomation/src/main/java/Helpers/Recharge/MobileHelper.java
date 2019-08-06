@@ -1,34 +1,25 @@
 package Helpers.Recharge;
 
-import PageObject.DashboardPage;
 import PageObject.HomePage;
-import PageObject.Recharge.LandlinePage;
 import PageObject.Recharge.MobileRechargePage;
-import PageObject.Recharge.RechargePage;
 import Utils.MbkReporter;
 import org.openqa.selenium.WebDriver;
-import sun.security.ssl.HandshakeMessage;
 
 public class MobileHelper {
     WebDriver driver;
-    DashboardPage dashboardPage;
     MobileRechargePage mobileRechargePage;
     MbkReporter mbkReporter;
-    RechargePage rechargePage;
     HomePage homePage;
 
     public MobileHelper(WebDriver driver) {
         this.driver = driver;
-        dashboardPage = new DashboardPage(driver);
         mbkReporter = new MbkReporter();
         homePage = new HomePage(driver);
     }
 
-    public void verifyPrepaid(String operator, String mobNo, String circle, String amount){
+    public void verifyPrepaid(String operator, String mobNo, String circle, String amount) {
 
-        rechargePage = dashboardPage.clickOnRechargeSideDrawer();
-
-        mobileRechargePage = rechargePage.clickOnMobile();
+        mobileRechargePage = homePage.clickOnMobile();
 
         mobileRechargePage.enterMobileNumber(mobNo);
 
@@ -54,11 +45,9 @@ public class MobileHelper {
 
     }
 
-    public void verifyPostpaid(String operator, String mobNo, String circle, String amount){
+    public void verifyPostpaid(String operator, String mobNo, String circle, String amount) throws InterruptedException {
 
-        rechargePage = dashboardPage.clickOnRechargeSideDrawer();
-
-        mobileRechargePage = rechargePage.clickOnMobile();
+        mobileRechargePage = homePage.clickOnMobile();
 
         mobileRechargePage.enterMobileNumber(mobNo);
 
@@ -72,9 +61,16 @@ public class MobileHelper {
 
         mobileRechargePage.clickGo();
 
+        // Wait for the Pop up window to open
+        mobileRechargePage.waitForWindowToOpen();
         mbkReporter.verifyEqualsWithLogging(mobNo, mobileRechargePage.getNo(), "compare number", false);
         mbkReporter.verifyTrueWithLogging(mobileRechargePage.isPostSuccess(), "compare success text", false);
 
+        // Click on the close Icon
+        Thread.sleep(3000);
+        mobileRechargePage.closeBill();
+
+        // return back to the Hom screen
         homePage.clickOnLogoMbk();
 
     }
