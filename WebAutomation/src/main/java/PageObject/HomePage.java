@@ -179,6 +179,18 @@ public class HomePage {
     }
 
 
+    public boolean waitForLogin(){
+        Element.waitForVisibility(driver, label_login, "Validating if user is already logged in");
+        return true;
+    }
+
+    public boolean waitForBalance(){
+        Element.waitForVisibility(driver, label_available_balance, "Validating if user is already logged in");
+        return true;
+    }
+
+
+
 }
 
 
