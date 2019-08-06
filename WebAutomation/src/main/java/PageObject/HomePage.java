@@ -7,6 +7,7 @@ import PageObject.Recharge.MobileRechargePage;
 import Utils.Browser;
 import Utils.Config;
 import Utils.Element;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -185,6 +186,19 @@ public class HomePage {
         Element.selectElement(driver, profile_icon, "Side Drawer");
         return new SideDrawerPage(driver);
     }
+
+
+    public boolean waitForLogin() throws InterruptedException {
+
+        Element.isElementPresent(driver, By.xpath("//a[text() = 'Login']"));
+        return true;
+    }
+
+    public boolean waitForBalance() throws InterruptedException {
+        Element.isElementPresent(driver, By.xpath("//span[text() = 'Available Balance:']/following::span[1]"));
+        return true;
+    }
+
 
 
 }

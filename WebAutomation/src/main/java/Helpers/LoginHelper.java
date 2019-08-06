@@ -3,7 +3,10 @@ package Helpers;
 import PageObject.HomePage;
 import PageObject.LoginPage;
 import PageObject.SideDrawerPage;
+import Utils.Element;
+import Utils.Log;
 import Utils.MbkReporter;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class LoginHelper {
@@ -25,52 +28,63 @@ public class LoginHelper {
 
     public void loginViaOtp(String mobileNumber, String expectedName, String expectedEmailId, String expectedCellNumber) throws InterruptedException {
         //click on login on home page
-        loginPage = homePage.clickOnLoginButton();
 
-        // enter mobile number
 
-        loginPage.enterMobileNumber(mobileNumber);
+        if(Element.isElementPresent(driver, By.xpath("//a[text() = 'Login']"))) {
 
-        //click on get otp
+            Log.info("User is Logged out, Proceed to Login In");
 
-        Thread.sleep(1000);
+            loginPage = homePage.clickOnLoginButton();
 
-        loginPage.clickGetOtp();
-        //enter otp
+            // enter mobile number
 
-        loginPage.enterOtp();
+            loginPage.enterMobileNumber(mobileNumber);
 
-        Thread.sleep(20000);
+            //click on get otp
 
-        //submit otp
+            Thread.sleep(1000);
 
-        loginPage.clickSubmitOtp();
-        Thread.sleep(1000);
+            loginPage.clickGetOtp();
+            //enter otp
 
-        sideDrawerPage = homePage.clickOnProfileIcon();
+            loginPage.enterOtp();
 
-        Thread.sleep(2000);
+            Thread.sleep(20000);
 
-        String actualName = sideDrawerPage.getUserName();
+            //submit otp
+
+            loginPage.clickSubmitOtp();
+            Thread.sleep(1000);
+
+            sideDrawerPage = homePage.clickOnProfileIcon();
+
+            Thread.sleep(2000);
+
+            String actualName = sideDrawerPage.getUserName();
 //        Log.info(actualName);
-        String actualEmailId = sideDrawerPage.getEmailId();
+            String actualEmailId = sideDrawerPage.getEmailId();
 //        Log.info(actualEmailId);
-        String actualCellNumber = sideDrawerPage.getUserCellNumber();
+            String actualCellNumber = sideDrawerPage.getUserCellNumber();
 //        Log.info(actualCellNumber);
 
 
-        mbkReporter.verifyEqualsWithLogging(actualName, expectedName, "User name displayed", false);
-        mbkReporter.verifyEqualsWithLogging(actualEmailId, expectedEmailId, "User Email ID displayed", false);
-        mbkReporter.verifyEqualsWithLogging(actualCellNumber, expectedCellNumber, "User Cell Number Displayed", false);
+            mbkReporter.verifyEqualsWithLogging(actualName, expectedName, "User name displayed", false);
+            mbkReporter.verifyEqualsWithLogging(actualEmailId, expectedEmailId, "User Email ID displayed", false);
+            mbkReporter.verifyEqualsWithLogging(actualCellNumber, expectedCellNumber, "User Cell Number Displayed", false);
 
 
-        sideDrawerPage.clickDarkOverlay();
+            sideDrawerPage.clickDarkOverlay();
 
-        Thread.sleep(1000);
+            Thread.sleep(1000);
 
-        homePage.clickOnLogoMbk();
+            homePage.clickOnLogoMbk();
 
-        Thread.sleep(1000);
+            Thread.sleep(1000);
 
+        }else{
+            Log.info("User is already Logged In");
+            homePage.clickOnLogoMbk();
+
+        }
     }
 }
