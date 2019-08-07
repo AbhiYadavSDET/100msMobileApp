@@ -28,8 +28,6 @@ public class LoginHelper {
 
     public void loginViaOtp(String mobileNumber, String expectedName, String expectedEmailId, String expectedCellNumber) throws InterruptedException {
         //click on login on home page
-
-
         if (Element.isElementPresent(driver, By.xpath("//a[text() = 'Login']"))) {
 
             Log.info("User is Logged out, Proceed to Login In");
@@ -46,12 +44,7 @@ public class LoginHelper {
             //enter otp
             loginPage.enterOtp();
 
-            //Thread.sleep(20000);
-
-            //submit otp
-            //loginPage.clickSubmitOtp();
-
-            // Wait for Balance Icon
+            // Wait for Add Money button
             loginPage.waitForAddMoneyButton();
 
             sideDrawerPage = homePage.clickOnProfileIcon();
@@ -73,7 +66,6 @@ public class LoginHelper {
 
         } else {
             Log.info("User is already Logged In");
-            homePage.clickOnLogoMbk();
 
         }
     }

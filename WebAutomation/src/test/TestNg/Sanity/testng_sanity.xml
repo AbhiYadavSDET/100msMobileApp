@@ -31,40 +31,44 @@
     <!--<class name="BankTransferFlow.BankTransferTest"/>-->
     <!--</classes>-->
     <!--</test>-->
+
     <!--######### Recharge #############-->
-    <!--<test name="Recharge-Mobile">-->
-        <!--<classes>-->
-            <!--<class name="RechargeAndBill.MobileRechargeTest"/>-->
-        <!--</classes>-->
-    <!--</test>-->
-    <!--<test name="Recharge-DTH">-->
-    <!--<classes>-->
-    <!--<class name="RechargeAndBill.DthTest"/>-->
-    <!--</classes>-->
-    <!--</test>-->
+    <test name="Recharge-Mobile">
+        <classes>
+            <class name="RechargeAndBill.MobileRechargeTest"/>
+        </classes>
+    </test>
+    <test name="Recharge-DTH">
+        <classes>
+            <class name="RechargeAndBill.DthTest"/>
+        </classes>
+    </test>
+
     <!--######### Bill Payment #############-->
     <test name="Bill Payment-Gas">
         <classes>
             <class name="RechargeAndBill.GasTest"/>
         </classes>
     </test>
-    <!--<test name="Bill Payment-Landline">-->
-        <!--<classes>-->
-            <!--<class name="RechargeAndBill.LandlineTest"/>-->
-        <!--</classes>-->
-    <!--</test>-->
+    <test name="Bill Payment-Landline">
+        <classes>
+            <class name="RechargeAndBill.LandlineTest"/>
+        </classes>
+    </test>
+
     <!--######### Nearby #############-->
-    <!--<test name="Nearby">-->
-        <!--<classes>-->
-            <!--<class name="NearByTest"/>-->
-        <!--</classes>-->
-    <!--</test>-->
+    <test name="Nearby">
+        <classes>
+            <class name="NearByTest"/>
+        </classes>
+    </test>
+
     <!--#########  Offers #############-->
-    <!--<test name="Offers">-->
-        <!--<classes>-->
-            <!--<class name="OffersTest"/>-->
-        <!--</classes>-->
-    <!--</test>-->
+    <test name="Offers">
+        <classes>
+            <class name="OffersTest"/>
+        </classes>
+    </test>
 
 
 </suite>
