@@ -79,6 +79,9 @@ public class HomePage {
     @FindBy(xpath = "//a[@class='mg mg_icomenu mnuicon gradbg7_bf csrPtr noblur']")
     private WebElement profile_icon;
 
+    @FindBy(xpath = "//a[text()= 'Help?']")
+    private  WebElement help_icon;
+
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
@@ -191,6 +194,10 @@ public class HomePage {
         return true;
     }
 
+    public HelpPage clickHelpIcon(){
+        Element.selectElement(driver, help_icon, "Click on Help Icon");
+        return new HelpPage(driver);
+    }
 
 
 }
