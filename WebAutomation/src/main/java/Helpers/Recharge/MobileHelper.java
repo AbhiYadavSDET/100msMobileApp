@@ -17,7 +17,7 @@ public class MobileHelper {
         homePage = new HomePage(driver);
     }
 
-    public void verifyPrepaid(String operator, String mobNo, String circle, String amount) {
+    public void verifyPrepaid(String operator, String mobNo, String circle, String amount, boolean promoCodeStatus, String promoCode, String promoCodeText) {
 
         mobileRechargePage = homePage.clickOnMobile();
 
@@ -33,13 +33,28 @@ public class MobileHelper {
 
         mobileRechargePage.clickGo();
 
+        // Wait for the Pop up window to open
+        mobileRechargePage.waitForPrePaidWindowToOpen();
+
         mbkReporter.verifyTrueWithLogging(mobileRechargePage.ifConfirmRechargePresent(), "bill text present", false);
         mbkReporter.verifyEqualsWithLogging(mobNo, mobileRechargePage.getPrepaidNo(), "compare number", false);
 
+
+        if (promoCodeStatus) {
+            mobileRechargePage.clickPromoCode();
+
+            mobileRechargePage.enterPromoCode();
+
+            mobileRechargePage.applyPromoCode();
+
+            String actualPromoCodeText = mobileRechargePage.getPromoCodeTextOnSuccessScreen();
+            String expectedPromoCodeText = "You will get ₹ " + promoCodeText + " SuperCash";
+            mbkReporter.verifyEqualsWithLogging(actualPromoCodeText, expectedPromoCodeText, "After TRX | Verify Promo Code Text", false);
+
+        }
         mobileRechargePage.clickMakePayment();
 
         mbkReporter.verifyTrueWithLogging(mobileRechargePage.ifSuccessTextPresent(), "success text present", false);
-        homePage.clickOnLogoMbk();
 
         homePage.clickOnLogoMbk();
 
