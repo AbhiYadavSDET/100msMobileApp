@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Help Flow">
+    <test verbose="2" preserve-order="true" name="HelpTest.java">
+        <groups>
+            <run>
+                <include name="helpFlow"/>
+            </run>
+        </groups>
+
+
+        <classes>
+            <class name="Help.HelpTest"/>
+        </classes>
+    </test>
+
+</suite>
