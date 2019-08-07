@@ -48,9 +48,11 @@ public class HelpHelper {
 
         Thread.sleep(100);
 
+        helpPage.dismissGreyArea();
+
         homePage.clickOnLogoMbk();
 
-        
+
     }
 
 
