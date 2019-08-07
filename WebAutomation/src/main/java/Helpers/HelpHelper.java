@@ -46,7 +46,11 @@ public class HelpHelper {
 
         }
 
+        Thread.sleep(100);
 
+        homePage.clickOnLogoMbk();
+
+        
     }
 
 
