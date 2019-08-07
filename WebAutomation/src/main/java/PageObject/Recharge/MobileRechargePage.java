@@ -46,6 +46,15 @@ public class MobileRechargePage {
     @FindBy(xpath = "(//mbk-view-payment//p)[1]")
     private WebElement successMssg;
 
+    @FindBy(xpath = "//a[text()='Apply a Coupon Code']")
+    private WebElement applyPromoCode;
+
+    @FindBy(xpath = "//input[@formcontrolname='couponInput']")
+    private WebElement inputPromoCode;
+
+    @FindBy(xpath = "//button[text()='Apply']")
+    private WebElement applyPromo;
+
     String successMsg = "//mbk-recharge-status//p[text()='Recharge Successful']";
 
     String confirmRecharge = "//form/p[text()='Confirm Recharge ']";
@@ -54,6 +63,9 @@ public class MobileRechargePage {
 
     @FindBy(xpath = "//button[@class = 'cmat cls mg mg_icoclose mat-icon-button']")
     private WebElement crossButton;
+
+    @FindBy(xpath = "//div[@class='col-md-12 ft13']/div/p[2]")
+    private WebElement promoSucc;
 
     public MobileRechargePage(WebDriver driver) {
         this.driver = driver;
@@ -102,6 +114,10 @@ public class MobileRechargePage {
         Element.waitForVisibility(driver, getNo, "View Bill Window");
     }
 
+    public void waitForPrePaidWindowToOpen() {
+        Element.waitForVisibility(driver, getPrepaidNo, "View Bill Window");
+    }
+
     public String getPrepaidNo() {
         return Element.getText(driver, getPrepaidNo, "mobile on bill");
     }
@@ -136,5 +152,20 @@ public class MobileRechargePage {
         Element.selectElement(driver, crossButton, "cross button");
     }
 
+    public void clickPromoCode(){
+        Element.click(driver, applyPromoCode, "promo code");
+    }
+
+    public void enterPromoCode(){
+        Element.enterText(driver, inputPromoCode, "APPTEAMREC", "promo code");
+    }
+
+    public void applyPromoCode(){
+        Element.click(driver, applyPromo, "promo code");
+    }
+
+    public String getPromoCodeTextOnSuccessScreen(){
+        return Element.getText(driver, promoSucc, "promo code success text");
+    }
 
 }
