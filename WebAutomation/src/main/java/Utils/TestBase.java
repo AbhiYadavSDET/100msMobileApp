@@ -5,8 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Listeners;
 
 import java.io.FileInputStream;
@@ -19,8 +19,9 @@ import java.util.concurrent.TimeUnit;
 public class TestBase {
 
     protected static Properties properties;
-    protected WebDriver driver = null;
+    public WebDriver driver = null;
     protected static Logger log = Logger.getLogger(TestBase.class);
+    private static ThreadLocal<WebDriver> webDriverThread = new ThreadLocal<>();
 
 
     protected void initiateTest() {
@@ -70,11 +71,23 @@ public class TestBase {
         event.register(eventListener);
         driver = event;
 
+        setWebDriver(driver);
+
         String webUrl = "https://www.mobikwik.com";
         webUrl = properties.getProperty("WebUrl", "https://www.mobikwik.com");
-        driver.get(webUrl);
+        getWebDriver().get(webUrl);
+
 
     }
+
+    public static WebDriver getWebDriver() {
+        return webDriverThread.get();
+    }
+
+    public void setWebDriver(WebDriver driver) {
+        webDriverThread.set(driver);
+    }
+
 
     private void fetchDataFromPropertiesFile() {
 
@@ -116,15 +129,16 @@ public class TestBase {
         }
     }
 
-    @BeforeMethod(alwaysRun = true)
+    @BeforeSuite(alwaysRun = true)
     public void intialization() {
         initiateTest();
+        Log.info("Setup");
     }
 
 
-    @AfterMethod(alwaysRun = true)
+    @AfterSuite(alwaysRun = true)
     public void tearDown() {
-        Browser.quitBrowser(driver);
+        Browser.quitBrowser(getWebDriver());
     }
 
 }

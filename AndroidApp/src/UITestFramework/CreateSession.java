@@ -35,8 +35,8 @@ public class CreateSession {
 
     String androidOSVersion = "8.0";
     String portNo = "4723";
-    String udid = "ZY223F3MP3";
-    String deviceName = "Motorola G5";
+    String udid = "330062db17b4a48b";
+    String deviceName = "Samsung J6";
 
     private String reportDirectory = "reports";
     private String reportFormat = "xml";
