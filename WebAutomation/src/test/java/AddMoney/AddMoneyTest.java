@@ -46,7 +46,7 @@ public class AddMoneyTest extends TestBase {
 //        loginHelper.loginViaOtp("8527797582", "T.C. Suneja", "mayank.suneja@mobikwik.com", "8527797582");
 
         AddMoneyHelper addMoneyHelper = new AddMoneyHelper(getWebDriver());
-        addMoneyHelper.addMoneyViaSavedcard("80", "239", "Paraj@1234", "Money Added Successfully", true, "ADDTST5M", "You will get ₹ 1.0 SuperCash");
+        addMoneyHelper.addMoneyViaSavedcard("90", "239", "Paraj@1234", "Money Added Successfully", true, "ADDTST5M", "You will get ₹ 1.0 SuperCash");
     }
 
 

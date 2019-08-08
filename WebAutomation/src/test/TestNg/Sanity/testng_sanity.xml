@@ -9,11 +9,11 @@
     </test>
 
     <!--######### Add Money #############-->
-    <!--<test name="Add-Money Flow">-->
-    <!--<classes>-->
-    <!--<class name="AddMoney.AddMoneyTest"/>-->
-    <!--</classes>-->
-    <!--</test>-->
+    <test name="Add-Money Flow">
+        <classes>
+            <class name="AddMoney.AddMoneyTest"/>
+        </classes>
+    </test>
 
     <!--######### Insurance #############-->
     <test name="Insurance">

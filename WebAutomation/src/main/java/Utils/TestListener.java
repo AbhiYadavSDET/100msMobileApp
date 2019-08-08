@@ -46,9 +46,14 @@ public class TestListener implements ITestListener, ISuiteListener {
         Config.logComment("***************[Test Failed] [Test Class: " + arg0.getInstanceName() + "] [Test Method: " + arg0.getMethod().getMethodName() + "] [Test Description: " + arg0.getMethod().getDescription() + "]***************");
 
         try {
-            Log.info("Click | Mbk Icon");
-            // Return back to the home-screen
             MbkCommonControlsPage mbkCommonControlsPage = new MbkCommonControlsPage(TestBase.getWebDriver());
+            // Check for the Cross Icon
+            Log.info("Check | Cross Icon");
+            mbkCommonControlsPage.closeBill();
+
+            // Check for the Mbk Logo
+            Log.info("Check | Mbk Logo");
+            // Return back to the home-screen
             mbkCommonControlsPage.clickOnLogoMbk();
             Thread.sleep(5000);
         } catch (Exception e) {
