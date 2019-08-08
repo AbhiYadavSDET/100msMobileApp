@@ -11,8 +11,8 @@ public class BusTest extends TestBase {
     @Test(groups = {"busFlow"}, priority = 0, description = "Verify Bus Booking Flow on Web")
     public void Test_Bus_Flow() throws InterruptedException {
 
-        LoginHelper loginHelper= new LoginHelper(driver);
-        loginHelper.loginViaOtp("7795709569", "para jain", "par.ajjain@gmail.com", "7795709569");
+//        LoginHelper loginHelper= new LoginHelper(driver);
+//        loginHelper.loginViaOtp("7795709569", "para jain", "par.ajjain@gmail.com", "7795709569");
 
 
         BusHelper busHelper= new BusHelper(driver);

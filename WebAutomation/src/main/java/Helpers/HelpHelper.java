@@ -1,10 +1,8 @@
 package Helpers;
 
-import PageObject.DashboardPage;
 import PageObject.HelpPage;
 import PageObject.HomePage;
 import Utils.Element;
-import Utils.Log;
 import Utils.MbkReporter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -14,20 +12,18 @@ public class HelpHelper {
     WebDriver driver;
     HomePage homePage;
     MbkReporter mbkReporter;
-    DashboardPage dashboardPage;
     HelpPage helpPage;
 
 
     public HelpHelper(WebDriver driver) {
         this.driver = driver;
         homePage = new HomePage(driver);
-        dashboardPage= new DashboardPage(driver);
         mbkReporter = new MbkReporter();
     }
 
     public void help(String query) throws InterruptedException {
 
-        helpPage=homePage.clickHelpIcon();
+        helpPage = homePage.clickHelpIcon();
 
         helpPage.selectAddMoneyIcon();
 
@@ -39,17 +35,16 @@ public class HelpHelper {
 
         helpPage.selectSend();
 
-        if(Element.isElementPresent(driver, By.xpath("//p[text()= 'Sorry for the inconvenience']"))){
+        Thread.sleep(3000);
 
-           String ticketId= helpPage.getTicketId();
-            Log.info("Issue Raised :"+ticketId);
+        // Aasertions
+        mbkReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath("//p[text()= 'Sorry for the inconvenience']")), "Ticket ID", false);
 
-        }
+        // Click on the cross Button
+        Thread.sleep(3000);
+        helpPage.clickOnCrossButton();
 
-        Thread.sleep(100);
-
-        helpPage.dismissGreyArea();
-
+        // Reach the home screen
         homePage.clickOnLogoMbk();
 
 

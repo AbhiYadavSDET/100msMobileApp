@@ -3,13 +3,10 @@ package PageObject;
 import Utils.Browser;
 import Utils.Config;
 import Utils.Element;
-import net.bytebuddy.matcher.ElementMatcher;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
-import java.sql.Driver;
 
 public class HelpPage {
 
@@ -46,6 +43,9 @@ public class HelpPage {
     @FindBy(xpath = "//div[@class= 'overlaybgDark zi6 dpBLock']")
     private WebElement grey_area;
 
+    @FindBy(xpath = "//button[@class = 'posabs mg mg_icoclose zi2 mat-icon-button']")
+    private WebElement cross_button;
+
 
     public HelpPage(WebDriver driver) {
         this.driver = driver;
@@ -55,33 +55,36 @@ public class HelpPage {
     }
 
 
-
-    public void selectAddMoneyIcon(){
+    public void selectAddMoneyIcon() {
         Element.selectElement(driver, button_add_money_icon, "Click on Add Money Icon");
     }
 
-    public void selectIssueToReport(){
+    public void selectIssueToReport() {
         Element.selectElement(driver, button_report_issue, "report the issue");
     }
 
-    public void selectQuestionFromList(){
+    public void selectQuestionFromList() {
         Element.selectElement(driver, text_question_link, "Select question :My option not listed above");
     }
 
-    public void enterQuery(String query){
+    public void enterQuery(String query) {
         Element.enterText(driver, input_query, query, "Enter Query");
     }
 
-    public void selectSend(){
+    public void selectSend() {
         Element.selectElement(driver, button_raise_request, "Raise Request");
     }
 
-    public String getTicketId(){
-       return Element.getText(driver, ticket_id, "Get Ticket ID" );
+    public String getTicketId() {
+        return Element.getText(driver, ticket_id, "Get Ticket ID");
     }
 
-    public void dismissGreyArea(){
+    public void dismissGreyArea() {
         Element.selectElement(driver, grey_area, " Dismiss Grey Area");
+    }
+
+    public void clickOnCrossButton() {
+        Element.selectElement(driver, cross_button, "Cross Button");
     }
 
 }
