@@ -80,7 +80,7 @@ public class TestBase {
 
     }
 
-    public WebDriver getWebDriver() {
+    public static WebDriver getWebDriver() {
         return webDriverThread.get();
     }
 

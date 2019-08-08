@@ -1,5 +1,6 @@
 package Utils;
 
+import PageObject.MbkCommonControlsPage;
 import org.testng.*;
 
 public class TestListener implements ITestListener, ISuiteListener {
@@ -43,6 +44,16 @@ public class TestListener implements ITestListener, ISuiteListener {
     public void onTestFailure(ITestResult arg0) {
         // TODO Auto-generated method stub
         Config.logComment("***************[Test Failed] [Test Class: " + arg0.getInstanceName() + "] [Test Method: " + arg0.getMethod().getMethodName() + "] [Test Description: " + arg0.getMethod().getDescription() + "]***************");
+
+        try {
+            Log.info("Click | Mbk Icon");
+            // Return back to the home-screen
+            MbkCommonControlsPage mbkCommonControlsPage = new MbkCommonControlsPage(TestBase.getWebDriver());
+            mbkCommonControlsPage.clickOnLogoMbk();
+            Thread.sleep(5000);
+        } catch (Exception e) {
+            Log.info("Not able to click on Mbk Icon");
+        }
 
     }
 

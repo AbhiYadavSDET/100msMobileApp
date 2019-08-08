@@ -9,11 +9,11 @@
     </test>
 
     <!--######### Add Money #############-->
-    <test name="Add-Money Flow">
-        <classes>
-            <class name="AddMoney.AddMoneyTest"/>
-        </classes>
-    </test>
+    <!--<test name="Add-Money Flow">-->
+    <!--<classes>-->
+    <!--<class name="AddMoney.AddMoneyTest"/>-->
+    <!--</classes>-->
+    <!--</test>-->
 
     <!--######### Insurance #############-->
     <test name="Insurance">
@@ -71,6 +71,20 @@
     <test name="Offers">
         <classes>
             <class name="OffersTest"/>
+        </classes>
+    </test>
+
+    <!--#########  Bus #############-->
+    <!--<test name="BusTest.java">-->
+        <!--<classes>-->
+            <!--<class name="BusFlow.BusTest"/>-->
+        <!--</classes>-->
+    <!--</test>-->
+
+    <!--#########  Help #############-->
+    <test name="HelpTest.java">
+        <classes>
+            <class name="Help.HelpTest"/>
         </classes>
     </test>
 </suite>

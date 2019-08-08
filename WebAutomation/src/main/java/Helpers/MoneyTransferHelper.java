@@ -2,16 +2,16 @@ package Helpers;
 
 
 import PageObject.DashboardPage;
-import PageObject.HomePage;
+import PageObject.MbkCommonControlsPage;
 import PageObject.MoneyTransferPage;
 import Utils.MbkReporter;
+import Utils.TestBase;
 import org.openqa.selenium.WebDriver;
 
 public class MoneyTransferHelper {
 
     WebDriver driver;
     DashboardPage dashboardPage;
-    HomePage homePage;
     MoneyTransferPage moneyTransferPage;
     MbkReporter mbkReporter;
 
@@ -21,7 +21,6 @@ public class MoneyTransferHelper {
         mbkReporter = new MbkReporter();
 
         // Mandatory pages
-        homePage = new HomePage(driver);
         dashboardPage = new DashboardPage(driver);
     }
 
@@ -57,7 +56,8 @@ public class MoneyTransferHelper {
         mbkReporter.verifyEqualsWithLogging(actualSuccessScreenTotalAmount, amount, "Success Screen | Total Amount Paid", false);
 
         // Come back to the homepage
-        homePage.clickOnLogoMbk();
+        MbkCommonControlsPage mbkCommonControlsPage = new MbkCommonControlsPage(TestBase.getWebDriver());
+        mbkCommonControlsPage.clickOnLogoMbk();
     }
 
 
