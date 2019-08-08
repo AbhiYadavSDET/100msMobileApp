@@ -3,6 +3,7 @@ package PageObject;
 import Utils.Browser;
 import Utils.Config;
 import Utils.Element;
+import net.bytebuddy.matcher.ElementMatcher;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -42,6 +43,9 @@ public class HelpPage {
     @FindBy(xpath = "//p[text()= 'Ticket ID']/following::p[@class= 'fR fw600']")
     private WebElement ticket_id;
 
+    @FindBy(xpath = "//div[@class= 'overlaybgDark zi6 dpBLock']")
+    private WebElement grey_area;
+
 
     public HelpPage(WebDriver driver) {
         this.driver = driver;
@@ -74,6 +78,10 @@ public class HelpPage {
 
     public String getTicketId(){
        return Element.getText(driver, ticket_id, "Get Ticket ID" );
+    }
+
+    public void dismissGreyArea(){
+        Element.selectElement(driver, grey_area, " Dismiss Grey Area");
     }
 
 }
