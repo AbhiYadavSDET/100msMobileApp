@@ -1,11 +1,8 @@
 package Helpers;
 
-import PageObject.HomePage;
-import PageObject.LoginPage;
-import PageObject.DashboardPage;
 import PageObject.BankTransferPage;
-import PageObject.SideDrawerPage;
-import Utils.Element;
+import PageObject.DashboardPage;
+import PageObject.HomePage;
 import Utils.MbkReporter;
 import org.openqa.selenium.WebDriver;
 
@@ -55,11 +52,11 @@ public class BankTransferHelper {
 
         bankTransferPage.enterOtp();
 
-        Thread.sleep(20000);
-
-        bankTransferPage.clickSubmitOtp();
-
-        Thread.sleep(2000);
+//        Thread.sleep(20000);
+//
+//        bankTransferPage.clickSubmitOtp();
+//
+//        Thread.sleep(2000);
 
         bankTransferPage.waitForTickIcon();
 

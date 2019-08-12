@@ -3,6 +3,7 @@ package Utils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.annotations.AfterSuite;
@@ -22,6 +23,7 @@ public class TestBase {
     public WebDriver driver = null;
     protected static Logger log = Logger.getLogger(TestBase.class);
     private static ThreadLocal<WebDriver> webDriverThread = new ThreadLocal<>();
+    public static String headLess = null;
 
 
     protected void initiateTest() {
@@ -30,7 +32,20 @@ public class TestBase {
         fetchDataFromPropertiesFile();
 
         String browser = properties.getProperty("Browser", "chrome").trim().toLowerCase();
+        headLess = properties.getProperty("headLess", "false").trim().toLowerCase();
         String os = System.getProperty("os.name");
+        ChromeOptions options = new ChromeOptions();
+
+
+        if (headLess.equalsIgnoreCase("true")) {
+
+            options.addArguments("--no-sandbox");
+            options.addArguments("--disable-dev-shm-usa'--headless'ge");
+            options.addArguments("--headless");
+            options.setExperimentalOption("useAutomationExtension", false);
+        } else {
+            // No args added in chrome options
+        }
 
         switch (browser.toLowerCase()) {
             case "firefox":
@@ -48,14 +63,16 @@ public class TestBase {
                 break;
 
             case "chrome":
-
+                Log.info("Case : Chrome");
             default:
+                Log.info("Case : Default");
+
                 if (os.contains("Linux"))
                     driverPath = System.getProperty("user.dir") + "/src/main/resources/Drivers/chromedriver";
                 else if (os.contains("Mac OS X"))
                     driverPath = System.getProperty("user.dir") + "/src/main/resources/Drivers/mac/chromedriver";
                 System.setProperty("webdriver.chrome.driver", driverPath);
-                driver = new ChromeDriver();
+                driver = new ChromeDriver(options);
                 break;
         }
 
