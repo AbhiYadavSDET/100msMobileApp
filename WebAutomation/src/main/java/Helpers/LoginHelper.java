@@ -6,8 +6,11 @@ import PageObject.SideDrawerPage;
 import Utils.Element;
 import Utils.Log;
 import Utils.MbkReporter;
+import Utils.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+
+import java.util.Scanner;
 
 public class LoginHelper {
 
@@ -43,6 +46,15 @@ public class LoginHelper {
 
             //enter otp
             loginPage.enterOtp();
+
+            // Handle the OTP wrt headLess Flag
+            if (TestBase.headLess.equalsIgnoreCase("true")) {
+                Scanner sc = new Scanner(System.in);
+                Log.info("Enter the OTP");
+
+                String otp = sc.nextLine();
+                Log.info("OTP : " + otp);
+            }
 
             // Wait for Add Money button
             loginPage.waitForAddMoneyButton();
