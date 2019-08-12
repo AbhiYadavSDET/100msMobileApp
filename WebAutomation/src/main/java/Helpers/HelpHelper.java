@@ -47,7 +47,6 @@ public class HelpHelper {
         // Reach the home screen
         homePage.clickOnLogoMbk();
 
-
     }
 
 
