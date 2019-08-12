@@ -32,7 +32,7 @@ public class MobileRechargeTest extends TestBase {
 //        loginHelper.loginViaOtp("8527797582", "T.C. Suneja", "mayank.suneja@mobikwik.com", "8527797582");
 
         MobileHelper mobileHelper = new MobileHelper(getWebDriver());
-        mobileHelper.verifyPrepaid("vodafone", "9953138474", "haryana", "10", true, "APPTEAMREC", "5.0");
+        mobileHelper.verifyPrepaid("vodafone", "9999301210", "haryana", "10", true, "APPTEAMREC", "5.0");
 
     }
 }
