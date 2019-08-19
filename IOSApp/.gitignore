@@ -1,0 +1,30 @@
+bin/
+test-output/
+LogFile.txt
+ResultFile.txt
+screenshots/
+/.idea/
+/adbLogs/
+/testData/
+
+Parameters/TestDataSheet.xlsx
+app/
+
+//Compiled class file
+*.class
+
+// OS generated Files
+.DS_Store
+.DS_Store?
+		
+// Ignore the local classpath changes		
+/.classpath
+
+/.project
+
+/.settings/
+/target/
+/TestData.xlsx
+/TestData_Web.xlsx
+src/UITestFramework/ExtentReport/old
+src/UITestFramework/ExtentReport/extent.html
