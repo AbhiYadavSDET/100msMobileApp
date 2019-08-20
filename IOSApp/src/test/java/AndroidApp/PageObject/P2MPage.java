@@ -1,8 +1,8 @@
 package test.java.AndroidApp.PageObject;
 
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
-import io.appium.java_client.pagefactory.AndroidFindBy;
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSElement;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
 import main.java.utils.Element;
@@ -12,43 +12,41 @@ import java.io.IOException;
 
 public class P2MPage {
 
-    AndroidDriver driver;
+    IOSDriver driver;
 
 
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text = 'Enter Mobile Number or Merchant Code']")
+    private IOSElement label_enter_mobile_number;
+
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/search_edittext")
+    private IOSElement textbox_search;
+
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/image_tse")
+    private IOSElement image_merchant;
+
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/edt_txt_transfer_amount")
+    private IOSElement enter_amount;
+
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/btn_p2p_action")
+    private IOSElement cta_confirm_transfer;
+
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/base_title")
+    private IOSElement label_success_page_status;
+
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/amount_value")
+    private IOSElement label_amount;
+
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/total_amount_value")
+    private IOSElement label_total_payment;
+
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/txt_info")
+    private IOSElement label_success_screen_name;
+
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/txt_cn_value")
+    private IOSElement label_success_screen_code;
 
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Enter Mobile Number or Merchant Code']")
-    private AndroidElement label_enter_mobile_number;
-
-    @AndroidFindBy(id = "com.mobikwik_new:id/search_edittext")
-    private AndroidElement textbox_search;
-
-    @AndroidFindBy(id = "com.mobikwik_new:id/image_tse")
-    private AndroidElement image_merchant;
-
-    @AndroidFindBy(id = "com.mobikwik_new:id/edt_txt_transfer_amount")
-    private AndroidElement enter_amount;
-
-    @AndroidFindBy(id = "com.mobikwik_new:id/btn_p2p_action")
-    private AndroidElement cta_confirm_transfer;
-
-    @AndroidFindBy(id = "com.mobikwik_new:id/base_title")
-    private AndroidElement label_success_page_status;
-
-    @AndroidFindBy(id = "com.mobikwik_new:id/amount_value")
-    private AndroidElement label_amount;
-
-    @AndroidFindBy(id = "com.mobikwik_new:id/total_amount_value")
-    private AndroidElement label_total_payment;
-
-    @AndroidFindBy(id = "com.mobikwik_new:id/txt_info")
-    private AndroidElement label_success_screen_name;
-
-    @AndroidFindBy(id = "com.mobikwik_new:id/txt_cn_value")
-    private AndroidElement label_success_screen_code;
-
-
-    public P2MPage(AndroidDriver driver) throws IOException {
+    public P2MPage(IOSDriver driver) throws IOException {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
 
@@ -60,8 +58,6 @@ public class P2MPage {
 
         Log.info("*****P2M Page*****");
     }
-
-
 
 
     public void clickOnLabelEnterMerchantCode() throws InterruptedException {

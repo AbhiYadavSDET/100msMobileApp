@@ -17,11 +17,11 @@ public class Test_Deep_Link_HubServicesforMerchant extends CreateSession {
     public void deep_link_refer_loan(String userName, String password) throws IOException, JSONException, InterruptedException {
 
 
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
         //for bank mandate 9958314430@nocash.mobikwik.com india@123
         loginHelper.quickLoginViaEmail(userName, password);
 
-        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
+        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getIOSDriver());
 
         deepLinkHelper.getdeeplink("mobikwik://hubspoke?serviceid=1","Accept referral for Loan","service_name");
 
@@ -32,12 +32,12 @@ public class Test_Deep_Link_HubServicesforMerchant extends CreateSession {
     public void deep_link_refer_screen(String userName, String password) throws IOException, JSONException, InterruptedException {
 
 
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
 
         loginHelper.quickLoginViaEmail(userName, password);
 
 
-        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
+        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getIOSDriver());
 
         deepLinkHelper.getdeeplink("mobikwik://hub-services/loan", "Refer for Loan", "mkab_title");
 

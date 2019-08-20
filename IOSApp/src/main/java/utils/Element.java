@@ -1,8 +1,8 @@
 package main.java.utils;
 
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSElement;
 import logger.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -15,10 +15,10 @@ import java.util.List;
 
 public class Element {
     public final static int timeOut = 70;
-    AndroidDriver androidDriver;
+    io.appium.java_client.ios.IOSDriver IOSDriver;
 
-    public Element(AndroidDriver androidDriver) {
-        this.androidDriver = androidDriver;
+    public Element(IOSDriver IOSDriver) {
+        this.IOSDriver = IOSDriver;
     }
 
     /**
@@ -27,7 +27,7 @@ public class Element {
      * @param targetElement element to be visible
      * @return true if element is visible else throws TimeoutException
      */
-    public static boolean waitForVisibility(AndroidDriver driver, MobileElement targetElement) {
+    public static boolean waitForVisibility(IOSDriver driver, MobileElement targetElement) {
         try {
             WebDriverWait wait = new WebDriverWait(driver, timeOut);
             wait.until(ExpectedConditions.visibilityOf(targetElement));
@@ -41,7 +41,7 @@ public class Element {
         }
     }
 
-    public static boolean waitForVisibility(AndroidDriver driver, By targetElement) {
+    public static boolean waitForVisibility(IOSDriver driver, By targetElement) {
         try {
             WebDriverWait wait = new WebDriverWait(driver, timeOut);
             wait.until(ExpectedConditions.visibilityOfElementLocated(targetElement));
@@ -61,7 +61,7 @@ public class Element {
      * @param targetElement element to be invisible
      * @return true if element gets invisible else throws TimeoutException
      */
-    public static boolean waitForInvisibility(AndroidDriver driver, AndroidElement targetElement) {
+    public static boolean waitForInvisibility(IOSDriver driver, IOSElement targetElement) {
         try {
             WebDriverWait wait = new WebDriverWait(driver, timeOut);
             wait.until(ExpectedConditions.invisibilityOf(targetElement));
@@ -81,9 +81,9 @@ public class Element {
      * @param locator element to be found
      * @return WebElement if found else throws NoSuchElementException
      */
-    public AndroidElement findElement(WebDriver driver, By locator) {
+    public IOSElement findElement(WebDriver driver, By locator) {
         try {
-            AndroidElement element = driver.findElement(locator);
+            IOSElement element = driver.findElement(locator);
             return element;
         } catch (NoSuchElementException e) {
             Log.logError(this.getClass().getName(), "findElement", "Element not found" + locator);
@@ -98,9 +98,9 @@ public class Element {
      * @return return the list of elements if found else throws
      * NoSuchElementException
      */
-    public static List<AndroidElement> findElements(AndroidDriver driver, By locator) {
+    public static List<IOSElement> findElements(IOSDriver driver, By locator) {
         try {
-            List<AndroidElement> element = driver.findElements(locator);
+            List<IOSElement> element = driver.findElements(locator);
             return element;
         } catch (NoSuchElementException e) {
             throw new NoSuchElementException(e.getMessage());
@@ -110,24 +110,24 @@ public class Element {
     /**
      * method verify whether element is present on screen
      *
-     * @param androidDriver
+     * @param IOSDriver
      * @param targetElement element to be present
      * @return true if element is present else throws exception
      * @throws InterruptedException Thrown when a thread is waiting, sleeping, or otherwise occupied,
      *                              and the thread is interrupted, either before or during the
      *                              activity.
      */
-    public static Boolean isElementPresent(AndroidDriver androidDriver, By targetElement) throws InterruptedException {
+    public static Boolean isElementPresent(IOSDriver IOSDriver, By targetElement) throws InterruptedException {
         Thread.sleep(2000);
-        Boolean isPresent = findElements(androidDriver, targetElement).size() > 0;
+        Boolean isPresent = findElements(IOSDriver, targetElement).size() > 0;
         return isPresent;
 
     }
 
-    public static void click(AndroidDriver driver, AndroidElement androidElement, String description) {
+    public static void click(IOSDriver driver, IOSElement IOSElement, String description) {
         try {
             Log.info("CLICK", description);
-            androidElement.click();
+            IOSElement.click();
         } catch (Exception e) {
             throw e;
         }
@@ -137,41 +137,41 @@ public class Element {
      * This Method is used to waitForVisibility + click
      *
      * @param driver
-     * @param androidElement
+     * @param IOSElement
      * @param description
      */
-    public static void selectElement(AndroidDriver driver, AndroidElement androidElement, String description) {
-        waitForVisibility(driver, androidElement);
-        click(driver, androidElement, description);
+    public static void selectElement(IOSDriver driver, IOSElement IOSElement, String description) {
+        waitForVisibility(driver, IOSElement);
+        click(driver, IOSElement, description);
     }
 
-    public static void enterText(AndroidDriver driver, AndroidElement androidElement, String text, String description) {
-        waitForVisibility(driver, androidElement);
+    public static void enterText(IOSDriver driver, IOSElement IOSElement, String text, String description) {
+        waitForVisibility(driver, IOSElement);
 
         Log.info("ENTER", description);
-        androidElement.sendKeys(text);
+        IOSElement.sendKeys(text);
     }
 
-    public static void clearText(AndroidDriver driver, AndroidElement androidElement, String text, String description) {
-        waitForVisibility(driver, androidElement);
+    public static void clearText(IOSDriver driver, IOSElement IOSElement, String text, String description) {
+        waitForVisibility(driver, IOSElement);
 
         Log.info("CLEAR", description);
-        androidElement.clear();
+        IOSElement.clear();
     }
 
     /**
      * This Method is used to waitForVisibility + click
      *
      * @param driver
-     * @param androidElement
+     * @param IOSElement
      * @param description
      * @return The text of the element
      */
-    public static String getText(AndroidDriver driver, AndroidElement androidElement, String description) {
-        waitForVisibility(driver, androidElement);
+    public static String getText(IOSDriver driver, IOSElement IOSElement, String description) {
+        waitForVisibility(driver, IOSElement);
 
         Log.info("GET", description);
-        return androidElement.getText();
+        return IOSElement.getText();
     }
 
 

@@ -16,21 +16,21 @@ public class Test_Bus extends CreateSession {
 
     @Test(groups = {"busBook", "busSanity"}, priority = 0, dataProvider = "busData", dataProviderClass = BusProviderClass.class)
     public void Bus_book(String userName, String password) throws IOException, JSONException, InterruptedException {
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
         loginHelper.quickLoginViaEmail(userName, password);
 
 
-        BusHelper busHelper = new BusHelper(getAndroidDriver());
+        BusHelper busHelper = new BusHelper(getIOSDriver());
         busHelper.busBook("bhubaneswar", "baripada", "Paraj Jain", "28", "123456");
 
     }
 
     @Test(groups = {"busCancel", "busSanity"}, priority = 1, dataProvider = "busData", dataProviderClass = BusProviderClass.class, dependsOnMethods = "Bus_book")
     public void Bus_Cancel(String userName, String password) throws IOException, JSONException, InterruptedException {
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
         loginHelper.quickLoginViaEmail(userName, password);
 
-        BusHelper busHelper = new BusHelper(getAndroidDriver());
+        BusHelper busHelper = new BusHelper(getIOSDriver());
         busHelper.busCancel("Your Ticket has been Cancelled");
 
     }

@@ -1,8 +1,9 @@
 package test.java.AndroidApp.PageObject;
 
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
-import io.appium.java_client.pagefactory.AndroidFindBy;
+
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSElement;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import main.java.utils.Element;
 import org.openqa.selenium.support.PageFactory;
@@ -11,46 +12,46 @@ import java.io.IOException;
 
 public class MbkCommonControlsPage {
 
-    AndroidDriver driver;
+    IOSDriver driver;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/have_a_promo_text")
-    private AndroidElement have_promo_code;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/have_a_promo_text")
+    private IOSElement have_promo_code;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/edit_text_mket")
-    private AndroidElement text_box_coupon_code;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/edit_text_mket")
+    private IOSElement text_box_coupon_code;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Apply']")
-    private AndroidElement button_apply_coupon;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text='Apply']")
+    private IOSElement button_apply_coupon;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/back_button")
-    private AndroidElement button_up_2;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/back_button")
+    private IOSElement button_up_2;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/mkab_icon_1")
-    private AndroidElement button_up;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/mkab_icon_1")
+    private IOSElement button_up;
 
-    @AndroidFindBy(id = "base_icon_close")
-    private AndroidElement cross_icon;
+    @iOSXCUITFindBy(id = "base_icon_close")
+    private IOSElement cross_icon;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/btn_have_promo")
-    private AndroidElement label_have_a_promo_code;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/btn_have_promo")
+    private IOSElement label_have_a_promo_code;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Enter Promo Code']/following::android.widget.EditText")
-    private AndroidElement textbox_promo_code;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text = 'Enter Promo Code']/following::android.widget.EditText")
+    private IOSElement textbox_promo_code;
 
-    @AndroidFindBy(xpath = "//android.widget.RelativeLayout[@index = '0']/android.widget.ImageView[@index = '1']")
-    private AndroidElement cross_ct_overlay;
+    @iOSXCUITFindBy(xpath = "//android.widget.RelativeLayout[@index = '0']/android.widget.ImageView[@index = '1']")
+    private IOSElement cross_ct_overlay;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/close_button")
-    private AndroidElement ratings_cross_icon;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/close_button")
+    private IOSElement ratings_cross_icon;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/cta")
-    private AndroidElement cta_refer_and_earn;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/cta")
+    private IOSElement cta_refer_and_earn;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/cross_button")
-    private AndroidElement cross_button;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/cross_button")
+    private IOSElement cross_button;
 
 
-    public MbkCommonControlsPage(AndroidDriver driver) throws IOException {
+    public MbkCommonControlsPage(IOSDriver driver) throws IOException {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
 

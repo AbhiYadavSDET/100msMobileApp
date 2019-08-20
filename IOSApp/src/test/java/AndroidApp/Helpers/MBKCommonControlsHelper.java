@@ -1,7 +1,8 @@
 package test.java.AndroidApp.Helpers;
 
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
+
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSElement;
 import logger.Log;
 import main.java.utils.Element;
 import main.java.utils.Screen;
@@ -17,7 +18,7 @@ import java.util.Map;
 
 public class MBKCommonControlsHelper {
 
-    AndroidDriver driver;
+    IOSDriver driver;
     MbkCommonControlsPage mbkCommonControlsPage;
     Element element;
     WalletBalancePage walletBalancePage;
@@ -52,7 +53,7 @@ public class MBKCommonControlsHelper {
     }
 
 
-    public MBKCommonControlsHelper(AndroidDriver driver) throws IOException {
+    public MBKCommonControlsHelper(IOSDriver driver) throws IOException {
         this.driver = driver;
         mbkCommonControlsPage = new MbkCommonControlsPage(driver);
         element = new Element(driver);
@@ -89,8 +90,8 @@ public class MBKCommonControlsHelper {
 
             for (String e : pinArr) {
                 //Log.info("PRESS", e);
-                AndroidElement androidElement = element.findElement(driver, By.id("btn_pin_" + e));
-                Element.selectElement(driver, androidElement, e);
+                IOSElement iosElement = element.findElement(driver, By.id("btn_pin_" + e));
+                Element.selectElement(driver, iosElement, e);
             }
 
         }
@@ -231,7 +232,7 @@ public class MBKCommonControlsHelper {
         }
     }
 
-    public void handleUpiBottomSheet(AndroidDriver driver) throws InterruptedException {
+    public void handleUpiBottomSheet(IOSDriver driver) throws InterruptedException {
         Thread.sleep(4000);
         if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Link Your Bank Account']"))) {
             Log.info("Handle", "Upi Bottom sheet");
@@ -239,7 +240,7 @@ public class MBKCommonControlsHelper {
         }
     }
 
-    public void dismissAllOnHomePage(AndroidDriver driver) throws InterruptedException {
+    public void dismissAllOnHomePage(IOSDriver driver) throws InterruptedException {
         //Handle Expense Manager Bottom sheet
         handleUpiBottomSheet(driver);
         handleReferAndEarnBottomSheet();

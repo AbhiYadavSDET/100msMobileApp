@@ -1,8 +1,9 @@
 package UITestFramework;
 
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
+
 import io.appium.java_client.events.EventFiringWebDriverFactory;
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSElement;
 import io.appium.java_client.remote.MobileCapabilityType;
 import logger.Log;
 import main.java.utils.Config;
@@ -29,14 +30,17 @@ import java.util.Properties;
 
 public class CreateSession {
 
-    public AndroidDriver<AndroidElement> driver = null;
+    public IOSDriver<IOSElement> driver = null;
 
     public Properties testDataFile;
 
-    String androidOSVersion = "8.0";
     String portNo = "4723";
-    String udid = "ZY223F3MP3";
-    String deviceName = "Motorola G5";
+    String deviceName = "Mobikwik";
+    String udId = "42d1ed66160146bc73712fbdaa243853e044f9cc";
+    String platformVersion = "12.2";
+    String automationName = "XCUITest";
+    String bundleId = "com.mobikwik";
+    String platformName = "iOS";
 
     private String reportDirectory = "reports";
     private String reportFormat = "xml";
@@ -46,11 +50,10 @@ public class CreateSession {
 
 
     /**
-     * ThreadLocal variable which contains the {@link AndroidDriver} instance which
+     * ThreadLocal variable which contains the {@link IOSDriver} instance which
      * is used to perform browser interactions with.
      */
-    private ThreadLocal<AndroidDriver> androidDriverThread = new ThreadLocal<>();
-    //private ThreadLocal<String> sessionId = new ThreadLocal<String>();
+    private ThreadLocal<IOSDriver> iosDriverThread = new ThreadLocal<>();
 
 
     /**
@@ -76,20 +79,16 @@ public class CreateSession {
 
         }
 
-        if (androidOSVersion == null) {
-            androidOSVersion = this.androidOSVersion;
-        }
-
         if (deviceName == null) {
             deviceName = this.deviceName;
         }
 
         if (udid == null) {
-            udid = this.udid;
+            udid = this.udId;
         }
 
         String buildPath = choosebuild(build);
-        androidDriver(buildPath, methodName, portNo, androidOSVersion, deviceName, udid);
+        iosDriver(buildPath, methodName, portNo, deviceName, udid, automationName, bundleId, platformName, platformVersion);
 
 
     }
@@ -100,7 +99,7 @@ public class CreateSession {
     @AfterMethod(groups = "tearDown", alwaysRun = true)
     public void teardown() {
         Log.info("Shutting down driver");
-        getAndroidDriver().quit();
+        getIOSDriver().quit();
     }
 
 
@@ -111,29 +110,13 @@ public class CreateSession {
      * @return instance of iOS driver
      * @throws MalformedURLException Thrown to indicate that a malformed URL has occurred.
      */
-    public AndroidDriver androidDriver(String buildPath, String methodName, String portNo, String androidOSVersion, String deviceName, String udid)
+    public IOSDriver iosDriver(String buildPath, String methodName, String portNo, String deviceName, String udid, String automationName, String bundleId, String platformName, String platformVersion)
             throws MalformedURLException {
         File app = new File(buildPath);
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("platformName", "Android");
-        capabilities.setCapability("platformVersion", androidOSVersion);
-
-        capabilities.setCapability("appPackage", "com.mobikwik_new");
-        capabilities.setCapability("appActivity", ".MobikwikMain");
-        capabilities.setCapability("appWaitActivity", ".MobikwikMain");
-        capabilities.setCapability("appWaitPackage", "com.mobikwik_new");
-
-
-        if (Double.parseDouble(androidOSVersion) < Double.parseDouble("7.0")) {
-            Log.info("Automation Type : " + "Appium");
-            //capabilities.setCapability("automationName", "Appium");
-
-        } else {
-            capabilities.setCapability("automationName", "uiautomator2");
-            Log.info("Automation Type : " + "uiautomator2");
-        }
-
-
+        capabilities.setCapability("platformName", platformName);
+        capabilities.setCapability("platformVersion", platformVersion);
+        capabilities.setCapability("bundleId", bundleId);
         capabilities.setCapability("deviceName", deviceName);
         capabilities.setCapability(MobileCapabilityType.UDID, udid);
 
@@ -141,16 +124,16 @@ public class CreateSession {
         capabilities.setCapability("reportFormat", reportFormat);
         capabilities.setCapability("app", app.getAbsolutePath());
 //        capabilities.setCapability("fullReset", false);
-        capabilities.setCapability("noReset", false);
+//        capabilities.setCapability("noReset", false);
 
         //Log.info("http://localhost:" + portNo + "/wd/hub");
 
-        driver = new AndroidDriver(new URL("http://localhost:" + portNo + "/wd/hub"), capabilities);
+        driver = new IOSDriver(new URL("http://localhost:" + portNo + "/wd/hub"), capabilities);
         driver = EventFiringWebDriverFactory.getEventFiringWebDriver(driver, new AppiumDriverListeners());
-        androidDriverThread.set(driver);
+        iosDriverThread.set(driver);
 
 
-        return androidDriverThread.get();
+        return iosDriverThread.get();
 
     }
 
@@ -159,17 +142,17 @@ public class CreateSession {
 
 
         if (build.equals("prod")) {
-            String appPath = "src/app/MobiKwik_prod.apk";
+            String appPath = "src/app/MobiKwik.ipa";
             return appPath;
         }
 
         if (build.equals("stag")) {
-            String appPath = "src/app/MobiKwik_stag.apk";
+            String appPath = "src/app/MobiKwik.ipa";
             return appPath;
         }
 
         if (build.equals("beta")) {
-            String appPath = "src/app/MobiKwik_beta.apk";
+            String appPath = "src/app/MobiKwik.ipa";
             return appPath;
         }
 
@@ -178,10 +161,10 @@ public class CreateSession {
 
 
     /**
-     * @return the {@link AndroidDriver} for the current thread
+     * @return the {@link IOSDriver} for the current thread
      */
-    public AndroidDriver getAndroidDriver() {
-        return androidDriverThread.get();
+    public IOSDriver getIOSDriver() {
+        return iosDriverThread.get();
     }
 
     /**

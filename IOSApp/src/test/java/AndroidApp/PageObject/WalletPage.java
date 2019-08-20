@@ -1,9 +1,8 @@
 package test.java.AndroidApp.PageObject;
 
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
-import io.appium.java_client.pagefactory.AndroidBy;
-import io.appium.java_client.pagefactory.AndroidFindBy;
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSElement;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
 import main.java.utils.Element;
@@ -15,15 +14,15 @@ import java.io.IOException;
 public class WalletPage {
 
 
-    AndroidDriver driver;
+    IOSDriver driver;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/kyc_card")
-    public AndroidElement card_kyc_upgrade;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/kyc_card")
+    public IOSElement card_kyc_upgrade;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/btn_upgrade")
-    public AndroidElement cta_upgrade_button;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/btn_upgrade")
+    public IOSElement cta_upgrade_button;
 
-    public WalletPage(AndroidDriver driver) throws IOException {
+    public WalletPage(IOSDriver driver) throws IOException {
 
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);

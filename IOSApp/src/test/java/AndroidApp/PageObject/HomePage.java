@@ -1,9 +1,9 @@
 package test.java.AndroidApp.PageObject;
 
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
-import io.appium.java_client.pagefactory.AndroidFindBy;
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import logger.Log;
 import main.java.utils.Element;
 import org.openqa.selenium.By;
@@ -13,99 +13,97 @@ import java.io.IOException;
 
 public class HomePage {
 
-    AndroidDriver driver;
+    IOSDriver driver;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/icon_drawer")
-    public AndroidElement sidedrawer_icon;
+    @iOSXCUITFindBy(id = "MenuLogo")
+    public IOSElement sidedrawer_icon;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/icon")
-    private AndroidElement mbk_logo;
+    @iOSXCUITFindBy(id = "r")
+    private IOSElement mbk_logo;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/tx_balance")
-    private AndroidElement label_view_balance;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/tx_balance")
+    private IOSElement label_view_balance;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Pay to Merchant']")
-    private AndroidElement button_pay_to_merchant;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text='Pay to Merchant']")
+    private IOSElement button_pay_to_merchant;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Via Wallet']/preceding-sibling::android.widget.FrameLayout")
-    private AndroidElement button_transfer_money;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text='Via Wallet']/preceding-sibling::android.widget.FrameLayout")
+    private IOSElement button_transfer_money;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/tx_add_money")
-    private AndroidElement button_add_money;
+    @iOSXCUITFindBy(id = "Add Money")
+    private IOSElement button_add_money;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/magic_btn")
-    private AndroidElement button_magic;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/magic_btn")
+    private IOSElement button_magic;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/tx_balance")
-    private AndroidElement login_signup_button;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='Login/Signup']/following::XCUIElementTypeButton[1]")
+    private IOSElement login_signup_button;
 
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text='Gold']")
+    private IOSElement icon_gold;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Gold']")
-    private AndroidElement icon_gold;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text='Boost Loan']")
+    private IOSElement icon_boostLoan;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Boost Loan']")
-    private AndroidElement icon_boostLoan;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text='Mutual Funds']")
+    private IOSElement icon_mutualFund;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Mutual Funds']")
-    private AndroidElement icon_mutualFund;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text='Insurance']")
+    private IOSElement icon_insurance;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Insurance']")
-    private AndroidElement icon_insurance;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='Mobile']")
+    public IOSElement icon_mobile;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Mobile']")
-    public AndroidElement icon_mobile;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='DTH']")
+    private IOSElement icon_dth;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='DTH']")
-    private AndroidElement icon_dth;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text='Gas']")
+    private IOSElement icon_gas;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Gas']")
-    private AndroidElement icon_gas;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='Electricity']")
+    private IOSElement icon_landline;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Landline']")
-    private AndroidElement icon_landline;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='More']")
+    private IOSElement icon_more;
 
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/navigation_history")
+    private IOSElement history_tab;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='More']")
-    private AndroidElement icon_more;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text = 'Offers']")
+    private IOSElement offers_tab;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/navigation_history")
-    private AndroidElement history_tab;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/skip")
+    public IOSElement skip_button;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Offers']")
-    private AndroidElement offers_tab;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text='Wallet']")
+    private IOSElement button_wallet;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/skip")
-    public AndroidElement skip_button;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text='History']")
+    private IOSElement button_history;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Wallet']")
-    private AndroidElement button_wallet;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text='Expense']")
+    private IOSElement button_expense;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='History']")
-    private AndroidElement button_history;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text='Home']")
+    private IOSElement button_home;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Expense']")
-    private AndroidElement button_expense;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text='Offers']")
+    private IOSElement button_offers;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Home']")
-    private AndroidElement button_home;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/btn_logout")
+    private IOSElement label_logout;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Offers']")
-    private AndroidElement button_offers;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text='More Services']/following::android.widget.TextView[@text='More']")
+    private IOSElement icon_service_more;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/btn_logout")
-    private AndroidElement label_logout;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text='Bus']")
+    private IOSElement icon_bus;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='More Services']/following::android.widget.TextView[@text='More']")
-    private AndroidElement icon_service_more;
-
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Bus']")
-    private AndroidElement icon_bus;
-
-    @AndroidFindBy(id = "com.mobikwik_new:id/navigation_wallet")
-    private AndroidElement navigate_wallet_page;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/navigation_wallet")
+    private IOSElement navigate_wallet_page;
 
 
-    public HomePage(AndroidDriver driver) {
+    public HomePage(IOSDriver driver) {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
 
@@ -124,7 +122,7 @@ public class HomePage {
 
     public void clickOnCrossButton() throws InterruptedException, IOException {
         if (Element.isElementPresent(driver, (By.id("cross_button")))) {
-            Element.selectElement(driver, (AndroidElement) driver.findElement(By.id("cross_button")), "Cross Button");
+            Element.selectElement(driver, (IOSElement) driver.findElement(By.id("cross_button")), "Cross Button");
         }
     }
 

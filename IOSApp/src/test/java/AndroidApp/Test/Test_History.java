@@ -17,7 +17,7 @@ public class Test_History extends CreateSession {
     public void transactionHistoryVerificationLoggedOut() throws Exception {
 
         Log.info("START : Transaction History verification for logged-out user");
-        transactionHistoryHelper = new TransactionHistoryHelper(getAndroidDriver());
+        transactionHistoryHelper = new TransactionHistoryHelper(getIOSDriver());
         transactionHistoryHelper.transactionHistoryVerificationLoggedOut();
         Log.info("END : Transaction History verification for logged-out user");
     }
@@ -27,10 +27,10 @@ public class Test_History extends CreateSession {
 
         Log.info("START : Transaction History verification for logged-in user");
 
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
         loginHelper.quickLoginViaEmail("mayank.suneja@mobikwik.com", "Tuesday20");
 
-        transactionHistoryHelper = new TransactionHistoryHelper(getAndroidDriver());
+        transactionHistoryHelper = new TransactionHistoryHelper(getIOSDriver());
         transactionHistoryHelper.transactionHistoryVerificationLoggedIn();
         Log.info("END : Transaction History verification for logged-in user");
 

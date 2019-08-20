@@ -15,10 +15,10 @@ public class Test_Deep_Link_Expense_Managr extends CreateSession {
     public void deep_link_cricket(String userName, String password) throws IOException, JSONException, InterruptedException {
 
 
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
         loginHelper.quickLoginViaEmail(userName, password);
 
-        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
+        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getIOSDriver());
 
         deepLinkHelper.getdeeplink("mobikwik://expense", "One passbook for all expenses", "heading1");
 

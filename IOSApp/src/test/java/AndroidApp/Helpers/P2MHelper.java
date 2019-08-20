@@ -1,7 +1,8 @@
 package test.java.AndroidApp.Helpers;
 
 import UITestFramework.MBReporter;
-import io.appium.java_client.android.AndroidDriver;
+
+import io.appium.java_client.ios.IOSDriver;
 import main.java.utils.Element;
 import main.java.utils.Screen;
 import org.json.JSONException;
@@ -13,7 +14,7 @@ import java.util.HashMap;
 
 public class P2MHelper {
 
-    AndroidDriver driver;
+    IOSDriver driver;
     HomePage homePage;
     Screen screen;
     Element element;
@@ -27,7 +28,7 @@ public class P2MHelper {
     public static HashMap<String, String> balanceAfter;
 
 
-    public P2MHelper(AndroidDriver driver) throws IOException {
+    public P2MHelper(IOSDriver driver) throws IOException {
         this.driver = driver;
 
         homePage = new HomePage(driver);

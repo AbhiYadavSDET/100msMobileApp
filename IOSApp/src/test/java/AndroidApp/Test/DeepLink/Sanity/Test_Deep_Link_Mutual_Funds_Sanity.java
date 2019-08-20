@@ -16,11 +16,11 @@ public class Test_Deep_Link_Mutual_Funds_Sanity extends CreateSession {
     public void deep_link_mutual_funds(String userName, String password) throws IOException, JSONException, InterruptedException {
 
 
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
         //loginHelper.quickLoginViaEmail("priyankaigdtuw@gmail.com", "priyanka123");
         loginHelper.quickLoginViaEmail(userName, password);
 
-        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
+        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getIOSDriver());
 
         deepLinkHelper.getdeeplink("mobikwik://mutual-funds", "Mutual Funds", "mkab_title");
     }
@@ -29,11 +29,11 @@ public class Test_Deep_Link_Mutual_Funds_Sanity extends CreateSession {
     public void deep_link_add_bank(String userName, String password) throws IOException, JSONException, InterruptedException {
 
 
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
         //loginHelper.quickLoginViaEmail("priyankaigdtuw@gmail.com", "priyanka123");
         loginHelper.quickLoginViaEmail(userName, password);
 
-        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
+        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getIOSDriver());
 
         deepLinkHelper.getdeeplink("mobikwik://mutual-funds/add-bank", "Bank Account Verification", "mkab_title");
 
@@ -45,11 +45,11 @@ public class Test_Deep_Link_Mutual_Funds_Sanity extends CreateSession {
     public void deep_link_create_profile(String userName, String password) throws IOException, JSONException, InterruptedException {
 
 
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
         //loginHelper.quickLoginViaEmail("priyankaigdtuw@gmail.com", "priyanka123");
         loginHelper.quickLoginViaEmail(userName, password);
 
-        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
+        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getIOSDriver());
 
         deepLinkHelper.getdeeplink("mobikwik://mutual-funds/create-profile", "Create Profile", "mkab_title");
 
@@ -61,11 +61,11 @@ public class Test_Deep_Link_Mutual_Funds_Sanity extends CreateSession {
     public void deep_link_funds_with_100(String userName, String password) throws IOException, JSONException, InterruptedException {
 
 
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
         //loginHelper.quickLoginViaEmail("priyankaigdtuw@gmail.com", "priyanka123");
         loginHelper.quickLoginViaEmail(userName, password);
 
-        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
+        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getIOSDriver());
 
         deepLinkHelper.getdeeplink("mobikwik://mutual-funds/fund/list?minInvestment=100&id=min-100&payoutOption=Growth", "Investments at ₹ 100", "mkab_title");
 
@@ -77,11 +77,11 @@ public class Test_Deep_Link_Mutual_Funds_Sanity extends CreateSession {
     public void deep_link_instant_redemption(String userName, String password) throws IOException, JSONException, InterruptedException {
 
 
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
         //loginHelper.quickLoginViaEmail("priyankaigdtuw@gmail.com", "priyanka123");
         loginHelper.quickLoginViaEmail(userName, password);
 
-        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
+        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getIOSDriver());
 
         deepLinkHelper.getdeeplink("mobikwik://mutual-funds/instant-redemption", "Kwik Save", "mkab_title");
 
@@ -94,11 +94,11 @@ public class Test_Deep_Link_Mutual_Funds_Sanity extends CreateSession {
     public void deep_link_lumpsum(String userName, String password) throws IOException, JSONException, InterruptedException {
 
 
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
         //loginHelper.quickLoginViaEmail("priyankaigdtuw@gmail.com", "priyanka123");
         loginHelper.quickLoginViaEmail(userName, password);
 
-        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
+        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getIOSDriver());
 
         deepLinkHelper.getdeeplink("mobikwik://mutual-funds/lumpsum", "Invest One-Time", "mkab_title");
 
@@ -110,11 +110,11 @@ public class Test_Deep_Link_Mutual_Funds_Sanity extends CreateSession {
     public void deep_link_open_elss(String userName, String password) throws IOException, JSONException, InterruptedException {
 
 
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
         //loginHelper.quickLoginViaEmail("priyankaigdtuw@gmail.com", "priyanka123");
         loginHelper.quickLoginViaEmail(userName, password);
 
-        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
+        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getIOSDriver());
 
         deepLinkHelper.getdeeplink("mobikwik://mutual-funds/fund/list?elss=true&payoutOption=Growth&id=save-tax", "Save Tax", "mkab_title");
 
@@ -127,12 +127,12 @@ public class Test_Deep_Link_Mutual_Funds_Sanity extends CreateSession {
     public void deep_link_sip_elss(String userName, String password) throws IOException, JSONException, InterruptedException {
 
 
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
         loginHelper.quickLoginViaEmail(userName, password);
 
         //loginHelper.quickLoginViaEmail("priyankaigdtuw@gmail.com", "priyanka123");
 
-        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
+        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getIOSDriver());
 
         deepLinkHelper.getdeeplink("mobikwik://mutual-funds/sip-elss", "Invest in a Tax-Saving SIP", "mkab_title");
 
@@ -144,13 +144,13 @@ public class Test_Deep_Link_Mutual_Funds_Sanity extends CreateSession {
     public void deep_link_sip(String userName, String password) throws IOException, JSONException, InterruptedException {
 
 
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
         loginHelper.quickLoginViaEmail(userName, password);
 
 
         //loginHelper.quickLoginViaEmail("priyankaigdtuw@gmail.com", "priyanka123");
 
-        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
+        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getIOSDriver());
 
         deepLinkHelper.getdeeplink("mobikwik://mutual-funds/sip", "Start a SIP", "mkab_title");
 

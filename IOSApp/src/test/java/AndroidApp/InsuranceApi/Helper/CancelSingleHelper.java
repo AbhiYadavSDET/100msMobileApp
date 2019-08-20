@@ -14,7 +14,7 @@ public class CancelSingleHelper extends CreateSession {
     CancelSingleResponseDto cancelSingleResponseDto;
     public ObjectMapper mapper;
     public static HashMap<String, String> map = new HashMap<String, String>();
-    MBReporter mbReporter = new MBReporter(getAndroidDriver(), "abc");
+    MBReporter mbReporter = new MBReporter(getIOSDriver(), "abc");
 
 
     public CancelSingleHelper(String jsonString) {

@@ -1,8 +1,8 @@
 package test.java.AndroidApp.PageObject;
 
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
-import io.appium.java_client.pagefactory.AndroidFindBy;
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSElement;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
 import main.java.utils.Element;
@@ -12,24 +12,24 @@ import java.io.IOException;
 
 public class WalletBalancePage {
 
-    AndroidDriver driver;
+    IOSDriver driver;
     String apiOtp;
 
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Available Balance']")
-    public AndroidElement label_available_balance;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text = 'Available Balance']")
+    public IOSElement label_available_balance;
 
-    @AndroidFindBy(id = "text_payment_label")
-    public AndroidElement label_total_balance_name;
+    @iOSXCUITFindBy(id = "text_payment_label")
+    public IOSElement label_total_balance_name;
 
-    @AndroidFindBy(id = "text_amount")
-    public AndroidElement label_total_balance_value;
+    @iOSXCUITFindBy(id = "text_amount")
+    public IOSElement label_total_balance_value;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'SuperCash “']/following::android.widget.TextView[1]")
-    public AndroidElement label_supercash_balance_value;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text = 'SuperCash “']/following::android.widget.TextView[1]")
+    public IOSElement label_supercash_balance_value;
 
 
-    public WalletBalancePage(AndroidDriver driver) throws IOException {
+    public WalletBalancePage(IOSDriver driver) throws IOException {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
 

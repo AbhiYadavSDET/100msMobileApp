@@ -1,8 +1,8 @@
 package test.java.AndroidApp.Helpers;
 
 import UITestFramework.MBReporter;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSElement;
 import logger.Log;
 import main.java.utils.Element;
 import main.java.utils.Screen;
@@ -17,7 +17,7 @@ import java.util.HashMap;
 
 public class RechargeHelper {
 
-    AndroidDriver driver;
+    IOSDriver driver;
     HomePage homePage;
     Screen screen;
     Element element;
@@ -31,7 +31,7 @@ public class RechargeHelper {
     public static HashMap<String, String> balanceAfter;
 
 
-    public RechargeHelper(AndroidDriver driver) throws IOException {
+    public RechargeHelper(IOSDriver driver) throws IOException {
         this.driver = driver;
 
         homePage = new HomePage(driver);
@@ -221,8 +221,8 @@ public class RechargeHelper {
         permissionHelper.permissionAllow();
         Thread.sleep(5000);
         if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = '" + mobileNo + "']"))) {
-            AndroidElement androidElement = element.findElement(driver, By.xpath("//android.widget.TextView[@text = '" + mobileNo + "']"));
-            Element.selectElement(driver, androidElement, "Select Saved Connection");
+            IOSElement iosElement = element.findElement(driver, By.xpath("//android.widget.TextView[@text = '" + mobileNo + "']"));
+            Element.selectElement(driver, iosElement, "Select Saved Connection");
 
             rechargePage.enterDthAmount(amount);
 
@@ -258,8 +258,8 @@ public class RechargeHelper {
                 Screen.swipeUpMedium(driver);
 
                 Log.info("SELECT", "Saved Connection");
-                AndroidElement androidElement = element.findElement(driver, By.xpath("//*/android.widget.TextView[@text = '7795709569 | Postpaid, Vodafone']"));
-                Element.selectElement(driver, androidElement, "Select Connection");
+                IOSElement iosElement = element.findElement(driver, By.xpath("//*/android.widget.TextView[@text = '7795709569 | Postpaid, Vodafone']"));
+                Element.selectElement(driver, iosElement, "Select Connection");
                 return true;
             } else {
                 Screen.swipeUpMedium(driver);

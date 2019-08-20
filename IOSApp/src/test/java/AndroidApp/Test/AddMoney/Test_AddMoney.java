@@ -18,49 +18,43 @@ public class Test_AddMoney extends CreateSession {
 
     @Test(groups = {"addMoneyNetBanking", "addMoneySanity"}, priority = 0, dataProvider = "addMoneyData", dataProviderClass = AddMoneyProviderClass.class)
     public void Test01_netbanking(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        //loginHelper.quickLoginViaEmail("8447405515@nocash.mobikwik.com", "priyanka123");
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
         loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
 
-
-        AddMoneyHelper addmoneyHelper = new AddMoneyHelper(getAndroidDriver());
+        AddMoneyHelper addmoneyHelper = new AddMoneyHelper(getIOSDriver());
         addmoneyHelper.netbanking(frontEndEntity.getAmount(), frontEndEntity.getBankName(), frontEndEntity.getBankPageLocator());
     }
 
 
     @Test(groups = {"addMoneyNewCard", "addMoneySanity"}, priority = 1, dataProvider = "addMoneyData", dataProviderClass = AddMoneyProviderClass.class)
     public void Test02_addMoneyNewCard(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
         loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
 
-        //loginHelper.quickLoginViaEmail("8447405515@nocash.mobikwik.com", "priyanka123");
-
-        AddMoneyHelper addmoneyHelper = new AddMoneyHelper(getAndroidDriver());
+        AddMoneyHelper addmoneyHelper = new AddMoneyHelper(getIOSDriver());
         addmoneyHelper.addMoneyViaNewCard(frontEndEntity.getAmount(), frontEndEntity.getCardNo(), frontEndEntity.getExpiryMonth(), frontEndEntity.getExpiryYear(), frontEndEntity.getCvv(), frontEndEntity.getCardPassword(), frontEndEntity.getSuccessPageStatus(), frontEndEntity
                 .getSuccessPageText());
     }
 
     @Test(groups = {"addMoneySavedCard", "addMoneySanity"}, priority = 2, dataProvider = "addMoneyData", dataProviderClass = AddMoneyProviderClass.class)
     public void Test03_addMoneySavedCard(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
         loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
-        //loginHelper.quickLoginViaEmail("8447405515@nocash.mobikwik.com", "priyanka123");
 
         Log.info("Password : " + frontEndEntity.getPassword());
 
-        AddMoneyHelper addmoneyHelper = new AddMoneyHelper(getAndroidDriver());
+        AddMoneyHelper addmoneyHelper = new AddMoneyHelper(getIOSDriver());
         addmoneyHelper.addMoneyViaSavedCard(frontEndEntity.getAmount(), frontEndEntity.getCardNo(), frontEndEntity.getExpiryMonth(), frontEndEntity.getExpiryYear(), frontEndEntity.getCvv(), frontEndEntity.getCardPassword(), frontEndEntity.getSuccessPageStatus(), frontEndEntity
                 .getSuccessPageText(), false, frontEndEntity.getPromoCode());
     }
 
     @Test(groups = {"addMoneySavedCardWithPromo", "addMoneySanity"}, priority = 3, dataProvider = "addMoneyData", dataProviderClass = AddMoneyProviderClass.class)
     public void Test04_addMoneySavedCardWithPromo(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
         loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
-        //loginHelper.quickLoginViaEmail("8447405515@nocash.mobikwik.com", "priyanka123");
 
 
-        AddMoneyHelper addmoneyHelper = new AddMoneyHelper(getAndroidDriver());
+        AddMoneyHelper addmoneyHelper = new AddMoneyHelper(getIOSDriver());
         addmoneyHelper.addMoneyViaSavedCard(frontEndEntity.getAmount(), frontEndEntity.getCardNo(), frontEndEntity.getExpiryMonth(), frontEndEntity.getExpiryYear(), frontEndEntity.getCvv(), frontEndEntity.getCardPassword(), frontEndEntity.getSuccessPageStatus(), frontEndEntity
                 .getSuccessPageText(), true, frontEndEntity.getPromoCode());
     }

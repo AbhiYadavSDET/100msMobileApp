@@ -1,8 +1,8 @@
 package test.java.AndroidApp.Helpers;
 
 import UITestFramework.MBReporter;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSElement;
 import main.java.utils.*;
 import org.json.JSONException;
 import org.openqa.selenium.By;
@@ -14,22 +14,23 @@ import java.util.HashMap;
 
 public class AddMoneyHelper {
 
-    AndroidDriver driver;
+    IOSDriver driver;
     HomePage homePage;
     AddMoneyPage addMoneyPage;
     Screen screen;
     Element element;
     MBKCommonControlsHelper mbkCommonControlsHelper;
     MBReporter mbReporter;
+    PermissionHelper permissionHelper;
 
     public static HashMap<String, String> map;
     public static HashMap<String, String> balanceBefore;
     public static HashMap<String, String> balanceAfter;
 
 
-    public AddMoneyHelper(AndroidDriver driver) throws IOException {
+    public AddMoneyHelper(IOSDriver driver) throws IOException {
         this.driver = driver;
-
+        permissionHelper = new PermissionHelper(driver);
         homePage = new HomePage(driver);
         screen = new Screen(driver);
         element = new Element(driver);
@@ -39,8 +40,12 @@ public class AddMoneyHelper {
     }
 
     public void netbanking(String amount, String bankName, String bankPageLocator) throws InterruptedException, IOException, JSONException {
+        // Check for permission
+        permissionHelper.permissionAllow();
+
+        // Check for botton sheet
         Thread.sleep(3000);
-        homePage.clickOnCrossButton();
+        homePage.clickHomePageMbkLogo();
         Thread.sleep(1000);
 
         addMoneyPage = homePage.clickOnAddMoneyButton();
@@ -59,8 +64,8 @@ public class AddMoneyHelper {
         addMoneyPage.clickOnNetbanking();
 
         Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text = '" + bankName + "']"));
-        AndroidElement androidElement = element.findElement(driver, By.xpath("//android.widget.TextView[@text = '" + bankName + "']"));
-        Element.selectElement(driver, androidElement, bankName);
+        IOSElement iosElement = element.findElement(driver, By.xpath("//android.widget.TextView[@text = '" + bankName + "']"));
+        Element.selectElement(driver, iosElement, bankName);
 
         Element.waitForVisibility(driver, addMoneyPage.label_make_payment);
 
@@ -144,8 +149,8 @@ public class AddMoneyHelper {
 
         screen.swipeUpMedium(driver);
 
-        AndroidElement androidElement = element.findElement(driver, By.xpath("//android.widget.TextView[@text = '" + cardNo + "']"));
-        Element.selectElement(driver, androidElement, "Select Bank");
+        IOSElement iosElement = element.findElement(driver, By.xpath("//android.widget.TextView[@text = '" + cardNo + "']"));
+        Element.selectElement(driver, iosElement, "Select Bank");
 
         addMoneyPage.enterCvv(cvv);
 
@@ -253,8 +258,8 @@ public class AddMoneyHelper {
 
         screen.swipeUpMedium(driver);
 
-        AndroidElement androidElement = element.findElement(driver, By.xpath("//android.widget.TextView[@text = '" + cardNo + "']"));
-        Element.selectElement(driver, androidElement, "Select Bank");
+        IOSElement iosElement = element.findElement(driver, By.xpath("//android.widget.TextView[@text = '" + cardNo + "']"));
+        Element.selectElement(driver, iosElement, "Select Bank");
 
         addMoneyPage.enterCvv(cvv);
 

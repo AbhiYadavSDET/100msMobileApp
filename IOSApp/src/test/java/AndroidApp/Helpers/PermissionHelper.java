@@ -1,6 +1,7 @@
 package test.java.AndroidApp.Helpers;
 
-import io.appium.java_client.android.AndroidDriver;
+
+import io.appium.java_client.ios.IOSDriver;
 import logger.Log;
 import main.java.utils.Element;
 import org.openqa.selenium.By;
@@ -9,12 +10,12 @@ import test.java.AndroidApp.PageObject.PermissionPage;
 import java.util.HashMap;
 
 public class PermissionHelper {
-    AndroidDriver driver;
+    IOSDriver driver;
     PermissionPage permissionPage;
     public static HashMap<String, String> map;
 
 
-    public PermissionHelper(AndroidDriver driver) {
+    public PermissionHelper(IOSDriver driver) {
         this.driver = driver;
         permissionPage = new PermissionPage(driver);
     }
@@ -22,7 +23,7 @@ public class PermissionHelper {
     public boolean isPermissionPopUpPresent() throws InterruptedException {
         Thread.sleep(3000);
 
-        if (Element.isElementPresent(driver, By.id("com.android.packageinstaller:id/dialog_container"))) {
+        if (Element.isElementPresent(driver, By.id("Allow"))) {
             return true;
         } else {
             Log.info("Permission Popup is not present");

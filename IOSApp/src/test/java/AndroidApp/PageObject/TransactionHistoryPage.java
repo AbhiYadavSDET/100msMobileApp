@@ -1,8 +1,8 @@
 package test.java.AndroidApp.PageObject;
 
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
-import io.appium.java_client.pagefactory.AndroidFindBy;
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSElement;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
 import main.java.utils.Element;
@@ -12,22 +12,22 @@ import org.openqa.selenium.support.PageFactory;
 import java.io.IOException;
 
 public class TransactionHistoryPage {
-    AndroidDriver driver;
+    IOSDriver driver;
 
     public String txn_list = "//android.support.v7.widget.RecyclerView/android.widget.LinearLayout";
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/btnVerfiySignUp")
-    public AndroidElement CTA_text;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/btnVerfiySignUp")
+    public IOSElement CTA_text;
 
 
-    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout[1]")
-    public AndroidElement first_element_in_list;
+    @iOSXCUITFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout[1]")
+    public IOSElement first_element_in_list;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/txt_txn_id")
-    public AndroidElement txn_id;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/txt_txn_id")
+    public IOSElement txn_id;
 
 
-    public TransactionHistoryPage(AndroidDriver driver) throws IOException {
+    public TransactionHistoryPage(IOSDriver driver) throws IOException {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
 

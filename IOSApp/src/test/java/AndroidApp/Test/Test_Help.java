@@ -13,11 +13,11 @@ public class Test_Help extends CreateSession {
     public void helpRaiseTicket() throws Exception {
         Log.info("START : Help sanity test");
 
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
 
         loginHelper.quickLoginViaEmail("mayank.suneja@mobikwik.com", "Tuesday20");
 
-        helpHelper = new HelpHelper(getAndroidDriver());
+        helpHelper = new HelpHelper(getIOSDriver());
 
         helpHelper.helpVerification();
         Log.info("END : Help sanity test");

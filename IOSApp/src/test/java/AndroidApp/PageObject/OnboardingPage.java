@@ -1,8 +1,8 @@
 package test.java.AndroidApp.PageObject;
 
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
-import io.appium.java_client.pagefactory.AndroidFindBy;
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSElement;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
 import main.java.utils.Element;
@@ -12,22 +12,22 @@ import java.io.IOException;
 
 public class OnboardingPage {
 
-    AndroidDriver<AndroidElement> driver;
+    IOSDriver<IOSElement> driver;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/tv_payments")
-    private AndroidElement onboarding_text;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/tv_payments")
+    private IOSElement onboarding_text;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/skip")
-    private AndroidElement button_skip;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/skip")
+    private IOSElement button_skip;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/phone_number")
-    private AndroidElement textbox_mobile_no;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/phone_number")
+    private IOSElement textbox_mobile_no;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/send_otp")
-    private AndroidElement cta_get_otp;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/send_otp")
+    private IOSElement cta_get_otp;
 
 
-    public OnboardingPage(AndroidDriver driver) {
+    public OnboardingPage(IOSDriver driver) {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
 

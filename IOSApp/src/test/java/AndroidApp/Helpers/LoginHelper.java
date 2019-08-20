@@ -2,7 +2,7 @@ package test.java.AndroidApp.Helpers;
 
 import UITestFramework.Api.ApiCommonControls;
 import UITestFramework.MBReporter;
-import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
 import logger.Log;
 import main.java.utils.Config;
 import main.java.utils.Element;
@@ -20,7 +20,7 @@ import java.util.HashMap;
 
 public class LoginHelper {
 
-    AndroidDriver driver;
+    IOSDriver driver;
     OnboardingPage onboardingPage;
     LoginPage loginPage;
     ApiCommonControls apiCommonControls;
@@ -36,7 +36,7 @@ public class LoginHelper {
     Screen screen;
 
 
-    public LoginHelper(AndroidDriver driver) throws IOException {
+    public LoginHelper(IOSDriver driver) throws IOException {
         this.driver = driver;
         apiCommonControls = new ApiCommonControls();
         apiOtp = new HashMap<>();
@@ -169,17 +169,14 @@ public class LoginHelper {
         if (isOnboardingPresent()) {
             Log.info("User is logged out, logging in");
 
-            Screen.hideKeyboard(driver);
-            permissionHelper.dismissHintPopup();
-            Screen.hideKeyboard(driver);
-
+            // Click on skip button
             homePage = onboardingPage.clickOnSkip();
 
+            // Click on Permission --> Allow
             permissionHelper.permissionAllow();
 
+            // Click on Login/Signup button
             loginPage = homePage.clickLoginSignupButton();
-
-            loginPage.clickOnExistingUser();
 
             // Enter Email
             loginPage.enterEmail(email);
@@ -218,7 +215,7 @@ public class LoginHelper {
 
     public boolean isOnboardingPresent() throws InterruptedException {
         Thread.sleep(3000);
-        if (Element.isElementPresent(driver, By.id("com.mobikwik_new:id/skip"))) {
+        if (Element.isElementPresent(driver, By.id("Skip"))) {
             return true;
         } else {
             return false;

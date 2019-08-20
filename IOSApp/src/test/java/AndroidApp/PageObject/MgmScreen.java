@@ -1,11 +1,12 @@
 package test.java.AndroidApp.PageObject;
 
 import UITestFramework.MobiKwikScreen;
-import io.appium.java_client.android.AndroidDriver;
+
+import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.By;
 
 public class MgmScreen extends MobiKwikScreen {
-    public MgmScreen(AndroidDriver driver){super(driver);}
+    public MgmScreen(IOSDriver driver){super(driver);}
 
     public By wallet = By.xpath("//android.widget.TextView[@text = 'Wallet']");
     public By mgmPoints = By.id("com.mobikwik_new:id/reward_option_loylty");

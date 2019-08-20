@@ -1,7 +1,7 @@
 package main.java.utils;
 
 import io.appium.java_client.TouchAction;
-import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import logger.Log;
@@ -18,11 +18,11 @@ public class Screen {
 
 
     static TouchAction touchAction;
-    AndroidDriver driver;
+    IOSDriver driver;
 
 
-    public Screen(AndroidDriver androidDriver) {
-        this.driver = androidDriver;
+    public Screen(IOSDriver IOSDriver) {
+        this.driver = IOSDriver;
         touchAction = new TouchAction(driver);
     }
 
@@ -36,7 +36,7 @@ public class Screen {
 
     }
 
-    public static void swipeUpMore(AndroidDriver driver) {
+    public static void swipeUpMore(IOSDriver driver) {
         try {
             Dimension dimension = driver.manage().window().getSize();
             Double screenHeightStart = dimension.getHeight() * 0.8; //50
@@ -55,7 +55,7 @@ public class Screen {
         }
     }
 
-    public static void swipeUpMedium(AndroidDriver driver) {
+    public static void swipeUpMedium(IOSDriver driver) {
         try {
             Dimension dimension = driver.manage().window().getSize();
             Double screenHeightStart = dimension.getHeight() * 0.6; //50
@@ -74,7 +74,7 @@ public class Screen {
         }
     }
 
-    public static void swipeUpLess(AndroidDriver driver) {
+    public static void swipeUpLess(IOSDriver driver) {
         try {
 
             Dimension dimension = driver.manage().window().getSize();
@@ -95,7 +95,7 @@ public class Screen {
     }
 
 
-    public static void swipeDownMore(AndroidDriver driver) {
+    public static void swipeDownMore(IOSDriver driver) {
         try {
             Dimension dimension = driver.manage().window().getSize();
             Double screenHeightStart = dimension.getHeight() * 0.2; //50
@@ -114,7 +114,7 @@ public class Screen {
         }
     }
 
-    public static void swipeDownMedium(AndroidDriver driver) {
+    public static void swipeDownMedium(IOSDriver driver) {
         try {
             Dimension dimension = driver.manage().window().getSize();
             Double screenHeightStart = dimension.getHeight() * 0.2; //50
@@ -133,7 +133,7 @@ public class Screen {
         }
     }
 
-    public static void swipeDownLess(AndroidDriver driver) {
+    public static void swipeDownLess(IOSDriver driver) {
         try {
 
             Dimension dimension = driver.manage().window().getSize();
@@ -173,14 +173,14 @@ public class Screen {
         touchAction.press(PointOption.point(400, yStart)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(duration))).moveTo(PointOption.point(400, yEnd)).release().perform();
     }
 
-    public static boolean isKeyboardShown(AndroidDriver androidDriver) throws InterruptedException {
+    public static boolean isKeyboardShown(IOSDriver IOSDriver) throws InterruptedException {
         Thread.sleep(2000);
-        return androidDriver.isKeyboardShown();
+        return IOSDriver.isKeyboardShown();
     }
 
-    public static void hideKeyboard(AndroidDriver androidDriver) throws InterruptedException {
-        if (isKeyboardShown(androidDriver)) {
-            androidDriver.hideKeyboard();
+    public static void hideKeyboard(IOSDriver IOSDriver) throws InterruptedException {
+        if (isKeyboardShown(IOSDriver)) {
+            IOSDriver.hideKeyboard();
         }
     }
 

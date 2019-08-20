@@ -1,6 +1,7 @@
 package test.java.AndroidApp.Helpers;
 
-import io.appium.java_client.android.AndroidDriver;
+
+import io.appium.java_client.ios.IOSDriver;
 import logger.Log;
 import org.json.JSONException;
 import test.java.AndroidApp.PageObject.HomePage;
@@ -9,10 +10,10 @@ import java.io.IOException;
 
 public class HomePageHelper {
 
-    AndroidDriver driver;
+    IOSDriver driver;
     HomePage homePage;
 
-    public HomePageHelper(AndroidDriver driver) throws IOException {
+    public HomePageHelper(IOSDriver driver) throws IOException {
         this.driver = driver;
         homePage = new HomePage(driver);
 

@@ -24,11 +24,11 @@ public class Test_Insurance extends CreateSession {
         Log.info("START : Insurance sanity test");
         String amount = "25";
 
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
         loginHelper.quickLoginViaEmail("mayank.suneja@mobikwik.com", "Tuesday20");
 
 
-        InsuranceHelper insuranceHelper = new InsuranceHelper(getAndroidDriver());
+        InsuranceHelper insuranceHelper = new InsuranceHelper(getIOSDriver());
         String trxId = insuranceHelper.buyInsurance("Payment Successful!", "for Home Insurance (Gas) of Rs. 2 Lakh by ICICI Lombard");
 
         CancelSingle cancelSingle = new CancelSingle(trxId, amount);

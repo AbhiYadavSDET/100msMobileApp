@@ -3,7 +3,8 @@ package test.java.AndroidApp.Helpers;
 import UITestFramework.MBKPermissions;
 import UITestFramework.MBReporter;
 import io.appium.java_client.TouchAction;
-import io.appium.java_client.android.AndroidDriver;
+
+import io.appium.java_client.ios.IOSDriver;
 import main.java.utils.Element;
 import main.java.utils.Screen;
 import org.json.JSONException;
@@ -26,11 +27,11 @@ public class MutualFundsHelper {
     public static HashMap<String, String> balanceBefore;
     public static HashMap<String, String> balanceAfter;
     MBKCommonControlsHelper mbkCommonControlsHelper;
-    AndroidDriver driver;
+    IOSDriver driver;
     WalletBalancePage walletBalancePage;
 
 
-    public MutualFundsHelper(AndroidDriver driver) throws IOException {
+    public MutualFundsHelper(IOSDriver driver) throws IOException {
         homePage = new HomePage(driver);
         touchAction = new TouchAction(driver);
         mbkPermissions = new MBKPermissions(driver);

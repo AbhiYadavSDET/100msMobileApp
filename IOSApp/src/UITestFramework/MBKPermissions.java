@@ -1,12 +1,12 @@
 package UITestFramework;
 
-import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.By;
 
 public class MBKPermissions extends MobiKwikScreen {
 
 
-    public MBKPermissions(AndroidDriver driver) {
+    public MBKPermissions(IOSDriver driver) {
         super(driver);
     }
 

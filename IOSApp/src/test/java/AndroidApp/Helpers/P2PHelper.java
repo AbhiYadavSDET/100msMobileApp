@@ -4,7 +4,8 @@ package test.java.AndroidApp.Helpers;
 import UITestFramework.MBKPermissions;
 import UITestFramework.MBReporter;
 import io.appium.java_client.TouchAction;
-import io.appium.java_client.android.AndroidDriver;
+
+import io.appium.java_client.ios.IOSDriver;
 import org.json.JSONException;
 import test.java.AndroidApp.PageObject.HomePage;
 import test.java.AndroidApp.PageObject.TransferPage;
@@ -16,7 +17,8 @@ import java.util.HashMap;
  * contains all methods to test Add Money Flow
  */
 public class P2PHelper {
-    AndroidDriver driver;
+
+    IOSDriver driver;
     TouchAction touchAction;
     MBKPermissions mbkPermissions;
     MBReporter mbReporter;
@@ -28,7 +30,7 @@ public class P2PHelper {
     public static HashMap<String, String> balanceAfter;
 
 
-    public P2PHelper(AndroidDriver driver) throws IOException {
+    public P2PHelper(IOSDriver driver) throws IOException {
         this.driver = driver;
         touchAction = new TouchAction(driver);
         mbkPermissions = new MBKPermissions(driver);

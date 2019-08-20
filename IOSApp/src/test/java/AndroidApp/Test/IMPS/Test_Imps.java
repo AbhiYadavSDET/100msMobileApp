@@ -22,7 +22,7 @@ public class Test_Imps extends CreateSession {
         String amount = "50";
         Log.info("START : Imps sanity test");
 
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
         loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
 
         // Add money for the amount
@@ -30,7 +30,7 @@ public class Test_Imps extends CreateSession {
         addMoneyHelper.addMoneyViaSavedCardWithinFlow(amount, "4363 XXXX XXXX 4460", "239", "Paraj@1234");
 
         // IMPS the same amount
-        ImpsHelper impsHelper = new ImpsHelper(getAndroidDriver());
+        ImpsHelper impsHelper = new ImpsHelper(getIOSDriver());
         impsHelper.verifyImps("Mayank Suneja", "114601503265", "ICIC0001146", amount);
 
         Log.info("END : Imps sanity test");

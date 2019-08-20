@@ -13,12 +13,12 @@ public class Test_MutualFunds extends CreateSession {
     public void transactionHistoryVerificationLoggedOut() throws Exception {
         Log.info("START : Mutual Funds sanity test");
 
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
 
         //loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
         loginHelper.quickLoginViaEmail("mayank.suneja@mobikwik.com", "Tuesday20");
 
-        mutualFundsHelper = new MutualFundsHelper(getAndroidDriver());
+        mutualFundsHelper = new MutualFundsHelper(getIOSDriver());
 
         mutualFundsHelper.mutualFundsVerification();
         Log.info("END : Mutual Funds sanity test");

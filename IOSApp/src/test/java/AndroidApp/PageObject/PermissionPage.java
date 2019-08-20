@@ -1,8 +1,8 @@
 package test.java.AndroidApp.PageObject;
 
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
-import io.appium.java_client.pagefactory.AndroidFindBy;
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSElement;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
 import main.java.utils.Element;
@@ -10,22 +10,22 @@ import org.openqa.selenium.support.PageFactory;
 
 public class PermissionPage {
 
-    AndroidDriver driver;
+    IOSDriver driver;
 
-    @AndroidFindBy(id = "com.android.packageinstaller:id/dialog_container")
-    private AndroidElement popup_permission;
+    @iOSXCUITFindBy(id = "com.android.packageinstaller:id/dialog_container")
+    private IOSElement popup_permission;
 
-    @AndroidFindBy(id = "com.android.packageinstaller:id/permission_deny_button")
-    private AndroidElement permission_deny;
+    @iOSXCUITFindBy(id = "Don’t Allow")
+    private IOSElement permission_deny;
 
-    @AndroidFindBy(id = "com.android.packageinstaller:id/permission_allow_button")
-    private AndroidElement permission_allow;
+    @iOSXCUITFindBy(id = "Allow")
+    private IOSElement permission_allow;
 
-    @AndroidFindBy(id = "com.google.android.gms:id/cancel")
-    private AndroidElement cancel_popup;
+    @iOSXCUITFindBy(id = "com.google.android.gms:id/cancel")
+    private IOSElement cancel_popup;
 
 
-    public PermissionPage(AndroidDriver driver) {
+    public PermissionPage(IOSDriver driver) {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
 

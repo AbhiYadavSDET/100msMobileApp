@@ -3,7 +3,8 @@ package test.java.AndroidApp.Helpers;
 import UITestFramework.MBKPermissions;
 import UITestFramework.MBReporter;
 import io.appium.java_client.TouchAction;
-import io.appium.java_client.android.AndroidDriver;
+
+import io.appium.java_client.ios.IOSDriver;
 import main.java.utils.Screen;
 import org.json.JSONException;
 import test.java.AndroidApp.PageObject.HelpPage;
@@ -22,10 +23,10 @@ public class HelpHelper {
     SideDrawerPage sideDrawerPage;
     PermissionHelper permissionHelper;
     MBKCommonControlsHelper mbkCommonControlsHelper;
-    AndroidDriver driver;
+    IOSDriver driver;
 
 
-    public HelpHelper(AndroidDriver driver) throws IOException {
+    public HelpHelper(IOSDriver driver) throws IOException {
         this.driver = driver;
         homePage = new HomePage(driver);
         touchAction = new TouchAction(driver);

@@ -16,11 +16,11 @@ public class Test_Deep_Link_Gift_Cards extends CreateSession {
     public void deep_link_history(String userName, String password) throws IOException, JSONException, InterruptedException {
 
 
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
         //for bank mandate 9958314430@nocash.mobikwik.com india@123
         loginHelper.quickLoginViaEmail(userName, password);
 
-        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
+        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getIOSDriver());
 
         deepLinkHelper.getdeeplink("mobikwik://giftcard/history", "View Gift Cards", "btn_action");
 
@@ -32,13 +32,13 @@ public class Test_Deep_Link_Gift_Cards extends CreateSession {
     public void deep_link_homescreen(String userName, String password) throws IOException, JSONException, InterruptedException {
 
 
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
         //for bank mandate 9958314430@nocash.mobikwik.com india@123
         loginHelper.quickLoginViaEmail(userName, password);
 
         //loginHelper.quickLoginViaEmail("priyankaigdtuw@gmail.com", "priyanka123");
 
-        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
+        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getIOSDriver());
 
         deepLinkHelper.getdeeplink("mobikwik://giftcard", "View Gift Cards", "btn_action");
 

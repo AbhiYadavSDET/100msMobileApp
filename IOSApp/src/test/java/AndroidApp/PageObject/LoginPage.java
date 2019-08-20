@@ -1,9 +1,10 @@
 package test.java.AndroidApp.PageObject;
 
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
-import io.appium.java_client.pagefactory.AndroidFindBy;
+
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import logger.Log;
 import main.java.utils.Element;
 import org.openqa.selenium.support.PageFactory;
@@ -12,33 +13,33 @@ import java.io.IOException;
 
 public class LoginPage {
 
-    AndroidDriver driver;
+    IOSDriver driver;
     String apiOtp;
 
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/otp_field")
-    private AndroidElement textbox_otp;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/otp_field")
+    private IOSElement textbox_otp;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/continue_btn")
-    private AndroidElement cta_submit_otp;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/continue_btn")
+    private IOSElement cta_submit_otp;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'EXISTING USER']")
-    private AndroidElement link_existing_user;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text = 'EXISTING USER']")
+    private IOSElement link_existing_user;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'NEW USER']")
-    private AndroidElement link_new_user;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text = 'NEW USER']")
+    private IOSElement link_new_user;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/edit_text_mket")
-    private AndroidElement textbox_email;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='Mobile Number or Email']/following::XCUIElementTypeTextField[1]")
+    private IOSElement textbox_email;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Password']/following::android.widget.EditText")
-    private AndroidElement textbox_password;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='Mobile Number or Email']/following:: XCUIElementTypeSecureTextField")
+    private IOSElement textbox_password;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/btnLogin")
-    private AndroidElement cta_login;
+    @iOSXCUITFindBy(id = "Login")
+    private IOSElement cta_login;
 
 
-    public LoginPage(AndroidDriver driver) throws IOException {
+    public LoginPage(IOSDriver driver) throws IOException {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
 

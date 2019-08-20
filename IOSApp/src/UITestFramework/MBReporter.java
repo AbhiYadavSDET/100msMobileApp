@@ -1,6 +1,6 @@
 package UITestFramework;
 
-import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
 import logger.Log;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -26,13 +26,13 @@ import java.util.logging.Level;
  */
 public class MBReporter {
     public boolean testCaseStatus = true;
-    private AndroidDriver driver;
+    private IOSDriver driver;
     private File file;
     private String testScreenshotDir;
     private InetAddress ownIP;
     UITestFramework.ExtentReport.Reporter reporter = new UITestFramework.ExtentReport.Reporter();
 
-    public MBReporter(AndroidDriver driver, String testScreenshotDir) {
+    public MBReporter(IOSDriver driver, String testScreenshotDir) {
         this.driver = driver;
         this.testScreenshotDir = testScreenshotDir;
         file = new File("");

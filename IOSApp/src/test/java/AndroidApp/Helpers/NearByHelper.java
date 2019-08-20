@@ -3,8 +3,8 @@ package test.java.AndroidApp.Helpers;
 import UITestFramework.Api.ApiCommonControls;
 import UITestFramework.ExtentReport.Reporter;
 import io.appium.java_client.TouchAction;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSElement;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import logger.Log;
@@ -28,7 +28,7 @@ public class NearByHelper extends NearByHelperBase {
     Screen screen;
     PermissionHelper permissionHelper;
 
-    public NearByHelper(AndroidDriver driver) throws IOException {
+    public NearByHelper(IOSDriver driver) throws IOException {
         touchAction = new TouchAction(driver);
         apiCommonControls = new ApiCommonControls();
         nearByScreen = new NearByScreen(driver);
@@ -65,7 +65,7 @@ public class NearByHelper extends NearByHelperBase {
 
         // wait for fetching of stores
         nearByScreen.waitForVisibility(nearByScreen.storesByAdd);
-        List<AndroidElement> stores = nearByScreen.findElements(By.id("com.mobikwik_new:id/tv_name"));
+        List<IOSElement> stores = nearByScreen.findElements(By.id("com.mobikwik_new:id/tv_name"));
         noOfstores = stores.size();
 
         // log number of stores
@@ -114,7 +114,7 @@ public class NearByHelper extends NearByHelperBase {
         // wait for list of stores
         nearByScreen.waitForVisibility(nearByScreen.storesByAdd1);
 
-        List<AndroidElement> stores = nearByScreen.findElements(By.id("com.mobikwik_new:id/tv_name"));
+        List<IOSElement> stores = nearByScreen.findElements(By.id("com.mobikwik_new:id/tv_name"));
         noOfstores = stores.size();
 
         // log number of stores
@@ -165,7 +165,7 @@ public class NearByHelper extends NearByHelperBase {
         // wait for list of stores
         nearByScreen.waitForVisibility(nearByScreen.storesByAdd1);
 
-        List<AndroidElement> stores = nearByScreen.findElements(By.id("com.mobikwik_new:id/tv_name"));
+        List<IOSElement> stores = nearByScreen.findElements(By.id("com.mobikwik_new:id/tv_name"));
         noOfstores = stores.size();
 
         // log number of stores

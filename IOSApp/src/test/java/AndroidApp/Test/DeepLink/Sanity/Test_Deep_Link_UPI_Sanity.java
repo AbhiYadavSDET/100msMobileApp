@@ -16,13 +16,13 @@ public class Test_Deep_Link_UPI_Sanity extends CreateSession
 public void deep_link_bank_transfer(String userName, String password) throws IOException, JSONException, InterruptedException {
 
 
-    LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+    LoginHelper loginHelper = new LoginHelper(getIOSDriver());
 
     loginHelper.quickLoginViaEmail(userName, password);
 
     //loginHelper.quickLoginViaEmail("priyankaigdtuw@gmail.com", "priyanka123");
 
-    DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
+    DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getIOSDriver());
 
     deepLinkHelper.getdeeplink("mobikwik://moneytransfer/upi/bank?account=20241958617&ifsc=SBIN0010897&name=Priyanka", "Confirm Payment", "cta");
 
@@ -34,12 +34,12 @@ public void deep_link_bank_transfer(String userName, String password) throws IOE
     public void deep_link_check_balance(String userName, String password) throws IOException, JSONException, InterruptedException {
 
 
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
         loginHelper.quickLoginViaEmail(userName, password);
 
         //loginHelper.quickLoginViaEmail("priyankaigdtuw@gmail.com", "priyanka123");
 
-        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
+        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getIOSDriver());
 
         deepLinkHelper.getdeeplink("mobikwik://upi/checkbalance", "Money Transfer ID", "upi_id_label");
 
@@ -51,12 +51,12 @@ public void deep_link_bank_transfer(String userName, String password) throws IOE
     public void deep_link_ID_Transfer(String userName, String password) throws IOException, JSONException, InterruptedException {
 
 
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
         loginHelper.quickLoginViaEmail(userName, password);
 
         //loginHelper.quickLoginViaEmail("priyankaigdtuw@gmail.com", "priyanka123");
 
-        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
+        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getIOSDriver());
 
         deepLinkHelper.getdeeplink("mobikwik://upi/verifyVpa?vpa=priyankaigdtuw@oksbi", "View transaction limit", "view_transaction_limit");
 
@@ -68,12 +68,12 @@ public void deep_link_bank_transfer(String userName, String password) throws IOE
     public void deep_link_Intent_DeepLink(String userName, String password) throws IOException, JSONException, InterruptedException {
 
 
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
         loginHelper.quickLoginViaEmail(userName, password);
 
         //loginHelper.quickLoginViaEmail("priyankaigdtuw@gmail.com", "priyanka123");
 
-        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
+        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getIOSDriver());
 
         deepLinkHelper.getdeeplink("upi://pay?pa=priyankaigdtuw@oksbi&pn=Priyanka", "0", "amount_field");
 
@@ -85,12 +85,12 @@ public void deep_link_bank_transfer(String userName, String password) throws IOE
     public void deep_link_pending(String userName, String password) throws IOException, JSONException, InterruptedException {
 
 
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
         loginHelper.quickLoginViaEmail(userName, password);
 
         //loginHelper.quickLoginViaEmail("priyankaigdtuw@gmail.com", "priyanka123");
 
-        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
+        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getIOSDriver());
 
         deepLinkHelper.getdeeplink("mobikwik://upi/pending", "Money Transfer ID", "upi_id_label");
 
@@ -102,12 +102,12 @@ public void deep_link_bank_transfer(String userName, String password) throws IOE
     public void deep_link_remainder(String userName, String password) throws IOException, JSONException, InterruptedException {
 
 
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
         loginHelper.quickLoginViaEmail(userName, password);
 
         //loginHelper.quickLoginViaEmail("priyankaigdtuw@gmail.com", "priyanka123");
 
-        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
+        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getIOSDriver());
 
         deepLinkHelper.getdeeplink("mobikwik://remindersetup", "Payment Reminder", "mkab_title");
 
@@ -119,13 +119,13 @@ public void deep_link_bank_transfer(String userName, String password) throws IOE
     public void deep_link_self_transfer(String userName, String password) throws IOException, JSONException, InterruptedException {
 
 
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
 
         loginHelper.quickLoginViaEmail(userName, password);
 
         //loginHelper.quickLoginViaEmail("priyankaigdtuw@gmail.com", "priyanka123");
 
-        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
+        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getIOSDriver());
 
         deepLinkHelper.getdeeplink("mobikwik://upi/selftransfer", "Send to Self", "mkab_title");
 
@@ -137,13 +137,13 @@ public void deep_link_bank_transfer(String userName, String password) throws IOE
     public void deep_link_transfer_screen(String userName, String password) throws IOException, JSONException, InterruptedException {
 
 
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
         loginHelper.quickLoginViaEmail(userName, password);
 
 
         //loginHelper.quickLoginViaEmail("priyankaigdtuw@gmail.com", "priyanka123");
 
-        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
+        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getIOSDriver());
 
         deepLinkHelper.getdeeplink("mobikwik://moneytransfer/upi", "Transfer Money from UPI", "mkab_title");
 

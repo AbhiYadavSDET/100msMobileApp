@@ -16,12 +16,12 @@ public class Test_Deep_Link_Mutual_Funds_Sanity_Stag extends CreateSession {
     public void deep_link_KYC(String userName, String password) throws IOException, JSONException, InterruptedException {
 
 
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
 
         loginHelper.quickLoginViaEmail(userName, password);
 
 
-        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
+        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getIOSDriver());
 
         deepLinkHelper.getdeeplink("mobikwik://mutual-funds/kyc", "Mutual Funds Portfolio", "mkab_title");
 
@@ -33,12 +33,12 @@ public class Test_Deep_Link_Mutual_Funds_Sanity_Stag extends CreateSession {
     public void deep_link_open_mandate(String userName, String password) throws IOException, JSONException, InterruptedException {
 
 
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
 
         loginHelper.quickLoginViaEmail(userName, password);
 
 
-        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
+        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getIOSDriver());
 
         deepLinkHelper.getdeeplink("mobikwik://mutual-funds/bank-mandate", "Auto-Pay Set Up", "mkab_title");
 

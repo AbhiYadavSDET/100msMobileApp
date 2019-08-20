@@ -1,9 +1,10 @@
 package test.java.AndroidApp.PageObject;
 
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
-import io.appium.java_client.pagefactory.AndroidFindBy;
+
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import logger.Log;
 import main.java.utils.Element;
 import org.openqa.selenium.By;
@@ -13,80 +14,80 @@ import java.io.IOException;
 
 public class AddMoneyPage {
 
-    AndroidDriver driver;
+    IOSDriver driver;
 
 
-    @AndroidFindBy(id = "edit_text_mket")
-    private AndroidElement textbox_amount;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='Add Money']/following::XCUIElementTypeTextField")
+    private IOSElement textbox_amount;
 
-    @AndroidFindBy(id = "btnContinue")
-    private AndroidElement button_continue;
+    @iOSXCUITFindBy(id = "Continue")
+    private IOSElement button_continue;
 
-    @AndroidFindBy(xpath = "//*[@text = 'Select Payment Mode']")
-    public AndroidElement label_select_payment_mode;
+    @iOSXCUITFindBy(id = "Select Payment Mode")
+    public IOSElement label_select_payment_mode;
 
-    @AndroidFindBy(xpath = "//*[@text = 'Net Banking']")
-    public AndroidElement label_netbanking;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='Net Banking']/following::XCUIElementTypeButton[1]")
+    public IOSElement label_netbanking;
 
-    @AndroidFindBy(xpath = "//*[@text = 'New Debit/Credit Card']")
-    public AndroidElement label_new_debit_credit_card;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='New Debit/Credit Cards']/following::XCUIElementTypeButton[1]")
+    public IOSElement label_new_debit_credit_card;
 
-    @AndroidFindBy(xpath = "//*[@text = 'Debit or Credit Card']")
-    public AndroidElement label_debit_credit_card;
+    @iOSXCUITFindBy(xpath = "//*[@text = 'Debit or Credit Card']")
+    public IOSElement label_debit_credit_card;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/mkab_title")
-    public AndroidElement label_make_payment;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name='Payment Gateway']")
+    public IOSElement label_make_payment;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/horizontal_button_2")
-    public AndroidElement button_yes;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/horizontal_button_2")
+    public IOSElement button_yes;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/horizontal_button_1")
-    public AndroidElement button_no;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/horizontal_button_1")
+    public IOSElement button_no;
 
     //Enter card details
-    @AndroidFindBy(xpath = "//*[@text = 'Debit or Credit Card']/following::android.widget.EditText[1]")
-    public AndroidElement textbox_card_no_new;
+    @iOSXCUITFindBy(xpath = "//*[@text = 'Debit or Credit Card']/following::android.widget.EditText[1]")
+    public IOSElement textbox_card_no_new;
     //Enter card details
-    @AndroidFindBy(xpath = "//*[@text = 'Card Number']/following::android.widget.EditText[1]")
-    public AndroidElement textbox_card_no;
+    @iOSXCUITFindBy(xpath = "//*[@text = 'Card Number']/following::android.widget.EditText[1]")
+    public IOSElement textbox_card_no;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Card Expiry']/following::android.widget.EditText[1]")
-    private AndroidElement textbox_expiry;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text = 'Card Expiry']/following::android.widget.EditText[1]")
+    private IOSElement textbox_expiry;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'CVV']/following::android.widget.EditText[1]")
-    private AndroidElement textbox_cvv;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text = 'CVV']/following::android.widget.EditText[1]")
+    private IOSElement textbox_cvv;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/btn_add_money")
-    public AndroidElement cta_pay_now;
-    @AndroidFindBy(id = "com.mobikwik_new:id/new_card_btn_pay")
-    public AndroidElement cta_pay_now_new;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/btn_add_money")
+    public IOSElement cta_pay_now;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/new_card_btn_pay")
+    public IOSElement cta_pay_now_new;
 
-    @AndroidFindBy(xpath = "//android.widget.RadioButton[@content-desc = 'e-Secure Password']")
-    private AndroidElement link_e_secure_password_1;
+    @iOSXCUITFindBy(xpath = "//android.widget.RadioButton[@content-desc = 'e-Secure Password']")
+    private IOSElement link_e_secure_password_1;
 
-    @AndroidFindBy(xpath = "//android.widget.RadioButton[@text = 'e-Secure Password']")
-    private AndroidElement link_e_secure_password_2;
+    @iOSXCUITFindBy(xpath = "//android.widget.RadioButton[@text = 'e-Secure Password']")
+    private IOSElement link_e_secure_password_2;
 
-    @AndroidFindBy(xpath = "//android.widget.Button")
-    private AndroidElement cta_bankpage_continue;
+    @iOSXCUITFindBy(xpath = "//android.widget.Button")
+    private IOSElement cta_bankpage_continue;
 
-    @AndroidFindBy(xpath = "//android.widget.EditText")
-    private AndroidElement textbox_bankpage_password;
+    @iOSXCUITFindBy(xpath = "//android.widget.EditText")
+    private IOSElement textbox_bankpage_password;
 
-    @AndroidFindBy(xpath = "//android.widget.Button")
-    private AndroidElement cta_bankpage_submit;
+    @iOSXCUITFindBy(xpath = "//android.widget.Button")
+    private IOSElement cta_bankpage_submit;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/base_title")
-    private AndroidElement label_success_page_status;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/base_title")
+    private IOSElement label_success_page_status;
 
-    @AndroidFindBy(xpath = "//android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.TextView[@index ='0']")
-    private AndroidElement label_success_page_text;
+    @iOSXCUITFindBy(xpath = "//android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.TextView[@index ='0']")
+    private IOSElement label_success_page_text;
 
-    @AndroidFindBy(xpath = "//android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.TextView[@index ='1']")
-    private AndroidElement label_success_page_wallet_balance;
+    @iOSXCUITFindBy(xpath = "//android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.TextView[@index ='1']")
+    private IOSElement label_success_page_wallet_balance;
 
 
-    public AddMoneyPage(AndroidDriver driver) throws IOException {
+    public AddMoneyPage(IOSDriver driver) throws IOException {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
 
@@ -116,17 +117,14 @@ public class AddMoneyPage {
         Element.selectElement(driver, label_netbanking, "Netbanking");
     }
 
-    public void clickOnNewDebitCreditCard() throws InterruptedException
-    {
-        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Debit or Credit Card']")))
-        {
+    public void clickOnNewDebitCreditCard() throws InterruptedException {
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Debit or Credit Card']"))) {
             Element.selectElement(driver, label_debit_credit_card, "Debit/Credit card");
-        }
-        else
-            {
+        } else {
             Element.selectElement(driver, label_new_debit_credit_card, "New Debit or Credit card");
-            }
+        }
     }
+
     public void clickOnDebitCreditCard() throws InterruptedException {
         Element.selectElement(driver, label_debit_credit_card, "Debit/Credit card");
     }
@@ -141,12 +139,9 @@ public class AddMoneyPage {
     }
 
     public void enterCardNo(String cardNo) throws InterruptedException {
-        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Debit or Credit Card']")))
-        {
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Debit or Credit Card']"))) {
             Element.enterText(driver, textbox_card_no_new, cardNo, "Card No");
-        }
-        else
-        {
+        } else {
             Element.enterText(driver, textbox_card_no, cardNo, "Card No");
         }
     }
@@ -160,13 +155,10 @@ public class AddMoneyPage {
     }
 
     public void clickOnPayNow() throws InterruptedException {
-        if (Element.isElementPresent(driver, By.id("com.mobikwik_new:id/new_card_btn_pay")))
-        {
+        if (Element.isElementPresent(driver, By.id("com.mobikwik_new:id/new_card_btn_pay"))) {
             Element.selectElement(driver, cta_pay_now_new, "Pay Now Button");
 
-        }
-        else
-        {
+        } else {
             Element.selectElement(driver, cta_pay_now, "Pay Now Button");
 
         }

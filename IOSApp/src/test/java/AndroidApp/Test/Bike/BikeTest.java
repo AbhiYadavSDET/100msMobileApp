@@ -32,9 +32,9 @@ public class BikeTest extends CreateSession {
     @BeforeMethod(groups = "instantiateHelpers", alwaysRun = true)
     public void instantiateHelpers(String build) throws IOException {
 
-        bikeHelperBase = new BikeHelper(getAndroidDriver());
-        loginHelper = new LoginHelper(getAndroidDriver());
-        bikeHelper = new BikeHelper(getAndroidDriver());
+        bikeHelperBase = new BikeHelper(getIOSDriver());
+        loginHelper = new LoginHelper(getIOSDriver());
+        bikeHelper = new BikeHelper(getIOSDriver());
 
 
     }

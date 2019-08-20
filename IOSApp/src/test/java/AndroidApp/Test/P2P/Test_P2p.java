@@ -16,11 +16,11 @@ public class Test_P2p extends CreateSession {
 
     @Test(groups = {"p2pSufficient", "p2pSanity"}, priority = 1, dataProvider = "p2pData", dataProviderClass = P2pProviderClass.class)
     public void Test01_p2pSufficient(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
         loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
 
 
-        P2PHelper p2PHelper = new P2PHelper(getAndroidDriver());
+        P2PHelper p2PHelper = new P2PHelper(getIOSDriver());
         p2PHelper.p2pSufficient(frontEndEntity.getMobileNo(), frontEndEntity.getAmount(), frontEndEntity.getSecurityPin(), frontEndEntity.getSuccessPageStatus(), frontEndEntity.getCategory());
 
 

@@ -4,7 +4,8 @@ import UITestFramework.Api.ApiCommonControls;
 import UITestFramework.ExtentReport.Reporter;
 import UITestFramework.MBKPermissions;
 import io.appium.java_client.TouchAction;
-import io.appium.java_client.android.AndroidDriver;
+
+import io.appium.java_client.ios.IOSDriver;
 import logger.Log;
 import org.json.JSONException;
 import test.java.AndroidApp.PageObject.HomePage;
@@ -21,7 +22,7 @@ public class MgmHelper extends MgmHelperBase {
     MgmScreen mgmScreen;
     HomePage homePage;
 
-    public MgmHelper(AndroidDriver driver) throws IOException {
+    public MgmHelper(IOSDriver driver) throws IOException {
 
         touchAction = new TouchAction(driver);
         mbkPermissions = new MBKPermissions(driver);

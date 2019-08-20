@@ -1,28 +1,19 @@
 package test.java.AndroidApp.PageObject;
 
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
-import io.appium.java_client.pagefactory.AndroidFindBy;
-import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import logger.Log;
-import main.java.utils.Element;
-import org.openqa.selenium.support.PageFactory;
-
-import java.io.IOException;
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSElement;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class OlaPage {
 
-    AndroidDriver driver;
+    IOSDriver driver;
 
 
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/gps_turn_txt")
+    private IOSElement text_gps_off;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/gps_turn_txt")
-    private AndroidElement text_gps_off;
-
-    @AndroidFindBy(id = "com.mobikwik_new:id/gps_turn_on_btn")
-    private AndroidElement button_turn_on_gps;
-
-
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/gps_turn_on_btn")
+    private IOSElement button_turn_on_gps;
 
 
 }

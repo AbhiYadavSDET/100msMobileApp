@@ -1,11 +1,11 @@
 package test.java.AndroidApp.PageObject;
 
 import UITestFramework.MobiKwikScreen;
-import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.By;
 
 public class NearByScreen extends MobiKwikScreen {
-    public NearByScreen(AndroidDriver driver) {
+    public NearByScreen(IOSDriver driver) {
         super(driver);
 
     }

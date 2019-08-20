@@ -1,8 +1,8 @@
 package test.java.AndroidApp.Helpers;
 
 import UITestFramework.MBReporter;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSElement;
 import logger.Log;
 import main.java.utils.DateHelper;
 import main.java.utils.Element;
@@ -19,7 +19,7 @@ import java.util.HashMap;
 public class BusHelper {
 
 
-    AndroidDriver driver;
+    IOSDriver driver;
     HomePage homePage;
     Screen screen;
     Element element;
@@ -33,7 +33,7 @@ public class BusHelper {
     public static HashMap<String, String> balanceBefore;
     public static HashMap<String, String> balanceAfter;
 
-    public BusHelper(AndroidDriver driver) throws IOException {
+    public BusHelper(IOSDriver driver) throws IOException {
         this.driver = driver;
 
         homePage = new HomePage(driver);
@@ -89,8 +89,8 @@ public class BusHelper {
 
             String selectMonth = monthString + " " + year;
 
-            AndroidElement androidElement = element.findElement(driver, By.xpath("//android.widget.TextView[@text = '" + selectMonth + "']/following::android.widget.TextView[@text = '5']"));
-            Element.selectElement(driver, androidElement, "select modified date");
+            IOSElement iosElement = element.findElement(driver, By.xpath("//android.widget.TextView[@text = '" + selectMonth + "']/following::android.widget.TextView[@text = '5']"));
+            Element.selectElement(driver, iosElement, "select modified date");
 
 
         }

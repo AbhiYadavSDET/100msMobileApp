@@ -1,7 +1,8 @@
 package test.java.AndroidApp.Helpers;
 
 import UITestFramework.MBReporter;
-import io.appium.java_client.android.AndroidDriver;
+
+import io.appium.java_client.ios.IOSDriver;
 import logger.Log;
 import main.java.utils.Element;
 import main.java.utils.Screen;
@@ -13,7 +14,7 @@ import java.util.HashMap;
 
 public class WalletPageHelper {
 
-    AndroidDriver driver;
+    IOSDriver driver;
     HomePage homePage;
     Screen screen;
     Element element;
@@ -27,7 +28,7 @@ public class WalletPageHelper {
     public static HashMap<String, String> balanceBefore;
     public static HashMap<String, String> balanceAfter;
 
-    public WalletPageHelper(AndroidDriver driver) throws IOException {
+    public WalletPageHelper(IOSDriver driver) throws IOException {
         this.driver = driver;
 
         homePage = new HomePage(driver);

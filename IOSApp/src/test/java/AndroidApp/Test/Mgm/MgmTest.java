@@ -31,7 +31,7 @@ public class MgmTest extends CreateSession {
 
         reporter = new Reporter();
         loginHelper = new LoginHelper(driver);
-        mgmHelper = new MgmHelper(getAndroidDriver());
+        mgmHelper = new MgmHelper(getIOSDriver());
 
 
     }

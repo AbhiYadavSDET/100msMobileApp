@@ -24,9 +24,9 @@ public class Test_Deep_Link extends CreateSession {
     public void deep_link(String deeplinkstring, String deeplinkverify, String elementID) throws IOException, JSONException, InterruptedException {
 
         FrontEndEntity frontEndEntity=new FrontEndEntity();
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
         loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
-        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
+        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getIOSDriver());
         deepLinkHelper.getdeeplink(deeplinkstring, deeplinkverify, elementID);
 
 

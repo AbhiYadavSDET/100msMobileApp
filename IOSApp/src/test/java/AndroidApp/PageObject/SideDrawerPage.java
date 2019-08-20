@@ -1,48 +1,48 @@
 package test.java.AndroidApp.PageObject;
 
-import main.java.utils.Element;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
-import io.appium.java_client.pagefactory.AndroidFindBy;
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSElement;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
+import main.java.utils.Element;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
 
 public class SideDrawerPage {
 
-    AndroidDriver driver;
+    IOSDriver driver;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/drawerHeadingIcon")
-    private AndroidElement profile_icon;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/drawerHeadingIcon")
+    private IOSElement profile_icon;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/drawerHeadingName")
-    private AndroidElement label_name;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/drawerHeadingName")
+    private IOSElement label_name;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/drawerHeadingEmail")
-    private AndroidElement label_email;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/drawerHeadingEmail")
+    private IOSElement label_email;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/drawerHeadingNumber")
-    private AndroidElement label_mobile;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/drawerHeadingNumber")
+    private IOSElement label_mobile;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Update Profile']")
-    private AndroidElement link_update_profile;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text = 'Update Profile']")
+    private IOSElement link_update_profile;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'KYC Centres']")
-    private AndroidElement link_kyc_centres;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text = 'KYC Centres']")
+    private IOSElement link_kyc_centres;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'My Saved Connections']")
-    private AndroidElement link_my_saved_connections;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text = 'My Saved Connections']")
+    private IOSElement link_my_saved_connections;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Payment Reminders']")
-    private AndroidElement link_payment_reminders;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text = 'Payment Reminders']")
+    private IOSElement link_payment_reminders;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Help']")
-    private AndroidElement help;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text = 'Help']")
+    private IOSElement help;
 
 
-    public SideDrawerPage(AndroidDriver driver) {
+    public SideDrawerPage(IOSDriver driver) {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
 

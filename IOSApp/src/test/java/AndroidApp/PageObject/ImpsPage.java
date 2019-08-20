@@ -1,8 +1,9 @@
 package test.java.AndroidApp.PageObject;
 
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
-import io.appium.java_client.pagefactory.AndroidFindBy;
+
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSElement;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
 import main.java.utils.Element;
@@ -13,51 +14,51 @@ import java.io.IOException;
 
 public class ImpsPage {
 
-    AndroidDriver driver;
+    IOSDriver driver;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Via Wallet']")
-    private AndroidElement via_Wallet;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text = 'Via Wallet']")
+    private IOSElement via_Wallet;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Wallet to Bank']")
-    private AndroidElement wallet_to_bank;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text = 'Wallet to Bank']")
+    private IOSElement wallet_to_bank;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = '167795709569']")
-    private AndroidElement bank;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text = '167795709569']")
+    private IOSElement bank;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/edt_txt_transfer_amount")
-    private AndroidElement amount_box;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/edt_txt_transfer_amount")
+    private IOSElement amount_box;
 
-    @AndroidFindBy(xpath = "//android.widget.Button[@text = 'Continue']")
-    private AndroidElement continueButton;
+    @iOSXCUITFindBy(xpath = "//android.widget.Button[@text = 'Continue']")
+    private IOSElement continueButton;
 
-    @AndroidFindBy(xpath = "//android.widget.Button[@text = 'Confirm']")
-    private AndroidElement confirm;
+    @iOSXCUITFindBy(xpath = "//android.widget.Button[@text = 'Confirm']")
+    private IOSElement confirm;
 
     String success_text = "android.widget.TextView[@text = 'Money sent successfully']";
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/beneficiary_name")
-    private AndroidElement textbox_beneficiary_name;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/beneficiary_name")
+    private IOSElement textbox_beneficiary_name;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/account_number")
-    private AndroidElement textbox_account_no;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/account_number")
+    private IOSElement textbox_account_no;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/ifsc_code")
-    private AndroidElement textbox_ifsc;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/ifsc_code")
+    private IOSElement textbox_ifsc;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/continue_button")
-    private AndroidElement cta_continue;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/continue_button")
+    private IOSElement cta_continue;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/base_title")
-    private AndroidElement label_success_message;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/base_title")
+    private IOSElement label_success_message;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/txt_cn_value")
-    private AndroidElement label_account_no;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/txt_cn_value")
+    private IOSElement label_account_no;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/txt_amount_value")
-    private AndroidElement label_amount;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/txt_amount_value")
+    private IOSElement label_amount;
 
 
-    public ImpsPage(AndroidDriver driver) throws IOException {
+    public ImpsPage(IOSDriver driver) throws IOException {
 
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);

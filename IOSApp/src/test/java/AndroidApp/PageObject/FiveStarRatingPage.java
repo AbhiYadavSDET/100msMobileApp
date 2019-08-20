@@ -1,8 +1,8 @@
 package test.java.AndroidApp.PageObject;
 
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
-import io.appium.java_client.pagefactory.AndroidFindBy;
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSElement;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
 import main.java.utils.Element;
@@ -11,20 +11,20 @@ import org.openqa.selenium.support.PageFactory;
 
 public class FiveStarRatingPage {
 
-    AndroidDriver driver;
+    IOSDriver driver;
 
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/rating_stars")
-    private AndroidElement rating_stars;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/rating_stars")
+    private IOSElement rating_stars;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/rating_button")
-    private AndroidElement cta_rate_five_stars;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/rating_button")
+    private IOSElement cta_rate_five_stars;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/maybe_later")
-    private AndroidElement cta_maybe_later;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/maybe_later")
+    private IOSElement cta_maybe_later;
 
 
-    public FiveStarRatingPage(AndroidDriver driver) {
+    public FiveStarRatingPage(IOSDriver driver) {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
 

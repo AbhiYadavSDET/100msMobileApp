@@ -17,10 +17,10 @@ public class Test_P2M extends CreateSession {
 
     @Test(groups = {"sendMoney", "p2mSanity"}, priority = 0, dataProvider = "p2mData", dataProviderClass = P2MDataProviderClass.class)
     public void Test01_p2m_send_money(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
         loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
 
-        P2MHelper p2MHelper = new P2MHelper(getAndroidDriver());
+        P2MHelper p2MHelper = new P2MHelper(getIOSDriver());
         p2MHelper.p2mSendMoney(frontEndEntity.getOperator(), frontEndEntity.getAmount(), frontEndEntity.getSecurityPin(), frontEndEntity.getSuccessPageStatus(), frontEndEntity.getCategory());
     }
 

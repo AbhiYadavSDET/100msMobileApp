@@ -3,7 +3,8 @@ package test.java.AndroidApp.Helpers;
 import UITestFramework.MBKPermissions;
 import UITestFramework.MBReporter;
 import io.appium.java_client.TouchAction;
-import io.appium.java_client.android.AndroidDriver;
+
+import io.appium.java_client.ios.IOSDriver;
 import logger.Log;
 import org.json.JSONException;
 import test.java.AndroidApp.PageObject.HomePage;
@@ -19,9 +20,9 @@ public class TransactionHistoryHelper {
     MBReporter mbReporter;
     PermissionHelper permissionHelper;
     MBKCommonControlsHelper mbkCommonControlsHelper;
-    AndroidDriver driver;
+    IOSDriver driver;
 
-    public TransactionHistoryHelper(AndroidDriver driver) throws IOException {
+    public TransactionHistoryHelper(IOSDriver driver) throws IOException {
         touchAction = new TouchAction(driver);
         mbkPermissions = new MBKPermissions(driver);
         homePage = new HomePage(driver);

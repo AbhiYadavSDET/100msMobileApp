@@ -5,7 +5,8 @@ import UITestFramework.ExtentReport.Reporter;
 import UITestFramework.MBKPermissions;
 import UITestFramework.MBReporter;
 import io.appium.java_client.TouchAction;
-import io.appium.java_client.android.AndroidDriver;
+
+import io.appium.java_client.ios.IOSDriver;
 import org.json.JSONException;
 import test.java.AndroidApp.PageObject.HomePage;
 import test.java.AndroidApp.PageObject.OfferPage;
@@ -24,10 +25,10 @@ public class OfferHelper {
     OfferPage offerPage;
     MBReporter mbReporter;
     PermissionHelper permissionHelper;
-    AndroidDriver driver;
+    IOSDriver driver;
     MBKCommonControlsHelper mbkCommonControlsHelper;
 
-    public OfferHelper(AndroidDriver driver) throws IOException {
+    public OfferHelper(IOSDriver driver) throws IOException {
         this.driver = driver;
         touchAction = new TouchAction(driver);
         mbkPermissions = new MBKPermissions(driver);

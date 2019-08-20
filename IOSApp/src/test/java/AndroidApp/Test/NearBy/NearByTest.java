@@ -35,9 +35,9 @@ public class NearByTest extends CreateSession {
     @BeforeMethod(groups = "instantiateHelpers", alwaysRun = true)
     public void instantiateHelpers(String build) throws IOException {
 
-        nearHelperBase = new NearByHelper(getAndroidDriver());
+        nearHelperBase = new NearByHelper(getIOSDriver());
         reporter = new Reporter();
-        nearByHelper = new NearByHelper(getAndroidDriver());
+        nearByHelper = new NearByHelper(getIOSDriver());
 
     }
 
@@ -48,7 +48,7 @@ public class NearByTest extends CreateSession {
         reporter.extentTest = reporter.extentReports.createTest("nearby home");
 
         // login in app
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
         loginHelper.quickLoginViaEmail("8447405515@nocash.mobikwik.com", "priyanka123");
         //onboardingHelper.quickLogin("8527797582", "mayank.suneja@mobikwik.com", "T.C. Suneja");
 
@@ -65,7 +65,7 @@ public class NearByTest extends CreateSession {
         reporter.extentTest = reporter.extentReports.createTest("nearby category");
 
         // login in app
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
         loginHelper.quickLoginViaEmail("8447405515@nocash.mobikwik.com", "priyanka123");
         //onboardingHelper.quickLogin("8527797582", "mayank.suneja@mobikwik.com", "T.C. Suneja");
 
@@ -83,7 +83,7 @@ public class NearByTest extends CreateSession {
 
         // login in app
         // onboardingHelper.quickLogin("8527797582", "mayank.suneja@mobikwik.com", "T.C. Suneja");
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
         loginHelper.quickLoginViaEmail("8447405515@nocash.mobikwik.com", "priyanka123");
 
         // verify nearby stores

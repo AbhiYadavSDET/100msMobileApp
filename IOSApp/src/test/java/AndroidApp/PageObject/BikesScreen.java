@@ -1,6 +1,7 @@
 package test.java.AndroidApp.PageObject;
 import UITestFramework.MobiKwikScreen;
-import io.appium.java_client.android.AndroidDriver;
+
+import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.By;
 
 /**
@@ -8,7 +9,7 @@ import org.openqa.selenium.By;
  */
 public class BikesScreen extends MobiKwikScreen {
 
-    public BikesScreen(AndroidDriver driver) {
+    public BikesScreen(IOSDriver driver) {
         super(driver);
 
     }

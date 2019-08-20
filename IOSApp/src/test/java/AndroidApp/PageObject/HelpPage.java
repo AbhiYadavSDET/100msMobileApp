@@ -1,8 +1,9 @@
 package test.java.AndroidApp.PageObject;
 
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
-import io.appium.java_client.pagefactory.AndroidFindBy;
+
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSElement;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import main.java.utils.Element;
 import org.openqa.selenium.support.PageFactory;
@@ -10,27 +11,27 @@ import org.openqa.selenium.support.PageFactory;
 import java.io.IOException;
 
 public class HelpPage {
-    AndroidDriver driver;
+    IOSDriver driver;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Add Money']")
-    private AndroidElement addMoney;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text='Add Money']")
+    private IOSElement addMoney;
 
-    @AndroidFindBy(xpath = "//android.widget.RelativeLayout/following::android.widget.TextView[@text='Money added to wallet']")
-    private AndroidElement issue;
+    @iOSXCUITFindBy(xpath = "//android.widget.RelativeLayout/following::android.widget.TextView[@text='Money added to wallet']")
+    private IOSElement issue;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='My issue is not listed above ']")
-    private AndroidElement ques;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text='My issue is not listed above ']")
+    private IOSElement ques;
 
-    @AndroidFindBy(xpath = "//android.widget.EditText[@text='Type a query']")
-    private AndroidElement queryTextBox;
+    @iOSXCUITFindBy(xpath = "//android.widget.EditText[@text='Type a query']")
+    private IOSElement queryTextBox;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/send_button")
-    private AndroidElement send;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/send_button")
+    private IOSElement send;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Ticket ID']")
-    private AndroidElement ticket;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text='Ticket ID']")
+    private IOSElement ticket;
 
-    public HelpPage(AndroidDriver driver) throws IOException {
+    public HelpPage(IOSDriver driver) throws IOException {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }

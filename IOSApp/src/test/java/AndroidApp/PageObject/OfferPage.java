@@ -1,8 +1,8 @@
 package test.java.AndroidApp.PageObject;
 
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
-import io.appium.java_client.pagefactory.AndroidFindBy;
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSElement;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
 import main.java.utils.Element;
@@ -12,25 +12,25 @@ import org.openqa.selenium.support.PageFactory;
 import java.io.IOException;
 
 public class OfferPage {
-    AndroidDriver driver;
+    IOSDriver driver;
 
-    @AndroidFindBy(id = "btn_search")
-    private AndroidElement offer_search_icon;
+    @iOSXCUITFindBy(id = "btn_search")
+    private IOSElement offer_search_icon;
 
-    @AndroidFindBy(xpath="//android.widget.LinearLayout/android.view.ViewGroup")
-    private AndroidElement offer_list;
+    @iOSXCUITFindBy(xpath="//android.widget.LinearLayout/android.view.ViewGroup")
+    private IOSElement offer_list;
 
-    @AndroidFindBy(id="offerSearchView")
-    private AndroidElement offerSearchView;
+    @iOSXCUITFindBy(id="offerSearchView")
+    private IOSElement offerSearchView;
 
-    @AndroidFindBy(id="btn_categories")
-    private AndroidElement offer_categories;
+    @iOSXCUITFindBy(id="btn_categories")
+    private IOSElement offer_categories;
 
-    @AndroidFindBy(xpath="//android.widget.LinearLayout/android.view.ViewGroup")
-    private AndroidElement offer_list2;
+    @iOSXCUITFindBy(xpath="//android.widget.LinearLayout/android.view.ViewGroup")
+    private IOSElement offer_list2;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Redeem SuperCash']")
-    private AndroidElement redeemOffer;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text = 'Redeem SuperCash']")
+    private IOSElement redeemOffer;
 
     String close = "close_button";
 
@@ -39,7 +39,7 @@ public class OfferPage {
     String redeemOfferList = "com.mobikwik_new:id/click_view";
 
 
-    public OfferPage(AndroidDriver driver) throws IOException {
+    public OfferPage(IOSDriver driver) throws IOException {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
         Log.info("*****Offer Page*****");

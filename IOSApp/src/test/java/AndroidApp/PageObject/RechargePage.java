@@ -1,8 +1,8 @@
 package test.java.AndroidApp.PageObject;
 
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
-import io.appium.java_client.pagefactory.AndroidFindBy;
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSElement;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
 import main.java.utils.Element;
@@ -13,109 +13,109 @@ import java.io.IOException;
 
 public class RechargePage {
 
-    AndroidDriver driver;
+    IOSDriver driver;
 
 
-    @AndroidFindBy(xpath = "//android.widget.EditText[@text = 'Enter Mobile Number']")
-    private AndroidElement textbox_mobile_no;
+    @iOSXCUITFindBy(xpath = "//android.widget.EditText[@text = 'Enter Mobile Number']")
+    private IOSElement textbox_mobile_no;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'L']")
-    private AndroidElement link_drop_down;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text = 'L']")
+    private IOSElement link_drop_down;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Vodafone']")
-    private AndroidElement label_vodafone;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text = 'Vodafone']")
+    private IOSElement label_vodafone;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Haryana']")
-    private AndroidElement label_haryana;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text = 'Haryana']")
+    private IOSElement label_haryana;
 
-    //@AndroidFindBy(id = "com.mobikwik_new:id/edit_text_mket")
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Amount (in X)']/following::android.widget.TextView[@text = 'Enter any amount']")
-    //@AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Amount (in ₹)'/following::android.widget.TextView[@text = 'Enter any amount']")
-    public AndroidElement textbox_enter_amount;
-
-
-    @AndroidFindBy(id = "com.mobikwik_new:id/amount_field")
-    private AndroidElement textbox_enter_amount2;
-
-    @AndroidFindBy(id = "com.mobikwik_new:id/actionbar_continue_button")
-    private AndroidElement button_continue;
-
-    @AndroidFindBy(id = "com.mobikwik_new:id/cta")
-    private AndroidElement cta_continue;
+    //@iOSXCUITFindBy(id = "com.mobikwik_new:id/edit_text_mket")
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text = 'Amount (in X)']/following::android.widget.TextView[@text = 'Enter any amount']")
+    //@iOSXCUITFindBy(xpath = "//android.widget.TextView[@text = 'Amount (in ₹)'/following::android.widget.TextView[@text = 'Enter any amount']")
+    public IOSElement textbox_enter_amount;
 
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Postpaid']")
-    private AndroidElement postPaid;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/amount_field")
+    private IOSElement textbox_enter_amount2;
+
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/actionbar_continue_button")
+    private IOSElement button_continue;
+
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/cta")
+    private IOSElement cta_continue;
+
+
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text = 'Postpaid']")
+    private IOSElement postPaid;
 
     // Success screen
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Connection Number']/following::android.widget.TextView[1]")
-    private AndroidElement label_connection_no;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text = 'Connection Number']/following::android.widget.TextView[1]")
+    private IOSElement label_connection_no;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Category']/following::android.widget.TextView[1]")
-    private AndroidElement label_category;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text = 'Category']/following::android.widget.TextView[1]")
+    private IOSElement label_category;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Operator']/following::android.widget.TextView[1]")
-    private AndroidElement label_operator;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text = 'Operator']/following::android.widget.TextView[1]")
+    private IOSElement label_operator;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/amount_value")
-    private AndroidElement label_amount;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/amount_value")
+    private IOSElement label_amount;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/total_amount_value")
-    private AndroidElement label_total_payment;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/total_amount_value")
+    private IOSElement label_total_payment;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/base_title")
-    private AndroidElement label_success_page_status;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/base_title")
+    private IOSElement label_success_page_status;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/recharge_button")
-    private AndroidElement cta_continue2;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/recharge_button")
+    private IOSElement cta_continue2;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/content_root")
-    public AndroidElement popup;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/content_root")
+    public IOSElement popup;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/title_text")
-    public AndroidElement popup_error;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/title_text")
+    public IOSElement popup_error;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/body_text")
-    public AndroidElement popup_text;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/body_text")
+    public IOSElement popup_text;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/close_button")
-    public AndroidElement popup_cross;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/close_button")
+    public IOSElement popup_cross;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/view_bill_text")
-    public AndroidElement viewBillText;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/view_bill_text")
+    public IOSElement viewBillText;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'z']/following::android.widget.EditText[1]")
-    public AndroidElement textbox_enter_dth_amount;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text = 'z']/following::android.widget.EditText[1]")
+    public IOSElement textbox_enter_dth_amount;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/connection_detail_button_recharge")
-    public AndroidElement button_dth_continue;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/connection_detail_button_recharge")
+    public IOSElement button_dth_continue;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/txt_promo_result_desc")
-    public AndroidElement label_promo_code_text;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/txt_promo_result_desc")
+    public IOSElement label_promo_code_text;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'More']")
-    public AndroidElement label_more;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text = 'More']")
+    public IOSElement label_more;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'BP Number']/following::android.widget.EditText[1]")
-    public AndroidElement textbox_bp_number;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text = 'BP Number']/following::android.widget.EditText[1]")
+    public IOSElement textbox_bp_number;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/connection_detail_textView_name")
-    public AndroidElement label_success_screen_operator;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/connection_detail_textView_name")
+    public IOSElement label_success_screen_operator;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/connection_detail_textView_company")
-    public AndroidElement label_success_screen_number;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/connection_detail_textView_company")
+    public IOSElement label_success_screen_number;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/fixed_amount_value")
-    public AndroidElement label_success_screen_amount;
+    @iOSXCUITFindBy(id = "com.mobikwik_new:id/fixed_amount_value")
+    public IOSElement label_success_screen_amount;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Telephone Number (Without STD Code)']/following::android.widget.EditText[1]")
-    public AndroidElement textbox_telephone_no;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text = 'Telephone Number (Without STD Code)']/following::android.widget.EditText[1]")
+    public IOSElement textbox_telephone_no;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Telephone Number (Without STD Code)']/following::android.widget.EditText[2]")
-    public AndroidElement textbox_can;
+    @iOSXCUITFindBy(xpath = "//android.widget.TextView[@text = 'Telephone Number (Without STD Code)']/following::android.widget.EditText[2]")
+    public IOSElement textbox_can;
 
-    public RechargePage(AndroidDriver driver) throws IOException {
+    public RechargePage(IOSDriver driver) throws IOException {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
 
@@ -149,8 +149,8 @@ public class RechargePage {
 
     public void selectOperator(String operator) throws InterruptedException {
         Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text = '" + operator + "']"));
-        AndroidElement androidElement = new Element(driver).findElement(driver, By.xpath("//android.widget.TextView[@text = '" + operator + "']"));
-        Element.selectElement(driver, androidElement, "Operator");
+        IOSElement IOSElement = new Element(driver).findElement(driver, By.xpath("//android.widget.TextView[@text = '" + operator + "']"));
+        Element.selectElement(driver, IOSElement, "Operator");
     }
 
     public void selectCircle() throws InterruptedException {

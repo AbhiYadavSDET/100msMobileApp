@@ -21,10 +21,10 @@ public class Test_Offer extends CreateSession {
     @Test(groups = {"offerSanity", "offerSearch"}, priority = 0)
     public void offerSearch() throws Exception {
         Log.infoStartTest("offerSearch");
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
         loginHelper.quickLoginViaEmail("mayank.suneja@mobikwik.com", "Tuesday20");
 
-        offerHelperBase = new OfferHelper(getAndroidDriver());
+        offerHelperBase = new OfferHelper(getIOSDriver());
 
         offerHelperBase.offerSearch("makemytrip", "Offer", "offerSearch");
 
@@ -36,10 +36,10 @@ public class Test_Offer extends CreateSession {
     public void offerCategoryCheck() throws Exception {
         Log.infoStartTest("offerCategoryCheck");
 
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
         loginHelper.quickLoginViaEmail("mayank.suneja@mobikwik.com", "Tuesday20");
 
-        offerHelperBase = new OfferHelper(getAndroidDriver());
+        offerHelperBase = new OfferHelper(getIOSDriver());
 
         offerHelperBase.offerCategoryCheck("Offer", "offerCategoryCheck");
 
@@ -51,10 +51,10 @@ public class Test_Offer extends CreateSession {
     public void redeemOffersCheck() throws Exception {
         Log.infoStartTest("redeemOffersCheck");
 
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        LoginHelper loginHelper = new LoginHelper(getIOSDriver());
         loginHelper.quickLoginViaEmail("mayank.suneja@mobikwik.com", "Tuesday20");
 
-        offerHelperBase = new OfferHelper(getAndroidDriver());
+        offerHelperBase = new OfferHelper(getIOSDriver());
         offerHelperBase.redeemOffersCheck("Offer", "redeemOffer");
 
         Log.infoEndTest("redeemOffersCheck");

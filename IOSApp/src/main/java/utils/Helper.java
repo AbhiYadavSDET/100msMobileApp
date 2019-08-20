@@ -1,6 +1,7 @@
 package main.java.utils;
 
-import io.appium.java_client.android.AndroidDriver;
+
+import io.appium.java_client.ios.IOSDriver;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -130,7 +131,7 @@ public class Helper {
      * @param actual
      * @author manojkumar
      */
-    public static <T> void compareEquals(AndroidDriver driver, String what, T expected, T actual) {
+    public static <T> void compareEquals(IOSDriver driver, String what, T expected, T actual) {
         if (expected == null & actual == null) {
             Config.logPass(what.toString(), actual.toString());
             return;
@@ -155,7 +156,7 @@ public class Helper {
      * @param actual
      * @author manojkumar
      */
-    public static void compareEqualsWithoutFailingTest(AndroidDriver driver, String what, String expected, String actual) {
+    public static void compareEqualsWithoutFailingTest(IOSDriver driver, String what, String expected, String actual) {
         if (expected == null & actual == null) {
             Config.logPass(what, actual);
             return;
@@ -180,7 +181,7 @@ public class Helper {
      * @param actual
      * @author manojkumar
      */
-    public static void compareTrue(AndroidDriver driver, String what, boolean actual) {
+    public static void compareTrue(IOSDriver driver, String what, boolean actual) {
         if (!actual) {
             Config.logFail("Failed to verify " + what);
         } else {
@@ -196,7 +197,7 @@ public class Helper {
      * @author manojkumar
      */
 
-    public static void compareFalse(AndroidDriver driver, String what, boolean actual) {
+    public static void compareFalse(IOSDriver driver, String what, boolean actual) {
         if (!actual) {
             Config.logPass("Verified " + what);
         } else {
@@ -213,7 +214,7 @@ public class Helper {
      * @param actual
      * @author manojkumar
      */
-    public static void compareValues(AndroidDriver driver, String what, String expected, String actual) {
+    public static void compareValues(IOSDriver driver, String what, String expected, String actual) {
         if (expected == null & actual == null) {
             Config.logPass(what, actual);
             return;

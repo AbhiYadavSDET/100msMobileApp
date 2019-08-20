@@ -2,8 +2,9 @@ package test.java.AndroidApp.Helpers;
 
 import UITestFramework.MBKPermissions;
 import UITestFramework.MBReporter;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
+
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSElement;
 import logger.Log;
 import main.java.utils.Element;
 import main.java.utils.Screen;
@@ -15,7 +16,7 @@ import test.java.AndroidApp.PageObject.PermissionPage;
 import java.io.IOException;
 
 public class DeepLinkHelper {
-    AndroidDriver driver;
+    IOSDriver driver;
     MBKPermissions mbkPermissions;
     MBReporter mbReporter;
     HomePage homePage;
@@ -25,7 +26,7 @@ public class DeepLinkHelper {
     PermissionPage permissionPage;
 
 
-    public DeepLinkHelper(AndroidDriver driver) throws IOException {
+    public DeepLinkHelper(IOSDriver driver) throws IOException {
         this.driver = driver;
         mbkPermissions = new MBKPermissions(driver);
         mbReporter = new MBReporter(driver, "testScreenshotDir");
@@ -41,13 +42,13 @@ public class DeepLinkHelper {
         homePage.clickOnCrossButton();
         //For Merchant
         if (Element.isElementPresent(driver, (By.id("cross_button")))) {
-            Element.selectElement(driver, (AndroidElement) driver.findElement(By.id("cross_button")), "Cross Button");
+            Element.selectElement(driver, (IOSElement) driver.findElement(By.id("cross_button")), "Cross Button");
         }
         if (Element.isElementPresent(driver, (By.id("next_button")))) {
-            Element.selectElement(driver, (AndroidElement) driver.findElement(By.id("next_button")), "Next Button");
+            Element.selectElement(driver, (IOSElement) driver.findElement(By.id("next_button")), "Next Button");
         }
         if (Element.isElementPresent(driver, (By.id("next_button")))) {
-            Element.selectElement(driver, (AndroidElement) driver.findElement(By.id("next_button")), "Next Button");
+            Element.selectElement(driver, (IOSElement) driver.findElement(By.id("next_button")), "Next Button");
         }
 
         Thread.sleep(2000);
@@ -58,11 +59,11 @@ public class DeepLinkHelper {
         //For Sanity
         driver.get(deeplinkstring);
         if (Element.isElementPresent(driver, (By.id("add_account_button")))) {
-            Element.selectElement(driver, (AndroidElement) driver.findElement(By.id("add_account_button")), "Add Account Button");
+            Element.selectElement(driver, (IOSElement) driver.findElement(By.id("add_account_button")), "Add Account Button");
         }
 
         if (Element.isElementPresent(driver, (By.id("start_button")))) {
-            Element.selectElement(driver, (AndroidElement) driver.findElement(By.id("start_button")), "Let's get started");
+            Element.selectElement(driver, (IOSElement) driver.findElement(By.id("start_button")), "Let's get started");
         }
         Thread.sleep(3000);
 
