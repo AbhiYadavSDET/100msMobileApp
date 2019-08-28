@@ -49,6 +49,11 @@ public class RechargeHelper {
 
         balanceBefore = mbkCommonControlsHelper.getBalance();
 
+        if(!Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Mobile']"))){
+
+            screen.swipeUpMedium(driver);
+        }
+
         rechargePage = homePage.clickOnMobileButton();
 
         permissionHelper.permissionAllow();
@@ -120,6 +125,11 @@ public class RechargeHelper {
 
         homePage.clickOnCrossButton();
 
+        if(!Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Mobile']"))){
+
+            screen.swipeUpMedium(driver);
+        }
+
         rechargePage = homePage.clickOnMobileButton();
 
         permissionHelper.permissionAllow();
@@ -168,6 +178,11 @@ public class RechargeHelper {
         //balanceBefore = mbkCommonControlsHelper.getBalance();
         homePage.clickOnCrossButton();
 
+        if(!Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Mobile']"))){
+
+            screen.swipeUpMedium(driver);
+        }
+
         rechargePage = homePage.clickOnMobileButton();
 
         permissionHelper.permissionAllow();
@@ -215,6 +230,11 @@ public class RechargeHelper {
 
         //balanceBefore = mbkCommonControlsHelper.getBalance();
         homePage.clickOnCrossButton();
+
+        if(!Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Mobile']"))){
+
+            screen.swipeUpMedium(driver);
+        }
 
         rechargePage = homePage.clickOnDthButton();
 
@@ -276,6 +296,11 @@ public class RechargeHelper {
         //balanceBefore = mbkCommonControlsHelper.getBalance();
         homePage.clickOnCrossButton();
 
+        if(!Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Mobile']"))){
+
+            screen.swipeUpMedium(driver);
+        }
+
         homePage.clickMoreIcon();
         rechargePage = homePage.clickGasIcon();
 
@@ -332,6 +357,12 @@ public class RechargeHelper {
         String expectedtelephoneNo = arr[arr.length - 2];
         String expectedCan = arr[arr.length - 1];
         homePage.clickOnCrossButton();
+
+        if(!Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Mobile']"))){
+
+            screen.swipeUpMedium(driver);
+        }
+
 
         homePage.clickMoreIcon();
         rechargePage = homePage.clickLandlineIcon();

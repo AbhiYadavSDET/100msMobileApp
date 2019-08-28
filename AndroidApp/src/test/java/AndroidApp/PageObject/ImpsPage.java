@@ -30,7 +30,7 @@ public class ImpsPage {
     @AndroidFindBy(xpath = "//android.widget.Button[@text = 'Continue']")
     private AndroidElement continueButton;
 
-    @AndroidFindBy(xpath = "//android.widget.Button[@text = 'Confirm']")
+    @AndroidFindBy(xpath = "//android.widget.Button[@text = 'Make payment']")
     private AndroidElement confirm;
 
     String success_text = "android.widget.TextView[@text = 'Money sent successfully']";
