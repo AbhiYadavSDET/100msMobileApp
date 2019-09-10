@@ -96,6 +96,25 @@ public class MBKCommonControlsHelper {
         }
     }
 
+    public void handleUpiPin(String pin) throws InterruptedException {
+        String[] pinArr = pin.split("|");
+
+        if (Element.isElementPresent(driver, By.id("fragmentTelKeyboard"))) {
+
+            for (String e : pinArr) {
+                //Log.info("PRESS", e);
+                AndroidElement androidElement = element.findElement(driver, By.xpath("//android.widget.TextView[@text='"+e+"']"));
+                Element.selectElement(driver, androidElement, e);
+            }
+
+            //Click on submit icon
+
+            AndroidElement clickElement = element.findElement(driver, By.xpath("//android.widget.TableRow[@index='3']/android.widget.ImageView[@index='2']"));
+            Element.selectElement(driver, clickElement, "Submit UPI Pin");
+
+        }
+    }
+
     public void clickUpButton() throws InterruptedException {
         Thread.sleep(1000);
         mbkCommonControlsPage.clickOnUpButton();
@@ -244,5 +263,16 @@ public class MBKCommonControlsHelper {
         handleUpiBottomSheet(driver);
 //        handleReferAndEarnBottomSheet();
     }
+
+    public void handleGullak() throws InterruptedException {
+        Thread.sleep(3000);
+        if (Element.isElementPresent(driver, By.id("com.mobikwik_new:id/rating_seekbar"))) {
+            Log.info("Handle", "Gullak Screen");
+            mbkCommonControlsPage.clickOnGullakCross();
+        }
+    }
+
+
+
 
 }

@@ -104,6 +104,16 @@ public class HomePage {
     @AndroidFindBy(id = "com.mobikwik_new:id/navigation_wallet")
     private AndroidElement navigate_wallet_page;
 
+    @AndroidFindBy(id ="com.mobikwik_new.debug:id/tx_upi_id")
+    private AndroidElement navigate_upi_page;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Via UPI']")
+    private AndroidElement navigate_upi_send_money;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Request']")
+    private AndroidElement navigate_upi_request;
+
+
 
     public HomePage(AndroidDriver driver) {
         this.driver = driver;
@@ -248,6 +258,11 @@ public class HomePage {
     public WalletPage clickWalletNavigate() throws IOException {
         Element.selectElement(driver, navigate_wallet_page, "Navigate to Wallet Page");
         return new WalletPage(driver);
+    }
+
+    public UpiPage clickOnUpiId() throws IOException{
+        Element.selectElement(driver, navigate_upi_page, "Navigate to UPI Page");
+        return new UpiPage(driver);
     }
 
 
