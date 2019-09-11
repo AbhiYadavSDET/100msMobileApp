@@ -46,5 +46,16 @@ public class Test_Upi extends CreateSession {
 
     }
 
+    @Test(groups = {"upiCheckBalance", "upiSanity"}, priority = 0)
+    public void Upi_Check_Balance() throws IOException, JSONException, InterruptedException {
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaEmail("mkwik9330@gmail.com", "Test@1234");
+
+
+        UpiHelper upiHelper= new UpiHelper(getAndroidDriver());
+        upiHelper.checkAccountBalance("121212");
+
+    }
+
 
 }

@@ -233,6 +233,54 @@ public class UpiHelper {
 
     }
 
+    public void checkAccountBalance(String pin) throws InterruptedException, IOException, JSONException{
+
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+
+        Thread.sleep(100);
+
+        homePage.clickCheckBalance();
+
+        Thread.sleep(200);
+
+        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Link Your Bank Account']"));
+
+        upiPage= homePage.clickOnLinkBankAccount();
+
+        upiPage.clickOnUpiSetupCta();
+
+        permissionHelper.permissionAllow();
+
+        permissionHelper.permissionAllow();
+
+        permissionHelper.permissionAllow();
+
+        Thread.sleep(400);
+
+//            Element.waitForVisibility(driver, By.id("qr_image"));
+
+        Boolean setup= Element.isElementPresent(driver, By.id("com.mobikwik_new:id/qr_image"));
+
+        mbReporter.verifyTrueWithLogging(setup, "Setup Done", true, true);
+
+        homePage=upiPage.clickOnBackButton();
+
+        homePage.clickCheckBalance();
+
+        mbkCommonControlsHelper.handleUpiPin(pin);
+
+        Boolean isBalanceVisible= Element.isElementPresent(driver, By.id("com.mobikwik_new:id/balance"));
+
+        String balance= homePage.getAccountBalance();
+
+        mbReporter.verifyTrueWithLogging(isBalanceVisible, "Avalaible Balance is =Rs "+balance, true,true);
+
+        homePage.dismissOverlay();
+
+
+
+    }
+
 
 
 

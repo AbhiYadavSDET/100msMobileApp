@@ -116,6 +116,10 @@ public class UpiPage {
     private AndroidElement cta_confirm_request;
 
 
+    //Check Balance Flow
+    @AndroidFindBy(id= "com.mobikwik_new:id/back_button")
+    private AndroidElement back_button;
+
 
     public UpiPage(AndroidDriver driver) throws IOException {
         this.driver = driver;
@@ -210,6 +214,11 @@ public class UpiPage {
 
     public void clickOnConfirmRequest() throws InterruptedException{
         Element.selectElement(driver, cta_confirm_request, "Click on Confirm Request");
+    }
+
+    public HomePage clickOnBackButton() throws InterruptedException{
+        Element.selectElement(driver, back_button, "Click on Back Button");
+        return new HomePage(driver);
     }
 
 }
