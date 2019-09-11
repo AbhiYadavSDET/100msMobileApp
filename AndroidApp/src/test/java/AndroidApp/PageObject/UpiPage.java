@@ -108,6 +108,12 @@ public class UpiPage {
     private AndroidElement cta_confirm_bank_details;
 
 
+    //Request Money Flow
+    @AndroidFindBy(id ="com.mobikwik_new:id/request_money_title")
+    private AndroidElement cta_request_money;
+
+    @AndroidFindBy(id= "com.mobikwik_new:id/cta")
+    private AndroidElement cta_confirm_request;
 
 
 
@@ -196,6 +202,14 @@ public class UpiPage {
 
     public void clickConfirmBankDetails() throws InterruptedException{
         Element.selectElement(driver, cta_confirm_bank_details, "Confrim Bank details");
+    }
+
+    public void clickRequestMoney() throws InterruptedException {
+        Element.selectElement(driver, cta_request_money, "Click on Request Money");
+    }
+
+    public void clickOnConfirmRequest() throws InterruptedException{
+        Element.selectElement(driver, cta_confirm_request, "Click on Confirm Request");
     }
 
 }

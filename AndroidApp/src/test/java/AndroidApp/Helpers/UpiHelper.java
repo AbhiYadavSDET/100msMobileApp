@@ -173,4 +173,67 @@ public class UpiHelper {
 
     }
 
+    public void requestMoneyViaUpi(String upiId, String amount, String message) throws InterruptedException, IOException, JSONException {
+
+
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+
+        Thread.sleep(100);
+
+
+//            Element.waitForVisibility(driver, By.id("tx_upi_id"));
+
+        upiPage=homePage.clickOnUpiId();
+
+        upiPage.clickOnUpiSetupCta();
+
+        permissionHelper.permissionAllow();
+
+        permissionHelper.permissionAllow();
+
+        permissionHelper.permissionAllow();
+
+        Thread.sleep(400);
+
+//            Element.waitForVisibility(driver, By.id("qr_image"));
+
+        Boolean setup= Element.isElementPresent(driver, By.id("com.mobikwik_new:id/qr_image"));
+
+        mbReporter.verifyTrueWithLogging(setup, "Setup Done", true, true);
+
+        upiPage.clickRequestMoney();
+
+        upiPage.selectEnterUPI();
+
+        permissionHelper.permissionAllow();
+
+        upiPage.enterUpiId(upiId);
+
+        upiPage.clickConfrimUpi();
+
+        upiPage.enterAmount(amount);
+
+        upiPage.enterMessage(message);
+
+        upiPage.clickOnConfirmRequest();
+
+        Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/payment_success_msg"));
+
+        mbReporter.verifyEqualsWithLogging(upiPage.getPaymentSuccessMessage(), "Your payment request sent successfully", "Request Message Validation", true, false);
+
+        String actualTotalAmountPaid = upiPage.getAmountPaid().replace("X", "");
+
+        mbReporter.verifyEqualsWithLogging(actualTotalAmountPaid, amount, "Validate Amount", false, false);
+
+        mbkCommonControlsHelper.returnToHomePageFromP2MSuccessScreen();
+
+        mbkCommonControlsHelper.handleRatingsPopUp();
+
+        mbkCommonControlsHelper.handleNPS();
+
+    }
+
+
+
+
 }
