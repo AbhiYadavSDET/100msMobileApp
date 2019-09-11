@@ -9,10 +9,7 @@ import main.java.utils.Screen;
 import main.java.utils.TestDataReader;
 import org.json.JSONException;
 import org.openqa.selenium.By;
-import test.java.AndroidApp.PageObject.HomePage;
-import test.java.AndroidApp.PageObject.LoginPage;
-import test.java.AndroidApp.PageObject.OnboardingPage;
-import test.java.AndroidApp.PageObject.UpiPage;
+import test.java.AndroidApp.PageObject.*;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -23,7 +20,6 @@ public class UpiHelper {
         OnboardingPage onboardingPage;
         LoginPage loginPage;
         ApiCommonControls apiCommonControls;
-        public static HashMap<String, String> map;
         HashMap<String, String> apiOtp;
         HomePage homePage;
         MBReporter mbReporter;
@@ -31,6 +27,11 @@ public class UpiHelper {
         Screen screen;
         UpiPage upiPage;
         MBKCommonControlsHelper mbkCommonControlsHelper;
+    AddMoneyPage addMoneyPage;
+
+    public static HashMap<String, String> map;
+    public static HashMap<String, String> balanceBefore;
+    public static HashMap<String, String> balanceAfter;
 
 
         public UpiHelper(AndroidDriver driver) throws IOException {
@@ -44,6 +45,7 @@ public class UpiHelper {
             permissionHelper = new PermissionHelper(driver);
             screen = new Screen(driver);
             homePage= new HomePage(driver);
+            addMoneyPage= new AddMoneyPage(driver);
 
         }
 
@@ -281,6 +283,56 @@ public class UpiHelper {
 
     }
 
+    //Payment Successful
+    //Money added into your wallet successfully
+
+    public void addMoneyViaUpi(String pin, String amount, String successPageStatus,String successPageText) throws InterruptedException, IOException, JSONException{
+
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+
+        Thread.sleep(100);
+
+        balanceBefore = mbkCommonControlsHelper.getBalance();
+
+        homePage.clickOnAddMoneyButton();
+
+        addMoneyPage.clickOnAmountTextBox();
+
+        addMoneyPage.enterAmount(amount);
+
+        addMoneyPage.clickOnContinueButton();
+
+        addMoneyPage.chooseUpiOption();
+
+        addMoneyPage.restoreUpi();
+
+        permissionHelper.permissionAllow();
+
+        permissionHelper.permissionAllow();
+
+        addMoneyPage.chooseUpiOption();
+
+        mbkCommonControlsHelper.handleUpiPin(pin);
+
+        //Assertions
+        Double expectedMainBalance = (Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100) + Double.parseDouble(amount) * 100;
+        Double actualMainBalance = Double.parseDouble(addMoneyPage.getSuccessPageWalletBalance().replace("New Wallet Balance X", "").replace(",", "")) * 100;
+        mbReporter.verifyEqualsWithLogging(addMoneyPage.getSuccessPageStatus(), successPageStatus, "Success Screen | Verify Status", false, false);
+        mbReporter.verifyEqualsWithLogging(addMoneyPage.getSuccessPageText(), successPageText, "Success Screen | Verify Text", false, false);
+        mbReporter.verifyEqualsWithLogging(actualMainBalance, expectedMainBalance, "Success Screen | Verify Main Balance", false, false);
+
+        mbkCommonControlsHelper.returnToHomePageFromP2MSuccessScreen();
+
+        // POST TRX Assertions
+        balanceAfter = mbkCommonControlsHelper.getBalance();
+        Double actualMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100;
+        Double actualSuperCashBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
+        Double expectedMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100 + Double.parseDouble(amount) * 100;
+        Double expectedSuperCashBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
+        mbReporter.verifyEqualsWithLogging(actualMainBalanceAfter, expectedMainBalanceAfter, "After TRX | Verify Wallet Main Balance", false, false);
+        mbReporter.verifyEqualsWithLogging(actualSuperCashBalanceAfter, expectedSuperCashBalanceAfter, "After TRX | Verify Supercash Balance", false, false);
+
+    }
 
 
 

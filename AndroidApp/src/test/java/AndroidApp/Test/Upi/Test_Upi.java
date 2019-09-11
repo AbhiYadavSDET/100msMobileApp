@@ -57,5 +57,18 @@ public class Test_Upi extends CreateSession {
 
     }
 
+    //Payment Successful
+    //Money added into your wallet successfully
+
+    @Test(groups = {"addMoneyViaUpi", "upiSanity"}, priority = 0)
+    public void Upi_Add_Money() throws IOException, JSONException, InterruptedException {
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaEmail("mkwik9330@gmail.com", "Test@1234");
+
+
+        UpiHelper upiHelper= new UpiHelper(getAndroidDriver());
+        upiHelper.addMoneyViaUpi("121212", "5", "Payment Successful", "Money added into your wallet successfully");
+
+    }
 
 }

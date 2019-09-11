@@ -85,6 +85,14 @@ public class AddMoneyPage {
     @AndroidFindBy(xpath = "//android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.TextView[@index ='1']")
     private AndroidElement label_success_page_wallet_balance;
 
+    //Add Money Via UPI
+
+    @AndroidFindBy(id= "com.mobikwik_new:id/upi_logo")
+    private AndroidElement select_upi_for_add_money;
+
+    @AndroidFindBy(id="com.mobikwik_new:id/start_button")
+    private  AndroidElement restore_upi;
+
 
     public AddMoneyPage(AndroidDriver driver) throws IOException {
         this.driver = driver;
@@ -203,4 +211,13 @@ public class AddMoneyPage {
     public String getSuccessPageWalletBalance() throws InterruptedException {
         return Element.getText(driver, label_success_page_wallet_balance, "Success page Wallet Balance");
     }
+
+    public void chooseUpiOption() throws InterruptedException{
+        Element.selectElement(driver, select_upi_for_add_money, "Choose Upi for Add Money");
+    }
+
+    public void restoreUpi() throws InterruptedException{
+        Element.selectElement(driver, restore_upi, " Restore Upi Account");
+    }
+
 }
