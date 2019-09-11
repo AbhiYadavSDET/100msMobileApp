@@ -108,4 +108,69 @@ public class UpiHelper {
             mbkCommonControlsHelper.handleRatingsPopUp();
 
         }
+
+    public void sendMoneyToBankViaUpi(String beneficiaryName, String accountNumber, String ifsc, String amount, String message, String pin) throws InterruptedException, IOException, JSONException {
+
+
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+
+        Thread.sleep(100);
+
+
+//            Element.waitForVisibility(driver, By.id("tx_upi_id"));
+
+        upiPage=homePage.clickOnUpiId();
+
+        upiPage.clickOnUpiSetupCta();
+
+        permissionHelper.permissionAllow();
+
+        permissionHelper.permissionAllow();
+
+        permissionHelper.permissionAllow();
+
+        Thread.sleep(400);
+
+//            Element.waitForVisibility(driver, By.id("qr_image"));
+
+        Boolean setup= Element.isElementPresent(driver, By.id("com.mobikwik_new:id/qr_image"));
+
+        mbReporter.verifyTrueWithLogging(setup, "Setup Done", true, true);
+
+        upiPage.clickSendMoney();
+
+        upiPage.selectTransfertoBank();
+
+        upiPage.enterBeneficiaryName(beneficiaryName);
+
+        upiPage.enterAccountNumber(accountNumber);
+
+        upiPage.enterIfsc(ifsc);
+
+        upiPage.clickConfirmBankDetails();
+
+        upiPage.enterAmount(amount);
+
+        upiPage.enterMessage(message);
+
+        upiPage.clickOnConfirmPayment();
+
+        mbkCommonControlsHelper.handleUpiPin(pin);
+
+        Thread.sleep(400);
+
+        mbkCommonControlsHelper.handleGullak();
+
+        mbReporter.verifyEqualsWithLogging(upiPage.getPaymentSuccessMessage(), "Your payment sent successfully", "Succes Message Validation", false, false);
+
+        String actualTotalAmountPaid = upiPage.getAmountPaid().replace("X", "");
+
+        mbReporter.verifyEqualsWithLogging(actualTotalAmountPaid, amount, "Validate Amount", false, false);
+
+        mbkCommonControlsHelper.returnToHomePageFromP2MSuccessScreen();
+
+        mbkCommonControlsHelper.handleRatingsPopUp();
+
+    }
+
 }

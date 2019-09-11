@@ -24,5 +24,16 @@ public class Test_Upi extends CreateSession {
 
     }
 
+    @Test(groups = {"upiSendMoneyToBank", "upiSanity"}, priority = 0)
+    public void Upi_Send_Money_To_Bank() throws IOException, JSONException, InterruptedException {
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaEmail("mkwik9330@gmail.com", "Test@1234");
+
+
+        UpiHelper upiHelper= new UpiHelper(getAndroidDriver());
+        upiHelper.sendMoneyToBankViaUpi("Paraj Jain", "218101502680", "ICIC0002181","1", "Test", "121212");
+
+    }
+
 
 }

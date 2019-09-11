@@ -93,6 +93,22 @@ public class UpiPage {
 @AndroidFindBy(id= "com.mobikwik_new:id/base_icon_close")
     private  AndroidElement click_on_cross;
 
+//Send To Bank Flow
+
+    @AndroidFindBy(id= "com.mobikwik_new:id/beneficiary_name")
+    private AndroidElement enter_beneficiary_name;
+
+    @AndroidFindBy(id= "com.mobikwik_new:id/account_number")
+    private AndroidElement enter_account_number;
+
+    @AndroidFindBy(id= "com.mobikwik_new:id/ifsc_code")
+    private AndroidElement enter_ifsc;
+
+    @AndroidFindBy(id= "com.mobikwik_new:id/continue_button")
+    private AndroidElement cta_confirm_bank_details;
+
+
+
 
 
     public UpiPage(AndroidDriver driver) throws IOException {
@@ -166,5 +182,20 @@ public class UpiPage {
         Element.selectElement(driver, click_on_cross, "Click on Cross");
     }
 
+    public void enterBeneficiaryName(String beneficiaryName) throws InterruptedException{
+        Element.enterText(driver, enter_beneficiary_name, beneficiaryName, "Enter Beneficiary Name");
+    }
+
+    public void enterAccountNumber(String accountNumber) throws InterruptedException{
+        Element.enterText(driver, enter_account_number, accountNumber, "Enter Account Number");
+    }
+
+    public void enterIfsc(String ifsc) throws InterruptedException{
+        Element.enterText(driver, enter_ifsc, ifsc, "Enter IFSC");
+    }
+
+    public void clickConfirmBankDetails() throws InterruptedException{
+        Element.selectElement(driver, cta_confirm_bank_details, "Confrim Bank details");
+    }
 
 }
