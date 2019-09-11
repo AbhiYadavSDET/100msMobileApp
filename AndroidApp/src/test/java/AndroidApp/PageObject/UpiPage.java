@@ -17,62 +17,80 @@ public class UpiPage {
     AndroidDriver driver;
 
 
-    @AndroidFindBy(id = "com.mobikwik_new.debug:id/start_button")
+//    @AndroidFindBy(id = "com.mobikwik_new.debug:id/start_button")
+@AndroidFindBy(id = "com.mobikwik_new:id/start_button")
     private AndroidElement cta_start_upi_setup;
 
     //As per RBI guidelines, below permissions are mandatory to enable UPI.
-    @AndroidFindBy(id = "com.mobikwik_new.debug:id/header_text")
+//    @AndroidFindBy(id = "com.mobikwik_new.debug:id/header_text")
+    @AndroidFindBy(id = "com.mobikwik_new:id/header_text")
     private AndroidElement text_header_upi_setup;
 
     //UPI Home Page
-    @AndroidFindBy(id ="com.mobikwik_new.debug:id/qr_image")
+//    @AndroidFindBy(id ="com.mobikwik_new.debug:id/qr_image")
+    @AndroidFindBy(id ="com.mobikwik_new:id/qr_image")
     private AndroidElement qr_image;
 
-    @AndroidFindBy(id ="com.mobikwik_new.debug:id/upi_id_text")
+//    @AndroidFindBy(id ="com.mobikwik_new.debug:id/upi_id_text")
+@AndroidFindBy(id ="com.mobikwik_new:id/upi_id_text")
     private AndroidElement upi_id;
 
-    @AndroidFindBy(id ="com.mobikwik_new.debug:id/send_money_title")
+//    @AndroidFindBy(id ="com.mobikwik_new.debug:id/send_money_title")
+@AndroidFindBy(id ="com.mobikwik_new:id/send_money_title")
     private AndroidElement cta_send_money;
 
     //Send Money Page
-    @AndroidFindBy (id ="com.mobikwik_new.debug:id/pay_to_account")
+//    @AndroidFindBy (id ="com.mobikwik_new.debug:id/pay_to_account")
+    @AndroidFindBy (id ="com.mobikwik_new:id/pay_to_account")
     private AndroidElement radio_button_to_bank_account;
 
-    @AndroidFindBy(id ="com.mobikwik_new.debug:id/edit_field")
+//    @AndroidFindBy(id ="com.mobikwik_new.debug:id/edit_field")
+@AndroidFindBy(id ="com.mobikwik_new:id/edit_field")
     private AndroidElement cta_enter_upi_id;
 
     //Send money via UPI Flow
-    @AndroidFindBy(id= "com.mobikwik_new.debug:id/search_edittext")
+//    @AndroidFindBy(id= "com.mobikwik_new.debug:id/search_edittext")
+    @AndroidFindBy(id= "com.mobikwik_new:id/search_edittext")
     private AndroidElement enter_upi_id_or_number;
 
-    @AndroidFindBy(id ="com.mobikwik_new.debug:id/confirm_button")
+//    @AndroidFindBy(id ="com.mobikwik_new.debug:id/confirm_button")
+@AndroidFindBy(id ="com.mobikwik_new:id/confirm_button")
     private AndroidElement cta_confirm_upi;
 
-    @AndroidFindBy(id= "com.mobikwik_new.debug:id/vpa")
+//    @AndroidFindBy(id= "com.mobikwik_new.debug:id/vpa")
+@AndroidFindBy(id= "com.mobikwik_new:id/vpa")
     private AndroidElement result_upi_id;
 
-    @AndroidFindBy(id= "com.mobikwik_new.debug:id/amount_field")
+//    @AndroidFindBy(id= "com.mobikwik_new.debug:id/amount_field")
+@AndroidFindBy(id= "com.mobikwik_new:id/amount_field")
     private AndroidElement enter_amount;
 
-    @AndroidFindBy(id= "com.mobikwik_new.debug:id/messageEditText")
+//    @AndroidFindBy(id= "com.mobikwik_new.debug:id/messageEditText")
+@AndroidFindBy(id= "com.mobikwik_new:id/messageEditText")
     private AndroidElement enter_message;
 
-    @AndroidFindBy(id= "com.mobikwik_new.debug:id/view_transaction_limit")
+//    @AndroidFindBy(id= "com.mobikwik_new.debug:id/view_transaction_limit")
+@AndroidFindBy(id= "com.mobikwik_new:id/view_transaction_limit")
     private AndroidElement get_transaction_limit;
 
-    @AndroidFindBy(id= "com.mobikwik_new.debug:id/touch_outside")
+//    @AndroidFindBy(id= "com.mobikwik_new.debug:id/touch_outside")
+@AndroidFindBy(id= "com.mobikwik_new:id/touch_outside")
     private AndroidElement click_outside;
 
-    @AndroidFindBy(id= "com.mobikwik_new.debug:id/cta")
+//    @AndroidFindBy(id= "com.mobikwik_new.debug:id/cta")
+@AndroidFindBy(id= "com.mobikwik_new:id/cta")
     private AndroidElement cta_confirm_payment;
 
-    @AndroidFindBy(id= "com.mobikwik_new.debug:id/payment_success_msg")
+//    @AndroidFindBy(id= "com.mobikwik_new.debug:id/payment_success_msg")
+@AndroidFindBy(id= "com.mobikwik_new:id/payment_success_msg")
     private AndroidElement payment_succes_message;
 
-    @AndroidFindBy(id= "com.mobikwik_new.debug:id/amount")
+//    @AndroidFindBy(id= "com.mobikwik_new.debug:id/amount")
+@AndroidFindBy(id= "com.mobikwik_new:id/amount")
     private AndroidElement amount_paid;
 
-    @AndroidFindBy(id= "com.mobikwik_new.debug:id/base_icon_close")
+//    @AndroidFindBy(id= "com.mobikwik_new.debug:id/base_icon_close")
+@AndroidFindBy(id= "com.mobikwik_new:id/base_icon_close")
     private  AndroidElement click_on_cross;
 
 

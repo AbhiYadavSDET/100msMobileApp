@@ -30,7 +30,7 @@ public class UpiHelper {
         PermissionHelper permissionHelper;
         Screen screen;
         UpiPage upiPage;
-    MBKCommonControlsHelper mbkCommonControlsHelper;
+        MBKCommonControlsHelper mbkCommonControlsHelper;
 
 
         public UpiHelper(AndroidDriver driver) throws IOException {
@@ -54,6 +54,9 @@ public class UpiHelper {
 
             Thread.sleep(100);
 
+
+//            Element.waitForVisibility(driver, By.id("tx_upi_id"));
+
             upiPage=homePage.clickOnUpiId();
 
             upiPage.clickOnUpiSetupCta();
@@ -64,7 +67,13 @@ public class UpiHelper {
 
             permissionHelper.permissionAllow();
 
-            Thread.sleep(500);
+            Thread.sleep(400);
+
+//            Element.waitForVisibility(driver, By.id("qr_image"));
+
+            Boolean setup= Element.isElementPresent(driver, By.id("com.mobikwik_new:id/qr_image"));
+
+            mbReporter.verifyTrueWithLogging(setup, "Setup Done", true, true);
 
             upiPage.clickSendMoney();
 
@@ -88,13 +97,15 @@ public class UpiHelper {
 
             mbkCommonControlsHelper.handleGullak();
 
-            upiPage.returnToHomePage();
+            mbReporter.verifyEqualsWithLogging(upiPage.getPaymentSuccessMessage(), "Your payment sent successfully", "Succes Message Validation", false, false);
+
+            String actualTotalAmountPaid = upiPage.getAmountPaid().replace("X", "");
+
+            mbReporter.verifyEqualsWithLogging(actualTotalAmountPaid, amount, "Validate Amount", false, false);
+
+            mbkCommonControlsHelper.returnToHomePageFromP2MSuccessScreen();
 
             mbkCommonControlsHelper.handleRatingsPopUp();
-
-            upiPage.returnToHomePage();
-
-
 
         }
 }

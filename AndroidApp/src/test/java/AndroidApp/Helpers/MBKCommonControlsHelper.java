@@ -97,12 +97,16 @@ public class MBKCommonControlsHelper {
     }
 
     public void handleUpiPin(String pin) throws InterruptedException {
+
         String[] pinArr = pin.split("|");
 
-        if (Element.isElementPresent(driver, By.id("fragmentTelKeyboard"))) {
+        Element.waitForVisibility(driver, By.xpath("//android.widget.TableLayout[@index='2']"));
+        Log.info(" Waiting for Element");
+
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.TableLayout[@index='2']"))){
 
             for (String e : pinArr) {
-                //Log.info("PRESS", e);
+                Log.info("PRESS", e);
                 AndroidElement androidElement = element.findElement(driver, By.xpath("//android.widget.TextView[@text='"+e+"']"));
                 Element.selectElement(driver, androidElement, e);
             }

@@ -104,7 +104,8 @@ public class HomePage {
     @AndroidFindBy(id = "com.mobikwik_new:id/navigation_wallet")
     private AndroidElement navigate_wallet_page;
 
-    @AndroidFindBy(id ="com.mobikwik_new.debug:id/tx_upi_id")
+//    @AndroidFindBy(id ="com.mobikwik_new.debug:id/tx_upi_id")
+    @AndroidFindBy(id ="com.mobikwik_new:id/tx_upi_id")
     private AndroidElement navigate_upi_page;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Via UPI']")
