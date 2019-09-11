@@ -41,6 +41,9 @@ public class SideDrawerPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Help']")
     private AndroidElement help;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Security Settings']")
+    private AndroidElement security_settings;
+
 
     public SideDrawerPage(AndroidDriver driver) {
         this.driver = driver;
@@ -70,4 +73,10 @@ public class SideDrawerPage {
         Element.selectElement(driver, help, "Click on Help");
         return new HelpPage(driver);
     }
+
+    public SecuritySettingsPage clickOnSecuritySettings() throws IOException {
+        Element.selectElement(driver, security_settings, "Click on Security Settings");
+        return new SecuritySettingsPage(driver);
+    }
+
 }

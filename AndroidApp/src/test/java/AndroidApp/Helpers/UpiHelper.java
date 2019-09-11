@@ -28,6 +28,8 @@ public class UpiHelper {
         UpiPage upiPage;
         MBKCommonControlsHelper mbkCommonControlsHelper;
     AddMoneyPage addMoneyPage;
+    SideDrawerPage sideDrawerPage;
+    SecuritySettingsPage securitySettingsPage;
 
     public static HashMap<String, String> map;
     public static HashMap<String, String> balanceBefore;
@@ -46,6 +48,9 @@ public class UpiHelper {
             screen = new Screen(driver);
             homePage= new HomePage(driver);
             addMoneyPage= new AddMoneyPage(driver);
+            sideDrawerPage= new SideDrawerPage(driver);
+            securitySettingsPage= new SecuritySettingsPage(driver);
+
 
         }
 
@@ -331,6 +336,63 @@ public class UpiHelper {
         Double expectedSuperCashBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
         mbReporter.verifyEqualsWithLogging(actualMainBalanceAfter, expectedMainBalanceAfter, "After TRX | Verify Wallet Main Balance", false, false);
         mbReporter.verifyEqualsWithLogging(actualSuperCashBalanceAfter, expectedSuperCashBalanceAfter, "After TRX | Verify Supercash Balance", false, false);
+
+    }
+
+    public void deregisterUpi() throws InterruptedException, IOException, JSONException{
+
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+
+        Thread.sleep(100);
+
+        upiPage=homePage.clickOnUpiId();
+
+        upiPage.clickOnUpiSetupCta();
+
+        permissionHelper.permissionAllow();
+
+        permissionHelper.permissionAllow();
+
+        permissionHelper.permissionAllow();
+
+        Thread.sleep(400);
+
+
+        Boolean setup= Element.isElementPresent(driver, By.id("com.mobikwik_new:id/qr_image"));
+
+        mbReporter.verifyTrueWithLogging(setup, "Setup Done", true, true);
+
+        homePage=upiPage.clickOnBackButton();
+
+        sideDrawerPage= homePage.clickHamburgerIcon();
+
+        securitySettingsPage=sideDrawerPage.clickOnSecuritySettings();
+
+        securitySettingsPage.ClickSecurityOptions();
+
+        securitySettingsPage.ClickDeregisterFromOptions();
+
+        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Deregister Account']"));
+
+        securitySettingsPage.ClickYesDeregisterAccount();
+
+        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Deregister successful']"));
+
+        boolean deregisterRequest= Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text= 'Deregister successful']"));
+
+        mbReporter.verifyTrueWithLogging(deregisterRequest, "Deregister successful", true, true);
+
+        securitySettingsPage.ClickOk();
+
+        homePage= securitySettingsPage.clickBackButton();
+
+        Thread.sleep(100);
+
+        Boolean upiId= Element.isElementPresent(driver, By.id("com.mobikwik_new:id/tx_upi_id"));
+
+        mbReporter.verifyTrueWithLogging(!upiId, "Upi is Deregistered Succesfully", true, true);
+
+
 
     }
 
