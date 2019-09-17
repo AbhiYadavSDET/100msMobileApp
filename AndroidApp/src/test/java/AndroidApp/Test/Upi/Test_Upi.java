@@ -81,5 +81,14 @@ public class Test_Upi extends CreateSession {
         upiHelper.deregisterUpi();
     }
 
+    @Test(groups = {"registerUpi", "upiSanity"}, priority = 0)
+    public void Upi_register() throws IOException, JSONException, InterruptedException {
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaEmail("mkwik9330@gmail.com", "Test@1234");
+
+
+        UpiHelper upiHelper= new UpiHelper(getAndroidDriver());
+        upiHelper.registerUpi("Kotak");
+    }
 
 }

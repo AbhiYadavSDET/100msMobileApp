@@ -3,10 +3,7 @@ import UITestFramework.Api.ApiCommonControls;
 import UITestFramework.MBReporter;
 import io.appium.java_client.android.AndroidDriver;
 import logger.Log;
-import main.java.utils.Config;
-import main.java.utils.Element;
-import main.java.utils.Screen;
-import main.java.utils.TestDataReader;
+import main.java.utils.*;
 import org.json.JSONException;
 import org.openqa.selenium.By;
 import test.java.AndroidApp.PageObject.*;
@@ -27,13 +24,14 @@ public class UpiHelper {
         Screen screen;
         UpiPage upiPage;
         MBKCommonControlsHelper mbkCommonControlsHelper;
-    AddMoneyPage addMoneyPage;
-    SideDrawerPage sideDrawerPage;
-    SecuritySettingsPage securitySettingsPage;
+        AddMoneyPage addMoneyPage;
+        SideDrawerPage sideDrawerPage;
+        SecuritySettingsPage securitySettingsPage;
+        WalletPage walletPage;
 
-    public static HashMap<String, String> map;
-    public static HashMap<String, String> balanceBefore;
-    public static HashMap<String, String> balanceAfter;
+        public static HashMap<String, String> map;
+        public static HashMap<String, String> balanceBefore;
+        public static HashMap<String, String> balanceAfter;
 
 
         public UpiHelper(AndroidDriver driver) throws IOException {
@@ -50,6 +48,7 @@ public class UpiHelper {
             addMoneyPage= new AddMoneyPage(driver);
             sideDrawerPage= new SideDrawerPage(driver);
             securitySettingsPage= new SecuritySettingsPage(driver);
+            walletPage= new WalletPage(driver);
 
 
         }
@@ -391,6 +390,76 @@ public class UpiHelper {
         Boolean upiId= Element.isElementPresent(driver, By.id("com.mobikwik_new:id/tx_upi_id"));
 
         mbReporter.verifyTrueWithLogging(!upiId, "Upi is Deregistered Succesfully", true, true);
+
+
+
+    }
+
+    public void registerUpi(String bankName) throws InterruptedException, IOException, JSONException{
+
+
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+
+        Thread.sleep(100);
+
+        if(Element.isElementPresent(driver, By.id("com.mobikwik_new:id/tx_bank_balance"))==false){
+
+            walletPage= homePage.clickWalletNavigate();
+
+            Thread.sleep(5000);
+            for (int i=0; i<2; i++){
+            Screen.swipeDownMore(driver);
+            }
+
+            homePage.clickOnBottomBarHome();
+
+        }
+
+        homePage.clickCheckBalance();
+
+        upiPage=homePage.clickOnLinkBankAccount();
+
+        Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/mkiv_image"));
+
+        upiPage.enterBankName(bankName);
+
+        upiPage.selectBankFromList();
+
+        permissionHelper.permissionAllow();
+
+        permissionHelper.permissionAllow();
+
+        permissionHelper.permissionAllow();
+
+        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Select the phone number linked with your Kotak Mahindra Bank Account. An SMS will be triggered from the number to verify your bank account.']"));
+
+        upiPage.selectSim1();
+
+        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Create New VPA']"));
+
+        String randomVpa= Helper.generateRandomAlphaNumericString(5).toLowerCase();
+
+//        Thread.sleep(5000);
+
+        upiPage.enterVpa(randomVpa);
+
+        upiPage.submitVpa();
+
+        Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/upi_id_label"));
+
+        String upiId= upiPage.upiIdGenerated();
+
+        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("com.mobikwik_new:id/upi_id_text")), "Upi ID generated is:"+ upiId, true, true);
+
+        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("com.mobikwik_new:id/account_number")), "Account Number is present", true, true);
+
+        homePage= upiPage.clickBackToHomeFromSetupSuccess();
+
+        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text= '"+upiId+"']")), "Upi Id is Reflected", true, true);
+
+
+
+
 
 
 

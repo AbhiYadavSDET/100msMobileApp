@@ -120,6 +120,36 @@ public class UpiPage {
     @AndroidFindBy(id= "com.mobikwik_new:id/back_button")
     private AndroidElement back_button;
 
+    //Setup UPI
+
+    @AndroidFindBy(id= "com.mobikwik_new:id/edit_text_mket")
+    private AndroidElement enter_bank_name;
+
+    @AndroidFindBy(id= "com.mobikwik_new:id/bank_name")
+    private AndroidElement select_bank_from_list;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'Select the phone number linked with your Kotak Mahindra Bank Account. An SMS will be triggered from the number to verify your bank account.']")
+    private AndroidElement sim_select_view;
+
+    @AndroidFindBy(id= "com.mobikwik_new:id/sim1_button")
+    private AndroidElement select_sim_1;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'Create New VPA']")
+    private AndroidElement header_create_vpa;
+
+    @AndroidFindBy(id ="com.mobikwik_new:id/edit_text_mket")
+    private AndroidElement enter_vpa;
+
+    @AndroidFindBy(id= "com.mobikwik_new:id/submit_button")
+    private AndroidElement submit_vpa;
+
+    @AndroidFindBy(id= "com.mobikwik_new:id/upi_id_text")
+    private AndroidElement get_upi_id;
+
+    @AndroidFindBy(id= "com.mobikwik_new:id/back_to_home")
+    private AndroidElement upi_setup_success_back_to_home_cta;
+
+
 
     public UpiPage(AndroidDriver driver) throws IOException {
         this.driver = driver;
@@ -220,5 +250,37 @@ public class UpiPage {
         Element.selectElement(driver, back_button, "Click on Back Button");
         return new HomePage(driver);
     }
+
+    public void enterBankName(String bankName) throws InterruptedException{
+        Element.enterText(driver, enter_bank_name, bankName, "Enter Bank Name");
+    }
+
+    public void selectBankFromList() throws InterruptedException{
+        Element.selectElement(driver, select_bank_from_list, "Select Bank from List");
+    }
+
+    public void selectSim1() throws InterruptedException{
+        Element.selectElement(driver, select_sim_1, "Select Sim 1");
+    }
+
+    public void enterVpa(String enterVpa) throws InterruptedException{
+        Element.enterText(driver, enter_vpa, enterVpa, "Enter Random VPA");
+    }
+
+    public void submitVpa() throws InterruptedException{
+        Element.selectElement(driver, submit_vpa, "Submit VPA");
+    }
+
+    public String upiIdGenerated() throws InterruptedException{
+        return Element.getText(driver, get_upi_id, "Get Upi Id generated");
+    }
+
+    public HomePage clickBackToHomeFromSetupSuccess() throws InterruptedException{
+        Element.selectElement(driver, upi_setup_success_back_to_home_cta, "Click Back tom Home");
+        return new HomePage(driver);
+    }
+
+
+
 
 }
