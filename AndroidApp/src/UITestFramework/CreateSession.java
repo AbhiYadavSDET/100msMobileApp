@@ -39,6 +39,7 @@ public class CreateSession {
     String deviceName = "Samsung J6";
 
     private String reportDirectory = "reports";
+
     private String reportFormat = "xml";
 
     protected static Properties properties;
@@ -172,6 +173,12 @@ public class CreateSession {
             String appPath = "src/app/MobiKwik_beta.apk";
             return appPath;
         }
+
+        if (build.equals("debug")) {
+            String appPath = "src/app/Mobikwik_debug.apk";
+            return appPath;
+        }
+
 
         return build;
     }

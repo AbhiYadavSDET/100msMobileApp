@@ -104,6 +104,33 @@ public class HomePage {
     @AndroidFindBy(id = "com.mobikwik_new:id/navigation_wallet")
     private AndroidElement navigate_wallet_page;
 
+//    @AndroidFindBy(id ="com.mobikwik_new.debug:id/tx_upi_id")
+    @AndroidFindBy(id ="com.mobikwik_new:id/tx_upi_id")
+    private AndroidElement navigate_upi_page;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Via UPI']")
+    private AndroidElement navigate_upi_send_money;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Request']")
+    private AndroidElement navigate_upi_request;
+
+    //Check Balance Flow
+    @AndroidFindBy(id= "com.mobikwik_new:id/tx_bank_balance")
+    private AndroidElement cta_check_balance;
+
+    @AndroidFindBy(id= "com.mobikwik_new:id/balance")
+    private AndroidElement account_balance;
+
+    @AndroidFindBy(id= "com.mobikwik_new:id/cross_button")
+    private AndroidElement click_cross_overlay;
+
+    @AndroidFindBy(xpath= "//android.widget.TextView[@text= 'Link Your Bank Account']")
+    private AndroidElement link_bank_account;
+
+    @AndroidFindBy(id= "com.mobikwik_new:id/add_account_button")
+    private AndroidElement cta_link_bank_account;
+
+
 
     public HomePage(AndroidDriver driver) {
         this.driver = driver;
@@ -249,6 +276,30 @@ public class HomePage {
         Element.selectElement(driver, navigate_wallet_page, "Navigate to Wallet Page");
         return new WalletPage(driver);
     }
+
+    public UpiPage clickOnUpiId() throws IOException{
+        Element.selectElement(driver, navigate_upi_page, "Navigate to UPI Page");
+        return new UpiPage(driver);
+    }
+
+    public void clickCheckBalance() throws IOException{
+        Element.selectElement(driver, cta_check_balance, "Get Account Balance");
+    }
+
+    public UpiPage clickOnLinkBankAccount() throws IOException{
+        Element.selectElement(driver, cta_link_bank_account, "Link Bank Account");
+        return new UpiPage(driver);
+    }
+
+    public String getAccountBalance() throws IOException{
+        String balance= Element.getText(driver, account_balance, "Account Balance").replace("Account Balance: ₹ ", "");
+        return balance;
+    }
+
+    public void dismissOverlay() throws IOException{
+        Element.selectElement(driver, click_cross_overlay, "Dismiss Overlay");
+    }
+
 
 
 }

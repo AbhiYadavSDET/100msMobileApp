@@ -49,6 +49,9 @@ public class MbkCommonControlsPage {
     @AndroidFindBy(id = "com.mobikwik_new:id/cross_button")
     private AndroidElement cross_button;
 
+    @AndroidFindBy(id= "com.mobikwik_new.debug:id/close_button")
+    private AndroidElement gullak_cross_button;
+
 
     public MbkCommonControlsPage(AndroidDriver driver) throws IOException {
         this.driver = driver;
@@ -114,6 +117,12 @@ public class MbkCommonControlsPage {
     public void clickOnReferAndEarnBottonSheetCross() {
 
         Element.selectElement(driver, cross_button, "Cross Icon");
+
+    }
+
+    public void clickOnGullakCross() {
+
+        Element.selectElement(driver, gullak_cross_button, "Cross Icon");
 
     }
 
