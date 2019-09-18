@@ -12,6 +12,26 @@ import java.io.IOException;
 
 public class Test_Upi extends CreateSession {
 
+    @Test(groups = {"deregisterUpi", "upiSanity"}, priority = 0)
+    public void Upi_Deregister() throws IOException, JSONException, InterruptedException {
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaEmail("mkwik9330@gmail.com", "Test@1234");
+
+
+        UpiHelper upiHelper= new UpiHelper(getAndroidDriver());
+        upiHelper.deregisterUpi();
+    }
+
+    @Test(groups = {"registerUpi", "upiSanity"}, priority = 0)
+    public void Upi_register() throws IOException, JSONException, InterruptedException {
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaEmail("mkwik9330@gmail.com", "Test@1234");
+
+
+        UpiHelper upiHelper= new UpiHelper(getAndroidDriver());
+        upiHelper.registerUpi("Kotak");
+    }
+
 
     @Test(groups = {"upiSendMoney", "upiSanity"}, priority = 0)
     public void Upi_Send_Money() throws IOException, JSONException, InterruptedException {
@@ -69,26 +89,6 @@ public class Test_Upi extends CreateSession {
         UpiHelper upiHelper= new UpiHelper(getAndroidDriver());
         upiHelper.addMoneyViaUpi("121212", "5", "Payment Successful", "Money added into your wallet successfully");
 
-    }
-
-    @Test(groups = {"deregisterUpi", "upiSanity"}, priority = 0)
-    public void Upi_Deregister() throws IOException, JSONException, InterruptedException {
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail("mkwik9330@gmail.com", "Test@1234");
-
-
-        UpiHelper upiHelper= new UpiHelper(getAndroidDriver());
-        upiHelper.deregisterUpi();
-    }
-
-    @Test(groups = {"registerUpi", "upiSanity"}, priority = 0)
-    public void Upi_register() throws IOException, JSONException, InterruptedException {
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail("mkwik9330@gmail.com", "Test@1234");
-
-
-        UpiHelper upiHelper= new UpiHelper(getAndroidDriver());
-        upiHelper.registerUpi("Kotak");
     }
 
 }
