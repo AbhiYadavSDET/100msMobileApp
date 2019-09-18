@@ -314,7 +314,7 @@ public class UpiHelper {
 
         permissionHelper.permissionAllow();
 
-        addMoneyPage.chooseUpiOption();
+        addMoneyPage.chooseUpiBank();
 
         mbkCommonControlsHelper.handleUpiPin(pin);
 

@@ -248,7 +248,7 @@ public class MBKCommonControlsHelper {
 
     public void handleReferAndEarnBottomSheet() throws InterruptedException {
         Thread.sleep(4000);
-        if (Element.isElementPresent(driver, By.id("com.mobikwik_new:id/cta"))) {
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text= 'Refer Now']"))) {
             Log.info("Handle", "Refer & Earn Bottom sheet");
             mbkCommonControlsPage.clickOnReferAndEarnBottonSheetCross();
         }
