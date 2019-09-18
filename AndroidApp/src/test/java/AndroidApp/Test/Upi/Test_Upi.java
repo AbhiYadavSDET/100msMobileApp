@@ -22,7 +22,7 @@ public class Test_Upi extends CreateSession {
         upiHelper.deregisterUpi();
     }
 
-    @Test(groups = {"registerUpi", "upiSanity"}, priority = 0)
+    @Test(groups = {"registerUpi", "upiSanity"}, priority = 1)
     public void Upi_register() throws IOException, JSONException, InterruptedException {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
         loginHelper.quickLoginViaEmail("mkwik9330@gmail.com", "Test@1234");
@@ -33,7 +33,7 @@ public class Test_Upi extends CreateSession {
     }
 
 
-    @Test(groups = {"upiSendMoney", "upiSanity"}, priority = 0)
+    @Test(groups = {"upiSendMoney", "upiSanity"}, priority = 2)
     public void Upi_Send_Money() throws IOException, JSONException, InterruptedException {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
         loginHelper.quickLoginViaEmail("mkwik9330@gmail.com", "Test@1234");
@@ -44,7 +44,7 @@ public class Test_Upi extends CreateSession {
 
     }
 
-    @Test(groups = {"upiSendMoneyToBank", "upiSanity"}, priority = 0)
+    @Test(groups = {"upiSendMoneyToBank", "upiSanity"}, priority = 3)
     public void Upi_Send_Money_To_Bank() throws IOException, JSONException, InterruptedException {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
         loginHelper.quickLoginViaEmail("mkwik9330@gmail.com", "Test@1234");
@@ -55,7 +55,7 @@ public class Test_Upi extends CreateSession {
 
     }
 
-    @Test(groups = {"upiRequestMoney", "upiSanity"}, priority = 0)
+    @Test(groups = {"upiRequestMoney", "upiSanity"}, priority = 4)
     public void Upi_Request_Money() throws IOException, JSONException, InterruptedException {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
         loginHelper.quickLoginViaEmail("mkwik9330@gmail.com", "Test@1234");
@@ -66,7 +66,7 @@ public class Test_Upi extends CreateSession {
 
     }
 
-    @Test(groups = {"upiCheckBalance", "upiSanity"}, priority = 0)
+    @Test(groups = {"upiCheckBalance", "upiSanity"}, priority = 5)
     public void Upi_Check_Balance() throws IOException, JSONException, InterruptedException {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
         loginHelper.quickLoginViaEmail("mkwik9330@gmail.com", "Test@1234");
@@ -80,7 +80,7 @@ public class Test_Upi extends CreateSession {
     //Payment Successful
     //Money added into your wallet successfully
 
-    @Test(groups = {"addMoneyViaUpi", "upiSanity"}, priority = 0)
+    @Test(groups = {"addMoneyViaUpi", "upiSanity"}, priority = 6)
     public void Upi_Add_Money() throws IOException, JSONException, InterruptedException {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
         loginHelper.quickLoginViaEmail("mkwik9330@gmail.com", "Test@1234");

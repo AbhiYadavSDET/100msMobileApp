@@ -251,6 +251,8 @@ public class UpiHelper {
 
         Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Link Your Bank Account']"));
 
+        Thread.sleep(2000);
+
         upiPage= homePage.clickOnLinkBankAccount();
 
         upiPage.clickOnUpiSetupCta();
@@ -279,7 +281,7 @@ public class UpiHelper {
 
         String balance= homePage.getAccountBalance();
 
-        mbReporter.verifyTrueWithLogging(isBalanceVisible, "Avalaible Balance is =Rs "+balance, true,true);
+        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("com.mobikwik_new:id/balance")), "Avalaible Balance is =Rs "+balance, true,true);
 
         homePage.dismissOverlay();
 
