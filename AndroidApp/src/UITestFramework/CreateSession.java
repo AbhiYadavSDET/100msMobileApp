@@ -141,8 +141,8 @@ public class CreateSession {
         capabilities.setCapability("reportDirectory", reportDirectory);
         capabilities.setCapability("reportFormat", reportFormat);
         capabilities.setCapability("app", app.getAbsolutePath());
-//        capabilities.setCapability("fullReset", false);
-        capabilities.setCapability("noReset", false);
+        capabilities.setCapability("fullReset", true);
+//        capabilities.setCapability("noReset", false);
 
         //Log.info("http://localhost:" + portNo + "/wd/hub");
 
@@ -161,21 +161,25 @@ public class CreateSession {
 
         if (build.equals("prod")) {
             String appPath = "src/app/MobiKwik_prod.apk";
+            Log.info(appPath);
             return appPath;
         }
 
         if (build.equals("stag")) {
             String appPath = "src/app/MobiKwik_stag.apk";
+            Log.info(appPath);
             return appPath;
         }
 
         if (build.equals("beta")) {
             String appPath = "src/app/MobiKwik_beta.apk";
+            Log.info(appPath);
             return appPath;
         }
 
         if (build.equals("debug")) {
-            String appPath = "src/app/Mobikwik_debug.apk";
+            String appPath = "src/app/MobiKwik_debug.apk";
+            Log.info(appPath);
             return appPath;
         }
 
