@@ -45,7 +45,8 @@ public class RechargeHelper {
 
     public void prepaidRecharge(String mobileNo, String amount, String category, String operator, String totalPayment, String trxStatus, String securityPin, Boolean promoCodeStatus, String promoCode, String promoCodeText) throws InterruptedException, IOException, JSONException {
         Thread.sleep(2000);
-        homePage.clickOnCrossButton();
+//        homePage.clickOnCrossButton();
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
         balanceBefore = mbkCommonControlsHelper.getBalance();
 
@@ -123,7 +124,8 @@ public class RechargeHelper {
 
     public void postpaidPayment(String mobileNo, String popupError, String popupText, String operator) throws InterruptedException, IOException, JSONException {
 
-        homePage.clickOnCrossButton();
+//        homePage.clickOnCrossButton();
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
         if(!Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Mobile']"))){
 
@@ -176,7 +178,9 @@ public class RechargeHelper {
     public void postpaidPaymentViaSavedConnection(String mobileNo, String popupText, String category, String operator, String successScreenOperatorText) throws InterruptedException, IOException, JSONException {
 
         //balanceBefore = mbkCommonControlsHelper.getBalance();
-        homePage.clickOnCrossButton();
+//        homePage.clickOnCrossButton();
+
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
         if(!Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Mobile']"))){
 
@@ -229,7 +233,9 @@ public class RechargeHelper {
     public void rechargeDthInvalidAmount(String mobileNo, String amount, String securityPin, String errorMessage) throws InterruptedException, IOException, JSONException, TesseractException {
 
         //balanceBefore = mbkCommonControlsHelper.getBalance();
-        homePage.clickOnCrossButton();
+//        homePage.clickOnCrossButton();
+
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
         if(!Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Mobile']"))){
 
@@ -294,7 +300,9 @@ public class RechargeHelper {
     public void viewBillGas(String operator, String mobileNo) throws InterruptedException, IOException, JSONException {
 
         //balanceBefore = mbkCommonControlsHelper.getBalance();
-        homePage.clickOnCrossButton();
+//        homePage.clickOnCrossButton();
+
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
         if(!Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Mobile']"))){
 
@@ -356,7 +364,8 @@ public class RechargeHelper {
         String[] arr = telephoneNo.split("\\|");
         String expectedtelephoneNo = arr[arr.length - 2];
         String expectedCan = arr[arr.length - 1];
-        homePage.clickOnCrossButton();
+//        homePage.clickOnCrossButton();
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
         if(!Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Mobile']"))){
 

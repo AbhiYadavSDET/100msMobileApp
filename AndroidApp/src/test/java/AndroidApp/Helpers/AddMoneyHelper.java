@@ -39,9 +39,11 @@ public class AddMoneyHelper {
     }
 
     public void netbanking(String amount, String bankName, String bankPageLocator) throws InterruptedException, IOException, JSONException {
-        Thread.sleep(3000);
-        homePage.clickOnCrossButton();
-        Thread.sleep(1000);
+//        Thread.sleep(3000);
+//        homePage.clickOnCrossButton();
+//        Thread.sleep(1000);
+
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
         addMoneyPage = homePage.clickOnAddMoneyButton();
 
@@ -74,10 +76,12 @@ public class AddMoneyHelper {
 
 
     public void addMoneyViaNewCard(String amount, String cardNo, String expiryMonth, String expiryYear, String cvv, String bankPassword, String successPageStatus, String successPageText) throws InterruptedException, IOException, JSONException {
-        Thread.sleep(2000);
+//        Thread.sleep(2000);
+//
+//        homePage.clickOnCrossButton();
+//        Thread.sleep(1000);
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
-        homePage.clickOnCrossButton();
-        Thread.sleep(1000);
         balanceBefore = mbkCommonControlsHelper.getBalance();
 
         addMoneyPage = homePage.clickOnAddMoneyButton();
@@ -126,9 +130,11 @@ public class AddMoneyHelper {
 
 
     public void addMoneyViaSavedCard(String amount, String cardNo, String expiryMonth, String expiryYear, String cvv, String bankPassword, String successPageStatus, String successPageText, Boolean promoCodeStatus, String promoCode) throws InterruptedException, IOException, JSONException {
-        Thread.sleep(1000);
-        homePage.clickOnCrossButton();
-        Thread.sleep(1000);
+//        Thread.sleep(1000);
+//        homePage.clickOnCrossButton();
+//        Thread.sleep(1000);
+
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
         balanceBefore = mbkCommonControlsHelper.getBalance();
 
@@ -235,9 +241,11 @@ public class AddMoneyHelper {
     }
 
     public void addMoneyViaSavedCardWithinFlow(String amount, String cardNo, String cvv, String bankPassword) throws InterruptedException, IOException, JSONException {
-        Thread.sleep(1000);
-        homePage.clickOnCrossButton();
-        Thread.sleep(1000);
+//        Thread.sleep(1000);
+//        homePage.clickOnCrossButton();
+//        Thread.sleep(1000);
+
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
         balanceBefore = mbkCommonControlsHelper.getBalance();
 
