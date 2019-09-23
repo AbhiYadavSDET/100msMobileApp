@@ -70,6 +70,16 @@ public class RechargeHelper {
         Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/mkab_title"));
         rechargePage.selectCircle();
 
+        rechargePage.clickOnSeeAllPlans();
+
+        boolean seeAllPlans= Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text= 'TOPUP']"));
+
+        mbReporter.verifyTrueWithLogging(seeAllPlans, "Plans Page loaded", true, true );
+
+        rechargePage.clickOnBackButtonPlansPage();
+
+        Thread.sleep(300);
+
         rechargePage.selectAmount();
 
         rechargePage.enterAmount(amount);
@@ -86,6 +96,7 @@ public class RechargeHelper {
         mbkCommonControlsHelper.handleSecurityPin(securityPin);
 
         // Wait for the success screen
+
         Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/base_title"));
 
         mbkCommonControlsHelper.handleCTOverlay();

@@ -33,11 +33,14 @@ public class RechargePage {
     //@AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Amount (in ₹)'/following::android.widget.TextView[@text = 'Enter any amount']")
     public AndroidElement textbox_enter_amount;
 
+    @AndroidFindBy(id= "com.mobikwik_new:id/see_all_plans")
+    public AndroidElement cta_see_all_plans;
+
 
     @AndroidFindBy(id = "com.mobikwik_new:id/amount_field")
     private AndroidElement textbox_enter_amount2;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/actionbar_continue_button")
+    @AndroidFindBy(id = "com.mobikwik_new:id/actual_continue")
     private AndroidElement button_continue;
 
     @AndroidFindBy(id = "com.mobikwik_new:id/cta")
@@ -115,6 +118,19 @@ public class RechargePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Telephone Number (Without STD Code)']/following::android.widget.EditText[2]")
     public AndroidElement textbox_can;
 
+
+    //See All option for Plans
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'TOPUP']")
+    public AndroidElement header_top_up_plan_types;
+
+    @AndroidFindBy(id= "com.mobikwik_new:id/mkab_icon_1")
+    public AndroidElement cta_back_button_plans_page;
+
+
+
+
+
     public RechargePage(AndroidDriver driver) throws IOException {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -159,6 +175,14 @@ public class RechargePage {
 
     public void selectAmount() throws InterruptedException {
         Element.selectElement(driver, textbox_enter_amount, "Select Amount");
+    }
+
+    public void clickOnSeeAllPlans() throws InterruptedException{
+        Element.selectElement(driver,cta_see_all_plans, "Select See all plans");
+    }
+
+    public void clickOnBackButtonPlansPage() throws InterruptedException{
+        Element.selectElement(driver, cta_back_button_plans_page, "Navigate back to recharge page");
     }
 
     public void enterAmount(String amount) throws InterruptedException {
