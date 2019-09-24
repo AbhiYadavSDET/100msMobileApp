@@ -19,12 +19,12 @@ public class Test_AddMoney extends CreateSession {
     @Test(groups = {"addMoneyNetBanking", "addMoneySanity"}, priority = 0, dataProvider = "addMoneyData", dataProviderClass = AddMoneyProviderClass.class)
     public void Test01_netbanking(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        //loginHelper.quickLoginViaEmail("8447405515@nocash.mobikwik.com", "priyanka123");
+//        loginHelper.quickLoginViaEmail("mkwik9330@gmail.com", "Test@1234");
         loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
 
 
         AddMoneyHelper addmoneyHelper = new AddMoneyHelper(getAndroidDriver());
-        addmoneyHelper.netbanking(frontEndEntity.getAmount(), frontEndEntity.getBankName(), frontEndEntity.getBankPageLocator());
+        addmoneyHelper.netbanking(frontEndEntity.getAmount(), frontEndEntity.getBankName(), frontEndEntity.getBankPageLocator(), frontEndEntity.getBankPageLocatorType());
     }
 
 

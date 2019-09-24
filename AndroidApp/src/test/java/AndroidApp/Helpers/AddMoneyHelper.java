@@ -3,6 +3,7 @@ package test.java.AndroidApp.Helpers;
 import UITestFramework.MBReporter;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
+import logger.Log;
 import main.java.utils.*;
 import org.json.JSONException;
 import org.openqa.selenium.By;
@@ -38,7 +39,7 @@ public class AddMoneyHelper {
 
     }
 
-    public void netbanking(String amount, String bankName, String bankPageLocator) throws InterruptedException, IOException, JSONException {
+    public void netbanking(String amount, String bankName, String bankPageLocator, String bankPageLocatorType) throws InterruptedException, IOException, JSONException {
 //        Thread.sleep(3000);
 //        homePage.clickOnCrossButton();
 //        Thread.sleep(1000);
@@ -66,8 +67,16 @@ public class AddMoneyHelper {
 
         Element.waitForVisibility(driver, addMoneyPage.label_make_payment);
 
-        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath(bankPageLocator)), "Bank Screen | Verify Locator", false, false);
-
+        if(bankPageLocatorType.equalsIgnoreCase("xpath")) {
+            mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath(bankPageLocator)), "Bank Screen | Verify Locator", false, false);
+            Log.info(bankPageLocator + "in if ");
+            Log.info(bankPageLocatorType + "in if");
+        }else
+        {
+            Log.info(bankPageLocator + "in else");
+            Log.info(bankPageLocatorType + "in else");
+            mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id(bankPageLocator)), "Bank Screen | Verify Locator", false, false);
+        }
         mbkCommonControlsHelper.clickUpButton();
 
         addMoneyPage.clickOnYesButton();
