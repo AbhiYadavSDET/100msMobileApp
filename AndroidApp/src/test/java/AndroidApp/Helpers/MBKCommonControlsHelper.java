@@ -255,7 +255,7 @@ public class MBKCommonControlsHelper {
     }
 
     public void handleUpiBottomSheet(AndroidDriver driver) throws InterruptedException {
-        Thread.sleep(4000);
+        Thread.sleep(2000);
         if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Link Your Bank Account']"))) {
             Log.info("Handle", "Upi Bottom sheet");
             driver.navigate().back();

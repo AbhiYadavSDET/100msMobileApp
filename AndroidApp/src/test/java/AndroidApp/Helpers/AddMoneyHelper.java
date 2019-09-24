@@ -69,12 +69,12 @@ public class AddMoneyHelper {
 
         if(bankPageLocatorType.equalsIgnoreCase("xpath")) {
             mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath(bankPageLocator)), "Bank Screen | Verify Locator", false, false);
-            Log.info(bankPageLocator + "in if ");
-            Log.info(bankPageLocatorType + "in if");
+//            Log.info(bankPageLocator + "in if ");
+//            Log.info(bankPageLocatorType + "in if");
         }else
         {
-            Log.info(bankPageLocator + "in else");
-            Log.info(bankPageLocatorType + "in else");
+//            Log.info(bankPageLocator + "in else");
+//            Log.info(bankPageLocatorType + "in else");
             mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id(bankPageLocator)), "Bank Screen | Verify Locator", false, false);
         }
         mbkCommonControlsHelper.clickUpButton();
