@@ -43,7 +43,7 @@ public class NearByTest extends CreateSession {
 
     @Parameters({"androidOSVersion"})
     @Test(groups = {"nearBySanity", "nearByHome"}, priority = 0, enabled = true)
-    public void nearbyStoreListMap(@Optional String androidOSVersion) throws Exception {
+    public void Test19_nearbyStoreListMap(@Optional String androidOSVersion) throws Exception {
         Log.infoStartTest("nearby home");
         reporter.extentTest = reporter.extentReports.createTest("nearby home");
 
@@ -60,7 +60,7 @@ public class NearByTest extends CreateSession {
 
     @Parameters({"androidOSVersion"})
     @Test(groups = {"nearBySanity", "nearbySearchCategory"}, priority = 1, enabled = true)
-    public void nearbySearchCategory(@Optional String androidOSVersion) throws Exception {
+    public void Test20_nearbySearchCategory(@Optional String androidOSVersion) throws Exception {
         Log.infoStartTest("nearby search category");
         reporter.extentTest = reporter.extentReports.createTest("nearby category");
 
@@ -77,7 +77,7 @@ public class NearByTest extends CreateSession {
 
     @Parameters({"androidOSVersion"})
     @Test(groups = {"nearBySanity", "nearbySearchKeyword"}, priority = 2, enabled = true)
-    public void nearbySearchStore(@Optional String androidOSVersion) throws Exception {
+    public void Test21_nearbySearchStore(@Optional String androidOSVersion) throws Exception {
         Log.infoStartTest("nearby search store");
         reporter.extentTest = reporter.extentReports.createTest("nearby store");
 
