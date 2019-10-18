@@ -26,6 +26,32 @@ public class TransactionHistoryPage {
     @AndroidFindBy(id = "com.mobikwik_new:id/txt_txn_id")
     public AndroidElement txn_id;
 
+    @AndroidFindBy(xpath= "//android.widget.TextView[@text='+ X6']")
+    public AndroidElement add_money_transaction;
+
+    @AndroidFindBy(id= "com.mobikwik_new:id/txt_txn_product")
+    public AndroidElement invoice_page;
+
+    @AndroidFindBy(id= "com.mobikwik_new:id/refund_cta")
+    public AndroidElement refund_cta;
+
+    @AndroidFindBy(xpath= "//android.widget.TextView[@text= 'Money Available in your wallet can be used wherever Mobikwik is accepted at Merchant (Online/Offline) including Recharges and Bill Payments.']")
+    public AndroidElement refund_cofirm_pop_up;
+
+    @AndroidFindBy(id= "com.mobikwik_new:id/vertical_button_1")
+    public AndroidElement cta_initiate_refund;
+
+    //Refund Success Page
+
+    @AndroidFindBy(xpath= "//android.widget.TextView[@text= 'Refund Initiated']")
+    public AndroidElement refund_success_title;
+
+    @AndroidFindBy(xpath= "//android.widget.TextView[@text= 'MobiKwik has initiated the refund to the respective financial instrument (Bank Account/Cards/UPI) used while adding Money. This would take 3 to 7 business days (Excluding Saturdays and Sundays).']")
+    public AndroidElement refund_success_message;
+
+    
+
+
 
     public TransactionHistoryPage(AndroidDriver driver) throws IOException {
         this.driver = driver;

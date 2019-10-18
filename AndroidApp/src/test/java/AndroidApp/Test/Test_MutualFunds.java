@@ -15,7 +15,7 @@ public class Test_MutualFunds extends CreateSession {
 
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
 
-        //loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+//        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
         loginHelper.quickLoginViaEmail("mayank.suneja@mobikwik.com", "Tuesday20");
 
         mutualFundsHelper = new MutualFundsHelper(getAndroidDriver());

@@ -82,6 +82,25 @@ public class MBKCommonControlsHelper {
 
     }
 
+    public void handleAddMoney(String requiredAmount) throws InterruptedException, IOException {
+
+        HashMap<String,String> currentBalance = getBalance();
+        String balance = currentBalance.get(BalanceType.MONEYADDED);
+
+        if(Double.parseDouble(requiredAmount) > Double.parseDouble(balance)){
+
+            int amountToAdd= Integer.parseInt(requiredAmount) - Integer.parseInt(balance);
+
+            String amount= String.valueOf(amountToAdd);
+
+            AddMoneyHelper addmoneyHelper = new AddMoneyHelper(driver);
+            addmoneyHelper.addMoneyViaSavedCard(amount, "4363 XXXX XXXX 4460", "12", "22", "239", "Paraj@1234", "Thanks", "Money Added Successfully", false, "NA");
+
+
+        }
+
+    }
+
     public void handleSecurityPin(String pin) throws InterruptedException {
         String[] pinArr = pin.split("|");
 
