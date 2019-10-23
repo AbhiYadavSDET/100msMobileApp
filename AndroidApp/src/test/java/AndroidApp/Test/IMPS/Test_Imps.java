@@ -31,7 +31,7 @@ public class Test_Imps extends CreateSession {
 
         // IMPS the same amount
         ImpsHelper impsHelper = new ImpsHelper(getAndroidDriver());
-        impsHelper.verifyImps("Mayank Suneja", "114601503265", "ICIC0001146", amount);
+        impsHelper.verifyImps("Paraj Jain", "167795709569", "INDB0000724", amount);
 
         Log.info("END : Imps sanity test");
 

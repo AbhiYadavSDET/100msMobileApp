@@ -9,6 +9,7 @@ import main.java.utils.Element;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.io.IOException;
 
 public class TransactionHistoryPage {
@@ -26,32 +27,34 @@ public class TransactionHistoryPage {
     @AndroidFindBy(id = "com.mobikwik_new:id/txt_txn_id")
     public AndroidElement txn_id;
 
-    @AndroidFindBy(xpath= "//android.widget.TextView[@text='+ X6']")
-    public AndroidElement add_money_transaction;
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='+ X6']")
+    public AndroidElement add_money_transaction_value_6;
 
-    @AndroidFindBy(id= "com.mobikwik_new:id/txt_txn_product")
+    @AndroidFindBy(id = "com.mobikwik_new:id/txt_txn_product")
     public AndroidElement invoice_page;
 
-    @AndroidFindBy(id= "com.mobikwik_new:id/refund_cta")
+    @AndroidFindBy(id = "com.mobikwik_new:id/refund_cta")
     public AndroidElement refund_cta;
 
-    @AndroidFindBy(xpath= "//android.widget.TextView[@text= 'Money Available in your wallet can be used wherever Mobikwik is accepted at Merchant (Online/Offline) including Recharges and Bill Payments.']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'Money Available in your wallet can be used wherever Mobikwik is accepted at Merchant (Online/Offline) including Recharges and Bill Payments.']")
     public AndroidElement refund_cofirm_pop_up;
 
-    @AndroidFindBy(id= "com.mobikwik_new:id/vertical_button_1")
+    @AndroidFindBy(id = "com.mobikwik_new:id/vertical_button_1")
     public AndroidElement cta_initiate_refund;
 
     //Refund Success Page
 
-    @AndroidFindBy(xpath= "//android.widget.TextView[@text= 'Refund Initiated']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'Refund Initiated']")
     public AndroidElement refund_success_title;
 
-    @AndroidFindBy(xpath= "//android.widget.TextView[@text= 'MobiKwik has initiated the refund to the respective financial instrument (Bank Account/Cards/UPI) used while adding Money. This would take 3 to 7 business days (Excluding Saturdays and Sundays).']")
+    @AndroidFindBy(id = "com.mobikwik_new:id/refund_status_title")
     public AndroidElement refund_success_message;
 
-    
+    @AndroidFindBy(id = "com.mobikwik_new:id/base_icon_close")
+    public AndroidElement cross_refund_success_page;
 
-
+    @AndroidFindBy(id = "com.mobikwik_new:id/amount_text")
+    public AndroidElement amount_refunded;
 
     public TransactionHistoryPage(AndroidDriver driver) throws IOException {
         this.driver = driver;
@@ -75,5 +78,32 @@ public class TransactionHistoryPage {
     public String getTrxId() throws InterruptedException {
         return Element.getText(driver, txn_id, "Get CTA text").replace("Order ID: ", "");
     }
+
+    public void clickOnAddMoneyTransactionOfSixRupees() throws InterruptedException {
+
+        Element.selectElement(driver, add_money_transaction_value_6, "Click on Add Money Transaction of 6 Rs");
+    }
+
+    public void clickOnRefundCta() throws InterruptedException {
+        Element.selectElement(driver, refund_cta, "Click on Refund Cta");
+    }
+
+    public void clickOnIntiateRefundCta() throws InterruptedException {
+        Element.selectElement(driver, cta_initiate_refund, "Click on Intiate Refund cta");
+    }
+
+    public String getRefundMessage() throws InterruptedException {
+        return Element.getText(driver, refund_success_message, "Get refund Success message");
+    }
+
+    public void navigateBackToHome() throws InterruptedException {
+        Element.selectElement(driver, cross_refund_success_page, "Navigate Back to Home");
+    }
+
+    public String getAmountRefunded() throws InterruptedException{
+        return Element.getText(driver, amount_refunded, "Amount Refunded");
+    }
+
+
 
 }
