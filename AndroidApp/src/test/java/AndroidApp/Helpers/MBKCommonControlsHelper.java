@@ -283,7 +283,10 @@ public class MBKCommonControlsHelper {
 
     public void dismissAllOnHomePage(AndroidDriver driver) throws InterruptedException {
 //        Handle Expense Manager Bottom sheet
+        Log.info("Checking", "Upi Bottom sheet");
         handleUpiBottomSheet(driver);
+
+        Log.info("Checking", "Refer and Earn Bottom sheet");
         handleReferAndEarnBottomSheet();
     }
 
