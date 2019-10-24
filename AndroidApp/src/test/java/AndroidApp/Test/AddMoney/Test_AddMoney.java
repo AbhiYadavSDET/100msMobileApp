@@ -19,12 +19,12 @@ public class Test_AddMoney extends CreateSession {
     @Test(groups = {"addMoneyNetBanking", "addMoneySanity"}, priority = 0, dataProvider = "addMoneyData", dataProviderClass = AddMoneyProviderClass.class)
     public void Test01_netbanking(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        //loginHelper.quickLoginViaEmail("8447405515@nocash.mobikwik.com", "priyanka123");
+//        loginHelper.quickLoginViaEmail("mkwik9330@gmail.com", "Test@1234");
         loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
 
 
         AddMoneyHelper addmoneyHelper = new AddMoneyHelper(getAndroidDriver());
-        addmoneyHelper.netbanking(frontEndEntity.getAmount(), frontEndEntity.getBankName(), frontEndEntity.getBankPageLocator());
+        addmoneyHelper.netbanking(frontEndEntity.getAmount(), frontEndEntity.getBankName(), frontEndEntity.getBankPageLocator(), frontEndEntity.getBankPageLocatorType());
     }
 
 
@@ -63,6 +63,19 @@ public class Test_AddMoney extends CreateSession {
         AddMoneyHelper addmoneyHelper = new AddMoneyHelper(getAndroidDriver());
         addmoneyHelper.addMoneyViaSavedCard(frontEndEntity.getAmount(), frontEndEntity.getCardNo(), frontEndEntity.getExpiryMonth(), frontEndEntity.getExpiryYear(), frontEndEntity.getCvv(), frontEndEntity.getCardPassword(), frontEndEntity.getSuccessPageStatus(), frontEndEntity
                 .getSuccessPageText(), true, frontEndEntity.getPromoCode());
+    }
+
+    @Test(groups = {"addMoneyRefund", "addMoneySanity"}, priority = 4, dataProvider = "addMoneyData", dataProviderClass = AddMoneyProviderClass.class)
+    public void Test05_addMoneyRefund(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+        //loginHelper.quickLoginViaEmail("8447405515@nocash.mobikwik.com", "priyanka123");
+
+        Log.info("Password : " + frontEndEntity.getPassword());
+
+        AddMoneyHelper addmoneyHelper = new AddMoneyHelper(getAndroidDriver());
+        addmoneyHelper.refundAddedMoney(frontEndEntity.getAmount(), frontEndEntity.getCardNo(), frontEndEntity.getExpiryMonth(), frontEndEntity.getExpiryYear(), frontEndEntity.getCvv(), frontEndEntity.getCardPassword(), frontEndEntity.getSuccessPageStatus(), frontEndEntity
+                .getSuccessPageText(), false, frontEndEntity.getPromoCode());
     }
 
 

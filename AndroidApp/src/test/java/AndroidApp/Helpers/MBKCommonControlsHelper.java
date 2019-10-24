@@ -82,6 +82,25 @@ public class MBKCommonControlsHelper {
 
     }
 
+    public void handleAddMoney(String requiredAmount) throws InterruptedException, IOException {
+
+        HashMap<String,String> currentBalance = getBalance();
+        String balance = currentBalance.get(BalanceType.MONEYADDED);
+
+        if(Double.parseDouble(requiredAmount) > Double.parseDouble(balance)){
+
+            int amountToAdd= Integer.parseInt(requiredAmount) - Integer.parseInt(balance);
+
+            String amount= String.valueOf(amountToAdd);
+
+            AddMoneyHelper addmoneyHelper = new AddMoneyHelper(driver);
+            addmoneyHelper.addMoneyViaSavedCard(amount, "4363 XXXX XXXX 4460", "12", "22", "239", "Paraj@1234", "Thanks", "Money Added Successfully", false, "NA");
+
+
+        }
+
+    }
+
     public void handleSecurityPin(String pin) throws InterruptedException {
         String[] pinArr = pin.split("|");
 
@@ -255,7 +274,7 @@ public class MBKCommonControlsHelper {
     }
 
     public void handleUpiBottomSheet(AndroidDriver driver) throws InterruptedException {
-        Thread.sleep(4000);
+        Thread.sleep(2000);
         if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Link Your Bank Account']"))) {
             Log.info("Handle", "Upi Bottom sheet");
             driver.navigate().back();
@@ -264,7 +283,10 @@ public class MBKCommonControlsHelper {
 
     public void dismissAllOnHomePage(AndroidDriver driver) throws InterruptedException {
 //        Handle Expense Manager Bottom sheet
+        Log.info("Checking", "Upi Bottom sheet");
         handleUpiBottomSheet(driver);
+
+        Log.info("Checking", "Refer and Earn Bottom sheet");
         handleReferAndEarnBottomSheet();
     }
 

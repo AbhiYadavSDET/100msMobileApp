@@ -87,7 +87,7 @@ public class Test_Upi extends CreateSession {
 
 
         UpiHelper upiHelper= new UpiHelper(getAndroidDriver());
-        upiHelper.addMoneyViaUpi("121212", "5", "Payment Successful", "Money added into your wallet successfully");
+        upiHelper.addMoneyViaUpi("121212", "6", "Payment Successful", "Money added into your wallet successfully");
 
     }
 

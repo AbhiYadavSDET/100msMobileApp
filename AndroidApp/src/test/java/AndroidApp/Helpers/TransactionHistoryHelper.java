@@ -36,7 +36,9 @@ public class TransactionHistoryHelper {
     public void transactionHistoryVerificationLoggedIn() throws InterruptedException, IOException, JSONException {
 
         permissionHelper.permissionAllow();
+
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+
         transactionHistoryPage = homePage.clickHistory();
         Thread.sleep(3000);
 

@@ -40,7 +40,9 @@ public class WalletPageHelper {
     }
 
     public void checkIfNoKycUser() throws InterruptedException, IOException, JSONException {
-        homePage.clickOnCrossButton();
+//        homePage.clickOnCrossButton();
+
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
         balanceBefore = mbkCommonControlsHelper.getBalance();
 

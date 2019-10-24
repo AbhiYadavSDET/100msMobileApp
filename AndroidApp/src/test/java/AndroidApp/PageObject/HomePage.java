@@ -227,8 +227,9 @@ public class HomePage {
         Element.selectElement(driver, button_offers, "Botton Bar Offers");
     }
 
-    public void clickOnBottomBarHistory() throws IOException {
+    public TransactionHistoryPage clickOnBottomBarHistory() throws IOException {
         Element.selectElement(driver, button_history, "Botton Bar History");
+        return new TransactionHistoryPage(driver);
     }
 
     public void clickOnBottomBarWallet() throws IOException {

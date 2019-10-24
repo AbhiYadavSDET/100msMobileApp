@@ -27,14 +27,18 @@ public class NearByHelper extends NearByHelperBase {
     HomePage homePage;
     Screen screen;
     PermissionHelper permissionHelper;
+    MBKCommonControlsHelper mbkCommonControlsHelper;
+    AndroidDriver driver;
 
     public NearByHelper(AndroidDriver driver) throws IOException {
+        this.driver= driver;
         touchAction = new TouchAction(driver);
         apiCommonControls = new ApiCommonControls();
         nearByScreen = new NearByScreen(driver);
         homePage = new HomePage(driver);
         screen = new Screen(driver);
         permissionHelper = new PermissionHelper(driver);
+        mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
     }
 
     @Override
@@ -42,7 +46,10 @@ public class NearByHelper extends NearByHelperBase {
             throws InterruptedException, IOException, JSONException {
         int testStepCount = 0;
         int noOfstores = 0;
-        homePage.clickOnCrossButton();
+//        homePage.clickOnCrossButton();
+
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+
         Log.info("SWIPE", "UP");
         touchAction.press(PointOption.point(400, 1000)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000))).moveTo(PointOption.point(400, 200)).release().perform();
         homePage.clickMoreServicesIcon();
@@ -87,7 +94,8 @@ public class NearByHelper extends NearByHelperBase {
         int testStepCount = 0;
         int noOfstores = 0;
 
-        homePage.clickOnCrossButton();
+//        homePage.clickOnCrossButton();
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
         Log.info("SWIPE", "UP");
         touchAction.press(PointOption.point(400, 1000)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000))).moveTo(PointOption.point(400, 200)).release().perform();
         homePage.clickMoreServicesIcon();
@@ -134,7 +142,8 @@ public class NearByHelper extends NearByHelperBase {
         int noOfstores = 0;
 
         // go to services
-        homePage.clickOnCrossButton();
+//        homePage.clickOnCrossButton();
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
         Log.info("SWIPE", "UP");
         touchAction.press(PointOption.point(400, 1000)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000))).moveTo(PointOption.point(400, 200)).release().perform();
         homePage.clickMoreServicesIcon();

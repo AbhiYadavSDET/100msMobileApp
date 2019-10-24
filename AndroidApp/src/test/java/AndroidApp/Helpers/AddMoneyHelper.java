@@ -3,11 +3,13 @@ package test.java.AndroidApp.Helpers;
 import UITestFramework.MBReporter;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
+import logger.Log;
 import main.java.utils.*;
 import org.json.JSONException;
 import org.openqa.selenium.By;
 import test.java.AndroidApp.PageObject.AddMoneyPage;
 import test.java.AndroidApp.PageObject.HomePage;
+import test.java.AndroidApp.PageObject.TransactionHistoryPage;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -21,6 +23,7 @@ public class AddMoneyHelper {
     Element element;
     MBKCommonControlsHelper mbkCommonControlsHelper;
     MBReporter mbReporter;
+    TransactionHistoryPage transactionHistoryPage;
 
     public static HashMap<String, String> map;
     public static HashMap<String, String> balanceBefore;
@@ -38,10 +41,12 @@ public class AddMoneyHelper {
 
     }
 
-    public void netbanking(String amount, String bankName, String bankPageLocator) throws InterruptedException, IOException, JSONException {
-        Thread.sleep(3000);
-        homePage.clickOnCrossButton();
-        Thread.sleep(1000);
+    public void netbanking(String amount, String bankName, String bankPageLocator, String bankPageLocatorType) throws InterruptedException, IOException, JSONException {
+//        Thread.sleep(3000);
+//        homePage.clickOnCrossButton();
+//        Thread.sleep(1000);
+
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
         addMoneyPage = homePage.clickOnAddMoneyButton();
 
@@ -64,8 +69,16 @@ public class AddMoneyHelper {
 
         Element.waitForVisibility(driver, addMoneyPage.label_make_payment);
 
-        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath(bankPageLocator)), "Bank Screen | Verify Locator", false, false);
-
+        if(bankPageLocatorType.equalsIgnoreCase("xpath")) {
+            mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath(bankPageLocator)), "Bank Screen | Verify Locator", false, false);
+//            Log.info(bankPageLocator + "in if ");
+//            Log.info(bankPageLocatorType + "in if");
+        }else
+        {
+//            Log.info(bankPageLocator + "in else");
+//            Log.info(bankPageLocatorType + "in else");
+            mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id(bankPageLocator)), "Bank Screen | Verify Locator", false, false);
+        }
         mbkCommonControlsHelper.clickUpButton();
 
         addMoneyPage.clickOnYesButton();
@@ -74,10 +87,12 @@ public class AddMoneyHelper {
 
 
     public void addMoneyViaNewCard(String amount, String cardNo, String expiryMonth, String expiryYear, String cvv, String bankPassword, String successPageStatus, String successPageText) throws InterruptedException, IOException, JSONException {
-        Thread.sleep(2000);
+//        Thread.sleep(2000);
+//
+//        homePage.clickOnCrossButton();
+//        Thread.sleep(1000);
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
-        homePage.clickOnCrossButton();
-        Thread.sleep(1000);
         balanceBefore = mbkCommonControlsHelper.getBalance();
 
         addMoneyPage = homePage.clickOnAddMoneyButton();
@@ -126,9 +141,11 @@ public class AddMoneyHelper {
 
 
     public void addMoneyViaSavedCard(String amount, String cardNo, String expiryMonth, String expiryYear, String cvv, String bankPassword, String successPageStatus, String successPageText, Boolean promoCodeStatus, String promoCode) throws InterruptedException, IOException, JSONException {
-        Thread.sleep(1000);
-        homePage.clickOnCrossButton();
-        Thread.sleep(1000);
+//        Thread.sleep(1000);
+//        homePage.clickOnCrossButton();
+//        Thread.sleep(1000);
+
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
         balanceBefore = mbkCommonControlsHelper.getBalance();
 
@@ -235,9 +252,11 @@ public class AddMoneyHelper {
     }
 
     public void addMoneyViaSavedCardWithinFlow(String amount, String cardNo, String cvv, String bankPassword) throws InterruptedException, IOException, JSONException {
-        Thread.sleep(1000);
-        homePage.clickOnCrossButton();
-        Thread.sleep(1000);
+//        Thread.sleep(1000);
+//        homePage.clickOnCrossButton();
+//        Thread.sleep(1000);
+
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
         balanceBefore = mbkCommonControlsHelper.getBalance();
 
@@ -263,6 +282,103 @@ public class AddMoneyHelper {
         handleIndusindWebView(bankPassword);
 
         mbkCommonControlsHelper.returnToHomePageFromP2MSuccessScreen();
+
+    }
+
+    public void refundAddedMoney(String amount, String cardNo, String expiryMonth, String expiryYear, String cvv, String bankPassword, String successPageStatus, String successPageText, Boolean promoCodeStatus, String promoCode) throws InterruptedException, IOException, JSONException {
+
+
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+
+        addMoneyPage = homePage.clickOnAddMoneyButton();
+
+        addMoneyPage.clickOnAmountTextBox();
+
+        addMoneyPage.enterAmount(amount);
+
+        addMoneyPage.clickOnContinueButton();
+
+        Element.waitForVisibility(driver, addMoneyPage.label_select_payment_mode);
+
+        screen.swipeUpMedium(driver);
+
+        AndroidElement androidElement = element.findElement(driver, By.xpath("//android.widget.TextView[@text = '" + cardNo + "']"));
+        Element.selectElement(driver, androidElement, "Select Bank");
+
+        addMoneyPage.enterCvv(cvv);
+
+        if (promoCodeStatus) {
+            mbkCommonControlsHelper.applyPromoCodeAddMoney(promoCode);
+        }
+
+        addMoneyPage.clickOnPayNow();
+
+        handleIndusindWebView(bankPassword);
+
+        // Success Page Assertions
+        mbReporter.verifyEqualsWithLogging(addMoneyPage.getSuccessPageStatus(), successPageStatus, "Success Screen | Verify Status", false, false);
+        mbReporter.verifyEqualsWithLogging(addMoneyPage.getSuccessPageText(), successPageText, "Success Page Text", false, false);
+
+//        if (promoCodeStatus) {
+//            String actualBalanceText = addMoneyPage.getSuccessPageWalletBalance().replace(",", "");
+//            Double bal = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) + Double.parseDouble(amount);
+//            String expectedBalanceText = "New Wallet Balance X" + Helper.formatString(bal).replace(",", "") + ". Coupon " + promoCode.toUpperCase() + " was redeemed successfully for SuperCash of  " + "1";
+//            mbReporter.verifyEqualsWithLogging(actualBalanceText, expectedBalanceText, "Success screen | Verify Balance text", false, false);
+//        } else {
+//            Double expectedMainBalance = (Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100) + Double.parseDouble(amount) * 100;
+//            Double actualMainBalance = Double.parseDouble(addMoneyPage.getSuccessPageWalletBalance().replace("New Wallet Balance X", "").replace(",", "")) * 100;
+//            mbReporter.verifyEqualsWithLogging(actualMainBalance, expectedMainBalance, "Success Screen | Verify Main Balance", false, false);
+//        }
+
+        mbkCommonControlsHelper.returnToHomePageFromP2MSuccessScreen();
+
+        balanceBefore = mbkCommonControlsHelper.getBalance();
+
+
+        transactionHistoryPage = homePage.clickOnBottomBarHistory();
+
+
+        Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/download_statement"));
+
+        transactionHistoryPage.clickOnAddMoneyTransactionOfSixRupees();
+
+        Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/txt_txn_product"));
+
+        transactionHistoryPage.clickOnRefundCta();
+
+        Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/vertical_button_1"));
+        transactionHistoryPage.clickOnIntiateRefundCta();
+
+        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Refund Initiated']"));
+
+        mbReporter.verifyEqualsWithLogging(transactionHistoryPage.getRefundMessage(), "MobiKwik has initiated the refund to the respective financial instrument (Bank Account/Cards/UPI) used while adding Money. This would take 3 to 7 business days (Excluding Saturdays and Sundays).", "Refund is Succesfull", true, true);
+
+        transactionHistoryPage.navigateBackToHome();
+
+        homePage.clickOnBottomBarHome();
+
+        // POST TRX Assertions
+
+
+        balanceAfter = mbkCommonControlsHelper.getBalance();
+
+        Double expectedMainBalanceAfter;
+        Double expectedSuperCashBalanceAfter;
+
+        if (promoCodeStatus) {
+            expectedMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100 - Double.parseDouble(amount) * 100;
+            expectedSuperCashBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100 + 1 * 100;
+
+        } else {
+            expectedMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100 - Double.parseDouble(amount) * 100;
+            expectedSuperCashBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
+
+        }
+        Double actualMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100;
+        Double actualSuperCashBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
+        mbReporter.verifyEqualsWithLogging(actualMainBalanceAfter, expectedMainBalanceAfter, "After TRX | Verify Wallet Main Balance", false, false);
+        mbReporter.verifyEqualsWithLogging(actualSuperCashBalanceAfter, expectedSuperCashBalanceAfter, "After TRX | Verify Supercash Balance", false, false);
+
 
     }
 
