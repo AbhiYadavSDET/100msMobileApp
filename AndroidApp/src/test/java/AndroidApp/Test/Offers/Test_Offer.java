@@ -1,6 +1,7 @@
-package test.java.AndroidApp.Test;
+package test.java.AndroidApp.Test.Offers;
 
 import UITestFramework.CreateSession;
+import dbutil.mysql.automationtest.front_end_automation.entity.FrontEndEntity;
 import logger.Log;
 import org.testng.annotations.Test;
 import test.java.AndroidApp.Helpers.LoginHelper;
@@ -18,11 +19,11 @@ public class Test_Offer extends CreateSession {
      *
      * @throws Exception
      */
-    @Test(groups = {"offerSanity", "offerSearch"}, priority = 0)
-    public void offerSearch() throws Exception {
+    @Test(groups = {"offerSanity", "offerSearch"}, priority = 0, dataProvider = "offersData", dataProviderClass = OffersDataProviderClass.class)
+    public void Test20_offerSearch(FrontEndEntity frontEndEntity) throws Exception {
         Log.infoStartTest("offerSearch");
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail("mkwik9330@gmail.com", "Test@1234");
+        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
 
         offerHelperBase = new OfferHelper(getAndroidDriver());
 
@@ -32,12 +33,12 @@ public class Test_Offer extends CreateSession {
 
     }
 
-    @Test(groups = {"offerSanity", "offerCategoryCheck"}, priority = 1)
-    public void offerCategoryCheck() throws Exception {
+    @Test(groups = {"offerSanity", "offerCategoryCheck"}, priority = 1, dataProvider = "offersData", dataProviderClass = OffersDataProviderClass.class)
+    public void Test21_offerCategoryCheck(FrontEndEntity frontEndEntity) throws Exception {
         Log.infoStartTest("offerCategoryCheck");
 
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail("mkwik9330@gmail.com", "Test@1234");
+        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
 
         offerHelperBase = new OfferHelper(getAndroidDriver());
 
@@ -47,12 +48,12 @@ public class Test_Offer extends CreateSession {
 
     }
 
-    @Test(groups = {"offerSanity", "redeemOffersCheck"}, priority = 1)
-    public void redeemOffersCheck() throws Exception {
+    @Test(groups = {"offerSanity", "redeemOffersCheck"}, priority = 1, dataProvider = "offersData", dataProviderClass = OffersDataProviderClass.class)
+    public void Test22_redeemOffersCheck(FrontEndEntity frontEndEntity) throws Exception {
         Log.infoStartTest("redeemOffersCheck");
 
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail("mkwik9330@gmail.com", "Test@1234");
+        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
 
         offerHelperBase = new OfferHelper(getAndroidDriver());
         offerHelperBase.redeemOffersCheck("Offer", "redeemOffer");

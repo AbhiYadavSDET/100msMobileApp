@@ -93,7 +93,7 @@
         <classes>
             <class name="UITestFramework.CreateSession"/>
             <class name="UITestFramework.ExtentReport.Reporter"/>
-            <class name="test.java.AndroidApp.Test.Test_MutualFunds"/>
+            <class name="test.java.AndroidApp.Test.MutualFunds.Test_MutualFunds"/>
         </classes>
     </test>
 
@@ -111,7 +111,7 @@
         <classes>
             <class name="UITestFramework.CreateSession"/>
             <class name="UITestFramework.ExtentReport.Reporter"/>
-            <class name="test.java.AndroidApp.Test.Test_Offer"/>
+            <class name="test.java.AndroidApp.Test.Offers.Test_Offer"/>
         </classes>
     </test>
 

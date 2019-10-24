@@ -43,14 +43,14 @@ public class NearByTest extends CreateSession {
 
     @Parameters({"androidOSVersion"})
     @Test(groups = {"nearBySanity", "nearByHome"}, priority = 0, enabled = true)
-    public void nearbyStoreListMap(@Optional String androidOSVersion) throws Exception {
+    public void Test19_nearbyStoreListMap(@Optional String androidOSVersion) throws Exception {
         Log.infoStartTest("nearby home");
         reporter.extentTest = reporter.extentReports.createTest("nearby home");
 
         // login in app
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail("8447405515@nocash.mobikwik.com", "priyanka123");
-        //onboardingHelper.quickLogin("8527797582", "mayank.suneja@mobikwik.com", "T.C. Suneja");
+        loginHelper.quickLoginViaEmail("mayank.suneja@mobikwik.com", "Tuesday20");
+
 
         // verify nearby home page
         nearByHelper.nearbyStoreListMap("nearby", "nearbyHome");
@@ -60,14 +60,14 @@ public class NearByTest extends CreateSession {
 
     @Parameters({"androidOSVersion"})
     @Test(groups = {"nearBySanity", "nearbySearchCategory"}, priority = 1, enabled = true)
-    public void nearbySearchCategory(@Optional String androidOSVersion) throws Exception {
+    public void Test20_nearbySearchCategory(@Optional String androidOSVersion) throws Exception {
         Log.infoStartTest("nearby search category");
         reporter.extentTest = reporter.extentReports.createTest("nearby category");
 
         // login in app
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail("8447405515@nocash.mobikwik.com", "priyanka123");
-        //onboardingHelper.quickLogin("8527797582", "mayank.suneja@mobikwik.com", "T.C. Suneja");
+        loginHelper.quickLoginViaEmail("mayank.suneja@mobikwik.com", "Tuesday20");
+
 
         // verify nearby category
         nearByHelper.nearbySearchCategory("Grocery", "nearby", "nearbyCategory");
@@ -77,14 +77,14 @@ public class NearByTest extends CreateSession {
 
     @Parameters({"androidOSVersion"})
     @Test(groups = {"nearBySanity", "nearbySearchKeyword"}, priority = 2, enabled = true)
-    public void nearbySearchStore(@Optional String androidOSVersion) throws Exception {
+    public void Test21_nearbySearchStore(@Optional String androidOSVersion) throws Exception {
         Log.infoStartTest("nearby search store");
         reporter.extentTest = reporter.extentReports.createTest("nearby store");
 
         // login in app
-        // onboardingHelper.quickLogin("8527797582", "mayank.suneja@mobikwik.com", "T.C. Suneja");
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail("8447405515@nocash.mobikwik.com", "priyanka123");
+        loginHelper.quickLoginViaEmail("mayank.suneja@mobikwik.com", "Tuesday20");
+
 
         // verify nearby stores
         nearByHelper.nearbySearchStore("food", "nearby", "nearbyCategory");
