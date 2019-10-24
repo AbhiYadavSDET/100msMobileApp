@@ -18,7 +18,7 @@ public class BusProviderClass {
     public static int key;
 
 
-    @DataProvider(name = "BusData")
+    @DataProvider(name = "busData")
     public Object[][] getFrontEndTestData(Method method) throws SQLException, TestParametersNotFound {
         databaseSqlHelper.initiateFrontEndTest();
 

@@ -31,7 +31,7 @@ public class Test_Insurance extends CreateSession {
 //        loginHelper.quickLoginViaEmail("mkwik9330@gmail.com", "Test@1234");
 
         InsuranceHelper insuranceHelper = new InsuranceHelper(getAndroidDriver());
-        String trxId = insuranceHelper.buyInsurance("Payment Successful!", "for Home Insurance (Gas) of Rs. 2 Lakh by ICICI Lombard");
+        String trxId = insuranceHelper.buyInsurance("Payment Successful!", "for Home Insurance (Gas) of Rs. 2 Lakh by ICICI Lombard", frontEndEntity.getSecurityPin());
 
         CancelSingle cancelSingle = new CancelSingle(trxId, amount);
         response = cancelSingle.execute();

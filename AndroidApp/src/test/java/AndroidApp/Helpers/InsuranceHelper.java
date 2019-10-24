@@ -44,7 +44,7 @@ public class InsuranceHelper {
     }
 
 
-    public String buyInsurance(String expectedHeader, String expectedDescription) throws InterruptedException, IOException, JSONException {
+    public String buyInsurance(String expectedHeader, String expectedDescription, String securityPin) throws InterruptedException, IOException, JSONException {
 
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
@@ -62,7 +62,7 @@ public class InsuranceHelper {
 
         insurancePage.clickOnCtaMakePayment();
 
-        mbkCommonControlsHelper.handleSecurityPin("123456");
+        mbkCommonControlsHelper.handleSecurityPin(securityPin);
 
         // Fetch the details from the screen
         String actualHeader = insurancePage.getFillDetailsHeader();
