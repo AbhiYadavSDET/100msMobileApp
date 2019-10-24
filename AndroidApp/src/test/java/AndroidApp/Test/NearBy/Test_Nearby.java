@@ -2,6 +2,7 @@ package test.java.AndroidApp.Test.NearBy;
 
 import UITestFramework.CreateSession;
 import UITestFramework.ExtentReport.Reporter;
+import dbutil.mysql.automationtest.front_end_automation.entity.FrontEndEntity;
 import logger.Log;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
@@ -18,7 +19,7 @@ import java.io.IOException;
  */
 
 
-public class NearByTest extends CreateSession {
+public class Test_Nearby extends CreateSession {
     NearByHelperBase nearHelperBase;
     Reporter reporter;
     NearByHelper nearByHelper;
@@ -42,14 +43,15 @@ public class NearByTest extends CreateSession {
     }
 
     @Parameters({"androidOSVersion"})
-    @Test(groups = {"nearBySanity", "nearByHome"}, priority = 0, enabled = true)
-    public void Test19_nearbyStoreListMap(@Optional String androidOSVersion) throws Exception {
+    @Test(groups = {"nearBySanity", "nearByHome"}, priority = 0, enabled = true, dataProvider = "insuranceData", dataProviderClass = NearbyProviderClass.class)
+    public void Test19_nearbyStoreListMap(@Optional String androidOSVersion, FrontEndEntity frontEndEntity) throws Exception {
         Log.infoStartTest("nearby home");
         reporter.extentTest = reporter.extentReports.createTest("nearby home");
 
         // login in app
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail("mayank.suneja@mobikwik.com", "Tuesday20");
+        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+//        loginHelper.quickLoginViaEmail("mayank.suneja@mobikwik.com", "Tuesday20");
 
 
         // verify nearby home page
@@ -59,14 +61,15 @@ public class NearByTest extends CreateSession {
     }
 
     @Parameters({"androidOSVersion"})
-    @Test(groups = {"nearBySanity", "nearbySearchCategory"}, priority = 1, enabled = true)
-    public void Test20_nearbySearchCategory(@Optional String androidOSVersion) throws Exception {
+    @Test(groups = {"nearBySanity", "nearbySearchCategory"}, priority = 1, enabled = true, dataProvider = "insuranceData", dataProviderClass = NearbyProviderClass.class)
+    public void Test20_nearbySearchCategory(@Optional String androidOSVersion, FrontEndEntity frontEndEntity) throws Exception {
         Log.infoStartTest("nearby search category");
         reporter.extentTest = reporter.extentReports.createTest("nearby category");
 
         // login in app
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail("mayank.suneja@mobikwik.com", "Tuesday20");
+        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+//        loginHelper.quickLoginViaEmail("mayank.suneja@mobikwik.com", "Tuesday20");
 
 
         // verify nearby category
@@ -76,14 +79,15 @@ public class NearByTest extends CreateSession {
     }
 
     @Parameters({"androidOSVersion"})
-    @Test(groups = {"nearBySanity", "nearbySearchKeyword"}, priority = 2, enabled = true)
-    public void Test21_nearbySearchStore(@Optional String androidOSVersion) throws Exception {
+    @Test(groups = {"nearBySanity", "nearbySearchKeyword"}, priority = 2, enabled = true, dataProvider = "insuranceData", dataProviderClass = NearbyProviderClass.class)
+    public void Test21_nearbySearchStore(@Optional String androidOSVersion, FrontEndEntity frontEndEntity) throws Exception {
         Log.infoStartTest("nearby search store");
         reporter.extentTest = reporter.extentReports.createTest("nearby store");
 
         // login in app
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail("mayank.suneja@mobikwik.com", "Tuesday20");
+        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+//        loginHelper.quickLoginViaEmail("mayank.suneja@mobikwik.com", "Tuesday20");
 
 
         // verify nearby stores

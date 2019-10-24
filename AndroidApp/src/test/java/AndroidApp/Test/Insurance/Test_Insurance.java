@@ -2,6 +2,7 @@ package test.java.AndroidApp.Test.Insurance;
 
 import UITestFramework.CreateSession;
 import apiutil.StatusCodeValidator;
+import dbutil.mysql.automationtest.front_end_automation.entity.FrontEndEntity;
 import io.restassured.response.Response;
 import logger.Log;
 import org.json.JSONException;
@@ -18,15 +19,16 @@ public class Test_Insurance extends CreateSession {
     Response response;
 
 
-    @Test(groups = {"insuranceBuy", "insuranceSanity"}, priority = 0)
-    public void Test01_insurance_buy() throws IOException, JSONException, InterruptedException {
+    @Test(groups = {"insuranceBuy", "insuranceSanity"}, priority = 1, dataProvider = "insuranceData", dataProviderClass = InsuranceDataProviderClass.class)
+    public void Test01_insurance_buy(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
 
         Log.info("START : Insurance sanity test");
-        String amount = "25";
+        String amount = frontEndEntity.getAmount();
 
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail("mayank.suneja@mobikwik.com", "Tuesday20");
+        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
 
+//        loginHelper.quickLoginViaEmail("mkwik9330@gmail.com", "Test@1234");
 
         InsuranceHelper insuranceHelper = new InsuranceHelper(getAndroidDriver());
         String trxId = insuranceHelper.buyInsurance("Payment Successful!", "for Home Insurance (Gas) of Rs. 2 Lakh by ICICI Lombard");

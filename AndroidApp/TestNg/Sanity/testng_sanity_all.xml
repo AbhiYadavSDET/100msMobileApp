@@ -76,7 +76,7 @@
         <classes>
             <class name="UITestFramework.CreateSession"/>
             <class name="UITestFramework.ExtentReport.Reporter"/>
-            <class name="test.java.AndroidApp.Test.Test_Help"/>
+            <class name="test.java.AndroidApp.Test.Help.Test_Help"/>
         </classes>
     </test>
 
