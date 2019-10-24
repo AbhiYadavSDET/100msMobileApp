@@ -21,7 +21,7 @@ public class Test_Bus extends CreateSession {
 
 
         BusHelper busHelper = new BusHelper(getAndroidDriver());
-        busHelper.busBook("bhubaneswar", "baripada", "Paraj Jain", "28", "123456");
+        busHelper.busBook("bhubaneswar", "baripada", "Paraj Jain", "28", "121212");
 
     }
 

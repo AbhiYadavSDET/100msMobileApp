@@ -15,7 +15,7 @@ public class Test_Help extends CreateSession {
 
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
 
-        loginHelper.quickLoginViaEmail("mayank.suneja@mobikwik.com", "Tuesday20");
+        loginHelper.quickLoginViaEmail("mkwik9330@gmail.com", "Test@1234");
 
         helpHelper = new HelpHelper(getAndroidDriver());
 

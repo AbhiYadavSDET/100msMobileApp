@@ -22,7 +22,7 @@ public class Test_Offer extends CreateSession {
     public void offerSearch() throws Exception {
         Log.infoStartTest("offerSearch");
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail("mayank.suneja@mobikwik.com", "Tuesday20");
+        loginHelper.quickLoginViaEmail("mkwik9330@gmail.com", "Test@1234");
 
         offerHelperBase = new OfferHelper(getAndroidDriver());
 
@@ -37,7 +37,7 @@ public class Test_Offer extends CreateSession {
         Log.infoStartTest("offerCategoryCheck");
 
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail("mayank.suneja@mobikwik.com", "Tuesday20");
+        loginHelper.quickLoginViaEmail("mkwik9330@gmail.com", "Test@1234");
 
         offerHelperBase = new OfferHelper(getAndroidDriver());
 
@@ -52,7 +52,7 @@ public class Test_Offer extends CreateSession {
         Log.infoStartTest("redeemOffersCheck");
 
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail("mayank.suneja@mobikwik.com", "Tuesday20");
+        loginHelper.quickLoginViaEmail("mkwik9330@gmail.com", "Test@1234");
 
         offerHelperBase = new OfferHelper(getAndroidDriver());
         offerHelperBase.redeemOffersCheck("Offer", "redeemOffer");
