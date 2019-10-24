@@ -11,7 +11,7 @@ public class Test_Help extends CreateSession {
     HelpHelper helpHelper;
 
 
-    @Test(groups = {"helpSanity"}, priority = 1, dataProvider = "insuranceData", dataProviderClass = HelpProviderClass.class)
+    @Test(groups = {"helpSanity"}, priority = 1, dataProvider = "helpData", dataProviderClass = HelpProviderClass.class)
     public void Test01_help_raise_ticket(FrontEndEntity frontEndEntity) throws Exception {
         Log.info("START : Help sanity test");
 

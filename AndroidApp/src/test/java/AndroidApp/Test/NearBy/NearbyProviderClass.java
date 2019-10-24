@@ -18,7 +18,7 @@ public class NearbyProviderClass {
     public static int key;
 
 
-    @DataProvider(name = "NearbyData")
+    @DataProvider(name = "nearbyData")
     public Object[][] getFrontEndTestData(Method method) throws SQLException, TestParametersNotFound {
         databaseSqlHelper.initiateFrontEndTest();
 

@@ -18,7 +18,7 @@ public class HelpProviderClass {
     public static int key;
 
 
-    @DataProvider(name = "HelpData")
+    @DataProvider(name = "helpData")
     public Object[][] getFrontEndTestData(Method method) throws SQLException, TestParametersNotFound {
         databaseSqlHelper.initiateFrontEndTest();
 

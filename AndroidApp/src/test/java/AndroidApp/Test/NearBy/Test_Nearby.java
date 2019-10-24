@@ -43,8 +43,8 @@ public class Test_Nearby extends CreateSession {
     }
 
     @Parameters({"androidOSVersion"})
-    @Test(groups = {"nearBySanity", "nearByHome"}, priority = 0, enabled = true, dataProvider = "insuranceData", dataProviderClass = NearbyProviderClass.class)
-    public void Test19_nearbyStoreListMap(@Optional String androidOSVersion, FrontEndEntity frontEndEntity) throws Exception {
+    @Test(groups = {"nearBySanity", "nearByHome"}, priority = 0, enabled = true, dataProvider = "nearbyData", dataProviderClass = NearbyProviderClass.class)
+    public void Test19_nearbyStoreListMap(FrontEndEntity frontEndEntity) throws Exception {
         Log.infoStartTest("nearby home");
         reporter.extentTest = reporter.extentReports.createTest("nearby home");
 
@@ -61,8 +61,8 @@ public class Test_Nearby extends CreateSession {
     }
 
     @Parameters({"androidOSVersion"})
-    @Test(groups = {"nearBySanity", "nearbySearchCategory"}, priority = 1, enabled = true, dataProvider = "insuranceData", dataProviderClass = NearbyProviderClass.class)
-    public void Test20_nearbySearchCategory(@Optional String androidOSVersion, FrontEndEntity frontEndEntity) throws Exception {
+    @Test(groups = {"nearBySanity", "nearbySearchCategory"}, priority = 1, enabled = true, dataProvider = "nearbyData", dataProviderClass = NearbyProviderClass.class)
+    public void Test20_nearbySearchCategory(FrontEndEntity frontEndEntity) throws Exception {
         Log.infoStartTest("nearby search category");
         reporter.extentTest = reporter.extentReports.createTest("nearby category");
 
@@ -79,8 +79,8 @@ public class Test_Nearby extends CreateSession {
     }
 
     @Parameters({"androidOSVersion"})
-    @Test(groups = {"nearBySanity", "nearbySearchKeyword"}, priority = 2, enabled = true, dataProvider = "insuranceData", dataProviderClass = NearbyProviderClass.class)
-    public void Test21_nearbySearchStore(@Optional String androidOSVersion, FrontEndEntity frontEndEntity) throws Exception {
+    @Test(groups = {"nearBySanity", "nearbySearchKeyword"}, priority = 2, enabled = true, dataProvider = "nearbyData", dataProviderClass = NearbyProviderClass.class)
+    public void Test21_nearbySearchStore(FrontEndEntity frontEndEntity) throws Exception {
         Log.infoStartTest("nearby search store");
         reporter.extentTest = reporter.extentReports.createTest("nearby store");
 

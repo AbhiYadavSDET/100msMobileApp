@@ -27,7 +27,7 @@ public class Test_Bus extends CreateSession {
 
     }
 
-    @Test(groups = {"busCancel", "busSanity"}, priority = 1, dataProvider = "busData", dataProviderClass = BusProviderClass.class, dependsOnMethods = "Bus_book")
+    @Test(groups = {"busCancel", "busSanity"}, priority = 1, dataProvider = "busData", dataProviderClass = BusProviderClass.class, dependsOnMethods = "Test01_bus_book")
     public void Test02_bus_cancel(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
         loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
