@@ -6,9 +6,7 @@ import logger.Log;
 import main.java.utils.DatabaseSqlHelper;
 import org.json.JSONException;
 import org.testng.annotations.Test;
-import test.java.AndroidApp.Helpers.AddMoneyHelper;
-import test.java.AndroidApp.Helpers.ImpsHelper;
-import test.java.AndroidApp.Helpers.LoginHelper;
+import test.java.AndroidApp.Helpers.*;
 
 import java.io.IOException;
 
@@ -16,22 +14,28 @@ public class Test_Imps extends CreateSession {
 
     DatabaseSqlHelper databaseSqlHelper = new DatabaseSqlHelper();
     AddMoneyHelper addMoneyHelper;
+    MBKCommonControlsHelper mbkCommonControlsHelper;
 
     @Test(groups = {"sendMoney", "impsSanity"}, priority = 0, dataProvider = "impsData", dataProviderClass = ImpsDataProviderClass.class)
     public void Test01_imps(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
-        String amount = "50";
+
         Log.info("START : Imps sanity test");
 
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
         loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
 
-        // Add money for the amount
-        addMoneyHelper = new AddMoneyHelper(driver);
-        addMoneyHelper.addMoneyViaSavedCardWithinFlow(amount, "4363 XXXX XXXX 4460", "239", "Paraj@1234");
+
+        CheckBalanceHelper checkBalanceHelper= new CheckBalanceHelper(getAndroidDriver());
+        checkBalanceHelper.checkBalance(frontEndEntity.getAmount());
+
+//        // Add money for the amount
+//        addMoneyHelper = new AddMoneyHelper(driver);
+//        addMoneyHelper.addMoneyViaSavedCardWithinFlow(amount, "4363 XXXX XXXX 4460", "239", "Paraj@1234");
 
         // IMPS the same amount
+
         ImpsHelper impsHelper = new ImpsHelper(getAndroidDriver());
-        impsHelper.verifyImps("Paraj Jain", "167795709569", "INDB0000724", amount);
+        impsHelper.verifyImps("Paraj Jain", "917795709569", "PYTM0123456", frontEndEntity.getAmount(), frontEndEntity.getSecurityPin());
 
         Log.info("END : Imps sanity test");
 

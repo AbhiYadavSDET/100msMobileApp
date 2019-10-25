@@ -44,7 +44,7 @@ public class ImpsHelper {
     }
 
 
-    public void verifyImps(String accountName, String accountNo, String ifsc, String amount) throws InterruptedException, IOException, JSONException {
+    public void verifyImps(String accountName, String accountNo, String ifsc, String amount, String securityPin) throws InterruptedException, IOException, JSONException {
         //driver.navigate().back();
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
@@ -72,7 +72,7 @@ public class ImpsHelper {
 
         impsPage.clickOnConfirm();
 
-        mbkCommonControlsHelper.handleSecurityPin("123456");
+        mbkCommonControlsHelper.handleSecurityPin(securityPin);
         Thread.sleep(5000);
 
         // Enter the OTP
