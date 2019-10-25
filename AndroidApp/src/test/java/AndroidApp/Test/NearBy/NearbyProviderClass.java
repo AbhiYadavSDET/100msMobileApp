@@ -1,4 +1,4 @@
-package test.java.AndroidApp.Test.Bus;
+package test.java.AndroidApp.Test.NearBy;
 
 import customexception.TestParametersNotFound;
 import dbutil.mysql.automationtest.front_end_automation.entity.FrontEndEntity;
@@ -11,14 +11,14 @@ import java.lang.reflect.Method;
 import java.sql.SQLException;
 import java.util.List;
 
-public class BusProviderClass {
+public class NearbyProviderClass {
 
     DatabaseSqlHelper databaseSqlHelper = new DatabaseSqlHelper();
     DatabaseMongoHelper databaseMongoHelper = new DatabaseMongoHelper();
     public static int key;
 
 
-    @DataProvider(name = "busData")
+    @DataProvider(name = "nearbyData")
     public Object[][] getFrontEndTestData(Method method) throws SQLException, TestParametersNotFound {
         databaseSqlHelper.initiateFrontEndTest();
 
