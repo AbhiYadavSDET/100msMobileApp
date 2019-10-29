@@ -79,4 +79,9 @@ public class SideDrawerPage {
         return new SecuritySettingsPage(driver);
     }
 
+    public SavedConnectionPage clickOnMySavedConnection() throws IOException {
+        Element.selectElement(driver, link_my_saved_connections, "Click on My Saved Connection");
+        return new SavedConnectionPage(driver);
+    }
+
 }
