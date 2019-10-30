@@ -33,6 +33,7 @@ public class LoginHelper {
     SideDrawerPage sideDrawerPage;
     MBReporter mbReporter;
     PermissionHelper permissionHelper;
+    MBKCommonControlsHelper mbkCommonControlsHelper;
     Screen screen;
 
 
@@ -41,48 +42,50 @@ public class LoginHelper {
         apiCommonControls = new ApiCommonControls();
         apiOtp = new HashMap<>();
         mbReporter = new MBReporter(driver, "testScreenshotDir");
-
+        mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
         // Starting page declaration
         onboardingPage = new OnboardingPage(driver);
         permissionHelper = new PermissionHelper(driver);
         screen = new Screen(driver);
+        homePage = new HomePage(driver);
 
 
     }
 
-    public void doLoginFromOboarding(int rownum) throws InterruptedException, IOException, JSONException {
-        // Fetch data from sheet
-        Log.info("Fetching Data From Sheet");
-        fetchDataFromSheet(rownum);
+    public void doLoginFromOboarding(String mobile) throws InterruptedException, IOException, JSONException {
 
-        Screen.hideKeyboard(driver);
-
-        onboardingPage.enterMobileNo(map.get("mobile"));
+        onboardingPage.enterMobileNo(mobile);
 
         onboardingPage.clickOnGetOtpCta();
 
-        new PermissionHelper(driver).permissionAllow();
+        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Enter your OTP below']"));
 
-        Thread.sleep(3000);
-        apiOtp = apiCommonControls.getOTPfromDB(map.get("email"), map.get("mobile"), otpMid, serviceURL, serviceCode);
+        //If OTP not Auto Read enter OTP and press Submit
 
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.enterOtp(apiOtp.get("otp"));
-        loginPage.clickOnGetOtpCta();
 
-        handleUpiScreenInOnboarding();
+        Element.waitForVisibility(driver, By.id("com.android.packageinstaller:id/dialog_container"));
 
-//        mbkCommonControls.handleConscentPopup();
+        permissionHelper.permissionAllow();
+
+        Thread.sleep(1500);
+
+        mbReporter.verifyEqualsWithLogging(homePage.getTitleMessageSecondaryEmail(), "Enter a valid Email below", "Secondary Email Screen displayed", true, true);
+
+        homePage.clickOnSkip();
+
+        permissionHelper.permissionAllow();
+
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+
 
         sideDrawerPage = new HomePage(driver).clickHamburgerIcon();
 
-        String actualName = sideDrawerPage.getName();
-        String actualEmail = sideDrawerPage.getEmail();
+
         String actualMobileNo = sideDrawerPage.getMobileNo();
 
-        mbReporter.verifyEqualsWithLogging(actualName, map.get("name"), "Verify Name", false, false);
-        mbReporter.verifyEqualsWithLogging(actualEmail, map.get("email"), "Verify Email", false, false);
-        mbReporter.verifyEqualsWithLogging(actualMobileNo, map.get("mobile"), "Verify Mobile", false, false);
+        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("com.mobikwik_new:id/drawerHeadingName")), "Name Is Present", true, false);
+        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("com.mobikwik_new:id/drawerHeadingEmail")), "Email Id Is Present", true, false);
+        mbReporter.verifyEqualsWithLogging(actualMobileNo, mobile, "Verify Mobile", false, false);
 
         homePage.clickHomePageMbkLogo();
 
@@ -196,22 +199,38 @@ public class LoginHelper {
     }
 
     public void logout() throws IOException, InterruptedException {
-        HomePage homePage = new HomePage(driver);
-        homePage.clickOnCrossButton();
+
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+
+        if (Element.isElementPresent(driver, By.id("com.mobikwik_new:id/tx_add_money"))) {
+
+            homePage.clickOnBottomBarWallet();
+
+            //Swipe to the botton of the screen
+            Thread.sleep(2000);
 
 
-        homePage.clickOnBottomBarWallet();
+            for (int i = 0; i < 3; i++) {
 
-        //Swipe to the botton of the screen
-        Thread.sleep(2000);
-        screen.swipeUpMore(driver);
-        screen.swipeUpMore(driver);
-        Thread.sleep(2000);
+                if (Element.isElementPresent(driver, By.id("com.mobikwik_new:id/btn_logout")) == false) {
 
+                    screen.swipeUpMore(driver);
 
-        homePage.clickOnlogout();
+                } else {
+                    break;
+                }
+            }
 
-        // Apply the assertions
+            homePage.clickOnlogout();
+
+            Thread.sleep(1000);
+
+            mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text= 'Login/Signup']")), "User is Logged out", true, false);
+
+        } else {
+
+            Log.info("User is already logged out");
+        }
 
 
     }

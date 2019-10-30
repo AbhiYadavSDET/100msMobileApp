@@ -66,9 +66,9 @@ public class NearByHelper extends NearByHelperBase {
 
         // If the device location is not given
         Thread.sleep(3000);
-        if (nearByScreen.isElementPresent(By.id("button1"))) {
-            nearByScreen.selectElement(By.id("button1"));
-        }
+//        if (nearByScreen.isElementPresent(By.id("button1"))) {
+//            nearByScreen.selectElement(By.id("button1"));
+//        }
 
         // wait for fetching of stores
         nearByScreen.waitForVisibility(nearByScreen.storesByAdd);

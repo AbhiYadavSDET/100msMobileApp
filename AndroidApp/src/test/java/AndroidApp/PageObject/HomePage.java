@@ -136,6 +136,11 @@ public class HomePage {
     @AndroidFindBy(id= "com.mobikwik_new:id/close_button")
     private AndroidElement cross_icon_for_recharge_services_overlay;
 
+    //onboarding Flow
+
+    @AndroidFindBy(id= "com.mobikwik_new:id/title_text")
+    private AndroidElement heading_secondary_email_screen;
+
 
     public HomePage(AndroidDriver driver) {
         this.driver = driver;
@@ -316,6 +321,10 @@ public class HomePage {
         Element.selectElement(driver, cross_icon_for_recharge_services_overlay, "Close Recharge Overlay");
     }
 
+    public String getTitleMessageSecondaryEmail() throws InterruptedException{
+
+        return Element.getText(driver, heading_secondary_email_screen, "Get Heading Text");
+    }
 
 
 }
