@@ -61,6 +61,9 @@ public class HomePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Gas']")
     private AndroidElement icon_gas;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Credit Card Bill']")
+    private AndroidElement icon_credit_card;
+
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Landline']")
     private AndroidElement icon_landline;
 
@@ -130,6 +133,8 @@ public class HomePage {
     @AndroidFindBy(id= "com.mobikwik_new:id/add_account_button")
     private AndroidElement cta_link_bank_account;
 
+    @AndroidFindBy(id= "com.mobikwik_new:id/close_button")
+    private AndroidElement cross_icon_for_recharge_services_overlay;
 
 
     public HomePage(AndroidDriver driver) {
@@ -205,6 +210,12 @@ public class HomePage {
         Element.selectElement(driver, icon_gas, "Gas Icon");
         return new RechargePage(driver);
     }
+
+    public RechargePage clickCreditCardIcon() throws IOException {
+        Element.selectElement(driver, icon_credit_card, "Credit Card Icon");
+        return new RechargePage(driver);
+    }
+
 
     public RechargePage clickLandlineIcon() throws IOException {
         Element.selectElement(driver, icon_landline, "Landline Icon");
@@ -299,6 +310,10 @@ public class HomePage {
 
     public void dismissOverlay() throws IOException{
         Element.selectElement(driver, click_cross_overlay, "Dismiss Overlay");
+    }
+
+    public void closeRechargeServicesOverlay() throws InterruptedException{
+        Element.selectElement(driver, cross_icon_for_recharge_services_overlay, "Close Recharge Overlay");
     }
 
 
