@@ -128,7 +128,39 @@ public class RechargePage {
     public AndroidElement cta_back_button_plans_page;
 
 
+    //Credit card Wapg Flow
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'ICICI BANK LTD']")
+    public AndroidElement credit_card_from_saved_connection;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'Credit Card Bill']")
+    public AndroidElement credit_card_bill_title;
+
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'z']/following::android.widget.EditText[1]")
+    public AndroidElement textbox_enter_credit_card_amount;
+
+    @AndroidFindBy(id = "com.mobikwik_new:id/connection_detail_button_recharge")
+    public AndroidElement button_credit_card_continue;
+
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'Confirm Payment']")
+    public AndroidElement confirm_payment_title;
+
+
+    @AndroidFindBy(id= "com.mobikwik_new:id/base_title")
+    public AndroidElement pending_screen_title;
+
+    @AndroidFindBy(id= "com.mobikwik_new:id/pending_desc")
+    public AndroidElement pending_desc_message;
+
+    @AndroidFindBy(id= "com.mobikwik_new:id/total_amount_value")
+    public AndroidElement total_amount_value;
+
+    @AndroidFindBy(id ="com.mobikwik_new:id/base_icon_close")
+    public AndroidElement cross_icon_pending_screen;
+
+//cta_continue
 
 
     public RechargePage(AndroidDriver driver) throws IOException {
@@ -277,6 +309,36 @@ public class RechargePage {
     public void enterCanNumber(String can) throws InterruptedException {
         Element.enterText(driver, textbox_can, can, "Enter can");
     }
+
+    public void selectCreditCardFromSavedConnection() throws InterruptedException{
+        Element.selectElement(driver, credit_card_from_saved_connection, "Select card ending from ICICI Bank");
+    }
+
+    public void enterCreditCardAmount(String amount) throws InterruptedException {
+        Element.enterText(driver, textbox_enter_credit_card_amount, amount, "Enter Amount");
+    }
+
+    public void clickOnCreditCardContinueCta() throws InterruptedException {
+        Element.selectElement(driver, button_credit_card_continue, "CTA Continue");
+    }
+
+
+    public String getSuccessScreenTitle() throws InterruptedException{
+        return Element.getText(driver, pending_screen_title, "Succes Screen Tile");
+    }
+
+    public String getTotalAmountValue() throws InterruptedException{
+        return Element.getText(driver, total_amount_value, "Total Amount Value");
+    }
+
+    public String getPendingDescMessage() throws InterruptedException{
+        return Element.getText(driver, pending_desc_message, "Pending description Message");
+    }
+
+    public void backToHomeFromPendingScreen() throws InterruptedException{
+        Element.selectElement(driver, cross_icon_pending_screen, "Navigate Back Tome home");
+    }
+
 
 
 }

@@ -383,4 +383,24 @@ public class AddMoneyHelper {
     }
 
 
+    public void addMoneyInsufficientFunds(String cardNo, String cvv, String bankPassword) throws InterruptedException, IOException, JSONException {
+
+
+        addMoneyPage= new AddMoneyPage(driver);
+        Element.waitForVisibility(driver, addMoneyPage.label_select_payment_mode);
+
+        screen.swipeUpMedium(driver);
+
+        AndroidElement androidElement = element.findElement(driver, By.xpath("//android.widget.TextView[@text = '" + cardNo + "']"));
+        Element.selectElement(driver, androidElement, "Select Bank");
+
+        addMoneyPage.enterCvv(cvv);
+
+        addMoneyPage.clickOnPayNow();
+
+        handleIndusindWebView(bankPassword);
+
+
+    }
+
 }

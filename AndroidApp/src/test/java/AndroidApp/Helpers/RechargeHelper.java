@@ -1,5 +1,6 @@
 package test.java.AndroidApp.Helpers;
 
+import UITestFramework.CreateSession;
 import UITestFramework.MBReporter;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
@@ -25,6 +26,7 @@ public class RechargeHelper {
     MBReporter mbReporter;
     RechargePage rechargePage;
     PermissionHelper permissionHelper;
+    AddMoneyHelper addMoneyHelper;
 
     public static HashMap<String, String> map;
     public static HashMap<String, String> balanceBefore;
@@ -411,5 +413,67 @@ public class RechargeHelper {
         mbkCommonControlsHelper.clickUpButton();
 
     }
+
+    public void creditCardRechargeWapgFlow(String amount, String securityPin, String cardNo, String cvv, String bankPassword, String success_page_status, String success_page_text) throws InterruptedException, IOException, JSONException {
+
+        //balanceBefore = mbkCommonControlsHelper.getBalance();
+//        homePage.clickOnCrossButton();
+
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+
+        if(!Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Mobile']"))){
+
+            screen.swipeUpMedium(driver);
+        }
+
+        homePage.clickMoreIcon();
+        rechargePage = homePage.clickCreditCardIcon();
+
+        permissionHelper.permissionAllow();
+
+        rechargePage.selectCreditCardFromSavedConnection();
+
+        rechargePage.enterCreditCardAmount(amount);
+
+        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Credit Card Bill']"));
+
+        rechargePage.clickOnCreditCardContinueCta();
+
+        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Confirm Payment']"));
+
+        rechargePage.clickOnCtaCotinue();
+
+        mbkCommonControlsHelper.handleSecurityPin(securityPin);
+
+        Thread.sleep(3000);
+
+        addMoneyHelper = new AddMoneyHelper(driver);
+        addMoneyHelper.addMoneyInsufficientFunds(cardNo, cvv, bankPassword);
+
+
+        Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/base_title"));
+
+
+        mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessScreenTitle(), success_page_status, "Credit Card Bill payment Success, WAPG transaction was success", true, true);
+
+        String actualTotalAmountPaid = rechargePage.getTotalAmountValue().replace("₹ ", "");
+
+        mbReporter.verifyEqualsWithLogging(actualTotalAmountPaid, amount, "Verify Amount", true, true);
+
+        String actualPendingDescription= rechargePage.getPendingDescMessage();
+
+        mbReporter.verifyEqualsWithLogging(actualPendingDescription, success_page_text, "Verify Pening Message", true, true);
+
+
+        rechargePage.backToHomeFromPendingScreen();
+
+        homePage.closeRechargeServicesOverlay();
+
+        Thread.sleep(300);
+
+
+    }
+
+
 
 }
