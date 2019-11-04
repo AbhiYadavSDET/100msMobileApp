@@ -3,6 +3,7 @@
     <listeners>
         <listener class-name="UITestFramework.retryLogic.RetryListener"/>
         <listener class-name="main.java.utils.Listeners.TestListener"/>
+        <listener class-name="main.java.utils.ExtentReporterNG"/>
     </listeners>
     <parameter name="build" value="prod"/>
     <parameter name="level" value="payments"/>
@@ -22,7 +23,6 @@
         </groups>
         <classes>
             <class name="UITestFramework.CreateSession"/>
-            <class name="UITestFramework.ExtentReport.Reporter"/>
             <class name="test.java.AndroidApp.Test.IMPS.Test_Imps"/>
         </classes>
     </test>
@@ -39,7 +39,6 @@
         </groups>
         <classes>
             <class name="UITestFramework.CreateSession"/>
-            <class name="UITestFramework.ExtentReport.Reporter"/>
             <class name="test.java.AndroidApp.Test.AddMoney.Test_AddMoney"/>
         </classes>
     </test>
@@ -57,7 +56,6 @@
 
         <classes>
             <class name="UITestFramework.CreateSession"/>
-            <class name="UITestFramework.ExtentReport.Reporter"/>
             <class name="test.java.AndroidApp.Test.P2M.Test_P2M"/>
         </classes>
     </test>
@@ -75,7 +73,6 @@
 
         <classes>
             <class name="UITestFramework.CreateSession"/>
-            <class name="UITestFramework.ExtentReport.Reporter"/>
             <class name="test.java.AndroidApp.Test.P2P.Test_P2p"/>
         </classes>
     </test>
@@ -93,7 +90,6 @@
 
         <classes>
             <class name="UITestFramework.CreateSession"/>
-            <class name="UITestFramework.ExtentReport.Reporter"/>
             <class name="test.java.AndroidApp.Test.Help.Test_Help"/>
         </classes>
     </test>
@@ -110,7 +106,6 @@
         </groups>
         <classes>
             <class name="UITestFramework.CreateSession"/>
-            <class name="UITestFramework.ExtentReport.Reporter"/>
             <class name="test.java.AndroidApp.Test.MutualFunds.Test_MutualFunds"/>
         </classes>
     </test>
@@ -128,7 +123,6 @@
 
         <classes>
             <class name="UITestFramework.CreateSession"/>
-            <class name="UITestFramework.ExtentReport.Reporter"/>
             <class name="test.java.AndroidApp.Test.Offers.Test_Offer"/>
         </classes>
     </test>
@@ -145,7 +139,6 @@
         </groups>
         <classes>
             <class name="UITestFramework.CreateSession"/>
-            <class name="UITestFramework.ExtentReport.Reporter"/>
             <class name="test.java.AndroidApp.Test.Test_History"/>
         </classes>
     </test>
@@ -162,7 +155,6 @@
         </groups>
         <classes>
             <class name="UITestFramework.CreateSession"/>
-            <class name="UITestFramework.ExtentReport.Reporter"/>
             <class name="test.java.AndroidApp.Test.Recharge.Test_Recharge"/>
         </classes>
     </test>
@@ -180,7 +172,6 @@
 
         <classes>
             <class name="UITestFramework.CreateSession"/>
-            <class name="UITestFramework.ExtentReport.Reporter"/>
             <class name="test.java.AndroidApp.Test.Bus.Test_Bus"/>
         </classes>
     </test>
@@ -198,7 +189,6 @@
 
         <classes>
             <class name="UITestFramework.CreateSession"/>
-            <class name="UITestFramework.ExtentReport.Reporter"/>
             <class name="test.java.AndroidApp.Test.Insurance.Test_Insurance"/>
         </classes>
     </test>
@@ -215,7 +205,6 @@
         </groups>
         <classes>
             <class name="UITestFramework.CreateSession"/>
-            <class name="UITestFramework.ExtentReport.Reporter"/>
             <class name="test.java.AndroidApp.Test.SavedConnection.Test_SavedConnection"/>
         </classes>
     </test>
@@ -233,7 +222,6 @@
 
         <classes>
             <class name="UITestFramework.CreateSession"/>
-            <class name="UITestFramework.ExtentReport.Reporter"/>
             <class name="test.java.AndroidApp.Test.Login.Test_login"/>
         </classes>
     </test>
@@ -254,7 +242,6 @@
 
         <classes>
             <class name="UITestFramework.CreateSession"/>
-            <class name="UITestFramework.ExtentReport.Reporter"/>
             <class name="test.java.AndroidApp.Test.Upi.Test_Upi"/>
         </classes>
 

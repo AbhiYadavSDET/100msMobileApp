@@ -1,18 +1,17 @@
 package UITestFramework;
 
+import applicationcontext.ApplicationContextProvider;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.events.EventFiringWebDriverFactory;
 import io.appium.java_client.remote.MobileCapabilityType;
 import logger.Log;
+import mail.Mailer;
 import main.java.utils.Config;
 import main.java.utils.Listeners.AppiumDriverListeners;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,6 +19,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -242,5 +243,28 @@ public class CreateSession {
                 }
             }
         }
+    }
+
+    @AfterSuite(alwaysRun = true)
+    public void cleanUpActions() {
+        Log.info("cleanUpActions");
+        sendReportViaMail();
+    }
+
+    private static void sendReportViaMail() {
+
+
+        Log.info("sendReportViaMail");
+        Mailer mailer = (Mailer) ApplicationContextProvider.getApplicationContext().getBean("mailer");
+
+// Create the list of attachments
+        List<String> listOfAttachments = new ArrayList<>();
+        listOfAttachments.add("/home/parajjain/Documents/MK-Automation/AndroidApp/test-output/Extent.html");
+
+// Create the recipients array
+        String[] recipients = {"paraj.jain@mobikwik.com"};
+
+        Log.info("Send Mail : " + "Extent Report");
+        mailer.sendMail(recipients, "Front-End Test Execution report", "Hi,\n"+"\n"+"PFB Front-End Automation TestReport.\n"+"Please download and open the file with Chrome.\n"+"\n"+"\n"+"Thanks,\n"+"App Team", listOfAttachments);
     }
 }
