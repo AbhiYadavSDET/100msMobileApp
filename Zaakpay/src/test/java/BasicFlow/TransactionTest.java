@@ -51,5 +51,13 @@ public class TransactionTest extends TestBase {
 
     }
 
+    @Test(groups = {"basicFlowSanity"}, priority = 0, description = "Verify Transaction Paylater option")
+    public void Test_Transaction_via_Paylater_option() throws InterruptedException {
+
+        TransactionApiHelper transactionApiHelper = new TransactionApiHelper(driver);
+        transactionApiHelper.transactionViaPaylaterOption("noopur.gupta@mobikwik.com", "9971518597","1234","The transaction was completed successfully");
+    }
+
+
 
 }

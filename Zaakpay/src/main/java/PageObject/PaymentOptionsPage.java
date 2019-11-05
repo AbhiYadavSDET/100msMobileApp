@@ -53,6 +53,27 @@ public class PaymentOptionsPage {
     @FindBy(xpath = "//label[text()= 'Other Banks']/following::input[@value = 'Make Payment'][1]")
     private WebElement button_make_payment_netbanking;
 
+
+    //For PayLater option
+
+    @FindBy(xpath =  ".//*[@href = '#view12']")
+    private WebElement label_paylater;
+
+    @FindBy(xpath = ".//*[@id = 'epaylaternumber' and @type = 'text' and @placeholder = 'Enter Here' and @name = 'epaylater_number']")
+    private WebElement textbox_enterPhoneNumber;
+
+    @FindBy(xpath = ".//*[@type = 'button' and @value = 'Make Payment' and @class = 'mk_payment_btn btn']")
+    private WebElement label_make_payment;
+
+    @FindBy(xpath = ".//*[@class = 'form-input ng-pristine ng-invalid ng-touched' and @formcontrolname = 'otp']")
+    private WebElement textbox_otp;
+
+    @FindBy(xpath = ".//*[@type='submit' and @class = 'btn frmBtn']")
+    private  WebElement label_Submit_button;
+
+
+
+
     public PaymentOptionsPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
@@ -60,11 +81,17 @@ public class PaymentOptionsPage {
         Config.logComment("*****On Payments Option Page*****");
     }
 
-    public void clickOnDebitCard() {
+
+
+    public void clickOnDebitCard()
+
+    {
         Element.selectElement(driver, label_debit_card, "Debit Card");
     }
 
-    public void clickOnCreditCard() {
+    public void clickOnCreditCard()
+
+    {
         Element.selectElement(driver, label_credit_card, "Credit Card");
     }
 
@@ -89,6 +116,34 @@ public class PaymentOptionsPage {
         Element.selectElement(driver, label_net_banking, "Net Banking");
     }
 
+    public void clickOnPaylaterOption()
+    {
+
+        Element.selectElement(driver,label_paylater,"PayLater");
+    }
+
+    public void enterPhoneNumber(String phoneNumber)
+    {
+        Element.enterText(driver,textbox_enterPhoneNumber,phoneNumber,"Enter Phone Number");
+    }
+
+    public void clickOnMakePayment()
+    {
+        Element.selectElement(driver,label_make_payment,"Make Payment");
+    }
+
+    public void enterOtp(String otp)
+    {
+        Element.enterText(driver,textbox_otp,otp,"Enter OTP");
+    }
+
+    public void clickOnSubmitButton()
+    {
+        Element.selectElement(driver,label_Submit_button,"Submit button");
+    }
+
+
+
     public void selectBank(String bankValue) {
         //2019
         Log.info("select start");
@@ -106,6 +161,8 @@ public class PaymentOptionsPage {
     public void enterCvv(String cvv) {
         Element.enterText(driver, textbox_cvv, cvv, "Cvv");
     }
+
+
 
     public Object clickOnMakePayment(TransactionApiHelper.flowType flowType) {
         Element.selectElement(driver, button_make_payment, "Make Payment");
@@ -145,6 +202,8 @@ public class PaymentOptionsPage {
         return new CcAvenuePaymentPage(driver);
 
     }
+
+
 
 }
 
