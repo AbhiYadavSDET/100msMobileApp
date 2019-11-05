@@ -8,10 +8,14 @@ import io.appium.java_client.remote.MobileCapabilityType;
 import logger.Log;
 import mail.Mailer;
 import main.java.utils.Config;
+import main.java.utils.DateFormatEnums;
+import main.java.utils.DateHelper;
 import main.java.utils.Listeners.AppiumDriverListeners;
 import org.apache.log4j.Logger;
+import org.apache.poi.hwpf.usermodel.DateAndTime;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.*;
+import sun.util.calendar.BaseCalendar;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,8 +24,11 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
+
+import static main.java.utils.DateFormatEnums.YYYY_MM_DD_HH_MM_SS;
 
 /**
  * contains all the methods to create a new session and destroy the session
@@ -264,9 +271,14 @@ public class CreateSession {
         listOfAttachments.add("/home/parajjain/Documents/MK-Automation/AndroidApp/test-output/Extent.html");
 
 // Create the recipients array
-        String[] recipients = {"paraj.jain@mobikwik.com"};
+        String[] recipients = {"QAfront-End@mobikwik.com"};
 
         Log.info("Send Mail : " + "Extent Report");
-        mailer.sendMail(recipients, "Front-End Test Execution report", "Hi,\n"+"\n"+"PFB Front-End Automation TestReport.\n"+"Please download and open the file with Chrome.\n"+"\n"+"\n"+"Thanks,\n"+"App Team", listOfAttachments);
+
+       String date = DateHelper.getCurrentDate(YYYY_MM_DD_HH_MM_SS);
+
+
+
+        mailer.sendMail(recipients, "Front-End Test Execution report : "+date, "Hi,<br>"+"<br>"+"PFB Front-End Automation TestReport.<br>"+"Please download and open the file with Chrome.<br>"+"<br>"+"<br>"+"Thanks,<br>"+"App Team", listOfAttachments);
     }
 }
