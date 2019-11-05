@@ -272,6 +272,7 @@ public class CreateSession {
 
 // Create the recipients array
         String[] recipients = {"QAfront-End@mobikwik.com"};
+//        String[] recipients = {"paraj.jain@mobikwik.com"};
 
         Log.info("Send Mail : " + "Extent Report");
 
