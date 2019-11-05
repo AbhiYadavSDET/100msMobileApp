@@ -58,7 +58,7 @@ public class LoginHelper {
 
         onboardingPage.clickOnGetOtpCta();
 
-        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Enter your OTP below']"));
+//        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Enter your OTP below']"));
 
         //If OTP not Auto Read enter OTP and press Submit
 

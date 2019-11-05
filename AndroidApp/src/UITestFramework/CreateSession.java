@@ -117,6 +117,7 @@ public class CreateSession {
             throws MalformedURLException {
         File app = new File(buildPath);
         DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("noSign", true);
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("platformVersion", androidOSVersion);
 
@@ -124,6 +125,7 @@ public class CreateSession {
         capabilities.setCapability("appActivity", ".MobikwikMain");
         capabilities.setCapability("appWaitActivity", ".MobikwikMain");
         capabilities.setCapability("appWaitPackage", "com.mobikwik_new");
+
 
 
         if (Double.parseDouble(androidOSVersion) < Double.parseDouble("7.0")) {

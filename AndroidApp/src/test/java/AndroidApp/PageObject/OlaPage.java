@@ -22,7 +22,23 @@ public class OlaPage {
     @AndroidFindBy(id = "com.mobikwik_new:id/gps_turn_on_btn")
     private AndroidElement button_turn_on_gps;
 
+    @AndroidFindBy(id= "com.mobikwik_new:id/drop_loc_layout")
+    private AndroidElement click_drop_location;
+
+    //Ola Setup web view
 
 
 
+
+    public OlaPage(AndroidDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(new AppiumFieldDecorator(driver), this);
+
+        /*
+        To Do
+        wait for Page load to be added
+         */
+
+        Log.info("*****On Ola Page*****");
+    }
 }

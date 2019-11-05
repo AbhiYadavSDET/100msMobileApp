@@ -141,6 +141,11 @@ public class HomePage {
     @AndroidFindBy(id= "com.mobikwik_new:id/title_text")
     private AndroidElement heading_secondary_email_screen;
 
+    //Ola Flow
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Ola Cabs']")
+    private AndroidElement icon_ola;
+
 
     public HomePage(AndroidDriver driver) {
         this.driver = driver;
@@ -229,6 +234,11 @@ public class HomePage {
 
     public void clickMoreIcon() throws IOException {
         Element.selectElement(driver, icon_more, "More Icon");
+    }
+
+    public OlaPage clickOnOlaIcon() throws IOException {
+        Element.selectElement(driver, icon_ola, "Ola button");
+        return new OlaPage(driver);
     }
 
     public void clickOnBottomBarHome() throws IOException {
