@@ -209,6 +209,45 @@
         </classes>
     </test>
 
+    <!--######### Nearby #############-->
+
+    <test name="Nearby Sanity Tests">
+        <groups>
+            <run>
+                <include name="setUp"/>
+                <include name="instantiateHelpers"/>
+                <include name="nearBySanity"/>
+                <include name="tearDown"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="UITestFramework.CreateSession"/>
+            <class name="test.java.AndroidApp.Test.NearBy.Test_Nearby"/>
+
+        </classes>
+    </test>
+
+
+    <!--######### Ola #############-->
+
+    <test name="Ola Sanity Tests">
+        <groups>
+            <run>
+                <include name="setUp"/>
+                <include name="instantiateHelpers"/>
+                <include name="ola"/>
+                <include name="tearDown"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="UITestFramework.CreateSession"/>
+            <class name="test.java.AndroidApp.Test.Ola.Test_Ola"/>
+        </classes>
+
+    </test>
+
     <!--######### Onboarding Login and Logout #############-->
     <test name="OnboardingLoginAndLogout">
         <groups>
