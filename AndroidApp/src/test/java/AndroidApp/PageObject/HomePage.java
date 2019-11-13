@@ -98,8 +98,20 @@ public class HomePage {
     @AndroidFindBy(id = "com.mobikwik_new:id/btn_logout")
     private AndroidElement label_logout;
 
+    //Nearby
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='More Services']/following::android.widget.TextView[@text='More']")
-    private AndroidElement icon_service_more;
+    private AndroidElement more_icon_under_more_services;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Local Stores']")
+    private AndroidElement icon_nearby;
+
+    @AndroidFindBy(id = "com.mobikwik_new:id/tx_tag")
+    private AndroidElement store_count;
+
+    @AndroidFindBy(id= "com.mobikwik_new:id/close_button")
+    private AndroidElement cross_icon_for_more_services_overlay;
+
+    //////////////
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Bus']")
     private AndroidElement icon_bus;
@@ -285,8 +297,8 @@ public class HomePage {
         Element.selectElement(driver, skip_button, "Skip");
     }
 
-    public void clickMoreServicesIcon() throws IOException {
-        Element.selectElement(driver, icon_service_more, "More Services Icon under More Services");
+    public void clickMoreIconUnderMoreServices() throws IOException {
+        Element.selectElement(driver, more_icon_under_more_services, "More Services Icon under More Services");
     }
 
     public BusPage clickBusIcon() throws IOException {
@@ -336,5 +348,17 @@ public class HomePage {
         return Element.getText(driver, heading_secondary_email_screen, "Get Heading Text");
     }
 
+    public NearbyPage clickNearbyIcon() throws IOException {
+        Element.selectElement(driver, icon_nearby, "Nearby Icon");
+        return new NearbyPage(driver);
+    }
+
+    public String getStoreCount() throws InterruptedException{
+        return Element.getText(driver, store_count, "Get Store Count");
+    }
+
+    public void closeMoreServicesOverlay() throws InterruptedException{
+        Element.selectElement(driver, cross_icon_for_more_services_overlay, "Close More Services Overlay");
+    }
 
 }
