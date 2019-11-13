@@ -222,7 +222,7 @@ public class BusHelper {
             return busPage = homePage.clickBusIcon();
 
         } else {
-            homePage.clickMoreServicesIcon();
+            homePage.clickMoreIconUnderMoreServices();
             return busPage = homePage.clickBusIcon();
         }
     }

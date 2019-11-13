@@ -113,7 +113,7 @@ public class NearByHelper  {
 
         mbReporter.verifyTrueWithLogging(noOfstoresInOneList>0,"No of Stores for "+categoryName+":"+noOfstoresInOneList,true,false);
 
-        nearbyPage.clickOnBackButton();
+        nearbyPage.clickOnBackButtonFromInternalPages();
 
         Thread.sleep(300);
 
@@ -156,7 +156,7 @@ public class NearByHelper  {
 
         mbReporter.verifyTrueWithLogging(noOfstoresInOneList>0,"No of Stores for "+storeName+":"+noOfstoresInOneList,true,false);
 
-        nearbyPage.clickOnBackButton();
+        nearbyPage.clickOnBackButtonFromInternalPages();
 
         Thread.sleep(300);
 

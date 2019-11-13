@@ -21,6 +21,9 @@ public class NearbyPage {
     @AndroidFindBy(id = "com.mobikwik_new:id/backIcon")
     private AndroidElement back_button_from_nearby_page;
 
+    @AndroidFindBy(id= "com.mobikwik_new:id/mkab_icon_1")
+    private AndroidElement back_button_from_nearby_internal_pages;
+
     @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'KYC Centre']")
     private AndroidElement icon_kyc_centre;
 
@@ -60,6 +63,10 @@ public class NearbyPage {
 public void clickOnBackButton() throws InterruptedException{
         Element.selectElement(driver, back_button_from_nearby_page, "Navigate back to Home");
 }
+
+public void clickOnBackButtonFromInternalPages() throws InterruptedException{
+        Element.selectElement(driver, back_button_from_nearby_internal_pages, "Navigate back to Nearby Home");
+    }
 
 public void clickOnCategoryIcon(String choice) throws InterruptedException{
 

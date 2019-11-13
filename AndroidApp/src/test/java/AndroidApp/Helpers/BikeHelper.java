@@ -53,7 +53,7 @@ public class BikeHelper extends BikeHelperBase {
         touchAction.press(PointOption.point(400, 1000)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000))).moveTo(PointOption.point(400, 200)).release().perform();
 
         Thread.sleep(2000);
-        homePage.clickMoreServicesIcon();
+        homePage.clickMoreIconUnderMoreServices();
 
         reporter.extentReportDisplay("INFO", "STEP " + ++testStepCount + " | " + Log.info("SELECT", "Bike Icon"), "");
         bikeScreen.selectElement(By.xpath("//*/android.view.ViewGroup/android.widget.TextView[@text='Bikes']"));
