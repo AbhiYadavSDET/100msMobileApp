@@ -106,7 +106,7 @@ public class GiftCardHelper {
 
             mbReporter.verifyTrueWithLogging(Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/base_title")), "Success Page Title is : " + giftCardPage.getSuccessPageTitle(), true, false);
 
-//            mbReporter.verifyTrueWithLogging(Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/base_title")), "Gift Card purchased for : " + giftCardPage.getBrandName(), true, false);
+            mbReporter.verifyTrueWithLogging(Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/base_title")), "Gift Card orderId : " + giftCardPage.getOrderId(), true, false);
 
 
             giftCardPage.clickOk();
