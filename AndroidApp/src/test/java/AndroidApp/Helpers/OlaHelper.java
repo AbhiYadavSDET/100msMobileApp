@@ -112,9 +112,9 @@ public class OlaHelper {
 
         mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text= 'Pickup Arriving']")),"Cab Booking Succesfull", true, false );
 
-        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text= 'Pickup Arriving']")),"Cab Type Booked: "+olaPage.getCabCategory(), true, false );
-//
-        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text= 'Pickup Arriving']")),"Drive Name: "+olaPage.getDriverName(), true, false );
+//        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text= 'Pickup Arriving']")),"Cab Type Booked: "+olaPage.getCabCategory(), true, false );
+////
+//        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text= 'Pickup Arriving']")),"Drive Name: "+olaPage.getDriverName(), true, false );
 
 
         olaPage.ctaCancelRide();

@@ -116,6 +116,10 @@ public class HomePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Bus']")
     private AndroidElement icon_bus;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Gift Cards']")
+    private AndroidElement icon_gift_card;
+
+
     @AndroidFindBy(id = "com.mobikwik_new:id/navigation_wallet")
     private AndroidElement navigate_wallet_page;
 
@@ -304,6 +308,11 @@ public class HomePage {
     public BusPage clickBusIcon() throws IOException {
         Element.selectElement(driver, icon_bus, "Bus Icon");
         return new BusPage(driver);
+    }
+
+    public GiftCardPage clickGiftCardIcon() throws IOException {
+        Element.selectElement(driver, icon_gift_card, "Gift Card Icon");
+        return new GiftCardPage(driver);
     }
 
     public InsurancePage clickOnInsuranceIcon() throws IOException {
