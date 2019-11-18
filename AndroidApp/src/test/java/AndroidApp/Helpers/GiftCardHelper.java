@@ -5,6 +5,7 @@ import UITestFramework.MBReporter;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
+import logger.Log;
 import main.java.utils.Element;
 import main.java.utils.Screen;
 import org.json.JSONException;
@@ -51,9 +52,12 @@ public class GiftCardHelper {
 
         giftCardPage = homePage.clickGiftCardIcon();
 
+
         Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Benefits of Gift Cards']"));
 
         giftCardPage.clickViewGiftCards();
+
+        Thread.sleep(2000);
 
         Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/btn_search"));
 
@@ -61,8 +65,12 @@ public class GiftCardHelper {
 
         giftCardPage.enterGiftCard(giftCard);
 
+        Thread.sleep(2000);
 
-        if (giftCardPage.getBrandName() == giftCard) {
+        if ((giftCardPage.getBrandName()).equalsIgnoreCase(giftCard)) {
+
+
+            Thread.sleep(2000);
 
             giftCardPage.selectBrandGiftCard();
 
@@ -90,13 +98,15 @@ public class GiftCardHelper {
             addMoneyHelper = new AddMoneyHelper(driver);
             addMoneyHelper.addMoneyInsufficientFunds(cardNo, cvv, bankPassword);
 
+            Thread.sleep(3000);
+
 
             Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/base_title"));
 
 
             mbReporter.verifyTrueWithLogging(Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/base_title")), "Success Page Title is : " + giftCardPage.getSuccessPageTitle(), true, false);
 
-            mbReporter.verifyTrueWithLogging(Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/base_title")), "Gift Card purchased for : " + giftCardPage.getBrandName(), true, false);
+//            mbReporter.verifyTrueWithLogging(Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/base_title")), "Gift Card purchased for : " + giftCardPage.getBrandName(), true, false);
 
 
             giftCardPage.clickOk();
@@ -126,15 +136,19 @@ public class GiftCardHelper {
 
         giftCardPage.clickViewGiftCards();
 
+        Thread.sleep(2000);
+
         Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/btn_search"));
 
         giftCardPage.clickMyGiftsButton();
 
         giftCardPage.checkSentGiftCards();
 
-        if (giftCardPage.getBrandName() == giftCard){
+        if ((giftCardPage.getBrandName()).equalsIgnoreCase(giftCard)){
 
             giftCardPage.selectBrandGiftCard();
+
+            Thread.sleep(2000);
             
             mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("com.mobikwik_new:id/btn_share")), "Gift Card available", true, false);
 
@@ -165,6 +179,10 @@ public class GiftCardHelper {
 
         Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Benefits of Gift Cards']"));
 
+
+        giftCardPage.clickViewGiftCards();
+
+        Thread.sleep(2000);
 
         giftCardPage.clickMoreIcon();
 
