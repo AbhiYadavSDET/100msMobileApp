@@ -162,7 +162,7 @@ public class GoldHelper {
 
                 String error= goldPage.getErrorDescription();
 
-                mbReporter.verifyTrueWithLogging(!Element.isElementPresent(driver, By.id("com.mobikwik_new:id/txt_description_amount")), error,true, false);
+                mbReporter.verifyTrueWithLogging(!Element.isElementPresent(driver, By.id("com.mobikwik_new:id/txt_description_amount")), error,true, true);
 
                 goldPage.clickBack();
 
