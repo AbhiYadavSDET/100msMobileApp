@@ -30,6 +30,9 @@ public class TransactionApiHomePage {
     @FindBy(xpath = "//h2[text() = 'Example Checkout Page']")
     private WebElement page_load_text;
 
+    @FindBy(xpath = "//*[@id= 'paylater']/div[2]/div/p[1]/div/div[2]/div/span")
+    private WebElement error_message;
+
 
     public TransactionApiHomePage(WebDriver driver) {
         this.driver = driver;
@@ -40,6 +43,11 @@ public class TransactionApiHomePage {
 
     public PaymentOptionsPage clickOnButtonPayViaZaakpay() {
         Element.selectElement(driver, button_pay_via_zaakpay, "Pay via Zaakpay BUtton");
+        return new PaymentOptionsPage(driver);
+    }
+
+    public PaymentOptionsPage clickOnMakePaymentPaylater(){
+        Element.selectElement(driver,error_message,"Error message");
         return new PaymentOptionsPage(driver);
     }
 
@@ -58,6 +66,7 @@ public class TransactionApiHomePage {
     public void enterLastName(String lastName) {
         Element.enterText(driver, textbox_amount, lastName, "Last Name");
     }
+
 
 
 }

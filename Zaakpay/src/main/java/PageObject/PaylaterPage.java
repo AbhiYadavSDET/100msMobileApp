@@ -12,6 +12,7 @@ public class PaylaterPage {
 
     WebDriver driver;
 
+
     @FindBy(xpath = ".//*[@href = '#view12']")
     private WebElement label_paylater;
 
@@ -19,25 +20,35 @@ public class PaylaterPage {
     private WebElement label_enter_phone_number;
 
     @FindBy(xpath = ".//*[@type = 'button' and @value = 'Make Payment' and @class = 'mk_payment_btn btn']")
-    private WebElement label_make_payment;
+    private WebElement label_paylater_make_payment;
 
-    @FindBy(xpath = ".//*[@class = 'form-input ng-pristine ng-invalid ng-touched' and @formcontrolname = 'otp']")
+    //@FindBy(xpath = ".//*[@class = "form-input ng-pristine ng-invalid ng-touched"])
+
+    @FindBy(xpath = "/html/body/app-root/app-verify-otp/section/div[1]/form/div/input")
     private WebElement label_enter_otp;
 
     @FindBy(xpath = ".//*[@type='submit' and @class = 'btn frmBtn']")
     private WebElement label_Submit_button;
 
+    @FindBy(xpath = "//td[text() = 'This Page is for Testing purpose later on will be on merchant Site']")
+    private WebElement page_load_text;
+
     public PaylaterPage(WebDriver driver) {
+
+
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
-        Browser.waitForPageLoad(driver, label_make_payment);
+        Browser.waitForPageLoad(driver, label_Submit_button);
+        //Browser.waitForPageLoad(driver, label_Submit_button);
         Config.logComment("*****On Paylater Page*****");
 
 
     }
 
-    public SuccessPage clickOnSubmitButton() {
-        Element.selectElement(driver, label_make_payment, "Make payment");
+    public SuccessPage clickOnSubmitButton() throws InterruptedException{
+        System.out.println("In this flow");
+        Element.click(driver, label_Submit_button, "Click on Submit button");
+        Thread.sleep(5000);
         return new SuccessPage(driver);
     }
 }

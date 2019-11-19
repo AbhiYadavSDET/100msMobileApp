@@ -18,18 +18,33 @@ public class SuccessPage {
     @FindBy(xpath = "//td[text() = 'This Page is for Testing purpose later on will be on merchant Site']")
     private WebElement page_load_text;
 
+    @FindBy(xpath = ".//*[@type = 'button' and @value = 'Make Payment' and @class = 'mk_payment_btn btn']")
+    private WebElement label_make_payment;
 
-    public SuccessPage(WebDriver driver) {
+    @FindBy(xpath = ".//*[@id= 'paylater']/div[2]/div/p[1]/div/div[2]/div/span")
+    private WebElement label_unregistered_number;
+
+
+
+
+
+
+
+    public SuccessPage(WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
         Browser.waitForPageLoad(driver, page_load_text);
-        Config.logComment("*****On Amex Success Page*****");
+        Config.logComment("*****On Success Page*****");
     }
 
 
-    public String getDescription() {
+
+
+    public String getDescription()
+    {
         return Element.getText(driver, label_decription, "Description");
     }
+
 
 
 }

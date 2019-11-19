@@ -18,6 +18,7 @@ public class TransactionApiHelper {
     SuccessPage successPage;
     MbkReporter mbkReporter;
     CcAvenuePaymentPage ccAvenuePaymentPage;
+    PaylaterPage paylaterPage;
     public static HashMap<String, String> transactionMap = new HashMap<>();
 
 
@@ -134,13 +135,21 @@ public class TransactionApiHelper {
 
         //Enter Phone number,otp and submit
         paymentOptionsPage.enterPhoneNumber(phoneNumber);
-        paymentOptionsPage.clickOnMakePayment();
+        paymentOptionsPage.clickOnMakePaymentPaylater();
         paymentOptionsPage.enterOtp(otp);
-        paymentOptionsPage.clickOnSubmitButton();
 
+        Thread.sleep(3000);
 
+        paylaterPage = new PaylaterPage(driver);
+        successPage = paylaterPage.clickOnSubmitButton();
+        //Assertion on the success page
+        Thread.sleep(3000);
+
+        String actualDescription = successPage.getDescription();
+        mbkReporter.verifyEqualsWithLogging(actualDescription,expectedDescription,"Success Page Description",false);
 
     }
+
 
 
     public void paymentNetbanking(String expectedDescription) {
@@ -235,6 +244,9 @@ public class TransactionApiHelper {
 
         mbkReporter.verifyEqualsWithLogging(actualDescription, expectedDescription, "Success Page Description", false);
     }
+
+
+
 
 
 }

@@ -54,6 +54,9 @@ public class PaymentOptionsPage {
     private WebElement button_make_payment_netbanking;
 
 
+
+
+
     //For PayLater option
 
     @FindBy(xpath =  ".//*[@href = '#view12']")
@@ -65,7 +68,7 @@ public class PaymentOptionsPage {
     @FindBy(xpath = ".//*[@type = 'button' and @value = 'Make Payment' and @class = 'mk_payment_btn btn']")
     private WebElement label_make_payment;
 
-    @FindBy(xpath = ".//*[@class = 'form-input ng-pristine ng-invalid ng-touched' and @formcontrolname = 'otp']")
+    @FindBy(xpath = "/html/body/app-root/app-verify-otp/section/div[1]/form/div/input")
     private WebElement textbox_otp;
 
     @FindBy(xpath = ".//*[@type='submit' and @class = 'btn frmBtn']")
@@ -80,6 +83,9 @@ public class PaymentOptionsPage {
         Browser.waitForPageLoad(driver, page_load_text);
         Config.logComment("*****On Payments Option Page*****");
     }
+
+
+     // For offers section login
 
 
 
@@ -127,7 +133,7 @@ public class PaymentOptionsPage {
         Element.enterText(driver,textbox_enterPhoneNumber,phoneNumber,"Enter Phone Number");
     }
 
-    public void clickOnMakePayment()
+    public void clickOnMakePaymentPaylater()
     {
         Element.selectElement(driver,label_make_payment,"Make Payment");
     }
