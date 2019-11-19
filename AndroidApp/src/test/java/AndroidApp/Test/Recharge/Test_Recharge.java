@@ -81,14 +81,41 @@ public class Test_Recharge extends CreateSession {
         rechargeHelper.viewBillMtnlDelhi(frontEndEntity.getOperator(), frontEndEntity.getMobileNo());
     }
 
-    @Test(groups = {"creditCardBillPaymentWapg", "rechargeSanity"}, priority = 7, dataProvider = "rechargeData", dataProviderClass = RechargeDataProviderClass.class)
+    @Test(groups = {"creditCardBillPaymentWapg", "rechargeSanity", "ccbpSanity"}, priority = 7, dataProvider = "rechargeData", dataProviderClass = RechargeDataProviderClass.class)
     public void Test08_credit_card_bill_pay_wapg(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
         loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
 
         RechargeHelper rechargeHelper = new RechargeHelper(getAndroidDriver());
-        rechargeHelper.creditCardRechargeWapgFlow(frontEndEntity.getAmount(), frontEndEntity.getSecurityPin(), frontEndEntity.getCardNo(), frontEndEntity.getCvv(), frontEndEntity.getCardPassword(), frontEndEntity.getSuccessPageStatus(), frontEndEntity.getSuccessPageText());
+        rechargeHelper.creditCardRechargeWapgFlow(frontEndEntity.getAmount(), frontEndEntity.getSecurityPin(), frontEndEntity.getCardNo(), frontEndEntity.getCvv(), frontEndEntity.getCardPassword(), frontEndEntity.getSuccessPageStatus(), frontEndEntity.getSuccessPageText(),false, "N/A");
     }
 
+    @Test(groups = {"creditCardBillPaymentWapgWithCoupon", "ccbpSanity"}, priority = 8, dataProvider = "rechargeData", dataProviderClass = RechargeDataProviderClass.class)
+    public void Test09_credit_card_bill_pay_wapg_with_coupon(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+
+        RechargeHelper rechargeHelper = new RechargeHelper(getAndroidDriver());
+        rechargeHelper.creditCardRechargeWapgFlow(frontEndEntity.getAmount(), frontEndEntity.getSecurityPin(), frontEndEntity.getCardNo(), frontEndEntity.getCvv(), frontEndEntity.getCardPassword(), frontEndEntity.getSuccessPageStatus(), frontEndEntity.getSuccessPageText(),true, frontEndEntity.getPromoCode());
+    }
+
+
+    @Test(groups = {"creditCardBillPaymentWithVoucherSameAmount", "ccbpSanity"}, priority = 9, dataProvider = "rechargeData", dataProviderClass = RechargeDataProviderClass.class)
+    public void Test10_credit_card_bill_pay_with_voucher_same_amount(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+
+        RechargeHelper rechargeHelper = new RechargeHelper(getAndroidDriver());
+        rechargeHelper.creditCardRechargeWapgFlowVoucherSameAmount(frontEndEntity.getAmount(), frontEndEntity.getSecurityPin(), frontEndEntity.getSuccessPageStatus(), frontEndEntity.getSuccessPageText());
+    }
+
+    @Test(groups = {"creditCardBillPaymentWithVoucherWapgAmountMoreThanVoucher", "ccbpSanity"}, priority = 10, dataProvider = "rechargeData", dataProviderClass = RechargeDataProviderClass.class)
+    public void Test10_credit_card_bill_pay_wapg_amount_more_than_voucher(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+
+        RechargeHelper rechargeHelper = new RechargeHelper(getAndroidDriver());
+        rechargeHelper.creditCardRechargeWapgFlowMoreAmountThanVoucher(frontEndEntity.getAmount(), frontEndEntity.getSecurityPin(), frontEndEntity.getCardNo(), frontEndEntity.getCvv(), frontEndEntity.getCardPassword(), frontEndEntity.getSuccessPageStatus(), frontEndEntity.getSuccessPageText());
+    }
 
 }

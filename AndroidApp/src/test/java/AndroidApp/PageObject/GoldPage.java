@@ -15,8 +15,15 @@ public class GoldPage {
     AndroidDriver driver;
 
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/buy_gold_button_registered_price")
+    @AndroidFindBy(id = "com.mobikwik_new:id/buy_gold_button")
     private AndroidElement button_buy_gold;
+
+    @AndroidFindBy(id= "com.mobikwik_new:id/buy_gold_button_registered")
+    private AndroidElement cta_buy_gold_for_registered;
+
+    @AndroidFindBy(id= "com.mobikwik_new:id/sell_gold_button_registered")
+    private AndroidElement cta_sell_gold_for_registered;
+
 
     @AndroidFindBy(xpath = "//android.widget.EditText[@text='₹']")
     private AndroidElement text_box_buy_in_rupees;
@@ -45,6 +52,46 @@ public class GoldPage {
     @AndroidFindBy(id = "base_icon_close")
     private AndroidElement cross_icon;
 
+
+    @AndroidFindBy(id= "com.mobikwik_new:id/txt_status")
+    private AndroidElement get_txn_status;
+
+
+    @AndroidFindBy(id= "com.mobikwik_new:id/txt_order_id")
+    private AndroidElement get_txn_orderid;
+
+    @AndroidFindBy(id= "com.mobikwik_new:id/txt_amount")
+    private AndroidElement quantity_in_gram;
+
+
+    @AndroidFindBy(id= "com.mobikwik_new:id/gold_balance_button")
+    private AndroidElement cta_check_gold_balance;
+
+    @AndroidFindBy(id= "com.mobikwik_new:id/textActionButton")
+    private AndroidElement navigate_history;
+
+
+    @AndroidFindBy(id= "com.mobikwik_new:id/txt_paid_or_received")
+    private AndroidElement select_transaction;
+
+    @AndroidFindBy(id= "com.mobikwik_new:id/txt_txn_id")
+    private AndroidElement get_transaction_id;
+
+    @AndroidFindBy(id= "com.mobikwik_new:id/mkab_icon_1")
+    private AndroidElement back_button;
+
+    @AndroidFindBy(id= "com.mobikwik_new:id/txt_description_amount")
+    private AndroidElement error_description;
+
+    @AndroidFindBy(id= "com.mobikwik_new:id/btn_gold_action")
+    private AndroidElement cta_continue;
+
+
+    @AndroidFindBy(id= "com.mobikwik_new:id/btn_gold_action")
+    private AndroidElement cta_sell_gold;
+
+
+
     public GoldPage(AndroidDriver driver) {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -60,8 +107,16 @@ public class GoldPage {
         Element.selectElement(driver, button_buy_gold, "Buy Gold Button");
     }
 
-    public void enterAmount(){
-        Element.enterText(driver, text_box_buy_in_rupees, "1", "Enter Amount For Gold");
+    public void clickOnBuyGoldRegisteredUser(){
+        Element.selectElement(driver, cta_buy_gold_for_registered, "Buy Gold Button for Registered User");
+    }
+
+    public void clickOnSellGoldRegisteredUser(){
+        Element.selectElement(driver, cta_sell_gold_for_registered, "Sell Gold Button for Registered User");
+    }
+
+    public void enterAmount(String amount){
+        Element.enterText(driver, text_box_buy_in_rupees, amount, "Enter Amount For Gold");
 
     }
 
@@ -88,7 +143,50 @@ public class GoldPage {
 
     }
 
+    public String getTxnStatus() throws InterruptedException{
+        return Element.getText(driver, get_txn_status, "Get TXN Status");
+    }
+
+    public String getOrderId() throws InterruptedException{
+        return Element.getText(driver, get_txn_orderid, "Get Order ID");
+    }
+    public String getQuantityInGram() throws InterruptedException{
+        return Element.getText(driver, quantity_in_gram, "Get quantity in gram");
+    }
+
+    public void clickCheckYourGoldBalance() throws InterruptedException{
+        Element.selectElement(driver, cta_check_gold_balance, "Check Gold Balance");
+    }
+
+    public void checkHistory() throws InterruptedException{
+        Element.selectElement(driver, navigate_history, "Navigate to history to check Gold Balance");
+    }
 
 
+    public void selectTransaction() throws InterruptedException{
+        Element.selectElement(driver, select_transaction, "get invoice for the transaction");
+    }
+
+    public String getInvoiceIdHistoryPage() throws InterruptedException{
+        return Element.getText(driver, get_transaction_id, "Get Invoice id");
+    }
+
+    public void clickBack() throws InterruptedException{
+        Element.selectElement(driver, back_button, "Back Button");
+    }
+
+    public String getErrorDescription() throws InterruptedException{
+        return Element.getText(driver, error_description, "Get Error Description");
+    }
+
+    public void clickOnContinueCta(){
+        Element.selectElement(driver, cta_continue, "Click on Continue");
+
+    }
+
+    public void clickOnSellGoldCta(){
+        Element.selectElement(driver, cta_sell_gold, "Click on Sell Gold");
+
+    }
 
 }

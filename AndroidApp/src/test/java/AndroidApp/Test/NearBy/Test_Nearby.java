@@ -1,99 +1,57 @@
 package test.java.AndroidApp.Test.NearBy;
 
 import UITestFramework.CreateSession;
-import UITestFramework.ExtentReport.Reporter;
 import dbutil.mysql.automationtest.front_end_automation.entity.FrontEndEntity;
 import logger.Log;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
+import main.java.utils.DatabaseSqlHelper;
 import org.testng.annotations.Test;
 import test.java.AndroidApp.Helpers.LoginHelper;
 import test.java.AndroidApp.Helpers.NearByHelper;
-import test.java.AndroidApp.PageObject.NearByHelperBase;
-
-import java.io.IOException;
-
-/**
- * automated test to verify Near By.
- */
 
 
 public class Test_Nearby extends CreateSession {
-    NearByHelperBase nearHelperBase;
-    Reporter reporter;
-    NearByHelper nearByHelper;
 
-    /**
-     * this method instantiate required helpers for Platform : Android
-     *
-     * @param - invokeDriver android
-     * @param - build - staging, beta, production
-     * @throws IOException
-     * @name - instantiateHelpers
-     */
-    @Parameters({"build"})
-    @BeforeMethod(groups = "instantiateHelpers", alwaysRun = true)
-    public void instantiateHelpers(String build) throws IOException {
+    DatabaseSqlHelper databaseSqlHelper = new DatabaseSqlHelper();
 
-        nearHelperBase = new NearByHelper(getAndroidDriver());
-        reporter = new Reporter();
-        nearByHelper = new NearByHelper(getAndroidDriver());
 
-    }
-
-    @Parameters({"androidOSVersion"})
     @Test(groups = {"nearBySanity", "nearByHome"}, priority = 0, enabled = true, dataProvider = "nearbyData", dataProviderClass = NearbyProviderClass.class)
     public void Test19_nearbyStoreListMap(FrontEndEntity frontEndEntity) throws Exception {
-        Log.infoStartTest("nearby home");
-        reporter.extentTest = reporter.extentReports.createTest("nearby home");
+        Log.info("START : OLA sanity test");
 
-        // login in app
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
         loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
-//        loginHelper.quickLoginViaEmail("mayank.suneja@mobikwik.com", "Tuesday20");
 
+        NearByHelper nearByHelper= new NearByHelper(getAndroidDriver());
+        nearByHelper.nearbyStoreByAddress();
 
-        // verify nearby home page
-        nearByHelper.nearbyStoreListMap("nearby", "nearbyHome");
+        Log.info("END : Nearby Store List test");
 
-        Log.infoEndTest("nearby home");
     }
 
-    @Parameters({"androidOSVersion"})
     @Test(groups = {"nearBySanity", "nearbySearchCategory"}, priority = 1, enabled = true, dataProvider = "nearbyData", dataProviderClass = NearbyProviderClass.class)
     public void Test20_nearbySearchCategory(FrontEndEntity frontEndEntity) throws Exception {
-        Log.infoStartTest("nearby search category");
-        reporter.extentTest = reporter.extentReports.createTest("nearby category");
+        Log.info("START : OLA sanity test");
 
-        // login in app
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
         loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
-//        loginHelper.quickLoginViaEmail("mayank.suneja@mobikwik.com", "Tuesday20");
 
+        NearByHelper nearByHelper= new NearByHelper(getAndroidDriver());
+        nearByHelper.nearbySearchCategory(frontEndEntity.getBankName());
 
-        // verify nearby category
-        nearByHelper.nearbySearchCategory("Grocery", "nearby", "nearbyCategory");
-
-        Log.infoEndTest("nearby search category");
+        Log.info("END : Nearby Search Category test");
     }
 
-    @Parameters({"androidOSVersion"})
+
     @Test(groups = {"nearBySanity", "nearbySearchKeyword"}, priority = 2, enabled = true, dataProvider = "nearbyData", dataProviderClass = NearbyProviderClass.class)
     public void Test21_nearbySearchStore(FrontEndEntity frontEndEntity) throws Exception {
-        Log.infoStartTest("nearby search store");
-        reporter.extentTest = reporter.extentReports.createTest("nearby store");
+        Log.info("START : OLA sanity test");
 
-        // login in app
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
         loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
-//        loginHelper.quickLoginViaEmail("mayank.suneja@mobikwik.com", "Tuesday20");
 
+        NearByHelper nearByHelper= new NearByHelper(getAndroidDriver());
+        nearByHelper.nearbySearchStore(frontEndEntity.getBankName());
 
-        // verify nearby stores
-        nearByHelper.nearbySearchStore("food", "nearby", "nearbyCategory");
-
-        Log.infoEndTest("nearby search store");
+        Log.info("END : Nearby Search Store test");
     }
-
 }

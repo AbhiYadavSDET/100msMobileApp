@@ -1,30 +1,33 @@
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Appium-Framework">
     <listeners>
         <listener class-name="UITestFramework.retryLogic.RetryListener"/>
-        <listener class-name="main.java.utils.Listeners.TestListener"/>
-        <!--<listener class-name="main.java.utils.ExtentReporterNG"/>-->
+        <listener class-name="UITestFramework.retryLogic.TestListener"/>
     </listeners>
     <parameter name="build" value="prod"/>
     <parameter name="level" value="payments"/>
     <parameter name="saucelabs" value="false"></parameter>
-    <parameter name="methodName" value="logout"></parameter>
+    <parameter name="androidOSVersion" value="7.0"></parameter>
 
 
     <test name="Mobikwik Automation Tests">
         <groups>
             <run>
+                <include name="appiumStart"/>
                 <include name="setUp"/>
                 <include name="instantiateHelpers"/>
-                <include name="ola"/>
+                <include name="buyGiftCard"/>
                 <include name="tearDown"/>
+                <include name="appiumStop"/>
             </run>
         </groups>
 
         <classes>
             <class name="UITestFramework.CreateSession"/>
-            <class name="test.java.AndroidApp.Test.Ola.Test_Ola"/>
-        </classes>
+            <class name="UITestFramework.ExtentReport.Reporter"/>
+            <class name="test.java.AndroidApp.Test.GiftCard.Test_GiftCard"/>
 
+        </classes>
+        <packages>
+        </packages>
     </test>
 </suite>

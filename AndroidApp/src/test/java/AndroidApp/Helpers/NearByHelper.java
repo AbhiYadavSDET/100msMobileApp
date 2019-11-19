@@ -2,186 +2,172 @@ package test.java.AndroidApp.Helpers;
 
 import UITestFramework.Api.ApiCommonControls;
 import UITestFramework.ExtentReport.Reporter;
+import UITestFramework.MBReporter;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import logger.Log;
+import main.java.utils.Element;
 import main.java.utils.Screen;
 import org.json.JSONException;
 import org.openqa.selenium.By;
 import test.java.AndroidApp.PageObject.HomePage;
-import test.java.AndroidApp.PageObject.NearByHelperBase;
-import test.java.AndroidApp.PageObject.NearByScreen;
+import test.java.AndroidApp.PageObject.NearbyPage;
 
 import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
 
-public class NearByHelper extends NearByHelperBase {
+public class NearByHelper  {
     TouchAction touchAction;
     ApiCommonControls apiCommonControls;
     Reporter reporter = new Reporter();
-    NearByScreen nearByScreen;
+    NearbyPage nearbyPage;
     HomePage homePage;
     Screen screen;
     PermissionHelper permissionHelper;
     MBKCommonControlsHelper mbkCommonControlsHelper;
     AndroidDriver driver;
+    MBReporter mbReporter;
 
     public NearByHelper(AndroidDriver driver) throws IOException {
         this.driver= driver;
         touchAction = new TouchAction(driver);
         apiCommonControls = new ApiCommonControls();
-        nearByScreen = new NearByScreen(driver);
+        nearbyPage = new NearbyPage(driver);
         homePage = new HomePage(driver);
         screen = new Screen(driver);
         permissionHelper = new PermissionHelper(driver);
         mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
+        mbReporter = new MBReporter(driver, "testScreenshotDir");
+
     }
 
-    @Override
-    public void nearbyStoreListMap(String directoryName, String screenName)
-            throws InterruptedException, IOException, JSONException {
-        int testStepCount = 0;
-        int noOfstores = 0;
-//        homePage.clickOnCrossButton();
+
+    public void nearbyStoreByAddress() throws InterruptedException, IOException, JSONException {
 
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
-        Log.info("SWIPE", "UP");
-        touchAction.press(PointOption.point(400, 1000)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000))).moveTo(PointOption.point(400, 200)).release().perform();
-        homePage.clickMoreServicesIcon();
+        Screen.swipeUpMore(driver);
 
-        // go to services
-        //Log.info("SELECT", "Services Tab");
-        //nearByScreen.selectElement(nearByScreen.services);
+        homePage.clickMoreIconUnderMoreServices();
 
-        // click on near by icon
-        reporter.extentReportDisplay("INFO", "STEP " + ++testStepCount + " | " + Log.info("SELECT", "Click on nearby icon"), "");
-        nearByScreen.selectElement(nearByScreen.nearbyIcon);
+        nearbyPage=homePage.clickNearbyIcon();
 
         permissionHelper.permissionAllow();
 
-        // If the device location is not given
         Thread.sleep(3000);
-//        if (nearByScreen.isElementPresent(By.id("button1"))) {
-//            nearByScreen.selectElement(By.id("button1"));
-//        }
 
-        // wait for fetching of stores
-        nearByScreen.waitForVisibility(nearByScreen.storesByAdd);
-        List<AndroidElement> stores = nearByScreen.findElements(By.id("com.mobikwik_new:id/tv_name"));
-        noOfstores = stores.size();
+        Element.waitForVisibility(driver, By.xpath("//android.view.View[@index= '1']"));
 
-        // log number of stores
-        reporter.extentReportDisplay("INFO", "STEP " + ++testStepCount + " | " + Log.info("Verify", "Number of stores fetched:" + noOfstores), "");
+        List<AndroidElement> stores = Element.findElements(driver,By.id("com.mobikwik_new:id/tv_name"));
+        int noOfstoresInOneList = stores.size();
 
-        // Assert no of stores
-        nearByScreen.verifyTrueExtentReport(noOfstores > 0, "Actual : " + noOfstores + " | Expected : > 1", true, "Verify noOfstores", directoryName, screenName);
+        nearbyPage.clickOnBackButton();
 
-        // take screenshot of success page
-        nearByScreen.takeSSOnSuccess("message", "STEP " + ++testStepCount + " | " + Log.info("Take SS", "NearBy success screen"), directoryName, screenName);
+        homePage.closeMoreServicesOverlay();
+
+        Thread.sleep(2000);
+
+        homePage.clickMoreIconUnderMoreServices();
+
+        String totalStoreCount = homePage.getStoreCount();
+
+        mbReporter.verifyTrueWithLogging(noOfstoresInOneList>0,"No of Stores under address: "+noOfstoresInOneList,true,false);
+
+        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("com.mobikwik_new:id/tx_tag")), "Total Stores count displayed on home page: "+totalStoreCount, true, false);
+
+
+        homePage.closeMoreServicesOverlay();
 
 
     }
 
-    @Override
-    public void nearbySearchCategory(String categoryName, String directoryName, String screenName)
-            throws InterruptedException, IOException, JSONException {
 
-        int testStepCount = 0;
-        int noOfstores = 0;
+    public void nearbySearchCategory(String categoryName) throws InterruptedException, IOException, JSONException {
 
-//        homePage.clickOnCrossButton();
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
-        Log.info("SWIPE", "UP");
-        touchAction.press(PointOption.point(400, 1000)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000))).moveTo(PointOption.point(400, 200)).release().perform();
-        homePage.clickMoreServicesIcon();
 
-        // click on near by icon
-        reporter.extentReportDisplay("INFO", "STEP " + ++testStepCount + " | " + Log.info("SELECT", "Click on nearby icon"), "");
-        nearByScreen.selectElement(nearByScreen.nearbyIcon);
+        Screen.swipeUpMore(driver);
+
+        homePage.clickMoreIconUnderMoreServices();
+
+        nearbyPage=homePage.clickNearbyIcon();
 
         permissionHelper.permissionAllow();
 
-        // If the device location is not given
         Thread.sleep(3000);
-       /* if (nearByScreen.isElementPresent(By.id("button1"))) {
-            nearByScreen.selectElement(By.id("button1"));
-        }*/
 
-        // wait for fetching of stores
-        //nearByScreen.waitForVisibility(nearByScreen.storesByAdd);
+        Element.waitForVisibility(driver, By.xpath("//android.view.View[@index= '1']"));
 
-        // select category
-        nearByScreen.selectElement(nearByScreen.searchIcon);
-        reporter.extentReportDisplay("INFO", "STEP " + ++testStepCount + " | " + Log.info("SELECT", "Searching for stores under category"), "");
+        nearbyPage.clickOnCategoryIcon(categoryName);
 
-        // wait for list of stores
-        nearByScreen.waitForVisibility(nearByScreen.storesByAdd1);
+        Thread.sleep(2000);
 
-        List<AndroidElement> stores = nearByScreen.findElements(By.id("com.mobikwik_new:id/tv_name"));
-        noOfstores = stores.size();
+        mbReporter.verifyEqualsWithLogging(nearbyPage.getCategoryStoreTitle(), categoryName, "Verify if the Category list is open", true, false);
 
-        // log number of stores
-        reporter.extentReportDisplay("INFO", "STEP " + ++testStepCount + " | " + Log.info("Verify", "Number of stores fetched:" + noOfstores), "");
+        List<AndroidElement> stores = Element.findElements(driver,By.id("com.mobikwik_new:id/tv_name"));
+        int noOfstoresInOneList = stores.size();
 
-        // Assert no of stores
-        nearByScreen.verifyTrueExtentReport(noOfstores > 0, "Actual : " + noOfstores + " | Expected : > 1", true, "Verify noOfstores", directoryName, screenName);
+        mbReporter.verifyTrueWithLogging(noOfstoresInOneList>0,"No of Stores for "+categoryName+":"+noOfstoresInOneList,true,false);
+
+        nearbyPage.clickOnBackButtonFromInternalPages();
+
+        Thread.sleep(300);
+
+        nearbyPage.clickOnBackButton();
+
+        homePage.closeMoreServicesOverlay();
 
 
     }
 
-    @Override
-    public void nearbySearchStore(String storeName, String directoryName, String screenName)
-            throws InterruptedException, IOException, JSONException {
 
-        int testStepCount = 0;
-        int noOfstores = 0;
+    public void nearbySearchStore(String storeName) throws InterruptedException, IOException, JSONException {
 
-        // go to services
-//        homePage.clickOnCrossButton();
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
-        Log.info("SWIPE", "UP");
-        touchAction.press(PointOption.point(400, 1000)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000))).moveTo(PointOption.point(400, 200)).release().perform();
-        homePage.clickMoreServicesIcon();
 
-        // click on near by icon
-        reporter.extentReportDisplay("INFO", "STEP " + ++testStepCount + " | " + Log.info("SELECT", "Click on nearby icon"), "");
-        nearByScreen.selectElement(nearByScreen.nearbyIcon);
+        Screen.swipeUpMore(driver);
+
+        homePage.clickMoreIconUnderMoreServices();
+
+        nearbyPage=homePage.clickNearbyIcon();
 
         permissionHelper.permissionAllow();
-        // If the device location is not given
+
         Thread.sleep(3000);
-        if (nearByScreen.isElementPresent(By.id("button1"))) {
-            nearByScreen.selectElement(By.id("button1"));
-        }
 
-        // wait for fetching of stores
-        //nearByScreen.waitForVisibility(nearByScreen.storesByAdd);
-        screen.swipeUp();
-        Thread.sleep(3000);
-        nearByScreen.selectElement(nearByScreen.searchIcon);
-        reporter.extentReportDisplay("INFO", "STEP " + ++testStepCount + " | " + Log.info("SELECT", "Click on search icon"), "");
+        Element.waitForVisibility(driver, By.xpath("//android.view.View[@index= '1']"));
 
-        // searching for store with keyword "food"
-        nearByScreen.sendText(nearByScreen.searchBar, storeName);
-        nearByScreen.selectElement(nearByScreen.searchIcon2);
-        reporter.extentReportDisplay("INFO", "STEP " + ++testStepCount + " | " + Log.info("SELECT", "Searching for store"), "");
+        nearbyPage.clickSearchNearbyStores();
 
-        // wait for list of stores
-        nearByScreen.waitForVisibility(nearByScreen.storesByAdd1);
+        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Categories']"));
 
-        List<AndroidElement> stores = nearByScreen.findElements(By.id("com.mobikwik_new:id/tv_name"));
-        noOfstores = stores.size();
+        nearbyPage.enterStore(storeName);
 
-        // log number of stores
-        reporter.extentReportDisplay("INFO", "STEP " + ++testStepCount + " | " + Log.info("Verify", "Number of stores fetched:" + noOfstores), "");
+        nearbyPage.clickSearchIcon();
 
-        // Assert no of stores
-        nearByScreen.verifyTrueExtentReport(noOfstores > 0, "Actual : " + noOfstores + " | Expected : > 1", true, "Verify noOfstores", directoryName, screenName);
+        Thread.sleep(1000);
+
+        List<AndroidElement> stores = Element.findElements(driver,By.id("com.mobikwik_new:id/tv_name"));
+        int noOfstoresInOneList = stores.size();
+
+        mbReporter.verifyTrueWithLogging(noOfstoresInOneList>0,"No of Stores for "+storeName+":"+noOfstoresInOneList,true,false);
+
+        nearbyPage.clickOnBackButtonFromInternalPages();
+
+        Thread.sleep(300);
+
+        nearbyPage.clickOnBackButton();
+
+        Thread.sleep(300);
+
+        nearbyPage.clickOnBackButton();
+
+        homePage.closeMoreServicesOverlay();
+
 
     }
 

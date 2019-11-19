@@ -50,7 +50,7 @@ public class RatingPageHelper {
 
         goldPage.clickOnBuyGold();
 
-        goldPage.enterAmount();
+        goldPage.enterAmount("1");
 
         goldPage.clickBuyNowCta();
 
