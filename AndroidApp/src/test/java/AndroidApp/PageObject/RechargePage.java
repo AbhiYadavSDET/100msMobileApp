@@ -163,6 +163,14 @@ public class RechargePage {
 //cta_continue
 
 
+    //Coupon and voucher
+    @AndroidFindBy(id = "com.mobikwik_new:id/have_a_promo_text")
+    private AndroidElement have_promo_code;
+
+    @AndroidFindBy(id = "com.mobikwik_new:id/redeem_layout")
+    private AndroidElement select_voucher;
+
+
     public RechargePage(AndroidDriver driver) throws IOException {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -339,6 +347,13 @@ public class RechargePage {
         Element.selectElement(driver, cross_icon_pending_screen, "Navigate Back Tome home");
     }
 
+    public void clickApplyCoupon() throws InterruptedException{
+        Element.selectElement(driver, have_promo_code, "Select Apply a coupon");
+    }
+
+    public void selectVoucher() throws InterruptedException{
+        Element.selectElement(driver, select_voucher, "Apply a voucher");
+    }
 
 
 }
