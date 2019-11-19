@@ -17,7 +17,7 @@ public class Test_Gold extends CreateSession {
     AddMoneyHelper addMoneyHelper;
     MBKCommonControlsHelper mbkCommonControlsHelper;
 
-    @Test(groups = {"buyGold", "goldSanity"}, priority = 0, dataProvider = "goldData", dataProviderClass = GoldDataProviderClass.class)
+    @Test(groups = {"buyGold", "goldSanity"}, priority = 1, dataProvider = "goldData", dataProviderClass = GoldDataProviderClass.class)
     public void Test01_buyGold(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
 
         Log.info("START : Gold sanity test");
@@ -31,7 +31,7 @@ public class Test_Gold extends CreateSession {
 
     }
 
-    @Test(groups = {"sellGold", "goldSanity"}, priority = 1, dataProvider = "goldData", dataProviderClass = GoldDataProviderClass.class)
+    @Test(groups = {"sellGold", "goldSanity"}, priority = 0, dataProvider = "goldData", dataProviderClass = GoldDataProviderClass.class)
     public void Test02_sellGold(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
 
         Log.info("START : Gold sanity test");

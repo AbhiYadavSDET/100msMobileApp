@@ -515,6 +515,8 @@ public class RechargeHelper {
 
         rechargePage.clickApplyCoupon();
 
+        Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/redeem_layout"));
+
 
         List<AndroidElement> vouchers = Element.findElements(driver,By.id("com.mobikwik_new:id/redeem_layout"));
         int noOfVouchersAvailable = vouchers.size();
@@ -588,6 +590,8 @@ public class RechargeHelper {
 
 
         rechargePage.clickApplyCoupon();
+
+        Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/redeem_layout"));
 
 
         List<AndroidElement> vouchers = Element.findElements(driver,By.id("com.mobikwik_new:id/redeem_layout"));
