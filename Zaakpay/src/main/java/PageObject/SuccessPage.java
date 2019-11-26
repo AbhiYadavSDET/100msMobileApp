@@ -21,12 +21,8 @@ public class SuccessPage {
     @FindBy(xpath = ".//*[@type = 'button' and @value = 'Make Payment' and @class = 'mk_payment_btn btn']")
     private WebElement label_make_payment;
 
-    @FindBy(xpath = ".//*[@id= 'paylater']/div[2]/div/p[1]/div/div[2]/div/span")
-    private WebElement label_unregistered_number;
-
-
-
-
+    @FindBy(xpath = ".//*[@class = 'transaction']")
+    private WebElement label_transactions;
 
 
 
@@ -37,15 +33,10 @@ public class SuccessPage {
         Config.logComment("*****On Success Page*****");
     }
 
-
-
-
     public String getDescription()
     {
         return Element.getText(driver, label_decription, "Description");
     }
-
-
 
 }
 

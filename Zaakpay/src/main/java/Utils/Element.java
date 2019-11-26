@@ -898,5 +898,4 @@ public class Element extends TestBase {
         Thread.sleep(time);
     }
 
-
 }

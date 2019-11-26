@@ -109,8 +109,6 @@ public class TransactionApiHelper {
         // Select the Credit card option
         paymentOptionsPage.clickOnNetBanking();
         Thread.sleep(3000);
-
-
         paymentNetbanking(expectedDescription);
 
 
@@ -151,7 +149,6 @@ public class TransactionApiHelper {
     }
 
 
-
     public void paymentNetbanking(String expectedDescription) {
         // select the bank
         paymentOptionsPage.selectBank("CCTEST");
@@ -167,7 +164,6 @@ public class TransactionApiHelper {
         mbkReporter.verifyEqualsWithLogging(actualDescription, expectedDescription, "Success Page Description", false);
 
     }
-
 
 
     public void paymentAmex(String cardNo, String expiryMonth, String expiryYear, String cvv, String expectedDescription) {
@@ -244,9 +240,5 @@ public class TransactionApiHelper {
 
         mbkReporter.verifyEqualsWithLogging(actualDescription, expectedDescription, "Success Page Description", false);
     }
-
-
-
-
 
 }

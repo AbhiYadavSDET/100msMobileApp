@@ -22,8 +22,6 @@ public class PaylaterPage {
     @FindBy(xpath = ".//*[@type = 'button' and @value = 'Make Payment' and @class = 'mk_payment_btn btn']")
     private WebElement label_paylater_make_payment;
 
-    //@FindBy(xpath = ".//*[@class = "form-input ng-pristine ng-invalid ng-touched"])
-
     @FindBy(xpath = "/html/body/app-root/app-verify-otp/section/div[1]/form/div/input")
     private WebElement label_enter_otp;
 
@@ -35,13 +33,11 @@ public class PaylaterPage {
 
     public PaylaterPage(WebDriver driver) {
 
-
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
         Browser.waitForPageLoad(driver, label_Submit_button);
         //Browser.waitForPageLoad(driver, label_Submit_button);
         Config.logComment("*****On Paylater Page*****");
-
 
     }
 

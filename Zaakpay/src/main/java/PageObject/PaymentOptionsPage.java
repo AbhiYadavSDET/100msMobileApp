@@ -53,10 +53,6 @@ public class PaymentOptionsPage {
     @FindBy(xpath = "//label[text()= 'Other Banks']/following::input[@value = 'Make Payment'][1]")
     private WebElement button_make_payment_netbanking;
 
-
-
-
-
     //For PayLater option
 
     @FindBy(xpath =  ".//*[@href = '#view12']")
@@ -74,19 +70,12 @@ public class PaymentOptionsPage {
     @FindBy(xpath = ".//*[@type='submit' and @class = 'btn frmBtn']")
     private  WebElement label_Submit_button;
 
-
-
-
     public PaymentOptionsPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
         Browser.waitForPageLoad(driver, page_load_text);
         Config.logComment("*****On Payments Option Page*****");
     }
-
-
-     // For offers section login
-
 
 
     public void clickOnDebitCard()
@@ -122,32 +111,15 @@ public class PaymentOptionsPage {
         Element.selectElement(driver, label_net_banking, "Net Banking");
     }
 
-    public void clickOnPaylaterOption()
-    {
+    public void clickOnPaylaterOption() { Element.selectElement(driver,label_paylater,"PayLater"); }
 
-        Element.selectElement(driver,label_paylater,"PayLater");
-    }
+    public void enterPhoneNumber(String phoneNumber){ Element.enterText(driver,textbox_enterPhoneNumber,phoneNumber,"Enter Phone Number"); }
 
-    public void enterPhoneNumber(String phoneNumber)
-    {
-        Element.enterText(driver,textbox_enterPhoneNumber,phoneNumber,"Enter Phone Number");
-    }
+    public void clickOnMakePaymentPaylater() { Element.selectElement(driver,label_make_payment,"Make Payment"); }
 
-    public void clickOnMakePaymentPaylater()
-    {
-        Element.selectElement(driver,label_make_payment,"Make Payment");
-    }
+    public void enterOtp(String otp) { Element.enterText(driver,textbox_otp,otp,"Enter OTP"); }
 
-    public void enterOtp(String otp)
-    {
-        Element.enterText(driver,textbox_otp,otp,"Enter OTP");
-    }
-
-    public void clickOnSubmitButton()
-    {
-        Element.selectElement(driver,label_Submit_button,"Submit button");
-    }
-
+    public void clickOnSubmitButton() { Element.selectElement(driver,label_Submit_button,"Submit button"); }
 
 
     public void selectBank(String bankValue) {
@@ -155,7 +127,6 @@ public class PaymentOptionsPage {
         Log.info("select start");
         Element.selectValue(driver, select_bank, bankValue, "Bank");
         Log.info("select end");
-
     }
 
 

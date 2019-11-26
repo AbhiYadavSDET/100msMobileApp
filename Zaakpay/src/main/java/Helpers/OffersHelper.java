@@ -5,13 +5,12 @@ import Utils.MbkReporter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
-
 import java.util.HashMap;
 
 public class OffersHelper {
 
     WebDriver driver;
-    ZaakpayPage zaakpayPage;
+    HomePage homePage;
     MbkReporter mbkReporter;
     OffersSuccessPage offersSuccessPage;
     public static HashMap<String, String> transactionMap = new HashMap<>();
@@ -20,9 +19,7 @@ public class OffersHelper {
     public OffersHelper(WebDriver driver)
     {
         this.driver = driver;
-        zaakpayPage = new ZaakpayPage(driver);
-
-
+        homePage = new HomePage(driver);
         mbkReporter = new MbkReporter();
 
     }
@@ -30,34 +27,26 @@ public class OffersHelper {
    public void offersOption(String email, String password, String orderid ,String zaakpayid , String expectedDescription) throws InterruptedException {
 
        //Click on Login button
-       zaakpayPage.clickOnLoginButton();
-
+       homePage.clickOnLoginButton();
        //Enter Email
-       zaakpayPage.enterEmail(email);
-
+       homePage.enterEmail(email);
        //Enter Password
-       zaakpayPage.enterPassword(password);
-
+       homePage.enterPassword(password);
        //Click on Submit button
-       zaakpayPage.clickOnSubmitButton();
+       homePage.clickOnSubmitButton();
        Thread.sleep(3000);
-
        //Click On transaction option
-
-       zaakpayPage.clickOnTransactionOption();
+       homePage.clickOnTransactionOption();
        Thread.sleep(2000);
-
-       zaakpayPage.enterOrderId(orderid);
-       zaakpayPage.enterZaakpayId(zaakpayid);
-       zaakpayPage.clickOnGoButton();
-
-       Thread.sleep(2000);
-
-       zaakpayPage.selectoption();
+       homePage.enterOrderId(orderid);
+       homePage.enterZaakpayId(zaakpayid);
+       homePage.clickOnGoButton();
 
        Thread.sleep(2000);
 
+       homePage.selectoption();
 
+       Thread.sleep(2000);
 
        offersSuccessPage = new OffersSuccessPage(driver);
        driver.switchTo().alert().accept();
@@ -68,8 +57,5 @@ public class OffersHelper {
 
        String actualDescription = offersSuccessPage.getConfirmation();
        mbkReporter.verifyEqualsWithLogging(actualDescription, expectedDescription, "Success Page Description", false);
-
-
-   }
-
+    }
 }
