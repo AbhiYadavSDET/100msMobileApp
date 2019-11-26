@@ -18,6 +18,7 @@ public class TransactionApiHelper {
     SuccessPage successPage;
     MbkReporter mbkReporter;
     CcAvenuePaymentPage ccAvenuePaymentPage;
+    PaylaterPage paylaterPage;
     public static HashMap<String, String> transactionMap = new HashMap<>();
 
 
@@ -108,10 +109,42 @@ public class TransactionApiHelper {
         // Select the Credit card option
         paymentOptionsPage.clickOnNetBanking();
         Thread.sleep(3000);
-
-
         paymentNetbanking(expectedDescription);
 
+
+    }
+
+    public void transactionViaPaylaterOption(String email, String phoneNumber, String otp, String expectedDescription) throws InterruptedException {
+
+
+        // Select the Flow Type
+        transactionApiHomePage = dashboardPage.clickOnTransactApiLink();
+
+        // Click on Submit button
+        paymentOptionsPage = transactionApiHomePage.clickOnButtonPayViaZaakpay();
+
+        //Set the needed values in map
+        String orderId = paymentOptionsPage.getOrderId();
+        Log.info("Order Id : " + orderId);
+        transactionMap.put("orderId", orderId);
+
+        // Select the Paylater option
+        paymentOptionsPage.clickOnPaylaterOption();
+
+        //Enter Phone number,otp and submit
+        paymentOptionsPage.enterPhoneNumber(phoneNumber);
+        paymentOptionsPage.clickOnMakePaymentPaylater();
+        paymentOptionsPage.enterOtp(otp);
+
+        Thread.sleep(3000);
+
+        paylaterPage = new PaylaterPage(driver);
+        successPage = paylaterPage.clickOnSubmitButton();
+        //Assertion on the success page
+        Thread.sleep(3000);
+
+        String actualDescription = successPage.getDescription();
+        mbkReporter.verifyEqualsWithLogging(actualDescription,expectedDescription,"Success Page Description",false);
 
     }
 
@@ -131,6 +164,7 @@ public class TransactionApiHelper {
         mbkReporter.verifyEqualsWithLogging(actualDescription, expectedDescription, "Success Page Description", false);
 
     }
+
 
     public void paymentAmex(String cardNo, String expiryMonth, String expiryYear, String cvv, String expectedDescription) {
         // Enter the card details
@@ -206,6 +240,5 @@ public class TransactionApiHelper {
 
         mbkReporter.verifyEqualsWithLogging(actualDescription, expectedDescription, "Success Page Description", false);
     }
-
 
 }
