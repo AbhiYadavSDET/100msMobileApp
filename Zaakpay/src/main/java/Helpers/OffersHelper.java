@@ -1,10 +1,10 @@
 package Helpers;
 
-import PageObject.DashboardPage;
-import PageObject.PaymentOptionsPage;
-import PageObject.ZaakpayPage;
+import PageObject.*;
 import Utils.MbkReporter;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.HashMap;
 
@@ -13,8 +13,9 @@ public class OffersHelper {
     WebDriver driver;
     ZaakpayPage zaakpayPage;
     MbkReporter mbkReporter;
-    PaymentOptionsPage paymentOptionsPage;
+    OffersSuccessPage offersSuccessPage;
     public static HashMap<String, String> transactionMap = new HashMap<>();
+
 
     public OffersHelper(WebDriver driver)
     {
@@ -26,8 +27,7 @@ public class OffersHelper {
 
     }
 
-   public void offersOption(String email, String password, String expectedDescription) throws InterruptedException
-   {
+   public void offersOption(String email, String password, String orderid ,String zaakpayid , String expectedDescription) throws InterruptedException {
 
        //Click on Login button
        zaakpayPage.clickOnLoginButton();
@@ -40,11 +40,34 @@ public class OffersHelper {
 
        //Click on Submit button
        zaakpayPage.clickOnSubmitButton();
+       Thread.sleep(3000);
 
-   }
+       //Click On transaction option
 
-   public void zaakpayDashboard(String expectedDescription)
-   {
+       zaakpayPage.clickOnTransactionOption();
+       Thread.sleep(2000);
+
+       zaakpayPage.enterOrderId(orderid);
+       zaakpayPage.enterZaakpayId(zaakpayid);
+       zaakpayPage.clickOnGoButton();
+
+       Thread.sleep(2000);
+
+       zaakpayPage.selectoption();
+
+       Thread.sleep(2000);
+
+
+
+       offersSuccessPage = new OffersSuccessPage(driver);
+       driver.switchTo().alert().accept();
+
+       Thread.sleep(2000);
+
+       //Assertions
+
+       String actualDescription = offersSuccessPage.getConfirmation();
+       mbkReporter.verifyEqualsWithLogging(actualDescription, expectedDescription, "Success Page Description", false);
 
 
    }

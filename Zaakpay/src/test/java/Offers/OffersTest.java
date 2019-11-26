@@ -10,7 +10,7 @@ public class OffersTest extends TestBase
     public void Test_Offers_section() throws InterruptedException
     {
         OffersHelper offersHelper = new OffersHelper(driver);
-        offersHelper.offersOption("chirag123@gmail.com" ,"testing123","Successfully Logged in ");
+        offersHelper.offersOption("chirag23@zaakpay.com" ,"testing123","ZVAF2019101542100","ZP594ef979593f4","Transaction Refund Initiated");
 
 
 
