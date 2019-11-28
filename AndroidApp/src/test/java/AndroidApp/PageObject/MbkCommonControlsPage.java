@@ -126,5 +126,11 @@ public class MbkCommonControlsPage {
 
     }
 
+    public void clickOnGetInstantLoanBottonSheetCross() {
+
+        Element.selectElement(driver, cross_button, "Cross Icon");
+
+    }
+
 
 }

@@ -56,9 +56,13 @@ public class InsuranceHelper {
         Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/mkab_title"));
         screen.swipeUpMore(driver);
 
-        insurancePage.clickOnImageGasInsurance();
+        insurancePage.clickOnImagePersonalAccidentInsurance();
 
-        insurancePage.clickOnButtonPrice();
+        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text = 'Personal Accident Insurance']"));
+
+        insurancePage.clickOnSelectiveBtnPrice();
+
+        String insuredBy = insurancePage.getInsuredBy();
 
         insurancePage.clickOnCtaMakePayment();
 
@@ -72,7 +76,7 @@ public class InsuranceHelper {
         String policyId;
 
         mbReporter.verifyEqualsWithLogging(actualHeader, expectedHeader, "Fill details Screen | Header", false, false);
-        mbReporter.verifyEqualsWithLogging(actualDescription, expectedDescription, "Fill details Screen | Description", false, false);
+        mbReporter.verifyEqualsWithLogging(actualDescription, expectedDescription+insuredBy, "Fill details Screen | Description", false, false);
 
 
         // Return to the homepage
