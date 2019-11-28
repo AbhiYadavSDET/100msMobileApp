@@ -288,6 +288,9 @@ public class MBKCommonControlsHelper {
 
         Log.info("Checking", "Refer and Earn Bottom sheet");
         handleReferAndEarnBottomSheet();
+
+        Log.info("Checking", "Get Instant Loan Bottom sheet");
+        handleGetInstantLoanBottomSheet();
     }
 
     public void handleGullak() throws InterruptedException {
@@ -295,6 +298,14 @@ public class MBKCommonControlsHelper {
         if (Element.isElementPresent(driver, By.id("com.mobikwik_new:id/rating_seekbar"))) {
             Log.info("Handle", "Gullak Screen");
             mbkCommonControlsPage.clickOnGullakCross();
+        }
+    }
+
+    public void handleGetInstantLoanBottomSheet() throws InterruptedException {
+        Thread.sleep(4000);
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text= 'Budget crunch? Get Instant Loan']"))) {
+            Log.info("Handle", "Get Instant Loan Bottom sheet");
+            mbkCommonControlsPage.clickOnGetInstantLoanBottonSheetCross();
         }
     }
 

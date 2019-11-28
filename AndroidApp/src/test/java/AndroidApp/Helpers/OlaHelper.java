@@ -50,6 +50,7 @@ public class OlaHelper {
 
                 Screen.swipeUpMore(driver);
             }
+            else{break;}
         }
 
 

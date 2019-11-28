@@ -8,7 +8,7 @@ import logger.Log;
 import main.java.utils.Element;
 import org.json.JSONException;
 import org.openqa.selenium.By;
-import sun.awt.windows.ThemeReader;
+//import sun.awt.windows.ThemeReader;
 import test.java.AndroidApp.PageObject.HomePage;
 import test.java.AndroidApp.PageObject.SavedConnectionPage;
 import test.java.AndroidApp.PageObject.SideDrawerPage;
@@ -90,6 +90,8 @@ public class SavedConnectionHelper {
         if(Element.isElementPresent(driver,By.xpath("//android.widget.TextView[@text= '"+name+"']") )){
 
             savedConnectionPage.selectSavedConnection();
+
+            Thread.sleep(2000);
 
             savedConnectionPage.selectMoreOption();
 

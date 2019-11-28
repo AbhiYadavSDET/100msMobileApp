@@ -33,6 +33,16 @@ public class InsurancePage {
     @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView[1]")
     private AndroidElement fill_kyc_details_page_header;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Personal Accident Insurance']")
+    private AndroidElement image_personal_accident_insurance;
+
+    @AndroidFindBy(xpath = "//android.widget.Button[@text = 'X20']")
+    private AndroidElement selective_button_price;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Insured By']/following-sibling::android.widget.TextView")
+    private AndroidElement policy_insurer_name;
+
+
 
     public InsurancePage(AndroidDriver driver) throws IOException {
 
@@ -66,6 +76,18 @@ public class InsurancePage {
 
     public String getFillDetailsDescription() {
         return Element.getText(driver, fill_kyc_details_page_description, "Description");
+    }
+
+    public void clickOnImagePersonalAccidentInsurance() throws InterruptedException {
+        Element.selectElement(driver, image_personal_accident_insurance, "Personal Accident Insurance Image");
+    }
+
+    public void clickOnSelectiveBtnPrice() throws InterruptedException {
+        Element.selectElement(driver, selective_button_price, "Selective Price Button");
+    }
+
+    public String getInsuredBy() {
+        return Element.getText(driver, policy_insurer_name, "Insurer Name");
     }
 
 }

@@ -96,10 +96,10 @@ public class GoldHelper {
 
 
         goldPage.clickBack();
-
+        Thread.sleep(2000);
 
         goldPage.clickBack();
-
+        Thread.sleep(2000);
 
         goldPage.clickBack();
 
@@ -149,10 +149,10 @@ public class GoldHelper {
                 mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("com.mobikwik_new:id/gold_purchased_or_sold")),"Invoice Id on History Page : "+goldPage.getInvoiceIdHistoryPage(), true, false );
 
                 goldPage.clickBack();
-
+                Thread.sleep(2000);
 
                 goldPage.clickBack();
-
+                Thread.sleep(2000);
 
                 goldPage.clickBack();
 
