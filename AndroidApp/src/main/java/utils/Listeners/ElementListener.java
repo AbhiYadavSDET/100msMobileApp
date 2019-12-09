@@ -1,4 +1,4 @@
-package main.java.utils.Listeners;
+package utils.Listeners;
 
 import io.appium.java_client.events.api.general.ElementEventListener;
 import logger.Log;

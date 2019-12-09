@@ -1,6 +1,7 @@
-package main.java.utils;
+package utils;
 
 import UITestFramework.CreateSession;
+import logger.Log;
 import org.testng.Assert;
 
 import java.sql.Timestamp;
@@ -32,7 +33,7 @@ public class Config extends CreateSession {
      * @author manojkumar
      */
     public static void logComment(String message) {
-        log.info(message);
+        Log.info(message);
     }
 
     /**
@@ -42,7 +43,7 @@ public class Config extends CreateSession {
      * @author manojkumar
      */
     public static void logFatal(String message) {
-        log.fatal(message);
+        Log.info(message);
     }
 
     /**
@@ -52,7 +53,7 @@ public class Config extends CreateSession {
      * @author manojkumar
      */
     public static void logError(String message) {
-        log.error(message);
+        Log.info(message);
     }
 
     /**
@@ -62,7 +63,7 @@ public class Config extends CreateSession {
      * @author manojkumar
      */
     public static void logWarning(String message) {
-        log.info(message);
+        Log.info(message);
     }
 
     /**
@@ -75,7 +76,7 @@ public class Config extends CreateSession {
     public static void logWarning(String what, String expected, String actual) {
         //testResult = false;
         String message = " Expected '" + what + "' was :-'" + expected + "'. But actual is '" + actual + "'";
-        log.warn(message);
+        Log.info(message);
     }
 
 

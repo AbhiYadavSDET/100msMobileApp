@@ -1,4 +1,4 @@
-package main.java.Config;
+package Config;
 
 //
 // Source code recreated from a .class file by IntelliJ IDEA

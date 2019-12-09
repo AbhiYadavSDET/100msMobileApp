@@ -1,4 +1,4 @@
-package main.java.utils;
+package utils;
 
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
