@@ -1,4 +1,4 @@
-package main.java.utils.Listeners;
+package utils.Listeners;
 
 import UITestFramework.CreateSession;
 import io.appium.java_client.events.api.general.AppiumWebDriverEventListener;

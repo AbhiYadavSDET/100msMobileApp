@@ -1,4 +1,4 @@
-package main.java.utils;
+package utils;
 
 //
 // Source code recreated from a .class file by IntelliJ IDEA
@@ -373,13 +373,13 @@ public final class Configuration {
         }
     }
 
-    public static class mock{
+    public static class mock {
 
         public static final Boolean IS_HTTPS_REQUIRED;
         public static final String HOST;
         public static final String PORT;
 
-        public mock(){
+        public mock() {
 
         }
 

@@ -1,4 +1,4 @@
-package main.java.utils.TableEnums;
+package utils.TableEnums;
 
 public enum MemberBalanceEnum {
 

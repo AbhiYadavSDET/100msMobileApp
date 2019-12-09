@@ -1,4 +1,4 @@
-package main.java.utils;
+package utils;
 
 public enum DateFormatEnums {
     DD_MM_YYYY("dd-MM-yyyy"),
