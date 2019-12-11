@@ -83,22 +83,18 @@ public class WebDriverListeners extends TestBase implements WebDriverEventListen
 
             FileUtils.copyFile(scrFile, new File(
                     System.getProperty("user.dir") + "/test-output/screenshots/" + timestamp + ".jpeg"));
-            Log.info("SS 1 : " + System.getProperty("user.dir") + "/test-output/screenshots/" + timestamp + ".jpeg");
-        } catch (Exception e) {
-            Config.logComment("Unable to Save");
-        }
 
-
-        try {
             Log.info("Logging the Exception in Extent Report");
             ExtentReport.createLable("Exception", ExtentColor.CYAN);
             ExtentReport.extentReportDisplay(ExtentReport.Status.FAIL, "Exception Message", throwable.getMessage());
-            ExtentReport.extentReportAttachScreenshot("./test-output/screenshots/" + timestamp + ".jpeg");
-            Log.info("SS 2 : " + "./test-output/screenshots/" + timestamp + ".jpeg");
-
+            ExtentReport.extentReportAttachScreenshot("/WebAutomation/test-output/screenshots/" + timestamp + ".jpeg");
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            Config.logComment("Unable to Save");
+
         }
+
     }
 
 
