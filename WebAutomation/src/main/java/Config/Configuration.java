@@ -338,5 +338,25 @@ public final class Configuration {
         }
     }
 
+    public static class Email {
+        public static final String RECIPIENTS;
+        public static final String SUBJECT;
+        public static final String MAIL_BODY_TEXT;
+        public static final String TEAM;
+
+
+        public Email() {
+        }
+
+        static {
+            RECIPIENTS = String.valueOf(Configuration.handler.getValue("mail.recipients.comma.seperated"));
+            SUBJECT = String.valueOf(Configuration.handler.getValue("mail.subject"));
+            MAIL_BODY_TEXT = String.valueOf(Configuration.handler.getValue("mail.body.text"));
+            TEAM = String.valueOf(Configuration.handler.getValue("team"));
+
+
+        }
+    }
+
 }
 

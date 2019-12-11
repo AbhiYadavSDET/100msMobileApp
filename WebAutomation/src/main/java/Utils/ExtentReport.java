@@ -1,6 +1,7 @@
 package Utils;
 
 import Config.Configuration;
+import applicationcontext.ApplicationContextProvider;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
@@ -8,10 +9,14 @@ import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
+import mail.Mailer;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ExtentReport {
 
@@ -68,11 +73,32 @@ public class ExtentReport {
     }
 
     @AfterSuite(alwaysRun = true)
-    public void extentReportTearDown() throws IOException {
+    public void extentReportTearDown() throws IOException, InterruptedException {
         Log.info("Reporter : @AfterSuite");
 
         Log.info("Flush the Extent Report");
         EXTENTREPORT.flush();
+        sendReportViaMail();
+
+    }
+
+    public static void sendReportViaMail() throws InterruptedException {
+
+
+        Log.info("sendReportViaMail");
+        Mailer mailer = (Mailer) ApplicationContextProvider.getApplicationContext().getBean("mailer");
+
+        // Create the list of attachments
+        List<String> listOfAttachments = new ArrayList<>();
+        Log.info("Path : " + System.getProperty("user.dir").concat(File.separator).concat("reports/TestReport.html"));
+        listOfAttachments.add(System.getProperty("user.dir").concat(File.separator).concat("reports/TestReport.html"));
+
+        // Create the recipients array
+        String[] recipients = Configuration.Email.RECIPIENTS.split(",");
+
+        Log.info("Send Mail : " + "TestReport.html");
+        Log.info("Send Mail : " + "Extent.html");
+        mailer.sendMail(recipients, Configuration.Email.TEAM + " Test Execution report", Configuration.Email.MAIL_BODY_TEXT, listOfAttachments);
     }
 
     private static Theme setTheme(String themeType) {
