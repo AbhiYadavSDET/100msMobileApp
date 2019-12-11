@@ -6,6 +6,8 @@ import PageObject.HomePage;
 import Utils.MbkReporter;
 import org.openqa.selenium.WebDriver;
 
+import java.io.IOException;
+
 public class BankTransferHelper {
 
 
@@ -25,7 +27,7 @@ public class BankTransferHelper {
 
 
 
-    public void bankTransfer(String accountName, String accountNumber, String ifsc, String amount, String expectedMessage) throws InterruptedException {
+    public void bankTransfer(String accountName, String accountNumber, String ifsc, String amount, String expectedMessage) throws InterruptedException, IOException {
 
         Double balanceBefore =Double.parseDouble(homePage.getAvailableBalance())*100;
 
@@ -62,20 +64,20 @@ public class BankTransferHelper {
 
         String actualMessage= bankTransferPage.getTrxStatus();
 
-        mbkReporter.verifyEqualsWithLogging(actualMessage, expectedMessage, "Bank transfer success", false );
+        mbkReporter.verifyEqualsExtentReport(actualMessage, expectedMessage, "Bank transfer success", false, "Verify Success Message" );
 
         String amountPaid= bankTransferPage.getAmountPaid();
 
-        mbkReporter.verifyEqualsWithLogging(amountPaid, amount, "Validated amount transfer", false);
+        mbkReporter.verifyEqualsExtentReport(amountPaid, amount, "Validated amount transfer", false, "Verify Amount Paid");
 
 
         Double balanceAfter= Double.parseDouble(homePage.getAvailableBalance())*100;
 
         Double paidAmount= Double.parseDouble(amountPaid)*100;
 
-        Double expectedAmount= (balanceBefore-(paidAmount+processingFee));
+        Double expectedAmount= (balanceBefore-(paidAmount+(processingFee*100)));
 
-        mbkReporter.verifyEqualsWithLogging(expectedAmount, balanceAfter, "Amount Validated", false);
+        mbkReporter.verifyEqualsExtentReport(expectedAmount, balanceAfter, "Amount Validated", false, "Verify Expected Values");
 
 
         homePage.clickOnLogoMbk();

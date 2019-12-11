@@ -10,6 +10,7 @@ import Utils.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class LoginHelper {
@@ -29,7 +30,7 @@ public class LoginHelper {
     }
 
 
-    public void loginViaOtp(String mobileNumber, String expectedName, String expectedEmailId, String expectedCellNumber) throws InterruptedException {
+    public void loginViaOtp(String mobileNumber, String expectedName, String expectedEmailId, String expectedCellNumber) throws InterruptedException, IOException {
         //click on login on home page
         if (Element.isElementPresent(driver, By.xpath("//a[text() = 'Login']"))) {
 
@@ -67,9 +68,9 @@ public class LoginHelper {
             String actualCellNumber = sideDrawerPage.getUserCellNumber();
 
 
-            mbkReporter.verifyEqualsWithLogging(actualName, expectedName, "User name displayed", false);
-            mbkReporter.verifyEqualsWithLogging(actualEmailId, expectedEmailId, "User Email ID displayed", false);
-            mbkReporter.verifyEqualsWithLogging(actualCellNumber, expectedCellNumber, "User Cell Number Displayed", false);
+            mbkReporter.verifyEqualsExtentReport(actualName, expectedName, "User name displayed", false, "Verify Name");
+            mbkReporter.verifyEqualsExtentReport(actualEmailId, expectedEmailId, "User Email ID displayed", false, "Verify Email ID");
+            mbkReporter.verifyEqualsExtentReport(actualCellNumber, expectedCellNumber, "User Cell Number Displayed", false, "Verify Cell Number");
 
 
             sideDrawerPage.clickDarkOverlay();

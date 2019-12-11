@@ -11,6 +11,7 @@
 
         <classes>
             <class name="BankTransferFlow.BankTransferTest"/>
+            <class name="Utils.ExtentReport.Reporter"/>
         </classes>
     </test>
 
