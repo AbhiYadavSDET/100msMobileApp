@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Bank Transfer Flow">
+
+    <!--Listeners-->
+    <listeners>
+        <listener class-name="Utils.ExtentReportListener"/>
+    </listeners>
+
     <test verbose="2" preserve-order="true" name="BankTransferTest.java">
         <groups>
             <run>
@@ -11,7 +17,7 @@
 
         <classes>
             <class name="BankTransferFlow.BankTransferTest"/>
-            <class name="Utils.ExtentReport.Reporter"/>
+            <class name="Utils.ExtentReport"/>
         </classes>
     </test>
 

@@ -1,24 +1,14 @@
 package Utils;
 
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.testng.Assert;
-import org.testng.Reporter;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.InetAddress;
-import java.text.SimpleDateFormat;
-import java.util.GregorianCalendar;
 
 public class MbkReporter {
 
     public boolean testCaseStatus = true;
-    Utils.ExtentReport.Reporter reporter;
 
     public MbkReporter() {
-    reporter = new Utils.ExtentReport.Reporter();
     }
 
 
@@ -76,67 +66,49 @@ public class MbkReporter {
         }
     }
 
-    public void verifyEqualsExtentReport(Object actual, Object expected, String message, boolean screenshotOnFailure, String stepName) throws IOException {
-
-        Reporter.log("<br>");
+    public static void verifyTrueWithLoggingExtentReport(boolean condition, String stepname, String details, boolean exitOnFailure) throws IOException {
 
         try {
-            Assert.assertEquals(actual, expected, message);
-            Reporter.log("<Font Color=#008000> PASS </Font>" + message);
-
-            Log.info(Log.ANSI_GREEN + "LOG | PASS | " + stepName + " | " + message + Log.ANSI_RESET);
-
-            reporter.extentReportDisplay("PASS", stepName + " | " + message);
+            Assert.assertTrue(condition, stepname);
+            Log.info(Log.ANSI_GREEN + "LOG | PASS | Message : " + stepname + Log.ANSI_RESET);
+            ExtentReport.extentReportDisplay(ExtentReport.Status.PASS, stepname, details);
 
 
         } catch (AssertionError e) {
-            this.testCaseStatus = false;
-            if (screenshotOnFailure) {
+            if (exitOnFailure) {
+                Log.info(Log.ANSI_RED + "LOG | FAIL | Message : " + stepname + Log.ANSI_RESET);
+                ExtentReport.extentReportDisplay(ExtentReport.Status.FAIL, stepname, details);
+                throw e;
 
-                Reporter.log("<Font Color=red> FAIL </Font> " + message);
-
-
-                //String s = screenCaptureExtentReport(directoryName, screenName);
-                //Log.info(s);
-                Log.info(Log.ANSI_RED + "LOG | FAIL | " + stepName + " | " + message + Log.ANSI_RESET);
-
-                reporter.extentReportDisplay("FAIL", stepName + " | " + message);
-
+            } else {
+                Log.info(Log.ANSI_RED + "LOG | FAIL | Message : " + stepname + Log.ANSI_RESET);
+                ExtentReport.extentReportDisplay(ExtentReport.Status.FAIL, stepname, details);
             }
-
 
         }
     }
 
-    public void verifyTrueExtentReport(boolean condition, String message, boolean screenshotOnFailure, String stepName) throws IOException {
-
-        Reporter.log("<br>");
+    public static void verifyEqualsWithLoggingExtentReport(Object actual, Object expected, String stepname, boolean exitOnFailure) throws IOException {
 
         try {
-            Assert.assertTrue(condition, message);
-            Reporter.log("<Font Color=#008000> PASS </Font>" + message);
-
-            Log.info(Log.ANSI_GREEN + "LOG | PASS | " + stepName + " | " + message + Log.ANSI_RESET);
-
-            reporter.extentReportDisplay("PASS", stepName + " | " + message);
+            Assert.assertEquals(actual, expected, stepname);
+            Log.info(Log.ANSI_GREEN + "LOG | PASS | Message : " + stepname + " | Actual : " + actual + " | Expected : " + expected + Log.ANSI_RESET);
+            ExtentReport.extentReportDisplay(ExtentReport.Status.PASS, stepname, "Actual : " + actual + " | Expected : " + expected);
 
         } catch (AssertionError e) {
-            this.testCaseStatus = false;
-            if (screenshotOnFailure) {
+            if (exitOnFailure) {
+                Log.info(Log.ANSI_RED + "LOG | FAIL | Message : " + stepname + " | Actual : " + actual + " | Expected : " + expected + Log.ANSI_RESET);
+                ExtentReport.extentReportDisplay(ExtentReport.Status.FAIL, stepname, "Actual : " + actual + " | Expected : " + expected);
+                throw e;
 
-                Reporter.log("<Font Color=red> FAIL </Font> " + message);
-
-
-                //String s = screenCaptureExtentReport(directoryName, screenName);
-                //Log.info(s);
-                Log.info(Log.ANSI_RED + "LOG | FAIL | " + stepName + " | " + message + Log.ANSI_RESET);
-
-                reporter.extentReportDisplay("FAIL", stepName + " | " + message);
+            } else {
+                Log.info(Log.ANSI_RED + "LOG | FAIL | Message : " + stepname + " | Actual : " + actual + " | Expected : " + expected + Log.ANSI_RESET);
+                ExtentReport.extentReportDisplay(ExtentReport.Status.FAIL, stepname, "Actual : " + actual + " | Expected : " + expected);
 
             }
 
-
         }
     }
+
 
 }

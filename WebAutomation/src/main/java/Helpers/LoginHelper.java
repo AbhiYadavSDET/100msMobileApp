@@ -68,9 +68,9 @@ public class LoginHelper {
             String actualCellNumber = sideDrawerPage.getUserCellNumber();
 
 
-            mbkReporter.verifyEqualsExtentReport(actualName, expectedName, "User name displayed", false, "Verify Name");
-            mbkReporter.verifyEqualsExtentReport(actualEmailId, expectedEmailId, "User Email ID displayed", false, "Verify Email ID");
-            mbkReporter.verifyEqualsExtentReport(actualCellNumber, expectedCellNumber, "User Cell Number Displayed", false, "Verify Cell Number");
+            MbkReporter.verifyEqualsWithLoggingExtentReport(actualName, expectedName, "Verify : User name displayed", false);
+            MbkReporter.verifyEqualsWithLoggingExtentReport(actualEmailId, expectedEmailId, "Verify : User Email ID displayed", false);
+            MbkReporter.verifyEqualsWithLoggingExtentReport(actualCellNumber, expectedCellNumber, "Verify : User Cell Number Displayed", false);
 
 
             sideDrawerPage.clickDarkOverlay();
