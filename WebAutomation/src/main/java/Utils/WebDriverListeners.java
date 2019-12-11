@@ -88,6 +88,7 @@ public class WebDriverListeners extends TestBase implements WebDriverEventListen
             ExtentReport.createLable("Exception", ExtentColor.CYAN);
             ExtentReport.extentReportDisplay(ExtentReport.Status.FAIL, "Exception Message", throwable.getMessage());
             ExtentReport.extentReportAttachScreenshot("/WebAutomation/test-output/screenshots/" + timestamp + ".jpeg");
+            ExtentReport.extentReportAttachScreenshot(System.getProperty("user.dir") + "/test-output/screenshots/" + timestamp + ".jpeg");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (Exception e) {
