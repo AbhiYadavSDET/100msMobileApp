@@ -3,6 +3,7 @@ package Utils;
 import Config.Configuration;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
@@ -57,22 +58,9 @@ public class ExtentReport {
         }
     }
 
-    public static void extentReportDisplay(Status result, String details) throws IOException {
-        switch (result) {
+    public static void extentReportAttachScreenshot(String screenshotPath) throws IOException {
+        EXTENTTEST.log(com.aventstack.extentreports.Status.INFO, "Screenshot", MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
 
-            case PASS:
-                EXTENTTEST.log(com.aventstack.extentreports.Status.PASS, details);
-                break;
-            case FAIL:
-                EXTENTTEST.log(com.aventstack.extentreports.Status.FAIL, details);
-                break;
-            case INFO:
-                EXTENTTEST.log(com.aventstack.extentreports.Status.INFO, details);
-                break;
-            case SKIP:
-                EXTENTTEST.log(com.aventstack.extentreports.Status.SKIP, details);
-                break;
-        }
     }
 
     public static void createLable(String text, ExtentColor extentColor) {
