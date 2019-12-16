@@ -1,6 +1,5 @@
-package main.java.utils;
+package utils;
 
-import applicationcontext.ApplicationContextProvider;
 import common.LoggerService;
 import customexception.PolicyNotFoundInPolicyCollection;
 import dbutil.mongo.policy.PolicyManager;

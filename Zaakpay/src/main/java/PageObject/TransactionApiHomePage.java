@@ -59,7 +59,6 @@ public class TransactionApiHomePage {
         Element.enterText(driver, textbox_amount, lastName, "Last Name");
     }
 
-
 }
 
 

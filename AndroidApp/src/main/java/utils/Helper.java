@@ -1,4 +1,4 @@
-package main.java.utils;
+package utils;
 
 import io.appium.java_client.android.AndroidDriver;
 import org.json.JSONException;
@@ -422,7 +422,6 @@ public class Helper {
     }
 
     /**
-     *
      * @param val
      * @return returns a string with the specified Decimal places
      */

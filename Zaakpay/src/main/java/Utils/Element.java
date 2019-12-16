@@ -894,5 +894,8 @@ public class Element extends TestBase {
         return isPresent;
     }
 
+    public static void waitSleep(int time) throws InterruptedException{
+        Thread.sleep(time);
+    }
 
 }
