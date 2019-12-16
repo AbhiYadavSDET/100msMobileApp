@@ -1,12 +1,13 @@
 package RechargeAndBill;
 
+import Helpers.LoginHelper;
 import Helpers.Recharge.MobileHelper;
 import Utils.TestBase;
 import org.testng.annotations.Test;
 
 public class MobileRechargeTest extends TestBase {
 
-    @Test(groups = {"recharge"}, priority = 0, description = "Verify Mobile prepaid bill")
+    @Test(groups = {"rechargeMobile"}, priority = 0, description = "Verify Mobile prepaid bill")
     public void Test_Prepaid() throws InterruptedException {
 //        LoginHelper loginHelper = new LoginHelper(driver);
 //        loginHelper.loginViaOtp("8527797582", "T.C. Suneja", "mayank.suneja@mobikwik.com", "8527797582");

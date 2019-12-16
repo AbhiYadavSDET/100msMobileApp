@@ -6,12 +6,13 @@ import PageObject.HomePage;
 import Utils.MbkReporter;
 import org.openqa.selenium.WebDriver;
 
+import java.io.IOException;
+
 public class BankTransferHelper {
 
 
     WebDriver driver;
     HomePage homePage;
-    MbkReporter mbkReporter;
     DashboardPage dashboardPage;
     BankTransferPage bankTransferPage;
 
@@ -19,17 +20,15 @@ public class BankTransferHelper {
     public BankTransferHelper(WebDriver driver) {
         this.driver = driver;
         homePage = new HomePage(driver);
-        dashboardPage= new DashboardPage(driver);
-        mbkReporter = new MbkReporter();
+        dashboardPage = new DashboardPage(driver);
     }
 
 
+    public void bankTransfer(String accountName, String accountNumber, String ifsc, String amount, String expectedMessage) throws InterruptedException, IOException {
 
-    public void bankTransfer(String accountName, String accountNumber, String ifsc, String amount, String expectedMessage) throws InterruptedException {
+        Double balanceBefore = Double.parseDouble(homePage.getAvailableBalance()) * 100;
 
-        Double balanceBefore =Double.parseDouble(homePage.getAvailableBalance())*100;
-
-        bankTransferPage= dashboardPage.clickOnBankTransferSideDrawer();
+        bankTransferPage = dashboardPage.clickOnBankTransferSideDrawer();
 
         bankTransferPage.enterAccountName(accountName);
 
@@ -42,7 +41,7 @@ public class BankTransferHelper {
         //For Processing Fee to Get Load
         Thread.sleep(2000);
 
-        Double processingFee= Double.parseDouble(bankTransferPage.getProcessingFee());
+        Double processingFee = Double.parseDouble(bankTransferPage.getProcessingFee());
 
         bankTransferPage.clickGo();
 
@@ -60,27 +59,25 @@ public class BankTransferHelper {
 
         bankTransferPage.waitForTickIcon();
 
-        String actualMessage= bankTransferPage.getTrxStatus();
+        String actualMessage = bankTransferPage.getTrxStatus();
 
-        mbkReporter.verifyEqualsWithLogging(actualMessage, expectedMessage, "Bank transfer success", false );
+        MbkReporter.verifyEqualsWithLoggingExtentReport(actualMessage, expectedMessage, "Bank transfer success", false);
 
-        String amountPaid= bankTransferPage.getAmountPaid();
+        String amountPaid = bankTransferPage.getAmountPaid();
 
-        mbkReporter.verifyEqualsWithLogging(amountPaid, amount, "Validated amount transfer", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(amountPaid, amount, "Validated amount transfer", false);
 
 
-        Double balanceAfter= Double.parseDouble(homePage.getAvailableBalance())*100;
+        Double balanceAfter = Double.parseDouble(homePage.getAvailableBalance()) * 100;
 
-        Double paidAmount= Double.parseDouble(amountPaid)*100;
+        Double paidAmount = Double.parseDouble(amountPaid) * 100;
 
-        Double expectedAmount= (balanceBefore-(paidAmount+processingFee));
+        Double expectedAmount = (balanceBefore - (paidAmount + (processingFee * 100)));
 
-        mbkReporter.verifyEqualsWithLogging(expectedAmount, balanceAfter, "Amount Validated", false);
+        MbkReporter.verifyEqualsWithLoggingExtentReport(expectedAmount, balanceAfter, "Amount Validated", false);
 
 
         homePage.clickOnLogoMbk();
-
-
 
 
     }

@@ -6,11 +6,13 @@ import Helpers.LoginHelper;
 import Utils.TestBase;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
+
 
 public class HelpTest extends TestBase {
 
     @Test(groups = {"helpFlow"}, priority = 0, description = "Verify Help Flow on Web")
-    public void Test_Help_Flow() throws InterruptedException {
+    public void Test_Help_Flow() throws InterruptedException, IOException {
 
         LoginHelper loginHelper = new LoginHelper(driver);
         loginHelper.loginViaOtp("8527797582", "T.C. Suneja", "mayank.suneja@mobikwik.com", "8527797582");
