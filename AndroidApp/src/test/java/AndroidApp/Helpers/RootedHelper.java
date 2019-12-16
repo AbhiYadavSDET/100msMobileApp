@@ -1,9 +1,9 @@
-package test.java.AndroidApp.Helpers;
+package AndroidApp.Helpers;
 
+import AndroidApp.PageObject.RootedNotePage;
 import UITestFramework.MBReporter;
 import io.appium.java_client.android.AndroidDriver;
 import logger.Log;
-import test.java.AndroidApp.PageObject.RootedNotePage;
 
 import java.io.IOException;
 

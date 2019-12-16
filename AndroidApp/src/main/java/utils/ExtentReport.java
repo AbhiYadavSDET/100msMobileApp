@@ -1,4 +1,4 @@
-package main.java.utils;
+package utils;
 
 
 import applicationcontext.ApplicationContextProvider;
@@ -43,7 +43,7 @@ public class ExtentReport {
         EXTENTHTMLREPORTER = new ExtentHtmlReporter(EXTENTREPORTPATH);
         EXTENTREPORT = new ExtentReports();
         EXTENTREPORT.attachReporter(EXTENTHTMLREPORTER);
-        EXTENTHTMLREPORTER.config().setTheme(setTheme(main.java.utils.Configuration.ReportDefaults.REPORT_THEME));
+        EXTENTHTMLREPORTER.config().setTheme(setTheme(Configuration.ReportDefaults.REPORT_THEME));
     }
 
     public static void extentReportDisplay(Status result, String stepname, String details) throws IOException {
@@ -99,7 +99,7 @@ public class ExtentReport {
 
         Log.info("Send Mail : " + "TestReport.html");
         Log.info("Send Mail : " + "Extent.html");
-        mailer.sendMail(recipients, main.java.utils.Configuration.Email.TEAM + " Test Execution report", main.java.utils.Configuration.Email.MAIL_BODY_TEXT, listOfAttachments);
+        mailer.sendMail(recipients, Configuration.Email.TEAM + " Test Execution report", Configuration.Email.MAIL_BODY_TEXT, listOfAttachments);
     }
 
     private static Theme setTheme(String themeType) {

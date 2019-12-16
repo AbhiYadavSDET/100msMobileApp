@@ -2,8 +2,8 @@
 <suite name="sanitySuit">
     <listeners>
         <listener class-name="UITestFramework.retryLogic.RetryListener"/>
-        <listener class-name="main.java.utils.Listeners.TestListener"/>
-        <listener class-name="main.java.utils.ExtentReporterNG"/>
+        <listener class-name="utils.Listeners.TestListener"/>
+        <listener class-name="utils.ExtentReporterNG"/>
     </listeners>
     <parameter name="build" value="prod"/>
     <parameter name="level" value="payments"/>
@@ -22,8 +22,8 @@
         </groups>
         <classes>
             <class name="UITestFramework.CreateSession"/>
-            <class name="main.java.utils.ExtentReport"/>
-            <class name="test.java.AndroidApp.Test.Rooted.Test_Rooted"/>
+            <class name="utils.ExtentReport"/>
+            <class name="AndroidApp.Test.Rooted.Test_Rooted"/>
         </classes>
     </test>
 

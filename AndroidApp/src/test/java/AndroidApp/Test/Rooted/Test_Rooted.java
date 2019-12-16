@@ -1,11 +1,11 @@
-package test.java.AndroidApp.Test.Rooted;
+package AndroidApp.Test.Rooted;
 
+import AndroidApp.Helpers.RootedHelper;
 import UITestFramework.CreateSession;
 import logger.Log;
-import main.java.utils.ExtentReport;
 import org.json.JSONException;
 import org.testng.annotations.Test;
-import test.java.AndroidApp.Helpers.RootedHelper;
+import utils.ExtentReport;
 
 import java.io.IOException;
 
