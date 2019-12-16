@@ -373,13 +373,13 @@ public final class Configuration {
         }
     }
 
-    public static class mock{
+    public static class mock {
 
         public static final Boolean IS_HTTPS_REQUIRED;
         public static final String HOST;
         public static final String PORT;
 
-        public mock(){
+        public mock() {
 
         }
 
@@ -389,6 +389,26 @@ public final class Configuration {
             PORT = Configuration.handler.getValue("mock.api.port");
         }
 
+    }
+
+    public static class Email {
+        public static final String RECIPIENTS;
+        public static final String SUBJECT;
+        public static final String MAIL_BODY_TEXT;
+        public static final String TEAM;
+
+
+        public Email() {
+        }
+
+        static {
+            RECIPIENTS = String.valueOf(Configuration.handler.getValue("mail.recipients.comma.seperated"));
+            SUBJECT = String.valueOf(Configuration.handler.getValue("mail.subject"));
+            MAIL_BODY_TEXT = String.valueOf(Configuration.handler.getValue("mail.body.text"));
+            TEAM = String.valueOf(Configuration.handler.getValue("team"));
+
+
+        }
     }
 
 }
