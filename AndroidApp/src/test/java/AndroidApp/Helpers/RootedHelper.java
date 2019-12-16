@@ -5,6 +5,8 @@ import io.appium.java_client.android.AndroidDriver;
 import logger.Log;
 import test.java.AndroidApp.PageObject.RootedNotePage;
 
+import java.io.IOException;
+
 public class RootedHelper {
 
     AndroidDriver driver;
@@ -17,10 +19,9 @@ public class RootedHelper {
         rootedNotePage = new RootedNotePage(driver);
     }
 
-    public void assertText()
-    {
+    public void assertText() throws IOException {
         Log.info("Rooted Phone Text Assertion");
-        mbReporter.verifyEqualsWithLogging(rootedNotePage.intialText(), "SORRY!", "Verify Initial Text", false, false);
-        mbReporter.verifyEqualsWithLogging(rootedNotePage.rootedDisclaimer(), "You are using an unsafe rooted phone.", "Verify Rooted Disclaimer", false, false);
+        MBReporter.verifyEqualsWithLoggingExtentReport(rootedNotePage.intialText(), "SORRY!", "Verify Initial Text", false);
+        MBReporter.verifyEqualsWithLoggingExtentReport(rootedNotePage.rootedDisclaimer(), "You are using an unsafe rooted phone.", "Verify Rooted Disclaimer", false);
     }
 }

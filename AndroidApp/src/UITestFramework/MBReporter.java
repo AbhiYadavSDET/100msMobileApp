@@ -2,6 +2,7 @@ package UITestFramework;
 
 import io.appium.java_client.android.AndroidDriver;
 import logger.Log;
+import main.java.utils.ExtentReport;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -492,6 +493,28 @@ public class MBReporter {
         Log.info(": Saving device log - Done.");
 
 
+    }
+
+    public static void verifyEqualsWithLoggingExtentReport(Object actual, Object expected, String stepname, boolean exitOnFailure) throws IOException {
+
+        try {
+            Assert.assertEquals(actual, expected, stepname);
+            Log.info(Log.ANSI_GREEN + "LOG | PASS | Message : " + stepname + " | Actual : " + actual + " | Expected : " + expected + Log.ANSI_RESET);
+            ExtentReport.extentReportDisplay(ExtentReport.Status.PASS, stepname, "Actual : " + actual + " | Expected : " + expected);
+
+        } catch (AssertionError e) {
+            if (exitOnFailure) {
+                Log.info(Log.ANSI_RED + "LOG | FAIL | Message : " + stepname + " | Actual : " + actual + " | Expected : " + expected + Log.ANSI_RESET);
+                ExtentReport.extentReportDisplay(ExtentReport.Status.FAIL, stepname, "Actual : " + actual + " | Expected : " + expected);
+                throw e;
+
+            } else {
+                Log.info(Log.ANSI_RED + "LOG | FAIL | Message : " + stepname + " | Actual : " + actual + " | Expected : " + expected + Log.ANSI_RESET);
+                ExtentReport.extentReportDisplay(ExtentReport.Status.FAIL, stepname, "Actual : " + actual + " | Expected : " + expected);
+
+            }
+
+        }
     }
 
 
