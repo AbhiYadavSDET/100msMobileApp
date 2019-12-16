@@ -1,0 +1,30 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="sanitySuit">
+    <listeners>
+        <listener class-name="UITestFramework.retryLogic.RetryListener"/>
+        <listener class-name="main.java.utils.Listeners.TestListener"/>
+        <listener class-name="main.java.utils.ExtentReporterNG"/>
+    </listeners>
+    <parameter name="build" value="prod"/>
+    <parameter name="level" value="payments"/>
+    <parameter name="saucelabs" value="false"></parameter>
+    <parameter name="methodName" value="sanity"></parameter>
+
+
+    <!--######### Rooted #############-->
+    <test name="Rooted Device Check">
+        <groups>
+            <run>
+                <include name="setUp"/>
+<!--                <include name="instantiateHelpers"/>-->
+                <include name="rootedSanity"/>
+                <include name="tearDown"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="UITestFramework.CreateSession"/>
+            <class name="test.java.AndroidApp.Test.Rooted.Test_Rooted"/>
+        </classes>
+    </test>
+
+</suite>
