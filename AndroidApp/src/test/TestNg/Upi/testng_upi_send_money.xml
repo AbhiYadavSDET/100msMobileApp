@@ -2,7 +2,7 @@
 <suite name="Appium-Framework">
     <listeners>
         <listener class-name="UITestFramework.retryLogic.RetryListener"/>
-        <listener class-name="main.java.utils.Listeners.TestListener"/>
+        <listener class-name="utils.Listeners.TestListener"/>
     </listeners>
     <parameter name="build" value="debug"/>
     <parameter name="level" value="payments"/>
@@ -23,7 +23,7 @@
         <classes>
             <class name="UITestFramework.CreateSession"/>
             <class name="UITestFramework.ExtentReport.Reporter"/>
-            <class name="test.java.Upi.Test_Upi"/>
+            <class name="Upi.Test_Upi"/>
         </classes>
 
     </test>
