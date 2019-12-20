@@ -25,7 +25,7 @@
         <classes>
             <class name="UITestFramework.CreateSession"/>
             <class name="UITestFramework.ExtentReport.Reporter"/>
-            <class name="test.java.NearBy.Test_Nearby"/>
+            <class name="NearBy.Test_Nearby"/>
 
         </classes>
         <packages>

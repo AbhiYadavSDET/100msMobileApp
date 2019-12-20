@@ -25,7 +25,7 @@
         <classes>
             <class name="UITestFramework.CreateSession"/>
             <class name="UITestFramework.ExtentReport.Reporter"/>
-            <class name="test.java.Mgm.MgmTest"/>
+            <class name="Mgm.MgmTest"/>
         </classes>
         <packages>
         </packages>

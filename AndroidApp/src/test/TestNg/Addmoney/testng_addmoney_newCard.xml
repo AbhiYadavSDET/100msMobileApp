@@ -3,6 +3,7 @@
     <listeners>
         <listener class-name="UITestFramework.retryLogic.RetryListener"/>
         <listener class-name="utils.Listeners.TestListener"/>
+        <listener class-name="utils.ExtentReporterNG"/>
     </listeners>
     <parameter name="build" value="prod"/>
     <parameter name="level" value="payments"/>
@@ -14,7 +15,6 @@
         <groups>
             <run>
                 <include name="setUp"/>
-                <include name="instantiateHelpers"/>
                 <include name="addMoneyNewCard"/>
                 <include name="tearDown"/>
             </run>
@@ -22,7 +22,7 @@
 
         <classes>
             <class name="UITestFramework.CreateSession"/>
-            <class name="UITestFramework.ExtentReport.Reporter"/>
+            <class name="utils.ExtentReport"/>
             <class name="AddMoney.Test_AddMoney"/>
         </classes>
 
