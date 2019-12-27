@@ -1,6 +1,7 @@
 package Bus;
 
 import Helpers.BusHelper;
+import Helpers.CheckBalanceHelper;
 import Helpers.LoginHelper;
 import UITestFramework.CreateSession;
 import dbutil.mysql.automationtest.front_end_automation.entity.FrontEndEntity;
@@ -20,6 +21,9 @@ public class Test_Bus extends CreateSession {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
         loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
 //        loginHelper.quickLoginViaEmail(userName, password);
+
+        CheckBalanceHelper checkBalanceHelper = new CheckBalanceHelper(getAndroidDriver());
+        checkBalanceHelper.checkBalance(frontEndEntity.getAmount());
 
 
         BusHelper busHelper = new BusHelper(getAndroidDriver());
