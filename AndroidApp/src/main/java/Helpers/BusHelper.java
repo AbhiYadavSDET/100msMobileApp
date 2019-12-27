@@ -72,6 +72,8 @@ public class BusHelper {
         } else {
 
 
+            int year = DateHelper.getCurrentYearInteger();
+
             int month = DateHelper.getCurrentMonthInteger();
             if (month < 12) {
 
@@ -80,10 +82,11 @@ public class BusHelper {
             } else {
 
                 month = 1;
+                year=year+1;
 
             }
 
-            int year = DateHelper.getCurrentYearInteger();
+
 
             String monthString = DateHelper.getMonthInStringFromInteger(month);
 
