@@ -70,13 +70,16 @@ public class InsuranceHelper {
 
         // Fetch the details from the screen
         String actualHeader = insurancePage.getFillDetailsHeader();
-        String actualDescription = insurancePage.getFillDetailsDescription();
+
+        Log.info(insurancePage.getFillDetailsDescription());
+        String actualDescription = insurancePage.getFillDetailsDescription().toLowerCase().replaceAll("\n","");
+        Log.info(actualDescription);
 
         // fetch the policy ID
         String policyId;
 
         mbReporter.verifyEqualsWithLogging(actualHeader, expectedHeader, "Fill details Screen | Header", false, false);
-        mbReporter.verifyEqualsWithLogging(actualDescription, expectedDescription + insuredBy, "Fill details Screen | Description", false, false);
+        mbReporter.verifyEqualsWithLogging(actualDescription, expectedDescription.toLowerCase() + insuredBy.toLowerCase(), "Fill details Screen | Description", true, false);
 
 
         // Return to the homepage
