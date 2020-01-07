@@ -14,16 +14,16 @@ public class SideDrawerPage {
 
     AndroidDriver driver;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/drawerHeadingIcon")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/drawerHeadingIcon")
     private AndroidElement profile_icon;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/drawerHeadingName")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/drawerHeadingName")
     private AndroidElement label_name;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/drawerHeadingEmail")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/drawerHeadingEmail")
     private AndroidElement label_email;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/drawerHeadingNumber")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/drawerHeadingNumber")
     private AndroidElement label_mobile;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Update Profile']")

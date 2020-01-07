@@ -16,10 +16,10 @@ public class LoginPage {
     String apiOtp;
 
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/otp_field")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/otp_field")
     private AndroidElement textbox_otp;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/continue_btn")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/continue_btn")
     private AndroidElement cta_submit_otp;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'EXISTING USER']")
@@ -28,13 +28,13 @@ public class LoginPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'NEW USER']")
     private AndroidElement link_new_user;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/edit_text_mket")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/edit_text_mket")
     private AndroidElement textbox_email;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Password']/following::android.widget.EditText")
     private AndroidElement textbox_password;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/btnLogin")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/btnLogin")
     private AndroidElement cta_login;
 
 

@@ -21,7 +21,7 @@ public class CancelSingle extends BaseApi {
         getSpecBuilder().setBasePath(basePath);
 
         //Set the headers
-        getSpecBuilder().addHeader("Authorization", "09yLkqMhXd7B0i+/QIHYtw==.vjqvdqfcgjcq4liai8p2kt32ej");
+        getSpecBuilder().addHeader("Authorization", "\n" + "ZUeOSo10VN8X+eO6PPlgOA==.bf5ajmpqouh0vpuo12l7e77olg");
         getSpecBuilder().addHeader("X-MClient", "3");
         getSpecBuilder().setContentType(ContentType.JSON);
 

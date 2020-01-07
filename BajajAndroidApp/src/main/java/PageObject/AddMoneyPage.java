@@ -34,13 +34,13 @@ public class AddMoneyPage {
     @AndroidFindBy(xpath = "//*[@text = 'Debit or Credit Card']")
     public AndroidElement label_debit_credit_card;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/mkab_title")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/mkab_title")
     public AndroidElement label_make_payment;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/horizontal_button_2")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/horizontal_button_2")
     public AndroidElement button_yes;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/horizontal_button_1")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/horizontal_button_1")
     public AndroidElement button_no;
 
     //Enter card details
@@ -56,9 +56,9 @@ public class AddMoneyPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'CVV']/following::android.widget.EditText[1]")
     private AndroidElement textbox_cvv;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/btn_add_money")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/btn_add_money")
     public AndroidElement cta_pay_now;
-    @AndroidFindBy(id = "com.mobikwik_new:id/new_card_btn_pay")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/new_card_btn_pay")
     public AndroidElement cta_pay_now_new;
 
     @AndroidFindBy(xpath = "//android.widget.RadioButton[@content-desc = 'e-Secure Password']")
@@ -76,7 +76,7 @@ public class AddMoneyPage {
     @AndroidFindBy(xpath = "//android.widget.Button")
     private AndroidElement cta_bankpage_submit;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/base_title")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/base_title")
     private AndroidElement label_success_page_status;
 
     @AndroidFindBy(xpath = "//android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.TextView[@index ='0']")
@@ -87,13 +87,13 @@ public class AddMoneyPage {
 
     //Add Money Via UPI
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/upi_logo")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/upi_logo")
     private AndroidElement select_upi_for_add_money;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/bank_name")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/bank_name")
     private AndroidElement select_upi_bank;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/start_button")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/start_button")
     private AndroidElement restore_upi;
 
 
@@ -165,7 +165,7 @@ public class AddMoneyPage {
     }
 
     public void clickOnPayNow() throws InterruptedException {
-        if (Element.isElementPresent(driver, By.id("com.mobikwik_new:id/new_card_btn_pay"))) {
+        if (Element.isElementPresent(driver, By.id("com.mobikwik_new.bajajfinserv:id/new_card_btn_pay"))) {
             Element.selectElement(driver, cta_pay_now_new, "Pay Now Button");
 
         } else {

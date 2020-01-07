@@ -7,6 +7,7 @@ import UITestFramework.MBReporter;
 import io.appium.java_client.android.AndroidDriver;
 import logger.Log;
 import org.json.JSONException;
+import org.openqa.selenium.By;
 import utils.Element;
 import utils.Screen;
 
@@ -73,11 +74,16 @@ public class ImpsHelper {
         impsPage.clickOnConfirm();
 
         mbkCommonControlsHelper.handleSecurityPin(securityPin);
-        Thread.sleep(5000);
+        Thread.sleep(3000);
 
         // Enter the OTP
         Log.info("Enter the OTP");
-        Thread.sleep(30000);
+
+        Element.waitForVisibility(driver, By.xpath("//android.widget.EditText[@text = '••••••']"));
+
+        impsPage.clickOnSubmitOtp();
+
+        Thread.sleep(10000);
 
         //Assertion on the success page
         //fetch the values

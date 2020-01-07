@@ -13,10 +13,10 @@ public class NearbyPage {
     AndroidDriver driver;
 
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/backIcon")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/backIcon")
     private AndroidElement back_button_from_nearby_page;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/mkab_icon_1")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/mkab_icon_1")
     private AndroidElement back_button_from_nearby_internal_pages;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'KYC Centre']")
@@ -28,16 +28,16 @@ public class NearbyPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'Loan Center']")
     private AndroidElement icon_loan_center;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/mkab_title")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/mkab_title")
     private AndroidElement category_store_list;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/search_nearby")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/search_nearby")
     private AndroidElement cta_search_nearby;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/etSearch")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/etSearch")
     private AndroidElement enter_search_store;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/searchIcon")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/searchIcon")
     private AndroidElement cta_search_icon;
 
 

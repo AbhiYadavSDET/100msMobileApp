@@ -24,7 +24,7 @@ public class HelpPage {
     @AndroidFindBy(xpath = "//android.widget.EditText[@text='Type a query']")
     private AndroidElement queryTextBox;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/send_button")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/send_button")
     private AndroidElement send;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Ticket ID']")

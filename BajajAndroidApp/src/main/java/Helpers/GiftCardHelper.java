@@ -57,7 +57,7 @@ public class GiftCardHelper {
 
         Thread.sleep(2000);
 
-        Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/btn_search"));
+        Element.waitForVisibility(driver, By.id("com.mobikwik_new.bajajfinserv:id/btn_search"));
 
         giftCardPage.searchGiftCard();
 
@@ -99,12 +99,12 @@ public class GiftCardHelper {
             Thread.sleep(3000);
 
 
-            Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/base_title"));
+            Element.waitForVisibility(driver, By.id("com.mobikwik_new.bajajfinserv:id/base_title"));
 
 
-            mbReporter.verifyTrueWithLogging(Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/base_title")), "Success Page Title is : " + giftCardPage.getSuccessPageTitle(), true, false);
+            mbReporter.verifyTrueWithLogging(Element.waitForVisibility(driver, By.id("com.mobikwik_new.bajajfinserv:id/base_title")), "Success Page Title is : " + giftCardPage.getSuccessPageTitle(), true, false);
 
-            mbReporter.verifyTrueWithLogging(Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/base_title")), "Gift Card orderId : " + giftCardPage.getOrderId(), true, false);
+            mbReporter.verifyTrueWithLogging(Element.waitForVisibility(driver, By.id("com.mobikwik_new.bajajfinserv:id/base_title")), "Gift Card orderId : " + giftCardPage.getOrderId(), true, false);
 
 
             giftCardPage.clickOk();
@@ -136,7 +136,7 @@ public class GiftCardHelper {
 
         Thread.sleep(2000);
 
-        Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/btn_search"));
+        Element.waitForVisibility(driver, By.id("com.mobikwik_new.bajajfinserv:id/btn_search"));
 
         giftCardPage.clickMyGiftsButton();
 
@@ -148,11 +148,11 @@ public class GiftCardHelper {
 
             Thread.sleep(2000);
 
-            mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("com.mobikwik_new:id/btn_share")), "Gift Card available", true, false);
+            mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("com.mobikwik_new.bajajfinserv:id/btn_share")), "Gift Card available", true, false);
 
-            mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("com.mobikwik_new:id/btn_share")), "Recipient Name is : " + giftCardPage.getRecipientName(), true, false);
+            mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("com.mobikwik_new.bajajfinserv:id/btn_share")), "Recipient Name is : " + giftCardPage.getRecipientName(), true, false);
 
-            mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("com.mobikwik_new:id/btn_share")), "Order Id is : " + giftCardPage.getOrderId(), true, false);
+            mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("com.mobikwik_new.bajajfinserv:id/btn_share")), "Order Id is : " + giftCardPage.getOrderId(), true, false);
 
             giftCardPage.clickBackToHome();
 
@@ -185,7 +185,7 @@ public class GiftCardHelper {
         giftCardPage.clickMoreIcon();
 
 
-        List<AndroidElement> category = Element.findElements(driver, By.id("com.mobikwik_new:id/icon_txt"));
+        List<AndroidElement> category = Element.findElements(driver, By.id("com.mobikwik_new.bajajfinserv:id/icon_txt"));
         int noOfCategories = category.size() - 1;
 
         mbReporter.verifyTrueWithLogging(noOfCategories > 0, "No of Catgeories are : " + noOfCategories, true, false);
@@ -193,7 +193,7 @@ public class GiftCardHelper {
 
         giftCardPage.clickTrendingIcon();
 
-        List<AndroidElement> offers = Element.findElements(driver, By.id("com.mobikwik_new:id/offer_brand"));
+        List<AndroidElement> offers = Element.findElements(driver, By.id("com.mobikwik_new.bajajfinserv:id/offer_brand"));
         int noOfOffers = offers.size();
 
 

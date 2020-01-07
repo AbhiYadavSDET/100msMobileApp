@@ -13,26 +13,26 @@ public class GiftCardPage {
     AndroidDriver driver;
 
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/btn_action")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/btn_action")
     private AndroidElement cta_view_gift_cards;
 
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/btn_search")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/btn_search")
     private AndroidElement navigate_search_gift_cards;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/offerSearchView")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/offerSearchView")
     private AndroidElement search_gift_cards;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/offer_brand")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/offer_brand")
     private AndroidElement get_brand_name;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/offer_brand")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/offer_brand")
     private AndroidElement select_brand_gift_card;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/edit_text_mket")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/edit_text_mket")
     private AndroidElement enter_amount;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/action_button")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/action_button")
     private AndroidElement cta_next;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'Name']/following::android.widget.EditText")
@@ -44,36 +44,36 @@ public class GiftCardPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'Email Address']/following::android.widget.EditText")
     private AndroidElement text_email_id;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/btnPreview")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/btnPreview")
     private AndroidElement cta_buy_card;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/mkab_icon_1")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/mkab_icon_1")
     private AndroidElement back_button;
 
     //Success Page
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/base_title")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/base_title")
     private AndroidElement gift_card_success_page_title;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/brand")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/brand")
     private AndroidElement success_page_brand_name;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/buttonViewHoldings")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/buttonViewHoldings")
     private AndroidElement cta_ok;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/base_icon_close")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/base_icon_close")
     private AndroidElement cross_icon;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/textActionButton")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/textActionButton")
     private AndroidElement cta_my_gifts;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'Sent']")
     private AndroidElement sent_gift_cards;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/order_id_txt")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/order_id_txt")
     private AndroidElement order_id;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/recipient_txt")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/recipient_txt")
     private AndroidElement reciepient;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'More']")

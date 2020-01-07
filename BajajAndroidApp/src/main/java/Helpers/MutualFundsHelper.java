@@ -48,7 +48,7 @@ public class MutualFundsHelper {
         screen.swipeUpMedium(driver);
 
         mutualFundPage = homePage.clickMutualFunds();
-        Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/tv_title"));
+        Element.waitForVisibility(driver, By.id("com.mobikwik_new.bajajfinserv:id/tv_title"));
 
         boolean isVisible = false;
         // Check for the 1st element

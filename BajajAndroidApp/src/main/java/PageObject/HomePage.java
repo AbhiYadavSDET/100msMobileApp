@@ -15,28 +15,28 @@ public class HomePage {
 
     AndroidDriver driver;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/icon_drawer")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/icon_drawer")
     public AndroidElement sidedrawer_icon;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/icon")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/icon")
     private AndroidElement mbk_logo;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/tx_balance")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/tx_balance")
     private AndroidElement label_view_balance;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Pay to Merchant']")
     private AndroidElement button_pay_to_merchant;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Via Wallet']/preceding-sibling::android.widget.FrameLayout")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/transfer_money_btn")
     private AndroidElement button_transfer_money;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/tx_add_money")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/tx_add_money")
     private AndroidElement button_add_money;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/magic_btn")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/magic_btn")
     private AndroidElement button_magic;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/tx_balance")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/tx_balance")
     private AndroidElement login_signup_button;
 
 
@@ -71,13 +71,13 @@ public class HomePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='More']")
     private AndroidElement icon_more;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/navigation_history")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/navigation_history")
     private AndroidElement history_tab;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Offers']")
     private AndroidElement offers_tab;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/skip")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/skip")
     public AndroidElement skip_button;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Wallet']")
@@ -95,7 +95,7 @@ public class HomePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Offers']")
     private AndroidElement button_offers;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/btn_logout")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/btn_logout")
     private AndroidElement label_logout;
 
     //Nearby
@@ -105,10 +105,10 @@ public class HomePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Local Stores']")
     private AndroidElement icon_nearby;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/tx_tag")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/tx_tag")
     private AndroidElement store_count;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/close_button")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/close_button")
     private AndroidElement cross_icon_for_more_services_overlay;
 
     //////////////
@@ -120,11 +120,11 @@ public class HomePage {
     private AndroidElement icon_gift_card;
 
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/navigation_wallet")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/navigation_wallet")
     private AndroidElement navigate_wallet_page;
 
     //    @AndroidFindBy(id ="com.mobikwik_new.debug:id/tx_upi_id")
-    @AndroidFindBy(id = "com.mobikwik_new:id/tx_upi_id")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/tx_upi_id")
     private AndroidElement navigate_upi_page;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Via UPI']")
@@ -134,27 +134,27 @@ public class HomePage {
     private AndroidElement navigate_upi_request;
 
     //Check Balance Flow
-    @AndroidFindBy(id = "com.mobikwik_new:id/tx_bank_balance")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/tx_bank_balance")
     private AndroidElement cta_check_balance;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/balance")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/balance")
     private AndroidElement account_balance;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/cross_button")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/cross_button")
     private AndroidElement click_cross_overlay;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'Link Your Bank Account']")
     private AndroidElement link_bank_account;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/add_account_button")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/add_account_button")
     private AndroidElement cta_link_bank_account;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/close_button")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/close_button")
     private AndroidElement cross_icon_for_recharge_services_overlay;
 
     //onboarding Flow
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/title_text")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/title_text")
     private AndroidElement heading_secondary_email_screen;
 
     //Ola Flow

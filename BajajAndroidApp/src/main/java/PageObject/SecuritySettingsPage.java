@@ -12,7 +12,7 @@ public class SecuritySettingsPage {
 
     AndroidDriver driver;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/mkab_icon_5")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/mkab_icon_5")
     private AndroidElement security_settings_option;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'Deregister UPI Account']")
@@ -21,16 +21,16 @@ public class SecuritySettingsPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'Deregister Account']")
     private AndroidElement deregister_account_popup;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/horizontal_button_1")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/horizontal_button_1")
     private AndroidElement yes_deregister;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'Deregister successful']")
     private AndroidElement deregister_succesfull;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/primary_button")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/primary_button")
     private AndroidElement cta_ok;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/mkab_icon_1")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/mkab_icon_1")
     private AndroidElement back_button;
 
 

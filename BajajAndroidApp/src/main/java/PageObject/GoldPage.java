@@ -13,13 +13,13 @@ public class GoldPage {
     AndroidDriver driver;
 
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/buy_gold_button")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/buy_gold_button")
     private AndroidElement button_buy_gold;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/buy_gold_button_registered")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/buy_gold_button_registered")
     private AndroidElement cta_buy_gold_for_registered;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/sell_gold_button_registered")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/sell_gold_button_registered")
     private AndroidElement cta_sell_gold_for_registered;
 
 
@@ -30,13 +30,13 @@ public class GoldPage {
     @AndroidFindBy(xpath = "//android.widget.EditText[@text='gm']")
     private AndroidElement text_box_buy_in_gram;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/buy_now_button")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/buy_now_button")
     private AndroidElement cta_buy_now;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/have_a_promo_text")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/have_a_promo_text")
     private AndroidElement have_promo_code;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/edit_text_mket")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/edit_text_mket")
     private AndroidElement text_box_coupon_code;
 
 
@@ -44,48 +44,48 @@ public class GoldPage {
     private AndroidElement button_apply_coupon;
 
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/btn_gold_action")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/btn_gold_action")
     private AndroidElement cta_make_payment;
 
     @AndroidFindBy(id = "base_icon_close")
     private AndroidElement cross_icon;
 
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/txt_status")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/txt_status")
     private AndroidElement get_txn_status;
 
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/txt_order_id")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/txt_order_id")
     private AndroidElement get_txn_orderid;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/txt_amount")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/txt_amount")
     private AndroidElement quantity_in_gram;
 
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/gold_balance_button")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/gold_balance_button")
     private AndroidElement cta_check_gold_balance;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/textActionButton")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/textActionButton")
     private AndroidElement navigate_history;
 
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/txt_paid_or_received")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/txt_paid_or_received")
     private AndroidElement select_transaction;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/txt_txn_id")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/txt_txn_id")
     private AndroidElement get_transaction_id;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/mkab_icon_1")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/mkab_icon_1")
     private AndroidElement back_button;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/txt_description_amount")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/txt_description_amount")
     private AndroidElement error_description;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/btn_gold_action")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/btn_gold_action")
     private AndroidElement cta_continue;
 
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/btn_gold_action")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/btn_gold_action")
     private AndroidElement cta_sell_gold;
 
 

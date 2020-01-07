@@ -20,7 +20,7 @@ public class RefundApiTest extends BaseApi {
     @Test(priority = 0)
     public void Test01_refund_policy() {
 
-        CancelSingle cancelSingle = new CancelSingle("POLMBK6IF8B4J31", "25");
+        CancelSingle cancelSingle = new CancelSingle("POLMBK5JE76C175", "20");
         response = cancelSingle.execute();
 
         System.out.println(response.getBody().asString());

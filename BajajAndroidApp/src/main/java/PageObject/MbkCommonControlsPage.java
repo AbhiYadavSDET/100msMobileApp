@@ -13,25 +13,25 @@ public class MbkCommonControlsPage {
 
     AndroidDriver driver;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/have_a_promo_text")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/have_a_promo_text")
     private AndroidElement have_promo_code;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/edit_text_mket")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/edit_text_mket")
     private AndroidElement text_box_coupon_code;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Apply']")
     private AndroidElement button_apply_coupon;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/back_button")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/back_button")
     private AndroidElement button_up_2;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/mkab_icon_1")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/mkab_icon_1")
     private AndroidElement button_up;
 
     @AndroidFindBy(id = "base_icon_close")
     private AndroidElement cross_icon;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/btn_have_promo")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/btn_have_promo")
     private AndroidElement label_have_a_promo_code;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Enter Promo Code']/following::android.widget.EditText")
@@ -40,16 +40,16 @@ public class MbkCommonControlsPage {
     @AndroidFindBy(xpath = "//android.widget.RelativeLayout[@index = '0']/android.widget.ImageView[@index = '1']")
     private AndroidElement cross_ct_overlay;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/close_button")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/close_button")
     private AndroidElement ratings_cross_icon;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/cta")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/cta")
     private AndroidElement cta_refer_and_earn;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/cross_button")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/cross_button")
     private AndroidElement cross_button;
 
-    @AndroidFindBy(id = "com.mobikwik_new.debug:id/close_button")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv.debug:id/close_button")
     private AndroidElement gullak_cross_button;
 
 

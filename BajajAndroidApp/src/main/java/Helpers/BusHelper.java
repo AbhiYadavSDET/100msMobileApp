@@ -96,7 +96,7 @@ public class BusHelper {
         }
 
 
-        Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/journey_info"));
+        Element.waitForVisibility(driver, By.id("com.mobikwik_new.bajajfinserv:id/journey_info"));
 
         screen.swipeUpMedium(driver);
 
@@ -106,7 +106,7 @@ public class BusHelper {
         busPage.selectNoPassengers();
 
         Thread.sleep(2000);
-        if (Element.isElementPresent(driver, By.id("com.mobikwik_new:id/continue_button"))) {
+        if (Element.isElementPresent(driver, By.id("com.mobikwik_new.bajajfinserv:id/continue_button"))) {
             busPage.clickOnContinueSeatsCta();
         } else {
             busPage.clickOnConfirmSeatsCta();
@@ -185,7 +185,7 @@ public class BusHelper {
 
         busPage.selectTicketForCancellation();
 
-        Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/btn_download_tkt"));
+        Element.waitForVisibility(driver, By.id("com.mobikwik_new.bajajfinserv:id/btn_download_tkt"));
 
         screen.swipeUpMedium(driver);
 

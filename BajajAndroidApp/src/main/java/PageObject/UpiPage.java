@@ -16,135 +16,135 @@ public class UpiPage {
 
 
     //    @AndroidFindBy(id = "com.mobikwik_new.debug:id/start_button")
-    @AndroidFindBy(id = "com.mobikwik_new:id/start_button")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/start_button")
     private AndroidElement cta_start_upi_setup;
 
     //As per RBI guidelines, below permissions are mandatory to enable UPI.
 //    @AndroidFindBy(id = "com.mobikwik_new.debug:id/header_text")
-    @AndroidFindBy(id = "com.mobikwik_new:id/header_text")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/header_text")
     private AndroidElement text_header_upi_setup;
 
     //UPI Home Page
 //    @AndroidFindBy(id ="com.mobikwik_new.debug:id/qr_image")
-    @AndroidFindBy(id = "com.mobikwik_new:id/qr_image")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/qr_image")
     private AndroidElement qr_image;
 
     //    @AndroidFindBy(id ="com.mobikwik_new.debug:id/upi_id_text")
-    @AndroidFindBy(id = "com.mobikwik_new:id/upi_id_text")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/upi_id_text")
     private AndroidElement upi_id;
 
     //    @AndroidFindBy(id ="com.mobikwik_new.debug:id/send_money_title")
-    @AndroidFindBy(id = "com.mobikwik_new:id/send_money_title")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/send_money_title")
     private AndroidElement cta_send_money;
 
     //Send Money Page
 //    @AndroidFindBy (id ="com.mobikwik_new.debug:id/pay_to_account")
-    @AndroidFindBy(id = "com.mobikwik_new:id/pay_to_account")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/pay_to_account")
     private AndroidElement radio_button_to_bank_account;
 
     //    @AndroidFindBy(id ="com.mobikwik_new.debug:id/edit_field")
-    @AndroidFindBy(id = "com.mobikwik_new:id/edit_field")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/edit_field")
     private AndroidElement cta_enter_upi_id;
 
     //Send money via UPI Flow
 //    @AndroidFindBy(id= "com.mobikwik_new.debug:id/search_edittext")
-    @AndroidFindBy(id = "com.mobikwik_new:id/search_edittext")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/search_edittext")
     private AndroidElement enter_upi_id_or_number;
 
     //    @AndroidFindBy(id ="com.mobikwik_new.debug:id/confirm_button")
-    @AndroidFindBy(id = "com.mobikwik_new:id/confirm_button")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/confirm_button")
     private AndroidElement cta_confirm_upi;
 
     //    @AndroidFindBy(id= "com.mobikwik_new.debug:id/vpa")
-    @AndroidFindBy(id = "com.mobikwik_new:id/vpa")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/vpa")
     private AndroidElement result_upi_id;
 
     //    @AndroidFindBy(id= "com.mobikwik_new.debug:id/amount_field")
-    @AndroidFindBy(id = "com.mobikwik_new:id/amount_field")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/amount_field")
     private AndroidElement enter_amount;
 
     //    @AndroidFindBy(id= "com.mobikwik_new.debug:id/messageEditText")
-    @AndroidFindBy(id = "com.mobikwik_new:id/messageEditText")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/messageEditText")
     private AndroidElement enter_message;
 
     //    @AndroidFindBy(id= "com.mobikwik_new.debug:id/view_transaction_limit")
-    @AndroidFindBy(id = "com.mobikwik_new:id/view_transaction_limit")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/view_transaction_limit")
     private AndroidElement get_transaction_limit;
 
     //    @AndroidFindBy(id= "com.mobikwik_new.debug:id/touch_outside")
-    @AndroidFindBy(id = "com.mobikwik_new:id/touch_outside")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/touch_outside")
     private AndroidElement click_outside;
 
     //    @AndroidFindBy(id= "com.mobikwik_new.debug:id/cta")
-    @AndroidFindBy(id = "com.mobikwik_new:id/cta")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/cta")
     private AndroidElement cta_confirm_payment;
 
     //    @AndroidFindBy(id= "com.mobikwik_new.debug:id/payment_success_msg")
-    @AndroidFindBy(id = "com.mobikwik_new:id/payment_success_msg")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/payment_success_msg")
     private AndroidElement payment_succes_message;
 
     //    @AndroidFindBy(id= "com.mobikwik_new.debug:id/amount")
-    @AndroidFindBy(id = "com.mobikwik_new:id/amount")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/amount")
     private AndroidElement amount_paid;
 
     //    @AndroidFindBy(id= "com.mobikwik_new.debug:id/base_icon_close")
-    @AndroidFindBy(id = "com.mobikwik_new:id/base_icon_close")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/base_icon_close")
     private AndroidElement click_on_cross;
 
 //Send To Bank Flow
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/beneficiary_name")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/beneficiary_name")
     private AndroidElement enter_beneficiary_name;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/account_number")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/account_number")
     private AndroidElement enter_account_number;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/ifsc_code")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/ifsc_code")
     private AndroidElement enter_ifsc;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/continue_button")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/continue_button")
     private AndroidElement cta_confirm_bank_details;
 
 
     //Request Money Flow
-    @AndroidFindBy(id = "com.mobikwik_new:id/request_money_title")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/request_money_title")
     private AndroidElement cta_request_money;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/cta")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/cta")
     private AndroidElement cta_confirm_request;
 
 
     //Check Balance Flow
-    @AndroidFindBy(id = "com.mobikwik_new:id/back_button")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/back_button")
     private AndroidElement back_button;
 
     //Setup UPI
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/edit_text_mket")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/edit_text_mket")
     private AndroidElement enter_bank_name;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/bank_name")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/bank_name")
     private AndroidElement select_bank_from_list;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'Select the phone number linked with your Kotak Mahindra Bank Account. An SMS will be triggered from the number to verify your bank account.']")
     private AndroidElement sim_select_view;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/sim1_button")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/sim1_button")
     private AndroidElement select_sim_1;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'Create New VPA']")
     private AndroidElement header_create_vpa;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/edit_text_mket")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/edit_text_mket")
     private AndroidElement enter_vpa;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/submit_button")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/submit_button")
     private AndroidElement submit_vpa;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/upi_id_text")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/upi_id_text")
     private AndroidElement get_upi_id;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/back_to_home")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/back_to_home")
     private AndroidElement upi_setup_success_back_to_home_cta;
 
 

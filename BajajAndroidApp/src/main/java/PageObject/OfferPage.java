@@ -36,7 +36,7 @@ public class OfferPage {
 
     String categoryText = "text";
 
-    String redeemOfferList = "com.mobikwik_new:id/click_view";
+    String redeemOfferList = "com.mobikwik_new.bajajfinserv:id/click_view";
 
 
     public OfferPage(AndroidDriver driver) throws IOException {

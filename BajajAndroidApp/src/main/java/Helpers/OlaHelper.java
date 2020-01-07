@@ -55,7 +55,7 @@ public class OlaHelper {
 
         permissionHelper.permissionAllow();
 
-        Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/drop_loc_layout"));
+        Element.waitForVisibility(driver, By.id("com.mobikwik_new.bajajfinserv:id/drop_loc_layout"));
 
         olaPage.clickOnDropLocation();
 
@@ -88,9 +88,9 @@ public class OlaHelper {
 
         olaPage.selectConfirmPay();
 
-        Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/content_root"));
+        Element.waitForVisibility(driver, By.id("com.mobikwik_new.bajajfinserv:id/content_root"));
 
-        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("com.mobikwik_new:id/content_root")), olaPage.getPleaseNoteText(), true, false);
+        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("com.mobikwik_new.bajajfinserv:id/content_root")), olaPage.getPleaseNoteText(), true, false);
 
         olaPage.ctaConfirmBookPopUp();
 
@@ -123,7 +123,7 @@ public class OlaHelper {
 
                 olaPage.ctaConfirmCancel();
 
-                Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/btn_book_again"));
+                Element.waitForVisibility(driver, By.id("com.mobikwik_new.bajajfinserv:id/btn_book_again"));
 
                 mbReporter.verifyEqualsWithLogging(olaPage.getRideCanclled(), "Ride Cancelled", "Ticket is cancelled", true, false);
 

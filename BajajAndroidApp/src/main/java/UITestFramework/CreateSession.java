@@ -37,7 +37,7 @@ public class CreateSession {
 
     String androidOSVersion = "8.0";
     String portNo = "4723";
-    String udid = "330062db17b4a48b";
+    String udid = "172.16.1.187:4723";
     String deviceName = "Samsung J6";
 
     private String reportDirectory = "reports";
@@ -121,10 +121,10 @@ public class CreateSession {
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("platformVersion", androidOSVersion);
 
-        capabilities.setCapability("appPackage", "com.mobikwik_new");
-        capabilities.setCapability("appActivity", ".MobikwikMain");
-        capabilities.setCapability("appWaitActivity", ".MobikwikMain");
-        capabilities.setCapability("appWaitPackage", "com.mobikwik_new");
+        capabilities.setCapability("appPackage", "com.mobikwik_new.bajajfinserv");
+        capabilities.setCapability("appActivity", "com.mobikwik_new.MobikwikMain");
+        capabilities.setCapability("appWaitActivity", "com.mobikwik_new.MobikwikMain");
+        capabilities.setCapability("appWaitPackage", "com.mobikwik_new.bajajfinserv");
 
 
         if (Double.parseDouble(androidOSVersion) < Double.parseDouble("7.0")) {
@@ -140,6 +140,7 @@ public class CreateSession {
         capabilities.setCapability("deviceName", deviceName);
         capabilities.setCapability(MobileCapabilityType.UDID, udid);
 
+//        capabilities.setCapability("deviceId", "172.16.1.187:4723");
         capabilities.setCapability("reportDirectory", reportDirectory);
         capabilities.setCapability("reportFormat", reportFormat);
         capabilities.setCapability("app", app.getAbsolutePath());
@@ -162,25 +163,31 @@ public class CreateSession {
 
 
         if (build.equals("prod")) {
-            String appPath = "src/app/MobiKwik_prod.apk";
+            String appPath = "src/app/BFL_prod.apk";
             Log.info(appPath);
             return appPath;
         }
 
         if (build.equals("stag")) {
-            String appPath = "src/app/MobiKwik_stag.apk";
+            String appPath = "src/app/BFL_stag.apk";
             Log.info(appPath);
             return appPath;
         }
 
         if (build.equals("beta")) {
-            String appPath = "src/app/MobiKwik_beta.apk";
+            String appPath = "src/app/BFL_beta.apk";
             Log.info(appPath);
             return appPath;
         }
 
         if (build.equals("debug")) {
-            String appPath = "src/app/MobiKwik_debug.apk";
+            String appPath = "src/app/BFL_debug.apk";
+            Log.info(appPath);
+            return appPath;
+        }
+
+        if (build.equals("uat")) {
+            String appPath = "src/app/BFL_uat.apk";
             Log.info(appPath);
             return appPath;
         }
@@ -260,7 +267,7 @@ public class CreateSession {
 
 // Create the list of attachments
         List<String> listOfAttachments = new ArrayList<>();
-        listOfAttachments.add("/home/parajjain/Documents/MK-Automation/AndroidApp/test-output/Extent.html");
+        listOfAttachments.add("/home/parajjain/Documents/MK-Automation/BajajAndroidApp/test-output/Extent.html");
 
 // Create the recipients array
         String[] recipients = {"QAfront-End@mobikwik.com"};
@@ -271,6 +278,6 @@ public class CreateSession {
         String date = DateHelper.getCurrentDate(YYYY_MM_DD_HH_MM_SS);
 
 
-        mailer.sendMail(recipients, "Front-End Test Execution report : " + date, "Hi,<br>" + "<br>" + "PFB Front-End Automation TestReport.<br>" + "Please download and open the file with Chrome.<br>" + "<br>" + "<br>" + "Thanks,<br>" + "App Team", listOfAttachments);
+        mailer.sendMail(recipients, "BFL Front-End Test Execution report : " + date, "Hi,<br>" + "<br>" + "PFB Front-End Automation TestReport.<br>" + "Please download and open the file with Chrome.<br>" + "<br>" + "<br>" + "Thanks,<br>" + "App Team", listOfAttachments);
     }
 }

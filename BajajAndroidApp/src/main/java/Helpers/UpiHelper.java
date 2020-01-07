@@ -79,7 +79,7 @@ public class UpiHelper {
 
 //            Element.waitForVisibility(driver, By.id("qr_image"));
 
-        Boolean setup = Element.isElementPresent(driver, By.id("com.mobikwik_new:id/qr_image"));
+        Boolean setup = Element.isElementPresent(driver, By.id("com.mobikwik_new.bajajfinserv:id/qr_image"));
 
         mbReporter.verifyTrueWithLogging(setup, "Setup Done", true, true);
 
@@ -141,7 +141,7 @@ public class UpiHelper {
 
 //            Element.waitForVisibility(driver, By.id("qr_image"));
 
-        Boolean setup = Element.isElementPresent(driver, By.id("com.mobikwik_new:id/qr_image"));
+        Boolean setup = Element.isElementPresent(driver, By.id("com.mobikwik_new.bajajfinserv:id/qr_image"));
 
         mbReporter.verifyTrueWithLogging(setup, "Setup Done", true, true);
 
@@ -205,7 +205,7 @@ public class UpiHelper {
 
 //            Element.waitForVisibility(driver, By.id("qr_image"));
 
-        Boolean setup = Element.isElementPresent(driver, By.id("com.mobikwik_new:id/qr_image"));
+        Boolean setup = Element.isElementPresent(driver, By.id("com.mobikwik_new.bajajfinserv:id/qr_image"));
 
         mbReporter.verifyTrueWithLogging(setup, "Setup Done", true, true);
 
@@ -225,7 +225,7 @@ public class UpiHelper {
 
         upiPage.clickOnConfirmRequest();
 
-        Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/payment_success_msg"));
+        Element.waitForVisibility(driver, By.id("com.mobikwik_new.bajajfinserv:id/payment_success_msg"));
 
         mbReporter.verifyEqualsWithLogging(upiPage.getPaymentSuccessMessage(), "Your payment request sent successfully", "Request Message Validation", true, false);
 
@@ -269,7 +269,7 @@ public class UpiHelper {
 
 //            Element.waitForVisibility(driver, By.id("qr_image"));
 
-        Boolean setup = Element.isElementPresent(driver, By.id("com.mobikwik_new:id/qr_image"));
+        Boolean setup = Element.isElementPresent(driver, By.id("com.mobikwik_new.bajajfinserv:id/qr_image"));
 
         mbReporter.verifyTrueWithLogging(setup, "Setup Done", true, true);
 
@@ -279,11 +279,11 @@ public class UpiHelper {
 
         mbkCommonControlsHelper.handleUpiPin(pin);
 
-        Boolean isBalanceVisible = Element.isElementPresent(driver, By.id("com.mobikwik_new:id/balance"));
+        Boolean isBalanceVisible = Element.isElementPresent(driver, By.id("com.mobikwik_new.bajajfinserv:id/balance"));
 
         String balance = homePage.getAccountBalance();
 
-        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("com.mobikwik_new:id/balance")), "Avalaible Balance is =Rs " + balance, true, true);
+        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("com.mobikwik_new.bajajfinserv:id/balance")), "Avalaible Balance is =Rs " + balance, true, true);
 
         homePage.dismissOverlay();
 
@@ -360,7 +360,7 @@ public class UpiHelper {
         Thread.sleep(400);
 
 
-        Boolean setup = Element.isElementPresent(driver, By.id("com.mobikwik_new:id/qr_image"));
+        Boolean setup = Element.isElementPresent(driver, By.id("com.mobikwik_new.bajajfinserv:id/qr_image"));
 
         mbReporter.verifyTrueWithLogging(setup, "Setup Done", true, true);
 
@@ -390,7 +390,7 @@ public class UpiHelper {
 
         Thread.sleep(100);
 
-        Boolean upiId = Element.isElementPresent(driver, By.id("com.mobikwik_new:id/tx_upi_id"));
+        Boolean upiId = Element.isElementPresent(driver, By.id("com.mobikwik_new.bajajfinserv:id/tx_upi_id"));
 
         mbReporter.verifyTrueWithLogging(!upiId, "Upi is Deregistered Succesfully", true, true);
 
@@ -404,7 +404,7 @@ public class UpiHelper {
 
         Thread.sleep(100);
 
-        if (Element.isElementPresent(driver, By.id("com.mobikwik_new:id/tx_bank_balance")) == false) {
+        if (Element.isElementPresent(driver, By.id("com.mobikwik_new.bajajfinserv:id/tx_bank_balance")) == false) {
 
             walletPage = homePage.clickWalletNavigate();
 
@@ -421,7 +421,7 @@ public class UpiHelper {
 
         upiPage = homePage.clickOnLinkBankAccount();
 
-        Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/mkiv_image"));
+        Element.waitForVisibility(driver, By.id("com.mobikwik_new.bajajfinserv:id/mkiv_image"));
 
         upiPage.enterBankName(bankName);
 
@@ -447,13 +447,13 @@ public class UpiHelper {
 
         upiPage.submitVpa();
 
-        Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/upi_id_label"));
+        Element.waitForVisibility(driver, By.id("com.mobikwik_new.bajajfinserv:id/upi_id_label"));
 
         String upiId = upiPage.upiIdGenerated();
 
-        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("com.mobikwik_new:id/upi_id_text")), "Upi ID generated is:" + upiId, true, true);
+        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("com.mobikwik_new.bajajfinserv:id/upi_id_text")), "Upi ID generated is:" + upiId, true, true);
 
-        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("com.mobikwik_new:id/account_number")), "Account Number is present", true, true);
+        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("com.mobikwik_new.bajajfinserv:id/account_number")), "Account Number is present", true, true);
 
         homePage = upiPage.clickBackToHomeFromSetupSuccess();
 

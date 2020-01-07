@@ -65,11 +65,11 @@ public class RechargeHelper {
 
         rechargePage.clickOnDropDown();
 
-        Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/mkab_title"));
+        Element.waitForVisibility(driver, By.id("com.mobikwik_new.bajajfinserv:id/mkab_title"));
         screen.swipeUpMedium(driver);
         rechargePage.selectOperator();
 
-        Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/mkab_title"));
+        Element.waitForVisibility(driver, By.id("com.mobikwik_new.bajajfinserv:id/mkab_title"));
         rechargePage.selectCircle();
 
         rechargePage.clickOnSeeAllPlans();
@@ -99,7 +99,7 @@ public class RechargeHelper {
 
         // Wait for the success screen
 
-        Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/base_title"));
+        Element.waitForVisibility(driver, By.id("com.mobikwik_new.bajajfinserv:id/base_title"));
 
         mbkCommonControlsHelper.handleCTOverlay();
         mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessPageStatus(), trxStatus, "Success Page | Verify Status", false, false);
@@ -456,7 +456,7 @@ public class RechargeHelper {
         addMoneyHelper.addMoneyInsufficientFunds(cardNo, cvv, bankPassword);
 
 
-        Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/base_title"));
+        Element.waitForVisibility(driver, By.id("com.mobikwik_new.bajajfinserv:id/base_title"));
 
 
         mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessScreenTitle(), success_page_status, "Credit Card Bill payment Success, WAPG transaction was success", true, true);
@@ -472,7 +472,7 @@ public class RechargeHelper {
 
         if (promoCodeStatus) {
 
-            mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("com.mobikwik_new:id/txt_promo_result_desc")), rechargePage.getPromoCodeTextOnSuccessScreen(), true, false);
+            mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("com.mobikwik_new.bajajfinserv:id/txt_promo_result_desc")), rechargePage.getPromoCodeTextOnSuccessScreen(), true, false);
         }
 
         rechargePage.backToHomeFromPendingScreen();
@@ -514,10 +514,10 @@ public class RechargeHelper {
 
         rechargePage.clickApplyCoupon();
 
-        Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/redeem_layout"));
+        Element.waitForVisibility(driver, By.id("com.mobikwik_new.bajajfinserv:id/redeem_layout"));
 
 
-        List<AndroidElement> vouchers = Element.findElements(driver, By.id("com.mobikwik_new:id/redeem_layout"));
+        List<AndroidElement> vouchers = Element.findElements(driver, By.id("com.mobikwik_new.bajajfinserv:id/redeem_layout"));
         int noOfVouchersAvailable = vouchers.size();
 
         if (noOfVouchersAvailable > 0) {
@@ -532,7 +532,7 @@ public class RechargeHelper {
 
             Thread.sleep(3000);
 
-            Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/base_title"));
+            Element.waitForVisibility(driver, By.id("com.mobikwik_new.bajajfinserv:id/base_title"));
 
 
             mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessScreenTitle(), success_page_status, "Credit Card Bill payment Success with voucher applied of same amount", true, true);
@@ -545,7 +545,7 @@ public class RechargeHelper {
 
             mbReporter.verifyEqualsWithLogging(actualPendingDescription, success_page_text, "Verify Pending Message", true, true);
 
-            mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("com.mobikwik_new:id/txt_promo_result_desc")), rechargePage.getPromoCodeTextOnSuccessScreen(), true, false);
+            mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("com.mobikwik_new.bajajfinserv:id/txt_promo_result_desc")), rechargePage.getPromoCodeTextOnSuccessScreen(), true, false);
 
             rechargePage.backToHomeFromPendingScreen();
 
@@ -590,10 +590,10 @@ public class RechargeHelper {
 
         rechargePage.clickApplyCoupon();
 
-        Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/redeem_layout"));
+        Element.waitForVisibility(driver, By.id("com.mobikwik_new.bajajfinserv:id/redeem_layout"));
 
 
-        List<AndroidElement> vouchers = Element.findElements(driver, By.id("com.mobikwik_new:id/redeem_layout"));
+        List<AndroidElement> vouchers = Element.findElements(driver, By.id("com.mobikwik_new.bajajfinserv:id/redeem_layout"));
         int noOfVouchersAvailable = vouchers.size();
 
         if (noOfVouchersAvailable > 0) {
@@ -611,7 +611,7 @@ public class RechargeHelper {
             addMoneyHelper = new AddMoneyHelper(driver);
             addMoneyHelper.addMoneyInsufficientFunds(cardNo, cvv, bankPassword);
 
-            Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/base_title"));
+            Element.waitForVisibility(driver, By.id("com.mobikwik_new.bajajfinserv:id/base_title"));
 
 
             mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessScreenTitle(), success_page_status, "Credit Card Bill payment Success, voucher applied and Wapg Transaction success", true, true);
@@ -625,7 +625,7 @@ public class RechargeHelper {
             mbReporter.verifyEqualsWithLogging(actualPendingDescription, success_page_text, "Verify Pending Message", true, true);
 
 
-            mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("com.mobikwik_new:id/txt_promo_result_desc")), rechargePage.getPromoCodeTextOnSuccessScreen(), true, false);
+            mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("com.mobikwik_new.bajajfinserv:id/txt_promo_result_desc")), rechargePage.getPromoCodeTextOnSuccessScreen(), true, false);
 
 
             rechargePage.backToHomeFromPendingScreen();
