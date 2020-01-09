@@ -56,6 +56,9 @@ public class ImpsPage {
     @AndroidFindBy(id = "com.mobikwik_new:id/txt_amount_value")
     private AndroidElement label_amount;
 
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/continue_btn")
+    private AndroidElement cta_submit_otp;
+
 
     public ImpsPage(AndroidDriver driver) throws IOException {
 
@@ -126,6 +129,10 @@ public class ImpsPage {
 
     public String getSuccessSuccessPageAmount() {
         return Element.getText(driver, label_amount, "Success Page | Amount");
+    }
+
+    public void clickOnSubmitOtp() throws InterruptedException {
+        Element.selectElement(driver, cta_submit_otp, "Submit OTP");
     }
 
 }
