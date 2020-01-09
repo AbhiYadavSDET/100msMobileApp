@@ -62,7 +62,6 @@ public class LoginHelper {
 
         //If OTP not Auto Read enter OTP and press Submit
 
-
         Element.waitForVisibility(driver, By.id("com.android.packageinstaller:id/dialog_container"));
 
         permissionHelper.permissionAllow();
