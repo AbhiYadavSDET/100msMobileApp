@@ -28,7 +28,7 @@ public class Test_Deep_Link_UPI_Sanity extends CreateSession {
     }
 
     @Parameters({"deeplinkstring", "deeplinkverify", "elementID"})
-    @Test(groups = {"deeplink", "UPIsanity"}, priority = 1, dataProvider = "deepLinkSanityData", dataProviderClass = DeepLinkSanityDataProvider.class)
+    @Test(groups = {"deeplink", "UPIsanity", "deeplinkSanity"}, priority = 1, dataProvider = "deepLinkSanityData", dataProviderClass = DeepLinkSanityDataProvider.class)
     public void deep_link_check_balance(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
 
 
@@ -79,7 +79,7 @@ public class Test_Deep_Link_UPI_Sanity extends CreateSession {
     }
 
     @Parameters({"deeplinkstring", "deeplinkverify", "elementID"})
-    @Test(groups = {"deeplink", "UPIsanity","deeplinkSanity"}, priority = 4, dataProvider = "deepLinkSanityData", dataProviderClass = DeepLinkSanityDataProvider.class)
+    @Test(groups = {"deeplink", "UPIsanity", "deeplinkSanity"}, priority = 4, dataProvider = "deepLinkSanityData", dataProviderClass = DeepLinkSanityDataProvider.class)
     public void deep_link_pending(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
 
 
@@ -96,7 +96,7 @@ public class Test_Deep_Link_UPI_Sanity extends CreateSession {
     }
 
     @Parameters({"deeplinkstring", "deeplinkverify", "elementID"})
-    @Test(groups = {"deeplink", "UPIsanity"}, priority = 5, dataProvider = "deepLinkSanityData", dataProviderClass = DeepLinkSanityDataProvider.class)
+    @Test(groups = {"deeplink", "UPIsanity", "deeplinkSanity"}, priority = 5, dataProvider = "deepLinkSanityData", dataProviderClass = DeepLinkSanityDataProvider.class)
     public void deep_link_remainder(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
 
 
@@ -113,7 +113,7 @@ public class Test_Deep_Link_UPI_Sanity extends CreateSession {
     }
 
     @Parameters({"deeplinkstring", "deeplinkverify", "elementID"})
-    @Test(groups = {"deeplink", "UPIsanity","deeplinkSanity"}, priority = 6, dataProvider = "deepLinkSanityData", dataProviderClass = DeepLinkSanityDataProvider.class)
+    @Test(groups = {"deeplink", "UPIsanity", "deeplinkSanity"}, priority = 6, dataProvider = "deepLinkSanityData", dataProviderClass = DeepLinkSanityDataProvider.class)
     public void deep_link_self_transfer(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
 
 
@@ -149,7 +149,7 @@ public class Test_Deep_Link_UPI_Sanity extends CreateSession {
     }
 
     @Parameters({"deeplinkstring", "deeplinkverify", "elementID"})
-    @Test(groups = {"deeplink", "UPIsanity","deeplinkSanity"}, priority = 8, dataProvider = "deepLinkSanityData", dataProviderClass = DeepLinkSanityDataProvider.class)
+    @Test(groups = {"deeplink", "UPIsanity", "deeplinkSanity"}, priority = 8, dataProvider = "deepLinkSanityData", dataProviderClass = DeepLinkSanityDataProvider.class)
     public void deep_link_request(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
 
 
