@@ -13,6 +13,8 @@ import utils.Element;
 import utils.Screen;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DeepLinkHelper {
     AndroidDriver driver;
@@ -47,6 +49,7 @@ public class DeepLinkHelper {
             Element.selectElement(driver, (AndroidElement) driver.findElement(By.id("next_button")), "Next Button");
         }
         if (Element.isElementPresent(driver, (By.id("next_button")))) {
+
             Element.selectElement(driver, (AndroidElement) driver.findElement(By.id("next_button")), "Next Button");
         }
 
@@ -62,18 +65,21 @@ public class DeepLinkHelper {
         }
 
         if (Element.isElementPresent(driver, (By.id("start_button")))) {
+            List<AndroidElement> textList = driver.findElements(By.className("android.widget.TextView"));
+            int count= 0;
+            for(AndroidElement textElement : textList)
+            {
+                if(Element.getText(driver, textElement,"Get TextView Text").contains("Verify"))
+                    ++count;
+            }
             Element.selectElement(driver, (AndroidElement) driver.findElement(By.id("start_button")), "Let's get started");
+
+            while(count>0){
+                permissionHelper.permissionAllow();
+                --count;}
         }
-        //Thread.sleep(3000);
 
-        //For Sanity
-        permissionHelper.permissionAllow();
-        permissionHelper.permissionAllow();
-        permissionHelper.permissionAllow();
-
-
-        Thread.sleep(2000);
-
+        Thread.sleep(3000);
 
         String textview2 = (driver.findElement(By.id(elementID))).getText();
         Log.info(textview2);

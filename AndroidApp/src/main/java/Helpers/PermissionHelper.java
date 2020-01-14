@@ -37,7 +37,7 @@ public class PermissionHelper {
         if (Element.isElementPresent(driver, By.id("com.android.permissioncontroller:id/permission_message"))) {
             return true;
         } else {
-            Log.info("Permission Popup is not present");
+            Log.info("Permission PopupV2 is not present");
             return false;
         }
     }
