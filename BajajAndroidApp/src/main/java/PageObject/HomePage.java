@@ -162,6 +162,27 @@ public class HomePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Ola Cabs']")
     private AndroidElement icon_ola;
 
+    //Bajaj App Related
+
+    //Bajaj Home Page Overlay
+    @AndroidFindBy(xpath= "//android.widget.TextView[@text= 'Your Bajaj Finserv EMI Network Card is ready!']")
+    private AndroidElement bajaj_emi_card_overlay;
+
+    @AndroidFindBy(id= "com.mobikwik_new.bajajfinserv:id/btn_know_more")
+    private AndroidElement cta_know_more_bajaj_overlay;
+
+
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/emi_button")
+    private AndroidElement select_emi_card;
+    //20111989
+
+    //Insta credit Page
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Know More']")
+    private  AndroidElement cta_know_more_instaCredit;
+
+
+
+
 
     public HomePage(AndroidDriver driver) {
         this.driver = driver;
@@ -368,6 +389,22 @@ public class HomePage {
 
     public void closeMoreServicesOverlay() throws InterruptedException {
         Element.selectElement(driver, cross_icon_for_more_services_overlay, "Close More Services Overlay");
+    }
+
+
+    public BajajPage clickOnKnowMoreBajajOverlay() throws InterruptedException, IOException {
+        Element.selectElement(driver, cta_know_more_bajaj_overlay, "Navigate to Bajaj EMI Card Registration Page");
+        return new BajajPage(driver);
+    }
+
+    public BajajPage clickOnKnowMoreInstaCreditOffer() throws InterruptedException, IOException {
+        Element.selectElement(driver, cta_know_more_instaCredit, "Navigate to Insta Credit fro Home Page");
+        return new BajajPage(driver);
+    }
+
+    public BajajPage selectEmiCard() throws InterruptedException, IOException{
+        Element.selectElement(driver, select_emi_card, "Select Emi Card");
+        return new BajajPage(driver);
     }
 
 }
