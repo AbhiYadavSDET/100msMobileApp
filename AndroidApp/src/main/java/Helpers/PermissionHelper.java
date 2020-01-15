@@ -2,6 +2,7 @@ package Helpers;
 
 import PageObject.PermissionPage;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidElement;
 import logger.Log;
 import org.openqa.selenium.By;
 import utils.Element;
@@ -30,6 +31,24 @@ public class PermissionHelper {
         }
     }
 
+    public boolean isPermissionPopUpPresentV2() throws InterruptedException {
+        //Thread.sleep(3000);
+
+        if (Element.isElementPresent(driver, By.id("com.android.permissioncontroller:id/permission_message"))) {
+            return true;
+        } else {
+            Log.info("Permission Popup is not present");
+            return false;
+        }
+    }
+
+    public String permissionPopOpTextV2() throws InterruptedException {
+        if (Element.isElementPresent(driver, By.id("com.android.permissioncontroller:id/permission_message"))) {
+            return Element.getText(driver, (AndroidElement) driver.findElementById("com.android.permissioncontroller:id/permission_message"), "Permission Message");
+        }
+        else{return null;}
+    }
+
     public boolean isHintForMobileNoVisible() throws InterruptedException {
         Thread.sleep(2000);
 
@@ -46,6 +65,12 @@ public class PermissionHelper {
         if (isPermissionPopUpPresent()) {
             permissionPage.clickOnPermissionAllow();
         }
+        if(isPermissionPopUpPresentV2())
+        {
+            if(permissionPopOpTextV2().contains("location"))
+            {permissionPage.clickOnPermissionAlwaysAllowV2();}
+                else {permissionPage.clickOnPermissionAllowV2();}
+        }
     }
 
     public void dismissHintPopup() throws InterruptedException {
@@ -57,6 +82,9 @@ public class PermissionHelper {
     public void permissionDeny() throws InterruptedException {
         if (isPermissionPopUpPresent()) {
             permissionPage.clickOnPermissionDeny();
+        }
+        if (isPermissionPopUpPresentV2()) {
+            permissionPage.clickOnPermissionDenyV2();
         }
     }
 

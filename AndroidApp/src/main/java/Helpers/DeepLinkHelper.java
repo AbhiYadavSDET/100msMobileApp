@@ -64,7 +64,7 @@ public class DeepLinkHelper {
         if (Element.isElementPresent(driver, (By.id("start_button")))) {
             Element.selectElement(driver, (AndroidElement) driver.findElement(By.id("start_button")), "Let's get started");
         }
-        Thread.sleep(3000);
+        //Thread.sleep(3000);
 
         //For Sanity
         permissionHelper.permissionAllow();
@@ -84,9 +84,7 @@ public class DeepLinkHelper {
 
 
         Log.info("deeplink verfied");
-        Thread.sleep(2000);
-        driver.navigate().back();
-
-
+        //Thread.sleep(2000);
+        //driver.navigate().back();
     }
 }

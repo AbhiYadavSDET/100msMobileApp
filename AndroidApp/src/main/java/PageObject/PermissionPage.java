@@ -18,8 +18,17 @@ public class PermissionPage {
     @AndroidFindBy(id = "com.android.packageinstaller:id/permission_deny_button")
     private AndroidElement permission_deny;
 
+    @AndroidFindBy(id = "com.android.permissioncontroller:id/permission_deny_button")
+    private AndroidElement permission_deny_v2;
+
     @AndroidFindBy(id = "com.android.packageinstaller:id/permission_allow_button")
     private AndroidElement permission_allow;
+
+    @AndroidFindBy(id = "com.android.permissioncontroller:id/permission_allow_button")
+    private AndroidElement permission_allow_v2;
+
+    @AndroidFindBy(id = "com.android.permissioncontroller:id/permission_allow_always_button")
+    private AndroidElement permission_always_allow_v2;
 
     @AndroidFindBy(id = "com.google.android.gms:id/cancel")
     private AndroidElement cancel_popup;
@@ -40,6 +49,9 @@ public class PermissionPage {
     public void clickOnPermissionDeny() {
         Element.selectElement(driver, permission_deny, "Permission Deny");
     }
+    public void clickOnPermissionDenyV2() {
+        Element.selectElement(driver, permission_deny_v2, "Permission Deny");
+    }
 
     public void clickOnCancelHint() {
         Element.selectElement(driver, cancel_popup, "Cancel Popup");
@@ -47,5 +59,13 @@ public class PermissionPage {
 
     public void clickOnPermissionAllow() {
         Element.selectElement(driver, permission_allow, "Permission Allow");
+    }
+
+    public void clickOnPermissionAllowV2() {
+        Element.selectElement(driver, permission_allow_v2, "Permission Allow");
+    }
+
+    public void clickOnPermissionAlwaysAllowV2() {
+        Element.selectElement(driver, permission_always_allow_v2, "Permission Always Allow");
     }
 }
