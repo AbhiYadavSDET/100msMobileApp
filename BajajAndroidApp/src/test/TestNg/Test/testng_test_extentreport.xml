@@ -1,0 +1,32 @@
+<suite name="Appium-Framework">
+    <listeners>
+        <listener class-name="UITestFramework.retryLogic.RetryListener"/>
+        <listener class-name="UITestFramework.retryLogic.TestListener"/>
+    </listeners>
+    <parameter name="build" value="prod"/>
+    <parameter name="level" value="payments"/>
+    <parameter name="saucelabs" value="false"></parameter>
+    <parameter name="portNo" value="4500"></parameter>
+    <parameter name="androidOSVersion" value="7.0"></parameter>
+    <parameter name="methodName" value="testExtentReport"></parameter>
+
+
+    <test name="Mobikwik Automation Tests">
+        <groups>
+            <run>
+                <include name="setUp"/>
+                <include name="instantiateHelpers"/>
+                <include name="testExtentReport"/>
+                <include name="tearDown"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="UITestFramework.CreateSession"/>
+            <class name="UITestFramework.ExtentReport.Reporter"/>
+        </classes>
+        <packages>
+            <package name="IntegrationTests.Test"/>
+        </packages>
+    </test>
+</suite>

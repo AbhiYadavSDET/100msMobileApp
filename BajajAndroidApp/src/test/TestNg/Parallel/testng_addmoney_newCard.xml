@@ -1,0 +1,66 @@
+<suite name="Appium-Framework" parallel="tests" thread-count="2">
+
+    <!--Test 1-->
+    <test name="addmoneyNewCard Tests 1">
+        <listeners>
+            <listener class-name="UITestFramework.retryLogic.RetryListener"/>
+            <listener class-name="UITestFramework.retryLogic.TestListener"/>
+        </listeners>
+
+        <parameter name="build" value="prod"/>
+        <parameter name="level" value="payments"/>
+        <parameter name="portNo" value="5000"></parameter>
+        <parameter name="androidOSVersion" value="7.1"></parameter>
+        <parameter name="deviceName" value="Motorola"></parameter>
+        <parameter name="udid" value="ZY322HJ929"></parameter>
+        <groups>
+            <run>
+                <include name="setUp"/>
+                <include name="instantiateHelpers"/>
+                <include name="addmoneyNewCard"/>
+                <include name="tearDown"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="UITestFramework.CreateSession"/>
+            <class name="UITestFramework.ExtentReport.Reporter"/>
+        </classes>
+        <packages>
+            <package name="IntegrationTests.AddMoney"/>
+        </packages>
+    </test>
+
+
+    <!--Test 2-->
+    <test name="addmoneyNewCard Tests 2">
+        <listeners>
+            <listener class-name="UITestFramework.retryLogic.RetryListener"/>
+            <listener class-name="UITestFramework.retryLogic.TestListener"/>
+        </listeners>
+
+        <parameter name="build" value="prod"/>
+        <parameter name="level" value="payments"/>
+        <parameter name="portNo" value="5001"></parameter>
+        <parameter name="androidOSVersion" value="6.0"></parameter>
+        <parameter name="deviceName" value="Samsung"></parameter>
+        <parameter name="udid" value="4200ea8cce337347"></parameter>
+        <groups>
+            <run>
+                <include name="setUp"/>
+                <include name="instantiateHelpers"/>
+                <include name="addmoneyNewCard"/>
+                <include name="tearDown"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="UITestFramework.CreateSession"/>
+            <class name="UITestFramework.ExtentReport.Reporter"/>
+        </classes>
+        <packages>
+            <package name="IntegrationTests.AddMoney"/>
+        </packages>
+    </test>
+
+</suite>
