@@ -29,8 +29,11 @@ public class FabricTest extends TestBase {
 
         String mailBody = "<H2>Active Users</H2>" + activeUsers + "<H2>Crash Rate</H2>" + status.get(0) + "<br>" + status.get(1) + "<br>" + "<br>" + "<H2>Top 3 Crashes in Last 60 Minutes</H2>" + "<H4>Crash 1 : </H4>" + top3Crashes.get("1") + "<br>" + "<H4>Crash 2 : </H4>" + top3Crashes.get("2") + "<br>" + "<H4>Crash 3 : </H4>" + top3Crashes.get("3");
 
+        Long timestamp;
+        timestamp = System.currentTimeMillis();
+
         Log.info(mailBody);
-        ExtentReport.sendFabricStatusMail("Fabric | Android | Status", mailBody);
+        ExtentReport.sendFabricStatusMail("Fabric | Android | Status | " + timestamp, mailBody);
 
 
     }
