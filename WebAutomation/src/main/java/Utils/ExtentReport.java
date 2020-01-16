@@ -101,6 +101,27 @@ public class ExtentReport {
         mailer.sendMail(recipients, Configuration.Email.TEAM + " Test Execution report", Configuration.Email.MAIL_BODY_TEXT, listOfAttachments);
     }
 
+
+    public static void sendFabricStatusMail(String subject, String body) throws InterruptedException {
+
+
+        Log.info("START", "sendFabricStatusMail");
+        Mailer mailer = (Mailer) ApplicationContextProvider.getApplicationContext().getBean("mailer");
+
+        // Create the list of attachments
+        List<String> listOfAttachments = new ArrayList<>();
+        listOfAttachments.add(System.getProperty("user.dir").concat(File.separator).concat("test-output/ExtentReports/ExtentReport.html"));
+
+        // Create the recipients array
+        String recepients = "qafront-end@mobikwik.com,Mbk-Android@mobikwik.com";
+        String[] recipients = recepients.split(",");
+
+        mailer.sendMail(recipients, subject, body, listOfAttachments);
+
+        Log.info("END", "sendFabricStatusMail");
+
+    }
+
     private static Theme setTheme(String themeType) {
         Theme theme;
         switch (themeType.toUpperCase()) {
