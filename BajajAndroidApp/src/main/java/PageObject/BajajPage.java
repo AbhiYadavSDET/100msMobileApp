@@ -85,7 +85,7 @@ public class BajajPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'X5,000']")
     private AndroidElement cta_5000_offer;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'Don't need it now']")
+    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/text")
     private AndroidElement select_feedback;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[2]")
@@ -261,6 +261,8 @@ public class BajajPage {
     public String getFeedbackReason() throws InterruptedException{
         return Element.getText(driver, getFeedbackReason, "Get Feedback Reason");
     }
+
+
 
 
 

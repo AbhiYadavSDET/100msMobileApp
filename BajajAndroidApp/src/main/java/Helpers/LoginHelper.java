@@ -237,7 +237,7 @@ public class LoginHelper {
 
     public boolean isOnboardingPresent() throws InterruptedException {
         Thread.sleep(3000);
-        if (Element.isElementPresent(driver, By.id("com.mobikwik_new.bajajfinserv:id/skip"))) {
+        if (Element.isElementPresent(driver, By.id("com.mobikwik_new.bajajfinserv:id/send_otp"))) {
             return true;
         } else {
             return false;
