@@ -90,8 +90,8 @@ public class TestBase {
 
         setWebDriver(driver);
 
-        String webUrl = "https://www.mobikwik.com";
-        webUrl = properties.getProperty("WebUrl", "https://www.mobikwik.com");
+        String webUrl = "https://fabric.io/login";
+        webUrl = properties.getProperty("WebUrl", "https://fabric.io/login");
         getWebDriver().get(webUrl);
 
 

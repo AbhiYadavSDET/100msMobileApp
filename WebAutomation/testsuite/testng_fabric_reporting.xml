@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Help Flow">
+
+    <!--Listeners-->
+    <listeners>
+        <listener class-name="Utils.ExtentReportListener"/>
+    </listeners>
+
+    <test verbose="2" preserve-order="true" name="HelpTest.java">
+        <groups>
+            <run>
+                <include name="display"/>
+            </run>
+        </groups>
+
+
+        <classes>
+            <class name="fabric.FabricTest"/>
+        </classes>
+    </test>
+
+</suite>

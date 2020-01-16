@@ -894,5 +894,12 @@ public class Element extends TestBase {
         return isPresent;
     }
 
+    public static void hoverOn(WebDriver webDriver, WebElement webElement) throws InterruptedException {
+        Thread.sleep(2000);
+        Element.waitForVisibility(webDriver, webElement, "Hover On");
+        Actions actions = new Actions(webDriver);
+        actions.moveToElement(webElement).perform();
+    }
+
 
 }
