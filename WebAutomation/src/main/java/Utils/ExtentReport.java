@@ -110,7 +110,7 @@ public class ExtentReport {
 
         // Create the list of attachments
         List<String> listOfAttachments = new ArrayList<>();
-        listOfAttachments.add(System.getProperty("user.dir").concat(File.separator).concat("test-output/ExtentReports/ExtentReport.html"));
+        //listOfAttachments.add(System.getProperty("user.dir").concat(File.separator).concat("test-output/ExtentReports/ExtentReport.html"));
 
         // Create the recipients array
         String recepients = "qafront-end@mobikwik.com,Mbk-Android@mobikwik.com";
