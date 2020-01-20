@@ -96,7 +96,7 @@ public class DeepLinkHelper {
 
     }
 
-    public void validateDeeplink(String deeplinkstring, String appName, String elementID) throws InterruptedException, IOException {
+    public void validateDeeplink(String deeplinkstring, String appName, String elementID, String featureName) throws InterruptedException, IOException {
 
 //        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
@@ -128,9 +128,16 @@ public class DeepLinkHelper {
 
             Element.selectElement(driver, (AndroidElement) driver.findElement(By.id("android:id/button_once")), "Open App for One time");
 
-            Thread.sleep(5000);
+            Thread.sleep(3000);
 
-            mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath("//")), "Validate Feature is not Visible", true, false);
+            if(Element.isElementPresent(driver, By.id("content"))){
+
+                driver.pressKey(new KeyEvent(AndroidKey.BACK));
+            }
+
+            Thread.sleep(2000);
+
+            mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id(elementID)), "As User still on Home Page, User is not redirected to the "+featureName +" feature", true, false);
 
         }else {
 
@@ -146,21 +153,25 @@ public class DeepLinkHelper {
 
     public void validateDeeplink(String deeplinkstring, String appName) throws InterruptedException, IOException {
 
-//        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
-
-        driver.pressKey(new KeyEvent(AndroidKey.BACK));
-
-
-        String cmd = "adb shell am start -a android.intent.action.VIEW -d "+deeplinkstring;
-
-        process = Runtime.getRuntime().exec(cmd);
-
-//        driver.get(deeplinkstring);
+       driver.pressKey(new KeyEvent(AndroidKey.BACK));
 
         Thread.sleep(3000);
 
-        boolean abc= getApplicableApp(appName);
+        String cmd = "/home/parajjain/Android/Sdk/platform-tools/adb shell am start -a android.intent.action.VIEW -d "+deeplinkstring;
 
+        process = Runtime.getRuntime().exec(cmd);
+//
+////        driver.get(deeplinkstring);
+//
+        Thread.sleep(6000);
+
+        boolean abc= getApplicableApp(appName);
+//
+////        if(abc){
+////            Log.info("true");
+////        }else{
+////            Log.info("false");
+////        }
 
         if(!abc){
 
