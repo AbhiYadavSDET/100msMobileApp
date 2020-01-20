@@ -14,6 +14,7 @@ public class FabricHelper {
     WebDriver driver;
     FabricPage fabricPage;
     List<String> status;
+    public static Boolean MAILFLAG = false;
 
 
     public FabricHelper(WebDriver driver) {
@@ -23,10 +24,10 @@ public class FabricHelper {
 
     }
 
-    public void fabricLogin() {
+    public void fabricLogin(String username, String password) {
         // Enter the user details
-        fabricPage.enterUserName("mayank.suneja@mobikwik.com");
-        fabricPage.enterPassword("Tuesday20");
+        fabricPage.enterUserName(username);
+        fabricPage.enterPassword(password);
         fabricPage.clickSignIn();
         fabricPage.clickMobikwikAndroid();
     }
@@ -38,7 +39,7 @@ public class FabricHelper {
         return activeUsers;
     }
 
-    public List<String> fabricStatus() throws InterruptedException {
+    public List<String> fabricStatus(String stringExpectedCrashFreeUsers7Days, String stringExpectedCrashFreeSessions7Days, String stringExpectedCrashFreeUsers30Days, String stringExpectedCrashFreeSessions30Days) throws InterruptedException {
 
 
         // Select the crashlytics tab
@@ -52,6 +53,14 @@ public class FabricHelper {
         Log.info("Last 07 Days | Crash Free Users : " + crashFreeUsers + " | Crash Fee Sessions : " + crashFreeSessions);
         status.add("Last 07 Days | Crash Free Users : " + crashFreeUsers + " | Crash Fee Sessions : " + crashFreeSessions);
 
+        // setting the mail flag
+        Double expectedCrashFreeUsers7Days = Double.parseDouble(stringExpectedCrashFreeUsers7Days);
+        Double expectedCrashFreeSessions7Days = Double.parseDouble(stringExpectedCrashFreeSessions7Days);
+        if (Double.parseDouble(crashFreeUsers.replace("%", "")) < expectedCrashFreeUsers7Days || Double.parseDouble(crashFreeSessions.replace("%", "")) < expectedCrashFreeSessions7Days) {
+            Log.info("Set Flag true", "7 days");
+            MAILFLAG = true;
+        }
+
         fabricPage.clickDropDownArrow();
         fabricPage.selectLast30Days();
         crashFreeUsers = fabricPage.getCrashFreeUsers();
@@ -59,10 +68,18 @@ public class FabricHelper {
         Log.info("Last 30 Days | Crash Free Users : " + crashFreeUsers + " | Crash Fee Sessions : " + crashFreeSessions);
         status.add("Last 30 Days | Crash Free Users : " + crashFreeUsers + " | Crash Fee Sessions : " + crashFreeSessions);
 
+        // setting the mail flag
+        Double expectedCrashFreeUsers30Days = Double.parseDouble(stringExpectedCrashFreeUsers30Days);
+        Double expectedCrashFreeSessions30Days = Double.parseDouble(stringExpectedCrashFreeSessions30Days);
+        if (Double.parseDouble(crashFreeUsers.replace("%", "")) < expectedCrashFreeUsers30Days || Double.parseDouble(crashFreeSessions.replace("%", "")) < expectedCrashFreeSessions30Days) {
+            Log.info("Set Flag true", "30 days");
+            MAILFLAG = true;
+        }
+
         return status;
     }
 
-    public HashMap<String, String> top3Crashes() throws InterruptedException {
+    public HashMap<String, String> top3Crashes(String count) throws InterruptedException {
 
 
         HashMap<String, String> crashDetails = new HashMap<>();
@@ -83,6 +100,14 @@ public class FabricHelper {
         Log.info("Crash 2 : " + crashDetails.get("2"));
         Log.info("Crash 3 : " + crashDetails.get("3"));
 
+        // setting the mail flag
+        Integer crashCount = Integer.parseInt(count);
+        Integer actualCrashCount = Integer.valueOf(crashDetails.get("1").split("\\|")[3].replaceAll(" ", ""));
+        System.out.println("Log: " + actualCrashCount);
+        if (actualCrashCount > crashCount) {
+            Log.info("Set Flag true", "Top 3 crashes");
+            MAILFLAG = true;
+        }
 
         return crashDetails;
     }
