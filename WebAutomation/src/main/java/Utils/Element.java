@@ -145,6 +145,11 @@ public class Element extends TestBase {
         return getText(driver, webElement, description);
     }
 
+    public static String fetchLink(WebDriver driver, WebElement webElement, String description) {
+        Browser.waitForElementToVisibleOnPage(driver, webElement, 30);
+        return webElement.getAttribute("href").toString();
+    }
+
     /**
      * This Method is used to Click on element using JavaScript
      *

@@ -89,6 +89,16 @@ public class FabricPage {
     @FindBy(xpath = "//tr[3]/td/a/div[2]")
     private WebElement label_description_3;
 
+    // Crash link
+    @FindBy(xpath = "//tr[1]/td[@class = 'cell-title']/a")
+    private WebElement link_crash_1;
+
+    @FindBy(xpath = "//tr[2]/td[@class = 'cell-title']/a")
+    private WebElement link_crash_2;
+
+    @FindBy(xpath = "//tr[3]/td[@class = 'cell-title']/a")
+    private WebElement link_crash_3;
+
     // Crashs
     @FindBy(xpath = "//tr[1]/td[5]/a/div/div/span")
     private WebElement label_crashes_1;
@@ -247,5 +257,17 @@ public class FabricPage {
 
     public void moveToCrashes() {
         Element.scrollToView(driver, label_crashes_2);
+    }
+
+    public String getCrash1Link() {
+        return Element.fetchLink(driver, link_crash_1, "Crash 1 : Link");
+    }
+
+    public String getCrash2Link() {
+        return Element.fetchLink(driver, link_crash_2, "Crash 2 : Link");
+    }
+
+    public String getCrash3Link() {
+        return Element.fetchLink(driver, link_crash_3, "Crash 3 : Link");
     }
 }

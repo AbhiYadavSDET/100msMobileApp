@@ -51,7 +51,7 @@ public class FabricHelper {
         String crashFreeUsers = fabricPage.getCrashFreeUsers();
         String crashFreeSessions = fabricPage.getCrashFreeSessions();
         Log.info("Last 07 Days | Crash Free Users : " + crashFreeUsers + " | Crash Fee Sessions : " + crashFreeSessions);
-        status.add("Last 07 Days | Crash Free Users : " + crashFreeUsers + " | Crash Fee Sessions : " + crashFreeSessions);
+        status.add("<H2>Crash Rate</H2><table cellpadding=\"8px\" cellspacing=\"1\" border=\"1\" style=\"width:60%;text-align: centre;\">" + "<tr><th>Duration</th><th>Crash Free Users</th><th>Crash Free Sessions</th>" + "</tr><tr><td>Last 07 Days</td><td>" + crashFreeUsers + "</td><td>" + crashFreeSessions + "</td></tr>");
 
         // setting the mail flag
         Double expectedCrashFreeUsers7Days = Double.parseDouble(stringExpectedCrashFreeUsers7Days);
@@ -66,7 +66,7 @@ public class FabricHelper {
         crashFreeUsers = fabricPage.getCrashFreeUsers();
         crashFreeSessions = fabricPage.getCrashFreeSessions();
         Log.info("Last 30 Days | Crash Free Users : " + crashFreeUsers + " | Crash Fee Sessions : " + crashFreeSessions);
-        status.add("Last 30 Days | Crash Free Users : " + crashFreeUsers + " | Crash Fee Sessions : " + crashFreeSessions);
+        status.add("</tr><tr><td>Last 30 Days</td><td>" + crashFreeUsers + "</td><td>" + crashFreeSessions + "</td></tr></table>");
 
         // setting the mail flag
         Double expectedCrashFreeUsers30Days = Double.parseDouble(stringExpectedCrashFreeUsers30Days);
@@ -91,9 +91,9 @@ public class FabricHelper {
 
         Thread.sleep(5000);
         fabricPage.moveToCrashes();
-        crashDetails.put("1", fabricPage.getCrash1Title() + " | " + fabricPage.getCrash1Description() + " | " + fabricPage.getCrash1AppVersion() + " | " + fabricPage.getCrash1Crashes() + " | " + fabricPage.getCrash1Users());
-        crashDetails.put("2", fabricPage.getCrash2Title() + " | " + fabricPage.getCrash2Description() + " | " + fabricPage.getCrash2AppVersion() + " | " + fabricPage.getCrash2Crashes() + " | " + fabricPage.getCrash2Users());
-        crashDetails.put("3", fabricPage.getCrash3Title() + " | " + fabricPage.getCrash3Description() + " | " + fabricPage.getCrash3AppVersion() + " | " + fabricPage.getCrash3Crashes() + " | " + fabricPage.getCrash3Users());
+        crashDetails.put("1", fabricPage.getCrash1Title() + " | " + fabricPage.getCrash1Description() + " | " + fabricPage.getCrash1AppVersion() + " | " + fabricPage.getCrash1Crashes() + " | " + fabricPage.getCrash1Users() + " | " + fabricPage.getCrash1Link());
+        crashDetails.put("2", fabricPage.getCrash2Title() + " | " + fabricPage.getCrash2Description() + " | " + fabricPage.getCrash2AppVersion() + " | " + fabricPage.getCrash2Crashes() + " | " + fabricPage.getCrash2Users() + " | " + fabricPage.getCrash2Link());
+        crashDetails.put("3", fabricPage.getCrash3Title() + " | " + fabricPage.getCrash3Description() + " | " + fabricPage.getCrash3AppVersion() + " | " + fabricPage.getCrash3Crashes() + " | " + fabricPage.getCrash3Users() + " | " + fabricPage.getCrash3Link());
 
         // Print the top 3 crashes
         Log.info("Crash 1 : " + crashDetails.get("1"));
