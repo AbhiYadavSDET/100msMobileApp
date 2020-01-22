@@ -28,8 +28,10 @@ public class FabricTest extends TestBase {
 
         HashMap<String, String> top3Crashes = fabricHelper.top3Crashes(frontEndEntity.getExpiryMonth());
 
-        String mailBody = "<H2>Active Users</H2>" + activeUsers + "<H2>Crash Rate</H2>" + status.get(0) + "<br>" + status.get(1) + "<br>" + "<br>" + "<H2>Top 3 Crashes in Last 60 Minutes</H2>" + "<H4>Crash 1 : </H4>" + top3Crashes.get("1") + "<br>" + "<H4>Crash 2 : </H4>" + top3Crashes.get("2") + "<br>" + "<H4>Crash 3 : </H4>" + top3Crashes.get("3");
+        String mailBody = "<H2>Active Users</H2>" + activeUsers + status.get(0) + status.get(1)
+                + "<br><H2>Top 3 Crashes in Last 60 Minutes</H2><table cellpadding=\"8px\" cellspacing=\"1\" border=\"1\" style=\"width:90%;text-align: centre;\" ><tr><th>Title</th><th>Description</th><th>App Version</th><th>Crashes</th><th>Users</th><th>Link</th></tr>" + "<tr><td>" + top3Crashes.get("1").split("\\|")[0].replaceAll(" ", "") + "</td><td>" + top3Crashes.get("1").split("\\|")[1].replaceAll(" ", "") + "</td><td>" + top3Crashes.get("1").split("\\|")[2].replaceAll(" ", "") + "</td><td>" + top3Crashes.get("1").split("\\|")[3].replaceAll(" ", "") + "</td><td>" + top3Crashes.get("1").split("\\|")[4].replaceAll(" ", "") + "</td><td><a href=" + top3Crashes.get("1").split("\\|")[5].replaceAll(" ", "") + "> Link </a></td></tr>" + "<tr><td>" + top3Crashes.get("2").split("\\|")[0].replaceAll(" ", "") + "</td><td>" + top3Crashes.get("2").split("\\|")[1].replaceAll(" ", "") + "</td><td>" + top3Crashes.get("2").split("\\|")[2].replaceAll(" ", "") + "</td><td>" + top3Crashes.get("2").split("\\|")[3].replaceAll(" ", "") + "</td><td>" + top3Crashes.get("2").split("\\|")[4].replaceAll(" ", "") + "</td><td><a href=" + top3Crashes.get("2").split("\\|")[5].replaceAll(" ", "") + "> Link </a></td></tr>" + "<tr><td>" + top3Crashes.get("3").split("\\|")[0].replaceAll(" ", "") + "</td><td>" + top3Crashes.get("3").split("\\|")[1].replaceAll(" ", "") + "</td><td>" + top3Crashes.get("3").split("\\|")[2].replaceAll(" ", "") + "</td><td>" + top3Crashes.get("3").split("\\|")[3].replaceAll(" ", "") + "</td><td>" + top3Crashes.get("3").split("\\|")[4].replaceAll(" ", "") + "</td><td><a href=" + top3Crashes.get("3").split("\\|")[5].replaceAll(" ", "") + "> Link </a></td></tr></table>";
 
+        //log.info(mailBody);
 
         if (FabricHelper.MAILFLAG) {
 
