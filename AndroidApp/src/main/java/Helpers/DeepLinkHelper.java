@@ -103,6 +103,8 @@ public class DeepLinkHelper {
 
 //        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
+        Log.info("Test Case Started for "+deeplinkstring+ " in "+module+" Module.");
+
         driver.pressKey(new KeyEvent(AndroidKey.BACK));
 
         Thread.sleep(3000);
@@ -111,135 +113,69 @@ public class DeepLinkHelper {
 
         process = Runtime.getRuntime().exec(cmd);
 
-//        driver.get(deeplinkstring);
-
-        Thread.sleep(6000);
-
-        boolean appAvaibility= getApplicableApp(appName);
-
-//        if(abc){
-//            Log.info("true");
-//        }else{
-//            Log.info("false");
-//        }
-
-        if(appAvaibility){
-
-            mbReporter.verifyTrueWithLogging(appAvaibility, "Deeplink Indexing of "+deeplinkstring+ " is available for "+appName, true, false );
-
-            Element.selectElement(driver, (AndroidElement) driver.findElement(By.xpath("//android.widget.TextView[@text= '"+appName+"']")), "Select "+appName+" App");
-
-            Element.selectElement(driver, (AndroidElement) driver.findElement(By.id("android:id/button_once")), "Open App for One time");
-
-            Thread.sleep(3000);
-
-//            if(Element.isElementPresent(driver, By.id("content"))){
-//
-//                driver.pressKey(new KeyEvent(AndroidKey.BACK));
-//            }
-
-//            Thread.sleep(2000);
-
-            if(elementType.equalsIgnoreCase("id")) {
-
-                mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id(element)), "User is redirected to the " + module + " feature", true, false);
-
-            }else{
-
-                mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath(element)), "User is redirected to the " + module + " feature", true, false);
-
-            }
+        Thread.sleep(3000);
 
 
-
-        }else {
-
-            mbReporter.verifyTrueWithLogging(appAvaibility, "Deeplink Indexing of "+deeplinkstring+ " is not available for "+appName, true, false );
+        if(Element.isElementPresent(driver, By.id("android:id/sem_titlePanel_default"))){
 
 
-        }
+            List<AndroidElement> applicableApp= driver.findElements(By.id("android:id/text1"));
 
+            Thread.sleep(2000);
+            int noOfApp = applicableApp.size();
 
-
-
-    }
-
-//    public void validateDeeplink(String deeplinkstring, String appName) throws InterruptedException, IOException {
-//
-//        driver.pressKey(new KeyEvent(AndroidKey.BACK));
-//
-//        Thread.sleep(3000);
-//
-//        String cmd = "/home/parajjain/Android/Sdk/platform-tools/adb shell am start -a android.intent.action.VIEW -d "+deeplinkstring;
-//
-//        process = Runtime.getRuntime().exec(cmd);
-////
-//////        driver.get(deeplinkstring);
-////
-//        Thread.sleep(6000);
-//
-//        boolean abc= getApplicableApp(appName);
-////
-//////        if(abc){
-//////            Log.info("true");
-//////        }else{
-//////            Log.info("false");
-//////        }
-//
-//        if(!abc){
-//
-//            mbReporter.verifyTrueWithLogging(!abc, "Deeplink Indexing of "+deeplinkstring+ " is not available for "+appName, true, false );
-//
-//
-//        }else {
-//
-//            mbReporter.verifyTrueWithLogging(!abc, "Deeplink Indexing of "+deeplinkstring+ " is available for "+appName, true, false );
-//
-//        }
-//
-//
-//
-//
-//    }
-
-
-    public boolean getApplicableApp( String appName) throws InterruptedException{
-
-
-
-        List<AndroidElement> applicableApp= driver.findElements(By.id("android:id/text1"));
-
-        Thread.sleep(2000);
-        int noOfApp = applicableApp.size();
-
-        boolean abc = false;
-
-        for (int i = 0; i < noOfApp ; i++) {
+            for (int i = 0; i < noOfApp ; i++) {
 
 //            Log.info(applicableApp.get(i).getText());
 //            Log.info(appName);
 
-            String appInstance= applicableApp.get(i).getText();
+                String appInstance= applicableApp.get(i).getText();
 
-            if(appInstance.equals(appName)){
-                System.out.println("Deeplink Indexing available for "+ appName);
-                abc=true;
-                break;
+                if(appInstance.equals(appName)){
+                    mbReporter.verifyTrueWithLogging(true, "Deeplink Indexing of "+deeplinkstring+ " is available for "+appName, true, false );;
+
+                    if(Element.isElementPresent(driver, By.id("android:id/button_once"))) {
+
+                        Element.selectElement(driver, (AndroidElement) driver.findElement(By.xpath("//android.widget.TextView[@text= '" + appName + "']")), "Select " + appName + " App");
+
+                        Element.selectElement(driver, (AndroidElement) driver.findElement(By.id("android:id/button_once")), "Open App for One time");
+                    }else{
+
+                        Element.selectElement(driver, (AndroidElement) driver.findElement(By.xpath("//android.widget.TextView[@text= '" + appName + "']")), "Select " + appName + " App");
+
+                    }
+
+                    Thread.sleep(3000);
+                    break;
+
+                }
 
             }
 
+
         }
 
-//        if(abc){
-//            Log.info("true found");
-//        }else{
-//            Log.info("false not found");
-//        }
-        return abc;
+
+        if(permissionHelper.isPermissionPopUpPresent()) {
+
+            permissionHelper.permissionAllow();
+            Thread.sleep(1000);
+        }
+
+
+            if(elementType.equalsIgnoreCase("id")) {
+
+                mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id(""+element+"")), "User is redirected to the " + module + " feature via "+deeplinkstring, true, false);
+
+            }else{
+
+                mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath(""+element+"")), "User is redirected to the " + module + " feature via "+deeplinkstring, true, false);
+
+            }
+
+
 
     }
-
-
 
 
 
