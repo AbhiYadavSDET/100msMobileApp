@@ -1,8 +1,11 @@
 package Helpers;
 
 import PageObject.FabricPage;
+import Utils.Element;
 import Utils.Log;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -79,6 +82,18 @@ public class FabricHelper {
         return status;
     }
 
+    public List<String> fabricStatus() throws InterruptedException {
+
+
+        // Display the status
+        String crashFreeUsers = fabricPage.getCrashFreeUsers();
+        String crashFreeSessions = fabricPage.getCrashFreeSessions();
+        Log.info("Last 07 Days | Crash Free Users : " + crashFreeUsers + " | Crash Fee Sessions : " + crashFreeSessions);
+        status.add("<H2>Crash Rate</H2><table cellpadding=\"8px\" cellspacing=\"1\" border=\"1\" style=\"width:60%;text-align: centre;\">" + "<tr><th>Duration</th><th>Crash Free Users</th><th>Crash Free Sessions</th>" + "</tr><tr><td>Last 07 Days</td><td>" + crashFreeUsers + "</td><td>" + crashFreeSessions + "</td></tr></table>");
+
+        return status;
+    }
+
     public HashMap<String, String> top3Crashes(String count) throws InterruptedException {
 
 
@@ -110,5 +125,75 @@ public class FabricHelper {
         }
 
         return crashDetails;
+    }
+
+    public void selectLatestAppVersions() throws InterruptedException {
+        Log.info("Lastet App versions");
+
+        // Select the crashlytics tab
+        fabricPage.hoverOnIconCrashlytics();
+        fabricPage.clickCrashlytics();
+        fabricPage.hoverOnLabelCrashes();
+
+        // Click on App-versions
+        fabricPage.clickCrossIcon();
+        fabricPage.enterAppVersion("20.5.2");
+        Thread.sleep(5000);
+
+        // get the count of newer app versions
+        List<WebElement> elementList = Element.getListOfElements(driver, Element.How.xPath, "//span[text() = 'crash-free users']/preceding::*[contains(text(),'20.5.2 (')]");
+        int count = elementList.size();
+        Log.info("No of apps with new version : " + elementList.size());
+
+        // Select all the version of the latest app
+        WebElement webElement = driver.findElement(By.xpath("//div[@class = 'Select-menu-outer']/div[@class = 'Select-menu']/div[@role = 'option']"));
+        Element.selectElement(driver, webElement, "Instance");
+
+
+        for (int i = 0; i < count - 1; i++) {
+            fabricPage.enterAppVersion("20.5.2");
+            webElement = driver.findElement(By.xpath("//div[@class = 'Select-menu-outer']/div[@class = 'Select-menu']/div[@role = 'option']"));
+            Element.selectElement(driver, webElement, "Instance");
+
+        }
+
+    }
+
+    public List<String> getTopDevices() throws InterruptedException {
+        fabricPage.clickCrashInsights();
+        fabricPage.clickDeviceOS();
+        fabricPage.clickDropdownTopDevices();
+        Thread.sleep(5000);
+
+        List<String> topDevices = new ArrayList<>();
+        Log.info("# of top devices : " + Element.getListOfElements(driver, Element.How.xPath, "//div[@class = 'Select-menu-outer']/div[@role = 'listbox']/div[@role = 'option']").size());
+        Log.info("SLEEP", "Start");
+        Thread.sleep(5000);
+        Log.info("SLEEP", "End");
+
+
+        topDevices.add(driver.findElement(By.xpath("//div[text() = 'Top Devices']/following::div[@class = 'Select-menu-outer']/div[@role = 'listbox']/div[@role = 'option'][1]/div")).getText());
+        topDevices.add(driver.findElement(By.xpath("//div[text() = 'Top Devices']/following::div[@class = 'Select-menu-outer']/div[@role = 'listbox']/div[@role = 'option'][2]/div")).getText());
+        topDevices.add(driver.findElement(By.xpath("//div[text() = 'Top Devices']/following::div[@class = 'Select-menu-outer']/div[@role = 'listbox']/div[@role = 'option'][3]/div")).getText());
+
+        return topDevices;
+    }
+
+    public List<String> getTopOS() throws InterruptedException {
+        fabricPage.clickDropdownTopOS();
+        Thread.sleep(5000);
+
+        List<String> topOs = new ArrayList<>();
+        Log.info("# of top OS : " + Element.getListOfElements(driver, Element.How.xPath, "//div[@class = 'Select-menu-outer']/div[@role = 'listbox']/div[@role = 'option']").size());
+        Log.info("SLEEP", "Start");
+        Thread.sleep(5000);
+        Log.info("SLEEP", "End");
+
+
+        topOs.add(driver.findElement(By.xpath("//div[text() = 'Top Devices']/following::div[@class = 'Select-menu-outer']/div[@role = 'listbox']/div[@role = 'option'][1]/div")).getText());
+        topOs.add(driver.findElement(By.xpath("//div[text() = 'Top Devices']/following::div[@class = 'Select-menu-outer']/div[@role = 'listbox']/div[@role = 'option'][2]/div")).getText());
+        topOs.add(driver.findElement(By.xpath("//div[text() = 'Top Devices']/following::div[@class = 'Select-menu-outer']/div[@role = 'listbox']/div[@role = 'option'][3]/div")).getText());
+
+        return topOs;
     }
 }
