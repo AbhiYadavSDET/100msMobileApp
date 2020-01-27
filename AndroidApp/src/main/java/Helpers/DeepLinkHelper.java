@@ -165,11 +165,11 @@ public class DeepLinkHelper {
 
             if(elementType.equalsIgnoreCase("id")) {
 
-                mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id(""+element+"")), "User is redirected to the " + module + " feature via "+deeplinkstring, true, false);
+                mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id(""+element+"")), "User is redirected to the " + module + " feature via "+deeplinkstring, true, true);
 
             }else{
 
-                mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath(""+element+"")), "User is redirected to the " + module + " feature via "+deeplinkstring, true, false);
+                mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath(""+element+"")), "User is redirected to the " + module + " feature via "+deeplinkstring, true, true);
 
             }
 
