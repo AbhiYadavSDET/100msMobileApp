@@ -286,7 +286,7 @@ public class FabricPage {
     }
 
     public void moveToCrashes() {
-        Element.scrollToView(driver, label_crashes_3);
+        Element.scrollToView(driver, label_crashes_1);
     }
 
     public String getCrash1Link() {
