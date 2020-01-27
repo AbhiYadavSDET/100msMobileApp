@@ -260,7 +260,7 @@ public class CreateSession {
 
 // Create the list of attachments
         List<String> listOfAttachments = new ArrayList<>();
-        listOfAttachments.add("/home/parajjain/Documents/MK-Automation/AndroidApp/test-output/Extent.html");
+        listOfAttachments.add("/home/parajjain/Documents/MK-Automation/AndroidApp/test-output/ExtentReports/ExtentReport.html");
 
 // Create the recipients array
         String[] recipients = {"QAfront-End@mobikwik.com"};
