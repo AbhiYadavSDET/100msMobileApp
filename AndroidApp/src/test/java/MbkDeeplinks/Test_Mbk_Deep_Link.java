@@ -209,8 +209,8 @@ public class Test_Mbk_Deep_Link extends CreateSession {
         Thread.sleep(2000);
     }
 
-    @Test(groups = {"Services", "DeeplinkSanity"}, priority = 0, dataProvider = "mbkdeepLinkData", dataProviderClass = MbkDeepLinkDataProviderClass.class)
-    public void Services(DeeplinkEntity deeplinkEntity) throws IOException, JSONException, InterruptedException {
+    @Test(groups = {"Giftcard", "DeeplinkSanity"}, priority = 0, dataProvider = "mbkdeepLinkData", dataProviderClass = MbkDeepLinkDataProviderClass.class)
+    public void Giftcard(DeeplinkEntity deeplinkEntity) throws IOException, JSONException, InterruptedException {
 
 
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
@@ -249,6 +249,82 @@ public class Test_Mbk_Deep_Link extends CreateSession {
 
     @Test(groups = {"Supercash", "DeeplinkSanity"}, priority = 0, dataProvider = "mbkdeepLinkData", dataProviderClass = MbkDeepLinkDataProviderClass.class)
     public void Supercash(DeeplinkEntity deeplinkEntity) throws IOException, JSONException, InterruptedException {
+
+
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaEmail(deeplinkEntity.getUserName(), deeplinkEntity.getPassword() );
+
+//        loginHelper.quickLoginViaEmail("amityd321@gmail.com", "Test@1234");
+
+        MBKCommonControlsHelper mbkCommonControlsHelper = new MBKCommonControlsHelper(getAndroidDriver());
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+
+
+        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
+        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule());
+
+        Thread.sleep(2000);
+    }
+
+    @Test(groups = {"Bus", "DeeplinkSanity"}, priority = 0, dataProvider = "mbkdeepLinkData", dataProviderClass = MbkDeepLinkDataProviderClass.class)
+    public void Bus(DeeplinkEntity deeplinkEntity) throws IOException, JSONException, InterruptedException {
+
+
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaEmail(deeplinkEntity.getUserName(), deeplinkEntity.getPassword() );
+
+//        loginHelper.quickLoginViaEmail("amityd321@gmail.com", "Test@1234");
+
+        MBKCommonControlsHelper mbkCommonControlsHelper = new MBKCommonControlsHelper(getAndroidDriver());
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+
+
+        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
+        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule());
+
+        Thread.sleep(2000);
+    }
+
+    @Test(groups = {"Ola", "DeeplinkSanity"}, priority = 0, dataProvider = "mbkdeepLinkData", dataProviderClass = MbkDeepLinkDataProviderClass.class)
+    public void Ola(DeeplinkEntity deeplinkEntity) throws IOException, JSONException, InterruptedException {
+
+
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaEmail(deeplinkEntity.getUserName(), deeplinkEntity.getPassword() );
+
+//        loginHelper.quickLoginViaEmail("amityd321@gmail.com", "Test@1234");
+
+        MBKCommonControlsHelper mbkCommonControlsHelper = new MBKCommonControlsHelper(getAndroidDriver());
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+
+
+        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
+        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule());
+
+        Thread.sleep(2000);
+    }
+
+    @Test(groups = {"Nearby", "DeeplinkSanity"}, priority = 0, dataProvider = "mbkdeepLinkData", dataProviderClass = MbkDeepLinkDataProviderClass.class)
+    public void Nearby(DeeplinkEntity deeplinkEntity) throws IOException, JSONException, InterruptedException {
+
+
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaEmail(deeplinkEntity.getUserName(), deeplinkEntity.getPassword() );
+
+//        loginHelper.quickLoginViaEmail("amityd321@gmail.com", "Test@1234");
+
+        MBKCommonControlsHelper mbkCommonControlsHelper = new MBKCommonControlsHelper(getAndroidDriver());
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+
+
+        DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
+        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule());
+
+        Thread.sleep(2000);
+    }
+
+    @Test(groups = {"Payback", "DeeplinkSanity"}, priority = 0, dataProvider = "mbkdeepLinkData", dataProviderClass = MbkDeepLinkDataProviderClass.class)
+    public void Payback(DeeplinkEntity deeplinkEntity) throws IOException, JSONException, InterruptedException {
 
 
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
