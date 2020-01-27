@@ -105,29 +105,91 @@ public class FabricHelper {
         fabricPage.selectLast60Minutes();
 
         Thread.sleep(5000);
-        fabricPage.moveToCrashes();
-        crashDetails.put("1", fabricPage.getCrash1Title() + " | " + fabricPage.getCrash1Description() + " | " + fabricPage.getCrash1AppVersion() + " | " + fabricPage.getCrash1Crashes() + " | " + fabricPage.getCrash1Users() + " | " + fabricPage.getCrash1Link());
-        crashDetails.put("2", fabricPage.getCrash2Title() + " | " + fabricPage.getCrash2Description() + " | " + fabricPage.getCrash2AppVersion() + " | " + fabricPage.getCrash2Crashes() + " | " + fabricPage.getCrash2Users() + " | " + fabricPage.getCrash2Link());
-        crashDetails.put("3", fabricPage.getCrash3Title() + " | " + fabricPage.getCrash3Description() + " | " + fabricPage.getCrash3AppVersion() + " | " + fabricPage.getCrash3Crashes() + " | " + fabricPage.getCrash3Users() + " | " + fabricPage.getCrash3Link());
 
-        // Print the top 3 crashes
-        Log.info("Crash 1 : " + crashDetails.get("1"));
-        Log.info("Crash 2 : " + crashDetails.get("2"));
-        Log.info("Crash 3 : " + crashDetails.get("3"));
 
-        // setting the mail flag
-        Integer crashCount = Integer.parseInt(count);
-        Integer actualCrashCount = Integer.valueOf(crashDetails.get("1").split("\\|")[3].replaceAll(" ", ""));
-        System.out.println("Log: " + actualCrashCount);
-        if (actualCrashCount > crashCount) {
-            Log.info("Set Flag true", "Top 3 crashes");
-            MAILFLAG = true;
+        Integer crashCount;
+        Integer actualCrashCount;
+        int noOfCrashes = Element.getListOfElements(driver, Element.How.xPath, "//tr/td/a/div/span[1]").size();
+
+        if (noOfCrashes >= 3) {
+            fabricPage.moveToCrashes();
+            crashDetails.put("1", fabricPage.getCrash1Title() + " | " + fabricPage.getCrash1Description() + " | " + fabricPage.getCrash1AppVersion() + " | " + fabricPage.getCrash1Crashes() + " | " + fabricPage.getCrash1Users() + " | " + fabricPage.getCrash1Link());
+            crashDetails.put("2", fabricPage.getCrash2Title() + " | " + fabricPage.getCrash2Description() + " | " + fabricPage.getCrash2AppVersion() + " | " + fabricPage.getCrash2Crashes() + " | " + fabricPage.getCrash2Users() + " | " + fabricPage.getCrash2Link());
+            crashDetails.put("3", fabricPage.getCrash3Title() + " | " + fabricPage.getCrash3Description() + " | " + fabricPage.getCrash3AppVersion() + " | " + fabricPage.getCrash3Crashes() + " | " + fabricPage.getCrash3Users() + " | " + fabricPage.getCrash3Link());
+
+            // Print the top 3 crashes
+            Log.info("Crash 1 : " + crashDetails.get("1"));
+            Log.info("Crash 2 : " + crashDetails.get("2"));
+            Log.info("Crash 3 : " + crashDetails.get("3"));
+
+            // setting the mail flag
+            crashCount = Integer.parseInt(count);
+            actualCrashCount = Integer.valueOf(crashDetails.get("1").split("\\|")[3].replaceAll(" ", ""));
+            System.out.println("Log: " + actualCrashCount);
+            if (actualCrashCount > crashCount) {
+                Log.info("Set Flag true", "Top 3 crashes");
+                MAILFLAG = true;
+            }
+        } else {
+            switch (noOfCrashes) {
+
+                case 0:
+                    Log.info("No Of Crashes : " + noOfCrashes);
+                    crashDetails = null;
+                    break;
+                case 1:
+                    Log.info("No Of Crashes : " + noOfCrashes);
+
+                    fabricPage.moveToCrashes();
+                    crashDetails.put("1", fabricPage.getCrash1Title() + " | " + fabricPage.getCrash1Description() + " | " + fabricPage.getCrash1AppVersion() + " | " + fabricPage.getCrash1Crashes() + " | " + fabricPage.getCrash1Users() + " | " + fabricPage.getCrash1Link());
+                    crashDetails.put("2", "--" + " | " + "--" + " | " + "--" + " | " + "--" + " | " + "--" + " | " + "--");
+                    crashDetails.put("3", "--" + " | " + "--" + " | " + "--" + " | " + "--" + " | " + "--" + " | " + "--");
+
+                    // Print the top 3 crashes
+                    Log.info("Crash 1 : " + crashDetails.get("1"));
+                    Log.info("Crash 2 : " + crashDetails.get("2"));
+                    Log.info("Crash 3 : " + crashDetails.get("3"));
+
+                    // setting the mail flag
+                    crashCount = Integer.parseInt(count);
+                    actualCrashCount = Integer.valueOf(crashDetails.get("1").split("\\|")[3].replaceAll(" ", ""));
+                    System.out.println("Log: " + actualCrashCount);
+                    if (actualCrashCount > crashCount) {
+                        Log.info("Set Flag true", "Top 3 crashes");
+                        MAILFLAG = true;
+                    }
+
+                    break;
+                case 2:
+                    Log.info("No Of Crashes : " + noOfCrashes);
+
+                    fabricPage.moveToCrashes();
+                    crashDetails.put("1", fabricPage.getCrash1Title() + " | " + fabricPage.getCrash1Description() + " | " + fabricPage.getCrash1AppVersion() + " | " + fabricPage.getCrash1Crashes() + " | " + fabricPage.getCrash1Users() + " | " + fabricPage.getCrash1Link());
+                    crashDetails.put("2", fabricPage.getCrash2Title() + " | " + fabricPage.getCrash2Description() + " | " + fabricPage.getCrash2AppVersion() + " | " + fabricPage.getCrash2Crashes() + " | " + fabricPage.getCrash2Users() + " | " + fabricPage.getCrash2Link());
+                    crashDetails.put("3", "--" + " | " + "--" + " | " + "--" + " | " + "--" + " | " + "--" + " | " + "--");
+
+                    // Print the top 3 crashes
+                    Log.info("Crash 1 : " + crashDetails.get("1"));
+                    Log.info("Crash 2 : " + crashDetails.get("2"));
+                    Log.info("Crash 3 : " + crashDetails.get("3"));
+
+                    // setting the mail flag
+                    crashCount = Integer.parseInt(count);
+                    actualCrashCount = Integer.valueOf(crashDetails.get("1").split("\\|")[3].replaceAll(" ", ""));
+                    System.out.println("Log: " + actualCrashCount);
+                    if (actualCrashCount > crashCount) {
+                        Log.info("Set Flag true", "Top 3 crashes");
+                        MAILFLAG = true;
+                    }
+                    break;
+
+            }
         }
 
         return crashDetails;
     }
 
-    public void selectLatestAppVersions() throws InterruptedException {
+    public void selectLatestAppVersions(String version) throws InterruptedException {
         Log.info("Lastet App versions");
 
         // Select the crashlytics tab
@@ -137,11 +199,11 @@ public class FabricHelper {
 
         // Click on App-versions
         fabricPage.clickCrossIcon();
-        fabricPage.enterAppVersion("20.5.2");
+        fabricPage.enterAppVersion(version);
         Thread.sleep(5000);
 
         // get the count of newer app versions
-        List<WebElement> elementList = Element.getListOfElements(driver, Element.How.xPath, "//span[text() = 'crash-free users']/preceding::*[contains(text(),'20.5.2 (')]");
+        List<WebElement> elementList = Element.getListOfElements(driver, Element.How.xPath, "//span[text() = 'crash-free users']/preceding::*[contains(text(),'" + version + " (')]");
         int count = elementList.size();
         Log.info("No of apps with new version : " + elementList.size());
 
@@ -151,7 +213,7 @@ public class FabricHelper {
 
 
         for (int i = 0; i < count - 1; i++) {
-            fabricPage.enterAppVersion("20.5.2");
+            fabricPage.enterAppVersion(version);
             webElement = driver.findElement(By.xpath("//div[@class = 'Select-menu-outer']/div[@class = 'Select-menu']/div[@role = 'option']"));
             Element.selectElement(driver, webElement, "Instance");
 
