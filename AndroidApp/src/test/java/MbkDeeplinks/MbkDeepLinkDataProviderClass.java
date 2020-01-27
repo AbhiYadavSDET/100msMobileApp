@@ -2,10 +2,8 @@ package MbkDeeplinks;
 
 import customexception.TestParametersNotFound;
 import dbutil.mysql.automationtest.deeplink_data.entity.DeeplinkEntity;
-import dbutil.mysql.automationtest.front_end_automation.entity.FrontEndEntity;
 import logger.Log;
 import org.testng.annotations.DataProvider;
-import utils.DatabaseMongoHelper;
 import utils.DatabaseSqlHelper;
 
 import java.lang.reflect.Method;
@@ -14,7 +12,7 @@ import java.util.List;
 
 public class MbkDeepLinkDataProviderClass {
     DatabaseSqlHelper databaseSqlHelper = new DatabaseSqlHelper();
-//    DatabaseMongoHelper databaseMongoHelper = new DatabaseMongoHelper();
+    //    DatabaseMongoHelper databaseMongoHelper = new DatabaseMongoHelper();
     public static int key;
 
 

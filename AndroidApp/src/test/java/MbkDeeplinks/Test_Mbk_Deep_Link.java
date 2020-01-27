@@ -7,6 +7,7 @@ import UITestFramework.CreateSession;
 import dbutil.mysql.automationtest.deeplink_data.entity.DeeplinkEntity;
 import org.json.JSONException;
 import org.testng.annotations.Test;
+import utils.ExtentReport;
 
 import java.io.IOException;
 
@@ -17,7 +18,7 @@ public class Test_Mbk_Deep_Link extends CreateSession {
     public void Recharge(DeeplinkEntity deeplinkEntity) throws IOException, JSONException, InterruptedException {
 
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail(deeplinkEntity.getUserName(), deeplinkEntity.getPassword() );
+        loginHelper.quickLoginViaEmail(deeplinkEntity.getUserName(), deeplinkEntity.getPassword());
 
         MBKCommonControlsHelper mbkCommonControlsHelper = new MBKCommonControlsHelper(getAndroidDriver());
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
@@ -34,7 +35,7 @@ public class Test_Mbk_Deep_Link extends CreateSession {
     public void Insurance(DeeplinkEntity deeplinkEntity) throws IOException, JSONException, InterruptedException {
 
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail(deeplinkEntity.getUserName(), deeplinkEntity.getPassword() );
+        loginHelper.quickLoginViaEmail(deeplinkEntity.getUserName(), deeplinkEntity.getPassword());
 
         MBKCommonControlsHelper mbkCommonControlsHelper = new MBKCommonControlsHelper(getAndroidDriver());
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
@@ -49,8 +50,11 @@ public class Test_Mbk_Deep_Link extends CreateSession {
     @Test(groups = {"Loan", "DeeplinkSanity"}, priority = 2, dataProvider = "mbkdeepLinkData", dataProviderClass = MbkDeepLinkDataProviderClass.class)
     public void Loan(DeeplinkEntity deeplinkEntity) throws IOException, JSONException, InterruptedException {
 
+        // Start the test
+        ExtentReport.EXTENTTEST = ExtentReport.EXTENTREPORT.createTest("Loan");
+
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail(deeplinkEntity.getUserName(), deeplinkEntity.getPassword() );
+        loginHelper.quickLoginViaEmail(deeplinkEntity.getUserName(), deeplinkEntity.getPassword());
 
         MBKCommonControlsHelper mbkCommonControlsHelper = new MBKCommonControlsHelper(getAndroidDriver());
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
@@ -67,7 +71,7 @@ public class Test_Mbk_Deep_Link extends CreateSession {
     public void MutualFunds(DeeplinkEntity deeplinkEntity) throws IOException, JSONException, InterruptedException {
 
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail(deeplinkEntity.getUserName(), deeplinkEntity.getPassword() );
+        loginHelper.quickLoginViaEmail(deeplinkEntity.getUserName(), deeplinkEntity.getPassword());
 
         MBKCommonControlsHelper mbkCommonControlsHelper = new MBKCommonControlsHelper(getAndroidDriver());
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
@@ -83,7 +87,7 @@ public class Test_Mbk_Deep_Link extends CreateSession {
     public void Gold(DeeplinkEntity deeplinkEntity) throws IOException, JSONException, InterruptedException {
 
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail(deeplinkEntity.getUserName(), deeplinkEntity.getPassword() );
+        loginHelper.quickLoginViaEmail(deeplinkEntity.getUserName(), deeplinkEntity.getPassword());
 
         MBKCommonControlsHelper mbkCommonControlsHelper = new MBKCommonControlsHelper(getAndroidDriver());
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
@@ -99,7 +103,7 @@ public class Test_Mbk_Deep_Link extends CreateSession {
     public void RedeemVouchers(DeeplinkEntity deeplinkEntity) throws IOException, JSONException, InterruptedException {
 
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail(deeplinkEntity.getUserName(), deeplinkEntity.getPassword() );
+        loginHelper.quickLoginViaEmail(deeplinkEntity.getUserName(), deeplinkEntity.getPassword());
 
         MBKCommonControlsHelper mbkCommonControlsHelper = new MBKCommonControlsHelper(getAndroidDriver());
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
@@ -115,7 +119,7 @@ public class Test_Mbk_Deep_Link extends CreateSession {
     public void ReferAndEarn(DeeplinkEntity deeplinkEntity) throws IOException, JSONException, InterruptedException {
 
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail(deeplinkEntity.getUserName(), deeplinkEntity.getPassword() );
+        loginHelper.quickLoginViaEmail(deeplinkEntity.getUserName(), deeplinkEntity.getPassword());
 
         MBKCommonControlsHelper mbkCommonControlsHelper = new MBKCommonControlsHelper(getAndroidDriver());
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
@@ -131,7 +135,7 @@ public class Test_Mbk_Deep_Link extends CreateSession {
     public void Help(DeeplinkEntity deeplinkEntity) throws IOException, JSONException, InterruptedException {
 
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail(deeplinkEntity.getUserName(), deeplinkEntity.getPassword() );
+        loginHelper.quickLoginViaEmail(deeplinkEntity.getUserName(), deeplinkEntity.getPassword());
 
         MBKCommonControlsHelper mbkCommonControlsHelper = new MBKCommonControlsHelper(getAndroidDriver());
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
@@ -147,7 +151,7 @@ public class Test_Mbk_Deep_Link extends CreateSession {
     public void MyWallet(DeeplinkEntity deeplinkEntity) throws IOException, JSONException, InterruptedException {
 
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail(deeplinkEntity.getUserName(), deeplinkEntity.getPassword() );
+        loginHelper.quickLoginViaEmail(deeplinkEntity.getUserName(), deeplinkEntity.getPassword());
 
         MBKCommonControlsHelper mbkCommonControlsHelper = new MBKCommonControlsHelper(getAndroidDriver());
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
@@ -158,9 +162,6 @@ public class Test_Mbk_Deep_Link extends CreateSession {
         Thread.sleep(2000);
 
     }
-
-
-
 
 
 }
