@@ -1,6 +1,6 @@
 package Utils;
 
-import Config.Configuration;
+import configuration.Configuration;
 import applicationcontext.ApplicationContextProvider;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
