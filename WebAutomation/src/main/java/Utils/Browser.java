@@ -47,7 +47,7 @@ public class Browser extends TestBase {
 
     /**
      * Executes JavaScript in the context of the currently selected frame or
-     * window in the Config driver instance.
+     * window in the configuration driver instance.
      *
      * @param javaScriptToExecute Java Script To Execute
      * @return If the script has a return value (i.e. if the script contains a

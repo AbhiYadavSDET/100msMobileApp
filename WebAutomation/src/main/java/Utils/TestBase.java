@@ -1,5 +1,6 @@
 package Utils;
 
+import configuration.PropertyHandler;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,6 +11,7 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Listeners;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,6 +26,20 @@ public class TestBase {
     protected static Logger log = Logger.getLogger(TestBase.class);
     private static ThreadLocal<WebDriver> webDriverThread = new ThreadLocal<>();
     public static String headLess = null;
+    private static PropertyHandler handler;
+
+
+    static {
+        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        File file = new File(classLoader.getResource("config.properties").getFile());
+        handler = PropertyHandler.getInstance();
+
+        try {
+            handler.load(file);
+        } catch (IOException var3) {
+            throw new RuntimeException("-----config.properties file not found------" + var3);
+        }
+    }
 
 
     protected void initiateTest() {
@@ -90,8 +106,9 @@ public class TestBase {
 
         setWebDriver(driver);
 
-        String webUrl = "https://fabric.io/login";
-        webUrl = properties.getProperty("WebUrl", "https://fabric.io/login");
+        String webUrl = TestBase.handler.getValue("WebUrl");
+
+        Log.info("GET", webUrl);
         getWebDriver().get(webUrl);
 
 
