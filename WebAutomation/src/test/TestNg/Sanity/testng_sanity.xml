@@ -1,10 +1,16 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Sanity">
 
+    <!--Listeners-->
+    <listeners>
+        <listener class-name="Utils.ExtentReportListener"/>
+    </listeners>
+
     <!--######### Login #############-->
     <test name="Login Flow">
         <classes>
             <class name="LoginFlow.LoginTest"/>
+            <class name="Utils.ExtentReport"/>
         </classes>
     </test>
 
@@ -12,79 +18,80 @@
     <test name="Add-Money Flow">
         <classes>
             <class name="AddMoney.AddMoneyTest"/>
+            <class name="Utils.ExtentReport"/>
         </classes>
     </test>
 
     <!--######### Insurance #############-->
-    <test name="Insurance">
-        <classes>
-            <class name="Insurance.InsuranceTest"/>
-        </classes>
-    </test>
+    <!--<test name="Insurance">-->
+    <!--<classes>-->
+    <!--<class name="Insurance.InsuranceTest"/>-->
+    <!--</classes>-->
+    <!--</test>-->
 
     <!--######### P2P #############-->
-    <test name="P2P">
-        <classes>
-            <class name="P2P.P2PTest"/>
-        </classes>
-    </test>
+    <!--<test name="P2P">-->
+    <!--<classes>-->
+    <!--<class name="P2P.P2PTest"/>-->
+    <!--</classes>-->
+    <!--</test>-->
 
     <!--######### IMPS #############-->
-    <test name="IMPS">
-        <classes>
-            <class name="BankTransferFlow.BankTransferTest"/>
-        </classes>
-    </test>
+    <!--<test name="IMPS">-->
+    <!--<classes>-->
+    <!--<class name="BankTransferFlow.BankTransferTest"/>-->
+    <!--</classes>-->
+    <!--</test>-->
 
     <!--######### Recharge #############-->
-    <test name="Recharge-Mobile">
-        <classes>
-            <class name="RechargeAndBill.MobileRechargeTest"/>
-        </classes>
-    </test>
-    <test name="Recharge-DTH">
-        <classes>
-            <class name="RechargeAndBill.DthTest"/>
-        </classes>
-    </test>
+    <!--<test name="Recharge-Mobile">-->
+    <!--<classes>-->
+    <!--<class name="RechargeAndBill.MobileRechargeTest"/>-->
+    <!--</classes>-->
+    <!--</test>-->
+    <!--<test name="Recharge-DTH">-->
+    <!--<classes>-->
+    <!--<class name="RechargeAndBill.DthTest"/>-->
+    <!--</classes>-->
+    <!--</test>-->
 
     <!--######### Bill Payment #############-->
-    <test name="Bill Payment-Gas">
-        <classes>
-            <class name="RechargeAndBill.GasTest"/>
-        </classes>
-    </test>
-    <test name="Bill Payment-Landline">
-        <classes>
-            <class name="RechargeAndBill.LandlineTest"/>
-        </classes>
-    </test>
+    <!--<test name="Bill Payment-Gas">-->
+    <!--<classes>-->
+    <!--<class name="RechargeAndBill.GasTest"/>-->
+    <!--</classes>-->
+    <!--</test>-->
+    <!--<test name="Bill Payment-Landline">-->
+    <!--<classes>-->
+    <!--<class name="RechargeAndBill.LandlineTest"/>-->
+    <!--</classes>-->
+    <!--</test>-->
 
     <!--######### Nearby #############-->
-    <test name="Nearby">
-        <classes>
-            <class name="NearByTest"/>
-        </classes>
-    </test>
+    <!--<test name="Nearby">-->
+    <!--<classes>-->
+    <!--<class name="NearByTest"/>-->
+    <!--</classes>-->
+    <!--</test>-->
 
     <!--#########  Offers #############-->
-    <test name="Offers">
-        <classes>
-            <class name="OffersTest"/>
-        </classes>
-    </test>
+    <!--<test name="Offers">-->
+    <!--<classes>-->
+    <!--<class name="OffersTest"/>-->
+    <!--</classes>-->
+    <!--</test>-->
 
     <!--#########  Bus #############-->
     <!--<test name="BusTest.java">-->
-        <!--<classes>-->
-            <!--<class name="BusFlow.BusTest"/>-->
-        <!--</classes>-->
+    <!--<classes>-->
+    <!--<class name="BusFlow.BusTest"/>-->
+    <!--</classes>-->
     <!--</test>-->
 
     <!--#########  Help #############-->
-    <test name="HelpTest.java">
-        <classes>
-            <class name="Help.HelpTest"/>
-        </classes>
-    </test>
+    <!--<test name="HelpTest.java">-->
+    <!--<classes>-->
+    <!--<class name="Help.HelpTest"/>-->
+    <!--</classes>-->
+    <!--</test>-->
 </suite>
