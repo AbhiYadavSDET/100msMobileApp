@@ -1,23 +1,29 @@
 package AddMoney;
 
 import Helpers.AddMoneyHelper;
+import Utils.ExtentReport;
 import Utils.TestBase;
 import org.testng.annotations.Test;
+
+import java.io.IOException;
 
 public class AddMoneyTest extends TestBase {
 
 
-    @Test(groups = {"addMoneySanity"}, priority = 0, description = "Verify Add Money via Netbanking")
-    public void Test_AddMoney_Netbanking() throws InterruptedException {
+    @Test(groups = {"addMoneySanity", "netbanking"}, priority = 0, description = "Verify Add Money via Netbanking")
+    public void Test_AddMoney_Netbanking() throws InterruptedException, IOException {
 
 //        LoginHelper loginHelper = new LoginHelper(driver);
 //        loginHelper.loginViaOtp("8527797582", "T.C. Suneja", "mayank.suneja@mobikwik.com", "8527797582");
 
+        // Start the test
+        ExtentReport.EXTENTTEST = ExtentReport.EXTENTREPORT.createTest("Test_AddMoney_Netbanking");
+
         AddMoneyHelper addMoneyHelper = new AddMoneyHelper(getWebDriver());
         addMoneyHelper.addMoneyViaNetBanking("5", AddMoneyHelper.BankName.ICICI, "https://shopping.icicibank.com/corp/BANKAWAY");
-        addMoneyHelper.addMoneyViaNetBanking("5", AddMoneyHelper.BankName.HDFC, "https://netbanking.hdfcbank.com/netbanking/merchant");
-        addMoneyHelper.addMoneyViaNetBanking("5", AddMoneyHelper.BankName.CITI, "https://www.citibank.co.in/servlets/TransReq");
-        addMoneyHelper.addMoneyViaNetBanking("5", AddMoneyHelper.BankName.AXIS, "https://retail.axisbank.co.in/wps/portal/rBanking/AxisSMRetailLogin/axissmretailpage?AuthenticationFG.MENU_ID=CIMSHP&AuthenticationFG.CALL_MODE=2&CATEGORY_ID=IRZAAK");
+//        addMoneyHelper.addMoneyViaNetBanking("5", AddMoneyHelper.BankName.HDFC, "https://netbanking.hdfcbank.com/netbanking/merchant");
+//        addMoneyHelper.addMoneyViaNetBanking("5", AddMoneyHelper.BankName.CITI, "https://www.citibank.co.in/servlets/TransReq");
+//        addMoneyHelper.addMoneyViaNetBanking("5", AddMoneyHelper.BankName.AXIS, "https://retail.axisbank.co.in/wps/portal/rBanking/AxisSMRetailLogin/axissmretailpage?AuthenticationFG.MENU_ID=CIMSHP&AuthenticationFG.CALL_MODE=2&CATEGORY_ID=IRZAAK");
 
 
     }

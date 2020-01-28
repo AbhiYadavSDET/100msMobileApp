@@ -37,7 +37,7 @@ public class CreateSession {
 
     String androidOSVersion = "8.0";
     String portNo = "4723";
-    String udid = "172.16.1.187:4723";
+    String udid = "330062db17b4a48b";
     String deviceName = "Samsung J6";
 
     private String reportDirectory = "reports";
@@ -260,7 +260,7 @@ public class CreateSession {
 
 // Create the list of attachments
         List<String> listOfAttachments = new ArrayList<>();
-        listOfAttachments.add("/home/parajjain/Documents/MK-Automation/AndroidApp/test-output/Extent.html");
+        listOfAttachments.add("/home/parajjain/Documents/MK-Automation/AndroidApp/test-output/ExtentReports/ExtentReport.html");
 
 // Create the recipients array
         String[] recipients = {"QAfront-End@mobikwik.com"};

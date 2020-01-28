@@ -94,7 +94,7 @@
         <dependency>
             <groupId>com.mobikwik.automation</groupId>
             <artifactId>framework</artifactId>
-            <version>7.0</version>
+            <version>7.7</version>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
