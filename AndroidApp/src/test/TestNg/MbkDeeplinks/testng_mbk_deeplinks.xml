@@ -14,7 +14,7 @@
             <run>
                 <include name="setUp"/>
                 <include name="instantiateHelpers"/>
-                <include name="MyWallet"/>
+                <include name="DeeplinkSanity"/>
                 <include name="tearDown"/>
             </run>
         </groups>
