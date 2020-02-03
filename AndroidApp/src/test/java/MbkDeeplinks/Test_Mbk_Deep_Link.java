@@ -27,7 +27,7 @@ public class Test_Mbk_Deep_Link extends CreateSession {
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
         DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
-        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule());
+        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule(), deeplinkEntity.getHandler());
 
         Thread.sleep(2000);
 
@@ -47,7 +47,7 @@ public class Test_Mbk_Deep_Link extends CreateSession {
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
         DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
-        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule());
+        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule(), deeplinkEntity.getHandler());
 
         Thread.sleep(2000);
 
@@ -66,7 +66,7 @@ public class Test_Mbk_Deep_Link extends CreateSession {
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
         DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
-        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule());
+        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule(), deeplinkEntity.getHandler());
 
         Thread.sleep(2000);
 
@@ -86,7 +86,7 @@ public class Test_Mbk_Deep_Link extends CreateSession {
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
         DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
-        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule());
+        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule(), deeplinkEntity.getHandler());
 
         Thread.sleep(2000);
 
@@ -105,7 +105,7 @@ public class Test_Mbk_Deep_Link extends CreateSession {
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
         DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
-        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule());
+        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule(), deeplinkEntity.getHandler());
 
         Thread.sleep(2000);
 
@@ -124,7 +124,7 @@ public class Test_Mbk_Deep_Link extends CreateSession {
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
         DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
-        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule());
+        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule(), deeplinkEntity.getHandler());
 
         Thread.sleep(2000);
 
@@ -143,7 +143,7 @@ public class Test_Mbk_Deep_Link extends CreateSession {
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
         DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
-        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule());
+        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule(), deeplinkEntity.getHandler());
 
         Thread.sleep(2000);
 
@@ -162,7 +162,7 @@ public class Test_Mbk_Deep_Link extends CreateSession {
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
         DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
-        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule());
+        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule(), deeplinkEntity.getHandler());
 
         Thread.sleep(2000);
 
@@ -181,7 +181,7 @@ public class Test_Mbk_Deep_Link extends CreateSession {
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
         DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
-        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule());
+        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule(), deeplinkEntity.getHandler());
 
         Thread.sleep(2000);
 
@@ -204,7 +204,7 @@ public class Test_Mbk_Deep_Link extends CreateSession {
 
 
         DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
-        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule());
+        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule(), deeplinkEntity.getHandler());
 
         Thread.sleep(2000);
     }
@@ -225,7 +225,7 @@ public class Test_Mbk_Deep_Link extends CreateSession {
 
 
         DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
-        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule());
+        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule(), deeplinkEntity.getHandler());
 
         Thread.sleep(2000);
     }
@@ -246,7 +246,7 @@ public class Test_Mbk_Deep_Link extends CreateSession {
 
 
         DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
-        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule());
+        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule(), deeplinkEntity.getHandler());
 
         Thread.sleep(2000);
     }
@@ -267,7 +267,7 @@ public class Test_Mbk_Deep_Link extends CreateSession {
 
 
         DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
-        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule());
+        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule(), deeplinkEntity.getHandler());
 
         Thread.sleep(2000);
     }
@@ -288,7 +288,7 @@ public class Test_Mbk_Deep_Link extends CreateSession {
 
 
         DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
-        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule());
+        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule(), deeplinkEntity.getHandler());
 
         Thread.sleep(2000);
     }
@@ -309,7 +309,7 @@ public class Test_Mbk_Deep_Link extends CreateSession {
 
 
         DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
-        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule());
+        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule(), deeplinkEntity.getHandler());
 
         Thread.sleep(2000);
     }
@@ -330,7 +330,7 @@ public class Test_Mbk_Deep_Link extends CreateSession {
 
 
         DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
-        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule());
+        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule(), deeplinkEntity.getHandler());
 
         Thread.sleep(2000);
     }
@@ -351,7 +351,7 @@ public class Test_Mbk_Deep_Link extends CreateSession {
 
 
         DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
-        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule());
+        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule(), deeplinkEntity.getHandler());
 
         Thread.sleep(2000);
     }
@@ -372,7 +372,7 @@ public class Test_Mbk_Deep_Link extends CreateSession {
 
 
         DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
-        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule());
+        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule(), deeplinkEntity.getHandler());
 
         Thread.sleep(2000);
     }
@@ -393,7 +393,7 @@ public class Test_Mbk_Deep_Link extends CreateSession {
 
 
         DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
-        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule());
+        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule(), deeplinkEntity.getHandler());
 
         Thread.sleep(2000);
     }
@@ -414,7 +414,7 @@ public class Test_Mbk_Deep_Link extends CreateSession {
 
 
         DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
-        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule());
+        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule(), deeplinkEntity.getHandler());
 
         Thread.sleep(2000);
     }
@@ -435,7 +435,7 @@ public class Test_Mbk_Deep_Link extends CreateSession {
 
 
         DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
-        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule());
+        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule(), deeplinkEntity.getHandler());
 
         Thread.sleep(2000);
     }
@@ -456,7 +456,7 @@ public class Test_Mbk_Deep_Link extends CreateSession {
 
 
         DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
-        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule());
+        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule(), deeplinkEntity.getHandler());
 
         Thread.sleep(2000);
     }
@@ -477,7 +477,7 @@ public class Test_Mbk_Deep_Link extends CreateSession {
 
 
         DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
-        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule());
+        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule(), deeplinkEntity.getHandler());
 
         Thread.sleep(2000);
     }
@@ -498,7 +498,7 @@ public class Test_Mbk_Deep_Link extends CreateSession {
 
 
         DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
-        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule());
+        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule(), deeplinkEntity.getHandler());
 
         Thread.sleep(2000);
     }
@@ -519,7 +519,7 @@ public class Test_Mbk_Deep_Link extends CreateSession {
 
 
         DeepLinkHelper deepLinkHelper = new DeepLinkHelper(getAndroidDriver());
-        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule());
+        deepLinkHelper.validateDeeplink(deeplinkEntity.getDeeplink(), deeplinkEntity.getAppName(), deeplinkEntity.getElement(), deeplinkEntity.getElementType(), deeplinkEntity.getModule(), deeplinkEntity.getHandler());
 
         Thread.sleep(2000);
     }
