@@ -159,6 +159,15 @@
 
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <filters>
+            <filter>profiles/${build.profile.id}/config.properties</filter>
+        </filters>
         <pluginManagement><!-- lock down plugins versions to avoid using Maven
                 defaults (may be moved to parent pom) -->
             <plugins>
@@ -203,4 +212,34 @@
             </plugins>
         </pluginManagement>
     </build>
+
+    <profiles>
+        <profile>
+            <id>clevertap</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <build.profile.id>clevertap/prod</build.profile.id>
+            </properties>
+        </profile>
+        <profile>
+            <id>fabric</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <build.profile.id>fabric/prod</build.profile.id>
+            </properties>
+        </profile>
+        <profile>
+            <id>mobikwik</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <build.profile.id>mobikwik/prod</build.profile.id>
+            </properties>
+        </profile>
+    </profiles>
 </project>

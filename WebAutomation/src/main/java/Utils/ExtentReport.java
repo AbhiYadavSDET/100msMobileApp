@@ -1,6 +1,6 @@
 package Utils;
 
-import Config.Configuration;
+import configuration.Configuration;
 import applicationcontext.ApplicationContextProvider;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -114,6 +114,26 @@ public class ExtentReport {
 
         // Create the recipients array
         String recepients = "qafront-end@mobikwik.com,Mbk-Android@mobikwik.com";
+        String[] recipients = recepients.split(",");
+
+        mailer.sendMail(recipients, subject, body, listOfAttachments);
+
+        Log.info("END", "sendFabricStatusMail");
+
+    }
+
+    public static void sendLatestAppFabricStatusMail(String subject, String body) throws InterruptedException {
+
+
+        Log.info("START", "sendFabricStatusMail");
+        Mailer mailer = (Mailer) ApplicationContextProvider.getApplicationContext().getBean("mailer");
+
+        // Create the list of attachments
+        List<String> listOfAttachments = new ArrayList<>();
+//        listOfAttachments.add(System.getProperty("user.dir").concat(File.separator).concat("test-output/ExtentReports/ExtentReport.html"));
+
+        // Create the recipients array
+        String recepients = "qafront-end@mobikwik.com";
         String[] recipients = recepients.split(",");
 
         mailer.sendMail(recipients, subject, body, listOfAttachments);

@@ -65,6 +65,9 @@ public class FabricPage {
     @FindBy(xpath = "//div[@class = 'date-wrapper']/preceding::span[@class = 'Select-arrow'][1]")
     private WebElement drop_down_arrow;
 
+    @FindBy(xpath = "//div[@class = 'date-wrapper']/preceding::span[@class = 'Select-arrow'][3]")
+    private WebElement app_version_drop_down_arrow;
+
     @FindBy(xpath = "//span[text() = 'Crashes']")
     private WebElement label_crashes;
 
@@ -88,6 +91,16 @@ public class FabricPage {
 
     @FindBy(xpath = "//tr[3]/td/a/div[2]")
     private WebElement label_description_3;
+
+    // Crash link
+    @FindBy(xpath = "//tr[1]/td[@class = 'cell-title']/a")
+    private WebElement link_crash_1;
+
+    @FindBy(xpath = "//tr[2]/td[@class = 'cell-title']/a")
+    private WebElement link_crash_2;
+
+    @FindBy(xpath = "//tr[3]/td[@class = 'cell-title']/a")
+    private WebElement link_crash_3;
 
     // Crashs
     @FindBy(xpath = "//tr[1]/td[5]/a/div/div/span")
@@ -118,6 +131,33 @@ public class FabricPage {
 
     @FindBy(xpath = "//tr[3]/td[@class = 'more-info']/a")
     private WebElement label_app_version_3;
+
+
+    // Added @23rd Jan
+    @FindBy(xpath = "//span[@id = 'react-select-22--value']")
+    private WebElement click_app_version;
+
+    @FindBy(xpath = "//span[text() = 'Top Builds']")
+    private WebElement label_top_builds;
+
+    @FindBy(xpath = "//span[text() = '×']")
+    private WebElement label_cross;
+
+    @FindBy(xpath = "//span[text() = 'crash-free users']/preceding::input[@role = 'combobox']")
+    private WebElement combobox_app_version;
+
+    // Added @24th Jan
+    @FindBy(xpath = "//div[@class = 'date-wrapper']/following::span[@class = 'Select-arrow'][1]")
+    private WebElement drop_down_top_devices;
+
+    @FindBy(xpath = "//div[@class = 'date-wrapper']/following::span[@class = 'Select-arrow'][2]")
+    private WebElement drop_down_top_os;
+
+    @FindBy(xpath = "//div[text() = 'Device & OS']")
+    private WebElement label_devices_and_os;
+
+    @FindBy(xpath = "//div[text() = 'Crash Insights']")
+    private WebElement label_crash_insights;
 
 
     public void enterUserName(String text) {
@@ -246,6 +286,57 @@ public class FabricPage {
     }
 
     public void moveToCrashes() {
-        Element.scrollToView(driver, label_crashes_2);
+        Element.scrollToView(driver, label_crashes_1);
+    }
+
+    public String getCrash1Link() {
+        return Element.fetchLink(driver, link_crash_1, "Crash 1 : Link");
+    }
+
+    public String getCrash2Link() {
+        return Element.fetchLink(driver, link_crash_2, "Crash 2 : Link");
+    }
+
+    public String getCrash3Link() {
+        return Element.fetchLink(driver, link_crash_3, "Crash 3 : Link");
+    }
+
+
+    // Added @23rd Jan
+    public void clickAppversionDropDownArrow() {
+        Element.selectElement(driver, app_version_drop_down_arrow, "App version drop down arrow");
+    }
+
+    public void clickAppVersion() {
+        Element.selectElement(driver, click_app_version, "App version");
+    }
+
+    public void clickTopBuilds() {
+        Element.selectElement(driver, label_top_builds, "Top Builds");
+    }
+
+    public void clickCrossIcon() {
+        Element.selectElement(driver, label_cross, "Cross Icon");
+    }
+
+    public void enterAppVersion(String text) {
+        Element.enterText(driver, combobox_app_version, text, "app version");
+    }
+
+    // Added @24th Jan
+    public void clickDropdownTopDevices() {
+        Element.selectElement(driver, drop_down_top_devices, "Top Devices Drop down arrow");
+    }
+
+    public void clickDropdownTopOS() {
+        Element.selectElement(driver, drop_down_top_os, "Top OS Drop down arrow");
+    }
+
+    public void clickDeviceOS() {
+        Element.selectElement(driver, label_devices_and_os, "Device & OS");
+    }
+
+    public void clickCrashInsights() {
+        Element.selectElement(driver, label_crash_insights, "Crash Insights");
     }
 }

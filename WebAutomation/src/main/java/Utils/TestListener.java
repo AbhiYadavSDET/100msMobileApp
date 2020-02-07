@@ -45,20 +45,20 @@ public class TestListener implements ITestListener, ISuiteListener {
         // TODO Auto-generated method stub
         Config.logComment("***************[Test Failed] [Test Class: " + arg0.getInstanceName() + "] [Test Method: " + arg0.getMethod().getMethodName() + "] [Test Description: " + arg0.getMethod().getDescription() + "]***************");
 
-        try {
-            MbkCommonControlsPage mbkCommonControlsPage = new MbkCommonControlsPage(TestBase.getWebDriver());
-            // Check for the Cross Icon
-            Log.info("Check | Cross Icon");
-            mbkCommonControlsPage.closeBill();
-
-            // Check for the Mbk Logo
-            Log.info("Check | Mbk Logo");
-            // Return back to the home-screen
-            mbkCommonControlsPage.clickOnLogoMbk();
-            Thread.sleep(5000);
-        } catch (Exception e) {
-            Log.info("Not able to click on Mbk Icon");
-        }
+//        try {
+//            MbkCommonControlsPage mbkCommonControlsPage = new MbkCommonControlsPage(TestBase.getWebDriver());
+//            // Check for the Cross Icon
+//            Log.info("Check | Cross Icon");
+//            mbkCommonControlsPage.closeBill();
+//
+//            // Check for the Mbk Logo
+//            Log.info("Check | Mbk Logo");
+//            // Return back to the home-screen
+//            mbkCommonControlsPage.clickOnLogoMbk();
+//            Thread.sleep(5000);
+//        } catch (Exception e) {
+//            Log.info("Not able to click on Mbk Icon");
+//        }
 
     }
 

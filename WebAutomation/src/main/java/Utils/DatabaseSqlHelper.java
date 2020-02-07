@@ -1,9 +1,12 @@
 package Utils;
 
 
+import Utils.TableEnums.MemberBalanceEnum;
 import applicationcontext.ApplicationContextProvider;
 import common.LoggerService;
 import customexception.*;
+import dbutil.mysql.automationtest.front_end_automation.FrontEndTestManager;
+import dbutil.mysql.automationtest.front_end_automation.entity.FrontEndEntity;
 import dbutil.mysql.automationtest.kyc.KYCTestManager;
 import dbutil.mysql.automationtest.kyc.entity.KycEntity;
 import dbutil.mysql.mobikwik.member.MemberMerchantManager;
@@ -12,7 +15,6 @@ import dbutil.mysql.mobikwik.merchantInfo.MerchantInfoManager;
 import dbutil.mysql.mobikwik.mobi_koin_balanceMerchant.Mobi_koin_balanceMerchantManager;
 import dbutil.mysql.mobikwik.otpdata.OtpDataDaoManager;
 import org.apache.logging.log4j.Logger;
-import Utils.TableEnums.MemberBalanceEnum;
 
 import java.util.List;
 
@@ -26,6 +28,9 @@ public class DatabaseSqlHelper {
 
     public MerchantInfoManager merchantInfoManager;
     public KYCTestManager kycTestManager;
+
+    public FrontEndTestManager frontEndTestManager;
+
 
     final Logger logger = LoggerService.getLogger(DatabaseSqlHelper.class);
 
@@ -268,6 +273,16 @@ public class DatabaseSqlHelper {
         } catch (MemberNotFoundInMemberTable memberNotFoundInMemberTable) {
             memberNotFoundInMemberTable.printStackTrace();
         }
+    }
+
+    public void initiateFrontEndTest() {
+        frontEndTestManager = (FrontEndTestManager) ApplicationContextProvider.getApplicationContext().getBean("frontEndTestManager");
+    }
+
+
+    public List<FrontEndEntity> getFrontEndTestData(String methodName) throws TestParametersNotFound {
+        List<FrontEndEntity> params = frontEndTestManager.fetchTestParams(methodName);
+        return params;
     }
 }
 
