@@ -113,7 +113,7 @@ public class DeepLinkHelper {
         Thread.sleep(3000);
 
         // Open the deeplink via adb
-        String cmd = "/home/parajjain/Android/Sdk/platform-tools/adb shell am start -a android.intent.action.VIEW -d " + deeplinkstring;
+        String cmd = "adb shell am start -a android.intent.action.VIEW -d " + deeplinkstring;
         process = Runtime.getRuntime().exec(cmd);
         Thread.sleep(3000);
 
@@ -181,7 +181,7 @@ public class DeepLinkHelper {
                     driver.pressKey(new KeyEvent(AndroidKey.HOME));
                     Thread.sleep(2000);
 
-                cmd = "/home/parajjain/Android/Sdk/platform-tools/adb shell am start -a android.intent.action.VIEW -d " + deeplinkstring;
+                cmd = "adb shell am start -a android.intent.action.VIEW -d " + deeplinkstring;
                     process = Runtime.getRuntime().exec(cmd);
                     Thread.sleep(3000);
 
