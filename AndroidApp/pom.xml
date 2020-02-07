@@ -32,7 +32,7 @@
                     <configuration>
                         <suiteXmlFiles>
                             <!-- TestNG suite XML files -->
-                            <suiteXmlFile>TestNg/Sanity/testng_sanity.xml</suiteXmlFile>
+                            <suiteXmlFile>src/test/TestNg/Sanity/testng_sanity_all.xml</suiteXmlFile>
                         </suiteXmlFiles>
                     </configuration>
                 </plugin>
@@ -94,7 +94,7 @@
         <dependency>
             <groupId>com.mobikwik.automation</groupId>
             <artifactId>framework</artifactId>
-            <version>7.7</version>
+            <version>8.0</version>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>

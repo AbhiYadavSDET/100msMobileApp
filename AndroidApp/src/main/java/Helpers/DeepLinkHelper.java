@@ -97,7 +97,7 @@ public class DeepLinkHelper {
         //driver.navigate().back();
     }
 
-    public void validateDeeplink(String deeplinkstring, String appName, String element, String elementType, String module) throws InterruptedException, IOException {
+    public void validateDeeplink(String deeplinkstring, String appName, String element, String elementType, String module, String handle) throws InterruptedException, IOException {
 
 //        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
@@ -108,6 +108,7 @@ public class DeepLinkHelper {
         ExtentReport.extentReportDisplay(ExtentReport.Status.INFO, "Locator", elementType + " : " + element);
 
         // Kill the app
+        Thread.sleep(1000);
         driver.pressKey(new KeyEvent(AndroidKey.BACK));
         Thread.sleep(3000);
 
@@ -157,6 +158,91 @@ public class DeepLinkHelper {
 
         }
 
+        //Handling Special Cases
+
+        switch (handle) {
+            case "NA":
+                break;
+            case "insurance":
+                if(Element.isElementPresent(driver, By.id("com.mobikwik_new:id/content_root"))){
+
+                    Element.selectElement(driver, (AndroidElement) driver.findElement(By.id("com.mobikwik_new:id/primary_button")), "Select OHK");
+                }
+                break;
+
+            case "giftcards":
+
+                //If Gift Card Intro Page is Present. Prodedure to Setup and kill app again
+                if(Element.isElementPresent(driver, By.id("com.mobikwik_new:id/content_root"))){
+
+                    Element.selectElement(driver, (AndroidElement) driver.findElement(By.xpath("//android.widget.TextView[@text = 'View Gift Cards']")), "Select view Gift Cards");
+                Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/category_name"));
+
+                    driver.pressKey(new KeyEvent(AndroidKey.HOME));
+                    Thread.sleep(2000);
+
+                cmd = "adb shell am start -a android.intent.action.VIEW -d " + deeplinkstring;
+                    process = Runtime.getRuntime().exec(cmd);
+                    Thread.sleep(3000);
+
+
+                    if (Element.isElementPresent(driver, By.id("android:id/sem_titlePanel_default"))) {
+
+
+                        List<AndroidElement> applicableApp = driver.findElements(By.id("android:id/text1"));
+
+                        Thread.sleep(2000);
+                        int noOfApp = applicableApp.size();
+
+                        for (int i = 0; i < noOfApp; i++) {
+
+//            Log.info(applicableApp.get(i).getText());
+//            Log.info(appName);
+
+                            String appInstance = applicableApp.get(i).getText();
+
+                            if (appInstance.equals(appName)) {
+                                mbReporter.verifyTrueWithLogging(true, "Deeplink Indexing of " + deeplinkstring + " is available for " + appName, true, false);
+                                ;
+
+                                if (Element.isElementPresent(driver, By.id("android:id/button_once"))) {
+
+                                    Element.selectElement(driver, (AndroidElement) driver.findElement(By.xpath("//android.widget.TextView[@text= '" + appName + "']")), "Select " + appName + " App");
+
+                                    Element.selectElement(driver, (AndroidElement) driver.findElement(By.id("android:id/button_once")), "Open App for One time");
+                                } else {
+
+                                    Element.selectElement(driver, (AndroidElement) driver.findElement(By.xpath("//android.widget.TextView[@text= '" + appName + "']")), "Select " + appName + " App");
+
+                                }
+
+                                Thread.sleep(3000);
+                                break;
+
+                            }
+
+                        }
+
+
+                    }
+
+                }
+                break;
+
+            case "nearby":
+                if (permissionHelper.isPermissionPopUpPresent()) {
+
+                    permissionHelper.permissionAllow();
+                    Thread.sleep(3000);
+                }
+                break;
+
+
+
+        }
+
+
+
 
         if (permissionHelper.isPermissionPopUpPresent()) {
 
@@ -168,7 +254,7 @@ public class DeepLinkHelper {
         // Assertions
         switch (elementType) {
             case "id":
-                MBReporter.verifyEqualsWithLoggingExtentReport(Element.isElementPresent(driver, By.id("" + element + "")), true, "User is redirected to the " + module + " feature via " + deeplinkstring, false);
+                MBReporter.verifyEqualsWithLoggingExtentReport(Element.isElementPresent(driver, By.id("" + element + "")), true, "User is redirected to the " + module + " feature via " + deeplinkstring, true);
                 break;
             case "xpath":
                 mbReporter.verifyEqualsWithLoggingExtentReport(Element.isElementPresent(driver, By.xpath("" + element + "")), true, "User is redirected to the " + module + " feature via " + deeplinkstring, true);
