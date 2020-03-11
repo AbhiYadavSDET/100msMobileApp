@@ -85,10 +85,10 @@ public class GoldHelper {
         goldPage.selectTransaction();
 
 
-        Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/gold_purchased_or_sold"));
+        Element.waitForVisibility(driver, By.id("gold_purchased_or_sold"));
 
 
-        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("com.mobikwik_new:id/gold_purchased_or_sold")), "Invoice Id on History Page : " + goldPage.getInvoiceIdHistoryPage(), true, false);
+        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("gold_purchased_or_sold")), "Invoice Id on History Page : " + goldPage.getInvoiceIdHistoryPage(), true, false);
 
 
         goldPage.clickBack();
@@ -140,9 +140,9 @@ public class GoldHelper {
                 goldPage.selectTransaction();
 
 
-                Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/gold_purchased_or_sold"));
+                Element.waitForVisibility(driver, By.id("gold_purchased_or_sold"));
 
-                mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("com.mobikwik_new:id/gold_purchased_or_sold")), "Invoice Id on History Page : " + goldPage.getInvoiceIdHistoryPage(), true, false);
+                mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("gold_purchased_or_sold")), "Invoice Id on History Page : " + goldPage.getInvoiceIdHistoryPage(), true, false);
 
                 goldPage.clickBack();
                 Thread.sleep(2000);
@@ -157,7 +157,7 @@ public class GoldHelper {
 
                 String error = goldPage.getErrorDescription();
 
-                mbReporter.verifyTrueWithLogging(!Element.isElementPresent(driver, By.id("com.mobikwik_new:id/txt_description_amount")), error, true, true);
+                mbReporter.verifyTrueWithLogging(!Element.isElementPresent(driver, By.id("txt_description_amount")), error, true, true);
 
                 goldPage.clickBack();
 

@@ -24,7 +24,7 @@ public class ImpsPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = '167795709569']")
     private AndroidElement bank;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/edt_txt_transfer_amount")
+    @AndroidFindBy(id = "edt_txt_transfer_amount")
     private AndroidElement amount_box;
 
     @AndroidFindBy(xpath = "//android.widget.Button[@text = 'Continue']")
@@ -35,25 +35,25 @@ public class ImpsPage {
 
     String success_text = "android.widget.TextView[@text = 'Money sent successfully']";
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/beneficiary_name")
+    @AndroidFindBy(id = "beneficiary_name")
     private AndroidElement textbox_beneficiary_name;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/account_number")
+    @AndroidFindBy(id = "account_number")
     private AndroidElement textbox_account_no;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/ifsc_code")
+    @AndroidFindBy(id = "ifsc_code")
     private AndroidElement textbox_ifsc;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/continue_button")
+    @AndroidFindBy(id = "continue_button")
     private AndroidElement cta_continue;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/base_title")
+    @AndroidFindBy(id = "base_title")
     private AndroidElement label_success_message;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/txt_cn_value")
+    @AndroidFindBy(id = "txt_cn_value")
     private AndroidElement label_account_no;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/txt_amount_value")
+    @AndroidFindBy(id = "txt_amount_value")
     private AndroidElement label_amount;
 
     @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/continue_btn")

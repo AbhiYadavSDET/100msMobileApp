@@ -82,8 +82,8 @@ public class LoginHelper {
 
         String actualMobileNo = sideDrawerPage.getMobileNo();
 
-        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("com.mobikwik_new:id/drawerHeadingName")), "Name Is Present", true, false);
-        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("com.mobikwik_new:id/drawerHeadingEmail")), "Email Id Is Present", true, false);
+        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("drawerHeadingName")), "Name Is Present", true, false);
+        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("drawerHeadingEmail")), "Email Id Is Present", true, false);
         mbReporter.verifyEqualsWithLogging(actualMobileNo, mobile, "Verify Mobile", false, false);
 
         homePage.clickHomePageMbkLogo();
@@ -201,7 +201,7 @@ public class LoginHelper {
 
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
-        if (Element.isElementPresent(driver, By.id("com.mobikwik_new:id/tx_add_money"))) {
+        if (Element.isElementPresent(driver, By.id("tx_add_money"))) {
 
             homePage.clickOnBottomBarWallet();
 
@@ -211,7 +211,7 @@ public class LoginHelper {
 
             for (int i = 0; i < 3; i++) {
 
-                if (Element.isElementPresent(driver, By.id("com.mobikwik_new:id/btn_logout")) == false) {
+                if (Element.isElementPresent(driver, By.id("btn_logout")) == false) {
 
                     screen.swipeUpMore(driver);
 
@@ -236,7 +236,7 @@ public class LoginHelper {
 
     public boolean isOnboardingPresent() throws InterruptedException {
         Thread.sleep(3000);
-        if (Element.isElementPresent(driver, By.id("com.mobikwik_new:id/skip"))) {
+        if (Element.isElementPresent(driver, By.id("send_otp"))) {
             return true;
         } else {
             return false;

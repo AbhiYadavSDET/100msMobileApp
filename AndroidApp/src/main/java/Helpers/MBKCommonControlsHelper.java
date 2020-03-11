@@ -248,7 +248,7 @@ public class MBKCommonControlsHelper {
     // Added by MS@10 Oct, 2018 to handle the NPS Pop-on pressing back from the success screens
     public void handleNPS() throws InterruptedException {
         Thread.sleep(3000);
-        if (Element.isElementPresent(driver, By.id("com.mobikwik_new:id/rating_seekbar"))) {
+        if (Element.isElementPresent(driver, By.id("rating_seekbar"))) {
             Log.info("Handle", "NPS Screen");
             mbkCommonControlsPage.clickOnCross();
             mbkCommonControlsPage.clickOnSuccessPageCross();
@@ -258,7 +258,7 @@ public class MBKCommonControlsHelper {
     // Added by MS@10 Oct, 2018 to handle the Rating Pop-on pressing back from the success screens
     public void handleRatingsPopUp() throws InterruptedException {
         Thread.sleep(3000);
-        if (Element.isElementPresent(driver, By.id("com.mobikwik_new:id/content_root"))) {
+        if (Element.isElementPresent(driver, By.id("content_root"))) {
             Log.info("Handle", "Ratings PopUp");
             mbkCommonControlsPage.clickOnCross();
             mbkCommonControlsPage.clickOnSuccessPageCross();
@@ -295,7 +295,7 @@ public class MBKCommonControlsHelper {
 
     public void handleGullak() throws InterruptedException {
         Thread.sleep(3000);
-        if (Element.isElementPresent(driver, By.id("com.mobikwik_new:id/rating_seekbar"))) {
+        if (Element.isElementPresent(driver, By.id("rating_seekbar"))) {
             Log.info("Handle", "Gullak Screen");
             mbkCommonControlsPage.clickOnGullakCross();
         }

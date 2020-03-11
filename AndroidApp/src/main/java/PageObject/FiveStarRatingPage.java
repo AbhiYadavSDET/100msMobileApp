@@ -14,13 +14,13 @@ public class FiveStarRatingPage {
     AndroidDriver driver;
 
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/rating_stars")
+    @AndroidFindBy(id = "rating_stars")
     private AndroidElement rating_stars;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/rating_button")
+    @AndroidFindBy(id = "rating_button")
     private AndroidElement cta_rate_five_stars;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/maybe_later")
+    @AndroidFindBy(id = "maybe_later")
     private AndroidElement cta_maybe_later;
 
 
@@ -38,7 +38,7 @@ public class FiveStarRatingPage {
 
     public boolean isRatingPopUpDisplayed() throws InterruptedException {
 
-        if (Element.isElementPresent(driver, By.id("com.mobikwik_new:id/rating_stars"))) {
+        if (Element.isElementPresent(driver, By.id("rating_stars"))) {
             return true;
 
 

@@ -16,29 +16,29 @@ public class TransactionHistoryPage {
 
     public String txn_list = "//android.support.v7.widget.RecyclerView/android.widget.LinearLayout";
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/btnVerfiySignUp")
+    @AndroidFindBy(id = "btnVerfiySignUp")
     public AndroidElement CTA_text;
 
 
     @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout[1]")
     public AndroidElement first_element_in_list;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/txt_txn_id")
+    @AndroidFindBy(id = "txt_txn_id")
     public AndroidElement txn_id;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='+ X6']")
     public AndroidElement add_money_transaction_value_6;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/txt_txn_product")
+    @AndroidFindBy(id = "txt_txn_product")
     public AndroidElement invoice_page;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/refund_cta")
+    @AndroidFindBy(id = "refund_cta")
     public AndroidElement refund_cta;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'Money Available in your wallet can be used wherever Mobikwik is accepted at Merchant (Online/Offline) including Recharges and Bill Payments.']")
     public AndroidElement refund_cofirm_pop_up;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/vertical_button_1")
+    @AndroidFindBy(id = "vertical_button_1")
     public AndroidElement cta_initiate_refund;
 
     //Refund Success Page
@@ -46,13 +46,13 @@ public class TransactionHistoryPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'Refund Initiated']")
     public AndroidElement refund_success_title;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/refund_status_title")
+    @AndroidFindBy(id = "refund_status_title")
     public AndroidElement refund_success_message;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/base_icon_close")
+    @AndroidFindBy(id = "base_icon_close")
     public AndroidElement cross_refund_success_page;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/amount_text")
+    @AndroidFindBy(id = "amount_text")
     public AndroidElement amount_refunded;
 
     public TransactionHistoryPage(AndroidDriver driver) throws IOException {

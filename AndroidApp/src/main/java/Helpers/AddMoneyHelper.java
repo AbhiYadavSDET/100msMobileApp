@@ -336,15 +336,15 @@ public class AddMoneyHelper {
         transactionHistoryPage = homePage.clickOnBottomBarHistory();
 
 
-        Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/download_statement"));
+        Element.waitForVisibility(driver, By.id("download_statement"));
 
         transactionHistoryPage.clickOnAddMoneyTransactionOfSixRupees();
 
-        Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/txt_txn_product"));
+        Element.waitForVisibility(driver, By.id("txt_txn_product"));
 
         transactionHistoryPage.clickOnRefundCta();
 
-        Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/vertical_button_1"));
+        Element.waitForVisibility(driver, By.id("vertical_button_1"));
         transactionHistoryPage.clickOnIntiateRefundCta();
 
         Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Refund Initiated']"));

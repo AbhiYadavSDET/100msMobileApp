@@ -58,7 +58,7 @@ public class NearByHelper {
 
         Element.waitForVisibility(driver, By.xpath("//android.view.View[@index= '1']"));
 
-        List<AndroidElement> stores = Element.findElements(driver, By.id("com.mobikwik_new:id/tv_name"));
+        List<AndroidElement> stores = Element.findElements(driver, By.id("tv_name"));
         int noOfstoresInOneList = stores.size();
 
         nearbyPage.clickOnBackButton();
@@ -73,7 +73,7 @@ public class NearByHelper {
 
         mbReporter.verifyTrueWithLogging(noOfstoresInOneList > 0, "No of Stores under address: " + noOfstoresInOneList, true, false);
 
-        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("com.mobikwik_new:id/tx_tag")), "Total Stores count displayed on home page: " + totalStoreCount, true, false);
+        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("tx_tag")), "Total Stores count displayed on home page: " + totalStoreCount, true, false);
 
 
         homePage.closeMoreServicesOverlay();
@@ -104,7 +104,7 @@ public class NearByHelper {
 
         mbReporter.verifyEqualsWithLogging(nearbyPage.getCategoryStoreTitle(), categoryName, "Verify if the Category list is open", true, false);
 
-        List<AndroidElement> stores = Element.findElements(driver, By.id("com.mobikwik_new:id/tv_name"));
+        List<AndroidElement> stores = Element.findElements(driver, By.id("tv_name"));
         int noOfstoresInOneList = stores.size();
 
         mbReporter.verifyTrueWithLogging(noOfstoresInOneList > 0, "No of Stores for " + categoryName + ":" + noOfstoresInOneList, true, false);
@@ -147,7 +147,7 @@ public class NearByHelper {
 
         Thread.sleep(1000);
 
-        List<AndroidElement> stores = Element.findElements(driver, By.id("com.mobikwik_new:id/tv_name"));
+        List<AndroidElement> stores = Element.findElements(driver, By.id("tv_name"));
         int noOfstoresInOneList = stores.size();
 
         mbReporter.verifyTrueWithLogging(noOfstoresInOneList > 0, "No of Stores for " + storeName + ":" + noOfstoresInOneList, true, false);
