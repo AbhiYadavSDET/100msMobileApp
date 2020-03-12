@@ -28,22 +28,22 @@ public class RechargePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Haryana']")
     private AndroidElement label_haryana;
 
-    //@AndroidFindBy(id = "com.mobikwik_new:id/edit_text_mket")
+    //@AndroidFindBy(id = "edit_text_mket")
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Amount (in X)']/following::android.widget.TextView[@text = 'Enter any amount']")
     //@AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Amount (in ₹)'/following::android.widget.TextView[@text = 'Enter any amount']")
     public AndroidElement textbox_enter_amount;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/see_all_plans")
+    @AndroidFindBy(id = "see_all_plans")
     public AndroidElement cta_see_all_plans;
 
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/amount_field")
+    @AndroidFindBy(id = "amount_field")
     private AndroidElement textbox_enter_amount2;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/actual_continue")
+    @AndroidFindBy(id = "actual_continue")
     private AndroidElement button_continue;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/cta")
+    @AndroidFindBy(id = "cta")
     private AndroidElement cta_continue;
 
 
@@ -61,40 +61,40 @@ public class RechargePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Operator']/following::android.widget.TextView[1]")
     private AndroidElement label_operator;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/amount_value")
+    @AndroidFindBy(id = "amount_value")
     private AndroidElement label_amount;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/total_amount_value")
+    @AndroidFindBy(id = "total_amount_value")
     private AndroidElement label_total_payment;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/base_title")
+    @AndroidFindBy(id = "base_title")
     private AndroidElement label_success_page_status;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/recharge_button")
+    @AndroidFindBy(id = "recharge_button")
     private AndroidElement cta_continue2;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/content_root")
+    @AndroidFindBy(id = "content_root")
     public AndroidElement popup;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/title_text")
+    @AndroidFindBy(id = "title_text")
     public AndroidElement popup_error;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/body_text")
+    @AndroidFindBy(id = "body_text")
     public AndroidElement popup_text;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/close_button")
+    @AndroidFindBy(id = "close_button")
     public AndroidElement popup_cross;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/view_bill_text")
+    @AndroidFindBy(id = "view_bill_text")
     public AndroidElement viewBillText;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'z']/following::android.widget.EditText[1]")
     public AndroidElement textbox_enter_dth_amount;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/connection_detail_button_recharge")
+    @AndroidFindBy(id = "connection_detail_button_recharge")
     public AndroidElement button_dth_continue;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/txt_promo_result_desc")
+    @AndroidFindBy(id = "txt_promo_result_desc")
     public AndroidElement label_promo_code_text;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'More']")
@@ -103,13 +103,13 @@ public class RechargePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'BP Number']/following::android.widget.EditText[1]")
     public AndroidElement textbox_bp_number;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/connection_detail_textView_name")
+    @AndroidFindBy(id = "connection_detail_textView_name")
     public AndroidElement label_success_screen_operator;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/connection_detail_textView_company")
+    @AndroidFindBy(id = "connection_detail_textView_company")
     public AndroidElement label_success_screen_number;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/fixed_amount_value")
+    @AndroidFindBy(id = "fixed_amount_value")
     public AndroidElement label_success_screen_amount;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Telephone Number (Without STD Code)']/following::android.widget.EditText[1]")
@@ -124,7 +124,7 @@ public class RechargePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'TOPUP']")
     public AndroidElement header_top_up_plan_types;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/mkab_icon_1")
+    @AndroidFindBy(id = "mkab_icon_1")
     public AndroidElement cta_back_button_plans_page;
 
 
@@ -140,7 +140,7 @@ public class RechargePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'z']/following::android.widget.EditText[1]")
     public AndroidElement textbox_enter_credit_card_amount;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/connection_detail_button_recharge")
+    @AndroidFindBy(id = "connection_detail_button_recharge")
     public AndroidElement button_credit_card_continue;
 
 
@@ -148,26 +148,26 @@ public class RechargePage {
     public AndroidElement confirm_payment_title;
 
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/base_title")
+    @AndroidFindBy(id = "base_title")
     public AndroidElement pending_screen_title;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/pending_desc")
+    @AndroidFindBy(id = "pending_desc")
     public AndroidElement pending_desc_message;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/total_amount_value")
+    @AndroidFindBy(id = "total_amount_value")
     public AndroidElement total_amount_value;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/base_icon_close")
+    @AndroidFindBy(id = "base_icon_close")
     public AndroidElement cross_icon_pending_screen;
 
 //cta_continue
 
 
     //Coupon and voucher
-    @AndroidFindBy(id = "com.mobikwik_new:id/have_a_promo_text")
+    @AndroidFindBy(id = "have_a_promo_text")
     private AndroidElement have_promo_code;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/redeem_layout")
+    @AndroidFindBy(id = "redeem_layout")
     private AndroidElement select_voucher;
 
 

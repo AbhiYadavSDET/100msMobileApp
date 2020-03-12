@@ -16,10 +16,10 @@ public class WalletPage {
 
     AndroidDriver driver;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/kyc_card")
+    @AndroidFindBy(id = "kyc_card")
     public AndroidElement card_kyc_upgrade;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/btn_upgrade")
+    @AndroidFindBy(id = "btn_upgrade")
     public AndroidElement cta_upgrade_button;
 
     public WalletPage(AndroidDriver driver) throws IOException {
@@ -38,7 +38,7 @@ public class WalletPage {
     }
 
     public boolean ifKycCardDisplayed() throws InterruptedException {
-        if (Element.isElementPresent(driver, By.id("com.mobikwik_new:id/kyc_card"))) {
+        if (Element.isElementPresent(driver, By.id("kyc_card"))) {
 
             return true;
         } else {
@@ -47,7 +47,7 @@ public class WalletPage {
     }
 
     public boolean ifUpgradeButtonDisplayed() throws InterruptedException {
-        if (Element.isElementPresent(driver, By.id("com.mobikwik_new:id/btn_upgrade"))) {
+        if (Element.isElementPresent(driver, By.id("btn_upgrade"))) {
 
             return true;
         } else {

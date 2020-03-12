@@ -15,19 +15,19 @@ public class InsurancePage {
     AndroidDriver driver;
 
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/mkab_title")
+    @AndroidFindBy(id = "mkab_title")
     public AndroidElement top_bar;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Home Insurance (Gas)']")
     private AndroidElement image_gas_insurance;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/btnPrice")
+    @AndroidFindBy(id = "btnPrice")
     private AndroidElement button_price;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/cta")
+    @AndroidFindBy(id = "cta")
     private AndroidElement cta_make_payment;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/txInsuranceSubHeading")
+    @AndroidFindBy(id = "txInsuranceSubHeading")
     private AndroidElement fill_kyc_details_page_description;
 
     @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView[1]")

@@ -15,7 +15,7 @@ public class SavedConnectionPage {
     AndroidDriver driver;
 
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/add_new_connection_button")
+    @AndroidFindBy(id = "add_new_connection_button")
     private AndroidElement cta_add_favourite;
 
 
@@ -44,7 +44,7 @@ public class SavedConnectionPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'Airtel DTH']")
     private AndroidElement select_airtel_dth;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/btn_savedConn_save")
+    @AndroidFindBy(id = "btn_savedConn_save")
     private AndroidElement cta_save;
 
 
@@ -55,13 +55,13 @@ public class SavedConnectionPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'test']")
     private AndroidElement saved_connection;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/mkab_icon_5")
+    @AndroidFindBy(id = "mkab_icon_5")
     private AndroidElement more_hamburger_icon;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'Delete']")
     private AndroidElement cta_delete;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/mkab_icon_1")
+    @AndroidFindBy(id = "mkab_icon_1")
     private AndroidElement back_button;
 
 

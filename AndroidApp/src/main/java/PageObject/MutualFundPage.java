@@ -13,10 +13,10 @@ import java.io.IOException;
 public class MutualFundPage {
     AndroidDriver driver;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/viewAllFunds")
+    @AndroidFindBy(id = "viewAllFunds")
     private AndroidElement viewFunds;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/mkiv_image")
+    @AndroidFindBy(id = "mkiv_image")
     private AndroidElement image_growth;
 
 

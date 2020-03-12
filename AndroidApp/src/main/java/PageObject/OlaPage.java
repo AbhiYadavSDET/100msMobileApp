@@ -15,16 +15,16 @@ public class OlaPage {
     AndroidDriver driver;
 
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/gps_turn_txt")
+    @AndroidFindBy(id = "gps_turn_txt")
     private AndroidElement text_gps_off;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/gps_turn_on_btn")
+    @AndroidFindBy(id = "gps_turn_on_btn")
     private AndroidElement button_turn_on_gps;
 
 
     //Ola MAP Page
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/drop_loc_layout")
+    @AndroidFindBy(id = "drop_loc_layout")
     private AndroidElement click_drop_location;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'Auto']")
@@ -38,32 +38,32 @@ public class OlaPage {
     @AndroidFindBy(xpath = "//android.widget.EditText[@text= 'Enter Drop Location']")
     private AndroidElement textbox_drop_location;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/category")
+    @AndroidFindBy(id = "category")
     private AndroidElement select_address;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/btn_ride_now")
+    @AndroidFindBy(id = "btn_ride_now")
     private AndroidElement cta_ride_now;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'Estimate Fare']")
     private AndroidElement estimated_fare;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/confirm_pay_btn")
+    @AndroidFindBy(id = "confirm_pay_btn")
     private AndroidElement cta_confirm_pay;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/body_text")
+    @AndroidFindBy(id = "body_text")
     private AndroidElement pop_up_body_text;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/primary_button")
+    @AndroidFindBy(id = "primary_button")
     private AndroidElement confirm_book_ride;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/tx_cab_category")
+    @AndroidFindBy(id = "tx_cab_category")
     private AndroidElement cab_category;
 
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/tx_driver_name")
+    @AndroidFindBy(id = "tx_driver_name")
     private AndroidElement driver_name;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/cancel_ride_btn")
+    @AndroidFindBy(id = "cancel_ride_btn")
     private AndroidElement cta_cancel_ride;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'Driver denied to go to destination']")
@@ -85,13 +85,13 @@ public class OlaPage {
     private AndroidElement reason_6;
 
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/cancel_ride_btn")
+    @AndroidFindBy(id = "cancel_ride_btn")
     private AndroidElement cta_confirm_cancel_ride;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/mkab_title")
+    @AndroidFindBy(id = "mkab_title")
     private AndroidElement title_ride_cancelled;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/back_to_home_btn")
+    @AndroidFindBy(id = "back_to_home_btn")
     private AndroidElement cta_back_to_home;
 
     public OlaPage(AndroidDriver driver) {

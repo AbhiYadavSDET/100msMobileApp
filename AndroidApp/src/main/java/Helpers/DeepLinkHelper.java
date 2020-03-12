@@ -164,19 +164,19 @@ public class DeepLinkHelper {
             case "NA":
                 break;
             case "insurance":
-                if(Element.isElementPresent(driver, By.id("com.mobikwik_new:id/content_root"))){
+                if(Element.isElementPresent(driver, By.id("content_root"))){
 
-                    Element.selectElement(driver, (AndroidElement) driver.findElement(By.id("com.mobikwik_new:id/primary_button")), "Select OHK");
+                    Element.selectElement(driver, (AndroidElement) driver.findElement(By.id("primary_button")), "Select OHK");
                 }
                 break;
 
             case "giftcards":
 
                 //If Gift Card Intro Page is Present. Prodedure to Setup and kill app again
-                if(Element.isElementPresent(driver, By.id("com.mobikwik_new:id/content_root"))){
+                if(Element.isElementPresent(driver, By.id("content_root"))){
 
                     Element.selectElement(driver, (AndroidElement) driver.findElement(By.xpath("//android.widget.TextView[@text = 'View Gift Cards']")), "Select view Gift Cards");
-                Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/category_name"));
+                Element.waitForVisibility(driver, By.id("category_name"));
 
                     driver.pressKey(new KeyEvent(AndroidKey.HOME));
                     Thread.sleep(2000);

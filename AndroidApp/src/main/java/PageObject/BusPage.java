@@ -17,28 +17,28 @@ public class BusPage {
 
     //Intro Page
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/mkab_icon_1")
+    @AndroidFindBy(id = "mkab_icon_1")
     private AndroidElement buspage_back_button;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/txt_departure_city")
+    @AndroidFindBy(id = "txt_departure_city")
     private AndroidElement textbox_departure_city;
 
     //Select Location Page
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/txt_departure_city")
+    @AndroidFindBy(id = "txt_departure_city")
     private AndroidElement textbox_enter_departure_city;
 
     //Departure City = bhubaneswar
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/txt_title")
+    @AndroidFindBy(id = "txt_title")
     private AndroidElement select_departure_city;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/txt_destination_city")
+    @AndroidFindBy(id = "txt_destination_city")
     private AndroidElement textbox_enter_destination_city;
 
     //Destination City = baripada
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/txt_title")
+    @AndroidFindBy(id = "txt_title")
     private AndroidElement select_destination_city;
 
 
@@ -49,7 +49,7 @@ public class BusPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = '5']")
     private AndroidElement select_date_earlier;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/textActionButton")
+    @AndroidFindBy(id = "textActionButton")
     public AndroidElement cta_modify;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Das & Das Travels']")
@@ -58,10 +58,10 @@ public class BusPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = '1']")
     private AndroidElement select_number_of_passenger;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/proceed_button")
+    @AndroidFindBy(id = "proceed_button")
     private AndroidElement button_confirm_seats_1;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/continue_button")
+    @AndroidFindBy(id = "continue_button")
     private AndroidElement button_confirm_seats_2;
 
 
@@ -81,17 +81,17 @@ public class BusPage {
     @AndroidFindBy(xpath = "//android.widget.EditText[@text = 'Age']")
     private AndroidElement enter_passenger_age;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/btnFirst")
+    @AndroidFindBy(id = "btnFirst")
     private AndroidElement select_gender;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/proceed_button")
+    @AndroidFindBy(id = "proceed_button")
     private AndroidElement cta_continue;
 
     //Confirm Details Screen
-    @AndroidFindBy(id = "com.mobikwik_new:id/pay_btn")
+    @AndroidFindBy(id = "pay_btn")
     private AndroidElement cta_pay_amount;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/primary_button")
+    @AndroidFindBy(id = "primary_button")
     private AndroidElement cta_confirm_book_now;
 
     //Booking success
@@ -102,37 +102,37 @@ public class BusPage {
     private AndroidElement text_onward_route;
 
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/onward_operator_txt")
+    @AndroidFindBy(id = "onward_operator_txt")
     private AndroidElement text_onward_operator;
 
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/total_amount_paid")
+    @AndroidFindBy(id = "total_amount_paid")
     private AndroidElement total_amount_paid;
 
     //Cancel Booking
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/textActionButton")
+    @AndroidFindBy(id = "textActionButton")
     private AndroidElement cta_bookings;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'UPCOMING JOURNEYS']/following::android.widget.TextView[@text = 'Das & Das Travels']")
     private AndroidElement select_ticket_for_cancellation;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/cancel_button")
+    @AndroidFindBy(id = "cancel_button")
     private AndroidElement cta_cancel_ticket;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/cancel_complete")
+    @AndroidFindBy(id = "cancel_complete")
     private AndroidElement cta_cancel_complete_ticket;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/primary_button")
+    @AndroidFindBy(id = "primary_button")
     private AndroidElement cta_confirm_cancel_ticket;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Your Ticket has been Cancelled']")
     private AndroidElement text_cancellation;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/suceess_msg")
+    @AndroidFindBy(id = "suceess_msg")
     private AndroidElement refund_message;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/home_button")
+    @AndroidFindBy(id = "home_button")
     private AndroidElement home_button;
 
 

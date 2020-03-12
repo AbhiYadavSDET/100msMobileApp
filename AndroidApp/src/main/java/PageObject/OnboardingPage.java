@@ -14,16 +14,16 @@ public class OnboardingPage {
 
     AndroidDriver<AndroidElement> driver;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/tv_payments")
+    @AndroidFindBy(id = "tv_payments")
     private AndroidElement onboarding_text;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/skip")
+    @AndroidFindBy(id = "skip")
     private AndroidElement button_skip;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/phone_number")
+    @AndroidFindBy(id = "phone_number")
     private AndroidElement textbox_mobile_no;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/send_otp")
+    @AndroidFindBy(id = "send_otp")
     private AndroidElement cta_get_otp;
 
 

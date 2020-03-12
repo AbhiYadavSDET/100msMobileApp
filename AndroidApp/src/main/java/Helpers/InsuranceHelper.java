@@ -53,7 +53,7 @@ public class InsuranceHelper {
 
         insurancePage = homePage.clickOnInsuranceIcon();
 
-        Element.waitForVisibility(driver, By.id("com.mobikwik_new:id/mkab_title"));
+        Element.waitForVisibility(driver, By.id("mkab_title"));
         screen.swipeUpMore(driver);
 
         insurancePage.clickOnImagePersonalAccidentInsurance();
