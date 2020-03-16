@@ -47,7 +47,9 @@ public class CheckBalanceHelper {
 
             AddMoneyHelper addMoneyHelper = new AddMoneyHelper(driver);
 
-            Double requiredAmount= requiredBalance-actualMainBalance;
+            int requiredAmount= (int)(requiredBalance-actualMainBalance) / 100;
+
+//            Double requiredAmount= (requiredBalance-actualMainBalance) / 100;
 
             addMoneyHelper.addMoneyViaSavedCardWithinFlow(String.valueOf(requiredAmount), "4363 XXXX XXXX 4460", "239", "Paraj@1234");
             Log.info("Money Added");
