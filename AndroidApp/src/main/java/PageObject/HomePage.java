@@ -58,7 +58,7 @@ public class HomePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='DTH']")
     private AndroidElement icon_dth;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Gas']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Piped Gas']")
     private AndroidElement icon_gas;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Credit Card Bill']")
