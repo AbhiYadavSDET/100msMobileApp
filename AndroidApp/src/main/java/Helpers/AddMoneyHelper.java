@@ -87,7 +87,7 @@ public class AddMoneyHelper {
 
         }else {
 
-            mbReporter.verifyTrueWithLogging(false, "Netbanking feature has been disabled", true, true);
+            mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath("//*[@text = 'Net Banking']"))==false, "Netbanking feature has been disabled", true, true);
 
             mbkCommonControlsHelper.clickUpButton();
 
@@ -131,8 +131,13 @@ public class AddMoneyHelper {
 
         handleIndusindWebView(bankPassword);
 
-        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Unfortunately some processing error occurred at the bank and the transaction failed.Please try again.']")), "Add Money Failed due to Insufficient Balance in Bank Account", true, false);
+        boolean condition=false;
 
+        if(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Unfortunately some processing error occurred at the bank and the transaction failed.Please try again.']"))){
+            condition=true;
+            mbReporter.verifyTrueWithLogging(condition, "Add Money Failed due to Insufficient Balance in Bank Account", true, false);
+
+        }
             //Assertions
             Double expectedMainBalance = (Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100) + Double.parseDouble(amount) * 100;
             Double actualMainBalance = Double.parseDouble(addMoneyPage.getSuccessPageWalletBalance().replace("New Wallet Balance X", "").replace(",", "")) * 100;
@@ -192,9 +197,13 @@ public class AddMoneyHelper {
 
         handleIndusindWebView(bankPassword);
 
-        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Unfortunately some processing error occurred at the bank and the transaction failed.Please try again.']")), "Add Money Failed due to Insufficient Balance in Bank Account", true, false);
+        boolean condition=false;
 
+        if(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Unfortunately some processing error occurred at the bank and the transaction failed.Please try again.']"))){
+            condition=true;
+            mbReporter.verifyTrueWithLogging(condition, "Add Money Failed due to Insufficient Balance in Bank Account", true, false);
 
+        }
             // Success Page Assertions
             mbReporter.verifyEqualsWithLogging(addMoneyPage.getSuccessPageStatus(), successPageStatus, "Success Screen | Verify Status", false, false);
             mbReporter.verifyEqualsWithLogging(addMoneyPage.getSuccessPageText(), successPageText, "Success Page Text", false, false);
@@ -307,7 +316,14 @@ public class AddMoneyHelper {
 
         handleIndusindWebView(bankPassword);
 
-        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Unfortunately some processing error occurred at the bank and the transaction failed.Please try again.']")), "Add Money Failed due to Insufficient Balance in Bank Account", true, false);
+        boolean condition=false;
+
+        if(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Unfortunately some processing error occurred at the bank and the transaction failed.Please try again.']"))){
+            condition=true;
+            mbReporter.verifyTrueWithLogging(condition, "Add Money Failed due to Insufficient Balance in Bank Account", true, false);
+
+        }
+
 
         mbkCommonControlsHelper.returnToHomePageFromP2MSuccessScreen();
 

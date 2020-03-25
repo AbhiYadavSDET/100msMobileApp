@@ -235,7 +235,15 @@ public class LoginHelper {
     }
 
     public boolean isOnboardingPresent() throws InterruptedException {
+
+
+
+        if(Element.isElementPresent(driver, By.id("splash_icon"))){
+            Thread.sleep(14000);
+        }
+
         Thread.sleep(3000);
+
         if (Element.isElementPresent(driver, By.id("send_otp"))) {
             return true;
         } else {

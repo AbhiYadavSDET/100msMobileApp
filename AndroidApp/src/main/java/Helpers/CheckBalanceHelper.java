@@ -36,6 +36,7 @@ public class CheckBalanceHelper {
     public void checkBalance(String amount) throws InterruptedException, IOException,
             JSONException {
 
+        Log.info(amount);
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
         currentBalance = mbkCommonControlsHelper.getBalance();
 
@@ -51,6 +52,8 @@ public class CheckBalanceHelper {
 
 //            Double requiredAmount= (requiredBalance-actualMainBalance) / 100;
 
+            Log.info(""+requiredAmount+"");
+
             addMoneyHelper.addMoneyViaSavedCardWithinFlow(String.valueOf(requiredAmount), "4363 XXXX XXXX 4460", "239", "Paraj@1234");
             Log.info("Money Added");
 
@@ -62,4 +65,44 @@ public class CheckBalanceHelper {
 
 
     }
+
+    public void checkBalance(String amountForTransfer, String addMore) throws InterruptedException, IOException,
+            JSONException {
+
+
+
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+        currentBalance = mbkCommonControlsHelper.getBalance();
+
+        Double actualMainBalance = Double.parseDouble(mbkCommonControlsHelper.getBalance(currentBalance, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100;
+
+        Double requiredBalance = (Double.parseDouble(amountForTransfer) + Double.parseDouble(addMore)) * 100;
+
+        if (actualMainBalance < requiredBalance) {
+
+            AddMoneyHelper addMoneyHelper = new AddMoneyHelper(driver);
+
+            int requiredAmount= (int)(requiredBalance-actualMainBalance) / 100;
+
+//            Double requiredAmount= (requiredBalance-actualMainBalance) / 100;
+
+
+
+            Log.info(""+requiredAmount+"");
+
+            addMoneyHelper.addMoneyViaSavedCardWithinFlow(String.valueOf(requiredAmount), "4363 XXXX XXXX 4460", "239", "Paraj@1234");
+            Log.info("Money Added");
+
+        } else {
+
+            Log.info("Sufficient Balance available");
+
+        }
+
+
+    }
+
+
+
+
 }
