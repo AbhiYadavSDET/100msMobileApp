@@ -160,6 +160,9 @@ public class RechargePage {
     @AndroidFindBy(id = "base_icon_close")
     public AndroidElement cross_icon_pending_screen;
 
+    @AndroidFindBy(id= "cross_icon")
+    public AndroidElement select_cross_icon;
+
 //cta_continue
 
 
@@ -353,6 +356,10 @@ public class RechargePage {
 
     public void selectVoucher() throws InterruptedException {
         Element.selectElement(driver, select_voucher, "Apply a voucher");
+    }
+
+    public void selectCrossIcon() throws InterruptedException{
+        Element.selectElement(driver, select_cross_icon, "Dismiss pop up");
     }
 
 

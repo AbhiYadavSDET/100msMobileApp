@@ -97,6 +97,27 @@ public class RechargeHelper {
 
         mbkCommonControlsHelper.handleSecurityPin(securityPin);
 
+
+        for(int i=0; i<4; i++){
+
+            if(Element.isElementPresent(driver, By.id("base_title"))){
+                Log.info("Success Page");
+                break;
+
+            }else{
+
+                if(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Convert to Cash']"))){
+                    rechargePage.selectCrossIcon();
+                }
+
+                i++;
+
+            }
+
+        }
+
+
+
         // Wait for the success screen
 
         Element.waitForVisibility(driver, By.id("base_title"));
@@ -105,12 +126,26 @@ public class RechargeHelper {
         mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessPageStatus(), trxStatus, "Success Page | Verify Status", false, false);
 
         // Assertions on the success screen
-        mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessPageConnectionNo(), mobileNo, "Success Page | Verify Connection number", false, false);
-        mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessPageCategory(), category, "Success Page | Verify category", false, false);
-        mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessPageOperator(), operator, "Success Page | Verify operator", false, false);
-        mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessPageAmount().replace("₹ ", ""), amount, "Success Page | Verify amount", false, false);
-        mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessPageTotalPayment().replace("₹ ", ""), totalPayment, "Success Page | Verify totalPayment", false, false);
 
+        if(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Connection Number']/following::android.widget.TextView[1]") )) {
+            mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessPageConnectionNo(), mobileNo, "Success Page | Verify Connection number", false, false);
+        }
+
+        if(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Category']/following::android.widget.TextView[1]"))) {
+            mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessPageCategory(), category, "Success Page | Verify category", false, false);
+        }
+
+        if(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Operator']/following::android.widget.TextView[1]"))) {
+            mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessPageOperator(), operator, "Success Page | Verify operator", false, false);
+        }
+
+        if(Element.isElementPresent(driver, By.id("amount_value"))) {
+            mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessPageAmount().replace("₹ ", ""), amount, "Success Page | Verify amount", false, false);
+        }
+
+        if(Element.isElementPresent(driver, By.id("total_amount_value"))) {
+            mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessPageTotalPayment().replace("₹ ", ""), totalPayment, "Success Page | Verify totalPayment", false, false);
+        }
 
         // Assert the Success page in case promo code is applied
         if (promoCodeStatus) {
@@ -172,12 +207,20 @@ public class RechargeHelper {
         } else {
             Log.info("No dues");
             // Assertions
-            String actualPopupError = rechargePage.getPopupError();
-            String actualPopupText = rechargePage.getPopupText();
 
-            mbReporter.verifyEqualsWithLogging(actualPopupError, "Error", "Popup | Error message", false, false);
-            mbReporter.verifyEqualsWithLogging(actualPopupText, "No dues", "Popup | Message", false, false);
+            if(Element.isElementPresent(driver, By.id("title_text"))) {
 
+                String actualPopupError = rechargePage.getPopupError();
+                mbReporter.verifyEqualsWithLogging(actualPopupError, "Error", "Popup | Error message", false, false);
+
+            }
+
+            if(Element.isElementPresent(driver, By.id("body_text"))) {
+
+                String actualPopupText = rechargePage.getPopupText();
+                mbReporter.verifyEqualsWithLogging(actualPopupText, "No dues", "Popup | Message", false, false);
+
+            }
 
             rechargePage.clickOnPopupCross();
 
@@ -229,7 +272,7 @@ public class RechargeHelper {
                 mbReporter.verifyEqualsWithLogging(viewBillText, "No dues", "ViewBill | text", false, false);
 
 
-                rechargePage.clickOnPopupCross();
+//                rechargePage.clickOnPopupCross();
 
                 mbkCommonControlsHelper.clickUpButton();
                 mbkCommonControlsHelper.clickUpButton();
@@ -238,6 +281,8 @@ public class RechargeHelper {
 
         } else {
             Log.info("The saved connection is not present");
+
+
         }
 
 

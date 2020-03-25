@@ -11,21 +11,6 @@
     <parameter name="methodName" value="sanity"></parameter>
 
 
-    <!--######### Imps #############-->
-    <test name="Imps Sanity">
-        <groups>
-            <run>
-                <include name="setUp"/>
-                <include name="instantiateHelpers"/>
-                <include name="impsSanity"/>
-                <include name="tearDown"/>
-            </run>
-        </groups>
-        <classes>
-            <class name="UITestFramework.CreateSession"/>
-            <class name="IMPS.Test_Imps"/>
-        </classes>
-    </test>
 
     <!--######### Add Money #############-->
     <test name="addMoneySanity">
@@ -40,6 +25,22 @@
         <classes>
             <class name="UITestFramework.CreateSession"/>
             <class name="AddMoney.Test_AddMoney"/>
+        </classes>
+    </test>
+
+    <!--######### Imps #############-->
+    <test name="Imps Sanity">
+        <groups>
+            <run>
+                <include name="setUp"/>
+                <include name="instantiateHelpers"/>
+                <include name="impsSanity"/>
+                <include name="tearDown"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="UITestFramework.CreateSession"/>
+            <class name="IMPS.Test_Imps"/>
         </classes>
     </test>
 

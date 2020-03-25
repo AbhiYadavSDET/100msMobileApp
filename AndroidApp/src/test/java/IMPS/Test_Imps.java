@@ -26,7 +26,7 @@ public class Test_Imps extends CreateSession {
 
 
         CheckBalanceHelper checkBalanceHelper = new CheckBalanceHelper(getAndroidDriver());
-        checkBalanceHelper.checkBalance(frontEndEntity.getAmount());
+        checkBalanceHelper.checkBalance(frontEndEntity.getAmount(), "5");
 
 //        // Add money for the amount
 //        addMoneyHelper = new AddMoneyHelper(driver);

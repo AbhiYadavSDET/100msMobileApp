@@ -281,16 +281,26 @@ public class MBKCommonControlsHelper {
         }
     }
 
+
     public void dismissAllOnHomePage(AndroidDriver driver) throws InterruptedException {
 //        Handle Expense Manager Bottom sheet
-        Log.info("Checking", "Upi Bottom sheet");
-        handleUpiBottomSheet(driver);
 
-        Log.info("Checking", "Refer and Earn Bottom sheet");
-        handleReferAndEarnBottomSheet();
+        Thread.sleep(2000);
+        if (Element.isElementPresent(driver, By.id("cross_button"))) {
+            Log.info("Handle", "Any Other Bottom sheet");
+            driver.navigate().back();
+        }else {
 
-        Log.info("Checking", "Get Instant Loan Bottom sheet");
-        handleGetInstantLoanBottomSheet();
+            Log.info("Checking", "Upi Bottom sheet");
+            handleUpiBottomSheet(driver);
+
+            Log.info("Checking", "Refer and Earn Bottom sheet");
+            handleReferAndEarnBottomSheet();
+
+            Log.info("Checking", "Get Instant Loan Bottom sheet");
+            handleGetInstantLoanBottomSheet();
+        }
+
     }
 
     public void handleGullak() throws InterruptedException {

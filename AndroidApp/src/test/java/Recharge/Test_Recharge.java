@@ -1,5 +1,6 @@
 package Recharge;
 
+import Helpers.CheckBalanceHelper;
 import Helpers.LoginHelper;
 import Helpers.RechargeHelper;
 import UITestFramework.CreateSession;
@@ -19,6 +20,9 @@ public class Test_Recharge extends CreateSession {
     public void Test01_prepaid_recharge(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
         loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+
+        CheckBalanceHelper checkBalanceHelper = new CheckBalanceHelper(getAndroidDriver());
+        checkBalanceHelper.checkBalance(frontEndEntity.getAmount());
 
         RechargeHelper rechargeHelper = new RechargeHelper(getAndroidDriver());
         rechargeHelper.prepaidRecharge(frontEndEntity.getMobileNo(), frontEndEntity.getAmount(), frontEndEntity.getCategory(), frontEndEntity.getOperator(), frontEndEntity.getTotalPayment(), frontEndEntity.getSuccessPageStatus(), frontEndEntity.getSecurityPin(), false, "N/A", frontEndEntity.getPromoCodeText());
@@ -57,6 +61,9 @@ public class Test_Recharge extends CreateSession {
     public void Test05_recharge_prepaid_promocode(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
         loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+
+        CheckBalanceHelper checkBalanceHelper = new CheckBalanceHelper(getAndroidDriver());
+        checkBalanceHelper.checkBalance(frontEndEntity.getAmount());
 
         RechargeHelper rechargeHelper = new RechargeHelper(getAndroidDriver());
         rechargeHelper.prepaidRecharge(frontEndEntity.getMobileNo(), frontEndEntity.getAmount(), frontEndEntity.getCategory(), frontEndEntity.getOperator(), frontEndEntity.getTotalPayment(), frontEndEntity.getSuccessPageStatus(), frontEndEntity.getSecurityPin(), true, frontEndEntity.getPromoCode(), frontEndEntity.getPromoCodeText());
