@@ -23,7 +23,7 @@ public class Test_Insurance extends CreateSession {
     public void Test01_insurance_buy(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
 
         Log.info("START : Insurance sanity test");
-        String amount = frontEndEntity.getAmount();
+//        String amount = frontEndEntity.getAmount();
 
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
         loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
@@ -31,20 +31,21 @@ public class Test_Insurance extends CreateSession {
 //        loginHelper.quickLoginViaEmail("mkwik9330@gmail.com", "Test@1234");
 
         InsuranceHelper insuranceHelper = new InsuranceHelper(getAndroidDriver());
-        String trxId = insuranceHelper.buyInsurance("Payment Successful!", "for Personal Accident Insurance of Rs. 1 Lac by ", frontEndEntity.getSecurityPin());
+//        String trxId = insuranceHelper.buyInsurance("Payment Successful!", "for Personal Accident Insurance of Rs. 1 Lac by ", frontEndEntity.getSecurityPin());
+//
+//        CancelSingle cancelSingle = new CancelSingle(trxId, amount);
+//        response = cancelSingle.execute();
+//
+//        System.out.println(response.getBody().asString());
+//
+//        //Status code validator
+//        StatusCodeValidator.validate200(response);
+//
+//        CancelSingleHelper cancelSingleHelper = new CancelSingleHelper(response.getBody().asString());
+//
+//        cancelSingleHelper.verifySuccessResponse();
 
-        CancelSingle cancelSingle = new CancelSingle(trxId, amount);
-        response = cancelSingle.execute();
-
-        System.out.println(response.getBody().asString());
-
-        //Status code validator
-        StatusCodeValidator.validate200(response);
-
-        CancelSingleHelper cancelSingleHelper = new CancelSingleHelper(response.getBody().asString());
-
-        cancelSingleHelper.verifySuccessResponse();
-
+        insuranceHelper.validateInsurance(frontEndEntity.getPopupError(), frontEndEntity.getPopupText());
         Log.info("END : Insurance sanity test");
 
     }

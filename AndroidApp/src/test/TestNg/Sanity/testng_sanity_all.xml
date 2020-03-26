@@ -160,22 +160,22 @@
         </classes>
     </test>
 
-    <!--######### Bus #############-->
-    <test name="busSanity">
-        <groups>
-            <run>
-                <include name="setUp"/>
-                <include name="instantiateHelpers"/>
-                <include name="busSanity"/>
-                <include name="tearDown"/>
-            </run>
-        </groups>
+    <!--&lt;!&ndash;######### Bus #############&ndash;&gt;-->
+    <!--<test name="busSanity">-->
+        <!--<groups>-->
+            <!--<run>-->
+                <!--<include name="setUp"/>-->
+                <!--<include name="instantiateHelpers"/>-->
+                <!--<include name="busSanity"/>-->
+                <!--<include name="tearDown"/>-->
+            <!--</run>-->
+        <!--</groups>-->
 
-        <classes>
-            <class name="UITestFramework.CreateSession"/>
-            <class name="Bus.Test_Bus"/>
-        </classes>
-    </test>
+        <!--<classes>-->
+            <!--<class name="UITestFramework.CreateSession"/>-->
+            <!--<class name="Bus.Test_Bus"/>-->
+        <!--</classes>-->
+    <!--</test>-->
 
     <!--######### InsuranceApi #############-->
     <test name="Insurance Sanity">
@@ -230,24 +230,24 @@
     </test>
 
 
-    <!--######### Ola #############-->
+    <!--&lt;!&ndash;######### Ola #############&ndash;&gt;-->
 
-    <test name="Ola Sanity Tests">
-        <groups>
-            <run>
-                <include name="setUp"/>
-                <include name="instantiateHelpers"/>
-                <include name="ola"/>
-                <include name="tearDown"/>
-            </run>
-        </groups>
+    <!--<test name="Ola Sanity Tests">-->
+        <!--<groups>-->
+            <!--<run>-->
+                <!--<include name="setUp"/>-->
+                <!--<include name="instantiateHelpers"/>-->
+                <!--<include name="ola"/>-->
+                <!--<include name="tearDown"/>-->
+            <!--</run>-->
+        <!--</groups>-->
 
-        <classes>
-            <class name="UITestFramework.CreateSession"/>
-            <class name="Ola.Test_Ola"/>
-        </classes>
+        <!--<classes>-->
+            <!--<class name="UITestFramework.CreateSession"/>-->
+            <!--<class name="Ola.Test_Ola"/>-->
+        <!--</classes>-->
 
-    </test>
+    <!--</test>-->
 
     <!--######### Gift Card #############-->
 

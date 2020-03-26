@@ -56,7 +56,7 @@ public class NearByHelper {
 
         Thread.sleep(3000);
 
-        Element.waitForVisibility(driver, By.xpath("//android.view.View[@index= '1']"));
+        Element.waitForVisibility(driver, By.id("overlayView"));
 
         List<AndroidElement> stores = Element.findElements(driver, By.id("tv_name"));
         int noOfstoresInOneList = stores.size();
