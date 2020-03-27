@@ -495,11 +495,12 @@ public class RechargeHelper {
 
         mbkCommonControlsHelper.handleSecurityPin(securityPin);
 
-        Thread.sleep(3000);
+        Thread.sleep(4000);
 
-        addMoneyHelper = new AddMoneyHelper(driver);
-        addMoneyHelper.addMoneyInsufficientFunds(cardNo, cvv, bankPassword);
-
+        if(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Select Payment Mode']"))) {
+            addMoneyHelper = new AddMoneyHelper(driver);
+            addMoneyHelper.addMoneyInsufficientFunds(cardNo, cvv, bankPassword);
+        }
 
         Element.waitForVisibility(driver, By.id("base_title"));
 

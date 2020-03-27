@@ -56,7 +56,7 @@ public class ImpsPage {
     @AndroidFindBy(id = "txt_amount_value")
     private AndroidElement label_amount;
 
-    @AndroidFindBy(id = "com.mobikwik_new.bajajfinserv:id/continue_btn")
+    @AndroidFindBy(id = "continue_btn")
     private AndroidElement cta_submit_otp;
 
 

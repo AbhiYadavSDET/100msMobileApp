@@ -5,6 +5,7 @@ import PageObject.InsurancePage;
 import PageObject.TransactionHistoryPage;
 import UITestFramework.MBReporter;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidElement;
 import logger.Log;
 import org.json.JSONException;
 import org.openqa.selenium.By;
@@ -96,6 +97,45 @@ public class InsuranceHelper {
         policyId = transactionHistoryPage.getTrxId();
         Log.info("Policy Id : " + policyId);
         return policyId;
+    }
+
+
+    public void validateInsurance(String insuranceType, String insuranceAmount) throws InterruptedException, IOException, JSONException {
+
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+
+        Element.waitForVisibility(driver, homePage.sidedrawer_icon);
+        screen.swipeUpMedium(driver);
+
+        insurancePage = homePage.clickOnInsuranceIcon();
+
+        Thread.sleep(4000);
+        Element.waitForVisibility(driver, By.id("mkab_title"));
+        screen.swipeUpMore(driver);
+
+
+//        Log.info(insuranceType);
+//        Log.info(insuranceAmount);
+
+        Element.selectElement(driver, (AndroidElement) driver.findElement(By.xpath(""+insuranceType+"")), "Select Insurance Category");
+
+        Thread.sleep(4000);
+
+        Element.waitForVisibility(driver, (AndroidElement) driver.findElement(By.xpath(""+insuranceType+"")));
+
+
+        insurancePage.clickOnAgreeTerms();
+
+        Thread.sleep(2000);
+        Element.selectElement(driver, (AndroidElement) driver.findElement(By.xpath(""+insuranceAmount+"")), "Select Insurance Category");
+
+
+        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text = 'Confirm Payment']"));
+
+
+        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Confirm Payment']")), "Verify Confirmation Page is Loaded", true, true);
+
+
     }
 
 

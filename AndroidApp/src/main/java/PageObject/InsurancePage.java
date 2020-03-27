@@ -42,6 +42,12 @@ public class InsurancePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Insured By']/following-sibling::android.widget.TextView")
     private AndroidElement policy_insurer_name;
 
+    @AndroidFindBy(id = "com.mobikwik_new:id/i_agree")
+    private AndroidElement i_agree_terms;
+
+    @AndroidFindBy(id = "com.mobikwik_new:id/amount_to_be_paid")
+    private AndroidElement amount_to_be_paid;
+
 
     public InsurancePage(AndroidDriver driver) throws IOException {
 
@@ -87,6 +93,14 @@ public class InsurancePage {
 
     public String getInsuredBy() {
         return Element.getText(driver, policy_insurer_name, "Insurer Name");
+    }
+
+    public void clickOnAgreeTerms() throws InterruptedException {
+        Element.selectElement(driver, i_agree_terms, "Agree to Terms and Conditions");
+    }
+
+    public String getAmountToBePaid() {
+        return Element.getText(driver, amount_to_be_paid, "Amount To Be Paid");
     }
 
 }
