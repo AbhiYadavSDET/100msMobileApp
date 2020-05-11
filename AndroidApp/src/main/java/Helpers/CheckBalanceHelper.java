@@ -52,6 +52,10 @@ public class CheckBalanceHelper {
 
 //            Double requiredAmount= (requiredBalance-actualMainBalance) / 100;
 
+            if (requiredAmount<5){
+                requiredAmount=requiredAmount+5;
+            }
+
             Log.info(""+requiredAmount+"");
 
             addMoneyHelper.addMoneyViaSavedCardWithinFlow(String.valueOf(requiredAmount), "4363 XXXX XXXX 4460", "239", "Paraj@1234");
@@ -87,6 +91,9 @@ public class CheckBalanceHelper {
 //            Double requiredAmount= (requiredBalance-actualMainBalance) / 100;
 
 
+            if (requiredAmount<5){
+                requiredAmount=requiredAmount+5;
+            }
 
             Log.info(""+requiredAmount+"");
 

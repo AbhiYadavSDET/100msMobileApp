@@ -5,6 +5,7 @@ import PageObject.P2MPage;
 import UITestFramework.MBReporter;
 import io.appium.java_client.android.AndroidDriver;
 import org.json.JSONException;
+import org.openqa.selenium.By;
 import utils.Element;
 import utils.Screen;
 
@@ -67,8 +68,12 @@ public class P2MHelper {
         mbkCommonControlsHelper.handleSecurityPin(securityPin);
 
         // Assertion on the success screen
+
+        if(Element.isElementPresent(driver, By.id("base_check_icon"))){
+            Screen.swipeDownMedium(driver);
+        }
         String actualSuccessScreenStatus = p2mPage.getSuccessPageStatus();
-        String actualSuccessScreenName = p2mPage.getSuccessPageName();
+//        String actualSuccessScreenName = p2mPage.getSuccessPageName();
         String actualSuccessScreenCode = p2mPage.getSuccessPageCode();
 
         mbReporter.verifyEqualsWithLogging(actualSuccessScreenStatus, successPageStatus, "Success Screen | Verify Status", false, false);
