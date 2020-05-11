@@ -111,7 +111,7 @@ public class InsuranceHelper {
 
         Thread.sleep(4000);
         Element.waitForVisibility(driver, By.id("mkab_title"));
-        screen.swipeUpMore(driver);
+        screen.swipeUpMedium(driver);
 
 
 //        Log.info(insuranceType);

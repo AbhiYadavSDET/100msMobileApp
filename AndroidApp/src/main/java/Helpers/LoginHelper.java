@@ -68,7 +68,7 @@ public class LoginHelper {
 
         Thread.sleep(1500);
 
-        mbReporter.verifyEqualsWithLogging(homePage.getTitleMessageSecondaryEmail(), "Enter a valid Email below", "Secondary Email Screen displayed", true, true);
+//       mbReporter.verifyEqualsWithLogging(homePage.getTitleMessageSecondaryEmail(), "Enter a valid Email below", "Secondary Email Screen displayed", true, true);
 
         homePage.clickOnSkip();
 

@@ -28,6 +28,9 @@ public class NearbyPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'Loan Center']")
     private AndroidElement icon_loan_center;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'More']")
+    private AndroidElement icon_more;
+
     @AndroidFindBy(id = "mkab_title")
     private AndroidElement category_store_list;
 
@@ -78,6 +81,8 @@ public class NearbyPage {
                 Element.selectElement(driver, icon_loan_center, "Select Loan centre");
                 break;
 
+            case "More":
+                Element.selectElement(driver,icon_more, "More Icon");
 
         }
 

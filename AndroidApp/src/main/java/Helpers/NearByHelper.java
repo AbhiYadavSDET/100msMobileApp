@@ -8,6 +8,7 @@ import UITestFramework.MBReporter;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
+import logger.Log;
 import org.json.JSONException;
 import org.openqa.selenium.By;
 import utils.Element;
@@ -96,7 +97,9 @@ public class NearByHelper {
 
         Thread.sleep(3000);
 
-        Element.waitForVisibility(driver, By.xpath("//android.view.View[@index= '1']"));
+        Element.waitForVisibility(driver, By.xpath("//android.view.View[@index= '0']"));
+
+        nearbyPage.clickOnCategoryIcon("More");
 
         nearbyPage.clickOnCategoryIcon(categoryName);
 
@@ -135,7 +138,7 @@ public class NearByHelper {
 
         Thread.sleep(3000);
 
-        Element.waitForVisibility(driver, By.xpath("//android.view.View[@index= '1']"));
+        Element.waitForVisibility(driver, By.xpath("//android.view.View[@index= '0']"));
 
         nearbyPage.clickSearchNearbyStores();
 
@@ -149,6 +152,8 @@ public class NearByHelper {
 
         List<AndroidElement> stores = Element.findElements(driver, By.id("tv_name"));
         int noOfstoresInOneList = stores.size();
+
+        Log.info(""+noOfstoresInOneList+"");
 
         mbReporter.verifyTrueWithLogging(noOfstoresInOneList > 0, "No of Stores for " + storeName + ":" + noOfstoresInOneList, true, false);
 
