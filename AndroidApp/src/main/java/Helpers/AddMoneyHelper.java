@@ -357,6 +357,8 @@ public class AddMoneyHelper {
 
         addMoneyPage.clickOnPayNow();
 
+        permissionHelper.permissionAllow();
+
         handleIndusindWebView(bankPassword);
 
         // Success Page Assertions

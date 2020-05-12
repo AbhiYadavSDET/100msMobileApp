@@ -13,6 +13,12 @@ public class GiftCardPage {
     AndroidDriver driver;
 
 
+    @AndroidFindBy(id= "body_text")
+    private AndroidElement error_popup_text;
+
+    @AndroidFindBy(id="primary_button")
+    private AndroidElement cta_error_ok;
+
     @AndroidFindBy(id = "btn_action")
     private AndroidElement cta_view_gift_cards;
 
@@ -79,7 +85,7 @@ public class GiftCardPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'More']")
     private AndroidElement icon_more;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'Trending']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'e-Com and Online']")
     private AndroidElement icon_trending;
 
     public GiftCardPage(AndroidDriver driver) throws IOException {
@@ -156,6 +162,10 @@ public class GiftCardPage {
         return Element.getText(driver, gift_card_success_page_title, "Success Page Title");
     }
 
+    public String getErrorPopUpText() throws InterruptedException{
+        return Element.getText(driver, error_popup_text, "Error Pop Up Text");
+    }
+
     public String getSuccessPageBrand() throws InterruptedException {
         return Element.getText(driver, success_page_brand_name, "Brand name on success page");
     }
@@ -200,5 +210,8 @@ public class GiftCardPage {
         Element.selectElement(driver, icon_trending, "Click on Trending");
     }
 
+    public void pressOk() throws InterruptedException{
+        Element.selectElement(driver, cta_error_ok, "Press Ohk");
+    }
 
 }

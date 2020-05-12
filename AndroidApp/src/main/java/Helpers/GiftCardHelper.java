@@ -148,14 +148,25 @@ public class GiftCardHelper {
 
             Thread.sleep(2000);
 
-            mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("btn_share")), "Gift Card available", true, false);
+            if (Element.isElementPresent(driver, By.id("body_text"))){
 
-            mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("btn_share")), "Recipient Name is : " + giftCardPage.getRecipientName(), true, false);
+                String error= giftCardPage.getErrorPopUpText();
 
-            mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("btn_share")), "Order Id is : " + giftCardPage.getOrderId(), true, false);
+                mbReporter.verifyTrueWithLogging(error!=null, ""+error+"", true, false);
+                giftCardPage.pressOk();
 
-            giftCardPage.clickBackToHome();
 
+            }else {
+
+                mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("btn_share")), "Gift Card available", true, false);
+
+                mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("btn_share")), "Recipient Name is : " + giftCardPage.getRecipientName(), true, false);
+
+                mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("btn_share")), "Order Id is : " + giftCardPage.getOrderId(), true, false);
+
+                giftCardPage.clickBackToHome();
+
+            }
         }
 
         giftCardPage.clickBackToHome();
