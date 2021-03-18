@@ -43,11 +43,11 @@
     <distributionManagement>
         <repository>
             <id>mbk</id>
-            <url>https://artifactory.mobikwik.com/artifactory/libs-release-local</url>
+            <url>http://artifactory.mobikwik.com/artifactory/libs-release-local</url>
         </repository>
         <snapshotRepository>
             <id>mbk</id>
-            <url>https://artifactory.mobikwik.com/artifactory/libs-snapshot-local</url>
+            <url>http://artifactory.mobikwik.com/artifactory/libs-snapshot-local</url>
         </snapshotRepository>
     </distributionManagement>
     <repositories>
@@ -68,7 +68,7 @@
         <repository>
             <id>ext-release</id>
             <name>ext-libs-releases</name>
-            <url>https://artifactory.mobikwik.com/artifactory/ext-release-local</url>
+            <url>http://artifactory.mobikwik.com/artifactory/ext-release-local</url>
         </repository>
         <repository>
             <snapshots>
@@ -76,14 +76,25 @@
             </snapshots>
             <id>release</id>
             <name>libs-release</name>
-            <url>https://artifactory.mobikwik.com/artifactory/libs-release-local</url>
+            <url>http://artifactory.mobikwik.com/artifactory/libs-release-local</url>
         </repository>
         <repository>
             <id>snapshot</id>
             <name>libs-snapshot</name>
-            <url>https://artifactory.mobikwik.com/artifactory/libs-snapshot-local</url>
+            <url>http://artifactory.mobikwik.com/artifactory/libs-snapshot-local</url>
         </repository>
     </repositories>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+
+        <suiteXmlFile>Name of the .xml file to run</suiteXmlFile>
+
+    </properties>
+
+
     <dependencies>
 
         <dependency>
@@ -94,7 +105,7 @@
         <dependency>
             <groupId>com.mobikwik.automation</groupId>
             <artifactId>framework</artifactId>
-            <version>8.0</version>
+            <version>8.10</version>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
