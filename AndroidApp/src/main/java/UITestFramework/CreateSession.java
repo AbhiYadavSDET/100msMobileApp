@@ -37,7 +37,7 @@ public class CreateSession {
 
     String androidOSVersion = "8.0";
     String portNo = "4723";
-    String udid = "330062db17b4a48b";
+    String udid = "emulator-5554";
     String deviceName = "Samsung J6";
 
     private String reportDirectory = "reports";
@@ -121,10 +121,10 @@ public class CreateSession {
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("platformVersion", androidOSVersion);
 
-        capabilities.setCapability("appPackage", "com.mobikwik_new");
-        capabilities.setCapability("appActivity", ".MobikwikMain");
-        capabilities.setCapability("appWaitActivity", ".MobikwikMain");
-        capabilities.setCapability("appWaitPackage", "com.mobikwik_new");
+        capabilities.setCapability("appPackage", "com.mobikwik_new.debug");
+        capabilities.setCapability("appActivity", "com.mobikwik_new.MobikwikMain");
+        capabilities.setCapability("appWaitActivity", "com.mobikwik_new.MobikwikMain");
+        capabilities.setCapability("appWaitPackage", "com.mobikwik_new.debug");
 
 
         if (Double.parseDouble(androidOSVersion) < Double.parseDouble("7.0")) {

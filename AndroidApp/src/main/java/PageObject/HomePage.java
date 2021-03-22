@@ -36,7 +36,7 @@ public class HomePage {
     @AndroidFindBy(id = "magic_btn")
     private AndroidElement button_magic;
 
-    @AndroidFindBy(id = "tx_balance")
+    @AndroidFindBy(id = "login_signup")
     private AndroidElement login_signup_button;
 
 

@@ -234,17 +234,59 @@ public class LoginHelper {
 
     }
 
+    //As per New Login Year -2021
+    public void quickLoginViaNumber(String number, String otp) throws InterruptedException, IOException {
+
+        if (isOnboardingPresent()) {
+            Log.info("User is logged out, logging in");
+
+//            Screen.hideKeyboard(driver);
+//            permissionHelper.dismissHintPopup();
+//            Screen.hideKeyboard(driver);
+
+            homePage = onboardingPage.clickOnSkip();
+
+//            permissionHelper.permissionAllow();
+
+            loginPage = homePage.clickLoginSignupButton();
+
+//            loginPage.clickOnExistingUser();
+
+            // Enter Number
+            loginPage.enterMobileNumber(number);
+
+            loginPage.clickOnSendOtpCta();
+
+            Thread.sleep(2000);
+
+            // Enter Password
+            loginPage.enterOtp(otp);
+
+            Thread.sleep(10000);
+
+            loginPage.clickSubmitOtpCta();
+
+
+
+        } else {
+            Log.info("User is logged in, no need to login");
+            permissionHelper.permissionAllow();
+        }
+
+    }
+
+
     public boolean isOnboardingPresent() throws InterruptedException {
 
 
 
         if(Element.isElementPresent(driver, By.id("splash_icon"))){
-            Thread.sleep(14000);
+            Thread.sleep(6000);
         }
 
         Thread.sleep(3000);
 
-        if (Element.isElementPresent(driver, By.id("send_otp"))) {
+        if (Element.isElementPresent(driver, By.id("skip"))) {
             return true;
         } else {
             return false;

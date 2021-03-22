@@ -23,4 +23,17 @@ public class Test_login extends CreateSession {
 
 
     }
+
+    @Test(groups = {"logout", "loginSanity"}, priority = 0, dataProvider = "loginData", dataProviderClass = LoginDataProviderClass.class)
+    public void Test08_logout() throws IOException, JSONException, InterruptedException {
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaNumber("7795709569", "547372");
+
+        loginHelper.logout();
+
+
+    }
+
+
+
 }
