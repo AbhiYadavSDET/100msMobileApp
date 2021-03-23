@@ -167,6 +167,10 @@ public class LoginHelper {
 
 
     public void quickLoginViaEmail(String email, String password) throws InterruptedException, IOException {
+        Log.info("-----------Arguments-----------");
+        Log.info("Username : " + email);
+        Log.info("Password : " + password);
+        Log.info("-------------------------------");
 
         if (isOnboardingPresent()) {
             Log.info("User is logged out, logging in");
@@ -237,8 +241,7 @@ public class LoginHelper {
     public boolean isOnboardingPresent() throws InterruptedException {
 
 
-
-        if(Element.isElementPresent(driver, By.id("splash_icon"))){
+        if (Element.isElementPresent(driver, By.id("splash_icon"))) {
             Thread.sleep(14000);
         }
 

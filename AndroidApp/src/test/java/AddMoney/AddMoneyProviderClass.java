@@ -26,6 +26,8 @@ public class AddMoneyProviderClass {
         Log.info("size : " + databaseSqlHelper.getFrontEndTestData(method.getName()).size());
         Object[][] array = new Object[dbData.size()][1];
         for (int i = 1; i <= dbData.size(); i++) {
+//            Log.info("UserName" + dbData.get(i - 1).getUserName());
+//            Log.info("Pass" + dbData.get(i - 1).getPassword());
             array[i - 1][0] = dbData.get(i - 1);
         }
         return array;

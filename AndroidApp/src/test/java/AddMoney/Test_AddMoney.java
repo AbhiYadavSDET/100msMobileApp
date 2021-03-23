@@ -20,6 +20,10 @@ public class Test_AddMoney extends CreateSession {
     public void Test01_netbanking(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
 //        loginHelper.quickLoginViaEmail("mkwik9330@gmail.com", "Test@1234");
+//        System.out.println("-------- Arguments------------");
+//        System.out.println(frontEndEntity.getUserName());
+//        System.out.println(frontEndEntity.getPassword());
+//        System.out.println("-------- End------------");
         loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
 
 
