@@ -117,6 +117,7 @@ public class CreateSession {
             throws MalformedURLException {
         File app = new File(buildPath);
         DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("avd","Pixel_3a");
         capabilities.setCapability("noSign", true);
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("platformVersion", androidOSVersion);
