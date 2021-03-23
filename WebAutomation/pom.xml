@@ -71,7 +71,7 @@
         <dependency>
             <groupId>com.mobikwik.automation</groupId>
             <artifactId>framework</artifactId>
-            <version>7.4</version>
+            <version>8.10</version>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
@@ -235,7 +235,7 @@
         <profile>
             <id>mobikwik</id>
             <activation>
-                <activeByDefault>false</activeByDefault>
+                <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
                 <build.profile.id>mobikwik/prod</build.profile.id>
