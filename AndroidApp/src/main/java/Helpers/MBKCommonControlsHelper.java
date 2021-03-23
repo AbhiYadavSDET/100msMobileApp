@@ -2,6 +2,7 @@ package Helpers;
 
 import PageObject.HomePage;
 import PageObject.MbkCommonControlsPage;
+import PageObject.TransactionHistoryPage;
 import PageObject.WalletBalancePage;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
@@ -22,6 +23,7 @@ public class MBKCommonControlsHelper {
     Element element;
     WalletBalancePage walletBalancePage;
     Screen screen;
+    TransactionHistoryPage transactionHistoryPage;
 
     enum BalanceType {
         MAINBALANCE,
@@ -172,7 +174,11 @@ public class MBKCommonControlsHelper {
 
         // Goto balance details screen
         HomePage homePage = new HomePage(driver);
-        walletBalancePage = homePage.clickOnViewBalance();
+
+        transactionHistoryPage = homePage.clickHistory();
+        Thread.sleep(3000);
+
+        walletBalancePage = transactionHistoryPage.clickOnWalletBalanceCta();
 
         // fetch the balance and add to Map
         Element.waitForVisibility(driver, walletBalancePage.label_available_balance);

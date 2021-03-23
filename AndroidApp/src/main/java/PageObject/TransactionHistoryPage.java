@@ -35,6 +35,9 @@ public class TransactionHistoryPage {
     @AndroidFindBy(id = "refund_cta")
     public AndroidElement refund_cta;
 
+    @AndroidFindBy(id = "tx_static_wallet_bal")
+    public AndroidElement wallet_balance_cta;
+
     @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'Money Available in your wallet can be used wherever Mobikwik is accepted at Merchant (Online/Offline) including Recharges and Bill Payments.']")
     public AndroidElement refund_cofirm_pop_up;
 
@@ -103,5 +106,9 @@ public class TransactionHistoryPage {
         return Element.getText(driver, amount_refunded, "Amount Refunded");
     }
 
+    public WalletBalancePage clickOnWalletBalanceCta() throws InterruptedException, IOException {
+        Element.selectElement(driver, wallet_balance_cta, "Click on Wallet Balance cta");
+        return new WalletBalancePage(driver);
+    }
 
 }
