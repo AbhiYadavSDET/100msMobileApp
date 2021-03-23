@@ -12,14 +12,14 @@ import org.testng.annotations.Test;
 public class Test_History extends CreateSession {
     TransactionHistoryHelper transactionHistoryHelper;
 
-    @Test(groups = {"loginSanity", "transactionHistoryVerification"}, priority = 0)
-    public void transactionHistoryVerificationLoggedOut() throws Exception {
-
-        Log.info("START : Transaction History verification for logged-out user");
-        transactionHistoryHelper = new TransactionHistoryHelper(getAndroidDriver());
-        transactionHistoryHelper.transactionHistoryVerificationLoggedOut();
-        Log.info("END : Transaction History verification for logged-out user");
-    }
+//    @Test(groups = {"loginSanity", "transactionHistoryVerification"}, priority = 0)
+//    public void transactionHistoryVerificationLoggedOut() throws Exception {
+//
+//        Log.info("START : Transaction History verification for logged-out user");
+//        transactionHistoryHelper = new TransactionHistoryHelper(getAndroidDriver());
+//        transactionHistoryHelper.transactionHistoryVerificationLoggedOut();
+//        Log.info("END : Transaction History verification for logged-out user");
+//    }
 
     @Test(groups = {"loginSanity", "transactionHistoryVerification"}, priority = 1)
     public void transactionHistoryVerificationLoggedIn() throws Exception {
@@ -27,7 +27,7 @@ public class Test_History extends CreateSession {
         Log.info("START : Transaction History verification for logged-in user");
 
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail("mkwik9330@gmail.com", "Test@1234");
+        loginHelper.quickLoginViaNumber("9205299330", "547372");
 
         transactionHistoryHelper = new TransactionHistoryHelper(getAndroidDriver());
         transactionHistoryHelper.transactionHistoryVerificationLoggedIn();
