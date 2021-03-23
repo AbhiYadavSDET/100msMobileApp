@@ -9,12 +9,15 @@ import dbutil.mysql.automationtest.deeplink_data.entity.DeeplinkEntity;
 import dbutil.mysql.automationtest.front_end_automation.FrontEndTestManager;
 import dbutil.mysql.automationtest.front_end_automation.entity.FrontEndEntity;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 
 public class DatabaseSqlHelper {
-
+   /* static{
+        System.out.println("Context is " + ApplicationContextProvider.getApplicationContext());
+    }*/
 
     public FrontEndTestManager frontEndTestManager;
 
@@ -25,6 +28,7 @@ public class DatabaseSqlHelper {
 
 
     public void initiateFrontEndTest() {
+       System.out.println("Context is " + ApplicationContextProvider.getApplicationContext());
         frontEndTestManager = (FrontEndTestManager) ApplicationContextProvider.getApplicationContext().getBean("frontEndTestManager");
     }
 
