@@ -234,8 +234,22 @@ public class LoginHelper {
 
     }
 
-    //As per New Login Year -2021
+
+    /**
+     * @param number
+     * @param otp
+     * @throws InterruptedException
+     * @throws IOException
+     * @author Paraj Jain@24th March,2021
+     */
+
     public void quickLoginViaNumber(String number, String otp) throws InterruptedException, IOException {
+        Log.info("START", "Login");
+        Log.info("----------- Arguments ---------------");
+        Log.info("Mobile : " + number);
+        Log.info("Otp : " + otp);
+        Log.info("-------------------------------------");
+
 
         if (isOnboardingPresent()) {
             Log.info("User is logged out, logging in");
@@ -250,22 +264,17 @@ public class LoginHelper {
 
             loginPage = homePage.clickLoginSignupButton();
 
-//            loginPage.clickOnExistingUser();
-
             // Enter Number
             loginPage.enterMobileNumber(number);
 
             loginPage.clickOnSendOtpCta();
 
-            Thread.sleep(2000);
 
             // Enter Password
             loginPage.enterOtp(otp);
 
-            Thread.sleep(10000);
 
             loginPage.clickSubmitOtpCta();
-
 
 
         } else {
@@ -273,14 +282,15 @@ public class LoginHelper {
             permissionHelper.permissionAllow();
         }
 
+        Log.info("END", "Login");
+
     }
 
 
     public boolean isOnboardingPresent() throws InterruptedException {
 
 
-
-        if(Element.isElementPresent(driver, By.id("splash_icon"))){
+        if (Element.isElementPresent(driver, By.id("splash_icon"))) {
             Thread.sleep(6000);
         }
 

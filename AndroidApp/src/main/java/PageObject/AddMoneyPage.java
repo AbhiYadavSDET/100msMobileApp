@@ -16,7 +16,7 @@ public class AddMoneyPage {
     AndroidDriver driver;
 
 
-    @AndroidFindBy(id = "edit_text_mket")
+    @AndroidFindBy(xpath = "//android.widget.EditText[@text = 'Enter Amount']")
     private AndroidElement textbox_amount;
 
     @AndroidFindBy(id = "btnContinue")

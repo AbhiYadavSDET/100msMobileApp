@@ -30,7 +30,7 @@ public class HomePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Via Wallet']/preceding-sibling::android.widget.FrameLayout")
     private AndroidElement button_transfer_money;
 
-    @AndroidFindBy(id = "tx_add_money")
+    @AndroidFindBy(xpath = "//android.widget.Button[@text = 'Add Money']")
     private AndroidElement button_add_money;
 
     @AndroidFindBy(id = "magic_btn")
@@ -162,6 +162,18 @@ public class HomePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Ola Cabs']")
     private AndroidElement icon_ola;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Home']")
+    private AndroidElement bottom_bar_home;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Home']")
+    private AndroidElement bottom_bar_all_services;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Home']")
+    private AndroidElement bottom_bar_all_offers;
+
+    @AndroidFindBy(id = "com.mobikwik_new.debug:id/icon_chevron")
+    private AndroidElement arrow_balance_dropdown;
+
 
     public HomePage(AndroidDriver driver) {
         this.driver = driver;
@@ -274,6 +286,11 @@ public class HomePage {
         return new TransactionHistoryPage(driver);
     }
 
+//    public HomePage clickOnBottomBarHome() throws IOException {
+//        Element.selectElement(driver, bottom_bar_home, "Botton Bar Home");
+//        return new HomePage(driver);
+//    }
+
     public void clickOnBottomBarWallet() throws IOException {
         Element.selectElement(driver, button_wallet, "Botton Bar Wallet");
     }
@@ -295,6 +312,10 @@ public class HomePage {
     public TransactionHistoryPage clickHistory() throws IOException {
         Element.selectElement(driver, history_tab, "History");
         return new TransactionHistoryPage(driver);
+    }
+
+    public void clickBalanceDropDown() throws IOException {
+        Element.selectElement(driver, arrow_balance_dropdown, "Balance Drop Down");
     }
 
     public void clickOnSkip() throws InterruptedException {
