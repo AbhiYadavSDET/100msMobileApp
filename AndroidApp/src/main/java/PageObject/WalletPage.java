@@ -22,6 +22,9 @@ public class WalletPage {
     @AndroidFindBy(id = "btn_upgrade")
     public AndroidElement cta_upgrade_button;
 
+    @AndroidFindBy(id = "btn_logout")
+    private AndroidElement label_logout;
+
     public WalletPage(AndroidDriver driver) throws IOException {
 
         this.driver = driver;
@@ -54,6 +57,12 @@ public class WalletPage {
             return false;
         }
     }
+
+    public void clickOnlogout() throws IOException {
+        Element.selectElement(driver, label_logout, "Logout Button");
+    }
+
+
 }
 
 

@@ -1,6 +1,7 @@
 package Helpers;
 
 import PageObject.HomePage;
+import PageObject.SideDrawerPage;
 import PageObject.WalletPage;
 import UITestFramework.MBReporter;
 import io.appium.java_client.android.AndroidDriver;
@@ -22,6 +23,7 @@ public class WalletPageHelper {
     MBReporter mbReporter;
     WalletPage walletPage;
     PermissionHelper permissionHelper;
+    SideDrawerPage sideDrawerPage;
 
 
     public static HashMap<String, String> map;
@@ -49,7 +51,9 @@ public class WalletPageHelper {
 
         Element.waitForVisibility(driver, homePage.icon_mobile);
 
-        walletPage = homePage.clickWalletNavigate();
+        sideDrawerPage= homePage.clickHamburgerIcon();
+        walletPage = sideDrawerPage.clickOnAccountsPage();
+
 
         Thread.sleep(3000);
 

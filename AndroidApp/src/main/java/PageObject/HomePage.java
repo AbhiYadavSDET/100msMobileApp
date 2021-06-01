@@ -18,16 +18,16 @@ public class HomePage {
     @AndroidFindBy(id = "icon_drawer")
     public AndroidElement sidedrawer_icon;
 
-    @AndroidFindBy(id = "icon")
+    @AndroidFindBy(id = "logo")
     private AndroidElement mbk_logo;
 
-    @AndroidFindBy(id = "tx_balance")
+    @AndroidFindBy(id = "//android.widget.TextView[@text='View Details']")
     private AndroidElement label_view_balance;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Pay to Merchant']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Scan any QR']")
     private AndroidElement button_pay_to_merchant;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Via Wallet']/preceding-sibling::android.widget.FrameLayout")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Wallet to Bank Transfer']")
     private AndroidElement button_transfer_money;
 
     @AndroidFindBy(xpath = "//android.widget.Button[@text = 'Add Money']")
@@ -39,18 +39,25 @@ public class HomePage {
     @AndroidFindBy(id = "login_signup")
     private AndroidElement login_signup_button;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Investments & Insurance']")
+    private AndroidElement layoutSelecterInvestmentAndInsurance;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Gold']")
+
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Buy 99.5% pure gold']")
     private AndroidElement icon_gold;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Boost Loan']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Loans']")
     private AndroidElement icon_boostLoan;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Mutual Funds']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Direct Mutual Funds']")
     private AndroidElement icon_mutualFund;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Insurance']")
     private AndroidElement icon_insurance;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Recharge & Pay Bills']")
+    private AndroidElement layoutSelecterRecharge;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Mobile']")
     public AndroidElement icon_mobile;
@@ -61,7 +68,7 @@ public class HomePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Piped Gas']")
     private AndroidElement icon_gas;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Credit Card Bill']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Credit Card']")
     private AndroidElement icon_credit_card;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Landline']")
@@ -74,19 +81,19 @@ public class HomePage {
     @AndroidFindBy(id = "navigation_history")
     private AndroidElement history_tab;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Offers']")
+    @AndroidFindBy(id = "navigation_offers")
     private AndroidElement offers_tab;
 
     @AndroidFindBy(id = "skip")
     public AndroidElement skip_button;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Wallet']")
-    private AndroidElement button_wallet;
+//    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Wallet']")
+//    private AndroidElement button_wallet;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='History']")
-    private AndroidElement button_history;
+//    @AndroidFindBy(xpath = "//android.widget.TextView[@text='History']")
+//    private AndroidElement button_history;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Expense']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Expense Manager']")
     private AndroidElement button_expense;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Home']")
@@ -98,8 +105,8 @@ public class HomePage {
     @AndroidFindBy(id = "btn_logout")
     private AndroidElement label_logout;
 
-    //Nearby
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='More Services']/following::android.widget.TextView[@text='More']")
+    //All Service Section
+    @AndroidFindBy(id = "navigation_service")
     private AndroidElement more_icon_under_more_services;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Local Stores']")
@@ -119,12 +126,13 @@ public class HomePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Gift Cards']")
     private AndroidElement icon_gift_card;
 
+//
+//    @AndroidFindBy(id = "navigation_wallet")
+//    private AndroidElement navigate_wallet_page;
 
-    @AndroidFindBy(id = "navigation_wallet")
-    private AndroidElement navigate_wallet_page;
 
     //    @AndroidFindBy(id ="com.mobikwik_new.debug:id/tx_upi_id")
-    @AndroidFindBy(id = "tx_upi_id")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Bank to Bank Transfer']")
     private AndroidElement navigate_upi_page;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Via UPI']")
@@ -133,7 +141,7 @@ public class HomePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Request']")
     private AndroidElement navigate_upi_request;
 
-    //Check Balance Flow
+    //Check UPI Account Balance Flow
     @AndroidFindBy(id = "tx_bank_balance")
     private AndroidElement cta_check_balance;
 
@@ -224,6 +232,10 @@ public class HomePage {
         Element.selectElement(driver, mbk_logo, "MobiKwik Homescreen Logo");
     }
 
+    public void clickInvestmentAndInsuranceLayout() {
+        Element.selectElement(driver, layoutSelecterInvestmentAndInsurance, "click Investment And Insurance Layout");
+    }
+
     public GoldPage clickGoldIcon() {
         Element.selectElement(driver, icon_gold, "Gold Icon");
         return new GoldPage(driver);
@@ -232,6 +244,10 @@ public class HomePage {
     public AddMoneyPage clickOnAddMoneyButton() throws IOException {
         Element.selectElement(driver, button_add_money, "Add Money button");
         return new AddMoneyPage(driver);
+    }
+
+    public void clickOnRechargeLayout() throws IOException {
+        Element.selectElement(driver, layoutSelecterRecharge, "Recharge Layout button");
     }
 
     public RechargePage clickOnMobileButton() throws IOException {
@@ -270,30 +286,30 @@ public class HomePage {
     }
 
     public void clickOnBottomBarHome() throws IOException {
-        Element.selectElement(driver, button_home, "Botton Bar Home");
+        Element.selectElement(driver, button_home, "Bottom Bar Home");
     }
 
     public void clickOnBottomBarExpense() throws IOException {
-        Element.selectElement(driver, button_expense, "Botton Bar Expense");
+        Element.selectElement(driver, button_expense, "Bottom Bar Expense");
     }
 
     public void clickOnBottomBarOffers() throws IOException {
-        Element.selectElement(driver, button_offers, "Botton Bar Offers");
+        Element.selectElement(driver, button_offers, "Bottom Bar Offers");
     }
 
     public TransactionHistoryPage clickOnBottomBarHistory() throws IOException {
-        Element.selectElement(driver, button_history, "Botton Bar History");
+        Element.selectElement(driver, history_tab, "Bottom Bar History");
         return new TransactionHistoryPage(driver);
     }
 
 //    public HomePage clickOnBottomBarHome() throws IOException {
-//        Element.selectElement(driver, bottom_bar_home, "Botton Bar Home");
+//        Element.selectElement(driver, bottom_bar_home, "Bottom Bar Home");
 //        return new HomePage(driver);
 //    }
 
-    public void clickOnBottomBarWallet() throws IOException {
-        Element.selectElement(driver, button_wallet, "Botton Bar Wallet");
-    }
+//    public void clickOnBottomBarWallet() throws IOException {
+//        Element.selectElement(driver, button_wallet, "Bottom Bar Wallet");
+//    }
 
     public void clickOnlogout() throws IOException {
         Element.selectElement(driver, label_logout, "Logout Button");
@@ -322,7 +338,7 @@ public class HomePage {
         Element.selectElement(driver, skip_button, "Skip");
     }
 
-    public void clickMoreIconUnderMoreServices() throws IOException {
+    public void clickAllServices() throws IOException {
         Element.selectElement(driver, more_icon_under_more_services, "More Services Icon under More Services");
     }
 
@@ -341,10 +357,10 @@ public class HomePage {
         return new InsurancePage(driver);
     }
 
-    public WalletPage clickWalletNavigate() throws IOException {
-        Element.selectElement(driver, navigate_wallet_page, "Navigate to Wallet Page");
-        return new WalletPage(driver);
-    }
+//    public WalletPage clickWalletNavigate() throws IOException {
+//        Element.selectElement(driver, navigate_wallet_page, "Navigate to Wallet Page");
+//        return new WalletPage(driver);
+//    }
 
     public UpiPage clickOnUpiId() throws IOException {
         Element.selectElement(driver, navigate_upi_page, "Navigate to UPI Page");

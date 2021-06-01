@@ -57,6 +57,7 @@ public class RechargeHelper {
             screen.swipeUpMedium(driver);
         }
 
+        homePage.clickOnRechargeLayout();
         rechargePage = homePage.clickOnMobileButton();
 
         permissionHelper.permissionAllow();
@@ -180,6 +181,7 @@ public class RechargeHelper {
             screen.swipeUpMedium(driver);
         }
 
+        homePage.clickOnRechargeLayout();
         rechargePage = homePage.clickOnMobileButton();
 
         permissionHelper.permissionAllow();
@@ -243,6 +245,7 @@ public class RechargeHelper {
             screen.swipeUpMedium(driver);
         }
 
+        homePage.clickOnRechargeLayout();
         rechargePage = homePage.clickOnMobileButton();
 
         permissionHelper.permissionAllow();
@@ -300,6 +303,7 @@ public class RechargeHelper {
             screen.swipeUpMedium(driver);
         }
 
+        homePage.clickOnRechargeLayout();
         rechargePage = homePage.clickOnDthButton();
 
         permissionHelper.permissionAllow();
@@ -367,7 +371,7 @@ public class RechargeHelper {
             screen.swipeUpMedium(driver);
         }
 
-        homePage.clickMoreIcon();
+        homePage.clickOnRechargeLayout();
         rechargePage = homePage.clickGasIcon();
 
         permissionHelper.permissionAllow();
@@ -431,7 +435,7 @@ public class RechargeHelper {
         }
 
 
-        homePage.clickMoreIcon();
+        homePage.clickOnRechargeLayout();
         rechargePage = homePage.clickLandlineIcon();
 
         permissionHelper.permissionAllow();
@@ -471,7 +475,7 @@ public class RechargeHelper {
             screen.swipeUpMedium(driver);
         }
 
-        homePage.clickMoreIcon();
+        homePage.clickOnRechargeLayout();
         rechargePage = homePage.clickCreditCardIcon();
 
         permissionHelper.permissionAllow();
@@ -542,7 +546,7 @@ public class RechargeHelper {
             screen.swipeUpMedium(driver);
         }
 
-        homePage.clickMoreIcon();
+        homePage.clickOnRechargeLayout();
         rechargePage = homePage.clickCreditCardIcon();
 
         permissionHelper.permissionAllow();
@@ -618,7 +622,7 @@ public class RechargeHelper {
             screen.swipeUpMedium(driver);
         }
 
-        homePage.clickMoreIcon();
+        homePage.clickOnRechargeLayout();
         rechargePage = homePage.clickCreditCardIcon();
 
         permissionHelper.permissionAllow();

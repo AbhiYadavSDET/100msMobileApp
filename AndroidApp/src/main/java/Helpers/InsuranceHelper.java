@@ -52,6 +52,7 @@ public class InsuranceHelper {
         Element.waitForVisibility(driver, homePage.sidedrawer_icon);
         screen.swipeUpMedium(driver);
 
+        homePage.clickInvestmentAndInsuranceLayout();
         insurancePage = homePage.clickOnInsuranceIcon();
 
         Element.waitForVisibility(driver, By.id("mkab_title"));
@@ -107,6 +108,7 @@ public class InsuranceHelper {
         Element.waitForVisibility(driver, homePage.sidedrawer_icon);
         screen.swipeUpMedium(driver);
 
+        homePage.clickInvestmentAndInsuranceLayout();
         insurancePage = homePage.clickOnInsuranceIcon();
 
         Thread.sleep(4000);

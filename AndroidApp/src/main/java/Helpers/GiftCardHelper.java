@@ -48,6 +48,19 @@ public class GiftCardHelper {
 
         Screen.swipeUpMore(driver);
 
+        homePage.clickAllServices();
+
+        for (int i = 0; i < 3; i++) {
+
+            if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Gift Cards']")) == false) {
+
+                screen.swipeUpMore(driver);
+
+            } else {
+                break;
+            }
+        }
+
         giftCardPage = homePage.clickGiftCardIcon();
 
 
@@ -128,6 +141,19 @@ public class GiftCardHelper {
 
         Screen.swipeUpMore(driver);
 
+        homePage.clickAllServices();
+
+        for (int i = 0; i < 3; i++) {
+
+            if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Gift Cards']")) == false) {
+
+                screen.swipeUpMore(driver);
+
+            } else {
+                break;
+            }
+        }
+
         giftCardPage = homePage.clickGiftCardIcon();
 
         Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Benefits of Gift Cards']"));
@@ -183,6 +209,19 @@ public class GiftCardHelper {
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
         Screen.swipeUpMore(driver);
+
+        homePage.clickAllServices();
+
+        for (int i = 0; i < 3; i++) {
+
+            if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Gift Cards']")) == false) {
+
+                screen.swipeUpMore(driver);
+
+            } else {
+                break;
+            }
+        }
 
         giftCardPage = homePage.clickGiftCardIcon();
 

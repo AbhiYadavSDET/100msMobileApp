@@ -44,6 +44,9 @@ public class SideDrawerPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Security Settings']")
     private AndroidElement security_settings;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Accounts']")
+    private AndroidElement accountsPageCta;
+
 
     public SideDrawerPage(AndroidDriver driver) {
         this.driver = driver;
@@ -82,6 +85,11 @@ public class SideDrawerPage {
     public SavedConnectionPage clickOnMySavedConnection() throws IOException {
         Element.selectElement(driver, link_my_saved_connections, "Click on My Saved Connection");
         return new SavedConnectionPage(driver);
+    }
+
+    public WalletPage clickOnAccountsPage() throws IOException {
+        Element.selectElement(driver, accountsPageCta, "Click on Accounts Page");
+        return new WalletPage(driver);
     }
 
 }

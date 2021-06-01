@@ -47,6 +47,7 @@ public class MutualFundsHelper {
         Thread.sleep(2000);
         screen.swipeUpMedium(driver);
 
+        homePage.clickInvestmentAndInsuranceLayout();
         mutualFundPage = homePage.clickMutualFunds();
         Element.waitForVisibility(driver, By.id("tv_title"));
 

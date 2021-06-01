@@ -44,16 +44,16 @@ public class AddMoneyPage {
     public AndroidElement button_no;
 
     //Enter card details
-    @AndroidFindBy(xpath = "//*[@text = 'Debit or Credit Card']/following::android.widget.EditText[1]")
+    @AndroidFindBy(xpath = "//android.widget.EditText[@text = 'Card Number']")
     public AndroidElement textbox_card_no_new;
     //Enter card details
-    @AndroidFindBy(xpath = "//*[@text = 'Card Number']/following::android.widget.EditText[1]")
+    @AndroidFindBy(xpath = "//android.widget.EditText[@text = 'Card Number']")
     public AndroidElement textbox_card_no;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Card Expiry']/following::android.widget.EditText[1]")
+    @AndroidFindBy(xpath = "//android.widget.EditText[@text = 'Card Expiry']")
     private AndroidElement textbox_expiry;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'CVV']/following::android.widget.EditText[1]")
+    @AndroidFindBy(xpath = "//android.widget.EditText[@text = 'CVV']")
     private AndroidElement textbox_cvv;
 
     @AndroidFindBy(id = "btn_add_money")
@@ -149,10 +149,10 @@ public class AddMoneyPage {
     }
 
     public void enterCardNo(String cardNo) throws InterruptedException {
-        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Debit or Credit Card']"))) {
-            Element.enterText(driver, textbox_card_no_new, cardNo, "Card No");
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'New Debit/Credit Card]"))) {
+            Element.enterText(driver, textbox_card_no_new, cardNo, "New Card No Flow | when no Saved Card");
         } else {
-            Element.enterText(driver, textbox_card_no, cardNo, "Card No");
+            Element.enterText(driver, textbox_card_no, cardNo, "New Card No Flow | When Saved Cards available");
         }
     }
 

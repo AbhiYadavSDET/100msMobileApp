@@ -45,6 +45,7 @@ public class RatingPageHelper {
         Thread.sleep(2000);
         new Screen(driver).swipeUp();
 
+        homePage.clickInvestmentAndInsuranceLayout();
         goldPage = homePage.clickGoldIcon();
         Thread.sleep(3000);
 

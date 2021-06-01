@@ -1,9 +1,6 @@
 package Helpers;
 
-import PageObject.HomePage;
-import PageObject.LoginPage;
-import PageObject.OnboardingPage;
-import PageObject.SideDrawerPage;
+import PageObject.*;
 import UITestFramework.Api.ApiCommonControls;
 import UITestFramework.MBReporter;
 import io.appium.java_client.android.AndroidDriver;
@@ -31,6 +28,7 @@ public class LoginHelper {
     HashMap<String, String> apiOtp;
     HomePage homePage;
     SideDrawerPage sideDrawerPage;
+    WalletPage walletPage;
     MBReporter mbReporter;
     Helpers.PermissionHelper permissionHelper;
     MBKCommonControlsHelper mbkCommonControlsHelper;
@@ -48,6 +46,7 @@ public class LoginHelper {
         permissionHelper = new Helpers.PermissionHelper(driver);
         screen = new Screen(driver);
         homePage = new HomePage(driver);
+        walletPage = new WalletPage(driver);
 
 
     }
@@ -203,7 +202,8 @@ public class LoginHelper {
 
         if (Element.isElementPresent(driver, By.id("tx_add_money"))) {
 
-            homePage.clickOnBottomBarWallet();
+            sideDrawerPage= homePage.clickHamburgerIcon();
+            walletPage=sideDrawerPage.clickOnAccountsPage();
 
             //Swipe to the botton of the screen
             Thread.sleep(2000);
@@ -220,7 +220,7 @@ public class LoginHelper {
                 }
             }
 
-            homePage.clickOnlogout();
+            walletPage.clickOnlogout();
 
             Thread.sleep(1000);
 

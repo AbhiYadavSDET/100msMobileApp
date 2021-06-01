@@ -37,7 +37,7 @@ public class CreateSession {
 
     String androidOSVersion = "8.0";
     String portNo = "4723";
-    String udid = "J9AAGF01U9024TK";
+    String udid = "emulator-5554";
     String deviceName = "Samsung J6";
 
     private String reportDirectory = "reports";
@@ -127,6 +127,7 @@ public class CreateSession {
             throws MalformedURLException {
         File app = new File(buildPath);
         DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("avd","Pixel_3a");
         capabilities.setCapability("noSign", true);
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("platformVersion", androidOSVersion);
