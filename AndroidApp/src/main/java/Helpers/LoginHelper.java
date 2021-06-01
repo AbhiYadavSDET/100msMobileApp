@@ -53,6 +53,7 @@ public class LoginHelper {
 
     public void doLoginFromOboarding(String mobile) throws InterruptedException, IOException, JSONException {
 
+        onboardingPage.clickOnGetStartedCta();
         onboardingPage.enterMobileNo(mobile);
 
         onboardingPage.clickOnGetOtpCta();
@@ -250,6 +251,7 @@ public class LoginHelper {
         Log.info("Otp : " + otp);
         Log.info("-------------------------------------");
 
+        onboardingPage.clickOnGetStartedCta();
 
         if (isOnboardingPresent()) {
             Log.info("User is logged out, logging in");

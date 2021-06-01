@@ -5,6 +5,7 @@ import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 import utils.Element;
 
@@ -13,6 +14,9 @@ import java.io.IOException;
 public class OnboardingPage {
 
     AndroidDriver<AndroidElement> driver;
+
+    @AndroidFindBy(id="get_started_btn")
+    private AndroidElement getStartedButtoncta;
 
     @AndroidFindBy(id = "tv_payments")
     private AndroidElement onboarding_text;
@@ -37,6 +41,11 @@ public class OnboardingPage {
          */
 
         Log.info("*****Onboarding Page*****");
+    }
+
+    public void clickOnGetStartedCta() throws InterruptedException {
+        Element.isElementPresent(driver, By.id("get_started_btn"));
+        Element.selectElement(driver, getStartedButtoncta, "Click on Intro Page");
     }
 
 
