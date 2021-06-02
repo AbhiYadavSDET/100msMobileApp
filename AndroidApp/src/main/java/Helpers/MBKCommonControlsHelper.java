@@ -326,7 +326,7 @@ public class MBKCommonControlsHelper {
 
     public void handleGetInstantLoanBottomSheet() throws InterruptedException {
         Thread.sleep(4000);
-        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text= 'Budget crunch? Get Instant Loan']"))) {
+        if (Element.isElementPresent(driver, By.id("cross_button"))) {
             Log.info("Handle", "Get Instant Loan Bottom sheet");
             mbkCommonControlsPage.clickOnGetInstantLoanBottonSheetCross();
         }

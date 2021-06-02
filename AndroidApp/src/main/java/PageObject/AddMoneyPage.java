@@ -175,9 +175,15 @@ public class AddMoneyPage {
     }
 
     public void clickOnBankPageSecurePassword() throws InterruptedException {
+        Element.waitForVisibility(driver, By.xpath("//android.widget.Button[@text= 'Continue']"));
+//        Thread.sleep(4000);
+        Log.info("Bank Page Loaded");
+
         if (Element.isElementPresent(driver, By.xpath("//android.widget.RadioButton[@text = 'e-Secure Password']"))) {
+            Log.info("E-secure password option 1");
             Element.selectElement(driver, link_e_secure_password_2, "Bank Page Secure Password");
         } else {
+            Log.info("E-secure password option 2");
             Element.selectElement(driver, link_e_secure_password_1, "Bank Page Secure Password");
         }
     }

@@ -48,14 +48,14 @@ public class RechargeHelper {
     public void prepaidRecharge(String mobileNo, String amount, String category, String operator, String totalPayment, String trxStatus, String securityPin, Boolean promoCodeStatus, String promoCode, String promoCodeText) throws InterruptedException, IOException, JSONException {
         Thread.sleep(2000);
 //        homePage.clickOnCrossButton();
-        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+//        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
         balanceBefore = mbkCommonControlsHelper.getBalance();
 
-        if (!Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Mobile']"))) {
-
-            screen.swipeUpMedium(driver);
-        }
+//        if (!Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Mobile']"))) {
+//
+//            screen.swipeUpMedium(driver);
+//        }
 
         homePage.clickOnRechargeLayout();
         rechargePage = homePage.clickOnMobileButton();
@@ -66,11 +66,11 @@ public class RechargeHelper {
 
         rechargePage.clickOnDropDown();
 
-        Element.waitForVisibility(driver, By.id("mkab_title"));
+        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text='Operators']"));
         screen.swipeUpMedium(driver);
         rechargePage.selectOperator();
 
-        Element.waitForVisibility(driver, By.id("mkab_title"));
+        Element.waitForVisibility(driver, By.id("cir_name"));
         rechargePage.selectCircle();
 
         rechargePage.clickOnSeeAllPlans();
@@ -89,6 +89,8 @@ public class RechargeHelper {
 
         rechargePage.clickOnContinue();
 
+        rechargePage.clickOnConfirmAmountPageCta();
+
         // Apply coupon code if applicable
         if (promoCodeStatus) {
             mbkCommonControlsHelper.applyPromoCodeRecharge(promoCode);
@@ -99,18 +101,15 @@ public class RechargeHelper {
         mbkCommonControlsHelper.handleSecurityPin(securityPin);
 
 
-        for(int i=0; i<4; i++){
+        for(int i=0; i<6; i++){
 
-            if(Element.isElementPresent(driver, By.id("base_title"))){
+            if(Element.isElementPresent(driver, By.id("base_status_icon_animation"))){
                 Log.info("Success Page");
                 break;
 
             }else{
 
-                if(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Convert to Cash']"))){
-                    rechargePage.selectCrossIcon();
-                }
-
+                Thread.sleep(1000);
                 i++;
 
             }
@@ -121,37 +120,37 @@ public class RechargeHelper {
 
         // Wait for the success screen
 
-        Element.waitForVisibility(driver, By.id("base_title"));
+        Element.waitForVisibility(driver, By.id("base_status_icon_animation"));
 
         mbkCommonControlsHelper.handleCTOverlay();
         mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessPageStatus(), trxStatus, "Success Page | Verify Status", false, false);
 
         // Assertions on the success screen
 
-        if(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Connection Number']/following::android.widget.TextView[1]") )) {
+        if(Element.isElementPresent(driver, By.id("cn_value") )) {
             mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessPageConnectionNo(), mobileNo, "Success Page | Verify Connection number", false, false);
         }
 
-        if(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Category']/following::android.widget.TextView[1]"))) {
-            mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessPageCategory(), category, "Success Page | Verify category", false, false);
-        }
+//        if(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Category']/following::android.widget.TextView[1]"))) {
+//            mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessPageCategory(), category, "Success Page | Verify category", false, false);
+//        }
 
-        if(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Operator']/following::android.widget.TextView[1]"))) {
+        if(Element.isElementPresent(driver, By.id("operator"))) {
             mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessPageOperator().toLowerCase(), operator.toLowerCase(), "Success Page | Verify operator", false, false);
         }
 
-        if(Element.isElementPresent(driver, By.id("amount_value"))) {
+        if(Element.isElementPresent(driver, By.id("amount"))) {
             mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessPageAmount().replace("₹ ", ""), amount, "Success Page | Verify amount", false, false);
         }
 
-        if(Element.isElementPresent(driver, By.id("total_amount_value"))) {
-            mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessPageTotalPayment().replace("₹ ", ""), totalPayment, "Success Page | Verify totalPayment", false, false);
-        }
+//        if(Element.isElementPresent(driver, By.id("total_amount_value"))) {
+//            mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessPageTotalPayment().replace("₹ ", ""), totalPayment, "Success Page | Verify totalPayment", false, false);
+//        }
 
         // Assert the Success page in case promo code is applied
         if (promoCodeStatus) {
             String actualPromoCodeText = rechargePage.getPromoCodeTextOnSuccessScreen();
-            String expectedPromoCodeText = "Congrats! SuperCash worth ₹ " + promoCodeText + " will be credited within 48 hours";
+            String expectedPromoCodeText = "Congrats! SuperCash worth " + promoCodeText + " will be credited within 48 hours";
             mbReporter.verifyEqualsWithLogging(actualPromoCodeText, expectedPromoCodeText, "After TRX | Verify Promo Code Text", false, false);
 
         }
@@ -188,7 +187,7 @@ public class RechargeHelper {
 
         rechargePage.enterMobileNo(mobileNo);
         Thread.sleep(3000);
-        rechargePage.clickOnPostPaid();
+//        rechargePage.clickOnPostPaid();
 
 
         rechargePage.clickOnCtaContinue2();

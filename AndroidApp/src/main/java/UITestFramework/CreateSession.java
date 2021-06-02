@@ -155,6 +155,7 @@ public class CreateSession {
         capabilities.setCapability("reportFormat", reportFormat);
         capabilities.setCapability("app", app.getAbsolutePath());
         capabilities.setCapability("fullReset", true);
+        capabilities.setCapability("autoGrantPermissions", "true");
 //        capabilities.setCapability("noReset", false);
 
         //Log.info("http://localhost:" + portNo + "/wd/hub");

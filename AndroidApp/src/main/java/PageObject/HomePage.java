@@ -21,7 +21,7 @@ public class HomePage {
     @AndroidFindBy(id = "logo")
     private AndroidElement mbk_logo;
 
-    @AndroidFindBy(id = "//android.widget.TextView[@text='View Details']")
+    @AndroidFindBy(id = "layout_add_money")
     private AndroidElement label_view_balance;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Scan any QR']")
@@ -241,9 +241,13 @@ public class HomePage {
         return new GoldPage(driver);
     }
 
-    public AddMoneyPage clickOnAddMoneyButton() throws IOException {
-        Element.selectElement(driver, button_add_money, "Add Money button");
+    public AddMoneyPage clickOnAddMoneyButton() throws IOException, InterruptedException {
+        if(Element.isElementPresent(driver, By.id("icon_drawer"))) {
+            Element.selectElement(driver, label_view_balance, "Click on View Details");
+            Element.selectElement(driver, button_add_money, "Add Money button");
+        }
         return new AddMoneyPage(driver);
+
     }
 
     public void clickOnRechargeLayout() throws IOException {

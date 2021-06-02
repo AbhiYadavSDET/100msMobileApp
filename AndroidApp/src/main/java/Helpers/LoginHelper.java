@@ -262,7 +262,9 @@ public class LoginHelper {
 
             homePage = onboardingPage.clickOnSkip();
 
-//            permissionHelper.permissionAllow();
+            mbkCommonControlsHelper.handleGetInstantLoanBottomSheet();
+
+            permissionHelper.permissionAllow();
 
             loginPage = homePage.clickLoginSignupButton();
 

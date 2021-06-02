@@ -311,8 +311,9 @@ public class AddMoneyHelper {
 
         Element.waitForVisibility(driver, addMoneyPage.label_select_payment_mode);
 
-        screen.swipeUpMedium(driver);
-
+        if(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='4363 XXXX XXXX 4460']"))==false) {
+            screen.swipeUpMedium(driver);
+        }
         AndroidElement androidElement = element.findElement(driver, By.xpath("//android.widget.TextView[@text = '" + cardNo + "']"));
         Element.selectElement(driver, androidElement, "Select Bank");
 
@@ -334,6 +335,12 @@ public class AddMoneyHelper {
 
 
         mbkCommonControlsHelper.returnToHomePageFromP2MSuccessScreen();
+
+        if(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Add Money to Wallet']"))){
+            AndroidElement close = element.findElement(driver, By.id("close_button"));
+            Element.selectElement(driver, close, "Close Add money Pop up");
+
+        }
 
     }
 
