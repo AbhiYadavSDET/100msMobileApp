@@ -114,7 +114,6 @@ public class AddMoneyHelper {
 
         balanceBefore = mbkCommonControlsHelper.getBalance();
 
-        homePage.clickBalanceDropDown();
         addMoneyPage = homePage.clickOnAddMoneyButton();
 
         // Click on the text box and Enter amount
@@ -127,7 +126,9 @@ public class AddMoneyHelper {
 
         Element.waitForVisibility(driver, addMoneyPage.label_select_payment_mode);
 
-        screen.swipeUpMore(driver);
+        if(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='New Debit/Credit Card']"))==false) {
+            screen.swipeUpMore(driver);
+        }
 
         addMoneyPage.clickOnNewDebitCreditCard();
 
@@ -185,12 +186,16 @@ public class AddMoneyHelper {
 
         addMoneyPage.enterAmount(amount);
 
+        Thread.sleep(1000);
+
         addMoneyPage.clickOnContinueButton();
 
         Element.waitForVisibility(driver, addMoneyPage.label_select_payment_mode);
 
-        screen.swipeUpMedium(driver);
-
+        if(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='4363 XXXX XXXX 4460']"))==false) {
+            screen.swipeUpMedium(driver);
+        }
+        
         AndroidElement androidElement = element.findElement(driver, By.xpath("//android.widget.TextView[@text = '" + cardNo + "']"));
         Element.selectElement(driver, androidElement, "Select Bank");
 

@@ -28,10 +28,10 @@ public class AddMoneyPage {
     @AndroidFindBy(xpath = "//*[@text = 'Net Banking']")
     public AndroidElement label_netbanking;
 
-    @AndroidFindBy(xpath = "//*[@text = 'New Debit/Credit Card']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'New Debit/Credit Card']")
     public AndroidElement label_new_debit_credit_card;
 
-    @AndroidFindBy(xpath = "//*[@text = 'Debit or Credit Card']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Debit or Credit Card']")
     public AndroidElement label_debit_credit_card;
 
     @AndroidFindBy(id = "mkab_title")
@@ -128,10 +128,10 @@ public class AddMoneyPage {
     }
 
     public void clickOnNewDebitCreditCard() throws InterruptedException {
-        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Debit or Credit Card']"))) {
-            Element.selectElement(driver, label_debit_credit_card, "Debit/Credit card");
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'New Debit/Credit Card']"))) {
+            Element.selectElement(driver, label_new_debit_credit_card, "Debit/Credit card");
         } else {
-            Element.selectElement(driver, label_new_debit_credit_card, "New Debit or Credit card");
+            Element.selectElement(driver, label_debit_credit_card, "New Debit or Credit card");
         }
     }
 
