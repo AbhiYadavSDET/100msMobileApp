@@ -117,6 +117,20 @@ public class MBKCommonControlsHelper {
         }
     }
 
+    public void handleRechargeAmountKeyboard(String amt) throws InterruptedException {
+        String[] amtArr = amt.split("|");
+
+        if (Element.isElementPresent(driver, By.id("layout_keyboard_btns"))) {
+
+            for (String e : amtArr) {
+                //Log.info("PRESS", e);
+                AndroidElement androidElement = element.findElement(driver, By.id("btn_pin_" + e));
+                Element.selectElement(driver, androidElement, e);
+            }
+
+        }
+    }
+
     public void handleUpiPin(String pin) throws InterruptedException {
 
         String[] pinArr = pin.split("|");

@@ -85,7 +85,9 @@ public class RechargeHelper {
 
         rechargePage.selectAmount();
 
-        rechargePage.enterAmount(amount);
+//        rechargePage.enterAmount(amount);
+
+        mbkCommonControlsHelper.handleRechargeAmountKeyboard(amount);
 
         rechargePage.clickOnContinue();
 
@@ -140,7 +142,7 @@ public class RechargeHelper {
         }
 
         if(Element.isElementPresent(driver, By.id("amount"))) {
-            mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessPageAmount().replace("₹ ", ""), amount, "Success Page | Verify amount", false, false);
+            mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessPageAmount().replace("X", ""), amount, "Success Page | Verify amount", false, false);
         }
 
 //        if(Element.isElementPresent(driver, By.id("total_amount_value"))) {

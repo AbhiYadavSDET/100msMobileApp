@@ -29,7 +29,7 @@ public class MbkCommonControlsPage {
     @AndroidFindBy(id = "mkab_icon_1")
     private AndroidElement button_up;
 
-    @AndroidFindBy(id = "base_icon_close")
+    @AndroidFindBy(id = "base_icon_back")
     private AndroidElement cross_icon;
 
     @AndroidFindBy(id = "btn_have_promo")
