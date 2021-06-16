@@ -22,14 +22,33 @@ public class RechargePage {
     @AndroidFindBy(id = "contact_number")
     private AndroidElement numberSelecter;
 
+    //Pallavi Xpath
+    @AndroidFindBy(id = "toggle_button")
+    private AndroidElement prepaidPostpaid_toggle;
+
+    @AndroidFindBy(id = "horizontal_button_2")
+    private AndroidElement rightYes_Cta;
+
+    @AndroidFindBy(id = "horizontal_button_2")
+    private AndroidElement popupbutton_yes;
+
+    @AndroidFindBy(id = "edit_text")
+    private AndroidElement enterText_click;
+
     @AndroidFindBy(id = "right_arrow")
     private AndroidElement link_drop_down;
+
+    @AndroidFindBy(id = "parent_layout")
+    private AndroidElement link_drop_down_mobilenoselect;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'VI']")
     private AndroidElement label_vodafone;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Haryana']")
     private AndroidElement label_haryana;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = '8506053433']")
+    private AndroidElement saved_contactNo;
 
 
 //    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Amount (in X)']/following::android.widget.TextView[@text = 'Enter any amount']")
@@ -202,13 +221,42 @@ public class RechargePage {
         Element.enterText(driver, textbox_mobile_no, cell, "Mobile No");
         Element.selectElement(driver, numberSelecter, "select number from List");
     }
+    public void enterPostpaidMobileNo(String cell) throws InterruptedException {
+        Element.enterText(driver, textbox_mobile_no, cell, "Mobile No");
+
+    }
+
+
+//Pallavi Change
+    public void changePrepaidPostpaidToggle() throws InterruptedException {
+        Element.selectElement(driver, prepaidPostpaid_toggle, "selectpostpaid from toggle");
+    }
+
+
+    public void clickYesCta() throws InterruptedException {
+        Element.selectElement(driver, popupbutton_yes, "select pop up button yes");
+    }
+
+    public void clickOnPopupYes() throws InterruptedException {
+        Element.selectElement(driver, popupbutton_yes, "Select Yest from Popup");
+    }
+
+    public void enterTextClick() throws InterruptedException {
+        Element.selectElement(driver, enterText_click, "click on enter amount");
+    }
+
+    public void enterPostpaidAmount(String amount) throws InterruptedException {
+        Element.enterText(driver, enterText_click, amount, "Enter Amount");
+    }
+
+
 
     public void clickOnDropDown() throws InterruptedException {
         Element.selectElement(driver, link_drop_down, "Drop down");
     }
 
-    public void clickOnPostPaid() throws InterruptedException {
-        Element.selectElement(driver, postPaid, "Postpaid");
+    public void clickOnDropdownMobile() throws InterruptedException {
+        Element.selectElement(driver, link_drop_down_mobilenoselect, "Select mobile no from dropdown");
     }
 
     public void selectOperator() throws InterruptedException {
@@ -223,6 +271,11 @@ public class RechargePage {
 
     public void selectCircle() throws InterruptedException {
         Element.selectElement(driver, label_haryana, "Circle");
+    }
+
+
+    public void selectPostpaidnoSavedContact() throws InterruptedException {
+        Element.selectElement(driver, saved_contactNo, "SAve connection postpaid No");
     }
 
     public void selectAmount() throws InterruptedException {
