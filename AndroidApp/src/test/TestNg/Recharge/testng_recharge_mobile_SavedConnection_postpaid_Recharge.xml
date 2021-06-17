@@ -7,7 +7,7 @@
     <parameter name="build" value="prod"/>
     <parameter name="level" value="payments"/>
     <parameter name="saucelabs" value="false"></parameter>
-    <parameter name="methodName" value="rechargePrepaid"></parameter>
+    <parameter name="methodName" value="savedconnectionPostpaidRecharge"></parameter>
 
 
     <test name="Mobikwik Automation Tests">
@@ -15,7 +15,7 @@
             <run>
                 <include name="setUp"/>
                 <include name="instantiateHelpers"/>
-                <include name="PostpaidRechargeWithPromoCode"/>
+                <include name="SavedConnectionPostpaidRecharge"/>
                 <include name="tearDown"/>
             </run>
         </groups>

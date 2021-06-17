@@ -76,7 +76,7 @@ public class Test_Recharge extends CreateSession {
 
 
     //Pallavi
-    @Test(groups = {"PostpaidRechargeWithPromoCode", "rechargeSanity"}, priority = 0, dataProvider = "rechargeData", dataProviderClass = RechargeDataProviderClass.class)
+    @Test(groups = {"SavedConnectionPostpaidRecharge", "rechargeSanity"}, priority = 0, dataProvider = "rechargeData", dataProviderClass = RechargeDataProviderClass.class)
     public void Test01_recharge_postpaid_SavedConnection(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
 //        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
