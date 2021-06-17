@@ -35,6 +35,9 @@ public class RechargePage {
     @AndroidFindBy(id = "edit_text")
     private AndroidElement enterText_click;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Adani Electricity Mumbai Limited']")
+    private AndroidElement dropdown_electricityFirstOperator;
+
     @AndroidFindBy(id = "right_arrow")
     private AndroidElement link_drop_down;
 
@@ -126,6 +129,12 @@ public class RechargePage {
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'More']")
     public AndroidElement label_more;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Bill Payment for']")
+    public AndroidElement text_billpayment;
+
+    @AndroidFindBy(xpath = "//android.widget.CheckBox[@text = 'Remind me for forthcoming bill payments']")
+    public AndroidElement text_reminder;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'BP Number']/following::android.widget.EditText[1]")
     public AndroidElement textbox_bp_number;
@@ -245,6 +254,9 @@ public class RechargePage {
         Element.selectElement(driver, enterText_click, "click on enter amount");
     }
 
+    public void dropdownElectricityfirstOpClick() throws InterruptedException {
+        Element.selectElement(driver, dropdown_electricityFirstOperator, "click on first electricity operator");
+    }
     public void enterPostpaidAmount(String amount) throws InterruptedException {
         Element.enterText(driver, enterText_click, amount, "Enter Amount");
     }
@@ -338,6 +350,11 @@ public class RechargePage {
         return Element.getText(driver, label_success_page_status, "Success Screen | Verify Status");
     }
 
+    public String getElectricityBillPageStatus() throws InterruptedException {
+        return Element.getText(driver, dropdown_electricityFirstOperator, "Success Screen | Verify Status");
+    }
+
+
     public String getPopupError() throws InterruptedException {
         return Element.getText(driver, popup_error, "Popup | Verify error");
     }
@@ -362,8 +379,16 @@ public class RechargePage {
         return Element.getText(driver, label_promo_code_text, "Success Screen | Verify promo text");
     }
 
+    public String getBillPaymentText() throws InterruptedException {
+        return Element.getText(driver, text_billpayment, "Bill payment Text on Preconfirmation Screen | Verify  text");
+    }
+
     public String getSuccessScreenOperator() throws InterruptedException {
         return Element.getText(driver, label_success_screen_operator, "Success Screen | Verify Operator");
+    }
+
+    public String getElectricityBillreminderText() throws InterruptedException {
+        return Element.getText(driver, text_reminder, "Success Screen | Verify Operator");
     }
 
     public String getSuccessScreenNumber() throws InterruptedException {

@@ -62,6 +62,9 @@ public class HomePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Mobile']")
     public AndroidElement icon_mobile;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Electricity']")
+    public AndroidElement icon_electricity;
+
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='DTH']")
     private AndroidElement icon_dth;
 
@@ -256,6 +259,11 @@ public class HomePage {
 
     public RechargePage clickOnMobileButton() throws IOException {
         Element.selectElement(driver, icon_mobile, "Mobile button");
+        return new RechargePage(driver);
+    }
+
+    public RechargePage clickElectricityButton() throws IOException {
+        Element.selectElement(driver, icon_electricity, "Electricity button");
         return new RechargePage(driver);
     }
 

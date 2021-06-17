@@ -246,73 +246,26 @@ public class RechargeHelper {
 
 
     //Pallavi Work
-    public void logoutPrepaidRecharge(String mobileNo, String amount, String category, String operator, String totalPayment, String trxStatus, String securityPin, Boolean promoCodeStatus, String promoCode, String promoCodeText) throws InterruptedException, IOException, JSONException {
+    public void viewBillElectricity(String mobileNo, String amount, String category, String operator, String totalPayment, String trxStatus, String securityPin, Boolean promoCodeStatus, String promoCode, String promoCodeText) throws InterruptedException, IOException, JSONException {
         Thread.sleep(2000);
 
         balanceBefore = mbkCommonControlsHelper.getBalance();
         homePage.clickOnRechargeLayout();
-        rechargePage = homePage.clickOnMobileButton();
+        rechargePage = homePage.clickElectricityButton();
         permissionHelper.permissionAllow();
-
-        rechargePage.selectPostpaidnoSavedContact();
-        Thread.sleep(300);
-        rechargePage.enterTextClick();
-        rechargePage.enterPostpaidAmount("1");
-        Thread.sleep(300);
-        rechargePage.selectAmount();
-        rechargePage.enterAmount(amount);
-        Thread.sleep(300);
-        mbkCommonControlsHelper.handleRechargeAmountKeyboard(amount);
-        rechargePage.clickOnContinue();
-        Thread.sleep(300);
-        rechargePage.clickOnConfirmAmountPageCta();
+        rechargePage.dropdownElectricityfirstOpClick();
         Thread.sleep(300);
 
-        // Apply coupon code if applicable
-        if (promoCodeStatus) {
-            mbkCommonControlsHelper.applyPromoCodeRecharge(promoCode);
-        }
-        rechargePage.clickOnCtaCotinue();
-        Thread.sleep(300);
-        mbkCommonControlsHelper.handleSecurityPin(securityPin);
-        for(int i=0; i<6; i++){
-            if(Element.isElementPresent(driver, By.id("base_status_icon_animation"))){
-                Log.info("Success Page");
-                break;
-            }else{
-                Thread.sleep(1000);
-                i++;
-            }
-        }
-        // Wait for the success screen
-        Element.waitForVisibility(driver, By.id("base_status_icon_animation"));
-        mbkCommonControlsHelper.handleCTOverlay();
-        mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessPageStatus(), trxStatus, "Success Page | Verify Status", false, false);
         // Assertions on the success screen
-        if(Element.isElementPresent(driver, By.id("cn_value") )) {
-            mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessPageConnectionNo(), mobileNo, "Success Page | Verify Connection number", false, false);
-        }
+        String actualBillPaymentText = rechargePage.getBillPaymentText();
+        String expectedBillPaymentText = "Bill Payment for";
 
-        if(Element.isElementPresent(driver, By.id("operator"))) {
-            mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessPageOperator().toLowerCase(), operator.toLowerCase(), "Success Page | Verify operator", false, false);
-        }
-        if(Element.isElementPresent(driver, By.id("amount"))) {
-            mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessPageAmount().replace("X", ""), amount, "Success Page | Verify amount", false, false);
-        }
-        if (promoCodeStatus) {
-            String actualPromoCodeText = rechargePage.getPromoCodeTextOnSuccessScreen();
-            String expectedPromoCodeText = "Congrats! SuperCash worth " + promoCodeText + " will be credited within 48 hours";
-            mbReporter.verifyEqualsWithLogging(actualPromoCodeText, expectedPromoCodeText, "After TRX | Verify Promo Code Text", false, false);
-        }
-        mbkCommonControlsHelper.returnToHomePageFromRechargeSuccessScreen();
-        balanceAfter = mbkCommonControlsHelper.getBalance();
-        // Post TRX assertions
-        Double actualMainBalance = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100;
-        Double actualMoneyAdded = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MONEYADDED)) * 100;
-        Double expectedMainBalance = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100 - Double.parseDouble(amount) * 100;
-        Double expectedMoneyAdded = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MONEYADDED)) * 100 - Double.parseDouble(amount) * 100;
-        mbReporter.verifyEqualsWithLogging(actualMainBalance, expectedMainBalance, "After TRX | Verify Main Balance", false, false);
-        mbReporter.verifyEqualsWithLogging(actualMoneyAdded, expectedMoneyAdded, "After TRX | Verify Money Added", false, false);
+        String actualElectricityScreenReminerText = rechargePage.getElectricityBillreminderText();
+        mbReporter.verifyEqualsWithLogging(rechargePage.getElectricityBillPageStatus(), trxStatus, "Preview Amount age| Verify Status", false, false);
+        mbReporter.verifyEqualsWithLogging(actualElectricityScreenReminerText, "Remind me for forthcoming bill payments", "Preview electricity Screen reminder text", false, false);
+
+        mbReporter.verifyEqualsWithLogging(actualBillPaymentText, expectedBillPaymentText, "Bill Payment Text Verification", false, false);
+
     }
 
 
