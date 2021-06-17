@@ -1,9 +1,6 @@
 package Helpers;
 
-import PageObject.HomePage;
-import PageObject.MbkCommonControlsPage;
-import PageObject.TransactionHistoryPage;
-import PageObject.WalletBalancePage;
+import PageObject.*;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import logger.Log;
@@ -178,7 +175,12 @@ public class MBKCommonControlsHelper {
         mbkCommonControlsPage.clickOnSuccessPageCross();
         handleRatingsPopUp();
         handleNPS();
+        mbkCommonControlsPage.clickOnNavigateHome();
         //mbkCommonControlsPage.clickOnSuccessPageCross();
+    }
+
+    public void returnToHomePage() throws InterruptedException {
+        mbkCommonControlsPage.clickOnNavigateHome();
     }
 
     public LinkedHashMap<String, String> getBalance()
@@ -343,6 +345,16 @@ public class MBKCommonControlsHelper {
         if (Element.isElementPresent(driver, By.id("cross_button"))) {
             Log.info("Handle", "Get Instant Loan Bottom sheet");
             mbkCommonControlsPage.clickOnGetInstantLoanBottonSheetCross();
+        }
+    }
+
+    public void handleLogin(String number, String otp) throws InterruptedException, IOException {
+        Thread.sleep(1000);
+        if (Element.isElementPresent(driver, By.id("tnc_layout"))) {
+            Log.info("Handle", "Login User in the Flow");
+
+            LoginHelper loginHelper=new LoginHelper(driver);
+            loginHelper.quickLoginViaNumberWithinFlow(number,otp);
         }
     }
 

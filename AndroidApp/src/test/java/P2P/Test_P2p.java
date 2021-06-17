@@ -14,15 +14,24 @@ public class Test_P2p extends CreateSession {
 
     DatabaseSqlHelper databaseSqlHelper = new DatabaseSqlHelper();
 
-    @Test(groups = {"p2pSufficient", "p2pSanity"}, priority = 1, dataProvider = "p2pData", dataProviderClass = P2pProviderClass.class)
-    public void Test01_p2pSufficient(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
+    @Test(groups = {"p2pSufficientLoggedout", "p2pSanity"}, priority = 0)
+    public void Test01_p2pSufficient() throws IOException, JSONException, InterruptedException {
+
+        P2PHelper p2PHelper = new P2PHelper(getAndroidDriver());
+        p2PHelper.p2pSufficientLoggedOut("9205299330", "547372", "9414065033", "5", "121212", "NA", "NA");
+
+    }
+
+    @Test(groups = {"p2pSufficient", "p2pSanity"}, priority = 1)
+    public void Test02_p2pInSufficient() throws IOException, JSONException, InterruptedException {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+        loginHelper.quickLoginViaNumber("9205299330", "547372");
 
 
         P2PHelper p2PHelper = new P2PHelper(getAndroidDriver());
-        p2PHelper.p2pSufficient(frontEndEntity.getMobileNo(), frontEndEntity.getAmount(), frontEndEntity.getSecurityPin(), frontEndEntity.getSuccessPageStatus(), frontEndEntity.getCategory());
-
+        p2PHelper.p2pInSufficient("7795709569", "5", "121212");
 
     }
+
+
 }

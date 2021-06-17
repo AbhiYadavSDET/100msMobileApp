@@ -27,7 +27,7 @@ public class HomePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Scan any QR']")
     private AndroidElement button_pay_to_merchant;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Wallet to Bank Transfer']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Wallet to Wallet transfer']")
     private AndroidElement button_transfer_money;
 
     @AndroidFindBy(xpath = "//android.widget.Button[@text = 'Add Money']")
@@ -173,7 +173,7 @@ public class HomePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Home']")
     private AndroidElement bottom_bar_home;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Home']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'All Services']")
     private AndroidElement bottom_bar_all_services;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Home']")
@@ -409,6 +409,10 @@ public class HomePage {
 
     public void closeMoreServicesOverlay() throws InterruptedException {
         Element.selectElement(driver, cross_icon_for_more_services_overlay, "Close More Services Overlay");
+    }
+
+    public void clickOnAllServicesSection() throws InterruptedException{
+        Element.selectElement(driver, bottom_bar_all_services, "Open All Service Section");
     }
 
 }

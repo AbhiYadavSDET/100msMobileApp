@@ -47,6 +47,7 @@ public class LoginHelper {
         screen = new Screen(driver);
         homePage = new HomePage(driver);
         walletPage = new WalletPage(driver);
+        loginPage= new LoginPage(driver);
 
 
     }
@@ -287,6 +288,25 @@ public class LoginHelper {
         }
 
         Log.info("END", "Login");
+
+    }
+
+    public void quickLoginViaNumberWithinFlow(String number, String otp) throws InterruptedException, IOException {
+
+            // Enter Number
+            loginPage.enterMobileNumber(number);
+
+            loginPage.clickOnSendOtpCta();
+
+
+            // Enter Password
+            loginPage.enterOtp(otp);
+
+
+            loginPage.clickSubmitOtpCta();
+
+        Log.info("END", "Login");
+
 
     }
 

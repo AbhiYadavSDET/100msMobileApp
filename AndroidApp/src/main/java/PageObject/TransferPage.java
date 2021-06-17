@@ -45,6 +45,9 @@ public class TransferPage {
     @AndroidFindBy(id = "txt_cn_value")
     private AndroidElement label_success_screen_number;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Select Payment Mode']")
+    private AndroidElement label_add_money_payment_page;
+
 
     public TransferPage(AndroidDriver driver) throws IOException {
         this.driver = driver;
@@ -89,6 +92,10 @@ public class TransferPage {
 
     public String getSuccessPageNumber() throws InterruptedException {
         return Element.getText(driver, label_success_screen_number, "Success page Code");
+    }
+
+    public String getAddMoneyPageTitle() throws InterruptedException {
+        return Element.getText(driver, label_add_money_payment_page, "Fetching Page title");
     }
 
 
