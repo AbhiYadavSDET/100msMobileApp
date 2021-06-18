@@ -47,15 +47,8 @@ public class RechargeHelper {
 
     public void prepaidRecharge(String mobileNo, String amount, String category, String operator, String totalPayment, String trxStatus, String securityPin, Boolean promoCodeStatus, String promoCode, String promoCodeText) throws InterruptedException, IOException, JSONException {
         Thread.sleep(2000);
-//        homePage.clickOnCrossButton();
-//        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
         balanceBefore = mbkCommonControlsHelper.getBalance();
-
-//        if (!Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Mobile']"))) {
-//
-//            screen.swipeUpMedium(driver);
-//        }
 
         homePage.clickOnRechargeLayout();
         rechargePage = homePage.clickOnMobileButton();
@@ -85,7 +78,6 @@ public class RechargeHelper {
 
         rechargePage.selectAmount();
 
-//        rechargePage.enterAmount(amount);
 
         mbkCommonControlsHelper.handleRechargeAmountKeyboard(amount);
 
@@ -186,8 +178,8 @@ public class RechargeHelper {
         rechargePage.enterTextClick();
         rechargePage.enterPostpaidAmount("1");
         Thread.sleep(300);
-       rechargePage.selectAmount();
-       rechargePage.enterAmount(amount);
+        rechargePage.selectAmount();
+        rechargePage.enterAmount(amount);
         Thread.sleep(300);
         mbkCommonControlsHelper.handleRechargeAmountKeyboard(amount);
         rechargePage.clickOnContinue();
@@ -225,11 +217,6 @@ public class RechargeHelper {
         }
         if(Element.isElementPresent(driver, By.id("amount"))) {
             mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessPageAmount().replace("X", ""), amount, "Success Page | Verify amount", false, false);
-        }
-        if (promoCodeStatus) {
-            String actualPromoCodeText = rechargePage.getPromoCodeTextOnSuccessScreen();
-            String expectedPromoCodeText = "Congrats! SuperCash worth " + promoCodeText + " will be credited within 48 hours";
-            mbReporter.verifyEqualsWithLogging(actualPromoCodeText, expectedPromoCodeText, "After TRX | Verify Promo Code Text", false, false);
         }
         mbkCommonControlsHelper.returnToHomePageFromRechargeSuccessScreen();
         balanceAfter = mbkCommonControlsHelper.getBalance();
