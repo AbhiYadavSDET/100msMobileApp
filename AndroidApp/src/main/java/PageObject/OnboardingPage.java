@@ -24,7 +24,7 @@ public class OnboardingPage {
     @AndroidFindBy(id = "skip")
     private AndroidElement button_skip;
 
-    @AndroidFindBy(id = "phone_number")
+    @AndroidFindBy(id = "edit_text")
     private AndroidElement textbox_mobile_no;
 
     @AndroidFindBy(id = "send_otp_btn")
@@ -97,6 +97,7 @@ public class OnboardingPage {
 
 
     public void enterMobileNo(String mobileNo) {
+//        Element.selectElement(driver,textbox_mobile_no, "Select mobile no Field");
         Element.enterText(driver, textbox_mobile_no, mobileNo, "Enter Mobile No");
     }
 

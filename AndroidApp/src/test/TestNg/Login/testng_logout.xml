@@ -3,7 +3,6 @@
     <listeners>
         <listener class-name="UITestFramework.retryLogic.RetryListener"/>
         <listener class-name="utils.Listeners.TestListener"/>
-        <!--<listener class-name="main.java.utils.ExtentReporterNG"/>-->
     </listeners>
     <parameter name="build" value="prod"/>
     <parameter name="level" value="payments"/>
