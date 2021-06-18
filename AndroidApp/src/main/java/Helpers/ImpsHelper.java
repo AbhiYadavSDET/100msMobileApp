@@ -91,13 +91,105 @@ public class ImpsHelper {
         String actualAccountNo = impsPage.getSuccessPageAccountNo();
         String actualAmount = impsPage.getSuccessSuccessPageAmount();
 
-        mbReporter.verifyEqualsWithLogging(actualMessage, "Money sent successfully", "Success Page | Message", false, false);
+        mbReporter.verifyEqualsWithLogging(actualMessage, "Your Transfer is Successful", "Success Page | Message", false, false);
         mbReporter.verifyEqualsWithLogging(actualAccountNo, accountNo, "Success Page | Account No", false, false);
-        mbReporter.verifyEqualsWithLogging(actualAmount, "X50.0", "Success Page | Amount", false, false);
+        mbReporter.verifyEqualsWithLogging(actualAmount, "₹ 50", "Success Page | Amount", false, false);
+
+        mbkCommonControlsHelper.returnToHomePageFromP2MSuccessScreen();
+
+    }
+        //Lakshay's entries-
+
+    public void sendMoneyVPA(String vpa, String amount, String securityPin) throws InterruptedException, JSONException, IOException {
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+        //impsPage.clickOnViaWallet();
+        impsPage.clickOnWalletToBank();
+
+        // Swipe the homescreen up
+        Thread.sleep(2000);
+        screen.swipeUpLess(driver);
+
+        impsPage.clickTransferToNewAccount();
+
+        //Click on UPI Radio Button
+        impsPage.selectUPIRadioButton();
+        impsPage.enterVPA(vpa);
+
+        impsPage.clickUPIContinueButton();
+
+        //impsPage.sendAmount(amount);
+
+        //Entering amount on the page-
+        impsPage.clickButton5();
+        impsPage.clickButton0();
+        Thread.sleep(5000);
+
+        impsPage.clickAmountSubmitButton();
+
+        impsPage.clickPay();
+
+        mbkCommonControlsHelper.handleSecurityPin(securityPin);
+        Thread.sleep(10000);
+
+        impsPage.closeReferralDialogBox();
+        //Assertions
+        String actualMessage = impsPage.getSuccessMessage();
+        //String actualAccountNo = impsPage.getSuccessPageAccountNo();
+        String actualVpa = impsPage.getSuccessPageVPA();
+        String actualAmount = impsPage.getSuccessSuccessPageAmount();
+
+        mbReporter.verifyEqualsWithLogging(actualMessage, "Your Transfer is Successful", "Success Page | Message", false, false);
+        //mbReporter.verifyEqualsWithLogging(actualAccountNo, accountNo, "Success Page | Account No", false, false);
+        mbReporter.verifyEqualsWithLogging(actualVpa, vpa, "Success Page | VPA", false, false);
+        mbReporter.verifyEqualsWithLogging(actualAmount, "₹ 50", "Success Page | Amount", false, false);
 
         mbkCommonControlsHelper.returnToHomePageFromP2MSuccessScreen();
 
     }
 
+    public void sendMoneyBA(String accountName, String accountNo, String ifsc, String amount, String securityPin) throws InterruptedException, IOException, JSONException {
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+        impsPage.clickOnWalletToBank();
 
+        Thread.sleep(2000);
+        screen.swipeUpLess(driver);
+
+        impsPage.clickTransferToNewAccount();
+        Thread.sleep(5000);
+        //Enter Bank Account Details
+        impsPage.enterBeneficiaryName(accountName);
+        impsPage.enterAccountNo(accountNo);
+        impsPage.enterIfsc(ifsc);
+        //Thread.sleep(5000);
+        driver.navigate().back();
+
+        impsPage.clickUPIContinueButton();
+
+        //impsPage.sendAmount(amount);
+
+        //Entering amount on the page-
+        impsPage.clickButton5();
+        impsPage.clickButton0();
+        Thread.sleep(5000);
+
+        impsPage.clickAmountSubmitButton();
+
+        impsPage.clickPay();
+
+        mbkCommonControlsHelper.handleSecurityPin(securityPin);
+        Thread.sleep(10000);
+
+        impsPage.closeReferralDialogBox();
+        //Assertions
+        String actualMessage = impsPage.getSuccessMessage();
+        String actualAccountNo = impsPage.getSuccessPageAccountNo();
+        String actualAmount = impsPage.getSuccessSuccessPageAmount();
+
+        mbReporter.verifyEqualsWithLogging(actualMessage, "Your Transfer is Successful", "Success Page | Message", false, false);
+        mbReporter.verifyEqualsWithLogging(actualAccountNo, accountNo, "Success Page | Account No", false, false);
+        mbReporter.verifyEqualsWithLogging(actualAmount, "₹ 50", "Success Page | Amount", false, false);
+
+        mbkCommonControlsHelper.returnToHomePageFromP2MSuccessScreen();
+
+    }
 }
