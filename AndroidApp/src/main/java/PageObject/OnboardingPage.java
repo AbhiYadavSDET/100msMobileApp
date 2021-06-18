@@ -48,7 +48,7 @@ public class OnboardingPage {
     @AndroidFindBy(id="alertTitle")
     private AndroidElement permission_consent;
 
-    @AndroidFindBy (id= "button1")
+    @AndroidFindBy (xpath= "//android.widget.Button[@text= 'ALLOW']")
     private AndroidElement allow_consent;
 
     @AndroidFindBy(id="cbKycConsent")
@@ -139,7 +139,7 @@ public class OnboardingPage {
     }
 
     public void clickOnKYCSkipCta(){
-        Element.selectElement(driver, cta_skip, "Skip KYc");
+        Element.selectElement(driver, cta_skip, "Skip KYC");
     }
 
     public void clickOnOtherKycOptionCta(){

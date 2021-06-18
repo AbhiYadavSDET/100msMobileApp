@@ -109,7 +109,9 @@ public class LoginHelper {
 
             Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'KYC without Aadhaar']"));
 
-            mbReporter.verifyTrueWithLogging(onboardingPage.isNonAadhaarOptionsAvailable(), "KYc other options page Opened", false,false);
+            mbReporter.verifyTrueWithLogging(onboardingPage.isNonAadhaarOptionsAvailable(), "KYC other options page Opened", false,false);
+
+            onboardingPage.clickOnKYCSkipCta();
 
             onboardingPage.clickOnIdontWantBenifitsCta();
 
