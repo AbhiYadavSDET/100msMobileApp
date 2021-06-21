@@ -47,6 +47,7 @@ public class GoldHelper {
 
         Screen.swipeUpMore(driver);
 
+        homePage.clickInvestmentAndInsuranceLayout();
         goldPage = homePage.clickGoldIcon();
         Thread.sleep(3000);
 
@@ -107,7 +108,7 @@ public class GoldHelper {
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
         Screen.swipeUpMore(driver);
-
+        homePage.clickInvestmentAndInsuranceLayout();
         goldPage = homePage.clickGoldIcon();
         Thread.sleep(3000);
 

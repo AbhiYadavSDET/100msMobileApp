@@ -16,32 +16,40 @@ public class RechargePage {
     AndroidDriver driver;
 
 
-    @AndroidFindBy(xpath = "//android.widget.EditText[@text = 'Enter Mobile Number']")
+    @AndroidFindBy(xpath = "//android.widget.EditText[@text = 'Please Enter Name or Mobile No.']")
     private AndroidElement textbox_mobile_no;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'L']")
+    @AndroidFindBy(id = "contact_number")
+    private AndroidElement numberSelecter;
+
+    @AndroidFindBy(id = "right_arrow")
     private AndroidElement link_drop_down;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Vodafone']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'VI']")
     private AndroidElement label_vodafone;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Haryana']")
     private AndroidElement label_haryana;
 
-    //@AndroidFindBy(id = "edit_text_mket")
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Amount (in X)']/following::android.widget.TextView[@text = 'Enter any amount']")
+
+//    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Amount (in X)']/following::android.widget.TextView[@text = 'Enter any amount']")
     //@AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Amount (in ₹)'/following::android.widget.TextView[@text = 'Enter any amount']")
+
+    @AndroidFindBy(id = "edit_text")
     public AndroidElement textbox_enter_amount;
 
-    @AndroidFindBy(id = "see_all_plans")
+    @AndroidFindBy(id = "see_plans")
     public AndroidElement cta_see_all_plans;
 
 
-    @AndroidFindBy(id = "amount_field")
+    @AndroidFindBy(id = "edit_text")
     private AndroidElement textbox_enter_amount2;
 
-    @AndroidFindBy(id = "actual_continue")
+    @AndroidFindBy(id = "btn_pin_submit")
     private AndroidElement button_continue;
+
+    @AndroidFindBy(xpath = "//android.widget.Button[@text= 'Confirm']")
+    private AndroidElement confirmButtonAmountPage;
 
     @AndroidFindBy(id = "cta")
     private AndroidElement cta_continue;
@@ -52,16 +60,16 @@ public class RechargePage {
 
     // Success screen
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Connection Number']/following::android.widget.TextView[1]")
+    @AndroidFindBy(id = "cn_value")
     private AndroidElement label_connection_no;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Category']/following::android.widget.TextView[1]")
     private AndroidElement label_category;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Operator']/following::android.widget.TextView[1]")
+    @AndroidFindBy(id = "operator")
     private AndroidElement label_operator;
 
-    @AndroidFindBy(id = "amount_value")
+    @AndroidFindBy(id = "amount")
     private AndroidElement label_amount;
 
     @AndroidFindBy(id = "total_amount_value")
@@ -94,7 +102,7 @@ public class RechargePage {
     @AndroidFindBy(id = "connection_detail_button_recharge")
     public AndroidElement button_dth_continue;
 
-    @AndroidFindBy(id = "txt_promo_result_desc")
+    @AndroidFindBy(id = "promo_text")
     public AndroidElement label_promo_code_text;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'More']")
@@ -192,6 +200,7 @@ public class RechargePage {
 
     public void enterMobileNo(String cell) throws InterruptedException {
         Element.enterText(driver, textbox_mobile_no, cell, "Mobile No");
+        Element.selectElement(driver, numberSelecter, "select number from List");
     }
 
     public void clickOnDropDown() throws InterruptedException {
@@ -234,6 +243,10 @@ public class RechargePage {
 
     public void clickOnContinue() throws InterruptedException {
         Element.selectElement(driver, button_continue, "Button Continue");
+    }
+
+    public void clickOnConfirmAmountPageCta() throws InterruptedException {
+        Element.selectElement(driver, confirmButtonAmountPage, "Confirm Button amount Page");
     }
 
     public void clickOnCtaCotinue() throws InterruptedException {

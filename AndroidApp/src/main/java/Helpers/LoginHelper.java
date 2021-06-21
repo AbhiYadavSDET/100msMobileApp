@@ -1,9 +1,6 @@
 package Helpers;
 
-import PageObject.HomePage;
-import PageObject.LoginPage;
-import PageObject.OnboardingPage;
-import PageObject.SideDrawerPage;
+import PageObject.*;
 import UITestFramework.Api.ApiCommonControls;
 import UITestFramework.MBReporter;
 import io.appium.java_client.android.AndroidDriver;
@@ -31,6 +28,7 @@ public class LoginHelper {
     HashMap<String, String> apiOtp;
     HomePage homePage;
     SideDrawerPage sideDrawerPage;
+    WalletPage walletPage;
     MBReporter mbReporter;
     Helpers.PermissionHelper permissionHelper;
     MBKCommonControlsHelper mbkCommonControlsHelper;
@@ -48,46 +46,100 @@ public class LoginHelper {
         permissionHelper = new Helpers.PermissionHelper(driver);
         screen = new Screen(driver);
         homePage = new HomePage(driver);
+        walletPage = new WalletPage(driver);
+        loginPage= new LoginPage(driver);
 
 
     }
 
-    public void doLoginFromOboarding(String mobile) throws InterruptedException, IOException, JSONException {
+    public void doLoginFromOboarding(String number, String otp) throws InterruptedException, IOException, JSONException {
 
-        onboardingPage.enterMobileNo(mobile);
+        Log.info("START", "Login");
+        Log.info("----------- Arguments ---------------");
+        Log.info("Mobile : " + number);
+        Log.info("Otp : " + otp);
+        Log.info("-------------------------------------");
 
-        onboardingPage.clickOnGetOtpCta();
+        onboardingPage.clickOnGetStartedCta();
 
-//        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Enter your OTP below']"));
+        if (isOnboardingPresent()) {
+            Log.info("User is logged out, logging in");
 
-        //If OTP not Auto Read enter OTP and press Submit
+            onboardingPage.enterMobileNo(number);
 
-        Element.waitForVisibility(driver, By.id("com.android.packageinstaller:id/dialog_container"));
+            onboardingPage.clickOnGetOtpCta();
 
-        permissionHelper.permissionAllow();
+            Element.waitForVisibility(driver, By.id("waiting_otp"));
 
-        Thread.sleep(1500);
+            onboardingPage.enterOtp(otp);
 
-//       mbReporter.verifyEqualsWithLogging(homePage.getTitleMessageSecondaryEmail(), "Enter a valid Email below", "Secondary Email Screen displayed", true, true);
+            onboardingPage.clickSubmitOtpCta();
 
-        homePage.clickOnSkip();
+            Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text='Complete your KYC']"));
 
-        permissionHelper.permissionAllow();
+            String actualPermissionText= onboardingPage.getPermissionText();
 
-        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+            mbReporter.verifyEqualsWithLogging(actualPermissionText, "Allow location, SMS and contact permissions to unlock your rewards. By continuing you agree to Terms & Conditions", "Validate Proposition Screen Displayed", false,false);
 
+            onboardingPage.clickContinueWithAadhaarCta();
 
-        sideDrawerPage = new HomePage(driver).clickHamburgerIcon();
+            Element.waitForVisibility(driver, By.id("alertTitle"));
 
+            String actualConsentTitleText= onboardingPage.getConsentPopUpTitleText();
 
-        String actualMobileNo = sideDrawerPage.getMobileNo();
+            mbReporter.verifyEqualsWithLogging(actualConsentTitleText, "SMS & Contacts Access Needed", "Validate SMS and Contact Consent POP UP Displayed", false,false);
 
-        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("drawerHeadingName")), "Name Is Present", true, false);
-        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("drawerHeadingEmail")), "Email Id Is Present", true, false);
-        mbReporter.verifyEqualsWithLogging(actualMobileNo, mobile, "Verify Mobile", false, false);
+            onboardingPage.clickAllowConsent();
 
-        homePage.clickHomePageMbkLogo();
+            permissionHelper.permissionAllow();
 
+            permissionHelper.permissionAllow();
+
+            permissionHelper.permissionAllow();
+
+            Element.waitForVisibility(driver, By.xpath("//android.widget.EditText[@text= 'Aadhaar Number']"));
+
+            String actualKycConsentText= onboardingPage.getKycConsentText();
+
+            mbReporter.verifyEqualsWithLogging(actualKycConsentText, "I agree that all KYC details shared by me may be used for my credit evaluation & inquiries on credit bureaus. I authorize MobiKwik to use this data for MobiKwik Wallet KYC upgrade & share with its loan providing partner.", "Validate KYC Screen displayed", false,false);
+
+            onboardingPage.clickOnKYCSkipCta();
+
+            onboardingPage.clickOnOtherKycOptionCta();
+
+            Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'KYC without Aadhaar']"));
+
+            mbReporter.verifyTrueWithLogging(onboardingPage.isNonAadhaarOptionsAvailable(), "KYC other options page Opened", false,false);
+
+            onboardingPage.clickOnKYCSkipCta();
+
+            onboardingPage.clickOnIdontWantBenifitsCta();
+
+            Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Link your bank account']"));
+
+            String actualUpiPageCashbackText= onboardingPage.getUpiPageCashbackText();
+
+            mbReporter.verifyEqualsWithLogging(actualUpiPageCashbackText, "Get assured cashback on your 1st UPI transfer.", "Validate Upi Screen displayed", false,false);
+
+            onboardingPage.clickOnUpiPageCross();
+
+            Element.waitForVisibility(driver, By.id("email_referral_layout"));
+
+            String actualEmailScreenText= onboardingPage.getEmailScreenText();
+
+            mbReporter.verifyEqualsWithLogging(actualEmailScreenText, "Get offers & monthly statements!", "Validate Email Screen is displayed", false,false);
+
+            onboardingPage.clickOnContinueCta();
+
+            mbkCommonControlsHelper.handleGetInstantLoanBottomSheet();
+
+            mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+
+        } else {
+            Log.info("User is logged in, no need to login");
+        }
+
+        Log.info("END", "Login");
 
     }
 
@@ -203,7 +255,8 @@ public class LoginHelper {
 
         if (Element.isElementPresent(driver, By.id("tx_add_money"))) {
 
-            homePage.clickOnBottomBarWallet();
+            sideDrawerPage= homePage.clickHamburgerIcon();
+            walletPage=sideDrawerPage.clickOnAccountsPage();
 
             //Swipe to the botton of the screen
             Thread.sleep(2000);
@@ -220,7 +273,7 @@ public class LoginHelper {
                 }
             }
 
-            homePage.clickOnlogout();
+            walletPage.clickOnlogout();
 
             Thread.sleep(1000);
 
@@ -234,17 +287,91 @@ public class LoginHelper {
 
     }
 
+
+    /**
+     * @param number
+     * @param otp
+     * @throws InterruptedException
+     * @throws IOException
+     * @author Paraj Jain@24th March,2021
+     */
+
+    public void quickLoginViaNumber(String number, String otp) throws InterruptedException, IOException {
+        Log.info("START", "Login");
+        Log.info("----------- Arguments ---------------");
+        Log.info("Mobile : " + number);
+        Log.info("Otp : " + otp);
+        Log.info("-------------------------------------");
+
+        onboardingPage.clickOnGetStartedCta();
+
+        if (isOnboardingPresent()) {
+            Log.info("User is logged out, logging in");
+
+//            Screen.hideKeyboard(driver);
+//            permissionHelper.dismissHintPopup();
+//            Screen.hideKeyboard(driver);
+
+            homePage = onboardingPage.clickOnSkip();
+
+            mbkCommonControlsHelper.handleGetInstantLoanBottomSheet();
+
+            permissionHelper.permissionAllow();
+
+            loginPage = homePage.clickLoginSignupButton();
+
+            // Enter Number
+            loginPage.enterMobileNumber(number);
+
+            loginPage.clickOnSendOtpCta();
+
+
+            // Enter Password
+            loginPage.enterOtp(otp);
+
+
+            loginPage.clickSubmitOtpCta();
+
+
+        } else {
+            Log.info("User is logged in, no need to login");
+            permissionHelper.permissionAllow();
+        }
+
+        Log.info("END", "Login");
+
+    }
+
+    public void quickLoginViaNumberWithinFlow(String number, String otp) throws InterruptedException, IOException {
+
+            // Enter Number
+            loginPage.enterMobileNumber(number);
+
+            loginPage.clickOnSendOtpCta();
+
+
+            // Enter Password
+            loginPage.enterOtp(otp);
+
+
+            loginPage.clickSubmitOtpCta();
+
+        Log.info("END", "Login");
+
+
+    }
+
+
     public boolean isOnboardingPresent() throws InterruptedException {
 
 
-
-        if(Element.isElementPresent(driver, By.id("splash_icon"))){
-            Thread.sleep(14000);
+        if (Element.isElementPresent(driver, By.id("splash_icon"))) {
+            Thread.sleep(6000);
         }
 
         Thread.sleep(3000);
 
-        if (Element.isElementPresent(driver, By.id("send_otp"))) {
+        if (Element.isElementPresent(driver, By.id("skip"))) {
             return true;
         } else {
             return false;

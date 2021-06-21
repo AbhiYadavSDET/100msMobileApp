@@ -16,7 +16,7 @@ public class AddMoneyPage {
     AndroidDriver driver;
 
 
-    @AndroidFindBy(id = "edit_text_mket")
+    @AndroidFindBy(xpath = "//android.widget.EditText[@text = 'Enter Amount']")
     private AndroidElement textbox_amount;
 
     @AndroidFindBy(id = "btnContinue")
@@ -28,10 +28,10 @@ public class AddMoneyPage {
     @AndroidFindBy(xpath = "//*[@text = 'Net Banking']")
     public AndroidElement label_netbanking;
 
-    @AndroidFindBy(xpath = "//*[@text = 'New Debit/Credit Card']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'New Debit/Credit Card']")
     public AndroidElement label_new_debit_credit_card;
 
-    @AndroidFindBy(xpath = "//*[@text = 'Debit or Credit Card']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Debit or Credit Card']")
     public AndroidElement label_debit_credit_card;
 
     @AndroidFindBy(id = "mkab_title")
@@ -44,16 +44,16 @@ public class AddMoneyPage {
     public AndroidElement button_no;
 
     //Enter card details
-    @AndroidFindBy(xpath = "//*[@text = 'Debit or Credit Card']/following::android.widget.EditText[1]")
+    @AndroidFindBy(xpath = "//android.widget.EditText[@text = 'Card Number']")
     public AndroidElement textbox_card_no_new;
     //Enter card details
-    @AndroidFindBy(xpath = "//*[@text = 'Card Number']/following::android.widget.EditText[1]")
+    @AndroidFindBy(xpath = "//android.widget.EditText[@text = 'Card Number']")
     public AndroidElement textbox_card_no;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Card Expiry']/following::android.widget.EditText[1]")
+    @AndroidFindBy(xpath = "//android.widget.EditText[@text = 'Card Expiry']")
     private AndroidElement textbox_expiry;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'CVV']/following::android.widget.EditText[1]")
+    @AndroidFindBy(xpath = "//android.widget.EditText[@text = 'CVV']")
     private AndroidElement textbox_cvv;
 
     @AndroidFindBy(id = "btn_add_money")
@@ -128,10 +128,10 @@ public class AddMoneyPage {
     }
 
     public void clickOnNewDebitCreditCard() throws InterruptedException {
-        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Debit or Credit Card']"))) {
-            Element.selectElement(driver, label_debit_credit_card, "Debit/Credit card");
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'New Debit/Credit Card']"))) {
+            Element.selectElement(driver, label_new_debit_credit_card, "Debit/Credit card");
         } else {
-            Element.selectElement(driver, label_new_debit_credit_card, "New Debit or Credit card");
+            Element.selectElement(driver, label_debit_credit_card, "New Debit or Credit card");
         }
     }
 
@@ -149,10 +149,10 @@ public class AddMoneyPage {
     }
 
     public void enterCardNo(String cardNo) throws InterruptedException {
-        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Debit or Credit Card']"))) {
-            Element.enterText(driver, textbox_card_no_new, cardNo, "Card No");
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'New Debit/Credit Card]"))) {
+            Element.enterText(driver, textbox_card_no_new, cardNo, "New Card No Flow | when no Saved Card");
         } else {
-            Element.enterText(driver, textbox_card_no, cardNo, "Card No");
+            Element.enterText(driver, textbox_card_no, cardNo, "New Card No Flow | When Saved Cards available");
         }
     }
 
@@ -175,9 +175,15 @@ public class AddMoneyPage {
     }
 
     public void clickOnBankPageSecurePassword() throws InterruptedException {
+        Element.waitForVisibility(driver, By.xpath("//android.widget.Button[@text= 'Continue']"));
+//        Thread.sleep(4000);
+        Log.info("Bank Page Loaded");
+
         if (Element.isElementPresent(driver, By.xpath("//android.widget.RadioButton[@text = 'e-Secure Password']"))) {
+            Log.info("E-secure password option 1");
             Element.selectElement(driver, link_e_secure_password_2, "Bank Page Secure Password");
         } else {
+            Log.info("E-secure password option 2");
             Element.selectElement(driver, link_e_secure_password_1, "Bank Page Secure Password");
         }
     }

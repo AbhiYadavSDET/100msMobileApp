@@ -6,6 +6,7 @@ import PageObject.TransactionHistoryPage;
 import UITestFramework.MBReporter;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
+import logger.Log;
 import org.json.JSONException;
 import org.openqa.selenium.By;
 import utils.*;
@@ -38,7 +39,7 @@ public class AddMoneyHelper {
         element = new Element(driver);
         mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
         mbReporter = new MBReporter(driver, "testScreenshotDir");
-        permissionHelper= new PermissionHelper(driver);
+        permissionHelper = new PermissionHelper(driver);
 
     }
 
@@ -62,7 +63,7 @@ public class AddMoneyHelper {
 
         screen.swipeUpMore(driver);
 
-        if(Element.isElementPresent(driver, By.xpath("//*[@text = 'Net Banking']"))) {
+        if (Element.isElementPresent(driver, By.xpath("//*[@text = 'Net Banking']"))) {
 
             addMoneyPage.clickOnNetbanking();
 
@@ -85,9 +86,9 @@ public class AddMoneyHelper {
 
             addMoneyPage.clickOnYesButton();
 
-        }else {
+        } else {
 
-            mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath("//*[@text = 'Net Banking']"))==false, "Netbanking feature has been disabled", true, true);
+            mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath("//*[@text = 'Net Banking']")) == false, "Netbanking feature has been disabled", true, true);
 
             mbkCommonControlsHelper.clickUpButton();
 
@@ -97,19 +98,26 @@ public class AddMoneyHelper {
 
 
     public void addMoneyViaNewCard(String amount, String cardNo, String expiryMonth, String expiryYear, String cvv, String bankPassword, String successPageStatus, String successPageText) throws InterruptedException, IOException, JSONException {
-//        Thread.sleep(2000);
-//
-//        homePage.clickOnCrossButton();
-//        Thread.sleep(1000);
+        Log.info("START", "Add Money");
+        Log.info("----------- Arguments ---------------");
+        Log.info("amount : " + amount);
+        Log.info("cardNo : " + cardNo);
+        Log.info("expiryMonth : " + expiryMonth);
+        Log.info("expiryYear : " + expiryYear);
+        Log.info("cvv : " + cvv);
+        Log.info("bankPassword : " + bankPassword);
+        Log.info("successPageStatus : " + successPageStatus);
+        Log.info("successPageText : " + successPageText);
+        Log.info("-------------------------------------");
+
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
         balanceBefore = mbkCommonControlsHelper.getBalance();
 
         addMoneyPage = homePage.clickOnAddMoneyButton();
 
+        // Click on the text box and Enter amount
         addMoneyPage.clickOnAmountTextBox();
-
-
         addMoneyPage.enterAmount(amount);
 
         Thread.sleep(1000);
@@ -118,7 +126,9 @@ public class AddMoneyHelper {
 
         Element.waitForVisibility(driver, addMoneyPage.label_select_payment_mode);
 
-        screen.swipeUpMore(driver);
+        if(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='New Debit/Credit Card']"))==false) {
+            screen.swipeUpMore(driver);
+        }
 
         addMoneyPage.clickOnNewDebitCreditCard();
 
@@ -131,32 +141,32 @@ public class AddMoneyHelper {
 
         handleIndusindWebView(bankPassword);
 
-        boolean condition=false;
+        boolean condition = false;
 
-        if(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Unfortunately some processing error occurred at the bank and the transaction failed.Please try again.']"))){
-            condition=true;
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Unfortunately some processing error occurred at the bank and the transaction failed.Please try again.']"))) {
+            condition = true;
             mbReporter.verifyTrueWithLogging(condition, "Add Money Failed due to Insufficient Balance in Bank Account", true, false);
 
         }
-            //Assertions
-            Double expectedMainBalance = (Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100) + Double.parseDouble(amount) * 100;
-            Double actualMainBalance = Double.parseDouble(addMoneyPage.getSuccessPageWalletBalance().replace("New Wallet Balance X", "").replace(",", "")) * 100;
-            mbReporter.verifyEqualsWithLogging(addMoneyPage.getSuccessPageStatus(), successPageStatus, "Success Screen | Verify Status", false, false);
-            mbReporter.verifyEqualsWithLogging(addMoneyPage.getSuccessPageText(), successPageText, "Success Screen | Verify Text", false, false);
-            mbReporter.verifyEqualsWithLogging(actualMainBalance, expectedMainBalance, "Success Screen | Verify Main Balance", false, false);
+        //Assertions
+        Double expectedMainBalance = (Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100) + Double.parseDouble(amount) * 100;
+        Double actualMainBalance = Double.parseDouble(addMoneyPage.getSuccessPageWalletBalance().replace("New Wallet Balance X", "").replace(",", "")) * 100;
+        mbReporter.verifyEqualsWithLogging(addMoneyPage.getSuccessPageStatus(), successPageStatus, "Success Screen | Verify Status", false, false);
+        mbReporter.verifyEqualsWithLogging(addMoneyPage.getSuccessPageText(), successPageText, "Success Screen | Verify Text", false, false);
+        mbReporter.verifyEqualsWithLogging(actualMainBalance, expectedMainBalance, "Success Screen | Verify Main Balance", false, false);
 
-            mbkCommonControlsHelper.returnToHomePageFromP2MSuccessScreen();
+        mbkCommonControlsHelper.returnToHomePageFromP2MSuccessScreen();
 
-            // POST TRX Assertions
-            balanceAfter = mbkCommonControlsHelper.getBalance();
-            Double actualMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100;
-            Double actualSuperCashBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
-            Double expectedMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100 + Double.parseDouble(amount) * 100;
-            Double expectedSuperCashBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
-            mbReporter.verifyEqualsWithLogging(actualMainBalanceAfter, expectedMainBalanceAfter, "After TRX | Verify Wallet Main Balance", false, false);
-            mbReporter.verifyEqualsWithLogging(actualSuperCashBalanceAfter, expectedSuperCashBalanceAfter, "After TRX | Verify Supercash Balance", false, false);
+        // POST TRX Assertions
+        balanceAfter = mbkCommonControlsHelper.getBalance();
+        Double actualMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100;
+        Double actualSuperCashBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
+        Double expectedMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100 + Double.parseDouble(amount) * 100;
+        Double expectedSuperCashBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
+        mbReporter.verifyEqualsWithLogging(actualMainBalanceAfter, expectedMainBalanceAfter, "After TRX | Verify Wallet Main Balance", false, false);
+        mbReporter.verifyEqualsWithLogging(actualSuperCashBalanceAfter, expectedSuperCashBalanceAfter, "After TRX | Verify Supercash Balance", false, false);
 
-
+        Log.info("END", "Add Money");
 
     }
 
@@ -176,12 +186,16 @@ public class AddMoneyHelper {
 
         addMoneyPage.enterAmount(amount);
 
+        Thread.sleep(1000);
+
         addMoneyPage.clickOnContinueButton();
 
         Element.waitForVisibility(driver, addMoneyPage.label_select_payment_mode);
 
-        screen.swipeUpMedium(driver);
-
+        if(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='4363 XXXX XXXX 4460']"))==false) {
+            screen.swipeUpMedium(driver);
+        }
+        
         AndroidElement androidElement = element.findElement(driver, By.xpath("//android.widget.TextView[@text = '" + cardNo + "']"));
         Element.selectElement(driver, androidElement, "Select Bank");
 
@@ -197,50 +211,49 @@ public class AddMoneyHelper {
 
         handleIndusindWebView(bankPassword);
 
-        boolean condition=false;
+        boolean condition = false;
 
-        if(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Unfortunately some processing error occurred at the bank and the transaction failed.Please try again.']"))){
-            condition=true;
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Unfortunately some processing error occurred at the bank and the transaction failed.Please try again.']"))) {
+            condition = true;
             mbReporter.verifyTrueWithLogging(condition, "Add Money Failed due to Insufficient Balance in Bank Account", true, false);
 
         }
-            // Success Page Assertions
-            mbReporter.verifyEqualsWithLogging(addMoneyPage.getSuccessPageStatus(), successPageStatus, "Success Screen | Verify Status", false, false);
-            mbReporter.verifyEqualsWithLogging(addMoneyPage.getSuccessPageText(), successPageText, "Success Page Text", false, false);
+        // Success Page Assertions
+        mbReporter.verifyEqualsWithLogging(addMoneyPage.getSuccessPageStatus(), successPageStatus, "Success Screen | Verify Status", false, false);
+        mbReporter.verifyEqualsWithLogging(addMoneyPage.getSuccessPageText(), successPageText, "Success Page Text", false, false);
 
-            if (promoCodeStatus) {
-                String actualBalanceText = addMoneyPage.getSuccessPageWalletBalance().replace(",", "");
-                Double bal = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) + Double.parseDouble(amount);
-                String expectedBalanceText = "New Wallet Balance X" + Helper.formatString(bal).replace(",", "") + ". Coupon " + promoCode.toUpperCase() + " was redeemed successfully for SuperCash of  " + "1";
-                mbReporter.verifyEqualsWithLogging(actualBalanceText, expectedBalanceText, "Success screen | Verify Balance text", false, false);
-            } else {
-                Double expectedMainBalance = (Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100) + Double.parseDouble(amount) * 100;
-                Double actualMainBalance = Double.parseDouble(addMoneyPage.getSuccessPageWalletBalance().replace("New Wallet Balance X", "").replace(",", "")) * 100;
-                mbReporter.verifyEqualsWithLogging(actualMainBalance, expectedMainBalance, "Success Screen | Verify Main Balance", false, false);
-            }
+        if (promoCodeStatus) {
+            String actualBalanceText = addMoneyPage.getSuccessPageWalletBalance().replace(",", "");
+            Double bal = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) + Double.parseDouble(amount);
+            String expectedBalanceText = "New Wallet Balance X" + Helper.formatString(bal).replace(",", "") + ". Coupon " + promoCode.toUpperCase() + " was redeemed successfully for SuperCash of  " + "1";
+            mbReporter.verifyEqualsWithLogging(actualBalanceText, expectedBalanceText, "Success screen | Verify Balance text", false, false);
+        } else {
+            Double expectedMainBalance = (Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100) + Double.parseDouble(amount) * 100;
+            Double actualMainBalance = Double.parseDouble(addMoneyPage.getSuccessPageWalletBalance().replace("New Wallet Balance X", "").replace(",", "")) * 100;
+            mbReporter.verifyEqualsWithLogging(actualMainBalance, expectedMainBalance, "Success Screen | Verify Main Balance", false, false);
+        }
 
-            mbkCommonControlsHelper.returnToHomePageFromP2MSuccessScreen();
+        mbkCommonControlsHelper.returnToHomePageFromP2MSuccessScreen();
 
-            // POST TRX Assertions
-            balanceAfter = mbkCommonControlsHelper.getBalance();
+        // POST TRX Assertions
+        balanceAfter = mbkCommonControlsHelper.getBalance();
 
-            Double expectedMainBalanceAfter;
-            Double expectedSuperCashBalanceAfter;
+        Double expectedMainBalanceAfter;
+        Double expectedSuperCashBalanceAfter;
 
-            if (promoCodeStatus) {
-                expectedMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100 + Double.parseDouble(amount) * 100;
-                expectedSuperCashBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100 + 1 * 100;
+        if (promoCodeStatus) {
+            expectedMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100 + Double.parseDouble(amount) * 100;
+            expectedSuperCashBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100 + 1 * 100;
 
-            } else {
-                expectedMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100 + Double.parseDouble(amount) * 100;
-                expectedSuperCashBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
+        } else {
+            expectedMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100 + Double.parseDouble(amount) * 100;
+            expectedSuperCashBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
 
-            }
-            Double actualMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100;
-            Double actualSuperCashBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
-            mbReporter.verifyEqualsWithLogging(actualMainBalanceAfter, expectedMainBalanceAfter, "After TRX | Verify Wallet Main Balance", false, false);
-            mbReporter.verifyEqualsWithLogging(actualSuperCashBalanceAfter, expectedSuperCashBalanceAfter, "After TRX | Verify Supercash Balance", false, false);
-
+        }
+        Double actualMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100;
+        Double actualSuperCashBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
+        mbReporter.verifyEqualsWithLogging(actualMainBalanceAfter, expectedMainBalanceAfter, "After TRX | Verify Wallet Main Balance", false, false);
+        mbReporter.verifyEqualsWithLogging(actualSuperCashBalanceAfter, expectedSuperCashBalanceAfter, "After TRX | Verify Supercash Balance", false, false);
 
 
     }
@@ -303,8 +316,9 @@ public class AddMoneyHelper {
 
         Element.waitForVisibility(driver, addMoneyPage.label_select_payment_mode);
 
-        screen.swipeUpMedium(driver);
-
+        if(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='4363 XXXX XXXX 4460']"))==false) {
+            screen.swipeUpMedium(driver);
+        }
         AndroidElement androidElement = element.findElement(driver, By.xpath("//android.widget.TextView[@text = '" + cardNo + "']"));
         Element.selectElement(driver, androidElement, "Select Bank");
 
@@ -316,16 +330,22 @@ public class AddMoneyHelper {
 
         handleIndusindWebView(bankPassword);
 
-        boolean condition=false;
+        boolean condition = false;
 
-        if(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Unfortunately some processing error occurred at the bank and the transaction failed.Please try again.']"))){
-            condition=true;
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Unfortunately some processing error occurred at the bank and the transaction failed.Please try again.']"))) {
+            condition = true;
             mbReporter.verifyTrueWithLogging(condition, "Add Money Failed due to Insufficient Balance in Bank Account", true, false);
 
         }
 
 
         mbkCommonControlsHelper.returnToHomePageFromP2MSuccessScreen();
+
+        if(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Add Money to Wallet']"))){
+            AndroidElement close = element.findElement(driver, By.id("close_button"));
+            Element.selectElement(driver, close, "Close Add money Pop up");
+
+        }
 
     }
 
@@ -449,7 +469,6 @@ public class AddMoneyHelper {
         handleIndusindWebView(bankPassword);
 
         mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Unfortunately some processing error occurred at the bank and the transaction failed.Please try again.']")), "Add Money Failed due to Insufficient Balance in Bank Account", true, false);
-
 
 
     }

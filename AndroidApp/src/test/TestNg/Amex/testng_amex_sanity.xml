@@ -1,12 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Appium-Framework">
     <listeners>
         <listener class-name="UITestFramework.retryLogic.RetryListener"/>
-        <listener class-name="UITestFramework.retryLogic.TestListener"/>
+        <listener class-name="utils.Listeners.TestListener"/>
     </listeners>
     <parameter name="build" value="prod"/>
     <parameter name="level" value="payments"/>
     <parameter name="saucelabs" value="false"></parameter>
-    <parameter name="methodName" value="onboardingLogin"></parameter>
+    <parameter name="methodName" value="Amex Sanity"></parameter>
 
 
     <test name="Mobikwik Automation Tests">
@@ -14,7 +15,7 @@
             <run>
                 <include name="setUp"/>
                 <include name="instantiateHelpers"/>
-                <include name="successfulLoginViaMobile"/>
+                <include name="amexSanity"/>
                 <include name="tearDown"/>
             </run>
         </groups>
@@ -22,7 +23,7 @@
         <classes>
             <class name="UITestFramework.CreateSession"/>
             <class name="UITestFramework.ExtentReport.Reporter"/>
-            <class name="Login.Test_login"/>
+            <class name="Amex.Test_Amex"/>
         </classes>
 
     </test>

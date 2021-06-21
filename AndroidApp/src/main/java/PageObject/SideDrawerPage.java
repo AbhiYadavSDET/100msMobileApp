@@ -44,6 +44,12 @@ public class SideDrawerPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Security Settings']")
     private AndroidElement security_settings;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Accounts']")
+    private AndroidElement accountsPageCta;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Use 2% SuperCash on all transactions']")
+    private AndroidElement amexPageCta;
+
 
     public SideDrawerPage(AndroidDriver driver) {
         this.driver = driver;
@@ -83,5 +89,16 @@ public class SideDrawerPage {
         Element.selectElement(driver, link_my_saved_connections, "Click on My Saved Connection");
         return new SavedConnectionPage(driver);
     }
+
+    public WalletPage clickOnAccountsPage() throws IOException {
+        Element.selectElement(driver, accountsPageCta, "Click on Accounts Page");
+        return new WalletPage(driver);
+    }
+
+    public AmexPage clickOnAmexPage() throws IOException {
+        Element.selectElement(driver, amexPageCta, "Click on Amex Page");
+        return new AmexPage(driver);
+    }
+
 
 }

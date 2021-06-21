@@ -406,7 +406,8 @@ public class UpiHelper {
 
         if (Element.isElementPresent(driver, By.id("tx_bank_balance")) == false) {
 
-            walletPage = homePage.clickWalletNavigate();
+            sideDrawerPage= homePage.clickHamburgerIcon();
+            walletPage = sideDrawerPage.clickOnAccountsPage();
 
             Thread.sleep(5000);
             for (int i = 0; i < 2; i++) {

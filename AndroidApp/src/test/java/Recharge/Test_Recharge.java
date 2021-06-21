@@ -19,7 +19,8 @@ public class Test_Recharge extends CreateSession {
     @Test(groups = {"PrepaidRecharge", "rechargeSanity"}, priority = 0, dataProvider = "rechargeData", dataProviderClass = RechargeDataProviderClass.class)
     public void Test01_prepaid_recharge(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+//        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+        loginHelper.quickLoginViaNumber("9205299330", "547372");
 
         CheckBalanceHelper checkBalanceHelper = new CheckBalanceHelper(getAndroidDriver());
         checkBalanceHelper.checkBalance(frontEndEntity.getAmount());
@@ -32,8 +33,8 @@ public class Test_Recharge extends CreateSession {
     @Test(groups = {"PostpaidRecharge", "rechargeSanity"}, priority = 1, dataProvider = "rechargeData", dataProviderClass = RechargeDataProviderClass.class)
     public void Test02_postpaid_recharge(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
-
+//        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+        loginHelper.quickLoginViaNumber("9205299330", "547372");
 
         RechargeHelper rechargeHelper = new RechargeHelper(getAndroidDriver());
         rechargeHelper.postpaidPayment(frontEndEntity.getMobileNo(), frontEndEntity.getPopupError(), frontEndEntity.getPopupText(), "Postpaid, Vodafone");
@@ -42,7 +43,8 @@ public class Test_Recharge extends CreateSession {
     @Test(groups = {"PostpaidRechargeSavedConnection", "rechargeSanity"}, priority = 2, dataProvider = "rechargeData", dataProviderClass = RechargeDataProviderClass.class)
     public void Test03_postpaid_recharge_saved_connection(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+//        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+        loginHelper.quickLoginViaNumber("9205299330", "547372");
 
         RechargeHelper rechargeHelper = new RechargeHelper(getAndroidDriver());
         rechargeHelper.postpaidPaymentViaSavedConnection(frontEndEntity.getMobileNo(), frontEndEntity.getPopupText(), frontEndEntity.getCategory(), frontEndEntity.getOperator(), "Postpaid, Vodafone");
@@ -60,7 +62,8 @@ public class Test_Recharge extends CreateSession {
     @Test(groups = {"PrepaidRechargeWithPromoCode", "rechargeSanity"}, priority = 4, dataProvider = "rechargeData", dataProviderClass = RechargeDataProviderClass.class)
     public void Test05_recharge_prepaid_promocode(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+//        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+        loginHelper.quickLoginViaNumber("9205299330", "547372");
 
         CheckBalanceHelper checkBalanceHelper = new CheckBalanceHelper(getAndroidDriver());
         checkBalanceHelper.checkBalance(frontEndEntity.getAmount());
@@ -72,7 +75,8 @@ public class Test_Recharge extends CreateSession {
     @Test(groups = {"ViewBillGas", "rechargeSanity"}, priority = 5, dataProvider = "rechargeData", dataProviderClass = RechargeDataProviderClass.class)
     public void Test06_viewbill_gas(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+//        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+        loginHelper.quickLoginViaNumber("9205299330", "547372");
 
         RechargeHelper rechargeHelper = new RechargeHelper(getAndroidDriver());
         rechargeHelper.viewBillGas(frontEndEntity.getOperator(), frontEndEntity.getMobileNo());
@@ -81,7 +85,8 @@ public class Test_Recharge extends CreateSession {
     @Test(groups = {"ViewBillMtnlDelhi", "rechargeSanity"}, priority = 6, dataProvider = "rechargeData", dataProviderClass = RechargeDataProviderClass.class)
     public void Test07_viewbill_mtnl_delhi(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+//        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+        loginHelper.quickLoginViaNumber("9205299330", "547372");
 
         RechargeHelper rechargeHelper = new RechargeHelper(getAndroidDriver());
         rechargeHelper.viewBillMtnlDelhi(frontEndEntity.getOperator(), frontEndEntity.getMobileNo());
@@ -90,7 +95,8 @@ public class Test_Recharge extends CreateSession {
     @Test(groups = {"creditCardBillPaymentWapg", "rechargeSanity", "ccbpSanity"}, priority = 7, dataProvider = "rechargeData", dataProviderClass = RechargeDataProviderClass.class)
     public void Test08_credit_card_bill_pay_wapg(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+//        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+        loginHelper.quickLoginViaNumber("9205299330", "547372");
 
         RechargeHelper rechargeHelper = new RechargeHelper(getAndroidDriver());
         rechargeHelper.creditCardRechargeWapgFlow(frontEndEntity.getAmount(), frontEndEntity.getSecurityPin(), frontEndEntity.getCardNo(), frontEndEntity.getCvv(), frontEndEntity.getCardPassword(), frontEndEntity.getSuccessPageStatus(), frontEndEntity.getSuccessPageText(), false, "N/A");
@@ -99,7 +105,8 @@ public class Test_Recharge extends CreateSession {
     @Test(groups = {"creditCardBillPaymentWapgWithCoupon", "ccbpSanity"}, priority = 8, dataProvider = "rechargeData", dataProviderClass = RechargeDataProviderClass.class)
     public void Test09_credit_card_bill_pay_wapg_with_coupon(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+//        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+        loginHelper.quickLoginViaNumber("9205299330", "547372");
 
         RechargeHelper rechargeHelper = new RechargeHelper(getAndroidDriver());
         rechargeHelper.creditCardRechargeWapgFlow(frontEndEntity.getAmount(), frontEndEntity.getSecurityPin(), frontEndEntity.getCardNo(), frontEndEntity.getCvv(), frontEndEntity.getCardPassword(), frontEndEntity.getSuccessPageStatus(), frontEndEntity.getSuccessPageText(), true, frontEndEntity.getPromoCode());
@@ -109,7 +116,8 @@ public class Test_Recharge extends CreateSession {
     @Test(groups = {"creditCardBillPaymentWithVoucherSameAmount", "ccbpSanity"}, priority = 9, dataProvider = "rechargeData", dataProviderClass = RechargeDataProviderClass.class)
     public void Test10_credit_card_bill_pay_with_voucher_same_amount(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+//        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+        loginHelper.quickLoginViaNumber("9205299330", "547372");
 
         RechargeHelper rechargeHelper = new RechargeHelper(getAndroidDriver());
         rechargeHelper.creditCardRechargeWapgFlowVoucherSameAmount(frontEndEntity.getAmount(), frontEndEntity.getSecurityPin(), frontEndEntity.getSuccessPageStatus(), frontEndEntity.getSuccessPageText());
@@ -118,7 +126,8 @@ public class Test_Recharge extends CreateSession {
     @Test(groups = {"creditCardBillPaymentWithVoucherWapgAmountMoreThanVoucher", "ccbpSanity"}, priority = 10, dataProvider = "rechargeData", dataProviderClass = RechargeDataProviderClass.class)
     public void Test10_credit_card_bill_pay_wapg_amount_more_than_voucher(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+//        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+        loginHelper.quickLoginViaNumber("9205299330", "547372");
 
         RechargeHelper rechargeHelper = new RechargeHelper(getAndroidDriver());
         rechargeHelper.creditCardRechargeWapgFlowMoreAmountThanVoucher(frontEndEntity.getAmount(), frontEndEntity.getSecurityPin(), frontEndEntity.getCardNo(), frontEndEntity.getCvv(), frontEndEntity.getCardPassword(), frontEndEntity.getSuccessPageStatus(), frontEndEntity.getSuccessPageText());

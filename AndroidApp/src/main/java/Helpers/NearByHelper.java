@@ -49,7 +49,18 @@ public class NearByHelper {
 
         Screen.swipeUpMore(driver);
 
-        homePage.clickMoreIconUnderMoreServices();
+        homePage.clickAllServices();
+
+        for (int i = 0; i < 3; i++) {
+
+            if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Local Stores']")) == false) {
+
+                screen.swipeUpMore(driver);
+
+            } else {
+                break;
+            }
+        }
 
         nearbyPage = homePage.clickNearbyIcon();
 
@@ -64,20 +75,20 @@ public class NearByHelper {
 
         nearbyPage.clickOnBackButton();
 
-        homePage.closeMoreServicesOverlay();
+//        homePage.closeMoreServicesOverlay();
+//
+//        Thread.sleep(2000);
+//
+//        homePage.clickAllServices();
 
-        Thread.sleep(2000);
-
-        homePage.clickMoreIconUnderMoreServices();
-
-        String totalStoreCount = homePage.getStoreCount();
-
-        mbReporter.verifyTrueWithLogging(noOfstoresInOneList > 0, "No of Stores under address: " + noOfstoresInOneList, true, false);
-
-        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("tx_tag")), "Total Stores count displayed on home page: " + totalStoreCount, true, false);
+//        String totalStoreCount = homePage.getStoreCount();
+//
+//        mbReporter.verifyTrueWithLogging(noOfstoresInOneList > 0, "No of Stores under address: " + noOfstoresInOneList, true, false);
+//
+//        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("tx_tag")), "Total Stores count displayed on home page: " + totalStoreCount, true, false);
 
 
-        homePage.closeMoreServicesOverlay();
+//        homePage.closeMoreServicesOverlay();
 
 
     }
@@ -89,7 +100,18 @@ public class NearByHelper {
 
         Screen.swipeUpMore(driver);
 
-        homePage.clickMoreIconUnderMoreServices();
+        homePage.clickAllServices();
+
+        for (int i = 0; i < 3; i++) {
+
+            if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Local Stores']")) == false) {
+
+                screen.swipeUpMore(driver);
+
+            } else {
+                break;
+            }
+        }
 
         nearbyPage = homePage.clickNearbyIcon();
 
@@ -130,7 +152,18 @@ public class NearByHelper {
 
         Screen.swipeUpMore(driver);
 
-        homePage.clickMoreIconUnderMoreServices();
+        homePage.clickAllServices();
+
+        for (int i = 0; i < 3; i++) {
+
+            if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Local Stores']")) == false) {
+
+                screen.swipeUpMore(driver);
+
+            } else {
+                break;
+            }
+        }
 
         nearbyPage = homePage.clickNearbyIcon();
 

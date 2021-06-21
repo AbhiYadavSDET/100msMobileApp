@@ -225,7 +225,19 @@ public class BusHelper {
             return busPage = homePage.clickBusIcon();
 
         } else {
-            homePage.clickMoreIconUnderMoreServices();
+            homePage.clickAllServices();
+
+            for (int i = 0; i < 3; i++) {
+
+                if (Element.isElementPresent(driver, By.id("btn_logout")) == false) {
+
+                    screen.swipeUpMore(driver);
+
+                } else {
+                    break;
+                }
+            }
+
             return busPage = homePage.clickBusIcon();
         }
     }

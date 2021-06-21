@@ -1,8 +1,6 @@
 package Helpers;
 
-import PageObject.HomePage;
-import PageObject.MbkCommonControlsPage;
-import PageObject.WalletBalancePage;
+import PageObject.*;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import logger.Log;
@@ -22,6 +20,7 @@ public class MBKCommonControlsHelper {
     Element element;
     WalletBalancePage walletBalancePage;
     Screen screen;
+    TransactionHistoryPage transactionHistoryPage;
 
     enum BalanceType {
         MAINBALANCE,
@@ -115,6 +114,20 @@ public class MBKCommonControlsHelper {
         }
     }
 
+    public void handleRechargeAmountKeyboard(String amt) throws InterruptedException {
+        String[] amtArr = amt.split("|");
+
+        if (Element.isElementPresent(driver, By.id("layout_keyboard_btns"))) {
+
+            for (String e : amtArr) {
+                //Log.info("PRESS", e);
+                AndroidElement androidElement = element.findElement(driver, By.id("btn_pin_" + e));
+                Element.selectElement(driver, androidElement, e);
+            }
+
+        }
+    }
+
     public void handleUpiPin(String pin) throws InterruptedException {
 
         String[] pinArr = pin.split("|");
@@ -162,7 +175,12 @@ public class MBKCommonControlsHelper {
         mbkCommonControlsPage.clickOnSuccessPageCross();
         handleRatingsPopUp();
         handleNPS();
+        mbkCommonControlsPage.clickOnNavigateHome();
         //mbkCommonControlsPage.clickOnSuccessPageCross();
+    }
+
+    public void returnToHomePage() throws InterruptedException {
+        mbkCommonControlsPage.clickOnNavigateHome();
     }
 
     public LinkedHashMap<String, String> getBalance()
@@ -172,11 +190,15 @@ public class MBKCommonControlsHelper {
 
         // Goto balance details screen
         HomePage homePage = new HomePage(driver);
-        walletBalancePage = homePage.clickOnViewBalance();
+
+        transactionHistoryPage = homePage.clickHistory();
+        Thread.sleep(3000);
+
+        walletBalancePage = transactionHistoryPage.clickOnWalletBalanceCta();
 
         // fetch the balance and add to Map
         Element.waitForVisibility(driver, walletBalancePage.label_available_balance);
-        int noOfBalance = Element.findElements(driver, By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/androidx.viewpager.widget.ViewPager/android.widget.ScrollView/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.LinearLayout")).size();
+        int noOfBalance = Element.findElements(driver, By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.ScrollView/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.LinearLayout")).size();
         Log.info("noOfBalance - " + noOfBalance);
 
         // Fetch the total balance
@@ -189,11 +211,8 @@ public class MBKCommonControlsHelper {
         // Fetch the rest of the balances
         for (int i = 1; i <= noOfBalance; i++) {
 
-
-            String balanceText = element.findElement(driver, By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/androidx.viewpager.widget.ViewPager/android.widget.ScrollView/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.LinearLayout[" + i + "]/android.widget.LinearLayout/android.widget.RelativeLayout/android" +
-                    ".widget.TextView[@index = '0']")).getText().replace(" “", "").trim();
-            String balanceValue = element.findElement(driver, By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/androidx.viewpager.widget.ViewPager/android.widget.ScrollView/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.LinearLayout[" + i + "]/android.widget.LinearLayout/android.widget.RelativeLayout/android" +
-                    ".widget.TextView[@index = '1']")).getText().replace("X", "").replace(",", "");
+            String balanceText = element.findElement(driver, By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.ScrollView/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.LinearLayout[" + i + "]/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.TextView[1]")).getText().replace(" “", "").trim();
+            String balanceValue = element.findElement(driver, By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.ScrollView/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.LinearLayout[\" + i + \"]/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.TextView[2]")).getText().replace("X", "").replace(",", "");
 
 
             walletBalance.put(balanceText, balanceValue);
@@ -224,12 +243,15 @@ public class MBKCommonControlsHelper {
 
         Log.info("-----------------------------------");
 
-        clickUpButton2();
+        clickUpButton();
 
         Log.info("END : Fetch Wallet balance");
 
         // TO DO
         dismissAllOnHomePage(driver);
+
+        // Back to Home
+        homePage.clickOnBottomBarHome();
 
         return walletBalance;
     }
@@ -286,11 +308,11 @@ public class MBKCommonControlsHelper {
 //        Handle Expense Manager Bottom sheet
 
         Thread.sleep(2000);
-        if(Element.isElementPresent(driver, By.id("navigation_home"))){
+        if (Element.isElementPresent(driver, By.id("navigation_home"))) {
 
             Log.info("No Home Card");
 
-        }else {
+        } else {
 
             if (Element.isElementPresent(driver, By.id("cross_button"))) {
                 Log.info("Handle", "Any Other Bottom sheet");
@@ -320,9 +342,19 @@ public class MBKCommonControlsHelper {
 
     public void handleGetInstantLoanBottomSheet() throws InterruptedException {
         Thread.sleep(4000);
-        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text= 'Budget crunch? Get Instant Loan']"))) {
+        if (Element.isElementPresent(driver, By.id("cross_button"))) {
             Log.info("Handle", "Get Instant Loan Bottom sheet");
             mbkCommonControlsPage.clickOnGetInstantLoanBottonSheetCross();
+        }
+    }
+
+    public void handleLogin(String number, String otp) throws InterruptedException, IOException {
+        Thread.sleep(1000);
+        if (Element.isElementPresent(driver, By.id("tnc_layout"))) {
+            Log.info("Handle", "Login User in the Flow");
+
+            LoginHelper loginHelper=new LoginHelper(driver);
+            loginHelper.quickLoginViaNumberWithinFlow(number,otp);
         }
     }
 

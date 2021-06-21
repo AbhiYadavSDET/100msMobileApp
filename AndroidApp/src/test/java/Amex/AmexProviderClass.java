@@ -1,4 +1,4 @@
-package AddMoney;
+package Amex;
 
 import customexception.TestParametersNotFound;
 import dbutil.mysql.automationtest.front_end_automation.entity.FrontEndEntity;
@@ -10,13 +10,13 @@ import java.lang.reflect.Method;
 import java.sql.SQLException;
 import java.util.List;
 
-public class AddMoneyProviderClass {
+public class AmexProviderClass {
 
     DatabaseSqlHelper databaseSqlHelper = new DatabaseSqlHelper();
     public static int key;
 
 
-    @DataProvider(name = "addMoneyData")
+    @DataProvider(name = "amexData")
     public Object[][] getFrontEndTestData(Method method) throws SQLException, TestParametersNotFound {
         databaseSqlHelper.initiateFrontEndTest();
 
