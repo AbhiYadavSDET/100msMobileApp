@@ -7,7 +7,7 @@
     <parameter name="build" value="prod"/>
     <parameter name="level" value="payments"/>
     <parameter name="saucelabs" value="false"></parameter>
-    <parameter name="methodName" value="onboardingLogin"></parameter>
+    <parameter name="methodName" value="Amex Sanity"></parameter>
 
 
     <test name="Mobikwik Automation Tests">
@@ -15,7 +15,7 @@
             <run>
                 <include name="setUp"/>
                 <include name="instantiateHelpers"/>
-                <include name="p2pSanity"/>
+                <include name="amexSanity"/>
                 <include name="tearDown"/>
             </run>
         </groups>
@@ -23,7 +23,7 @@
         <classes>
             <class name="UITestFramework.CreateSession"/>
             <class name="UITestFramework.ExtentReport.Reporter"/>
-            <class name="P2P.Test_P2p"/>
+            <class name="Amex.Test_Amex"/>
         </classes>
 
     </test>

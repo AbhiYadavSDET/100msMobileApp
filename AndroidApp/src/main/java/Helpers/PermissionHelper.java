@@ -42,6 +42,8 @@ public class PermissionHelper {
         }
     }
 
+
+
     public String permissionPopOpTextV2() throws InterruptedException {
         if (Element.isElementPresent(driver, By.id("com.android.permissioncontroller:id/permission_message"))) {
             return Element.getText(driver, (AndroidElement) driver.findElementById("com.android.permissioncontroller:id/permission_message"), "Permission Message");
@@ -61,12 +63,27 @@ public class PermissionHelper {
 
     }
 
+    public boolean isAllowOnlyOnceOptionAvailable() throws InterruptedException {
+
+        if (Element.isElementPresent(driver, By.xpath("////android.widget.Button[@text= 'While using the app']"))) {
+            return true;
+        } else {
+
+            return false;
+        }
+
+    }
+
     public void permissionAllow() throws InterruptedException {
         if (isPermissionPopUpPresent()) {
             permissionPage.clickOnPermissionAllow();
         }
         if(isPermissionPopUpPresentV2())
         {
+            if(isAllowOnlyOnceOptionAvailable()){
+                permissionPage.clickOnPermissionAlwaysAllowV3();
+            }
+
             if(permissionPopOpTextV2().contains("location"))
             {permissionPage.clickOnPermissionAlwaysAllowV2();}
                 else {permissionPage.clickOnPermissionAllowV2();}

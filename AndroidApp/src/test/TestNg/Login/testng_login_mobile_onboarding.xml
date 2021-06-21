@@ -7,15 +7,15 @@
     <parameter name="build" value="prod"/>
     <parameter name="level" value="payments"/>
     <parameter name="saucelabs" value="false"></parameter>
-    <parameter name="methodName" value="loginViaMobileOnboarding"></parameter>
+    <parameter name="methodName" value="loginViaOnboarding"></parameter>
 
 
-    <test name="loginViaMobileOnboarding">
+    <test name="Mobikwik Automation Tests">
         <groups>
             <run>
                 <include name="setUp"/>
                 <include name="instantiateHelpers"/>
-                <include name="transactionHistoryVerification"/>
+                <include name="loginViaOnboarding"/>
                 <include name="tearDown"/>
             </run>
         </groups>

@@ -16,12 +16,9 @@ public class Test_Help extends CreateSession {
         Log.info("START : Help sanity test");
 
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
-
-//        loginHelper.quickLoginViaEmail("mkwik9330@gmail.com", "Test@1234");
+        loginHelper.quickLoginViaNumber("9205299330", "547372");
 
         helpHelper = new HelpHelper(getAndroidDriver());
-
         helpHelper.helpVerification();
         Log.info("END : Help sanity test");
 

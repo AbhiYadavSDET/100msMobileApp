@@ -29,7 +29,7 @@ public class MbkCommonControlsPage {
     @AndroidFindBy(id = "mkab_icon_1")
     private AndroidElement button_up;
 
-    @AndroidFindBy(id = "base_icon_back")
+    @AndroidFindBy(id = "base_icon_close")
     private AndroidElement cross_icon;
 
     @AndroidFindBy(id = "btn_have_promo")
@@ -52,6 +52,9 @@ public class MbkCommonControlsPage {
 
     @AndroidFindBy(id = "com.mobikwik_new.debug:id/close_button")
     private AndroidElement gullak_cross_button;
+
+    @AndroidFindBy(id = "navigation_home")
+    private AndroidElement navigate_home;
 
 
     public MbkCommonControlsPage(AndroidDriver driver) throws IOException {
@@ -130,6 +133,12 @@ public class MbkCommonControlsPage {
     public void clickOnGetInstantLoanBottonSheetCross() throws InterruptedException {
 
         Element.selectElement(driver, cross_button, "Cross Icon");
+
+    }
+
+    public void clickOnNavigateHome() throws InterruptedException {
+
+        Element.selectElement(driver, navigate_home, "Navigate Back to home");
 
     }
 
