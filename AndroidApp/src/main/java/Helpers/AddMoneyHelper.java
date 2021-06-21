@@ -126,7 +126,7 @@ public class AddMoneyHelper {
 
         Element.waitForVisibility(driver, addMoneyPage.label_select_payment_mode);
 
-        if(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='New Debit/Credit Card']"))==false) {
+        if(!Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='New Debit/Credit Card']"))) {
             screen.swipeUpMore(driver);
         }
 
@@ -192,7 +192,7 @@ public class AddMoneyHelper {
 
         Element.waitForVisibility(driver, addMoneyPage.label_select_payment_mode);
 
-        if(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='4363 XXXX XXXX 4460']"))==false) {
+        if(!Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='4363 XXXX XXXX 4460']"))) {
             screen.swipeUpMedium(driver);
         }
         
@@ -316,7 +316,7 @@ public class AddMoneyHelper {
 
         Element.waitForVisibility(driver, addMoneyPage.label_select_payment_mode);
 
-        if(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='4363 XXXX XXXX 4460']"))==false) {
+        if(!Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='4363 XXXX XXXX 4460']"))) {
             screen.swipeUpMedium(driver);
         }
         AndroidElement androidElement = element.findElement(driver, By.xpath("//android.widget.TextView[@text = '" + cardNo + "']"));
