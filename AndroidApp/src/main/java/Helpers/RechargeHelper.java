@@ -268,7 +268,6 @@ public class RechargeHelper {
 
         homePage.clickOnRechargeLayout();
         rechargePage = homePage.clickOnMobileButton();
-
         permissionHelper.permissionAllow();
         rechargePage.enterMobileNo(mobileNo);
         Thread.sleep(3000);
