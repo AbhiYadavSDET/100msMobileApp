@@ -55,6 +55,9 @@ public class SupercashStatementPage {
     @AndroidFindBy(id="close_icon")
     private AndroidElement popup_close_button;
 
+    @AndroidFindBy(id="navigation_home")
+    private AndroidElement back_home;
+
     public SupercashStatementPage(AndroidDriver driver) {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -120,5 +123,9 @@ public class SupercashStatementPage {
     public void clickOnClosePopUpIcon() throws InterruptedException{
         driver.switchTo().frame(1);
         Element.selectElement(driver, popup_close_button, "Offers Popup Close Button");
+    }
+
+    public void navigateBackToHome() throws InterruptedException{
+        Element.selectElement(driver, back_home, "Click on Back to Home Button");
     }
 }

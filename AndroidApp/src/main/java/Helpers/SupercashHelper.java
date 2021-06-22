@@ -111,7 +111,7 @@ public class SupercashHelper {
                                 Thread.sleep(3000);
                         }
         }
-        mbkCommonControlsHelper.returnToHomePageFromOffersScreen();
+        supercashStatementPage.navigateBackToHome();
         Thread.sleep(5000);
 
         //Assertions

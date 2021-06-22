@@ -346,9 +346,4 @@ public class MBKCommonControlsHelper {
         }
     }
 
-    public void returnToHomePageFromOffersScreen() throws InterruptedException{
-        mbkCommonControlsPage.clickOnHomeNavigationButton();
-    }
-
-
 }
