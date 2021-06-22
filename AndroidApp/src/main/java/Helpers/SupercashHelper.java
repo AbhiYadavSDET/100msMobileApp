@@ -4,15 +4,19 @@ import PageObject.HomePage;
 import PageObject.SupercashStatementPage;
 import UITestFramework.MBKPermissions;
 import UITestFramework.MBReporter;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import logger.Log;
 import org.json.JSONException;
+import org.openqa.selenium.By;
 import utils.Element;
 import utils.Screen;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class SupercashHelper {
 
@@ -24,6 +28,7 @@ public class SupercashHelper {
     MBReporter mbReporter;
     SupercashStatementPage supercashStatementPage;
     public static HashMap<String, String> supercashBalance;
+    String partnerText, giftcardText, dealsText, rechargesText, discountText;
 
     public SupercashHelper(AndroidDriver driver) throws InterruptedException, IOException {
         this.driver = driver;
@@ -36,6 +41,7 @@ public class SupercashHelper {
     }
 
     public void verifySupercash() throws InterruptedException, IOException, JSONException{
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
 
@@ -61,17 +67,63 @@ public class SupercashHelper {
         screen.swipeUpMedium(driver);
 
         supercashStatementPage.clickOnFAQ();
-        driver.navigate().back();
+        Thread.sleep(5000);
+        screen.swipeUpMedium(driver);
+        supercashStatementPage.clickOnBackButton();
 
         supercashStatementPage.clickOnRedeemButton();
         screen.swipeUpMedium(driver);
-        supercashStatementPage.clickOnOfferButton();
-        driver.navigate().back();
+        //supercashStatementPage.clickOnOfferButton();
 
+        List<MobileElement> myList = driver.findElementsByClassName("android.widget.TextView");
+        for(int i=0;i< myList.size();i++)
+        {
+            if (myList.get(i).getText().contains("partners")){
+                partnerText = myList.get(i).getText();
+                myList.get(i).click();
+                driver.findElementById("btn_convert_cash").isDisplayed();
+                supercashStatementPage.clickOnBackButton();
+                Thread.sleep(3000);
+            }else
+                if(myList.get(i).getText().contains("gift")){
+                     giftcardText = myList.get(i).getText();
+                    myList.get(i).click();
+                    driver.findElementByXPath("//android.widget.TextView[@text = 'Gift Cards']").isDisplayed();
+                    supercashStatementPage.clickOnBackButton();
+                    Thread.sleep(3000);
+                }else
+                    if(myList.get(i).getText().contains("exclusive deals")){
+                         dealsText = myList.get(i).getText();
+                        Thread.sleep(3000);
+                    }else
+                        if(myList.get(i).getText().contains("recharges")){
+                             rechargesText = myList.get(i).getText();
+                            myList.get(i).click();
+                            driver.findElementById("tx_tittle").equals("Recharge & Bill Payments");
+                            supercashStatementPage.clickOnRechargeCloseButton();
+                            Thread.sleep(3000);
+                        }else
+                            if(myList.get(i).getText().contains("discount coupons")){
+                             discountText = myList.get(i).getText();
+                                myList.get(i).click();
+                                driver.findElementById("textActionButton").isDisplayed();
+                                supercashStatementPage.clickOnBackButton();
+                                Thread.sleep(3000);
+                        }
+        }
+        mbkCommonControlsHelper.returnToHomePageFromOffersScreen();
+        Thread.sleep(5000);
 
         //Assertions
 
         mbReporter.verifyEqualsWithLogging(actualBalance, supercash, "Supercash is same on both pages", false, false);
+        mbReporter.verifyEqualsWithLogging(partnerText, "Save min 5% on MobiKwik partners", "Validate Partner Text on Redeem Page", false, false);
+        mbReporter.verifyEqualsWithLogging(giftcardText, "Save upto 10% on gift cards", "Validate Gift Card Text on Redeem Page", false, false);
+        mbReporter.verifyEqualsWithLogging(dealsText, "Exchange for some exclusive deals", "Validate Deals Text on Redeem Page", false, false);
+        mbReporter.verifyEqualsWithLogging(rechargesText, "Get 5% discount on recharges & bills", "Validate Recharge Text on Redeem Page", false, false);
+        mbReporter.verifyEqualsWithLogging(discountText, "Exchange for MobiKwik discount coupons", "Validate Discount Text on Redeem Page", false, false);
+
+
 
     }
 }

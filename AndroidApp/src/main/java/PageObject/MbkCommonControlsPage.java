@@ -53,6 +53,9 @@ public class MbkCommonControlsPage {
     @AndroidFindBy(id = "com.mobikwik_new.debug:id/close_button")
     private AndroidElement gullak_cross_button;
 
+    @AndroidFindBy(id= "navigation_home")
+    private AndroidElement home_button;
+
 
     public MbkCommonControlsPage(AndroidDriver driver) throws IOException {
         this.driver = driver;
@@ -131,6 +134,11 @@ public class MbkCommonControlsPage {
 
         Element.selectElement(driver, cross_button, "Cross Icon");
 
+    }
+
+    public void clickOnHomeNavigationButton() throws InterruptedException{
+
+        Element.selectElement(driver, home_button, "Click on Home Navigation Button");
     }
 
 

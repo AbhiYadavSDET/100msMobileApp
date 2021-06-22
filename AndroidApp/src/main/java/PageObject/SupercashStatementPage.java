@@ -46,6 +46,15 @@ public class SupercashStatementPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Buy Now']")
     private AndroidElement buy_now_button;
 
+    @AndroidFindBy(id="mkab_icon_1")
+    private AndroidElement back_button;
+
+    @AndroidFindBy(id="close_button")
+    private AndroidElement close_button;
+
+    @AndroidFindBy(id="close_icon")
+    private AndroidElement popup_close_button;
+
     public SupercashStatementPage(AndroidDriver driver) {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -98,5 +107,18 @@ public class SupercashStatementPage {
 
     public void clickOnOfferButton() throws InterruptedException{
         Element.selectElement(driver, buy_now_button, "Click on Buy Now");
+    }
+
+    public void clickOnBackButton() throws InterruptedException{
+        Element.selectElement(driver, back_button, "Click on Back Button");
+    }
+
+    public void clickOnRechargeCloseButton() throws InterruptedException{
+        Element.selectElement(driver, close_button, "Recharge Pop Up Close Button");
+    }
+
+    public void clickOnClosePopUpIcon() throws InterruptedException{
+        driver.switchTo().frame(1);
+        Element.selectElement(driver, popup_close_button, "Offers Popup Close Button");
     }
 }
