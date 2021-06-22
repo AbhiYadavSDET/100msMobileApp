@@ -63,6 +63,8 @@ public class P2MHelper {
 
         p2mPage.enterAmount(amount);
 
+        Element.waitForVisibility(driver, By.id("tv_wallet_balance"));
+
         p2mPage.clickOnCtaConfirmTransfer();
 
         mbkCommonControlsHelper.handleSecurityPin(securityPin);
