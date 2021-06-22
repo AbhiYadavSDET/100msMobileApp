@@ -9,6 +9,9 @@ import UITestFramework.MBReporter;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import org.json.JSONException;
+import org.openqa.selenium.By;
+import utils.Element;
+import utils.Screen;
 
 import java.io.IOException;
 
@@ -26,6 +29,7 @@ public class OfferHelper {
     PermissionHelper permissionHelper;
     AndroidDriver driver;
     MBKCommonControlsHelper mbkCommonControlsHelper;
+    Screen screen;
 
     public OfferHelper(AndroidDriver driver) throws IOException {
         this.driver = driver;
@@ -36,6 +40,7 @@ public class OfferHelper {
         mbReporter = new MBReporter(driver, "testScreenshotDir");
         permissionHelper = new PermissionHelper(driver);
         mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
+        screen = new Screen(driver);
 
     }
 
@@ -100,6 +105,10 @@ public class OfferHelper {
 
         // Step 2 | Go to redeem offer tab
         offerPage.clickOnRedeemOffer();
+
+        Element.waitForVisibility(driver, By.id("card_view"));
+
+        screen.swipeUpMedium(driver);
 
         // Step 3 | Fetch the list of offers
         int listSize = offerPage.fetchRedeemOffers();
