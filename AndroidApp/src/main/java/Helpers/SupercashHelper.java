@@ -122,7 +122,7 @@ public class SupercashHelper {
         mbReporter.verifyEqualsWithLogging(dealsText, "Exchange for some exclusive deals", "Validate Deals Text on Redeem Page", false, false);
         mbReporter.verifyEqualsWithLogging(rechargesText, "Get 5% discount on recharges & bills", "Validate Recharge Text on Redeem Page", false, false);
         mbReporter.verifyEqualsWithLogging(discountText, "Exchange for MobiKwik discount coupons", "Validate Discount Text on Redeem Page", false, false);
-
+        //mbReporter.verifyTrueWithLogging();
 
 
     }

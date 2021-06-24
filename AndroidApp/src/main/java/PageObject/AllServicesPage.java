@@ -18,6 +18,9 @@ public class AllServicesPage {
     @AndroidFindBy (xpath="//android.widget.TextView[@text='Split Bills']")
     private AndroidElement split_bill_icon;
 
+    @AndroidFindBy (xpath="//android.widget.TextView[@text='Pay Rent']")
+    private AndroidElement pay_rent_icon;
+
 
     public AllServicesPage(AndroidDriver driver) throws IOException {
 
@@ -34,9 +37,12 @@ public class AllServicesPage {
     }
 
     public void clickOnSplitBill() throws InterruptedException{
-        Screen.swipeUpMore(driver);
         Element.selectElement(driver, split_bill_icon, "Click on Split Bill Button");
 
+    }
+
+    public void clickOnPayRent() throws InterruptedException{
+        Element.selectElement(driver, pay_rent_icon, "Click on Pay Rent Button");
     }
 }
 
