@@ -432,4 +432,8 @@ public class HomePage {
         Element.selectElement(driver, bottom_bar_home, " Navigate Back To Home");
     }
 
+    public void closeInvestmentsBottomSheet() throws InterruptedException {
+        Element.selectElement(driver, cross_icon_for_recharge_services_overlay, "Close Investment Bottom Sheet.");
+    }
+
 }

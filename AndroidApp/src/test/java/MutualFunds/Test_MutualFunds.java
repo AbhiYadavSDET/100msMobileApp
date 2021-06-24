@@ -19,13 +19,12 @@ public class Test_MutualFunds extends CreateSession {
         Log.info("START : Mutual Funds verification test");
 
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaNumber("9205299330", "547372");
 
-        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
-//        loginHelper.quickLoginViaEmail("mayank.suneja@mobikwik.com", "Tuesday20");
 
         mutualFundsHelper = new MutualFundsHelper(getAndroidDriver());
-
         mutualFundsHelper.mutualFundsVerification();
+
         Log.info("END : Mutual Funds verification test");
 
     }

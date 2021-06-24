@@ -45,24 +45,80 @@ public class MutualFundsHelper {
 
         // Swipe the homescreen up
         Thread.sleep(2000);
-        screen.swipeUpMedium(driver);
 
         homePage.clickInvestmentAndInsuranceLayout();
         mutualFundPage = homePage.clickMutualFunds();
         Element.waitForVisibility(driver, By.id("tv_title"));
 
-        boolean isVisible = false;
-        // Check for the 1st element
-        if (mutualFundPage.isViewAllFunds()) {
-            isVisible = true;
-        }
-        // Check for the 2nd element
-        if (mutualFundPage.isVisibleGrowthImage()) {
-            isVisible = true;
-        }
 
-        // Verify by putting assertion
-        mbReporter.verifyEqualsWithLogging(isVisible, true, "Verify if the Element is present", false, false);
+
+        if(Element.isElementPresent(driver, By.id(""))){
+
+            mutualFundPage.clickOnWealthPortfolios();
+            String actualLabelText= mutualFundPage.getLabelText();
+            mbReporter.verifyEqualsWithLogging(actualLabelText, "Recommended wealth portfolios for you", "Wealth Postfolio Page opened.", false, false);
+            mutualFundPage.clickOnBackButton();
+
+            Thread.sleep(1000);
+
+            mutualFundPage.clickOnKwikSave();
+            String actualTitleText= mutualFundPage.getTitleText();
+            mbReporter.verifyEqualsWithLogging(actualTitleText, "Why Kwik Save is good for you", "Kwik Save Page opened.", false, false);
+            mutualFundPage.clickOnBackButton();
+
+            Thread.sleep(1000);
+
+            mutualFundPage.clickOnMonthlySip();
+            String actualRiskBaseTitle= mutualFundPage.getRiskBaseTitle();
+            mbReporter.verifyEqualsWithLogging(actualRiskBaseTitle, "My investment approach is:", "Star a SIP Page opened.", false, false);
+            mutualFundPage.clickOnBackButton();
+
+            Thread.sleep(1000);
+
+            mutualFundPage.clickOnOneTimeInvestment();
+            String actualTitleLumpsumInvestmentPage= mutualFundPage.getHeaderTitleText();
+            mbReporter.verifyEqualsWithLogging(actualTitleLumpsumInvestmentPage, "Invest One-Time", "Invest One-Time Page opened.", false, false);
+            mutualFundPage.clickOnBackButton();
+
+            Thread.sleep(1000);
+
+            mutualFundPage.clickOnElssMutualFunds();
+            String actualTitleElssPage= mutualFundPage.getHeaderTitleText();
+            mbReporter.verifyEqualsWithLogging(actualTitleElssPage, "Top ELSS Funds", "ELSS Page opened.", false, false);
+            mutualFundPage.clickOnBackButton();
+
+            Thread.sleep(1000);
+
+
+            mutualFundPage.clickOnBackButton();
+
+            mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+
+            homePage.closeInvestmentsBottomSheet();
+
+
+        }else {
+
+            boolean isVisible = false;
+            // Check for the 1st element
+            if (mutualFundPage.isViewAllFunds()) {
+                isVisible = true;
+            }
+            // Check for the 2nd element
+            if (mutualFundPage.isVisibleGrowthImage()) {
+                isVisible = true;
+            }
+
+            // Verify by putting assertion
+              mbReporter.verifyEqualsWithLogging(isVisible, true, "Verify if the Element is present", false, false);
+
+              mutualFundPage.clickOnBackButton();
+
+              mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+
+              homePage.closeInvestmentsBottomSheet();
+
+        }
 
     }
 
