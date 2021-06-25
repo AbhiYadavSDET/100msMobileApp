@@ -4,6 +4,7 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 import utils.Element;
 
@@ -35,7 +36,7 @@ public class GiftCardPage {
     @AndroidFindBy(id = "offer_brand")
     private AndroidElement select_brand_gift_card;
 
-    @AndroidFindBy(id = "edit_text_mket")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='X100']")
     private AndroidElement enter_amount;
 
     @AndroidFindBy(id = "action_button")
@@ -88,6 +89,9 @@ public class GiftCardPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'e-Com and Online']")
     private AndroidElement icon_trending;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'Gift a loved one']")
+    private AndroidElement gift_to_loved_one;
+
     public GiftCardPage(AndroidDriver driver) throws IOException {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -122,7 +126,7 @@ public class GiftCardPage {
     }
 
     public void selectAmount() throws InterruptedException {
-        Element.selectElement(driver, enter_amount, "select Amount Field");
+        Element.selectElement(driver, enter_amount, "Select 100 Rs Amount");
     }
 
     public void clickNext() throws InterruptedException {
@@ -180,6 +184,7 @@ public class GiftCardPage {
     }
 
     public void clickBackToHome() throws InterruptedException {
+        Element.waitForVisibility(driver, By.id("mkab_icon_1"));
         Element.selectElement(driver, back_button, "Navigate back to Home Page.");
     }
 
@@ -212,6 +217,10 @@ public class GiftCardPage {
 
     public void pressOk() throws InterruptedException{
         Element.selectElement(driver, cta_error_ok, "Press Ohk");
+    }
+
+    public void selectGiftToLovedOne() throws InterruptedException{
+        Element.selectElement(driver, gift_to_loved_one, "Select Gift to Loved One");
     }
 
 }

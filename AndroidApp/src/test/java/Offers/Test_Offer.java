@@ -23,10 +23,9 @@ public class Test_Offer extends CreateSession {
     public void Test20_offerSearch(FrontEndEntity frontEndEntity) throws Exception {
         Log.infoStartTest("offerSearch");
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+        loginHelper.quickLoginViaNumber("9205299330", "547372");
 
         offerHelperBase = new OfferHelper(getAndroidDriver());
-
         offerHelperBase.offerSearch("makemytrip", "Offer", "offerSearch");
 
         Log.infoEndTest("offerSearch");
@@ -38,10 +37,9 @@ public class Test_Offer extends CreateSession {
         Log.infoStartTest("offerCategoryCheck");
 
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+        loginHelper.quickLoginViaNumber("9205299330", "547372");
 
         offerHelperBase = new OfferHelper(getAndroidDriver());
-
         offerHelperBase.offerCategoryCheck("Offer", "offerCategoryCheck");
 
         Log.infoEndTest("offerCategoryCheck");
@@ -53,7 +51,7 @@ public class Test_Offer extends CreateSession {
         Log.infoStartTest("redeemOffersCheck");
 
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+        loginHelper.quickLoginViaNumber("9205299330", "547372");
 
         offerHelperBase = new OfferHelper(getAndroidDriver());
         offerHelperBase.redeemOffersCheck("Offer", "redeemOffer");

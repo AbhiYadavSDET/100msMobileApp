@@ -87,9 +87,13 @@ public class GiftCardHelper {
 
             Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Buy for self']"));
 
+            giftCardPage.selectGiftToLovedOne();
+
             giftCardPage.selectAmount();
 
-            giftCardPage.enterAmount(amount);
+//            giftCardPage.enterAmount(amount);
+
+            Element.waitForVisibility(driver, By.id("txSuperMessage"));
 
             giftCardPage.clickNext();
 
@@ -101,7 +105,9 @@ public class GiftCardHelper {
 
             giftCardPage.clickBuyCard();
 
-            mbkCommonControlsHelper.handleSecurityPin(pin);
+
+
+            mbkCommonControlsHelper.handleSecurityPin("000000");
 
 
             Thread.sleep(3000);
