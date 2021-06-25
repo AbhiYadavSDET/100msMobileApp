@@ -26,7 +26,7 @@ public class Test_Insurance extends CreateSession {
 //        String amount = frontEndEntity.getAmount();
 
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+        loginHelper.quickLoginViaNumber("9205299330", "547372");
 
 //        loginHelper.quickLoginViaEmail("mkwik9330@gmail.com", "Test@1234");
 

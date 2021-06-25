@@ -52,7 +52,7 @@ public class MutualFundsHelper {
 
 
 
-        if(Element.isElementPresent(driver, By.id(""))){
+        if(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text= 'Wealth Portfolios']"))){
 
             mutualFundPage.clickOnWealthPortfolios();
             String actualLabelText= mutualFundPage.getLabelText();

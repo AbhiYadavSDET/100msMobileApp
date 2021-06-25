@@ -49,6 +49,9 @@ public class MutualFundPage {
     @AndroidFindBy(id="icon_back")
     private AndroidElement back_button;
 
+    @AndroidFindBy(id="mkab_icon_1")
+    private AndroidElement back_button_2;
+
 
 
 
@@ -102,6 +105,10 @@ public class MutualFundPage {
     }
 
     public void clickOnBackButton() throws InterruptedException {
-        Element.selectElement(driver, back_button, " Click on Back button");
-    }
+        if(Element.isElementPresent(driver,By.id("mkab_icon_1"))){
+            Element.selectElement(driver, back_button_2, " Click on Back button 2");
+        }else {
+            Element.selectElement(driver, back_button, " Click on Back button");
+        }
+        }
 }
