@@ -83,6 +83,7 @@ public class PayRentHelper {
                 payRentPage.selectAndEnterIFSC(ifsc);
                 payRentPage.clickOnContinueButton();
 
+
         }
 
     }
