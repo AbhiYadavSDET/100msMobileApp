@@ -185,14 +185,10 @@ public class RechargeHelper {
         rechargePage.clickOnContinue();
         Thread.sleep(300);
         rechargePage.clickOnConfirmAmountPageCta();
-        Thread.sleep(300);
-
-        // Apply coupon code if applicable
-        if (promoCodeStatus) {
-            mbkCommonControlsHelper.applyPromoCodeRecharge(promoCode);
-        }
+        Thread.sleep(1000);
+        Element.waitForVisibility(driver, By.id("total_amount_label"));
         rechargePage.clickOnCtaCotinue();
-        Thread.sleep(300);
+        Thread.sleep(1000);
         mbkCommonControlsHelper.handleSecurityPin(securityPin);
         for(int i=0; i<6; i++){
             if(Element.isElementPresent(driver, By.id("base_status_icon_animation"))){
@@ -218,7 +214,9 @@ public class RechargeHelper {
         if(Element.isElementPresent(driver, By.id("amount"))) {
             mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessPageAmount().replace("X", ""), amount, "Success Page | Verify amount", false, false);
         }
-        mbkCommonControlsHelper.returnToHomePageFromRechargeSuccessScreen();
+
+        mbkCommonControlsHelper.returnToHomePageFromRechargeSuccessScreenBackButton();
+        rechargePage.clickOnPopupCross();
         balanceAfter = mbkCommonControlsHelper.getBalance();
         // Post TRX assertions
         Double actualMainBalance = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100;
@@ -228,8 +226,6 @@ public class RechargeHelper {
         mbReporter.verifyEqualsWithLogging(actualMainBalance, expectedMainBalance, "After TRX | Verify Main Balance", false, false);
         mbReporter.verifyEqualsWithLogging(actualMoneyAdded, expectedMoneyAdded, "After TRX | Verify Money Added", false, false);
     }
-
-
 
 
     //Pallavi Work
@@ -243,19 +239,84 @@ public class RechargeHelper {
         rechargePage.dropdownElectricityfirstOpClick();
         Thread.sleep(300);
 
-        // Assertions on the success screen
-        String actualBillPaymentText = rechargePage.getBillPaymentText();
-        String expectedBillPaymentText = "Bill Payment for";
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='No dues']"))) {
 
-        String actualElectricityScreenReminerText = rechargePage.getElectricityBillreminderText();
-        mbReporter.verifyEqualsWithLogging(rechargePage.getElectricityBillPageStatus(), trxStatus, "Preview Amount age| Verify Status", false, false);
-        mbReporter.verifyEqualsWithLogging(actualElectricityScreenReminerText, "Remind me for forthcoming bill payments", "Preview electricity Screen reminder text", false, false);
+            rechargePage.clickOnElectricityBackIcon();
+            Thread.sleep(300);
+            rechargePage.clickOnElectricityBackIcon();
+            Thread.sleep(400);
+            // Post TRX assertions
+            balanceAfter = mbkCommonControlsHelper.getBalance();
+            // Post TRX assertions
+            Double actualMainBalance = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100;
+            Double actualMoneyAdded = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MONEYADDED)) * 100;
+            Double expectedMainBalance = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100 - Double.parseDouble(amount) * 100;
+            Double expectedMoneyAdded = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MONEYADDED)) * 100 - Double.parseDouble(amount) * 100;
+            mbReporter.verifyEqualsWithLogging(actualMainBalance, expectedMainBalance, "After TRX | Verify Main Balance", false, false);
+            mbReporter.verifyEqualsWithLogging(actualMoneyAdded, expectedMoneyAdded, "After TRX | Verify Money Added", false, false);
+        }
+        else {
 
-        mbReporter.verifyEqualsWithLogging(actualBillPaymentText, expectedBillPaymentText, "Bill Payment Text Verification", false, false);
+            // Assertions on the success screen
+            String actualBillPaymentText = rechargePage.getBillPaymentText();
+            String expectedBillPaymentText = "Bill Payment for";
 
+            String actualElectricityScreenReminerText = rechargePage.getElectricityBillreminderText();
+            mbReporter.verifyEqualsWithLogging(rechargePage.getElectricityBillPageStatus(), trxStatus, "Preview Amount age| Verify Status", false, false);
+            mbReporter.verifyEqualsWithLogging(actualElectricityScreenReminerText, "Remind me for forthcoming bill payments", "Preview electricity Screen reminder text", false, false);
+            mbReporter.verifyEqualsWithLogging(actualBillPaymentText, expectedBillPaymentText, "Bill Payment Text Verification", false, false);
+
+            rechargePage.clickOnElectricityBackIcon();
+            Thread.sleep(300);
+            rechargePage.clickOnElectricityBackIcon();
+            Thread.sleep(400);
+            rechargePage.clickOnPopupCross();
+            Thread.sleep(400);
+            // Post TRX assertions
+            balanceAfter = mbkCommonControlsHelper.getBalance();
+            // Post TRX assertions
+            Double actualMainBalance = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100;
+            Double actualMoneyAdded = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MONEYADDED)) * 100;
+            Double expectedMainBalance = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100 - Double.parseDouble(amount) * 100;
+            Double expectedMoneyAdded = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MONEYADDED)) * 100 - Double.parseDouble(amount) * 100;
+            mbReporter.verifyEqualsWithLogging(actualMainBalance, expectedMainBalance, "After TRX | Verify Main Balance", false, false);
+            mbReporter.verifyEqualsWithLogging(actualMoneyAdded, expectedMoneyAdded, "After TRX | Verify Money Added", false, false);
+
+
+        }
     }
 
+    //PK
+    public void viewBillGas(String mobileNo, String amount, String category, String operator, String totalPayment, String trxStatus, String securityPin, Boolean promoCodeStatus, String promoCode, String promoCodeText) throws InterruptedException, IOException, JSONException {
+        Thread.sleep(2000);
 
+        balanceBefore = mbkCommonControlsHelper.getBalance();
+        homePage.clickOnRechargeLayout();
+        rechargePage = homePage.clickGasIcon();
+        permissionHelper.permissionAllow();
+        rechargePage.clickGasFirstOperator();
+        Element.waitForVisibility(driver, By.id("tv_title"));
+        rechargePage.enterGasConnectionNo(amount);
+
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='No dues']"))) {
+
+            rechargePage.clickOnElectricityBackIcon();
+            Thread.sleep(300);
+            rechargePage.clickOnElectricityBackIcon();
+            Thread.sleep(400);
+            // Post TRX assertions
+            balanceAfter = mbkCommonControlsHelper.getBalance();
+            // Post TRX assertions
+            Double actualMainBalance = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100;
+            Double actualMoneyAdded = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MONEYADDED)) * 100;
+            Double expectedMainBalance = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100 - Double.parseDouble(amount) * 100;
+            Double expectedMoneyAdded = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MONEYADDED)) * 100 - Double.parseDouble(amount) * 100;
+            mbReporter.verifyEqualsWithLogging(actualMainBalance, expectedMainBalance, "After TRX | Verify Main Balance", false, false);
+            mbReporter.verifyEqualsWithLogging(actualMoneyAdded, expectedMoneyAdded, "After TRX | Verify Money Added", false, false);
+        }
+
+
+    }
 
     public void postpaidPayment(String mobileNo, String popupError, String popupText, String operator) throws InterruptedException, IOException, JSONException {
 

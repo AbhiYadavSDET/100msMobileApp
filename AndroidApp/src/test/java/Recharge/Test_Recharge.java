@@ -90,7 +90,7 @@ public class Test_Recharge extends CreateSession {
     }
 
     @Test(groups = {"ElectricityViewBill", "rechargeSanity"}, priority = 0, dataProvider = "rechargeData", dataProviderClass = RechargeDataProviderClass.class)
-    public void Test02_logout_Prepaid_Recharge(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
+    public void Test02_Electricity_ViewBill(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
         loginHelper.quickLoginViaNumber("9205299330", "547372");
 
@@ -99,6 +99,15 @@ public class Test_Recharge extends CreateSession {
         rechargeHelper.viewBillElectricity(frontEndEntity.getMobileNo(), frontEndEntity.getAmount(), frontEndEntity.getCategory(), frontEndEntity.getOperator(), frontEndEntity.getTotalPayment(), frontEndEntity.getSuccessPageStatus(), frontEndEntity.getSecurityPin(), false, "N/A", frontEndEntity.getPromoCodeText());
     }
 
+    @Test(groups = {"GasViewBill", "rechargeSanity"}, priority = 0, dataProvider = "rechargeData", dataProviderClass = RechargeDataProviderClass.class)
+    public void Test03_viewbill_Gas(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaNumber("9205299330", "547372");
+
+        CheckBalanceHelper checkBalanceHelper = new CheckBalanceHelper(getAndroidDriver());
+        RechargeHelper rechargeHelper = new RechargeHelper(getAndroidDriver());
+        rechargeHelper.viewBillGas(frontEndEntity.getMobileNo(), frontEndEntity.getAmount(), frontEndEntity.getCategory(), frontEndEntity.getOperator(), frontEndEntity.getTotalPayment(), frontEndEntity.getSuccessPageStatus(), frontEndEntity.getSecurityPin(), false, "N/A", frontEndEntity.getPromoCodeText());
+    }
 
 
     @Test(groups = {"ViewBillGas", "rechargeSanity"}, priority = 5, dataProvider = "rechargeData", dataProviderClass = RechargeDataProviderClass.class)

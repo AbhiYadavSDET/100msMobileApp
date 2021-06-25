@@ -7,7 +7,7 @@
     <parameter name="build" value="prod"/>
     <parameter name="level" value="payments"/>
     <parameter name="saucelabs" value="false"></parameter>
-    <parameter name="methodName" value="ViewBillGas"></parameter>
+    <parameter name="methodName" value="rechargePrepaid"></parameter>
 
 
     <test name="Mobikwik Automation Tests">
@@ -15,7 +15,7 @@
             <run>
                 <include name="setUp"/>
                 <include name="instantiateHelpers"/>
-                <include name="ViewBillGas"/>
+                <include name="GasViewBill"/>
                 <include name="tearDown"/>
             </run>
         </groups>

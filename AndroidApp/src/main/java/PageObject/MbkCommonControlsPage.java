@@ -32,6 +32,10 @@ public class MbkCommonControlsPage {
     @AndroidFindBy(id = "base_icon_close")
     private AndroidElement cross_icon;
 
+
+    @AndroidFindBy(id = "base_icon_back")
+    private AndroidElement arrow_back;
+
     @AndroidFindBy(id = "btn_have_promo")
     private AndroidElement label_have_a_promo_code;
 
@@ -88,9 +92,24 @@ public class MbkCommonControlsPage {
     }
 
 
-    public void clickOnSuccessPageCross() {
+    public void clickOnSuccessPageCross() throws InterruptedException {
+         if (Element.isElementPresent(driver,By.id("base_icon_back"))){
+             Element.selectElement(driver, arrow_back, "base_icon_back");
+         }
 
-        Element.selectElement(driver, cross_icon, "base_icon_close");
+         else
+
+            {
+
+                Element.selectElement(driver, cross_icon, "base_icon_close");
+            }
+
+
+    }
+
+    public void clickOnSuccessPageBackbutton() {
+
+        Element.selectElement(driver, arrow_back, "Click on back button on Recharge Postpid succuss screen");
 
     }
 

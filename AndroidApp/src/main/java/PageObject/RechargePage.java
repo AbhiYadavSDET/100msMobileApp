@@ -35,8 +35,17 @@ public class RechargePage {
     @AndroidFindBy(id = "edit_text")
     private AndroidElement enterText_click;
 
+    @AndroidFindBy(id = "continue_button")
+    private AndroidElement continue_button;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='ę']")
+    private AndroidElement back_electricity_icon;
+
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Adani Electricity Mumbai Limited']")
     private AndroidElement dropdown_electricityFirstOperator;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Aavantika Gas Ltd.']")
+    private AndroidElement dropdown_gasConnection;
 
     @AndroidFindBy(id = "right_arrow")
     private AndroidElement link_drop_down;
@@ -87,6 +96,9 @@ public class RechargePage {
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Category']/following::android.widget.TextView[1]")
     private AndroidElement label_category;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Operators']/following::android.widget.TextView[1]")
+    private AndroidElement label_opertor_Gas;
 
     @AndroidFindBy(id = "operator")
     private AndroidElement label_operator;
@@ -257,6 +269,7 @@ public class RechargePage {
     public void dropdownElectricityfirstOpClick() throws InterruptedException {
         Element.selectElement(driver, dropdown_electricityFirstOperator, "click on first electricity operator");
     }
+
     public void enterPostpaidAmount(String amount) throws InterruptedException {
         Element.enterText(driver, enterText_click, amount, "Enter Amount");
     }
@@ -302,6 +315,12 @@ public class RechargePage {
         Element.selectElement(driver, cta_back_button_plans_page, "Navigate back to recharge page");
     }
 
+
+
+    public void enterGasConnectionNo(String ConnectionNo) throws InterruptedException {
+        Element.enterText(driver, textbox_enter_amount2, ConnectionNo, "Enter Connection No");
+    }
+
     public void enterAmount(String amount) throws InterruptedException {
         Element.enterText(driver, textbox_enter_amount2, amount, "Enter Amount");
     }
@@ -334,6 +353,10 @@ public class RechargePage {
         return Element.getText(driver, label_category, "Success Screen | Verify Category");
     }
 
+    public void clickGasFirstOperator() throws InterruptedException {
+        Element.selectElement(driver, label_opertor_Gas, "Click on label Gas");
+    }
+
     public String getSuccessPageOperator() throws InterruptedException {
         return Element.getText(driver, label_operator, "Success Screen | Verify Operator");
     }
@@ -354,6 +377,9 @@ public class RechargePage {
         return Element.getText(driver, dropdown_electricityFirstOperator, "Success Screen | Verify Status");
     }
 
+    public String dropdownGasFirstOperator() throws InterruptedException {
+        return Element.getText(driver, dropdown_gasConnection, "Success Screen | Verify Status");
+    }
 
     public String getPopupError() throws InterruptedException {
         return Element.getText(driver, popup_error, "Popup | Verify error");
@@ -371,6 +397,11 @@ public class RechargePage {
         return Element.getText(driver, viewBillText, "View Bill | Verify text");
     }
 
+
+    public RechargePage clickOnElectricityBackIcon() throws IOException {
+        Element.selectElement(driver, back_electricity_icon, "CLick on Electricity BAck icon ");
+        return new RechargePage(driver);
+    }
     public void enterDthAmount(String amount) throws InterruptedException {
         Element.enterText(driver, textbox_enter_dth_amount, amount, "Enter Amount");
     }
@@ -424,6 +455,9 @@ public class RechargePage {
         Element.selectElement(driver, button_credit_card_continue, "CTA Continue");
     }
 
+    public void clickGasContinueCta() throws InterruptedException {
+        Element.selectElement(driver, continue_button, "Continue Continue");
+    }
 
     public String getSuccessScreenTitle() throws InterruptedException {
         return Element.getText(driver, pending_screen_title, "Succes Screen Tile");
