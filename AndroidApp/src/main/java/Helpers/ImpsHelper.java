@@ -122,16 +122,15 @@ public class ImpsHelper {
         //Entering amount on the page-
         impsPage.clickButton5();
         impsPage.clickButton0();
-        Thread.sleep(5000);
 
         impsPage.clickAmountSubmitButton();
 
         impsPage.clickPay();
 
         mbkCommonControlsHelper.handleSecurityPin(securityPin);
-        Thread.sleep(10000);
 
         impsPage.closeReferralDialogBox();
+        Thread.sleep(5000);
         //Assertions
         String actualMessage = impsPage.getSuccessMessage();
         //String actualAccountNo = impsPage.getSuccessPageAccountNo();
@@ -155,12 +154,11 @@ public class ImpsHelper {
         screen.swipeUpLess(driver);
 
         impsPage.clickTransferToNewAccount();
-        Thread.sleep(5000);
+
         //Enter Bank Account Details
         impsPage.enterBeneficiaryName(accountName);
         impsPage.enterAccountNo(accountNo);
         impsPage.enterIfsc(ifsc);
-        //Thread.sleep(5000);
         driver.navigate().back();
 
         impsPage.clickUPIContinueButton();
@@ -170,16 +168,15 @@ public class ImpsHelper {
         //Entering amount on the page-
         impsPage.clickButton5();
         impsPage.clickButton0();
-        Thread.sleep(5000);
 
         impsPage.clickAmountSubmitButton();
 
         impsPage.clickPay();
 
         mbkCommonControlsHelper.handleSecurityPin(securityPin);
-        Thread.sleep(10000);
 
         impsPage.closeReferralDialogBox();
+        Thread.sleep(5000);
         //Assertions
         String actualMessage = impsPage.getSuccessMessage();
         String actualAccountNo = impsPage.getSuccessPageAccountNo();
@@ -188,6 +185,7 @@ public class ImpsHelper {
         mbReporter.verifyEqualsWithLogging(actualMessage, "Your Transfer is Successful", "Success Page | Message", false, false);
         mbReporter.verifyEqualsWithLogging(actualAccountNo, accountNo, "Success Page | Account No", false, false);
         mbReporter.verifyEqualsWithLogging(actualAmount, "₹ 50", "Success Page | Amount", false, false);
+
 
         mbkCommonControlsHelper.returnToHomePageFromP2MSuccessScreen();
 

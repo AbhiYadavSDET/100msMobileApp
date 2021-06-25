@@ -48,7 +48,7 @@ public class SupercashHelper {
         supercashBalance =  mbkCommonControlsHelper.getBalance();
         Double actualBalance = Double.parseDouble(mbkCommonControlsHelper.getBalance(supercashBalance, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
 
-        Thread.sleep(5000);
+        Thread.sleep(3000);
         supercashStatementPage.clickWalletButton();
         supercashStatementPage.clickStatementButton();
 
@@ -59,21 +59,19 @@ public class SupercashHelper {
         String substr = str.substring(2);
         double supercash = Double.parseDouble(substr) * 100;
 
-        Thread.sleep(3000);
         supercashStatementPage.switchToHistoryTab();
-        screen.swipeUpLess(driver);
+        screen.swipeUpMore(driver);
 
         supercashStatementPage.switchToSummaryTab();
-        screen.swipeUpMedium(driver);
+        screen.swipeUpMore(driver);
 
         supercashStatementPage.clickOnFAQ();
-        Thread.sleep(5000);
-        screen.swipeUpMedium(driver);
+        Thread.sleep(3000);
+        screen.swipeUpMore(driver);
         supercashStatementPage.clickOnBackButton();
 
         supercashStatementPage.clickOnRedeemButton();
         screen.swipeUpMedium(driver);
-        //supercashStatementPage.clickOnOfferButton();
 
         List<MobileElement> myList = driver.findElementsByClassName("android.widget.TextView");
         for(int i=0;i< myList.size();i++)
@@ -112,7 +110,6 @@ public class SupercashHelper {
                         }
         }
         supercashStatementPage.navigateBackToHome();
-        Thread.sleep(5000);
 
         //Assertions
 

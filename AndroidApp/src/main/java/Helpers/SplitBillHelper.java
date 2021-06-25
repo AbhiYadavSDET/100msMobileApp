@@ -47,20 +47,18 @@ public class SplitBillHelper{
         homePage.clickAllServices();
         Screen.swipeUpMore(driver);
         Screen.swipeUpMore(driver);
+        Screen.swipeUpMore(driver);
         allServicesPage.clickOnSplitBill();
 
-        Thread.sleep(3000);
         splitBillPage.clickOnStart();
         //splitBillPage.clickOnAllow();
 
         //Entering First Name
-        Thread.sleep(3000);
         splitBillPage.clickAndEnterText(name1);
         splitBillPage.clickCheckbox();
         splitBillPage.clearSearchText(name1);
 
         //Entering Second Name
-        Thread.sleep(3000);
         splitBillPage.clickAndEnterText(name2);
         splitBillPage.clickCheckbox();
         splitBillPage.clearSearchText(name2);
@@ -69,7 +67,6 @@ public class SplitBillHelper{
         splitBillPage.clickContinue();
 
         //Entering amount
-        Thread.sleep(3000);
         splitBillPage.clickAndEnterAmount(amount);
         driver.navigate().back();
 
@@ -98,12 +95,11 @@ public class SplitBillHelper{
         mbReporter.verifyEqualsWithLogging(successAmount, "X50", "SuccessPage | Amount", false, false);
         mbReporter.verifyEqualsWithLogging(firstName, name1, "SuccessPage | FirstName", false, false);
         mbReporter.verifyEqualsWithLogging(secondName, name2, "SuccessPage | SecondName", false, false);
+
         //ExitonHomePage
 
         splitBillPage.clickOnClose();
         supercashStatementPage.navigateBackToHome();
-        Thread.sleep(3000);
-
 
     }
 }
