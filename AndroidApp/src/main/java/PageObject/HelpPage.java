@@ -15,7 +15,7 @@ public class HelpPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Add Money']")
     private AndroidElement addMoney;
 
-    @AndroidFindBy(xpath = "//android.widget.RelativeLayout/following::android.widget.TextView[@text='Money added to wallet']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Money added to wallet']")
     private AndroidElement issue;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='My issue is not listed above ']")

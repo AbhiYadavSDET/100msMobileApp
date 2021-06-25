@@ -29,14 +29,14 @@ public class OfferPage {
     @AndroidFindBy(xpath = "//android.widget.LinearLayout/android.view.ViewGroup")
     private AndroidElement offer_list2;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Redeem SuperCash']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'REDEEM SUPERCASH']")
     private AndroidElement redeemOffer;
 
     String close = "close_button";
 
     String categoryText = "text";
 
-    String redeemOfferList = "click_view";
+    String redeemOfferList = "card_view";
 
 
     public OfferPage(AndroidDriver driver) throws IOException {

@@ -27,7 +27,7 @@ public class HomePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Scan any QR']")
     private AndroidElement button_pay_to_merchant;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Wallet to Bank Transfer']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Wallet to Wallet transfer']")
     private AndroidElement button_transfer_money;
 
     @AndroidFindBy(xpath = "//android.widget.Button[@text = 'Add Money']")
@@ -86,6 +86,8 @@ public class HomePage {
 
     @AndroidFindBy(id = "skip")
     public AndroidElement skip_button;
+
+
 
 //    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Wallet']")
 //    private AndroidElement button_wallet;
@@ -170,17 +172,22 @@ public class HomePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Ola Cabs']")
     private AndroidElement icon_ola;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Home']")
+    @AndroidFindBy(id = "navigation_home")
     private AndroidElement bottom_bar_home;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Home']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'All Services']")
     private AndroidElement bottom_bar_all_services;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Home']")
-    private AndroidElement bottom_bar_all_offers;
+    private AndroidElement bottom_bar;
 
     @AndroidFindBy(id = "com.mobikwik_new.debug:id/icon_chevron")
     private AndroidElement arrow_balance_dropdown;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Deals']")
+    private AndroidElement button_deals;
+
+
 
 
     public HomePage(AndroidDriver driver) {
@@ -409,6 +416,24 @@ public class HomePage {
 
     public void closeMoreServicesOverlay() throws InterruptedException {
         Element.selectElement(driver, cross_icon_for_more_services_overlay, "Close More Services Overlay");
+    }
+
+    public void clickOnAllServicesSection() throws InterruptedException{
+        Element.selectElement(driver, bottom_bar_all_services, "Open All Service Section");
+    }
+
+    public DealsPage clickOnButtonDeals() throws IOException {
+        Element.selectElement(driver, button_deals, "Open Deals");
+        return new DealsPage(driver);
+
+
+    }
+    public void navigateToHome() throws IOException{
+        Element.selectElement(driver, bottom_bar_home, " Navigate Back To Home");
+    }
+
+    public void closeInvestmentsBottomSheet() throws InterruptedException {
+        Element.selectElement(driver, cross_icon_for_recharge_services_overlay, "Close Investment Bottom Sheet.");
     }
 
 }

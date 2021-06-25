@@ -47,6 +47,9 @@ public class SideDrawerPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Accounts']")
     private AndroidElement accountsPageCta;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Use 2% SuperCash on all transactions']")
+    private AndroidElement amexPageCta;
+
 
     public SideDrawerPage(AndroidDriver driver) {
         this.driver = driver;
@@ -91,5 +94,11 @@ public class SideDrawerPage {
         Element.selectElement(driver, accountsPageCta, "Click on Accounts Page");
         return new WalletPage(driver);
     }
+
+    public AmexPage clickOnAmexPage() throws IOException {
+        Element.selectElement(driver, amexPageCta, "Click on Amex Page");
+        return new AmexPage(driver);
+    }
+
 
 }

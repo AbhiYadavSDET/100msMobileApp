@@ -33,6 +33,13 @@ public class PermissionPage {
     @AndroidFindBy(id = "com.google.android.gms:id/cancel")
     private AndroidElement cancel_popup;
 
+    @AndroidFindBy(id = "com.android.permissioncontroller:id/permission_allow_foreground_only_button")
+    private AndroidElement permission_always_allow_v3;
+
+    @AndroidFindBy (xpath="//android.widget.Button[@text= 'While using the app']")
+    private AndroidElement permission_while_using_app;
+
+
 
     public PermissionPage(AndroidDriver driver) {
         this.driver = driver;
@@ -67,5 +74,9 @@ public class PermissionPage {
 
     public void clickOnPermissionAlwaysAllowV2() {
         Element.selectElement(driver, permission_always_allow_v2, "Permission Always Allow");
+    }
+
+    public void clickOnPermissionAlwaysAllowV3() {
+        Element.selectElement(driver, permission_always_allow_v3, "Permission Allow While Using the App");
     }
 }

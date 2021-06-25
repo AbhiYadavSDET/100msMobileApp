@@ -47,47 +47,99 @@ public class LoginHelper {
         screen = new Screen(driver);
         homePage = new HomePage(driver);
         walletPage = new WalletPage(driver);
+        loginPage= new LoginPage(driver);
 
 
     }
 
-    public void doLoginFromOboarding(String mobile) throws InterruptedException, IOException, JSONException {
+    public void doLoginFromOboarding(String number, String otp) throws InterruptedException, IOException, JSONException {
+
+        Log.info("START", "Login");
+        Log.info("----------- Arguments ---------------");
+        Log.info("Mobile : " + number);
+        Log.info("Otp : " + otp);
+        Log.info("-------------------------------------");
 
         onboardingPage.clickOnGetStartedCta();
-        onboardingPage.enterMobileNo(mobile);
 
-        onboardingPage.clickOnGetOtpCta();
+        if (isOnboardingPresent()) {
+            Log.info("User is logged out, logging in");
 
-//        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Enter your OTP below']"));
+            onboardingPage.enterMobileNo(number);
 
-        //If OTP not Auto Read enter OTP and press Submit
+            onboardingPage.clickOnGetOtpCta();
 
-        Element.waitForVisibility(driver, By.id("com.android.packageinstaller:id/dialog_container"));
+            Element.waitForVisibility(driver, By.id("waiting_otp"));
 
-        permissionHelper.permissionAllow();
+            onboardingPage.enterOtp(otp);
 
-        Thread.sleep(1500);
+            onboardingPage.clickSubmitOtpCta();
 
-//       mbReporter.verifyEqualsWithLogging(homePage.getTitleMessageSecondaryEmail(), "Enter a valid Email below", "Secondary Email Screen displayed", true, true);
+            Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text='Complete your KYC']"));
 
-        homePage.clickOnSkip();
+            String actualPermissionText= onboardingPage.getPermissionText();
 
-        permissionHelper.permissionAllow();
+            mbReporter.verifyEqualsWithLogging(actualPermissionText, "Allow location, SMS and contact permissions to unlock your rewards. By continuing you agree to Terms & Conditions", "Validate Proposition Screen Displayed", false,false);
 
-        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+            onboardingPage.clickContinueWithAadhaarCta();
 
+            Element.waitForVisibility(driver, By.id("alertTitle"));
 
-        sideDrawerPage = new HomePage(driver).clickHamburgerIcon();
+            String actualConsentTitleText= onboardingPage.getConsentPopUpTitleText();
 
+            mbReporter.verifyEqualsWithLogging(actualConsentTitleText, "SMS & Contacts Access Needed", "Validate SMS and Contact Consent POP UP Displayed", false,false);
 
-        String actualMobileNo = sideDrawerPage.getMobileNo();
+            onboardingPage.clickAllowConsent();
 
-        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("drawerHeadingName")), "Name Is Present", true, false);
-        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("drawerHeadingEmail")), "Email Id Is Present", true, false);
-        mbReporter.verifyEqualsWithLogging(actualMobileNo, mobile, "Verify Mobile", false, false);
+            permissionHelper.permissionAllow();
 
-        homePage.clickHomePageMbkLogo();
+            permissionHelper.permissionAllow();
 
+            permissionHelper.permissionAllow();
+
+            Element.waitForVisibility(driver, By.xpath("//android.widget.EditText[@text= 'Aadhaar Number']"));
+
+            String actualKycConsentText= onboardingPage.getKycConsentText();
+
+            mbReporter.verifyEqualsWithLogging(actualKycConsentText, "I agree that all KYC details shared by me may be used for my credit evaluation & inquiries on credit bureaus. I authorize MobiKwik to use this data for MobiKwik Wallet KYC upgrade & share with its loan providing partner.", "Validate KYC Screen displayed", false,false);
+
+            onboardingPage.clickOnKYCSkipCta();
+
+            onboardingPage.clickOnOtherKycOptionCta();
+
+            Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'KYC without Aadhaar']"));
+
+            mbReporter.verifyTrueWithLogging(onboardingPage.isNonAadhaarOptionsAvailable(), "KYC other options page Opened", false,false);
+
+            onboardingPage.clickOnKYCSkipCta();
+
+            onboardingPage.clickOnIdontWantBenifitsCta();
+
+            Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Link your bank account']"));
+
+            String actualUpiPageCashbackText= onboardingPage.getUpiPageCashbackText();
+
+            mbReporter.verifyEqualsWithLogging(actualUpiPageCashbackText, "Get assured cashback on your 1st UPI transfer.", "Validate Upi Screen displayed", false,false);
+
+            onboardingPage.clickOnUpiPageCross();
+
+            Element.waitForVisibility(driver, By.id("email_referral_layout"));
+
+            String actualEmailScreenText= onboardingPage.getEmailScreenText();
+
+            mbReporter.verifyEqualsWithLogging(actualEmailScreenText, "Get offers & monthly statements!", "Validate Email Screen is displayed", false,false);
+
+            onboardingPage.clickOnContinueCta();
+
+            mbkCommonControlsHelper.handleGetInstantLoanBottomSheet();
+
+            mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+
+        } else {
+            Log.info("User is logged in, no need to login");
+        }
+
+        Log.info("END", "Login");
 
     }
 
@@ -287,6 +339,25 @@ public class LoginHelper {
         }
 
         Log.info("END", "Login");
+
+    }
+
+    public void quickLoginViaNumberWithinFlow(String number, String otp) throws InterruptedException, IOException {
+
+            // Enter Number
+            loginPage.enterMobileNumber(number);
+
+            loginPage.clickOnSendOtpCta();
+
+
+            // Enter Password
+            loginPage.enterOtp(otp);
+
+
+            loginPage.clickSubmitOtpCta();
+
+        Log.info("END", "Login");
+
 
     }
 
