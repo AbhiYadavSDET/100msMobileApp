@@ -135,7 +135,7 @@ public class InsuranceHelper {
 
         mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Confirm Payment']")), "Verify Confirmation Page is Loaded", true, true);
 
-        mbReporter.verifyTrueWithLogging(getInsuranceDetails(), "Verify Insurance Info Details", false,false);
+        mbReporter.verifyTrueWithLogging(getInsuranceDetailsInfo(), "Verify Insurance Info Details", false,false);
 
         insurancePage.clickOnBackButton();
 
