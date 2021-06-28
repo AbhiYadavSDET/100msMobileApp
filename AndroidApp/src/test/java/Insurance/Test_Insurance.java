@@ -45,7 +45,7 @@ public class Test_Insurance extends CreateSession {
 //
 //        cancelSingleHelper.verifySuccessResponse();
 
-        insuranceHelper.validateInsurance(frontEndEntity.getPopupError(), frontEndEntity.getPopupText());
+        insuranceHelper.validateInsurance(frontEndEntity.getPopupText());
         Log.info("END : Insurance sanity test");
 
     }

@@ -415,7 +415,7 @@ public class HomePage {
     }
 
     public void closeMoreServicesOverlay() throws InterruptedException {
-        Element.selectElement(driver, cross_icon_for_more_services_overlay, "Close More Services Overlay");
+        Element.selectElement(driver, cross_icon_for_more_services_overlay, "Close Overlay");
     }
 
     public void clickOnAllServicesSection() throws InterruptedException{

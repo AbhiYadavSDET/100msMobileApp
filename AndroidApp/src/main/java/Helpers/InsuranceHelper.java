@@ -14,6 +14,8 @@ import utils.Screen;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class InsuranceHelper {
 
@@ -101,7 +103,7 @@ public class InsuranceHelper {
     }
 
 
-    public void validateInsurance(String insuranceType, String insuranceAmount) throws InterruptedException, IOException, JSONException {
+    public void validateInsurance(String insuranceAmount) throws InterruptedException, IOException, JSONException {
 
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
@@ -113,29 +115,118 @@ public class InsuranceHelper {
 
         Thread.sleep(4000);
         Element.waitForVisibility(driver, By.id("mkab_title"));
-        screen.swipeUpMedium(driver);
 
+        mbReporter.verifyTrueWithLogging(getInsuranceDetails(), "Verify Insurance Details", false,false);
 
-//        Log.info(insuranceType);
-//        Log.info(insuranceAmount);
+        insurancePage.selectPersonalAccidentInsurance();
 
-        Element.selectElement(driver, (AndroidElement) driver.findElement(By.xpath(""+insuranceType+"")), "Select Insurance Category");
-
-        Thread.sleep(4000);
-
-        Element.waitForVisibility(driver, (AndroidElement) driver.findElement(By.xpath(""+insuranceType+"")));
-
+        Element.waitForVisibility(driver,By.id("tnc_view"));
 
         insurancePage.clickOnAgreeTerms();
 
+        permissionHelper.permissionAllow();
+
         Thread.sleep(2000);
-        Element.selectElement(driver, (AndroidElement) driver.findElement(By.xpath(""+insuranceAmount+"")), "Select Insurance Category");
+        Element.selectElement(driver, (AndroidElement) driver.findElement(By.xpath("//android.widget.Button[@text='"+insuranceAmount+"']")), "Select Insurance Category");
 
 
         Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text = 'Confirm Payment']"));
 
 
         mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Confirm Payment']")), "Verify Confirmation Page is Loaded", true, true);
+
+        mbReporter.verifyTrueWithLogging(getInsuranceDetails(), "Verify Insurance Info Details", false,false);
+
+        insurancePage.clickOnBackButton();
+
+        insurancePage.clickOnBackButton();
+
+        insurancePage.clickOnBackButton();
+
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+
+        homePage.closeMoreServicesOverlay();
+
+
+
+
+
+
+
+    }
+
+
+
+    public Boolean getInsuranceDetails() throws InterruptedException, IOException {
+        LinkedHashMap<String, String> insuranceDetails = new LinkedHashMap<>();
+        Log.info("START", "Fetch Insurance Details");
+
+        if(Element.waitForVisibility(driver, By.id("deeplinkLayout"))) {
+            int noOfDetails = Element.findElements(driver, By.id("offer_tittle")).size();
+            Log.info("No Of Insurance Details - " + noOfDetails);
+
+            // Fetch Details
+            for (int i = 1; i <= noOfDetails; i++) {
+
+                String TitleText = element.findElement(driver, By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.ScrollView/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout["+i+"]/android.widget.LinearLayout/android.view.ViewGroup/android.widget.TextView[1]")).getText();
+                String Subtitle = element.findElement(driver, By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.ScrollView/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout["+i+"]/android.widget.LinearLayout/android.view.ViewGroup/android.widget.TextView[2]")).getText();
+                insuranceDetails.put(TitleText, Subtitle);
+            }
+
+            Log.info("------------ Insurance Details --------------");
+
+            for (Map.Entry<String, String> e : insuranceDetails.entrySet()) {
+                Log.info(e.getKey(), e.getValue());
+            }
+
+//            dealDetails.entrySet().forEach( entry -> {
+//                System.out.println( entry.getKey() + " => " + entry.getValue() );
+//            });
+
+            Log.info("-----------------------------------");
+
+            return true;
+
+        }else {
+            return false;
+        }
+
+
+    }
+
+    public Boolean getInsuranceDetailsInfo() throws InterruptedException, IOException {
+        LinkedHashMap<String, String> insuranceDetailsInfo = new LinkedHashMap<>();
+        Log.info("START", "Fetch Insurance Info Details");
+
+        if(Element.waitForVisibility(driver, By.id("amount_to_be_paid"))) {
+            int noOfDetails = Element.findElements(driver, By.id("row_element_left")).size();
+            Log.info("No Of Insurance Info Details - " + noOfDetails);
+
+            // Fetch Details
+            for (int i = 1; i <= noOfDetails; i++) {
+
+                String leftDetails = element.findElement(driver, By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.LinearLayout["+i+"]/android.widget.LinearLayout/android.widget.TextView[1]")).getText();
+                String rightDetails = element.findElement(driver, By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.LinearLayout["+i+"]/android.widget.LinearLayout/android.widget.TextView[2]")).getText();
+                insuranceDetailsInfo.put(leftDetails, rightDetails);
+            }
+
+            Log.info("------------ Insurance Details --------------");
+
+            for (Map.Entry<String, String> e : insuranceDetailsInfo.entrySet()) {
+                Log.info(e.getKey(), e.getValue());
+            }
+
+//            dealDetails.entrySet().forEach( entry -> {
+//                System.out.println( entry.getKey() + " => " + entry.getValue() );
+//            });
+
+            Log.info("-----------------------------------");
+
+            return true;
+
+        }else {
+            return false;
+        }
 
 
     }
