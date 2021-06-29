@@ -90,12 +90,31 @@ public class SplitBillHelper{
                      secondName = myList.get(i).getText();
                 }
         }
+        //calculate share amounts
+        Double amt = Double.parseDouble(amount);
+        Long myShare = Math.round(amt/3);
+        Long firstShare = myShare;
+        Double secondShare = amt - (myShare+firstShare);
+
+        //get share amounts from success screen
+        List<MobileElement> amountList = driver.findElementsById("amount");
+        String firstShareOnScreen = amountList.get(0).getText();
+        String secondShareOnScreen = amountList.get(1).getText();
+        String substr = firstShareOnScreen.substring(1);
+        String substr2 = secondShareOnScreen.substring(1);
+        Long first = Long.parseLong(substr);
+        Double second = Double.parseDouble(substr2);
+
+        String myAmount = splitBillPage.myShare();
+        String substr3 = myAmount.substring(1);
 
         mbReporter.verifyEqualsWithLogging(successMessage,"Bill Split Request sent" , "SuccessPage | Message", false, false);
         mbReporter.verifyEqualsWithLogging(successAmount, "X50", "SuccessPage | Amount", false, false);
         mbReporter.verifyEqualsWithLogging(firstName, name1, "SuccessPage | FirstName", false, false);
         mbReporter.verifyEqualsWithLogging(secondName, name2, "SuccessPage | SecondName", false, false);
-
+        mbReporter.verifyEqualsWithLogging(myShare*100, Long.parseLong(substr3)*100, "Validation of My Share", false, false);
+        mbReporter.verifyEqualsWithLogging(firstShare*100, first*100, "Validation of First Share Amount", false, false);
+        mbReporter.verifyEqualsWithLogging(secondShare, second, "Velidation of Second Share Amount", false, false);
         //ExitonHomePage
 
         splitBillPage.clickOnClose();

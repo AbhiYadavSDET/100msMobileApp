@@ -45,6 +45,9 @@ public class SplitBillPage {
     @AndroidFindBy(id="base_icon_close")
     private AndroidElement exit_button;
 
+    @AndroidFindBy(id = "your_share_amount")
+    private AndroidElement my_share;
+
     public SplitBillPage(AndroidDriver driver) throws IOException {
 
         this.driver = driver;
@@ -103,6 +106,10 @@ public class SplitBillPage {
 
     public void clickOnClose() throws InterruptedException {
         Element.selectElement(driver, exit_button, "Click on Close Button");
+    }
+
+    public String myShare() throws InterruptedException{
+        return Element.getText(driver, my_share, "Getting my share amount");
     }
 
 }
