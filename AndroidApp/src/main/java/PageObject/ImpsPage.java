@@ -91,6 +91,9 @@ public class ImpsPage {
     @AndroidFindBy(id = "iv_close")
     private AndroidElement referral_close;
 
+    @AndroidFindBy(id = "base_icon_back")
+    private AndroidElement back_button;
+
     public ImpsPage(AndroidDriver driver) throws IOException {
 
         this.driver = driver;
@@ -210,5 +213,9 @@ public class ImpsPage {
 
     public void closeReferralDialogBox() throws InterruptedException{
         Element.selectElement(driver, referral_close, "Close Referral Dialog Box");
+    }
+
+    public void clickBackButton() throws InterruptedException{
+        Element.selectElement(driver, back_button, "Click on Back Button");
     }
 }

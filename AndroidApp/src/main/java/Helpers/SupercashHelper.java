@@ -79,14 +79,14 @@ public class SupercashHelper {
             if (myList.get(i).getText().contains("partners")){
                 partnerText = myList.get(i).getText();
                 myList.get(i).click();
-                driver.findElementById("btn_convert_cash").isDisplayed();
+                mbReporter.verifyTrueWithLogging (Element.isElementPresent(driver, By.id("btn_convert_cash")), "Verify Partner Offers Text | Redeem Supercash", false, false);
                 supercashStatementPage.clickOnBackButton();
                 Thread.sleep(3000);
             }else
                 if(myList.get(i).getText().contains("gift")){
                      giftcardText = myList.get(i).getText();
                     myList.get(i).click();
-                    driver.findElementByXPath("//android.widget.TextView[@text = 'Gift Cards']").isDisplayed();
+                    mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Gift Cards']")), "Verify Gift Cards | Redeem Superchash", false, false);
                     supercashStatementPage.clickOnBackButton();
                     Thread.sleep(3000);
                 }else
@@ -95,21 +95,21 @@ public class SupercashHelper {
                         Thread.sleep(3000);
                     }else
                         if(myList.get(i).getText().contains("recharges")){
-                             rechargesText = myList.get(i).getText();
+                            rechargesText = myList.get(i).getText();
                             myList.get(i).click();
-                            driver.findElementById("tx_tittle").equals("Recharge & Bill Payments");
+                            mbReporter.verifyEqualsWithLogging(driver.findElementById("tx_tittle").getText(),"Recharge & Bill Payments", "Verify Recharge and Bill Text | Redeem Supercash",false, false);
                             supercashStatementPage.clickOnRechargeCloseButton();
                             Thread.sleep(3000);
                         }else
                             if(myList.get(i).getText().contains("discount coupons")){
                              discountText = myList.get(i).getText();
                                 myList.get(i).click();
-                                driver.findElementById("textActionButton").isDisplayed();
+                                mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("textActionButton")), "driver.findElementById('textActionButton').isDisplayed()", false, false);
                                 supercashStatementPage.clickOnBackButton();
-                                Thread.sleep(3000);
+                                break;
+
                         }
         }
-        supercashStatementPage.navigateBackToHome();
 
         //Assertions
 
@@ -119,8 +119,9 @@ public class SupercashHelper {
         mbReporter.verifyEqualsWithLogging(dealsText, "Exchange for some exclusive deals", "Validate Deals Text on Redeem Page", false, false);
         mbReporter.verifyEqualsWithLogging(rechargesText, "Get 5% discount on recharges & bills", "Validate Recharge Text on Redeem Page", false, false);
         mbReporter.verifyEqualsWithLogging(discountText, "Exchange for MobiKwik discount coupons", "Validate Discount Text on Redeem Page", false, false);
-        //mbReporter.verifyTrueWithLogging();
 
+        Thread.sleep(5000);
+        supercashStatementPage.navigateBackToHome();
 
     }
 }
