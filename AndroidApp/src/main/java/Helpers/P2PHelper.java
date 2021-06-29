@@ -242,7 +242,7 @@ public class P2PHelper {
 
         balanceBefore = mbkCommonControlsHelper.getBalance();
 
-        String availableAmount = balanceBefore.get(MBKCommonControlsHelper.BalanceType.MONEYADDED);
+        String availableAmount  = mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE);
 
         if (Double.parseDouble(amount) < Double.parseDouble(availableAmount)) {
 

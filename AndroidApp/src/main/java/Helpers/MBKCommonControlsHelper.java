@@ -176,7 +176,7 @@ public class MBKCommonControlsHelper {
         handleRatingsPopUp();
         handleNPS();
 //        mbkCommonControlsPage.clickOnNavigateHome();
-        mbkCommonControlsPage.clickOnSuccessPageCross();
+//        mbkCommonControlsPage.clickOnSuccessPageCross();
     }
 
     public void returnToHomePage() throws InterruptedException {

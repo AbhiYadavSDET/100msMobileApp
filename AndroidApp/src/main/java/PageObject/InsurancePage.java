@@ -51,6 +51,9 @@ public class InsurancePage {
     @AndroidFindBy(xpath="//android.widget.TextView[@text='Personal Accident Insurance']")
     private AndroidElement personal_accident_insurance;
 
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='Personal Accident Insurance']/following::android.widget.TextView[@text='Personal Accident Insurance']")
+    private AndroidElement personal_accident_insurance_lower;
+
     @AndroidFindBy(id = "mkab_icon_1")
     private AndroidElement back_button;
 
@@ -115,8 +118,8 @@ public class InsurancePage {
 
     public void selectPersonalAccidentInsurance() throws InterruptedException {
         Element.selectElement(driver, personal_accident_insurance, "Selective Personal Accident Insurance");
-        Thread.sleep(200);
-        Element.selectElement(driver, personal_accident_insurance, "Selective Personal Accident Insurance lower Category");
+        Thread.sleep(1000);
+        Element.selectElement(driver, personal_accident_insurance_lower, "Selective Personal Accident Insurance lower Category");
 
     }
 

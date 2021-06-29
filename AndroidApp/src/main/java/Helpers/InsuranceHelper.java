@@ -111,6 +111,7 @@ public class InsuranceHelper {
         screen.swipeUpMedium(driver);
 
         homePage.clickInvestmentAndInsuranceLayout();
+        Thread.sleep(500);
         insurancePage = homePage.clickOnInsuranceIcon();
 
         Thread.sleep(4000);
@@ -139,9 +140,15 @@ public class InsuranceHelper {
 
         insurancePage.clickOnBackButton();
 
-        insurancePage.clickOnBackButton();
+        Thread.sleep(500);
 
         insurancePage.clickOnBackButton();
+
+        Thread.sleep(500);
+
+        insurancePage.clickOnBackButton();
+
+        Thread.sleep(500);
 
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
