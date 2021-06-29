@@ -112,10 +112,11 @@ public class SplitBillHelper{
         mbReporter.verifyEqualsWithLogging(successAmount, "X50", "SuccessPage | Amount", false, false);
         mbReporter.verifyEqualsWithLogging(firstName, name1, "SuccessPage | FirstName", false, false);
         mbReporter.verifyEqualsWithLogging(secondName, name2, "SuccessPage | SecondName", false, false);
-        mbReporter.verifyEqualsWithLogging(myShare*100, Long.parseLong(substr3)*100, "Validation of My Share", false, false);
-        mbReporter.verifyEqualsWithLogging(firstShare*100, first*100, "Validation of First Share Amount", false, false);
-        mbReporter.verifyEqualsWithLogging(secondShare, second, "Velidation of Second Share Amount", false, false);
-        //ExitonHomePage
+        mbReporter.verifyEqualsWithLogging(myShare, Long.parseLong(substr3), "Validation of My Share", false, false);
+        mbReporter.verifyEqualsWithLogging(firstShare, first, "Validation of First Share Amount", false, false);
+        mbReporter.verifyEqualsWithLogging(secondShare, second, "Validation of Second Share Amount", false, false);
+
+        //ExitToHomePage
 
         splitBillPage.clickOnClose();
         supercashStatementPage.navigateBackToHome();
