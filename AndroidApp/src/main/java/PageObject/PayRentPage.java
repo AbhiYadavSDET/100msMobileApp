@@ -45,6 +45,9 @@ public class PayRentPage {
     @AndroidFindBy(id="processing_fee_discounted")
     private AndroidElement processing_fee;
 
+    @AndroidFindBy(id="address")
+    private AndroidElement address_home;
+
 
     public PayRentPage(AndroidDriver driver) throws IOException {
 
@@ -115,6 +118,9 @@ public class PayRentPage {
         Element.enterText(driver, text_fields.get(1), ifsc, "Entering IFSC Code");
     }
 
+    public void clickExisting() throws InterruptedException{
+        Element.selectElement(driver, address_home, "Click on Existing Property");
+    }
 
 
 

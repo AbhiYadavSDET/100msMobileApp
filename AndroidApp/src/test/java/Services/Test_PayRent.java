@@ -17,7 +17,7 @@ public class Test_PayRent extends CreateSession {
     DatabaseSqlHelper databaseSqlHelper = new DatabaseSqlHelper();
     MBKCommonControlsHelper mbkCommonControlsHelper;
 
-    @Test(groups = {"verifySplitBill"}, priority = 0)
+    @Test(groups = {"verifyPayRent"}, priority = 0)
     public void Test01_verifyPayRent() throws IOException, JSONException, InterruptedException {
 
         Log.info("START : Pay Rent Sanity Test");
@@ -26,7 +26,7 @@ public class Test_PayRent extends CreateSession {
         loginHelper.quickLoginViaNumber("9205299330", "547372");
 
         PayRentHelper payRentHelper = new PayRentHelper(getAndroidDriver());
-        payRentHelper.verifyPayRent("A-1/79, Paschim Vihar, New Delhi", "110036", "Shanti Devi", "50", "239001509736", "ICIC0002390");
+        payRentHelper.verifyPayRent("A-1/79, Paschim Vihar, New Delhi", "110036", "Shanti Devi", "50", "239001509736", "ICIC0002390", "121212");
 
         Log.info("END : Pay Rent Sanity Test Completion");
     }

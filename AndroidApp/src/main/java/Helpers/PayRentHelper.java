@@ -37,20 +37,24 @@ public class PayRentHelper {
 
     public void feeVerificator(String amount) throws InterruptedException {
         String procFeesOnScreen = payRentPage.getProcessingFees();
-        String substr = procFeesOnScreen.substring(1);
-        Double amt = Double.parseDouble(substr);
+        String amt = procFeesOnScreen.substring(1);
         Double amtparsed = Double.parseDouble(amount);
         Double procFees = (amtparsed * 1.5) / 100;
         Double gstAmt = (procFees * 18) / 100;
         Double total = procFees + gstAmt;
-        mbReporter.verifyEqualsWithLogging(amt, total, "Validating Processing Fees", false, false);
+        String ttl_str = total.toString();
+        String amt_expect = ttl_str.substring(0,4);
+
+        mbReporter.verifyEqualsWithLogging(amt, amt_expect, "Validating Processing Fees", false, false);
 
     }
 
-    public void verifyPayRent(String address, String pincode, String name, String amount, String bankAccNum, String ifsc) throws IOException, InterruptedException, JSONException {
+    public void verifyPayRent(String address, String pincode, String name, String amount, String bankAccNum, String ifsc, String securityPin) throws IOException, InterruptedException, JSONException {
 
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
         homePage.clickAllServices();
+
+        Thread.sleep(3000);
         Screen.swipeUpMore(driver);
         allServicesPage.clickOnPayRent();
 
@@ -58,7 +62,24 @@ public class PayRentHelper {
         String homeTitle = payRentPage.getTitleText();
 
         switch (title) {
-            case "homeTitle":
+
+            case "Choose Property":
+                payRentPage.clickExisting();
+                payRentPage.clickCCButton();
+                payRentPage.selectAndEnterAmount(amount);
+                Thread.sleep(3000);
+
+                feeVerificator(amount);
+
+                payRentPage.clickOnContinueButton();
+                Thread.sleep(3000);
+
+                //Entering Security Pin
+                mbkCommonControlsHelper.handleSecurityPin(securityPin);
+                Thread.sleep(3000);
+
+            default:
+                Thread.sleep(1000);
                 payRentPage.clickCCButton();
 
                 //Entering Landlord Details
@@ -82,6 +103,7 @@ public class PayRentHelper {
                 payRentPage.selectAndEnterBankAccountNumber(bankAccNum);
                 payRentPage.selectAndEnterIFSC(ifsc);
                 payRentPage.clickOnContinueButton();
+
 
         }
 
