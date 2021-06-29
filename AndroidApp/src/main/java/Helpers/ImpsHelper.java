@@ -31,7 +31,7 @@ public class ImpsHelper {
     public static HashMap<String, String> map;
     public static HashMap<String, String> balanceBefore;
     public static HashMap<String, String> balanceAfter;
-
+    Double fee = 0.00;
 
     public ImpsHelper(AndroidDriver driver) throws IOException {
         this.driver = driver;
@@ -130,6 +130,13 @@ public class ImpsHelper {
         impsPage.clickButton5();
         impsPage.clickButton0();
 
+        Thread.sleep(5000);
+        //Capturing Conv Fee
+        if (driver.findElementById("convenience_fee_amount").isDisplayed()){
+        String convFee = impsPage.getConvFee();
+        String substrFee = convFee.substring(2);
+         fee = Double.parseDouble(substrFee)*100;}
+
         impsPage.clickAmountSubmitButton();
 
         impsPage.clickPay();
@@ -150,9 +157,10 @@ public class ImpsHelper {
         balanceAfter = mbkCommonControlsHelper.getBalance();
         Double remainBalance = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MAINBALANCE))*100;
         System.out.println(remainBalance);
-        Double diffBalance = (beforeBalance-remainBalance)*100;
+        Double diff = (beforeBalance-remainBalance-fee);
+        String diffBalance = diff.toString();
 
-        mbReporter.verifyEqualsWithLogging(diffBalance, "50", "Amount Deduction | Verification", false, false);
+        mbReporter.verifyEqualsWithLogging(diffBalance, "5000.0", "Amount Deduction | Verification", false, false);
         mbReporter.verifyEqualsWithLogging(actualMessage, "Your Transfer is Successful", "Success Page | Message", false, false);
         mbReporter.verifyEqualsWithLogging(actualVpa, vpa, "Success Page | VPA", false, false);
         mbReporter.verifyEqualsWithLogging(actualAmount, "₹ 50", "Success Page | Amount", false, false);
@@ -187,6 +195,13 @@ public class ImpsHelper {
         //Entering amount on the page-
         impsPage.clickButton5();
         impsPage.clickButton0();
+        Thread.sleep(5000);
+        //Getting IMPS Fee
+        if (driver.findElementById("convenience_fee_amount").isDisplayed()){
+            String convFee = impsPage.getConvFee();
+            String substrFee = convFee.substring(2);
+            fee = Double.parseDouble(substrFee)*100;}
+
 
         impsPage.clickAmountSubmitButton();
 
@@ -208,9 +223,12 @@ public class ImpsHelper {
 
         balanceAfter = mbkCommonControlsHelper.getBalance();
         Double remainBalance = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MAINBALANCE))*100;
-        Double diffBalance = (beforeBalance-remainBalance)*100;
+        System.out.println(remainBalance);
+        Double diff = (beforeBalance-remainBalance-fee);
+        String diffBalance = diff.toString();
 
-        mbReporter.verifyEqualsWithLogging(diffBalance, "50", "Amount Deduction | Verification", false, false);
+
+        mbReporter.verifyEqualsWithLogging(diffBalance, "5000.0", "Amount Deduction | Verification", false, false);
         mbReporter.verifyEqualsWithLogging(actualMessage, "Your Transfer is Successful", "Success Page | Message", false, false);
         mbReporter.verifyEqualsWithLogging(actualAccountNo, accountNo, "Success Page | Account No", false, false);
         mbReporter.verifyEqualsWithLogging(actualAmount, "₹ 50", "Success Page | Amount", false, false);

@@ -94,6 +94,9 @@ public class ImpsPage {
     @AndroidFindBy(id = "base_icon_back")
     private AndroidElement back_button;
 
+    @AndroidFindBy(id="convenience_fee_amount")
+    private AndroidElement imps_fee;
+
     public ImpsPage(AndroidDriver driver) throws IOException {
 
         this.driver = driver;
@@ -217,5 +220,8 @@ public class ImpsPage {
 
     public void clickBackButton() throws InterruptedException{
         Element.selectElement(driver, back_button, "Click on Back Button");
+    }
+    public String getConvFee() throws InterruptedException{
+        return Element.getText(driver, imps_fee, "Get IMPS Fee");
     }
 }
