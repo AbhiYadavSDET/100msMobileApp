@@ -3,6 +3,7 @@ package Helpers;
 import PageObject.*;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
+import jdk.nashorn.internal.ir.IfNode;
 import logger.Log;
 import org.openqa.selenium.By;
 import utils.Element;
@@ -170,6 +171,12 @@ public class MBKCommonControlsHelper {
         handleRatingsPopUp();
         handleNPS();
     }
+    public void returnToHomePageFromCCBPSuccessScreen() throws InterruptedException {
+        mbkCommonControlsPage.clickOnSuccessPageBack();
+        handleRatingsPopUp();
+        handleNPS();
+    }
+
 
     public void returnToHomePageFromP2MSuccessScreen() throws InterruptedException {
         mbkCommonControlsPage.clickOnSuccessPageCross();
@@ -273,7 +280,11 @@ public class MBKCommonControlsHelper {
         if (Element.isElementPresent(driver, By.id("rating_seekbar"))) {
             Log.info("Handle", "NPS Screen");
             mbkCommonControlsPage.clickOnCross();
-            mbkCommonControlsPage.clickOnSuccessPageCross();
+            if(Element.isElementPresent(driver, By.id("base_icon_close"))){
+                mbkCommonControlsPage.clickOnSuccessPageCross();
+            }else if (Element.isElementPresent(driver, By.id("base_icon_back"))){
+                mbkCommonControlsPage.clickOnSuccessPageBack();
+            }
         }
     }
 
@@ -283,7 +294,12 @@ public class MBKCommonControlsHelper {
         if (Element.isElementPresent(driver, By.id("content_root"))) {
             Log.info("Handle", "Ratings PopUp");
             mbkCommonControlsPage.clickOnCross();
+            if(Element.isElementPresent(driver, By.id("base_icon_close"))){
             mbkCommonControlsPage.clickOnSuccessPageCross();
+            }else if (Element.isElementPresent(driver, By.id("base_icon_back"))){
+                mbkCommonControlsPage.clickOnSuccessPageBack();
+            }
+
         }
     }
 
