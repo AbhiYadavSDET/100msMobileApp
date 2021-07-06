@@ -32,6 +32,9 @@ public class MbkCommonControlsPage {
     @AndroidFindBy(id = "base_icon_close")
     private AndroidElement cross_icon;
 
+    @AndroidFindBy(id = "base_icon_back")
+    private AndroidElement back_icon;
+
     @AndroidFindBy(id = "btn_have_promo")
     private AndroidElement label_have_a_promo_code;
 
@@ -91,6 +94,12 @@ public class MbkCommonControlsPage {
     public void clickOnSuccessPageCross() {
 
         Element.selectElement(driver, cross_icon, "base_icon_close");
+
+    }
+
+    public void clickOnSuccessPageBack() {
+
+        Element.selectElement(driver, back_icon, "base_icon_back");
 
     }
 

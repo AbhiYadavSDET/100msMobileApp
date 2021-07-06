@@ -11,6 +11,7 @@ import io.restassured.response.Response;
 import logger.Log;
 import org.json.JSONException;
 import org.testng.annotations.Test;
+import utils.DatabaseSqlHelper;
 
 import java.io.IOException;
 
@@ -18,34 +19,19 @@ public class Test_Insurance extends CreateSession {
 
     Response response;
 
+    DatabaseSqlHelper databaseSqlHelper = new DatabaseSqlHelper();
+
 
     @Test(groups = {"insuranceBuy", "insuranceSanity"}, priority = 1, dataProvider = "insuranceData", dataProviderClass = InsuranceDataProviderClass.class)
     public void Test01_insurance_buy(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
 
         Log.info("START : Insurance sanity test");
-//        String amount = frontEndEntity.getAmount();
 
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
         loginHelper.quickLoginViaNumber("9205299330", "547372");
 
-//        loginHelper.quickLoginViaEmail("mkwik9330@gmail.com", "Test@1234");
-
         InsuranceHelper insuranceHelper = new InsuranceHelper(getAndroidDriver());
-//        String trxId = insuranceHelper.buyInsurance("Payment Successful!", "for Personal Accident Insurance of Rs. 1 Lac by ", frontEndEntity.getSecurityPin());
-//
-//        CancelSingle cancelSingle = new CancelSingle(trxId, amount);
-//        response = cancelSingle.execute();
-//
-//        System.out.println(response.getBody().asString());
-//
-//        //Status code validator
-//        StatusCodeValidator.validate200(response);
-//
-//        CancelSingleHelper cancelSingleHelper = new CancelSingleHelper(response.getBody().asString());
-//
-//        cancelSingleHelper.verifySuccessResponse();
-
-        insuranceHelper.validateInsurance(frontEndEntity.getPopupError(), frontEndEntity.getPopupText());
+        insuranceHelper.validateInsurance(frontEndEntity.getPopupText());
         Log.info("END : Insurance sanity test");
 
     }

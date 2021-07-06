@@ -2,6 +2,7 @@ package Helpers;
 
 import PageObject.HomePage;
 import PageObject.RechargePage;
+import PageObject.TransactionHistoryPage;
 import UITestFramework.MBReporter;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
@@ -27,6 +28,7 @@ public class RechargeHelper {
     RechargePage rechargePage;
     PermissionHelper permissionHelper;
     AddMoneyHelper addMoneyHelper;
+    TransactionHistoryPage transactionHistoryPage;
 
     public static HashMap<String, String> map;
     public static HashMap<String, String> balanceBefore;
@@ -464,7 +466,7 @@ public class RechargeHelper {
 
     }
 
-    public void creditCardRechargeWapgFlow(String amount, String securityPin, String cardNo, String cvv, String bankPassword, String success_page_status, String success_page_text, Boolean promoCodeStatus, String promoCode) throws InterruptedException, IOException, JSONException {
+    public void creditCardRechargeFlow(String amount, String securityPin, String cardNo, String cvv, String bankPassword, String success_page_status, Boolean promoCodeStatus, String promoCode, String payMode) throws InterruptedException, IOException, JSONException {
 
         //balanceBefore = mbkCommonControlsHelper.getBalance();
 //        homePage.clickOnCrossButton();
@@ -483,9 +485,11 @@ public class RechargeHelper {
 
         rechargePage.selectCreditCardFromSavedConnection();
 
-        rechargePage.enterCreditCardAmount(amount);
+        mbkCommonControlsHelper.handleRechargeAmountKeyboard(amount);
 
-        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Credit Card Bill']"));
+        rechargePage.submitCreditCardAmount();
+
+//        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Credit Card Bill']"));
 
         rechargePage.clickOnCreditCardContinueCta();
 
@@ -498,199 +502,263 @@ public class RechargeHelper {
 
         rechargePage.clickOnCtaCotinue();
 
-        mbkCommonControlsHelper.handleSecurityPin(securityPin);
+        if(payMode == "WAPG"){
 
-        Thread.sleep(4000);
-
-        if(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Select Payment Mode']"))) {
-            addMoneyHelper = new AddMoneyHelper(driver);
-            addMoneyHelper.addMoneyInsufficientFunds(cardNo, cvv, bankPassword);
-        }
-
-        Element.waitForVisibility(driver, By.id("base_title"));
-
-
-        mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessScreenTitle(), success_page_status, "Credit Card Bill payment Success, WAPG transaction was success", true, true);
-
-        String actualTotalAmountPaid = rechargePage.getTotalAmountValue().replace("₹ ", "");
-
-        mbReporter.verifyEqualsWithLogging(actualTotalAmountPaid, amount, "Verify Amount", true, true);
-
-        String actualPendingDescription = rechargePage.getPendingDescMessage();
-
-        mbReporter.verifyTrueWithLogging(actualPendingDescription!=null, ""+actualPendingDescription+"", true, true);
-
-
-        if (promoCodeStatus) {
-
-            mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("txt_promo_result_desc")), rechargePage.getPromoCodeTextOnSuccessScreen(), true, false);
-        }
-
-        rechargePage.backToHomeFromPendingScreen();
-
-        homePage.closeRechargeServicesOverlay();
-
-        Thread.sleep(300);
-
-
-    }
-
-    public void creditCardRechargeWapgFlowVoucherSameAmount(String amount, String securityPin, String success_page_status, String success_page_text) throws InterruptedException, IOException, JSONException {
-
-        //balanceBefore = mbkCommonControlsHelper.getBalance();
-//        homePage.clickOnCrossButton();
-
-        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
-
-        if (!Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Mobile']"))) {
-
-            screen.swipeUpMedium(driver);
-        }
-
-        homePage.clickOnRechargeLayout();
-        rechargePage = homePage.clickCreditCardIcon();
-
-        permissionHelper.permissionAllow();
-
-        rechargePage.selectCreditCardFromSavedConnection();
-
-        rechargePage.enterCreditCardAmount(amount);
-
-        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Credit Card Bill']"));
-
-        rechargePage.clickOnCreditCardContinueCta();
-
-        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Confirm Payment']"));
-
-
-        rechargePage.clickApplyCoupon();
-
-        Element.waitForVisibility(driver, By.id("redeem_layout"));
-
-
-        List<AndroidElement> vouchers = Element.findElements(driver, By.id("redeem_layout"));
-        int noOfVouchersAvailable = vouchers.size();
-
-        if (noOfVouchersAvailable > 0) {
-
-            rechargePage.selectVoucher();
-
-            Thread.sleep(1000);
-
-            rechargePage.clickOnCtaCotinue();
+        rechargePage.selectWalletAsPgFlow();
+        Double finalAmount=Double.parseDouble(amount);
 
             mbkCommonControlsHelper.handleSecurityPin(securityPin);
 
-            Thread.sleep(3000);
+            Thread.sleep(4000);
+
+            if(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Select Payment Mode']"))) {
+                addMoneyHelper = new AddMoneyHelper(driver);
+                addMoneyHelper.addMoneyInsufficientFunds(cardNo, cvv, bankPassword);
+                mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Select Payment Mode']")), "Add money Page opened , and insuffcient flow validated, As currently Add money not Working by Test Card", true, true);
+
+            }
 
             Element.waitForVisibility(driver, By.id("base_title"));
 
 
-            mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessScreenTitle(), success_page_status, "Credit Card Bill payment Success with voucher applied of same amount", true, true);
+            mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessScreenTitle(), success_page_status, "Credit Card Bill payment Success, WAPG transaction was success", true, true);
 
             String actualTotalAmountPaid = rechargePage.getTotalAmountValue().replace("₹ ", "");
 
-            mbReporter.verifyEqualsWithLogging(actualTotalAmountPaid, amount, "Verify Amount", true, true);
+            mbReporter.verifyEqualsWithLogging(actualTotalAmountPaid, amount, "Verify Amount", true, false);
 
             String actualPendingDescription = rechargePage.getPendingDescMessage();
 
-            mbReporter.verifyEqualsWithLogging(actualPendingDescription, success_page_text, "Verify Pending Message", true, true);
+            mbReporter.verifyTrueWithLogging(actualPendingDescription!=null, ""+actualPendingDescription+"", true, false);
 
-            mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("txt_promo_result_desc")), rechargePage.getPromoCodeTextOnSuccessScreen(), true, false);
 
-            rechargePage.backToHomeFromPendingScreen();
+            if (promoCodeStatus) {
+
+                mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("txt_promo_result_desc")), rechargePage.getPromoCodeTextOnSuccessScreen(), true, false);
+            }
+
+            mbkCommonControlsHelper.returnToHomePageFromCCBPSuccessScreen();
 
             homePage.closeRechargeServicesOverlay();
 
+            transactionHistoryPage=homePage.clickOnBottomBarHistory();
+
+            mbReporter.verifyEqualsWithLogging(finalAmount, Double.parseDouble(transactionHistoryPage.getLatestHistoryRecordAmount()), "Verify Amount Deducted After transaction", true, false);
+
             Thread.sleep(300);
 
-        } else {
-
-            mbReporter.verifyFalse(noOfVouchersAvailable < 1, "No vouchers Available", true, true);
-        }
-
-    }
-
-    public void creditCardRechargeWapgFlowMoreAmountThanVoucher(String amount, String securityPin, String cardNo, String cvv, String bankPassword, String success_page_status, String success_page_text) throws InterruptedException, IOException, JSONException {
-
-        //balanceBefore = mbkCommonControlsHelper.getBalance();
-//        homePage.clickOnCrossButton();
-
-        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
-
-        if (!Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Mobile']"))) {
-
-            screen.swipeUpMedium(driver);
-        }
-
-        homePage.clickOnRechargeLayout();
-        rechargePage = homePage.clickCreditCardIcon();
-
-        permissionHelper.permissionAllow();
-
-        rechargePage.selectCreditCardFromSavedConnection();
-
-        rechargePage.enterCreditCardAmount(amount);
-
-        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Credit Card Bill']"));
-
-        rechargePage.clickOnCreditCardContinueCta();
-
-        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Confirm Payment']"));
 
 
-        rechargePage.clickApplyCoupon();
 
-        Element.waitForVisibility(driver, By.id("redeem_layout"));
-
-
-        List<AndroidElement> vouchers = Element.findElements(driver, By.id("redeem_layout"));
-        int noOfVouchersAvailable = vouchers.size();
-
-        if (noOfVouchersAvailable > 0) {
-
-            rechargePage.selectVoucher();
-
-            Thread.sleep(1000);
-
-            rechargePage.clickOnCtaCotinue();
-
+        }else {
+            rechargePage.clickOnWhyCta();
+            mbReporter.verifyTrueWithLogging(rechargePage.isWhyPageOpened(), "Why Page Opened", false, false);
+            rechargePage.clickOnOK();
+            Double feeAmount=Double.parseDouble(rechargePage.getFeesAmount());
+            rechargePage.selectWalletFlowWithConvFee();
+            Double finalAmount=Double.parseDouble(amount)+feeAmount;
             mbkCommonControlsHelper.handleSecurityPin(securityPin);
 
-            Thread.sleep(3000);
+            Thread.sleep(4000);
 
-            addMoneyHelper = new AddMoneyHelper(driver);
-            addMoneyHelper.addMoneyInsufficientFunds(cardNo, cvv, bankPassword);
+            if(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Select Payment Mode']"))) {
+                addMoneyHelper = new AddMoneyHelper(driver);
+                addMoneyHelper.addMoneyInsufficientFunds(cardNo, cvv, bankPassword);
+            }
 
             Element.waitForVisibility(driver, By.id("base_title"));
 
 
-            mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessScreenTitle(), success_page_status, "Credit Card Bill payment Success, voucher applied and Wapg Transaction success", true, true);
+            mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessScreenTitle(), success_page_status, "Credit Card Bill payment Success, WAPG transaction was success", true, false);
 
-            String actualTotalAmountPaid = rechargePage.getTotalAmountValue().replace("₹ ", "");
+            String actualTotalAmountPaid = rechargePage.getTotalAmountValue().replace("X", "");
 
-            mbReporter.verifyEqualsWithLogging(actualTotalAmountPaid, amount, "Verify Amount", true, true);
+            mbReporter.verifyEqualsWithLogging(actualTotalAmountPaid, amount, "Verify Amount", true, false);
 
             String actualPendingDescription = rechargePage.getPendingDescMessage();
 
-            mbReporter.verifyEqualsWithLogging(actualPendingDescription, success_page_text, "Verify Pending Message", true, true);
+            mbReporter.verifyTrueWithLogging(actualPendingDescription!=null, ""+actualPendingDescription+"", true, false);
 
 
-            mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("txt_promo_result_desc")), rechargePage.getPromoCodeTextOnSuccessScreen(), true, false);
+            if (promoCodeStatus) {
 
+                mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("txt_promo_result_desc")), rechargePage.getPromoCodeTextOnSuccessScreen(), true, false);
+            }
 
-            rechargePage.backToHomeFromPendingScreen();
+            mbkCommonControlsHelper.returnToHomePageFromCCBPSuccessScreen();
 
             homePage.closeRechargeServicesOverlay();
 
+            transactionHistoryPage=homePage.clickOnBottomBarHistory();
+
+            mbReporter.verifyEqualsWithLogging(finalAmount, Double.parseDouble(transactionHistoryPage.getLatestHistoryRecordAmount()), "Verify Amount Deducted After transaction", true,false);
+
             Thread.sleep(300);
 
-        } else {
 
-            mbReporter.verifyFalse(noOfVouchersAvailable < 1, "No vouchers Available", true, true);
+
+
         }
 
+
     }
+
+//    public void creditCardRechargeWapgFlowVoucherSameAmount(String amount, String securityPin, String success_page_status, String success_page_text) throws InterruptedException, IOException, JSONException {
+//
+//        //balanceBefore = mbkCommonControlsHelper.getBalance();
+////        homePage.clickOnCrossButton();
+//
+//        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+//
+//        if (!Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Mobile']"))) {
+//
+//            screen.swipeUpMedium(driver);
+//        }
+//
+//        homePage.clickOnRechargeLayout();
+//        rechargePage = homePage.clickCreditCardIcon();
+//
+//        permissionHelper.permissionAllow();
+//
+//        rechargePage.selectCreditCardFromSavedConnection();
+//
+//        rechargePage.enterCreditCardAmount(amount);
+//
+////        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Credit Card Bill']"));
+//
+//        rechargePage.clickOnCreditCardContinueCta();
+//
+//        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Confirm Payment']"));
+//
+//
+//        rechargePage.clickApplyCoupon();
+//
+//        Element.waitForVisibility(driver, By.id("redeem_layout"));
+//
+//
+//        List<AndroidElement> vouchers = Element.findElements(driver, By.id("redeem_layout"));
+//        int noOfVouchersAvailable = vouchers.size();
+//
+//        if (noOfVouchersAvailable > 0) {
+//
+//            rechargePage.selectVoucher();
+//
+//            Thread.sleep(1000);
+//
+//            rechargePage.clickOnCtaCotinue();
+//
+//            mbkCommonControlsHelper.handleSecurityPin(securityPin);
+//
+//            Thread.sleep(3000);
+//
+//            Element.waitForVisibility(driver, By.id("base_title"));
+//
+//
+//            mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessScreenTitle(), success_page_status, "Credit Card Bill payment Success with voucher applied of same amount", true, true);
+//
+//            String actualTotalAmountPaid = rechargePage.getTotalAmountValue().replace("₹ ", "");
+//
+//            mbReporter.verifyEqualsWithLogging(actualTotalAmountPaid, amount, "Verify Amount", true, true);
+//
+//            String actualPendingDescription = rechargePage.getPendingDescMessage();
+//
+//            mbReporter.verifyEqualsWithLogging(actualPendingDescription, success_page_text, "Verify Pending Message", true, true);
+//
+//            mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("txt_promo_result_desc")), rechargePage.getPromoCodeTextOnSuccessScreen(), true, false);
+//
+//            rechargePage.backToHomeFromPendingScreen();
+//
+//            homePage.closeRechargeServicesOverlay();
+//
+//            Thread.sleep(300);
+//
+//        } else {
+//
+//            mbReporter.verifyFalse(noOfVouchersAvailable < 1, "No vouchers Available", true, true);
+//        }
+//
+//    }
+//
+//    public void creditCardRechargeWapgFlowMoreAmountThanVoucher(String amount, String securityPin, String cardNo, String cvv, String bankPassword, String success_page_status, String success_page_text) throws InterruptedException, IOException, JSONException {
+//
+//        //balanceBefore = mbkCommonControlsHelper.getBalance();
+////        homePage.clickOnCrossButton();
+//
+//        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+//
+//        if (!Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Mobile']"))) {
+//
+//            screen.swipeUpMedium(driver);
+//        }
+//
+//        homePage.clickOnRechargeLayout();
+//        rechargePage = homePage.clickCreditCardIcon();
+//
+//        permissionHelper.permissionAllow();
+//
+//        rechargePage.selectCreditCardFromSavedConnection();
+//
+//        rechargePage.enterCreditCardAmount(amount);
+//
+////        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Credit Card Bill']"));
+//
+//        rechargePage.clickOnCreditCardContinueCta();
+//
+//        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Confirm Payment']"));
+//
+//
+//        rechargePage.clickApplyCoupon();
+//
+//        Element.waitForVisibility(driver, By.id("redeem_layout"));
+//
+//
+//        List<AndroidElement> vouchers = Element.findElements(driver, By.id("redeem_layout"));
+//        int noOfVouchersAvailable = vouchers.size();
+//
+//        if (noOfVouchersAvailable > 0) {
+//
+//            rechargePage.selectVoucher();
+//
+//            Thread.sleep(1000);
+//
+//            rechargePage.clickOnCtaCotinue();
+//
+//            mbkCommonControlsHelper.handleSecurityPin(securityPin);
+//
+//            Thread.sleep(3000);
+//
+//            addMoneyHelper = new AddMoneyHelper(driver);
+//            addMoneyHelper.addMoneyInsufficientFunds(cardNo, cvv, bankPassword);
+//
+//            Element.waitForVisibility(driver, By.id("base_title"));
+//
+//
+//            mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessScreenTitle(), success_page_status, "Credit Card Bill payment Success, voucher applied and Wapg Transaction success", true, true);
+//
+//            String actualTotalAmountPaid = rechargePage.getTotalAmountValue().replace("₹ ", "");
+//
+//            mbReporter.verifyEqualsWithLogging(actualTotalAmountPaid, amount, "Verify Amount", true, true);
+//
+//            String actualPendingDescription = rechargePage.getPendingDescMessage();
+//
+//            mbReporter.verifyEqualsWithLogging(actualPendingDescription, success_page_text, "Verify Pending Message", true, true);
+//
+//
+//            mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("txt_promo_result_desc")), rechargePage.getPromoCodeTextOnSuccessScreen(), true, false);
+//
+//
+//            rechargePage.backToHomeFromPendingScreen();
+//
+//            homePage.closeRechargeServicesOverlay();
+//
+//            Thread.sleep(300);
+//
+//        } else {
+//
+//            mbReporter.verifyFalse(noOfVouchersAvailable < 1, "No vouchers Available", true, true);
+//        }
+//
+//    }
 
 
 }

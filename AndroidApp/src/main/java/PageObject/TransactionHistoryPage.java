@@ -58,6 +58,9 @@ public class TransactionHistoryPage {
     @AndroidFindBy(id = "amount_text")
     public AndroidElement amount_refunded;
 
+    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.TextView[1]")
+    public AndroidElement latest_record_amount;
+
     public TransactionHistoryPage(AndroidDriver driver) throws IOException {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -109,6 +112,10 @@ public class TransactionHistoryPage {
     public WalletBalancePage clickOnWalletBalanceCta() throws InterruptedException, IOException {
         Element.selectElement(driver, wallet_balance_cta, "Click on Wallet Balance cta");
         return new WalletBalancePage(driver);
+    }
+
+    public String getLatestHistoryRecordAmount() throws InterruptedException, IOException{
+        return Element.getText(driver, latest_record_amount, "Get Latest Record Amount").replace("- X", "");
     }
 
 }

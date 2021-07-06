@@ -53,7 +53,7 @@ public class HomePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Direct Mutual Funds']")
     private AndroidElement icon_mutualFund;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Insurance']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Insurance']/following::android.widget.TextView[@text='Insurance']")
     private AndroidElement icon_insurance;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Recharge & Pay Bills']")
@@ -364,7 +364,7 @@ public class HomePage {
     }
 
     public InsurancePage clickOnInsuranceIcon() throws IOException {
-        Element.selectElement(driver, icon_insurance, "InsuranceApi Icon");
+        Element.selectElement(driver, icon_insurance, "Insurance Icon");
         return new InsurancePage(driver);
     }
 
@@ -415,7 +415,7 @@ public class HomePage {
     }
 
     public void closeMoreServicesOverlay() throws InterruptedException {
-        Element.selectElement(driver, cross_icon_for_more_services_overlay, "Close More Services Overlay");
+        Element.selectElement(driver, cross_icon_for_more_services_overlay, "Close Overlay");
     }
 
     public void clickOnAllServicesSection() throws InterruptedException{
