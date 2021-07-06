@@ -2,6 +2,7 @@ package Helpers;
 
 import PageObject.HomePage;
 import PageObject.ImpsPage;
+import PageObject.MbkCommonControlsPage;
 import PageObject.P2MPage;
 import UITestFramework.MBReporter;
 import io.appium.java_client.android.AndroidDriver;
@@ -25,11 +26,12 @@ public class ImpsHelper {
     P2MPage p2mPage;
     PermissionHelper permissionHelper;
     ImpsPage impsPage;
+    MbkCommonControlsPage mbkCommonControlsPage;
 
     public static HashMap<String, String> map;
     public static HashMap<String, String> balanceBefore;
     public static HashMap<String, String> balanceAfter;
-
+    Double fee = 0.00;
 
     public ImpsHelper(AndroidDriver driver) throws IOException {
         this.driver = driver;
@@ -91,13 +93,147 @@ public class ImpsHelper {
         String actualAccountNo = impsPage.getSuccessPageAccountNo();
         String actualAmount = impsPage.getSuccessSuccessPageAmount();
 
-        mbReporter.verifyEqualsWithLogging(actualMessage, "Money sent successfully", "Success Page | Message", false, false);
+        mbReporter.verifyEqualsWithLogging(actualMessage, "Your Transfer is Successful", "Success Page | Message", false, false);
         mbReporter.verifyEqualsWithLogging(actualAccountNo, accountNo, "Success Page | Account No", false, false);
-        mbReporter.verifyEqualsWithLogging(actualAmount, "X50.0", "Success Page | Amount", false, false);
+        mbReporter.verifyEqualsWithLogging(actualAmount, "₹ 50", "Success Page | Amount", false, false);
 
-        mbkCommonControlsHelper.returnToHomePageFromP2MSuccessScreen();
+        //mbkCommonControlsPage.clickOnBackButtonfromIMPSSucessScreen();
+
+    }
+        //Lakshay's entries-
+
+    public void sendMoneyVPA(String vpa, String amount, String securityPin) throws InterruptedException, JSONException, IOException {
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+        //Storing Available Balance (Wallet Balance)
+        balanceBefore = mbkCommonControlsHelper.getBalance();
+        Double beforeBalance = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE))*100;
+        System.out.println(beforeBalance);
+
+        //impsPage.clickOnViaWallet();
+        impsPage.clickOnWalletToBank();
+
+        // Swipe the homescreen up
+        Thread.sleep(2000);
+        screen.swipeUpLess(driver);
+
+        impsPage.clickTransferToNewAccount();
+
+        //Click on UPI Radio Button
+        impsPage.selectUPIRadioButton();
+        impsPage.enterVPA(vpa);
+
+        impsPage.clickUPIContinueButton();
+
+        //impsPage.sendAmount(amount);
+
+        //Entering amount on the page-
+        impsPage.clickButton5();
+        impsPage.clickButton0();
+
+        Thread.sleep(5000);
+        //Capturing Conv Fee
+        if (driver.findElementById("convenience_fee_amount").isDisplayed()){
+        String convFee = impsPage.getConvFee();
+        String substrFee = convFee.substring(2);
+         fee = Double.parseDouble(substrFee)*100;}
+
+        impsPage.clickAmountSubmitButton();
+
+        impsPage.clickPay();
+
+        mbkCommonControlsHelper.handleSecurityPin(securityPin);
+
+        impsPage.closeReferralDialogBox();
+        Thread.sleep(5000);
+
+        //Assertions
+        String actualMessage = impsPage.getSuccessMessage();
+        String actualVpa = impsPage.getSuccessPageVPA();
+        String actualAmount = impsPage.getSuccessSuccessPageAmount();
+
+        impsPage.clickBackButton();
+
+        //Comparing Balance
+        balanceAfter = mbkCommonControlsHelper.getBalance();
+        Double remainBalance = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MAINBALANCE))*100;
+        System.out.println(remainBalance);
+        Double diff = (beforeBalance-remainBalance-fee);
+        String diffBalance = diff.toString();
+
+        mbReporter.verifyEqualsWithLogging(diffBalance, "5000.0", "Amount Deduction | Verification", false, false);
+        mbReporter.verifyEqualsWithLogging(actualMessage, "Your Transfer is Successful", "Success Page | Message", false, false);
+        mbReporter.verifyEqualsWithLogging(actualVpa, vpa, "Success Page | VPA", false, false);
+        mbReporter.verifyEqualsWithLogging(actualAmount, "₹ 50", "Success Page | Amount", false, false);
+
+        //mbkCommonControlsHelper.returnToHomePageFromP2MSuccessScreen();
 
     }
 
+    public void sendMoneyBA(String accountName, String accountNo, String ifsc, String amount, String securityPin) throws InterruptedException, IOException, JSONException {
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+        //Getting Wallet Balance
+        balanceBefore = mbkCommonControlsHelper.getBalance();
+        Double beforeBalance = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE))*100;
 
+        impsPage.clickOnWalletToBank();
+
+        Thread.sleep(2000);
+        screen.swipeUpLess(driver);
+
+        impsPage.clickTransferToNewAccount();
+
+        //Enter Bank Account Details
+        impsPage.enterBeneficiaryName(accountName);
+        impsPage.enterAccountNo(accountNo);
+        impsPage.enterIfsc(ifsc);
+        driver.navigate().back();
+
+        impsPage.clickUPIContinueButton();
+
+        //impsPage.sendAmount(amount);
+
+        //Entering amount on the page-
+        impsPage.clickButton5();
+        impsPage.clickButton0();
+        Thread.sleep(5000);
+        //Getting IMPS Fee
+        if (driver.findElementById("convenience_fee_amount").isDisplayed()){
+            String convFee = impsPage.getConvFee();
+            String substrFee = convFee.substring(2);
+            fee = Double.parseDouble(substrFee)*100;}
+
+
+        impsPage.clickAmountSubmitButton();
+
+        impsPage.clickPay();
+
+        mbkCommonControlsHelper.handleSecurityPin(securityPin);
+
+        impsPage.closeReferralDialogBox();
+        Thread.sleep(5000);
+
+
+        //Assertions
+        String actualMessage = impsPage.getSuccessMessage();
+        String actualAccountNo = impsPage.getSuccessPageAccountNo();
+        String actualAmount = impsPage.getSuccessSuccessPageAmount();
+
+        //Comparing Balance
+        impsPage.clickBackButton();
+
+        balanceAfter = mbkCommonControlsHelper.getBalance();
+        Double remainBalance = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MAINBALANCE))*100;
+        System.out.println(remainBalance);
+        Double diff = (beforeBalance-remainBalance-fee);
+        String diffBalance = diff.toString();
+
+
+        mbReporter.verifyEqualsWithLogging(diffBalance, "5000.0", "Amount Deduction | Verification", false, false);
+        mbReporter.verifyEqualsWithLogging(actualMessage, "Your Transfer is Successful", "Success Page | Message", false, false);
+        mbReporter.verifyEqualsWithLogging(actualAccountNo, accountNo, "Success Page | Account No", false, false);
+        mbReporter.verifyEqualsWithLogging(actualAmount, "₹ 50", "Success Page | Amount", false, false);
+
+        //mbkCommonControlsHelper.returnToHomePageFromP2MSuccessScreen();
+
+    }
 }

@@ -15,16 +15,16 @@ public class ImpsPage {
 
     AndroidDriver driver;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Via Wallet']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Wallet to Bank']")
     private AndroidElement via_Wallet;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Wallet to Bank']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Wallet to Bank Transfer']")
     private AndroidElement wallet_to_bank;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = '167795709569']")
     private AndroidElement bank;
 
-    @AndroidFindBy(id = "edt_txt_transfer_amount")
+    @AndroidFindBy(id = "edit_text")
     private AndroidElement amount_box;
 
     @AndroidFindBy(xpath = "//android.widget.Button[@text = 'Continue']")
@@ -35,13 +35,13 @@ public class ImpsPage {
 
     String success_text = "android.widget.TextView[@text = 'Money sent successfully']";
 
-    @AndroidFindBy(id = "beneficiary_name")
+    @AndroidFindBy(xpath = "//android.widget.EditText[@text = 'Beneficiary Name']")
     private AndroidElement textbox_beneficiary_name;
 
-    @AndroidFindBy(id = "account_number")
+    @AndroidFindBy(xpath = "//android.widget.EditText[@text = 'Account Number']")
     private AndroidElement textbox_account_no;
 
-    @AndroidFindBy(id = "ifsc_code")
+    @AndroidFindBy(xpath = "//android.widget.EditText[@text = 'IFSC Code']")
     private AndroidElement textbox_ifsc;
 
     @AndroidFindBy(id = "continue_button")
@@ -50,15 +50,52 @@ public class ImpsPage {
     @AndroidFindBy(id = "base_title")
     private AndroidElement label_success_message;
 
-    @AndroidFindBy(id = "txt_cn_value")
+    @AndroidFindBy(id = "upi_id")
     private AndroidElement label_account_no;
 
-    @AndroidFindBy(id = "txt_amount_value")
+    @AndroidFindBy(id = "amount")
     private AndroidElement label_amount;
 
     @AndroidFindBy(id = "continue_btn")
     private AndroidElement cta_submit_otp;
 
+    //Lakshay's Entries-
+
+    @AndroidFindBy(id = "radio_upi")
+    private AndroidElement upi_radio_button;
+
+    @AndroidFindBy(id="edit_text")
+    private AndroidElement virtual_private_address;
+
+    @AndroidFindBy(id = "btn_new_transfer")
+    private AndroidElement new_transfer_button;
+
+    @AndroidFindBy(id = "btn_continue")
+    private AndroidElement upi_continue_button;
+
+    @AndroidFindBy(id = "btn_pin_5")
+    private AndroidElement button_5;
+
+    @AndroidFindBy(id = "btn_pin_0")
+    private AndroidElement button_0;
+
+    @AndroidFindBy(id = "btn_pin_submit")
+    private AndroidElement amount_submit_button;
+
+    @AndroidFindBy(id = "cta")
+    private AndroidElement continue_cta;
+
+    @AndroidFindBy(id = "upi_id")
+    private AndroidElement label_vpa;
+
+    @AndroidFindBy(id = "iv_close")
+    private AndroidElement referral_close;
+
+    @AndroidFindBy(id = "base_icon_back")
+    private AndroidElement back_button;
+
+    @AndroidFindBy(id="convenience_fee_amount")
+    private AndroidElement imps_fee;
 
     public ImpsPage(AndroidDriver driver) throws IOException {
 
@@ -108,14 +145,17 @@ public class ImpsPage {
     }
 
     public void enterBeneficiaryName(String name) {
+        Element.selectElement(driver, textbox_beneficiary_name, "Beneficiary Name");
         Element.enterText(driver, textbox_beneficiary_name, name, "Beneficiary Name");
     }
 
     public void enterAccountNo(String account) {
+        Element.selectElement(driver, textbox_account_no, "Account No");
         Element.enterText(driver, textbox_account_no, account, "Account No");
     }
 
     public void enterIfsc(String ifsc) {
+        Element.selectElement(driver, textbox_ifsc, "Account No");
         Element.enterText(driver, textbox_ifsc, ifsc, "IFSC");
     }
 
@@ -134,5 +174,54 @@ public class ImpsPage {
     public void clickOnSubmitOtp() throws InterruptedException {
         Element.selectElement(driver, cta_submit_otp, "Submit OTP");
     }
+    //Lakshay's Entries-
 
+    public void selectUPIRadioButton() throws InterruptedException{
+        Element.selectElement(driver, upi_radio_button, "UPI Radio Button");
+    }
+
+    public void enterVPA(String vpa)  {
+        //Element.selectElement(driver, virtual_private_address, "UPI ID");
+        Element.enterText(driver, virtual_private_address, vpa, "UPI ID");
+    }
+
+    public void clickTransferToNewAccount() throws InterruptedException {
+        Element.selectElement(driver, new_transfer_button, "Transfer to New Account");
+    }
+
+    public void clickUPIContinueButton() throws InterruptedException
+    {
+        Element.selectElement(driver, upi_continue_button, "Continue Button of UPI");
+    }
+
+    public void clickButton5() throws InterruptedException{
+        Element.selectElement(driver, button_5, "Button 5 on Screen");
+    }
+
+    public void clickButton0() throws InterruptedException{
+        Element.selectElement(driver, button_0, "Button 0 on Screen");
+    }
+
+    public void clickAmountSubmitButton() throws InterruptedException{
+        Element.selectElement(driver, amount_submit_button, "Amount Submit Button");
+    }
+
+    public void clickPay() throws InterruptedException{
+        Element.selectElement(driver, continue_cta, "Pay Button");
+    }
+
+    public String getSuccessPageVPA() {
+        return Element.getText(driver, label_vpa, "Success Page | VPA");
+    }
+
+    public void closeReferralDialogBox() throws InterruptedException{
+        Element.selectElement(driver, referral_close, "Close Referral Dialog Box");
+    }
+
+    public void clickBackButton() throws InterruptedException{
+        Element.selectElement(driver, back_button, "Click on Back Button");
+    }
+    public String getConvFee() throws InterruptedException{
+        return Element.getText(driver, imps_fee, "Get IMPS Fee");
+    }
 }
