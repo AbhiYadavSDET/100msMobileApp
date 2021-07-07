@@ -5,10 +5,12 @@ import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 import utils.Element;
 
 import java.io.IOException;
+import java.util.List;
 
 public class SideDrawerPage {
 
@@ -41,8 +43,11 @@ public class SideDrawerPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Help']")
     private AndroidElement help;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Security Settings']")
+    @AndroidFindBy(id = "drawer_row_security_setting")
     private AndroidElement security_settings;
+
+    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.ScrollView/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.RelativeLayout[6]/android.view.ViewGroup/android.widget.TextView[1]")
+    private AndroidElement getSecurity_settings_text;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Accounts']")
     private AndroidElement accountsPageCta;
@@ -83,6 +88,11 @@ public class SideDrawerPage {
     public SecuritySettingsPage clickOnSecuritySettings() throws IOException {
         Element.selectElement(driver, security_settings, "Click on Security Settings");
         return new SecuritySettingsPage(driver);
+    }
+
+    public String getSecuritySettingsTitleText() throws IOException {
+        return Element.getText(driver, getSecurity_settings_text, "Get Security Settings Text in Side Drawer");
+
     }
 
     public SavedConnectionPage clickOnMySavedConnection() throws IOException {
