@@ -160,6 +160,9 @@ public class RechargePage {
     @AndroidFindBy(id = "fixed_amount_value")
     public AndroidElement label_success_screen_amount;
 
+    @AndroidFindBy(id = "edit_text")
+    public AndroidElement id_amount;
+
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Telephone Number (Without STD Code)']/following::android.widget.EditText[1]")
     public AndroidElement textbox_telephone_no;
 
@@ -208,7 +211,7 @@ public class RechargePage {
     @AndroidFindBy(id = "base_icon_close")
     public AndroidElement cross_icon_pending_screen;
 
-    @AndroidFindBy(id= "cross_icon")
+    @AndroidFindBy(id = "cross_icon")
     public AndroidElement select_cross_icon;
 
 //cta_continue
@@ -242,13 +245,14 @@ public class RechargePage {
         Element.enterText(driver, textbox_mobile_no, cell, "Mobile No");
         Element.selectElement(driver, numberSelecter, "select number from List");
     }
+
     public void enterPostpaidMobileNo(String cell) throws InterruptedException {
         Element.enterText(driver, textbox_mobile_no, cell, "Mobile No");
 
     }
 
 
-//Pallavi Change
+    //Pallavi Change
     public void changePrepaidPostpaidToggle() throws InterruptedException {
         Element.selectElement(driver, prepaidPostpaid_toggle, "selectpostpaid from toggle");
     }
@@ -273,7 +277,6 @@ public class RechargePage {
     public void enterPostpaidAmount(String amount) throws InterruptedException {
         Element.enterText(driver, enterText_click, amount, "Enter Amount");
     }
-
 
 
     public void clickOnDropDown() throws InterruptedException {
@@ -314,7 +317,6 @@ public class RechargePage {
     public void clickOnBackButtonPlansPage() throws InterruptedException {
         Element.selectElement(driver, cta_back_button_plans_page, "Navigate back to recharge page");
     }
-
 
 
     public void enterGasConnectionNo(String ConnectionNo) throws InterruptedException {
@@ -402,6 +404,7 @@ public class RechargePage {
         Element.selectElement(driver, back_electricity_icon, "CLick on Electricity BAck icon ");
         return new RechargePage(driver);
     }
+
     public void enterDthAmount(String amount) throws InterruptedException {
         Element.enterText(driver, textbox_enter_dth_amount, amount, "Enter Amount");
     }
@@ -429,6 +432,11 @@ public class RechargePage {
     public String getSuccessScreenAmount() throws InterruptedException {
         return Element.getText(driver, label_success_screen_amount, "Success Screen | Verify Amount");
     }
+
+    public String getPreSuccessScreenAmount() throws InterruptedException {
+        return Element.getText(driver, id_amount, "Success Screen | Verify Amount");
+    }
+
 
     public void enterBpNumber(String number) throws InterruptedException {
         Element.enterText(driver, textbox_bp_number, number, "Enter Number");
@@ -483,7 +491,7 @@ public class RechargePage {
         Element.selectElement(driver, select_voucher, "Apply a voucher");
     }
 
-    public void selectCrossIcon() throws InterruptedException{
+    public void selectCrossIcon() throws InterruptedException {
         Element.selectElement(driver, select_cross_icon, "Dismiss pop up");
     }
 
