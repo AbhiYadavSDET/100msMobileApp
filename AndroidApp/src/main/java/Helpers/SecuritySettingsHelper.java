@@ -85,15 +85,11 @@ public class SecuritySettingsHelper {
                 mbkCommonControlsHelper.handleSecurityPin(pin);
                 Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Security PIN: Disabled']"));
                 securitySettingsPage.clickBackButton();
+                sideDrawerPage = homePage.clickHamburgerIcon();
+                screen.swipeUpMoreFromRightSide(driver);
+                mbReporter.verifyEqualsWithLogging(sideDrawerPage.getSecuritySettingsTitleText(), "Set Security Pin", "Validating Title has change to Set Security Pin", true, false);
+                securitySettingsPage = sideDrawerPage.clickOnSecuritySettings();
             }
-
-            sideDrawerPage = homePage.clickHamburgerIcon();
-
-            screen.swipeUpMoreFromRightSide(driver);
-
-            mbReporter.verifyEqualsWithLogging(sideDrawerPage.getSecuritySettingsTitleText(), "Set Security Pin", "Validating Title has change to Set Security Pin", true, false);
-
-            securitySettingsPage = sideDrawerPage.clickOnSecuritySettings();
 
             mbkCommonControlsHelper.handleSecurityPin(pin);
 
@@ -118,7 +114,7 @@ public class SecuritySettingsHelper {
 
         Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Security Settings']"));
 
-        securitySettingsPage.clickChangeSecurityPin();
+        securitySettingsPage.clickChangeSecurityPinLabel();
 
         securitySettingsPage.enterCurrentSecurityPin(pin);
 
@@ -141,7 +137,7 @@ public class SecuritySettingsHelper {
 
         Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Security Settings']"));
 
-        securitySettingsPage.clickChangeSecurityPin();
+        securitySettingsPage.clickChangeSecurityPinLabel();
 
         securitySettingsPage.enterCurrentSecurityPin(newPin);
 
@@ -251,7 +247,7 @@ public class SecuritySettingsHelper {
 
             Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Security Settings']"));
 
-            securitySettingsPage.clickChangeSecurityPin();
+            securitySettingsPage.clickChangeSecurityPinLabel();
 
             securitySettingsPage.enterCurrentSecurityPin(newPin);
 

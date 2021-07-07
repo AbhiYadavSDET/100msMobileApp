@@ -47,7 +47,7 @@ public class SecuritySettingsPage {
     private AndroidElement cta_back_to_home;
 
     @AndroidFindBy(id= "layout_change_or_upgrade_pin")
-    private AndroidElement cta_change_pin;
+    private AndroidElement btn_change_pin_action;
 
     @AndroidFindBy(xpath= "//android.widget.TextView[@text = 'Your Current Security PIN']/following::android.widget.EditText")
     private AndroidElement enter_current_security_pin;
@@ -59,7 +59,8 @@ public class SecuritySettingsPage {
     private AndroidElement confirm_new_security_pin;
 
     @AndroidFindBy(id= "btn_change_pin_action")
-    private AndroidElement btn_change_pin_action;
+    private AndroidElement cta_change_pin;
+
 
     @AndroidFindBy(id= "success_headline")
     private AndroidElement change_pin_success_page_title;
@@ -162,8 +163,8 @@ public class SecuritySettingsPage {
         Element.selectElement(driver, cta_back_to_home, "Click Back To Home");
     }
 
-    public void clickChangeSecurityPin() throws InterruptedException {
-        Element.selectElement(driver, cta_change_pin, "Click Change Security Pin from Security pin Home page");
+    public void clickChangeSecurityPinLabel() throws InterruptedException {
+        Element.selectElement(driver, btn_change_pin_action, "Click Change Security Pin from Security pin Home page");
     }
 
     public void enterCurrentSecurityPin(String currentPin) throws InterruptedException{
