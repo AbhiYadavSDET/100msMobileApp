@@ -57,12 +57,30 @@ public class P2PHelper {
     public void p2pSufficient(String mobile, String amount, String securityPin, String successPageStatus, String successPageName) throws InterruptedException, IOException,
             JSONException {
 
-        homePage.clickOnCrossButton();
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
-
         balanceBefore = mbkCommonControlsHelper.getBalance();
-        transferPage = homePage.clickOnButtonP2P();
+
+        homePage.clickOnAllServicesSection();
+
+        for(int i=0; i<6; i++){
+
+            if(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Wallet to Wallet transfer']"))){
+                screen.swipeUpMedium(driver);
+                Log.info("Wallet to Wallet Transfer found");
+                break;
+
+            }else{
+
+                screen.swipeUpMedium(driver);
+                Log.info("Option not on Screen");
+
+            }
+
+        }
+
+        transferPage=homePage.clickOnButtonP2P();
+
         transferPage.clickOnLabelEnterMobileNumber();
         transferPage.enterMobileNumber(mobile);
         transferPage.enterAmount(amount);
@@ -72,26 +90,32 @@ public class P2PHelper {
 
         // Assertion on the success screen
         String actualSuccessScreenStatus = transferPage.getSuccessPageStatus();
-        String actualSuccessScreenName = transferPage.getSuccessPageName();
+        String actualSuccessScreenAmount = transferPage.getSuccessPageAmount();
         String actualSuccessScreenNumber = transferPage.getSuccessPageNumber();
 
-        mbReporter.verifyEqualsWithLogging(actualSuccessScreenStatus, successPageStatus, "Success Screen | Verify Status", false, false);
-        mbReporter.verifyEqualsWithLogging(actualSuccessScreenName, successPageName, "Success Screen | Verify Name", false, false);
+
+        mbReporter.verifyEqualsWithLogging(actualSuccessScreenStatus, "Your Transfer is Successful", "Success Screen | Verify Status", false, false);
         mbReporter.verifyEqualsWithLogging(actualSuccessScreenNumber, mobile, "Success Screen | Verify Code", false, false);
+        mbReporter.verifyEqualsWithLogging(actualSuccessScreenAmount, "X5.0", "Success Screen | Verify Amount", false, false);
+
+
 
         Thread.sleep(5000);
 
         mbkCommonControlsHelper.returnToHomePageFromP2MSuccessScreen();
 
-        // Assert the wallet balances
+        // POST TRX Assertions
         balanceAfter = mbkCommonControlsHelper.getBalance();
-
         Double actualMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100;
         Double actualSuperCashBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
         Double expectedMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100 - Double.parseDouble(amount) * 100;
         Double expectedSuperCashBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
         mbReporter.verifyEqualsWithLogging(actualMainBalanceAfter, expectedMainBalanceAfter, "After TRX | Verify Wallet Main Balance", false, false);
         mbReporter.verifyEqualsWithLogging(actualSuperCashBalanceAfter, expectedSuperCashBalanceAfter, "After TRX | Verify Supercash Balance", false, false);
+
+
+
+
 
 
     }
@@ -116,7 +140,7 @@ public class P2PHelper {
             mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
 
-        homePage.clickOnAllServicesSection();
+            homePage.clickOnAllServicesSection();
 
             for(int i=0; i<6; i++){
 
@@ -146,11 +170,13 @@ public class P2PHelper {
 
         // Assertion on the success screen
         String actualSuccessScreenStatus = transferPage.getSuccessPageStatus();
-        String actualSuccessScreenName = transferPage.getSuccessPageName();
+        String actualSuccessScreenAmount = transferPage.getSuccessPageAmount();
         String actualSuccessScreenNumber = transferPage.getSuccessPageNumber();
 
         mbReporter.verifyEqualsWithLogging(actualSuccessScreenStatus, "Your Transfer is Successful", "Success Screen | Verify Status", false, false);
         mbReporter.verifyEqualsWithLogging(actualSuccessScreenNumber, mobile, "Success Screen | Verify Code", false, false);
+        mbReporter.verifyEqualsWithLogging(actualSuccessScreenAmount, "X5.0", "Success Screen | Verify Amount", false, false);
+
 
         Thread.sleep(5000);
 
@@ -164,6 +190,7 @@ public class P2PHelper {
             JSONException {
 
 
+        String newAmount=getRequiredAmount(amount);
 
         homePage.clickOnAllServicesSection();
 
@@ -186,7 +213,7 @@ public class P2PHelper {
         homePage.clickOnButtonP2P();
         transferPage.clickOnLabelEnterMobileNumber();
         transferPage.enterMobileNumber(mobile);
-        transferPage.enterAmount(amount);
+        transferPage.enterAmount(newAmount);
         transferPage.clickOnCtaConfirmTransfer();
         mbkCommonControlsHelper.handleSecurityPin(securityPin);
         Thread.sleep(5000);
@@ -211,7 +238,26 @@ public class P2PHelper {
 
     }
 
+    public String getRequiredAmount(String amount) throws InterruptedException, IOException {
 
+        balanceBefore = mbkCommonControlsHelper.getBalance();
+
+        String availableAmount  = mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE);
+
+        if (Double.parseDouble(amount) < Double.parseDouble(availableAmount)) {
+
+            int amountToTransfer = Integer.parseInt(amount) + Integer.parseInt(availableAmount);
+
+            String newAmount = String.valueOf(amountToTransfer);
+
+            return newAmount;
+
+        } else {
+            String newAmount = amount;
+            return newAmount;
+        }
+
+    }
 
 
 }

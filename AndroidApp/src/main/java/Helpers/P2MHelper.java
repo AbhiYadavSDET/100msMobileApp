@@ -63,6 +63,8 @@ public class P2MHelper {
 
         p2mPage.enterAmount(amount);
 
+        Element.waitForVisibility(driver, By.id("tv_wallet_balance"));
+
         p2mPage.clickOnCtaConfirmTransfer();
 
         mbkCommonControlsHelper.handleSecurityPin(securityPin);
@@ -81,7 +83,7 @@ public class P2MHelper {
         mbReporter.verifyEqualsWithLogging(actualSuccessScreenCode.toLowerCase(), merchantCode.toLowerCase(), "Success Screen | Verify Code", false, false);
 
         // Test
-        Thread.sleep(5000);
+        Thread.sleep(2000);
 
         mbkCommonControlsHelper.returnToHomePageFromP2MSuccessScreen();
 

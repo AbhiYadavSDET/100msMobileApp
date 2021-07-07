@@ -20,7 +20,7 @@ public class Test_Bus extends CreateSession {
     public void Test01_bus_book(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
         loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
-//        loginHelper.quickLoginViaEmail(userName, password);
+
 
         CheckBalanceHelper checkBalanceHelper = new CheckBalanceHelper(getAndroidDriver());
         checkBalanceHelper.checkBalance(frontEndEntity.getAmount());

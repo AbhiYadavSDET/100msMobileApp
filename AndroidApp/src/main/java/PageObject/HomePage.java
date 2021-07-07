@@ -53,7 +53,7 @@ public class HomePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Direct Mutual Funds']")
     private AndroidElement icon_mutualFund;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Insurance']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Insurance']/following::android.widget.TextView[@text='Insurance']")
     private AndroidElement icon_insurance;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Recharge & Pay Bills']")
@@ -91,6 +91,8 @@ public class HomePage {
 
     @AndroidFindBy(id = "skip")
     public AndroidElement skip_button;
+
+
 
 //    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Wallet']")
 //    private AndroidElement button_wallet;
@@ -175,17 +177,22 @@ public class HomePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Ola Cabs']")
     private AndroidElement icon_ola;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Home']")
+    @AndroidFindBy(id = "navigation_home")
     private AndroidElement bottom_bar_home;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'All Services']")
     private AndroidElement bottom_bar_all_services;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Home']")
-    private AndroidElement bottom_bar_all_offers;
+    private AndroidElement bottom_bar;
 
     @AndroidFindBy(id = "com.mobikwik_new.debug:id/icon_chevron")
     private AndroidElement arrow_balance_dropdown;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Deals']")
+    private AndroidElement button_deals;
+
+
 
 
     public HomePage(AndroidDriver driver) {
@@ -369,7 +376,7 @@ public class HomePage {
     }
 
     public InsurancePage clickOnInsuranceIcon() throws IOException {
-        Element.selectElement(driver, icon_insurance, "InsuranceApi Icon");
+        Element.selectElement(driver, icon_insurance, "Insurance Icon");
         return new InsurancePage(driver);
     }
 
@@ -420,11 +427,25 @@ public class HomePage {
     }
 
     public void closeMoreServicesOverlay() throws InterruptedException {
-        Element.selectElement(driver, cross_icon_for_more_services_overlay, "Close More Services Overlay");
+        Element.selectElement(driver, cross_icon_for_more_services_overlay, "Close Overlay");
     }
 
     public void clickOnAllServicesSection() throws InterruptedException{
         Element.selectElement(driver, bottom_bar_all_services, "Open All Service Section");
+    }
+
+    public DealsPage clickOnButtonDeals() throws IOException {
+        Element.selectElement(driver, button_deals, "Open Deals");
+        return new DealsPage(driver);
+
+
+    }
+    public void navigateToHome() throws IOException{
+        Element.selectElement(driver, bottom_bar_home, " Navigate Back To Home");
+    }
+
+    public void closeInvestmentsBottomSheet() throws InterruptedException {
+        Element.selectElement(driver, cross_icon_for_recharge_services_overlay, "Close Investment Bottom Sheet.");
     }
 
 }

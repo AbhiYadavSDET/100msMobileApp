@@ -42,11 +42,24 @@ public class InsurancePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Insured By']/following-sibling::android.widget.TextView")
     private AndroidElement policy_insurer_name;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/i_agree")
+    @AndroidFindBy(id = "i_agree")
     private AndroidElement i_agree_terms;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/amount_to_be_paid")
+    @AndroidFindBy(id = "amount_to_be_paid")
     private AndroidElement amount_to_be_paid;
+
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='Personal Accident Insurance']")
+    private AndroidElement personal_accident_insurance;
+
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='Personal Accident Insurance']/following::android.widget.TextView[@text='Personal Accident Insurance']")
+    private AndroidElement personal_accident_insurance_lower;
+
+    @AndroidFindBy(id = "mkab_icon_1")
+    private AndroidElement back_button;
+
+
+
+
 
 
     public InsurancePage(AndroidDriver driver) throws IOException {
@@ -101,6 +114,17 @@ public class InsurancePage {
 
     public String getAmountToBePaid() {
         return Element.getText(driver, amount_to_be_paid, "Amount To Be Paid");
+    }
+
+    public void selectPersonalAccidentInsurance() throws InterruptedException {
+        Element.selectElement(driver, personal_accident_insurance, "Selective Personal Accident Insurance");
+        Thread.sleep(1000);
+        Element.selectElement(driver, personal_accident_insurance_lower, "Selective Personal Accident Insurance lower Category");
+
+    }
+
+    public void clickOnBackButton() throws InterruptedException {
+        Element.selectElement(driver, back_button, "Click on Back Button");
     }
 
 }

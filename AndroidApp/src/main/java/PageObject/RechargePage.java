@@ -188,27 +188,52 @@ public class RechargePage {
     public AndroidElement credit_card_bill_title;
 
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'z']/following::android.widget.EditText[1]")
+    @AndroidFindBy(id="edit_text")
     public AndroidElement textbox_enter_credit_card_amount;
 
-    @AndroidFindBy(id = "connection_detail_button_recharge")
+    @AndroidFindBy(id="btn_pin_submit")
+    public AndroidElement cta_submit_amount;
+
+    @AndroidFindBy(id = "cta")
     public AndroidElement button_credit_card_continue;
 
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'Confirm Payment']")
     public AndroidElement confirm_payment_title;
 
+    @AndroidFindBy(id = "wallet_layout")
+    public AndroidElement select_wallet_balance_flow;
+
+    @AndroidFindBy(id = "pg_layout")
+    public AndroidElement select_walletAsPG_balance_flow;
+
+    @AndroidFindBy(id="why_layout")
+    public AndroidElement cta_why;
+
+    @AndroidFindBy(id="btn_okay")
+    public AndroidElement cta_ok;
+
+    @AndroidFindBy(id="fees_wallet")
+    public AndroidElement get_fees;
+
+
+    @AndroidFindBy(id="processing_fee_title")
+    public AndroidElement why_page_opened;
+
+
+
+
 
     @AndroidFindBy(id = "base_title")
     public AndroidElement pending_screen_title;
 
-    @AndroidFindBy(id = "pending_desc")
+    @AndroidFindBy(id = "base_sub_title")
     public AndroidElement pending_desc_message;
 
-    @AndroidFindBy(id = "total_amount_value")
+    @AndroidFindBy(id = "amount")
     public AndroidElement total_amount_value;
 
-    @AndroidFindBy(id = "base_icon_close")
+    @AndroidFindBy(id = "base_icon_back")
     public AndroidElement cross_icon_pending_screen;
 
     @AndroidFindBy(id = "cross_icon")
@@ -457,6 +482,12 @@ public class RechargePage {
 
     public void enterCreditCardAmount(String amount) throws InterruptedException {
         Element.enterText(driver, textbox_enter_credit_card_amount, amount, "Enter Amount");
+        Thread.sleep(400);
+        Element.selectElement(driver,cta_submit_amount, "Submit Amount");
+    }
+
+    public void submitCreditCardAmount() throws InterruptedException {
+        Element.selectElement(driver,cta_submit_amount, "Submit Amount");
     }
 
     public void clickOnCreditCardContinueCta() throws InterruptedException {
@@ -466,6 +497,31 @@ public class RechargePage {
     public void clickGasContinueCta() throws InterruptedException {
         Element.selectElement(driver, continue_button, "Continue Continue");
     }
+    public void selectWalletFlowWithConvFee() throws InterruptedException{
+        Element.selectElement(driver, select_wallet_balance_flow, "Select Wallet Balance Flow with Conv fee");
+    }
+
+    public void selectWalletAsPgFlow() throws InterruptedException{
+        Element.selectElement(driver, select_walletAsPG_balance_flow, "Select Wallet AS PG Flow");
+    }
+
+    public void clickOnWhyCta() throws InterruptedException{
+        Element.selectElement(driver, cta_why, "Select Why option");
+    }
+
+    public void clickOnOK() throws InterruptedException{
+        Element.selectElement(driver, cta_ok, "Select OK Cta");
+    }
+
+    public String getFeesAmount() throws InterruptedException{
+        return Element.getText(driver, get_fees, "Get Fees Amount").replace("X", "").replace(" Conv. fees", "");
+
+    }
+
+    public Boolean isWhyPageOpened() throws InterruptedException{
+        return Element.isElementPresent(driver, By.id("processing_fee_title"));
+    }
+
 
     public String getSuccessScreenTitle() throws InterruptedException {
         return Element.getText(driver, pending_screen_title, "Succes Screen Tile");

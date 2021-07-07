@@ -25,7 +25,7 @@ public class Test_GiftCard extends CreateSession {
         Log.info("START : Gift Card sanity test");
 
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+        loginHelper.quickLoginViaNumber("9205299330", "547372");
 
 //using bankname for Gift Card
 //category for the person name gift card is for.
@@ -44,7 +44,7 @@ public class Test_GiftCard extends CreateSession {
         Log.info("START : Gift Card sanity test");
 
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+        loginHelper.quickLoginViaNumber("9205299330", "547372");
 
 
         GiftCardHelper giftCardHelper = new GiftCardHelper(getAndroidDriver());
@@ -58,7 +58,7 @@ public class Test_GiftCard extends CreateSession {
         Log.info("START : Gift Card sanity test");
 
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+        loginHelper.quickLoginViaNumber("9205299330", "547372");
 
 
         GiftCardHelper giftCardHelper = new GiftCardHelper(getAndroidDriver());

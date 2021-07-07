@@ -39,8 +39,8 @@ public class TransferPage {
     @AndroidFindBy(id = "total_amount_value")
     private AndroidElement label_total_payment;
 
-    @AndroidFindBy(id = "txt_info")
-    private AndroidElement label_success_screen_name;
+    @AndroidFindBy(id = "txt_amount_value")
+    private AndroidElement label_success_screen_amount;
 
     @AndroidFindBy(id = "txt_cn_value")
     private AndroidElement label_success_screen_number;
@@ -86,8 +86,8 @@ public class TransferPage {
         return Element.getText(driver, label_success_page_status, "Success page Status");
     }
 
-    public String getSuccessPageName() throws InterruptedException {
-        return Element.getText(driver, label_success_screen_name, "Success page name");
+    public String getSuccessPageAmount() throws InterruptedException {
+        return Element.getText(driver, label_success_screen_amount, "Success page Amount");
     }
 
     public String getSuccessPageNumber() throws InterruptedException {
