@@ -1,4 +1,3 @@
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Appium-Framework">
     <listeners>
         <listener class-name="UITestFramework.retryLogic.RetryListener"/>
@@ -7,15 +6,14 @@
     <parameter name="build" value="prod"/>
     <parameter name="level" value="payments"/>
     <parameter name="saucelabs" value="false"></parameter>
-    <parameter name="methodName" value="rechargePrepaid"></parameter>
-
+    <parameter name="androidOSVersion" value="7.0"></parameter>
 
     <test name="Mobikwik Automation Tests">
         <groups>
             <run>
                 <include name="setUp"/>
                 <include name="instantiateHelpers"/>
-                <include name="GasViewBill"/>
+                <include name="verifySplitBill"/>
                 <include name="tearDown"/>
             </run>
         </groups>
@@ -23,8 +21,7 @@
         <classes>
             <class name="UITestFramework.CreateSession"/>
             <class name="UITestFramework.ExtentReport.Reporter"/>
-            <class name="Recharge.Test_Recharge"/>
+            <class name="Services.Test_SplitBill"/>
         </classes>
-
     </test>
 </suite>
