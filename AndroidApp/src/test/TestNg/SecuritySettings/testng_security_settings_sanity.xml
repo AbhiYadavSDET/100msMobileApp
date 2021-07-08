@@ -15,7 +15,7 @@
             <run>
                 <include name="setUp"/>
                 <include name="instantiateHelpers"/>
-                <include name="securityPinSanity"/>
+                <include name="forgotSecurityPinViaOtherOptions"/>
                 <include name="tearDown"/>
             </run>
         </groups>

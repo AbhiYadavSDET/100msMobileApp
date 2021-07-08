@@ -212,11 +212,11 @@ public class SecuritySettingsPage {
     }
 
     public String getQuestionText() throws InterruptedException {
-        return Element.getText(driver, get_security_question_text, "Security Question is : ");
+        return Element.getText(driver, get_security_question_text, "Security Question is :");
     }
 
     public void enterAnswer(String answer) throws InterruptedException{
-        Element.enterText(driver,enter_answer_to_security_question, answer,"Add answer: ");
+        Element.enterText(driver,enter_answer_to_security_question, answer,"Add answer: "+answer+"");
     }
 
     public void clickContinueToSubmitAnswer() throws InterruptedException {

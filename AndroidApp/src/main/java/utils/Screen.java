@@ -64,7 +64,7 @@ public class Screen {
             Double screenHeightEnd = dimension.getHeight() * 0.2; //20
             int heightEnd = screenHeightEnd.intValue();
 
-            Double screenRightOffsetEnd = dimension.getWidth() * 0.2; //20
+            Double screenRightOffsetEnd = dimension.getWidth() * 0.5; //20
             int rightOffsetEnd = screenRightOffsetEnd.intValue();
             //Log.info("End : " + heightEnd);
 

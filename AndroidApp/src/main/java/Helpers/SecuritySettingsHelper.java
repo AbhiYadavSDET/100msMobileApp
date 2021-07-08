@@ -186,6 +186,8 @@ public class SecuritySettingsHelper {
 
             mbReporter.verifyEqualsWithLogging(securitySettingsPage.getProgressMessageText(), "Waiting for SMS to arrive on your number", "Device is Trying to AutoRead SMS to open Forgot Pin flow", false,false);
 
+            Thread.sleep(6000);
+            Element.waitForVisibility(driver,By.id("mkab_icon_1"));
             securitySettingsPage.clickBackButtonWithinFlow();
 
             securitySettingsPage.clickBackButtonWithinFlow();
@@ -201,9 +203,17 @@ public class SecuritySettingsHelper {
 
             securitySettingsPage.clickToRecoverViaSecurityQuestion();
 
-            String Question= securitySettingsPage.getQuestionText();
 
-            Log.info(Question);
+
+                while(securitySettingsPage.getQuestionText() != "What is your First School Name?")
+                {
+                    Log.info(securitySettingsPage.getQuestionText());
+                    securitySettingsPage.clickBackButtonWithinFlow();
+                    securitySettingsPage.clickToRecoverViaOtherOptions();
+                    securitySettingsPage.clickToRecoverViaSecurityQuestion();
+
+                }
+
 
             securitySettingsPage.enterAnswer(securityQuestionAnswer);
 
