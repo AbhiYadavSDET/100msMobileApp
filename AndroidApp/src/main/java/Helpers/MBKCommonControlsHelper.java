@@ -157,6 +157,8 @@ public class MBKCommonControlsHelper {
         mbkCommonControlsPage.clickOnUpButton();
     }
 
+
+
     public void clickUpButton2() throws InterruptedException {
         Thread.sleep(1000);
         mbkCommonControlsPage.clickOnUpButton2();
@@ -178,6 +180,12 @@ public class MBKCommonControlsHelper {
     }
 
 
+    public void returnToHomePageFromRechargeSuccessScreenBackButton() throws InterruptedException {
+        mbkCommonControlsPage.clickOnSuccessPageBackbutton();
+        handleRatingsPopUp();
+        handleNPS();
+    }
+
     public void returnToHomePageFromP2MSuccessScreen() throws InterruptedException {
         mbkCommonControlsPage.clickOnSuccessPageCross();
         handleRatingsPopUp();
@@ -189,6 +197,11 @@ public class MBKCommonControlsHelper {
     public void returnToHomePage() throws InterruptedException {
         mbkCommonControlsPage.clickOnNavigateHome();
     }
+
+    public void returnToHomePageByBackArrow() throws InterruptedException {
+        mbkCommonControlsPage.clickOnSuccessPageBackbutton();
+    }
+
 
     public LinkedHashMap<String, String> getBalance()
             throws InterruptedException, IOException {

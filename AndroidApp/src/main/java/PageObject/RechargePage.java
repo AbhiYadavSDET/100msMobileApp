@@ -22,14 +22,45 @@ public class RechargePage {
     @AndroidFindBy(id = "contact_number")
     private AndroidElement numberSelecter;
 
+    //Pallavi Xpath
+    @AndroidFindBy(id = "toggle_button")
+    private AndroidElement prepaidPostpaid_toggle;
+
+    @AndroidFindBy(id = "horizontal_button_2")
+    private AndroidElement rightYes_Cta;
+
+    @AndroidFindBy(id = "horizontal_button_2")
+    private AndroidElement popupbutton_yes;
+
+    @AndroidFindBy(id = "edit_text")
+    private AndroidElement enterText_click;
+
+    @AndroidFindBy(id = "continue_button")
+    private AndroidElement continue_button;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='ę']")
+    private AndroidElement back_electricity_icon;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Adani Electricity Mumbai Limited']")
+    private AndroidElement dropdown_electricityFirstOperator;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Aavantika Gas Ltd.']")
+    private AndroidElement dropdown_gasConnection;
+
     @AndroidFindBy(id = "right_arrow")
     private AndroidElement link_drop_down;
+
+    @AndroidFindBy(id = "parent_layout")
+    private AndroidElement link_drop_down_mobilenoselect;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'VI']")
     private AndroidElement label_vodafone;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Haryana']")
     private AndroidElement label_haryana;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = '8506053433']")
+    private AndroidElement saved_contactNo;
 
 
 //    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Amount (in X)']/following::android.widget.TextView[@text = 'Enter any amount']")
@@ -65,6 +96,9 @@ public class RechargePage {
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Category']/following::android.widget.TextView[1]")
     private AndroidElement label_category;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Operators']/following::android.widget.TextView[1]")
+    private AndroidElement label_opertor_Gas;
 
     @AndroidFindBy(id = "operator")
     private AndroidElement label_operator;
@@ -108,6 +142,12 @@ public class RechargePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'More']")
     public AndroidElement label_more;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Bill Payment for']")
+    public AndroidElement text_billpayment;
+
+    @AndroidFindBy(xpath = "//android.widget.CheckBox[@text = 'Remind me for forthcoming bill payments']")
+    public AndroidElement text_reminder;
+
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'BP Number']/following::android.widget.EditText[1]")
     public AndroidElement textbox_bp_number;
 
@@ -119,6 +159,9 @@ public class RechargePage {
 
     @AndroidFindBy(id = "fixed_amount_value")
     public AndroidElement label_success_screen_amount;
+
+    @AndroidFindBy(id = "edit_text")
+    public AndroidElement id_amount;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Telephone Number (Without STD Code)']/following::android.widget.EditText[1]")
     public AndroidElement textbox_telephone_no;
@@ -193,7 +236,7 @@ public class RechargePage {
     @AndroidFindBy(id = "base_icon_back")
     public AndroidElement cross_icon_pending_screen;
 
-    @AndroidFindBy(id= "cross_icon")
+    @AndroidFindBy(id = "cross_icon")
     public AndroidElement select_cross_icon;
 
 //cta_continue
@@ -228,12 +271,45 @@ public class RechargePage {
         Element.selectElement(driver, numberSelecter, "select number from List");
     }
 
+    public void enterPostpaidMobileNo(String cell) throws InterruptedException {
+        Element.enterText(driver, textbox_mobile_no, cell, "Mobile No");
+
+    }
+
+
+    //Pallavi Change
+    public void changePrepaidPostpaidToggle() throws InterruptedException {
+        Element.selectElement(driver, prepaidPostpaid_toggle, "selectpostpaid from toggle");
+    }
+
+
+    public void clickYesCta() throws InterruptedException {
+        Element.selectElement(driver, popupbutton_yes, "select pop up button yes");
+    }
+
+    public void clickOnPopupYes() throws InterruptedException {
+        Element.selectElement(driver, popupbutton_yes, "Select Yest from Popup");
+    }
+
+    public void enterTextClick() throws InterruptedException {
+        Element.selectElement(driver, enterText_click, "click on enter amount");
+    }
+
+    public void dropdownElectricityfirstOpClick() throws InterruptedException {
+        Element.selectElement(driver, dropdown_electricityFirstOperator, "click on first electricity operator");
+    }
+
+    public void enterPostpaidAmount(String amount) throws InterruptedException {
+        Element.enterText(driver, enterText_click, amount, "Enter Amount");
+    }
+
+
     public void clickOnDropDown() throws InterruptedException {
         Element.selectElement(driver, link_drop_down, "Drop down");
     }
 
-    public void clickOnPostPaid() throws InterruptedException {
-        Element.selectElement(driver, postPaid, "Postpaid");
+    public void clickOnDropdownMobile() throws InterruptedException {
+        Element.selectElement(driver, link_drop_down_mobilenoselect, "Select mobile no from dropdown");
     }
 
     public void selectOperator() throws InterruptedException {
@@ -250,6 +326,11 @@ public class RechargePage {
         Element.selectElement(driver, label_haryana, "Circle");
     }
 
+
+    public void selectPostpaidnoSavedContact() throws InterruptedException {
+        Element.selectElement(driver, saved_contactNo, "SAve connection postpaid No");
+    }
+
     public void selectAmount() throws InterruptedException {
         Element.selectElement(driver, textbox_enter_amount, "Select Amount");
     }
@@ -260,6 +341,11 @@ public class RechargePage {
 
     public void clickOnBackButtonPlansPage() throws InterruptedException {
         Element.selectElement(driver, cta_back_button_plans_page, "Navigate back to recharge page");
+    }
+
+
+    public void enterGasConnectionNo(String ConnectionNo) throws InterruptedException {
+        Element.enterText(driver, textbox_enter_amount2, ConnectionNo, "Enter Connection No");
     }
 
     public void enterAmount(String amount) throws InterruptedException {
@@ -294,6 +380,10 @@ public class RechargePage {
         return Element.getText(driver, label_category, "Success Screen | Verify Category");
     }
 
+    public void clickGasFirstOperator() throws InterruptedException {
+        Element.selectElement(driver, label_opertor_Gas, "Click on label Gas");
+    }
+
     public String getSuccessPageOperator() throws InterruptedException {
         return Element.getText(driver, label_operator, "Success Screen | Verify Operator");
     }
@@ -308,6 +398,14 @@ public class RechargePage {
 
     public String getSuccessPageStatus() throws InterruptedException {
         return Element.getText(driver, label_success_page_status, "Success Screen | Verify Status");
+    }
+
+    public String getElectricityBillPageStatus() throws InterruptedException {
+        return Element.getText(driver, dropdown_electricityFirstOperator, "Success Screen | Verify Status");
+    }
+
+    public String dropdownGasFirstOperator() throws InterruptedException {
+        return Element.getText(driver, dropdown_gasConnection, "Success Screen | Verify Status");
     }
 
     public String getPopupError() throws InterruptedException {
@@ -326,6 +424,12 @@ public class RechargePage {
         return Element.getText(driver, viewBillText, "View Bill | Verify text");
     }
 
+
+    public RechargePage clickOnElectricityBackIcon() throws IOException {
+        Element.selectElement(driver, back_electricity_icon, "CLick on Electricity BAck icon ");
+        return new RechargePage(driver);
+    }
+
     public void enterDthAmount(String amount) throws InterruptedException {
         Element.enterText(driver, textbox_enter_dth_amount, amount, "Enter Amount");
     }
@@ -334,8 +438,16 @@ public class RechargePage {
         return Element.getText(driver, label_promo_code_text, "Success Screen | Verify promo text");
     }
 
+    public String getBillPaymentText() throws InterruptedException {
+        return Element.getText(driver, text_billpayment, "Bill payment Text on Preconfirmation Screen | Verify  text");
+    }
+
     public String getSuccessScreenOperator() throws InterruptedException {
         return Element.getText(driver, label_success_screen_operator, "Success Screen | Verify Operator");
+    }
+
+    public String getElectricityBillreminderText() throws InterruptedException {
+        return Element.getText(driver, text_reminder, "Success Screen | Verify Operator");
     }
 
     public String getSuccessScreenNumber() throws InterruptedException {
@@ -345,6 +457,11 @@ public class RechargePage {
     public String getSuccessScreenAmount() throws InterruptedException {
         return Element.getText(driver, label_success_screen_amount, "Success Screen | Verify Amount");
     }
+
+    public String getPreSuccessScreenAmount() throws InterruptedException {
+        return Element.getText(driver, id_amount, "Success Screen | Verify Amount");
+    }
+
 
     public void enterBpNumber(String number) throws InterruptedException {
         Element.enterText(driver, textbox_bp_number, number, "Enter Number");
@@ -377,6 +494,9 @@ public class RechargePage {
         Element.selectElement(driver, button_credit_card_continue, "CTA Continue");
     }
 
+    public void clickGasContinueCta() throws InterruptedException {
+        Element.selectElement(driver, continue_button, "Continue Continue");
+    }
     public void selectWalletFlowWithConvFee() throws InterruptedException{
         Element.selectElement(driver, select_wallet_balance_flow, "Select Wallet Balance Flow with Conv fee");
     }
@@ -427,7 +547,7 @@ public class RechargePage {
         Element.selectElement(driver, select_voucher, "Apply a voucher");
     }
 
-    public void selectCrossIcon() throws InterruptedException{
+    public void selectCrossIcon() throws InterruptedException {
         Element.selectElement(driver, select_cross_icon, "Dismiss pop up");
     }
 

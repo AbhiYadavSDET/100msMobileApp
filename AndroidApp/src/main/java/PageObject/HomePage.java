@@ -62,11 +62,16 @@ public class HomePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Mobile']")
     public AndroidElement icon_mobile;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Electricity']")
+    public AndroidElement icon_electricity;
+
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='DTH']")
     private AndroidElement icon_dth;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Piped Gas']")
     private AndroidElement icon_gas;
+
+
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Credit Card']")
     private AndroidElement icon_credit_card;
@@ -266,6 +271,11 @@ public class HomePage {
         return new RechargePage(driver);
     }
 
+    public RechargePage clickElectricityButton() throws IOException {
+        Element.selectElement(driver, icon_electricity, "Electricity button");
+        return new RechargePage(driver);
+    }
+
     public RechargePage clickOnDthButton() throws IOException {
         Element.selectElement(driver, icon_dth, "Dth button");
         return new RechargePage(driver);
@@ -275,6 +285,8 @@ public class HomePage {
         Element.selectElement(driver, icon_gas, "Gas Icon");
         return new RechargePage(driver);
     }
+
+
 
     public RechargePage clickCreditCardIcon() throws IOException {
         Element.selectElement(driver, icon_credit_card, "Credit Card Icon");
