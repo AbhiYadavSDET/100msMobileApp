@@ -71,7 +71,7 @@
         <dependency>
             <groupId>com.mobikwik.automation</groupId>
             <artifactId>framework</artifactId>
-            <version>8.10</version>
+            <version>8.13.2</version>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
