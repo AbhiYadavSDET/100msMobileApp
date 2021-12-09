@@ -99,6 +99,21 @@ public class Elements extends TestBase{
 
     }
 
+    public static boolean isElementPresent(AndroidDriver driver,String element ) throws InterruptedException {
+        Thread.sleep(1000);
+        try {
+            waitForElementToVisibleOnPageUsingText(driver,element,3);
+            driver.findElement(By.xpath("//*[@text='"+element+"']")).isDisplayed();
+            Config.logComment(element+"- element is displayed");
+            return true;
+
+        } catch (NoSuchElementException e) {
+            Config.logComment(element+"- element is not displayed");
+            return false;
+        }
+
+    }
+
     public static boolean isElementEnabled(AndroidDriver driver,AndroidElement element ) throws InterruptedException {
         Thread.sleep(1000);
         try {

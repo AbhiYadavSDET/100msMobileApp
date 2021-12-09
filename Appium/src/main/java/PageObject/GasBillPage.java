@@ -47,7 +47,7 @@ public class GasBillPage {
     @AndroidFindBy(xpath="//*[@text='Continue']")
     private AndroidElement continueButton;
 
-    @AndroidFindBy(xpath="//*[contains(text(),'No Dues')]")
+    @AndroidFindBy(xpath="//*[@text='No Dues')]")
     private AndroidElement noDuesText;
 
     @AndroidFindBy(xpath="//*[@text='Bill Payment for']")
