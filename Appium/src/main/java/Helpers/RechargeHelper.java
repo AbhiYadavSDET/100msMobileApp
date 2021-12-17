@@ -9,10 +9,9 @@ import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 public class RechargeHelper {
-
-
 
     AndroidDriver<AndroidElement> driver;
     RechargeBillPage rechargeBillPage;
@@ -38,18 +37,37 @@ public class RechargeHelper {
     @AndroidFindBy(xpath="//*[@text='NONE OF THE ABOVE']")
     private AndroidElement noneOfAboveButton;
 
+    @AndroidFindBy(xpath="//android.view.ViewGroup/android.view.ViewGroup/android.widget.TextView[1]")
+    private AndroidElement getBalance;
+
+    @AndroidFindBy(xpath="//*[@text='Select a Coupon']")
+    private AndroidElement checkCouponPage;
+
+    @AndroidFindBy(xpath="//*[@text='Confirm Payment']")
+    private AndroidElement checkPaymentPage;
+
+    String applySupercash="Apply Supercash";
+
     public RechargeHelper(AndroidDriver<AndroidElement> driver){
         this.driver=driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
-    public void viewRechargeBill(String number,String operatorType, String operatorName, String circle, String amount,String pin) throws InterruptedException {
+    public void viewRechargeBill(String number,String operatorType, String operatorName, String circle, String amount,String coupon,String pin) throws InterruptedException {
 
 
         Thread.sleep(8000);
+        String test;
+        String[] dataBefore;
+        double balanceBefore,balanceAfter ;
         // Check for logged in user
         if(Elements.isElementPresent(driver,checkViewDetails)){
             rechargeBillPage=new RechargeBillPage(driver);
+            //Getting balance before transaction
+            test= Elements.getText(driver,getBalance);
+            dataBefore= test.split("₹");
+            balanceBefore=Double.parseDouble(dataBefore[1]);
+
             rechargeBillPage.clickHomeTab();
             rechargeBillPage.clickRechargePayBill();
             //Check for Swipe left blue popup
@@ -82,18 +100,64 @@ public class RechargeHelper {
                 rechargeBillPage.enterAmount(amount);
                 rechargeBillPage.clickNextCTA();
                 rechargeBillPage.clickConfirm();
+
+                //Check for coupon code
+                if(!coupon.equals("")){
+                    rechargeBillPage.clickApplyCoupon();
+                    if(coupon.contains(applySupercash)){
+                        rechargeBillPage.clickApplySupercash();
+                    }else{
+                        rechargeBillPage.enterCouponCode(coupon);
+                        rechargeBillPage.clickApplyButton();
+                        if(Elements.isElementPresent(driver,checkCouponPage)){
+                            Config.info("-------------Entered coupon is invalid-------------");
+                            Assert.assertTrue(false);
+                        }else if(Elements.isElementPresent(driver,checkPaymentPage)){
+                            Config.info("Coupon applied");
+                        }else{
+                            Config.info("-------------Error occurred----------------");
+                            Assert.assertTrue(false);
+                        }
+
+                    }
+                    //Check for coupon code and supercash
+                    if(coupon.contains(applySupercash)){
+                        rechargeBillPage.checkSupercashApplied();
+                    }else{
+                        rechargeBillPage.checkCouponApplied(coupon);
+                    }
+                }
+
                 rechargeBillPage.clickPayButton();
                 rechargeBillPage.enterSecurityPin(pin);
+                //Check details on final screen
+                rechargeBillPage.checkPaymentScreen();
+
+                //Getting balance after transaction and comparing
+                test = Elements.getText(driver, getBalance);
+                dataBefore = test.split("₹");
+                balanceAfter = Double.parseDouble(dataBefore[1]);
+                if (balanceBefore - balanceAfter == Double.parseDouble(amount)) {
+                    Config.info("Balance deduction is correct");
+                } else {
+                    Config.info("Balance deduction is incorrect");
+                }
+
             }
-        }else if(Elements.isElementPresent(driver,checkLoginSignupButton)){
+
+        }else{
             Config.logComment("Please Login/Signup and than continue");
         }
 
     }
 
 
-    public void viewRechargeBillWithLogout(String number, String operatorType, String operatorName, String circle, String amount, String pin) throws InterruptedException {
+    public void viewRechargeBillWithLogout(String number, String operatorType, String operatorName, String circle, String amount,String coupon, String pin) throws InterruptedException {
         int flag=0;
+        Thread.sleep(8000);
+        String test;
+        String[] dataBefore;
+        double balanceBefore,balanceAfter ;
         rechargeBillPage=new RechargeBillPage(driver);
         LoginPage loginPage = new LoginPage(driver);
         //Check for location access
@@ -122,6 +186,11 @@ public class RechargeHelper {
         }
         if(flag==1){
             rechargeBillPage.clickHomeTab();
+
+            test= Elements.getText(driver,getBalance);
+            dataBefore= test.split("₹");
+            balanceBefore=Double.parseDouble(dataBefore[1]);
+
             rechargeBillPage.clickRechargePayBill();
             //Check for Swipe left blue popup
             Elements.waitForElementToVisibleOnPage(driver,checkSwipLeftPopUp,2);
@@ -155,8 +224,48 @@ public class RechargeHelper {
                 }
                 loginPage.enterMobileNum(number);
                 loginPage.clickSendOtpbutton();
+
+                //Check for coupon code
+                if(!coupon.equals("")){
+                    rechargeBillPage.clickApplyCoupon();
+                    if(coupon.contains(applySupercash)){
+                        rechargeBillPage.clickApplySupercash();
+                    }else{
+                        rechargeBillPage.enterCouponCode(coupon);
+                        rechargeBillPage.clickApplyButton();
+                        if(Elements.isElementPresent(driver,checkCouponPage)){
+                            Config.info("-------------Entered coupon is invalid-------------");
+                            Assert.assertTrue(false);
+                        }else if(Elements.isElementPresent(driver,checkPaymentPage)){
+                            Config.info("Coupon applied");
+                        }else{
+                            Config.info("-------------Error occurred----------------");
+                            Assert.assertTrue(false);
+                        }
+
+                    }
+                    //Check for coupon code and supercash
+                    if(coupon.contains(applySupercash)){
+                        rechargeBillPage.checkSupercashApplied();
+                    }else{
+                        rechargeBillPage.checkCouponApplied(coupon);
+                    }
+                }
+
                 rechargeBillPage.clickPayButton();
                 rechargeBillPage.enterSecurityPin(pin);
+                //Check details on final screen
+                rechargeBillPage.checkPaymentScreen();
+
+                //Getting balance after transaction and comparing
+                test = Elements.getText(driver, getBalance);
+                dataBefore = test.split("₹");
+                balanceAfter = Double.parseDouble(dataBefore[1]);
+                if (balanceBefore - balanceAfter == Double.parseDouble(amount)) {
+                    Config.info("Balance deduction is correct");
+                } else {
+                    Config.info("Balance deduction is incorrect");
+                }
             }
         }
 

@@ -9,6 +9,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 import java.util.Locale;
 
@@ -90,6 +91,33 @@ public class RechargeBillPage {
 
     @AndroidFindBy(xpath="//*[@text='Logout']")
     private AndroidElement clickLogout;
+
+    @AndroidFindBy(xpath="//*[contains(@text,'Apply a Coupon')]")
+    private AndroidElement clickApplyCoupon;
+
+    @AndroidFindBy(xpath="//*[@text='Apply Supercash']")
+    private AndroidElement clickApplySupercash;
+
+    @AndroidFindBy(xpath="//*[@class='android.widget.EditText']")
+    private AndroidElement couponField;
+
+    @AndroidFindBy(xpath="//*[@text='Apply']")
+    private AndroidElement clickApply;
+
+    @AndroidFindBy(xpath="//*[@text='SuperCash']")
+    private AndroidElement checkSupercash;
+
+    @AndroidFindBy(xpath="//*[contains(@text,'Success')]")
+    private AndroidElement success;
+
+    @AndroidFindBy(xpath="//*[contains(@text,'Fail')]")
+    private AndroidElement fail;
+
+    @AndroidFindBy(xpath="//*[contains(@text,'Pending')]")
+    private AndroidElement pending;
+
+    @AndroidFindBy(xpath="//*[@text='View Details']")
+    private AndroidElement checkViewDetails;
 
 
     AndroidDriver driver;
@@ -248,5 +276,47 @@ public class RechargeBillPage {
                 .moveTo(point(anchor, endPoint))
                 .release().perform();
         Elements.selectElement(driver,clickLogout,"Click Logout button");
+    }
+
+    public void clickApplyCoupon() {
+        Elements.waitForElementToVisibleOnPage(driver,clickApplyCoupon,7);
+        Elements.selectElement(driver,clickApplyCoupon,"Click Apple coupon or Supercash");
+    }
+
+    public void clickApplySupercash() throws InterruptedException {
+        Elements.isElementPresent(driver,clickApplySupercash);
+        Elements.selectElement(driver,clickApplySupercash,"Apply Supercash");
+    }
+
+    public void enterCouponCode(String coupon) {
+        Elements.clearText(driver,couponField,"Coupon field");
+        Elements.enterToElement(driver,couponField,coupon,"Enter coupon");
+    }
+
+    public void clickApplyButton() {
+        Elements.selectElement(driver,clickApply,"Apply button");
+    }
+
+    public void checkSupercashApplied() throws InterruptedException {
+        Elements.waitForElementToVisibleOnPage(driver,checkSupercash,5);
+        Assert.assertTrue(Elements.isElementPresent(driver,checkSupercash));
+    }
+
+    public void checkCouponApplied(String coupon) throws InterruptedException {
+        Elements.waitForElementToVisibleOnPageUsingText(driver,coupon,5);
+        Assert.assertTrue(Elements.isElementPresent(driver,coupon));
+    }
+
+    public void checkPaymentScreen() throws InterruptedException {
+        Elements.waitForElementToVisibleOnPage(driver,success,5);
+        if(Elements.isElementPresent(driver,success) || Elements.isElementPresent(driver,pending)){
+            while(!Elements.isElementPresent(driver,checkViewDetails)) {
+                Elements.back(driver, "Back button");
+            }
+
+        }else{
+            Config.info("Issue in payment");
+            Assert.assertTrue(false);
+        }
     }
 }

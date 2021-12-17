@@ -3,6 +3,7 @@ package Utils;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.android.nativekey.AndroidKey;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -45,10 +46,16 @@ public class Elements extends TestBase{
         element.click();
     }
 
-    private static void click(AndroidDriver driver,String element, String comments) {
+    public static void click(AndroidDriver driver,String element, String comments) {
 
         Config.logComment("Click on '" + comments + "'");
         driver.findElement(By.xpath("//*[@text='"+element+"']")).click();
+    }
+
+    public static void back(AndroidDriver driver, String comments) {
+
+        Config.logComment("Click on '" + comments + "'");
+        driver.navigate().back();
     }
 
     private static void enterData(AndroidDriver driver,AndroidElement element, String comments, String data) {
@@ -127,6 +134,13 @@ public class Elements extends TestBase{
             return false;
         }
 
+    }
+
+    public static String getText(AndroidDriver driver,AndroidElement element) throws InterruptedException {
+        isElementPresent(driver,element);
+        String text;
+        text=element.getText().toString();
+        return text;
     }
 
 }
