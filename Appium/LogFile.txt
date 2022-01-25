@@ -3018,3 +3018,1171 @@
 07 Dec 2021 21:06:05 [info] [TestBase:69] - Click on 'Click next CTA'
 07 Dec 2021 21:06:06 [info] [TestBase:69] - Click on 'Click Confirm button'
 07 Dec 2021 21:06:08 [info] [TestBase:69] - Click on 'Click Pay button'
+09 Dec 2021 21:23:26 [info] [TestBase:69] - ***************[Test Suite Started][Suite Name: Profile Flow]***************
+09 Dec 2021 21:23:26 [info] [TestBase:69] - Starting app automation
+09 Dec 2021 21:23:26 [info] [TestBase:69] - ***************[Test Started][Name: Profile flow Test]***************
+09 Dec 2021 21:23:26 [info] [TestBase:69] - ***************[Test Started] [Test Class: ProfileTest] [Test Method: Test_Profile_Flow] [Test Description: Verify Profile Flow on android app]***************
+09 Dec 2021 21:23:48 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='View Details']})- element is displayed
+09 Dec 2021 21:23:48 [info] [TestBase:69] - Click on 'Open side drawer'
+09 Dec 2021 21:23:50 [info] [TestBase:69] - Click on 'Click Profile button'
+09 Dec 2021 21:23:54 [info] [TestBase:69] - 9818484290- element is displayed
+09 Dec 2021 21:23:54 [info] [TestBase:69] - ***************[Test Failed] [Test Class: ProfileTest] [Test Method: Test_Profile_Flow] [Test Description: Verify Profile Flow on android app]***************
+09 Dec 2021 21:23:54 [info] [TestBase:69] - ***************[Test Finished][Name: Profile flow Test]***************
+09 Dec 2021 21:23:54 [info] [TestBase:69] - App closed
+09 Dec 2021 21:23:54 [info] [TestBase:69] - ***************[Test Suite Finished][Suite Name: Profile Flow]***************
+09 Dec 2021 21:25:37 [info] [TestBase:69] - ***************[Test Suite Started][Suite Name: Profile Flow]***************
+09 Dec 2021 21:25:37 [info] [TestBase:69] - Starting app automation
+09 Dec 2021 21:25:37 [info] [TestBase:69] - ***************[Test Started][Name: Profile flow Test]***************
+09 Dec 2021 21:25:37 [info] [TestBase:69] - ***************[Test Started] [Test Class: ProfileTest] [Test Method: Test_Profile_Flow] [Test Description: Verify Profile Flow on android app]***************
+09 Dec 2021 21:25:58 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='View Details']})- element is displayed
+09 Dec 2021 21:25:58 [info] [TestBase:69] - Click on 'Open side drawer'
+09 Dec 2021 21:26:00 [info] [TestBase:69] - Click on 'Click Profile button'
+09 Dec 2021 21:26:04 [info] [TestBase:69] - 9818484290- element is displayed
+09 Dec 2021 21:26:05 [info] [TestBase:69] - Udit Gupta- element is displayed
+09 Dec 2021 21:26:05 [info] [TestBase:69] - Name or Email id is different
+09 Dec 2021 21:26:05 [info] [TestBase:69] - Clear 'Clear name'
+09 Dec 2021 21:26:06 [info] [TestBase:69] - Click on 'Enter name'
+09 Dec 2021 21:26:06 [info] [TestBase:69] - Clear 'Clear email id'
+09 Dec 2021 21:26:08 [info] [TestBase:69] - Click on 'Enter email id'
+09 Dec 2021 21:26:09 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- element is enabled
+09 Dec 2021 21:26:09 [info] [TestBase:69] - User entered data is not matching the data in app
+09 Dec 2021 21:26:09 [info] [TestBase:69] - Clear 'Clear name'
+09 Dec 2021 21:26:10 [info] [TestBase:69] - Click on 'Enter name'
+09 Dec 2021 21:26:11 [info] [TestBase:69] - Click on 'Back button'
+09 Dec 2021 21:26:12 [info] [TestBase:69] - ***************[Test Passed] [Test Class: ProfileTest] [Test Method: Test_Profile_Flow] [Test Description: Verify Profile Flow on android app]***************
+09 Dec 2021 21:26:12 [info] [TestBase:69] - ***************[Test Finished][Name: Profile flow Test]***************
+09 Dec 2021 21:26:12 [info] [TestBase:69] - App closed
+09 Dec 2021 21:26:12 [info] [TestBase:69] - ***************[Test Suite Finished][Suite Name: Profile Flow]***************
+10 Dec 2021 19:48:21 [info] [TestBase:69] - ***************[Test Suite Started][Suite Name: Default Suite]***************
+10 Dec 2021 19:48:21 [info] [TestBase:69] - Starting app automation
+10 Dec 2021 19:48:21 [info] [TestBase:69] - ***************[Test Started][Name: AndroidAppiumAutomation]***************
+10 Dec 2021 19:48:21 [info] [TestBase:69] - ***************[Test Started] [Test Class: BillViewRecharge] [Test Method: Test_Recharge_Bill_Flow] [Test Description: Verify mobile bill Flow on android app]***************
+10 Dec 2021 19:48:43 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='View Details']})- element is displayed
+10 Dec 2021 19:48:45 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup/android.view.ViewGroup/android.widget.TextView[1]})- element is displayed
+10 Dec 2021 19:48:45 [info] [TestBase:69] - Click on 'Click Home tab'
+10 Dec 2021 19:48:47 [info] [TestBase:69] - Click on 'Click Recharge & Pay Bills'
+10 Dec 2021 19:48:49 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]})- Element is not visible
+10 Dec 2021 19:48:49 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]}) (tried for 2 second(s) with 500 milliseconds interval)
+10 Dec 2021 19:48:55 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]})- Element is not visible
+10 Dec 2021 19:48:55 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]}) (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 19:48:56 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]})- element is not displayed
+10 Dec 2021 19:49:03 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Enter Mobile Number']})- Element is not visible
+10 Dec 2021 19:49:03 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Enter Mobile Number']}) (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 19:49:04 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Enter Mobile Number']})- element is not displayed
+10 Dec 2021 19:49:04 [info] [TestBase:69] - Click on 'Click mobile button'
+10 Dec 2021 19:49:07 [info] [TestBase:69] - Click on 'Enter Mobile Number'
+10 Dec 2021 19:49:09 [info] [TestBase:69] - Click on 'Click mobile number'
+10 Dec 2021 19:49:12 [info] [TestBase:69] - VI- Element is not visible
+10 Dec 2021 19:49:12 [info] [TestBase:69] - Expected condition failed: waiting for visibility of element located by By.xpath: //*[@text='VI'] (tried for 2 second(s) with 500 milliseconds interval)
+10 Dec 2021 19:49:16 [info] [TestBase:69] - VI- Element is not visible
+10 Dec 2021 19:49:16 [info] [TestBase:69] - Expected condition failed: waiting for visibility of element located by By.xpath: //*[@text='VI'] (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 19:49:16 [info] [TestBase:69] - VI- element is not displayed
+10 Dec 2021 19:49:18 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='OFF']})- element is displayed
+10 Dec 2021 19:49:24 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Bill Payment for']})- Element is not visible
+10 Dec 2021 19:49:24 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Bill Payment for']}) (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 19:49:26 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Bill Payment for']})- element is not displayed
+10 Dec 2021 19:49:28 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Recharge for']})- element is displayed
+10 Dec 2021 19:49:28 [info] [TestBase:69] - Bill is present for current bill
+10 Dec 2021 19:49:28 [info] [TestBase:69] - Click on 'Enter amount'
+10 Dec 2021 19:49:29 [info] [TestBase:69] - Click on 'Enter amount'
+10 Dec 2021 19:49:30 [info] [TestBase:69] - Click on 'Enter amount'
+10 Dec 2021 19:49:31 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='w']})- element is enabled
+10 Dec 2021 19:49:32 [info] [TestBase:69] - Click on 'Click next CTA'
+10 Dec 2021 19:49:33 [info] [TestBase:69] - Click on 'Click Confirm button'
+10 Dec 2021 19:49:33 [info] [TestBase:69] - ***************[Test Failed] [Test Class: BillViewRecharge] [Test Method: Test_Recharge_Bill_Flow] [Test Description: Verify mobile bill Flow on android app]***************
+10 Dec 2021 19:49:33 [info] [TestBase:69] - ***************[Test Finished][Name: AndroidAppiumAutomation]***************
+10 Dec 2021 19:49:34 [info] [TestBase:69] - App closed
+10 Dec 2021 19:49:34 [info] [TestBase:69] - ***************[Test Suite Finished][Suite Name: Default Suite]***************
+10 Dec 2021 19:50:46 [info] [TestBase:69] - ***************[Test Suite Started][Suite Name: Default Suite]***************
+10 Dec 2021 19:50:46 [info] [TestBase:69] - Starting app automation
+10 Dec 2021 19:50:46 [info] [TestBase:69] - ***************[Test Started][Name: AndroidAppiumAutomation]***************
+10 Dec 2021 19:50:46 [info] [TestBase:69] - ***************[Test Started] [Test Class: BillViewRecharge] [Test Method: Test_Recharge_Bill_Flow] [Test Description: Verify mobile bill Flow on android app]***************
+10 Dec 2021 19:51:08 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='View Details']})- element is displayed
+10 Dec 2021 19:51:10 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup/android.view.ViewGroup/android.widget.TextView[1]})- element is displayed
+10 Dec 2021 19:51:10 [info] [TestBase:69] - Click on 'Click Home tab'
+10 Dec 2021 19:51:11 [info] [TestBase:69] - Click on 'Click Recharge & Pay Bills'
+10 Dec 2021 19:51:17 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]})- Element is not visible
+10 Dec 2021 19:51:17 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]}) (tried for 2 second(s) with 500 milliseconds interval)
+10 Dec 2021 19:51:22 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]})- Element is not visible
+10 Dec 2021 19:51:22 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]}) (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 19:51:24 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]})- element is not displayed
+10 Dec 2021 19:51:29 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Enter Mobile Number']})- Element is not visible
+10 Dec 2021 19:51:29 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Enter Mobile Number']}) (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 19:51:30 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Enter Mobile Number']})- element is not displayed
+10 Dec 2021 19:51:31 [info] [TestBase:69] - Click on 'Click mobile button'
+10 Dec 2021 19:51:33 [info] [TestBase:69] - Click on 'Enter Mobile Number'
+10 Dec 2021 19:51:35 [info] [TestBase:69] - Click on 'Click mobile number'
+10 Dec 2021 19:51:37 [info] [TestBase:69] - VI- Element is not visible
+10 Dec 2021 19:51:37 [info] [TestBase:69] - Expected condition failed: waiting for visibility of element located by By.xpath: //*[@text='VI'] (tried for 2 second(s) with 500 milliseconds interval)
+10 Dec 2021 19:51:41 [info] [TestBase:69] - VI- Element is not visible
+10 Dec 2021 19:51:41 [info] [TestBase:69] - Expected condition failed: waiting for visibility of element located by By.xpath: //*[@text='VI'] (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 19:51:42 [info] [TestBase:69] - VI- element is not displayed
+10 Dec 2021 19:51:43 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='OFF']})- element is displayed
+10 Dec 2021 19:51:48 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Bill Payment for']})- Element is not visible
+10 Dec 2021 19:51:48 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Bill Payment for']}) (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 19:51:50 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Bill Payment for']})- element is not displayed
+10 Dec 2021 19:51:51 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Recharge for']})- element is displayed
+10 Dec 2021 19:51:51 [info] [TestBase:69] - Bill is present for current bill
+10 Dec 2021 19:51:52 [info] [TestBase:69] - Click on 'Enter amount'
+10 Dec 2021 19:51:52 [info] [TestBase:69] - Click on 'Enter amount'
+10 Dec 2021 19:51:53 [info] [TestBase:69] - Click on 'Enter amount'
+10 Dec 2021 19:51:55 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='w']})- element is enabled
+10 Dec 2021 19:51:55 [info] [TestBase:69] - Click on 'Click next CTA'
+10 Dec 2021 19:51:56 [info] [TestBase:69] - Click on 'Click Confirm button'
+10 Dec 2021 19:51:57 [info] [TestBase:69] - ***************[Test Failed] [Test Class: BillViewRecharge] [Test Method: Test_Recharge_Bill_Flow] [Test Description: Verify mobile bill Flow on android app]***************
+10 Dec 2021 19:51:57 [info] [TestBase:69] - ***************[Test Finished][Name: AndroidAppiumAutomation]***************
+10 Dec 2021 19:51:58 [info] [TestBase:69] - App closed
+10 Dec 2021 19:51:58 [info] [TestBase:69] - ***************[Test Suite Finished][Suite Name: Default Suite]***************
+10 Dec 2021 20:05:29 [info] [TestBase:69] - ***************[Test Suite Started][Suite Name: Default Suite]***************
+10 Dec 2021 20:05:29 [info] [TestBase:69] - Starting app automation
+10 Dec 2021 20:05:29 [info] [TestBase:69] - ***************[Test Started][Name: AndroidAppiumAutomation]***************
+10 Dec 2021 20:05:29 [info] [TestBase:69] - ***************[Test Started] [Test Class: BillViewRecharge] [Test Method: Test_Recharge_Bill_Flow] [Test Description: Verify mobile bill Flow on android app]***************
+10 Dec 2021 20:05:49 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='View Details']})- element is displayed
+10 Dec 2021 20:05:51 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup/android.view.ViewGroup/android.widget.TextView[1]})- element is displayed
+10 Dec 2021 20:05:51 [info] [TestBase:69] - Click on 'Click Home tab'
+10 Dec 2021 20:05:52 [info] [TestBase:69] - Click on 'Click Recharge & Pay Bills'
+10 Dec 2021 20:05:55 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]})- Element is not visible
+10 Dec 2021 20:05:55 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]}) (tried for 2 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:06:00 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]})- Element is not visible
+10 Dec 2021 20:06:00 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]}) (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:06:01 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]})- element is not displayed
+10 Dec 2021 20:06:06 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Enter Mobile Number']})- Element is not visible
+10 Dec 2021 20:06:06 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Enter Mobile Number']}) (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:06:08 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Enter Mobile Number']})- element is not displayed
+10 Dec 2021 20:06:08 [info] [TestBase:69] - Click on 'Click mobile button'
+10 Dec 2021 20:06:11 [info] [TestBase:69] - Click on 'Enter Mobile Number'
+10 Dec 2021 20:06:12 [info] [TestBase:69] - Click on 'Click mobile number'
+10 Dec 2021 20:06:14 [info] [TestBase:69] - VI- Element is not visible
+10 Dec 2021 20:06:14 [info] [TestBase:69] - Expected condition failed: waiting for visibility of element located by By.xpath: //*[@text='VI'] (tried for 2 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:06:19 [info] [TestBase:69] - VI- Element is not visible
+10 Dec 2021 20:06:19 [info] [TestBase:69] - Expected condition failed: waiting for visibility of element located by By.xpath: //*[@text='VI'] (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:06:19 [info] [TestBase:69] - VI- element is not displayed
+10 Dec 2021 20:06:21 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='OFF']})- element is displayed
+10 Dec 2021 20:06:27 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Bill Payment for']})- Element is not visible
+10 Dec 2021 20:06:27 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Bill Payment for']}) (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:06:29 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Bill Payment for']})- element is not displayed
+10 Dec 2021 20:06:30 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Recharge for']})- element is displayed
+10 Dec 2021 20:06:30 [info] [TestBase:69] - Bill is present for current bill
+10 Dec 2021 20:06:30 [info] [TestBase:69] - Click on 'Enter amount'
+10 Dec 2021 20:06:31 [info] [TestBase:69] - Click on 'Enter amount'
+10 Dec 2021 20:06:33 [info] [TestBase:69] - Click on 'Enter amount'
+10 Dec 2021 20:06:34 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='w']})- element is enabled
+10 Dec 2021 20:06:35 [info] [TestBase:69] - Click on 'Click next CTA'
+10 Dec 2021 20:06:36 [info] [TestBase:69] - Click on 'Click Confirm button'
+10 Dec 2021 20:06:45 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[text()[contains(.,'Apply a Coupon')]})- Element is not visible
+10 Dec 2021 20:06:45 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[text()[contains(.,'Apply a Coupon')]}) (tried for 7 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:06:56 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[text()[contains(.,'Apply a Coupon')]})- Element is not visible
+10 Dec 2021 20:06:56 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[text()[contains(.,'Apply a Coupon')]}) (tried for 10 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:06:56 [info] [TestBase:69] - Click on 'Click Apple coupon or Supercash'
+10 Dec 2021 20:06:58 [info] [TestBase:69] - ***************[Test Failed] [Test Class: BillViewRecharge] [Test Method: Test_Recharge_Bill_Flow] [Test Description: Verify mobile bill Flow on android app]***************
+10 Dec 2021 20:06:58 [info] [TestBase:69] - ***************[Test Finished][Name: AndroidAppiumAutomation]***************
+10 Dec 2021 20:06:58 [info] [TestBase:69] - App closed
+10 Dec 2021 20:06:58 [info] [TestBase:69] - ***************[Test Suite Finished][Suite Name: Default Suite]***************
+10 Dec 2021 20:09:23 [info] [TestBase:69] - ***************[Test Suite Started][Suite Name: Default Suite]***************
+10 Dec 2021 20:09:23 [info] [TestBase:69] - Starting app automation
+10 Dec 2021 20:09:23 [info] [TestBase:69] - ***************[Test Started][Name: AndroidAppiumAutomation]***************
+10 Dec 2021 20:09:23 [info] [TestBase:69] - ***************[Test Started] [Test Class: BillViewRecharge] [Test Method: Test_Recharge_Bill_Flow] [Test Description: Verify mobile bill Flow on android app]***************
+10 Dec 2021 20:09:45 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='View Details']})- Element is not visible
+10 Dec 2021 20:09:45 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='View Details']}) (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:09:46 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='View Details']})- element is not displayed
+10 Dec 2021 20:09:46 [info] [TestBase:69] - Please Login/Signup and than continue
+10 Dec 2021 20:09:46 [info] [TestBase:69] - ***************[Test Passed] [Test Class: BillViewRecharge] [Test Method: Test_Recharge_Bill_Flow] [Test Description: Verify mobile bill Flow on android app]***************
+10 Dec 2021 20:09:46 [info] [TestBase:69] - ***************[Test Finished][Name: AndroidAppiumAutomation]***************
+10 Dec 2021 20:09:47 [info] [TestBase:69] - App closed
+10 Dec 2021 20:09:47 [info] [TestBase:69] - ***************[Test Suite Finished][Suite Name: Default Suite]***************
+10 Dec 2021 20:10:14 [info] [TestBase:69] - ***************[Test Suite Started][Suite Name: Default Suite]***************
+10 Dec 2021 20:10:14 [info] [TestBase:69] - Starting app automation
+10 Dec 2021 20:10:14 [info] [TestBase:69] - ***************[Test Started][Name: AndroidAppiumAutomation]***************
+10 Dec 2021 20:10:14 [info] [TestBase:69] - ***************[Test Started] [Test Class: BillViewRecharge] [Test Method: Test_Recharge_Bill_Flow] [Test Description: Verify mobile bill Flow on android app]***************
+10 Dec 2021 20:10:32 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='View Details']})- element is displayed
+10 Dec 2021 20:10:34 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup/android.view.ViewGroup/android.widget.TextView[1]})- element is displayed
+10 Dec 2021 20:10:34 [info] [TestBase:69] - Click on 'Click Home tab'
+10 Dec 2021 20:10:35 [info] [TestBase:69] - Click on 'Click Recharge & Pay Bills'
+10 Dec 2021 20:10:38 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]})- Element is not visible
+10 Dec 2021 20:10:38 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]}) (tried for 2 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:10:44 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]})- Element is not visible
+10 Dec 2021 20:10:44 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]}) (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:10:45 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]})- element is not displayed
+10 Dec 2021 20:10:51 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Enter Mobile Number']})- Element is not visible
+10 Dec 2021 20:10:51 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Enter Mobile Number']}) (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:10:52 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Enter Mobile Number']})- element is not displayed
+10 Dec 2021 20:10:52 [info] [TestBase:69] - Click on 'Click mobile button'
+10 Dec 2021 20:10:55 [info] [TestBase:69] - Click on 'Enter Mobile Number'
+10 Dec 2021 20:10:57 [info] [TestBase:69] - Click on 'Click mobile number'
+10 Dec 2021 20:11:00 [info] [TestBase:69] - VI- Element is not visible
+10 Dec 2021 20:11:00 [info] [TestBase:69] - Expected condition failed: waiting for visibility of element located by By.xpath: //*[@text='VI'] (tried for 2 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:11:04 [info] [TestBase:69] - VI- Element is not visible
+10 Dec 2021 20:11:04 [info] [TestBase:69] - Expected condition failed: waiting for visibility of element located by By.xpath: //*[@text='VI'] (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:11:04 [info] [TestBase:69] - VI- element is not displayed
+10 Dec 2021 20:11:05 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='OFF']})- element is displayed
+10 Dec 2021 20:11:11 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Bill Payment for']})- Element is not visible
+10 Dec 2021 20:11:11 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Bill Payment for']}) (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:11:13 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Bill Payment for']})- element is not displayed
+10 Dec 2021 20:11:14 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Recharge for']})- element is displayed
+10 Dec 2021 20:11:14 [info] [TestBase:69] - Bill is present for current bill
+10 Dec 2021 20:11:15 [info] [TestBase:69] - Click on 'Enter amount'
+10 Dec 2021 20:11:16 [info] [TestBase:69] - Click on 'Enter amount'
+10 Dec 2021 20:11:16 [info] [TestBase:69] - Click on 'Enter amount'
+10 Dec 2021 20:11:18 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='w']})- element is enabled
+10 Dec 2021 20:11:18 [info] [TestBase:69] - Click on 'Click next CTA'
+10 Dec 2021 20:11:19 [info] [TestBase:69] - Click on 'Click Confirm button'
+10 Dec 2021 20:11:29 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[text()[contains(.,'Apply a Coupon')]]})- Element is not visible
+10 Dec 2021 20:11:29 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[text()[contains(.,'Apply a Coupon')]]}) (tried for 7 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:11:40 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[text()[contains(.,'Apply a Coupon')]]})- Element is not visible
+10 Dec 2021 20:11:40 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[text()[contains(.,'Apply a Coupon')]]}) (tried for 10 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:11:40 [info] [TestBase:69] - Click on 'Click Apple coupon or Supercash'
+10 Dec 2021 20:11:42 [info] [TestBase:69] - ***************[Test Failed] [Test Class: BillViewRecharge] [Test Method: Test_Recharge_Bill_Flow] [Test Description: Verify mobile bill Flow on android app]***************
+10 Dec 2021 20:11:42 [info] [TestBase:69] - ***************[Test Finished][Name: AndroidAppiumAutomation]***************
+10 Dec 2021 20:11:42 [info] [TestBase:69] - App closed
+10 Dec 2021 20:11:42 [info] [TestBase:69] - ***************[Test Suite Finished][Suite Name: Default Suite]***************
+10 Dec 2021 20:24:19 [info] [TestBase:69] - ***************[Test Suite Started][Suite Name: Default Suite]***************
+10 Dec 2021 20:24:19 [info] [TestBase:69] - Starting app automation
+10 Dec 2021 20:24:19 [info] [TestBase:69] - ***************[Test Started][Name: AndroidAppiumAutomation]***************
+10 Dec 2021 20:24:19 [info] [TestBase:69] - ***************[Test Started] [Test Class: BillViewRecharge] [Test Method: Test_Recharge_Bill_Flow] [Test Description: Verify mobile bill Flow on android app]***************
+10 Dec 2021 20:24:39 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='View Details']})- element is displayed
+10 Dec 2021 20:24:40 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup/android.view.ViewGroup/android.widget.TextView[1]})- element is displayed
+10 Dec 2021 20:24:41 [info] [TestBase:69] - Click on 'Click Home tab'
+10 Dec 2021 20:24:42 [info] [TestBase:69] - Click on 'Click Recharge & Pay Bills'
+10 Dec 2021 20:24:45 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]})- Element is not visible
+10 Dec 2021 20:24:45 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]}) (tried for 2 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:24:51 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]})- Element is not visible
+10 Dec 2021 20:24:51 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]}) (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:24:52 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]})- element is not displayed
+10 Dec 2021 20:24:58 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Enter Mobile Number']})- Element is not visible
+10 Dec 2021 20:24:58 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Enter Mobile Number']}) (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:24:59 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Enter Mobile Number']})- element is not displayed
+10 Dec 2021 20:24:59 [info] [TestBase:69] - Click on 'Click mobile button'
+10 Dec 2021 20:25:02 [info] [TestBase:69] - Click on 'Enter Mobile Number'
+10 Dec 2021 20:25:03 [info] [TestBase:69] - Click on 'Click mobile number'
+10 Dec 2021 20:25:05 [info] [TestBase:69] - VI- Element is not visible
+10 Dec 2021 20:25:05 [info] [TestBase:69] - Expected condition failed: waiting for visibility of element located by By.xpath: //*[@text='VI'] (tried for 2 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:25:09 [info] [TestBase:69] - VI- Element is not visible
+10 Dec 2021 20:25:09 [info] [TestBase:69] - Expected condition failed: waiting for visibility of element located by By.xpath: //*[@text='VI'] (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:25:09 [info] [TestBase:69] - VI- element is not displayed
+10 Dec 2021 20:25:11 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='OFF']})- element is displayed
+10 Dec 2021 20:25:17 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Bill Payment for']})- Element is not visible
+10 Dec 2021 20:25:17 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Bill Payment for']}) (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:25:19 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Bill Payment for']})- element is not displayed
+10 Dec 2021 20:25:20 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Recharge for']})- element is displayed
+10 Dec 2021 20:25:20 [info] [TestBase:69] - Bill is present for current bill
+10 Dec 2021 20:25:20 [info] [TestBase:69] - Click on 'Enter amount'
+10 Dec 2021 20:25:21 [info] [TestBase:69] - Click on 'Enter amount'
+10 Dec 2021 20:25:22 [info] [TestBase:69] - Click on 'Enter amount'
+10 Dec 2021 20:25:23 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='w']})- element is enabled
+10 Dec 2021 20:25:23 [info] [TestBase:69] - Click on 'Click next CTA'
+10 Dec 2021 20:25:24 [info] [TestBase:69] - Click on 'Click Confirm button'
+10 Dec 2021 20:25:25 [info] [TestBase:69] - ***************[Test Failed] [Test Class: BillViewRecharge] [Test Method: Test_Recharge_Bill_Flow] [Test Description: Verify mobile bill Flow on android app]***************
+10 Dec 2021 20:25:25 [info] [TestBase:69] - ***************[Test Finished][Name: AndroidAppiumAutomation]***************
+10 Dec 2021 20:25:25 [info] [TestBase:69] - App closed
+10 Dec 2021 20:25:25 [info] [TestBase:69] - ***************[Test Suite Finished][Suite Name: Default Suite]***************
+10 Dec 2021 20:28:34 [info] [TestBase:69] - ***************[Test Suite Started][Suite Name: Default Suite]***************
+10 Dec 2021 20:28:34 [info] [TestBase:69] - Starting app automation
+10 Dec 2021 20:28:34 [info] [TestBase:69] - ***************[Test Started][Name: AndroidAppiumAutomation]***************
+10 Dec 2021 20:28:34 [info] [TestBase:69] - ***************[Test Started] [Test Class: BillViewRecharge] [Test Method: Test_Recharge_Bill_Flow] [Test Description: Verify mobile bill Flow on android app]***************
+10 Dec 2021 20:28:54 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='View Details']})- element is displayed
+10 Dec 2021 20:28:56 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup/android.view.ViewGroup/android.widget.TextView[1]})- element is displayed
+10 Dec 2021 20:28:56 [info] [TestBase:69] - Click on 'Click Home tab'
+10 Dec 2021 20:28:57 [info] [TestBase:69] - Click on 'Click Recharge & Pay Bills'
+10 Dec 2021 20:29:01 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]})- Element is not visible
+10 Dec 2021 20:29:01 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]}) (tried for 2 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:29:05 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]})- Element is not visible
+10 Dec 2021 20:29:05 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]}) (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:29:06 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]})- element is not displayed
+10 Dec 2021 20:29:10 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Enter Mobile Number']})- Element is not visible
+10 Dec 2021 20:29:10 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Enter Mobile Number']}) (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:29:11 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Enter Mobile Number']})- element is not displayed
+10 Dec 2021 20:29:12 [info] [TestBase:69] - Click on 'Click mobile button'
+10 Dec 2021 20:29:15 [info] [TestBase:69] - Click on 'Enter Mobile Number'
+10 Dec 2021 20:29:16 [info] [TestBase:69] - Click on 'Click mobile number'
+10 Dec 2021 20:29:18 [info] [TestBase:69] - VI- Element is not visible
+10 Dec 2021 20:29:18 [info] [TestBase:69] - Expected condition failed: waiting for visibility of element located by By.xpath: //*[@text='VI'] (tried for 2 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:29:22 [info] [TestBase:69] - VI- Element is not visible
+10 Dec 2021 20:29:22 [info] [TestBase:69] - Expected condition failed: waiting for visibility of element located by By.xpath: //*[@text='VI'] (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:29:22 [info] [TestBase:69] - VI- element is not displayed
+10 Dec 2021 20:29:24 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='OFF']})- element is displayed
+10 Dec 2021 20:29:29 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Bill Payment for']})- Element is not visible
+10 Dec 2021 20:29:29 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Bill Payment for']}) (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:29:31 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Bill Payment for']})- element is not displayed
+10 Dec 2021 20:29:33 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Recharge for']})- element is displayed
+10 Dec 2021 20:29:33 [info] [TestBase:69] - Bill is present for current bill
+10 Dec 2021 20:29:33 [info] [TestBase:69] - Click on 'Enter amount'
+10 Dec 2021 20:29:34 [info] [TestBase:69] - Click on 'Enter amount'
+10 Dec 2021 20:29:34 [info] [TestBase:69] - Click on 'Enter amount'
+10 Dec 2021 20:29:36 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='w']})- element is enabled
+10 Dec 2021 20:29:36 [info] [TestBase:69] - Click on 'Click next CTA'
+10 Dec 2021 20:29:37 [info] [TestBase:69] - Click on 'Click Confirm button'
+10 Dec 2021 20:29:46 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[contains(@name,'Apply')]})- Element is not visible
+10 Dec 2021 20:29:46 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[contains(@name,'Apply')]}) (tried for 7 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:29:57 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[contains(@name,'Apply')]})- Element is not visible
+10 Dec 2021 20:29:57 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[contains(@name,'Apply')]}) (tried for 10 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:29:57 [info] [TestBase:69] - Click on 'Click Apple coupon or Supercash'
+10 Dec 2021 20:29:59 [info] [TestBase:69] - ***************[Test Failed] [Test Class: BillViewRecharge] [Test Method: Test_Recharge_Bill_Flow] [Test Description: Verify mobile bill Flow on android app]***************
+10 Dec 2021 20:29:59 [info] [TestBase:69] - ***************[Test Finished][Name: AndroidAppiumAutomation]***************
+10 Dec 2021 20:29:59 [info] [TestBase:69] - App closed
+10 Dec 2021 20:29:59 [info] [TestBase:69] - ***************[Test Suite Finished][Suite Name: Default Suite]***************
+10 Dec 2021 20:31:54 [info] [TestBase:69] - ***************[Test Suite Started][Suite Name: Default Suite]***************
+10 Dec 2021 20:31:54 [info] [TestBase:69] - Starting app automation
+10 Dec 2021 20:31:54 [info] [TestBase:69] - ***************[Test Started][Name: AndroidAppiumAutomation]***************
+10 Dec 2021 20:31:54 [info] [TestBase:69] - ***************[Test Started] [Test Class: BillViewRecharge] [Test Method: Test_Recharge_Bill_Flow] [Test Description: Verify mobile bill Flow on android app]***************
+10 Dec 2021 20:32:13 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='View Details']})- element is displayed
+10 Dec 2021 20:32:15 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup/android.view.ViewGroup/android.widget.TextView[1]})- element is displayed
+10 Dec 2021 20:32:15 [info] [TestBase:69] - Click on 'Click Home tab'
+10 Dec 2021 20:32:16 [info] [TestBase:69] - Click on 'Click Recharge & Pay Bills'
+10 Dec 2021 20:32:18 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]})- Element is not visible
+10 Dec 2021 20:32:18 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]}) (tried for 2 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:32:23 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]})- Element is not visible
+10 Dec 2021 20:32:23 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]}) (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:32:24 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]})- element is not displayed
+10 Dec 2021 20:32:30 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Enter Mobile Number']})- Element is not visible
+10 Dec 2021 20:32:30 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Enter Mobile Number']}) (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:32:32 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Enter Mobile Number']})- element is not displayed
+10 Dec 2021 20:32:33 [info] [TestBase:69] - Click on 'Click mobile button'
+10 Dec 2021 20:32:36 [info] [TestBase:69] - Click on 'Enter Mobile Number'
+10 Dec 2021 20:32:37 [info] [TestBase:69] - Click on 'Click mobile number'
+10 Dec 2021 20:32:40 [info] [TestBase:69] - VI- Element is not visible
+10 Dec 2021 20:32:40 [info] [TestBase:69] - Expected condition failed: waiting for visibility of element located by By.xpath: //*[@text='VI'] (tried for 2 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:32:44 [info] [TestBase:69] - VI- Element is not visible
+10 Dec 2021 20:32:44 [info] [TestBase:69] - Expected condition failed: waiting for visibility of element located by By.xpath: //*[@text='VI'] (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:32:44 [info] [TestBase:69] - VI- element is not displayed
+10 Dec 2021 20:32:46 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='OFF']})- element is displayed
+10 Dec 2021 20:32:51 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Bill Payment for']})- Element is not visible
+10 Dec 2021 20:32:51 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Bill Payment for']}) (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:32:53 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Bill Payment for']})- element is not displayed
+10 Dec 2021 20:32:55 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Recharge for']})- element is displayed
+10 Dec 2021 20:32:55 [info] [TestBase:69] - Bill is present for current bill
+10 Dec 2021 20:32:56 [info] [TestBase:69] - Click on 'Enter amount'
+10 Dec 2021 20:32:57 [info] [TestBase:69] - Click on 'Enter amount'
+10 Dec 2021 20:32:58 [info] [TestBase:69] - Click on 'Enter amount'
+10 Dec 2021 20:33:00 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='w']})- element is enabled
+10 Dec 2021 20:33:00 [info] [TestBase:69] - Click on 'Click next CTA'
+10 Dec 2021 20:33:02 [info] [TestBase:69] - Click on 'Click Confirm button'
+10 Dec 2021 20:33:11 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[contains(@name,'Apply')]})- Element is not visible
+10 Dec 2021 20:33:11 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[contains(@name,'Apply')]}) (tried for 7 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:33:25 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[contains(@name,'Apply')]})- Element is not visible
+10 Dec 2021 20:33:25 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[contains(@name,'Apply')]}) (tried for 10 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:33:25 [info] [TestBase:69] - Click on 'Click Apple coupon or Supercash'
+10 Dec 2021 20:33:26 [info] [TestBase:69] - ***************[Test Failed] [Test Class: BillViewRecharge] [Test Method: Test_Recharge_Bill_Flow] [Test Description: Verify mobile bill Flow on android app]***************
+10 Dec 2021 20:33:26 [info] [TestBase:69] - ***************[Test Finished][Name: AndroidAppiumAutomation]***************
+10 Dec 2021 20:33:27 [info] [TestBase:69] - App closed
+10 Dec 2021 20:33:27 [info] [TestBase:69] - ***************[Test Suite Finished][Suite Name: Default Suite]***************
+10 Dec 2021 20:36:16 [info] [TestBase:69] - ***************[Test Suite Started][Suite Name: Default Suite]***************
+10 Dec 2021 20:36:16 [info] [TestBase:69] - Starting app automation
+10 Dec 2021 20:36:16 [info] [TestBase:69] - ***************[Test Started][Name: AndroidAppiumAutomation]***************
+10 Dec 2021 20:36:16 [info] [TestBase:69] - ***************[Test Started] [Test Class: BillViewRecharge] [Test Method: Test_Recharge_Bill_Flow] [Test Description: Verify mobile bill Flow on android app]***************
+10 Dec 2021 20:36:36 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='View Details']})- element is displayed
+10 Dec 2021 20:36:37 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup/android.view.ViewGroup/android.widget.TextView[1]})- element is displayed
+10 Dec 2021 20:36:38 [info] [TestBase:69] - Click on 'Click Home tab'
+10 Dec 2021 20:36:39 [info] [TestBase:69] - Click on 'Click Recharge & Pay Bills'
+10 Dec 2021 20:36:42 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]})- Element is not visible
+10 Dec 2021 20:36:42 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]}) (tried for 2 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:36:46 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]})- Element is not visible
+10 Dec 2021 20:36:46 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]}) (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:36:47 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]})- element is not displayed
+10 Dec 2021 20:36:52 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Enter Mobile Number']})- Element is not visible
+10 Dec 2021 20:36:52 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Enter Mobile Number']}) (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:36:53 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Enter Mobile Number']})- element is not displayed
+10 Dec 2021 20:36:53 [info] [TestBase:69] - Click on 'Click mobile button'
+10 Dec 2021 20:36:56 [info] [TestBase:69] - Click on 'Enter Mobile Number'
+10 Dec 2021 20:36:57 [info] [TestBase:69] - Click on 'Click mobile number'
+10 Dec 2021 20:36:59 [info] [TestBase:69] - VI- Element is not visible
+10 Dec 2021 20:36:59 [info] [TestBase:69] - Expected condition failed: waiting for visibility of element located by By.xpath: //*[@text='VI'] (tried for 2 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:37:03 [info] [TestBase:69] - VI- Element is not visible
+10 Dec 2021 20:37:03 [info] [TestBase:69] - Expected condition failed: waiting for visibility of element located by By.xpath: //*[@text='VI'] (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:37:03 [info] [TestBase:69] - VI- element is not displayed
+10 Dec 2021 20:37:05 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='OFF']})- element is displayed
+10 Dec 2021 20:37:11 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Bill Payment for']})- Element is not visible
+10 Dec 2021 20:37:11 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Bill Payment for']}) (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:37:13 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Bill Payment for']})- element is not displayed
+10 Dec 2021 20:37:14 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Recharge for']})- element is displayed
+10 Dec 2021 20:37:14 [info] [TestBase:69] - Bill is present for current bill
+10 Dec 2021 20:37:15 [info] [TestBase:69] - Click on 'Enter amount'
+10 Dec 2021 20:37:15 [info] [TestBase:69] - Click on 'Enter amount'
+10 Dec 2021 20:37:16 [info] [TestBase:69] - Click on 'Enter amount'
+10 Dec 2021 20:37:18 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='w']})- element is enabled
+10 Dec 2021 20:37:18 [info] [TestBase:69] - Click on 'Click next CTA'
+10 Dec 2021 20:37:19 [info] [TestBase:69] - Click on 'Click Confirm button'
+10 Dec 2021 20:37:27 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[contains(@value,'Apply')]})- Element is not visible
+10 Dec 2021 20:37:27 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[contains(@value,'Apply')]}) (tried for 7 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:37:39 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[contains(@value,'Apply')]})- Element is not visible
+10 Dec 2021 20:37:39 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[contains(@value,'Apply')]}) (tried for 10 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:37:39 [info] [TestBase:69] - Click on 'Click Apple coupon or Supercash'
+10 Dec 2021 20:37:41 [info] [TestBase:69] - ***************[Test Failed] [Test Class: BillViewRecharge] [Test Method: Test_Recharge_Bill_Flow] [Test Description: Verify mobile bill Flow on android app]***************
+10 Dec 2021 20:37:41 [info] [TestBase:69] - ***************[Test Finished][Name: AndroidAppiumAutomation]***************
+10 Dec 2021 20:37:41 [info] [TestBase:69] - App closed
+10 Dec 2021 20:37:41 [info] [TestBase:69] - ***************[Test Suite Finished][Suite Name: Default Suite]***************
+10 Dec 2021 20:50:27 [info] [TestBase:69] - ***************[Test Suite Started][Suite Name: Default Suite]***************
+10 Dec 2021 20:50:27 [info] [TestBase:69] - Starting app automation
+10 Dec 2021 20:50:27 [info] [TestBase:69] - ***************[Test Started][Name: AndroidAppiumAutomation]***************
+10 Dec 2021 20:50:27 [info] [TestBase:69] - ***************[Test Started] [Test Class: BillViewRecharge] [Test Method: Test_Recharge_Bill_Flow] [Test Description: Verify mobile bill Flow on android app]***************
+10 Dec 2021 20:50:47 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='View Details']})- element is displayed
+10 Dec 2021 20:50:49 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup/android.view.ViewGroup/android.widget.TextView[1]})- element is displayed
+10 Dec 2021 20:50:49 [info] [TestBase:69] - Click on 'Click Home tab'
+10 Dec 2021 20:50:50 [info] [TestBase:69] - Click on 'Click Recharge & Pay Bills'
+10 Dec 2021 20:50:53 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]})- Element is not visible
+10 Dec 2021 20:50:53 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]}) (tried for 2 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:50:57 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]})- Element is not visible
+10 Dec 2021 20:50:57 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]}) (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:50:59 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]})- element is not displayed
+10 Dec 2021 20:51:03 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Enter Mobile Number']})- Element is not visible
+10 Dec 2021 20:51:03 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Enter Mobile Number']}) (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:51:04 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Enter Mobile Number']})- element is not displayed
+10 Dec 2021 20:51:04 [info] [TestBase:69] - Click on 'Click mobile button'
+10 Dec 2021 20:51:07 [info] [TestBase:69] - Click on 'Enter Mobile Number'
+10 Dec 2021 20:51:08 [info] [TestBase:69] - Click on 'Click mobile number'
+10 Dec 2021 20:51:11 [info] [TestBase:69] - VI- Element is not visible
+10 Dec 2021 20:51:11 [info] [TestBase:69] - Expected condition failed: waiting for visibility of element located by By.xpath: //*[@text='VI'] (tried for 2 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:51:15 [info] [TestBase:69] - VI- Element is not visible
+10 Dec 2021 20:51:15 [info] [TestBase:69] - Expected condition failed: waiting for visibility of element located by By.xpath: //*[@text='VI'] (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:51:15 [info] [TestBase:69] - VI- element is not displayed
+10 Dec 2021 20:51:17 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='OFF']})- element is displayed
+10 Dec 2021 20:51:23 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Bill Payment for']})- Element is not visible
+10 Dec 2021 20:51:23 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Bill Payment for']}) (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:51:26 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Bill Payment for']})- element is not displayed
+10 Dec 2021 20:51:27 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Recharge for']})- element is displayed
+10 Dec 2021 20:51:27 [info] [TestBase:69] - Bill is present for current bill
+10 Dec 2021 20:51:27 [info] [TestBase:69] - Click on 'Enter amount'
+10 Dec 2021 20:51:28 [info] [TestBase:69] - Click on 'Enter amount'
+10 Dec 2021 20:51:30 [info] [TestBase:69] - Click on 'Enter amount'
+10 Dec 2021 20:51:32 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='w']})- element is enabled
+10 Dec 2021 20:51:32 [info] [TestBase:69] - Click on 'Click next CTA'
+10 Dec 2021 20:51:33 [info] [TestBase:69] - Click on 'Click Confirm button'
+10 Dec 2021 20:51:41 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[contains(.,'Apply')]})- Element is not visible
+10 Dec 2021 20:51:41 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[contains(.,'Apply')]}) (tried for 7 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:51:51 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[contains(.,'Apply')]})- Element is not visible
+10 Dec 2021 20:51:51 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[contains(.,'Apply')]}) (tried for 10 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:51:51 [info] [TestBase:69] - Click on 'Click Apple coupon or Supercash'
+10 Dec 2021 20:51:53 [info] [TestBase:69] - ***************[Test Failed] [Test Class: BillViewRecharge] [Test Method: Test_Recharge_Bill_Flow] [Test Description: Verify mobile bill Flow on android app]***************
+10 Dec 2021 20:51:53 [info] [TestBase:69] - ***************[Test Finished][Name: AndroidAppiumAutomation]***************
+10 Dec 2021 20:51:54 [info] [TestBase:69] - App closed
+10 Dec 2021 20:51:54 [info] [TestBase:69] - ***************[Test Suite Finished][Suite Name: Default Suite]***************
+10 Dec 2021 20:53:14 [info] [TestBase:69] - ***************[Test Suite Started][Suite Name: Default Suite]***************
+10 Dec 2021 20:53:14 [info] [TestBase:69] - Starting app automation
+10 Dec 2021 20:53:14 [info] [TestBase:69] - ***************[Test Started][Name: AndroidAppiumAutomation]***************
+10 Dec 2021 20:53:14 [info] [TestBase:69] - ***************[Test Started] [Test Class: BillViewRecharge] [Test Method: Test_Recharge_Bill_Flow] [Test Description: Verify mobile bill Flow on android app]***************
+10 Dec 2021 20:53:40 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='View Details']})- Element is not visible
+10 Dec 2021 20:53:40 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='View Details']}) (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:53:43 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='View Details']})- element is not displayed
+10 Dec 2021 20:53:43 [info] [TestBase:69] - Please Login/Signup and than continue
+10 Dec 2021 20:53:43 [info] [TestBase:69] - ***************[Test Passed] [Test Class: BillViewRecharge] [Test Method: Test_Recharge_Bill_Flow] [Test Description: Verify mobile bill Flow on android app]***************
+10 Dec 2021 20:53:43 [info] [TestBase:69] - ***************[Test Finished][Name: AndroidAppiumAutomation]***************
+10 Dec 2021 20:53:43 [info] [TestBase:69] - App closed
+10 Dec 2021 20:53:43 [info] [TestBase:69] - ***************[Test Suite Finished][Suite Name: Default Suite]***************
+10 Dec 2021 20:54:07 [info] [TestBase:69] - ***************[Test Suite Started][Suite Name: Default Suite]***************
+10 Dec 2021 20:54:07 [info] [TestBase:69] - Starting app automation
+10 Dec 2021 20:54:07 [info] [TestBase:69] - ***************[Test Started][Name: AndroidAppiumAutomation]***************
+10 Dec 2021 20:54:07 [info] [TestBase:69] - ***************[Test Started] [Test Class: BillViewRecharge] [Test Method: Test_Recharge_Bill_Flow] [Test Description: Verify mobile bill Flow on android app]***************
+10 Dec 2021 20:54:28 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='View Details']})- element is displayed
+10 Dec 2021 20:54:29 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup/android.view.ViewGroup/android.widget.TextView[1]})- element is displayed
+10 Dec 2021 20:54:30 [info] [TestBase:69] - Click on 'Click Home tab'
+10 Dec 2021 20:54:31 [info] [TestBase:69] - Click on 'Click Recharge & Pay Bills'
+10 Dec 2021 20:54:34 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]})- Element is not visible
+10 Dec 2021 20:54:34 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]}) (tried for 2 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:54:39 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]})- Element is not visible
+10 Dec 2021 20:54:39 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]}) (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:54:40 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]})- element is not displayed
+10 Dec 2021 20:54:46 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Enter Mobile Number']})- Element is not visible
+10 Dec 2021 20:54:46 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Enter Mobile Number']}) (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:54:47 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Enter Mobile Number']})- element is not displayed
+10 Dec 2021 20:54:47 [info] [TestBase:69] - Click on 'Click mobile button'
+10 Dec 2021 20:54:49 [info] [TestBase:69] - Click on 'Enter Mobile Number'
+10 Dec 2021 20:54:50 [info] [TestBase:69] - Click on 'Click mobile number'
+10 Dec 2021 20:54:53 [info] [TestBase:69] - VI- Element is not visible
+10 Dec 2021 20:54:53 [info] [TestBase:69] - Expected condition failed: waiting for visibility of element located by By.xpath: //*[@text='VI'] (tried for 2 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:54:58 [info] [TestBase:69] - VI- Element is not visible
+10 Dec 2021 20:54:58 [info] [TestBase:69] - Expected condition failed: waiting for visibility of element located by By.xpath: //*[@text='VI'] (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:54:58 [info] [TestBase:69] - VI- element is not displayed
+10 Dec 2021 20:54:59 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='OFF']})- element is displayed
+10 Dec 2021 20:55:04 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Bill Payment for']})- Element is not visible
+10 Dec 2021 20:55:04 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Bill Payment for']}) (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:55:06 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Bill Payment for']})- element is not displayed
+10 Dec 2021 20:55:07 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Recharge for']})- element is displayed
+10 Dec 2021 20:55:07 [info] [TestBase:69] - Bill is present for current bill
+10 Dec 2021 20:55:08 [info] [TestBase:69] - Click on 'Enter amount'
+10 Dec 2021 20:55:09 [info] [TestBase:69] - Click on 'Enter amount'
+10 Dec 2021 20:55:10 [info] [TestBase:69] - Click on 'Enter amount'
+10 Dec 2021 20:55:11 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='w']})- element is enabled
+10 Dec 2021 20:55:12 [info] [TestBase:69] - Click on 'Click next CTA'
+10 Dec 2021 20:55:13 [info] [TestBase:69] - Click on 'Click Confirm button'
+10 Dec 2021 20:55:15 [info] [TestBase:69] - Click on 'Click Apple coupon or Supercash'
+10 Dec 2021 20:55:15 [info] [TestBase:69] - Clear 'Coupon field'
+10 Dec 2021 20:55:17 [info] [TestBase:69] - Click on 'Enter coupon'
+10 Dec 2021 20:55:17 [info] [TestBase:69] - Click on 'Apply button'
+10 Dec 2021 20:55:19 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Select a Coupon']})- element is displayed
+10 Dec 2021 20:55:19 [info] [TestBase:69] - -------------Entered coupon is invalid-------------
+10 Dec 2021 20:55:19 [info] [TestBase:69] - ***************[Test Failed] [Test Class: BillViewRecharge] [Test Method: Test_Recharge_Bill_Flow] [Test Description: Verify mobile bill Flow on android app]***************
+10 Dec 2021 20:55:19 [info] [TestBase:69] - ***************[Test Finished][Name: AndroidAppiumAutomation]***************
+10 Dec 2021 20:55:20 [info] [TestBase:69] - App closed
+10 Dec 2021 20:55:20 [info] [TestBase:69] - ***************[Test Suite Finished][Suite Name: Default Suite]***************
+10 Dec 2021 20:57:17 [info] [TestBase:69] - ***************[Test Suite Started][Suite Name: Default Suite]***************
+10 Dec 2021 20:57:17 [info] [TestBase:69] - Starting app automation
+10 Dec 2021 20:57:17 [info] [TestBase:69] - ***************[Test Started][Name: AndroidAppiumAutomation]***************
+10 Dec 2021 20:57:17 [info] [TestBase:69] - ***************[Test Started] [Test Class: BillViewRecharge] [Test Method: Test_Recharge_Bill_Flow] [Test Description: Verify mobile bill Flow on android app]***************
+10 Dec 2021 20:57:39 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='View Details']})- element is displayed
+10 Dec 2021 20:57:40 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup/android.view.ViewGroup/android.widget.TextView[1]})- element is displayed
+10 Dec 2021 20:57:41 [info] [TestBase:69] - Click on 'Click Home tab'
+10 Dec 2021 20:57:42 [info] [TestBase:69] - Click on 'Click Recharge & Pay Bills'
+10 Dec 2021 20:57:45 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]})- Element is not visible
+10 Dec 2021 20:57:45 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]}) (tried for 2 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:57:49 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]})- Element is not visible
+10 Dec 2021 20:57:49 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]}) (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:57:50 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]})- element is not displayed
+10 Dec 2021 20:57:56 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Enter Mobile Number']})- Element is not visible
+10 Dec 2021 20:57:56 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Enter Mobile Number']}) (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:57:57 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Enter Mobile Number']})- element is not displayed
+10 Dec 2021 20:57:57 [info] [TestBase:69] - Click on 'Click mobile button'
+10 Dec 2021 20:58:00 [info] [TestBase:69] - Click on 'Enter Mobile Number'
+10 Dec 2021 20:58:03 [info] [TestBase:69] - Click on 'Click mobile number'
+10 Dec 2021 20:58:05 [info] [TestBase:69] - VI- Element is not visible
+10 Dec 2021 20:58:05 [info] [TestBase:69] - Expected condition failed: waiting for visibility of element located by By.xpath: //*[@text='VI'] (tried for 2 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:58:10 [info] [TestBase:69] - VI- Element is not visible
+10 Dec 2021 20:58:10 [info] [TestBase:69] - Expected condition failed: waiting for visibility of element located by By.xpath: //*[@text='VI'] (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:58:10 [info] [TestBase:69] - VI- element is not displayed
+10 Dec 2021 20:58:12 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='OFF']})- element is displayed
+10 Dec 2021 20:58:18 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Bill Payment for']})- Element is not visible
+10 Dec 2021 20:58:18 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Bill Payment for']}) (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:58:20 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Bill Payment for']})- element is not displayed
+10 Dec 2021 20:58:21 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Recharge for']})- element is displayed
+10 Dec 2021 20:58:21 [info] [TestBase:69] - Bill is present for current bill
+10 Dec 2021 20:58:22 [info] [TestBase:69] - Click on 'Enter amount'
+10 Dec 2021 20:58:23 [info] [TestBase:69] - Click on 'Enter amount'
+10 Dec 2021 20:58:24 [info] [TestBase:69] - Click on 'Enter amount'
+10 Dec 2021 20:58:25 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='w']})- element is enabled
+10 Dec 2021 20:58:26 [info] [TestBase:69] - Click on 'Click next CTA'
+10 Dec 2021 20:58:27 [info] [TestBase:69] - Click on 'Click Confirm button'
+10 Dec 2021 20:58:29 [info] [TestBase:69] - Click on 'Click Apple coupon or Supercash'
+10 Dec 2021 20:58:29 [info] [TestBase:69] - Clear 'Coupon field'
+10 Dec 2021 20:58:32 [info] [TestBase:69] - Click on 'Enter coupon'
+10 Dec 2021 20:58:32 [info] [TestBase:69] - Click on 'Apply button'
+10 Dec 2021 20:58:35 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Select a Coupon']})- element is displayed
+10 Dec 2021 20:58:35 [info] [TestBase:69] - -------------Entered coupon is invalid-------------
+10 Dec 2021 20:58:35 [info] [TestBase:69] - ***************[Test Failed] [Test Class: BillViewRecharge] [Test Method: Test_Recharge_Bill_Flow] [Test Description: Verify mobile bill Flow on android app]***************
+10 Dec 2021 20:58:35 [info] [TestBase:69] - ***************[Test Finished][Name: AndroidAppiumAutomation]***************
+10 Dec 2021 20:58:35 [info] [TestBase:69] - App closed
+10 Dec 2021 20:58:35 [info] [TestBase:69] - ***************[Test Suite Finished][Suite Name: Default Suite]***************
+10 Dec 2021 20:59:13 [info] [TestBase:69] - ***************[Test Suite Started][Suite Name: Default Suite]***************
+10 Dec 2021 20:59:13 [info] [TestBase:69] - Starting app automation
+10 Dec 2021 20:59:13 [info] [TestBase:69] - ***************[Test Started][Name: AndroidAppiumAutomation]***************
+10 Dec 2021 20:59:13 [info] [TestBase:69] - ***************[Test Started] [Test Class: BillViewRecharge] [Test Method: Test_Recharge_Bill_Flow] [Test Description: Verify mobile bill Flow on android app]***************
+10 Dec 2021 20:59:31 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='View Details']})- element is displayed
+10 Dec 2021 20:59:33 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup/android.view.ViewGroup/android.widget.TextView[1]})- element is displayed
+10 Dec 2021 20:59:33 [info] [TestBase:69] - Click on 'Click Home tab'
+10 Dec 2021 20:59:34 [info] [TestBase:69] - Click on 'Click Recharge & Pay Bills'
+10 Dec 2021 20:59:37 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]})- Element is not visible
+10 Dec 2021 20:59:37 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]}) (tried for 2 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:59:43 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]})- Element is not visible
+10 Dec 2021 20:59:43 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]}) (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:59:44 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]})- element is not displayed
+10 Dec 2021 20:59:49 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Enter Mobile Number']})- Element is not visible
+10 Dec 2021 20:59:49 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Enter Mobile Number']}) (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 20:59:50 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Enter Mobile Number']})- element is not displayed
+10 Dec 2021 20:59:50 [info] [TestBase:69] - Click on 'Click mobile button'
+10 Dec 2021 20:59:53 [info] [TestBase:69] - Click on 'Enter Mobile Number'
+10 Dec 2021 20:59:55 [info] [TestBase:69] - Click on 'Click mobile number'
+10 Dec 2021 20:59:57 [info] [TestBase:69] - VI- Element is not visible
+10 Dec 2021 20:59:57 [info] [TestBase:69] - Expected condition failed: waiting for visibility of element located by By.xpath: //*[@text='VI'] (tried for 2 second(s) with 500 milliseconds interval)
+10 Dec 2021 21:00:01 [info] [TestBase:69] - VI- Element is not visible
+10 Dec 2021 21:00:01 [info] [TestBase:69] - Expected condition failed: waiting for visibility of element located by By.xpath: //*[@text='VI'] (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 21:00:01 [info] [TestBase:69] - VI- element is not displayed
+10 Dec 2021 21:00:02 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='OFF']})- element is displayed
+10 Dec 2021 21:00:09 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Bill Payment for']})- Element is not visible
+10 Dec 2021 21:00:09 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Bill Payment for']}) (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 21:00:11 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Bill Payment for']})- element is not displayed
+10 Dec 2021 21:00:12 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Recharge for']})- element is displayed
+10 Dec 2021 21:00:12 [info] [TestBase:69] - Bill is present for current bill
+10 Dec 2021 21:00:13 [info] [TestBase:69] - Click on 'Enter amount'
+10 Dec 2021 21:00:14 [info] [TestBase:69] - Click on 'Enter amount'
+10 Dec 2021 21:00:15 [info] [TestBase:69] - Click on 'Enter amount'
+10 Dec 2021 21:00:16 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='w']})- element is enabled
+10 Dec 2021 21:00:16 [info] [TestBase:69] - Click on 'Click next CTA'
+10 Dec 2021 21:00:18 [info] [TestBase:69] - Click on 'Click Confirm button'
+10 Dec 2021 21:00:19 [info] [TestBase:69] - Click on 'Click Apple coupon or Supercash'
+10 Dec 2021 21:00:21 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Apply Supercash']})- element is displayed
+10 Dec 2021 21:00:21 [info] [TestBase:69] - Click on 'Apply Supercash'
+10 Dec 2021 21:00:23 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='SuperCash']})- element is displayed
+10 Dec 2021 21:00:23 [info] [TestBase:69] - Click on 'Click Pay button'
+10 Dec 2021 21:00:25 [info] [TestBase:69] - Click on 'Enter Security Pin'
+10 Dec 2021 21:00:25 [info] [TestBase:69] - Click on 'Enter Security Pin'
+10 Dec 2021 21:00:26 [info] [TestBase:69] - Click on 'Enter Security Pin'
+10 Dec 2021 21:00:27 [info] [TestBase:69] - Click on 'Enter Security Pin'
+10 Dec 2021 21:00:28 [info] [TestBase:69] - Click on 'Enter Security Pin'
+10 Dec 2021 21:00:28 [info] [TestBase:69] - Click on 'Enter Security Pin'
+10 Dec 2021 21:00:35 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[contains(@text,'Success')]})- Element is not visible
+10 Dec 2021 21:00:35 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[contains(@text,'Success')]}) (tried for 5 second(s) with 500 milliseconds interval)
+10 Dec 2021 21:00:40 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[contains(@text,'Success')]})- Element is not visible
+10 Dec 2021 21:00:40 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[contains(@text,'Success')]}) (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 21:00:42 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[contains(@text,'Success')]})- element is not displayed
+10 Dec 2021 21:00:49 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[contains(@text,'Pending')]})- Element is not visible
+10 Dec 2021 21:00:49 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[contains(@text,'Pending')]}) (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 21:00:52 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[contains(@text,'Pending')]})- element is not displayed
+10 Dec 2021 21:00:59 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[contains(@text,'Fail')]})- Element is not visible
+10 Dec 2021 21:00:59 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[contains(@text,'Fail')]}) (tried for 3 second(s) with 500 milliseconds interval)
+10 Dec 2021 21:01:00 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[contains(@text,'Fail')]})- element is not displayed
+10 Dec 2021 21:01:01 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup/android.view.ViewGroup/android.widget.TextView[1]})- element is displayed
+10 Dec 2021 21:01:02 [info] [TestBase:69] - Balance deduction is incorrect
+10 Dec 2021 21:01:02 [info] [TestBase:69] - ***************[Test Passed] [Test Class: BillViewRecharge] [Test Method: Test_Recharge_Bill_Flow] [Test Description: Verify mobile bill Flow on android app]***************
+10 Dec 2021 21:01:02 [info] [TestBase:69] - ***************[Test Finished][Name: AndroidAppiumAutomation]***************
+10 Dec 2021 21:01:02 [info] [TestBase:69] - App closed
+10 Dec 2021 21:01:02 [info] [TestBase:69] - ***************[Test Suite Finished][Suite Name: Default Suite]***************
+13 Dec 2021 12:34:27 [info] [TestBase:69] - ***************[Test Suite Started][Suite Name: Default Suite]***************
+13 Dec 2021 12:34:27 [info] [TestBase:69] - Starting app automation
+13 Dec 2021 12:34:27 [info] [TestBase:69] - ***************[Test Started][Name: AndroidAppiumAutomation]***************
+13 Dec 2021 12:34:27 [info] [TestBase:69] - ***************[Test Started] [Test Class: BillViewRecharge] [Test Method: Test_Recharge_Bill_Flow] [Test Description: Verify mobile bill Flow on android app]***************
+13 Dec 2021 16:59:36 [info] [TestBase:69] - ***************[Test Suite Started][Suite Name: Default Suite]***************
+13 Dec 2021 16:59:36 [info] [TestBase:69] - Starting app automation
+13 Dec 2021 16:59:36 [info] [TestBase:69] - ***************[Test Started][Name: AndroidAppiumAutomation]***************
+13 Dec 2021 16:59:36 [info] [TestBase:69] - ***************[Test Started] [Test Class: BillViewRecharge] [Test Method: Test_Recharge_Bill_Flow] [Test Description: Verify mobile bill Flow on android app]***************
+13 Dec 2021 16:59:56 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='View Details']})- element is displayed
+13 Dec 2021 16:59:57 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup/android.view.ViewGroup/android.widget.TextView[1]})- element is displayed
+13 Dec 2021 16:59:58 [info] [TestBase:69] - Click on 'Click Home tab'
+13 Dec 2021 16:59:59 [info] [TestBase:69] - Click on 'Click Recharge & Pay Bills'
+13 Dec 2021 17:00:02 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]})- Element is not visible
+13 Dec 2021 17:00:02 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]}) (tried for 2 second(s) with 500 milliseconds interval)
+13 Dec 2021 17:00:08 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]})- Element is not visible
+13 Dec 2021 17:00:08 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]}) (tried for 3 second(s) with 500 milliseconds interval)
+13 Dec 2021 17:00:11 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]})- element is not displayed
+13 Dec 2021 17:00:16 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Enter Mobile Number']})- Element is not visible
+13 Dec 2021 17:00:16 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Enter Mobile Number']}) (tried for 3 second(s) with 500 milliseconds interval)
+13 Dec 2021 17:00:18 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Enter Mobile Number']})- element is not displayed
+13 Dec 2021 17:00:43 [info] [TestBase:69] - ***************[Test Suite Started][Suite Name: Default Suite]***************
+13 Dec 2021 17:00:43 [info] [TestBase:69] - Starting app automation
+13 Dec 2021 17:00:43 [info] [TestBase:69] - ***************[Test Started][Name: AndroidAppiumAutomation]***************
+13 Dec 2021 17:00:43 [info] [TestBase:69] - ***************[Test Started] [Test Class: BillViewRecharge] [Test Method: Test_Recharge_Bill_Flow] [Test Description: Verify mobile bill Flow on android app]***************
+13 Dec 2021 17:01:03 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='View Details']})- element is displayed
+13 Dec 2021 17:01:05 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup/android.view.ViewGroup/android.widget.TextView[1]})- element is displayed
+13 Dec 2021 17:01:06 [info] [TestBase:69] - Click on 'Click Home tab'
+13 Dec 2021 17:01:07 [info] [TestBase:69] - Click on 'Click Recharge & Pay Bills'
+13 Dec 2021 17:01:10 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]})- Element is not visible
+13 Dec 2021 17:01:10 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]}) (tried for 2 second(s) with 500 milliseconds interval)
+13 Dec 2021 17:01:14 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]})- Element is not visible
+13 Dec 2021 17:01:14 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]}) (tried for 3 second(s) with 500 milliseconds interval)
+13 Dec 2021 17:01:15 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup[2]/android.view.View[2]})- element is not displayed
+13 Dec 2021 17:01:19 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Enter Mobile Number']})- Element is not visible
+13 Dec 2021 17:01:19 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Enter Mobile Number']}) (tried for 3 second(s) with 500 milliseconds interval)
+13 Dec 2021 17:01:21 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Enter Mobile Number']})- element is not displayed
+13 Dec 2021 17:01:21 [info] [TestBase:69] - Click on 'Click mobile button'
+13 Dec 2021 17:01:23 [info] [TestBase:69] - Click on 'Enter Mobile Number'
+13 Dec 2021 17:01:24 [info] [TestBase:69] - Click on 'Click mobile number'
+13 Dec 2021 17:01:27 [info] [TestBase:69] - Jio- Element is not visible
+13 Dec 2021 17:01:27 [info] [TestBase:69] - Expected condition failed: waiting for visibility of element located by By.xpath: //*[@text='Jio'] (tried for 2 second(s) with 500 milliseconds interval)
+13 Dec 2021 17:01:31 [info] [TestBase:69] - Jio- Element is not visible
+13 Dec 2021 17:01:31 [info] [TestBase:69] - Expected condition failed: waiting for visibility of element located by By.xpath: //*[@text='Jio'] (tried for 3 second(s) with 500 milliseconds interval)
+13 Dec 2021 17:01:31 [info] [TestBase:69] - Jio- element is not displayed
+13 Dec 2021 17:01:33 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='ON']})- element is displayed
+13 Dec 2021 17:01:34 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Bill Payment for']})- element is displayed
+13 Dec 2021 17:01:34 [info] [TestBase:69] - Bill is present for current bill
+13 Dec 2021 17:01:34 [info] [TestBase:69] - Click on 'Enter amount'
+13 Dec 2021 17:01:36 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='w']})- element is enabled
+13 Dec 2021 17:01:37 [info] [TestBase:69] - Click on 'Click next CTA'
+13 Dec 2021 17:01:38 [info] [TestBase:69] - Click on 'Click Confirm button'
+13 Dec 2021 17:01:40 [info] [TestBase:69] - Click on 'Click Pay button'
+13 Dec 2021 17:01:41 [info] [TestBase:69] - Click on 'Enter Security Pin'
+13 Dec 2021 17:01:42 [info] [TestBase:69] - Click on 'Enter Security Pin'
+13 Dec 2021 17:01:42 [info] [TestBase:69] - Click on 'Enter Security Pin'
+13 Dec 2021 17:01:43 [info] [TestBase:69] - Click on 'Enter Security Pin'
+13 Dec 2021 17:01:44 [info] [TestBase:69] - Click on 'Enter Security Pin'
+13 Dec 2021 17:01:45 [info] [TestBase:69] - Click on 'Enter Security Pin'
+13 Dec 2021 17:01:54 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[contains(@text,'Success')]})- element is displayed
+13 Dec 2021 17:02:00 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='View Details']})- Element is not visible
+13 Dec 2021 17:02:00 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='View Details']}) (tried for 3 second(s) with 500 milliseconds interval)
+13 Dec 2021 17:02:02 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='View Details']})- element is not displayed
+13 Dec 2021 17:02:02 [info] [TestBase:69] - Click on 'Back button'
+13 Dec 2021 17:02:09 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='View Details']})- Element is not visible
+13 Dec 2021 17:02:09 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='View Details']}) (tried for 3 second(s) with 500 milliseconds interval)
+13 Dec 2021 17:02:11 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='View Details']})- element is not displayed
+13 Dec 2021 17:02:11 [info] [TestBase:69] - Click on 'Back button'
+13 Dec 2021 17:02:15 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='View Details']})- Element is not visible
+13 Dec 2021 17:02:15 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='View Details']}) (tried for 3 second(s) with 500 milliseconds interval)
+13 Dec 2021 17:02:17 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='View Details']})- element is not displayed
+13 Dec 2021 17:02:17 [info] [TestBase:69] - Click on 'Back button'
+13 Dec 2021 17:02:19 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='View Details']})- element is displayed
+13 Dec 2021 17:02:21 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.view.ViewGroup/android.view.ViewGroup/android.widget.TextView[1]})- element is displayed
+13 Dec 2021 17:02:21 [info] [TestBase:69] - Balance deduction is correct
+13 Dec 2021 17:02:21 [info] [TestBase:69] - ***************[Test Passed] [Test Class: BillViewRecharge] [Test Method: Test_Recharge_Bill_Flow] [Test Description: Verify mobile bill Flow on android app]***************
+13 Dec 2021 17:02:21 [info] [TestBase:69] - ***************[Test Finished][Name: AndroidAppiumAutomation]***************
+13 Dec 2021 17:02:21 [info] [TestBase:69] - App closed
+13 Dec 2021 17:02:21 [info] [TestBase:69] - ***************[Test Suite Finished][Suite Name: Default Suite]***************
+13 Dec 2021 19:31:47 [info] [TestBase:69] - ***************[Test Suite Started][Suite Name: Default Suite]***************
+13 Dec 2021 19:31:47 [info] [TestBase:69] - Starting app automation
+13 Dec 2021 19:31:47 [info] [TestBase:69] - ***************[Test Started][Name: AndroidAppiumAutomation]***************
+13 Dec 2021 19:31:47 [info] [TestBase:69] - ***************[Test Started] [Test Class: ProfileTest] [Test Method: Test_Profile_Flow] [Test Description: Verify Profile Flow on android app]***************
+13 Dec 2021 19:32:11 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='View Details']})- element is displayed
+13 Dec 2021 19:32:11 [info] [TestBase:69] - Click on 'Open side drawer'
+13 Dec 2021 19:32:13 [info] [TestBase:69] - Click on 'Click Profile button'
+13 Dec 2021 19:32:17 [info] [TestBase:69] - 9818484290- element is displayed
+13 Dec 2021 19:32:18 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- element is enabled
+13 Dec 2021 19:32:18 [info] [TestBase:69] - Save changes is clickable
+13 Dec 2021 19:32:19 [info] [TestBase:69] - Udit Gupta- element is displayed
+13 Dec 2021 19:32:19 [info] [TestBase:69] - Name or Email id is different
+13 Dec 2021 19:32:19 [info] [TestBase:69] - Clear 'Name'
+13 Dec 2021 19:32:20 [info] [TestBase:69] - Click on 'Enter name'
+13 Dec 2021 19:32:21 [info] [TestBase:69] - Clear 'Email id'
+13 Dec 2021 19:32:22 [info] [TestBase:69] - Click on 'Enter email id'
+13 Dec 2021 19:32:24 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- element is enabled
+13 Dec 2021 19:32:24 [info] [TestBase:69] - Save changes is clickable
+13 Dec 2021 19:32:24 [info] [TestBase:69] - Clear 'Name'
+13 Dec 2021 19:32:24 [info] [TestBase:69] - Click on 'Enter name'
+13 Dec 2021 19:32:25 [info] [TestBase:69] - Click on 'Back button'
+13 Dec 2021 19:32:32 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- Element is not visible
+13 Dec 2021 19:32:32 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Save Changes']}) (tried for 3 second(s) with 500 milliseconds interval)
+13 Dec 2021 19:32:33 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- element is not displayed
+13 Dec 2021 19:32:43 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='No, Thanks']})- Element is not visible
+13 Dec 2021 19:32:43 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='No, Thanks']}) (tried for 10 second(s) with 500 milliseconds interval)
+13 Dec 2021 19:32:43 [info] [TestBase:69] - Click on 'Click No Thanks button'
+13 Dec 2021 19:32:44 [info] [TestBase:69] - ***************[Test Failed] [Test Class: ProfileTest] [Test Method: Test_Profile_Flow] [Test Description: Verify Profile Flow on android app]***************
+13 Dec 2021 19:32:44 [info] [TestBase:69] - ***************[Test Finished][Name: AndroidAppiumAutomation]***************
+13 Dec 2021 19:32:45 [info] [TestBase:69] - App closed
+13 Dec 2021 19:32:45 [info] [TestBase:69] - ***************[Test Suite Finished][Suite Name: Default Suite]***************
+13 Dec 2021 19:36:04 [info] [TestBase:69] - ***************[Test Suite Started][Suite Name: Default Suite]***************
+13 Dec 2021 19:36:04 [info] [TestBase:69] - Starting app automation
+13 Dec 2021 19:36:04 [info] [TestBase:69] - ***************[Test Started][Name: AndroidAppiumAutomation]***************
+13 Dec 2021 19:36:04 [info] [TestBase:69] - ***************[Test Started] [Test Class: ProfileTest] [Test Method: Test_Profile_Flow] [Test Description: Verify Profile Flow on android app]***************
+13 Dec 2021 19:36:22 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='View Details']})- element is displayed
+13 Dec 2021 19:36:23 [info] [TestBase:69] - Click on 'Open side drawer'
+13 Dec 2021 19:36:24 [info] [TestBase:69] - Click on 'Click Profile button'
+13 Dec 2021 19:36:27 [info] [TestBase:69] - 9818484290- element is displayed
+13 Dec 2021 19:36:29 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- element is enabled
+13 Dec 2021 19:36:29 [info] [TestBase:69] - Save changes is clickable
+13 Dec 2021 19:36:30 [info] [TestBase:69] - Udit Gupta- element is displayed
+13 Dec 2021 19:36:30 [info] [TestBase:69] - Name or Email id is different
+13 Dec 2021 19:36:30 [info] [TestBase:69] - Clear 'Name'
+13 Dec 2021 19:36:31 [info] [TestBase:69] - Click on 'Enter name'
+13 Dec 2021 19:36:31 [info] [TestBase:69] - Clear 'Email id'
+13 Dec 2021 19:36:32 [info] [TestBase:69] - Click on 'Enter email id'
+13 Dec 2021 19:36:34 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- element is enabled
+13 Dec 2021 19:36:34 [info] [TestBase:69] - Save changes is clickable
+13 Dec 2021 19:36:34 [info] [TestBase:69] - Clear 'Name'
+13 Dec 2021 19:36:35 [info] [TestBase:69] - Click on 'Enter name'
+13 Dec 2021 19:36:35 [info] [TestBase:69] - Click on 'Back button'
+13 Dec 2021 19:36:41 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- Element is not visible
+13 Dec 2021 19:36:41 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Save Changes']}) (tried for 3 second(s) with 500 milliseconds interval)
+13 Dec 2021 19:36:42 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- element is not displayed
+13 Dec 2021 19:36:53 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='No, Thanks']})- Element is not visible
+13 Dec 2021 19:36:53 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='No, Thanks']}) (tried for 10 second(s) with 500 milliseconds interval)
+13 Dec 2021 19:36:53 [info] [TestBase:69] - Click on 'Click No Thanks button'
+13 Dec 2021 19:38:24 [info] [TestBase:69] - ***************[Test Suite Started][Suite Name: Default Suite]***************
+13 Dec 2021 19:38:25 [info] [TestBase:69] - Starting app automation
+13 Dec 2021 19:38:25 [info] [TestBase:69] - ***************[Test Started][Name: AndroidAppiumAutomation]***************
+13 Dec 2021 19:38:25 [info] [TestBase:69] - ***************[Test Started] [Test Class: ProfileTest] [Test Method: Test_Profile_Flow] [Test Description: Verify Profile Flow on android app]***************
+13 Dec 2021 19:38:44 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='View Details']})- element is displayed
+13 Dec 2021 19:38:44 [info] [TestBase:69] - Click on 'Open side drawer'
+13 Dec 2021 19:38:45 [info] [TestBase:69] - Click on 'Click Profile button'
+13 Dec 2021 19:38:49 [info] [TestBase:69] - 9818484290- element is displayed
+13 Dec 2021 19:38:51 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- element is enabled
+13 Dec 2021 19:38:51 [info] [TestBase:69] - Save changes is clickable
+13 Dec 2021 19:38:52 [info] [TestBase:69] - Udit Gupta- element is displayed
+13 Dec 2021 19:38:52 [info] [TestBase:69] - Name or Email id is different
+13 Dec 2021 19:38:52 [info] [TestBase:69] - Click on 'Click name field'
+13 Dec 2021 19:38:52 [info] [TestBase:69] - Clear 'Name'
+13 Dec 2021 19:38:54 [info] [TestBase:69] - Click on 'Enter name'
+13 Dec 2021 19:38:56 [info] [TestBase:69] - Click on 'Click email field'
+13 Dec 2021 19:38:56 [info] [TestBase:69] - Clear 'Email id'
+13 Dec 2021 19:38:58 [info] [TestBase:69] - Click on 'Enter email id'
+13 Dec 2021 19:39:01 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- element is enabled
+13 Dec 2021 19:39:01 [info] [TestBase:69] - Save changes is clickable
+13 Dec 2021 19:39:01 [info] [TestBase:69] - Click on 'Click name field'
+13 Dec 2021 19:39:01 [info] [TestBase:69] - Clear 'Name'
+13 Dec 2021 19:39:02 [info] [TestBase:69] - Click on 'Enter name'
+13 Dec 2021 19:39:02 [info] [TestBase:69] - Click on 'Back button'
+13 Dec 2021 19:39:04 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- element is displayed
+13 Dec 2021 19:39:10 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Yes']})- Element is not visible
+13 Dec 2021 19:39:10 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Yes']}) (tried for 3 second(s) with 500 milliseconds interval)
+13 Dec 2021 19:39:12 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Yes']})- element is not displayed
+13 Dec 2021 19:39:22 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='No, Thanks']})- Element is not visible
+13 Dec 2021 19:39:22 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='No, Thanks']}) (tried for 10 second(s) with 500 milliseconds interval)
+13 Dec 2021 19:39:22 [info] [TestBase:69] - Click on 'Click No Thanks button'
+13 Dec 2021 19:39:24 [info] [TestBase:69] - ***************[Test Failed] [Test Class: ProfileTest] [Test Method: Test_Profile_Flow] [Test Description: Verify Profile Flow on android app]***************
+13 Dec 2021 19:39:24 [info] [TestBase:69] - ***************[Test Finished][Name: AndroidAppiumAutomation]***************
+13 Dec 2021 19:39:25 [info] [TestBase:69] - App closed
+13 Dec 2021 19:39:25 [info] [TestBase:69] - ***************[Test Suite Finished][Suite Name: Default Suite]***************
+13 Dec 2021 19:40:22 [info] [TestBase:69] - ***************[Test Suite Started][Suite Name: Default Suite]***************
+13 Dec 2021 19:40:22 [info] [TestBase:69] - Starting app automation
+13 Dec 2021 19:40:22 [info] [TestBase:69] - ***************[Test Started][Name: AndroidAppiumAutomation]***************
+13 Dec 2021 19:40:23 [info] [TestBase:69] - ***************[Test Started] [Test Class: ProfileTest] [Test Method: Test_Profile_Flow] [Test Description: Verify Profile Flow on android app]***************
+13 Dec 2021 19:40:40 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='View Details']})- element is displayed
+13 Dec 2021 19:40:41 [info] [TestBase:69] - Click on 'Open side drawer'
+13 Dec 2021 19:40:42 [info] [TestBase:69] - Click on 'Click Profile button'
+13 Dec 2021 19:40:46 [info] [TestBase:69] - 9818484290- element is displayed
+13 Dec 2021 19:40:47 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- element is enabled
+13 Dec 2021 19:40:47 [info] [TestBase:69] - Save changes is clickable
+13 Dec 2021 19:40:49 [info] [TestBase:69] - Udit Gupta- element is displayed
+13 Dec 2021 19:40:49 [info] [TestBase:69] - Name or Email id is different
+13 Dec 2021 19:40:49 [info] [TestBase:69] - Clear 'Name'
+13 Dec 2021 19:40:49 [info] [TestBase:69] - Click on 'Enter name'
+13 Dec 2021 19:40:50 [info] [TestBase:69] - Clear 'Email id'
+13 Dec 2021 19:40:51 [info] [TestBase:69] - Click on 'Enter email id'
+13 Dec 2021 19:40:53 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- element is enabled
+13 Dec 2021 19:40:53 [info] [TestBase:69] - Save changes is clickable
+13 Dec 2021 19:40:53 [info] [TestBase:69] - Clear 'Name'
+13 Dec 2021 19:40:54 [info] [TestBase:69] - Click on 'Enter name'
+13 Dec 2021 19:40:55 [info] [TestBase:69] - Click on 'Back button'
+13 Dec 2021 19:41:05 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- element is displayed
+13 Dec 2021 19:41:10 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Yes']})- element is displayed
+13 Dec 2021 19:41:16 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='No, Thanks']})- Element is not visible
+13 Dec 2021 19:41:16 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='No, Thanks']}) (tried for 3 second(s) with 500 milliseconds interval)
+13 Dec 2021 19:41:17 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='No, Thanks']})- element is not displayed
+13 Dec 2021 19:41:59 [info] [TestBase:69] - ***************[Test Suite Started][Suite Name: Default Suite]***************
+13 Dec 2021 19:41:59 [info] [TestBase:69] - Starting app automation
+13 Dec 2021 19:41:59 [info] [TestBase:69] - ***************[Test Started][Name: AndroidAppiumAutomation]***************
+13 Dec 2021 19:41:59 [info] [TestBase:69] - ***************[Test Started] [Test Class: ProfileTest] [Test Method: Test_Profile_Flow] [Test Description: Verify Profile Flow on android app]***************
+13 Dec 2021 19:42:19 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='View Details']})- element is displayed
+13 Dec 2021 19:42:19 [info] [TestBase:69] - Click on 'Open side drawer'
+13 Dec 2021 19:42:20 [info] [TestBase:69] - Click on 'Click Profile button'
+13 Dec 2021 19:42:24 [info] [TestBase:69] - 9818484290- element is displayed
+13 Dec 2021 19:42:26 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- element is enabled
+13 Dec 2021 19:42:26 [info] [TestBase:69] - Save changes is clickable
+13 Dec 2021 19:42:27 [info] [TestBase:69] - Udit Gupta- element is displayed
+13 Dec 2021 19:42:27 [info] [TestBase:69] - Name or Email id is different
+13 Dec 2021 19:42:27 [info] [TestBase:69] - Click on 'Click name field'
+13 Dec 2021 19:42:27 [info] [TestBase:69] - Clear 'Name'
+13 Dec 2021 19:42:29 [info] [TestBase:69] - Click on 'Enter name'
+13 Dec 2021 19:42:31 [info] [TestBase:69] - Click on 'Click email field'
+13 Dec 2021 19:42:31 [info] [TestBase:69] - Clear 'Email id'
+13 Dec 2021 19:42:33 [info] [TestBase:69] - Click on 'Enter email id'
+13 Dec 2021 19:42:35 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- element is enabled
+13 Dec 2021 19:42:35 [info] [TestBase:69] - Save changes is clickable
+13 Dec 2021 19:42:35 [info] [TestBase:69] - Click on 'Click name field'
+13 Dec 2021 19:42:35 [info] [TestBase:69] - Clear 'Name'
+13 Dec 2021 19:42:37 [info] [TestBase:69] - Click on 'Enter name'
+13 Dec 2021 19:42:38 [info] [TestBase:69] - Click on 'Back button'
+13 Dec 2021 19:42:38 [info] [TestBase:69] - Click on 'Back button'
+13 Dec 2021 19:42:45 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- Element is not visible
+13 Dec 2021 19:42:45 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Save Changes']}) (tried for 3 second(s) with 500 milliseconds interval)
+13 Dec 2021 19:42:46 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- element is not displayed
+13 Dec 2021 19:45:19 [info] [TestBase:69] - ***************[Test Suite Started][Suite Name: Default Suite]***************
+13 Dec 2021 19:45:19 [info] [TestBase:69] - Starting app automation
+13 Dec 2021 19:45:19 [info] [TestBase:69] - ***************[Test Started][Name: AndroidAppiumAutomation]***************
+13 Dec 2021 19:45:19 [info] [TestBase:69] - ***************[Test Started] [Test Class: ProfileTest] [Test Method: Test_Profile_Flow] [Test Description: Verify Profile Flow on android app]***************
+13 Dec 2021 19:45:39 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='View Details']})- element is displayed
+13 Dec 2021 19:45:39 [info] [TestBase:69] - Click on 'Open side drawer'
+13 Dec 2021 19:45:40 [info] [TestBase:69] - Click on 'Click Profile button'
+13 Dec 2021 19:45:44 [info] [TestBase:69] - 9818484290- element is displayed
+13 Dec 2021 19:45:45 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- element is enabled
+13 Dec 2021 19:45:45 [info] [TestBase:69] - Save changes is clickable
+13 Dec 2021 19:45:46 [info] [TestBase:69] - Udit Gupta- element is displayed
+13 Dec 2021 19:45:46 [info] [TestBase:69] - Name or Email id is different
+13 Dec 2021 19:45:46 [info] [TestBase:69] - Click on 'Click name field'
+13 Dec 2021 19:45:47 [info] [TestBase:69] - Clear 'Name'
+13 Dec 2021 19:45:49 [info] [TestBase:69] - Click on 'Enter name'
+13 Dec 2021 19:45:49 [info] [TestBase:69] - Click on 'Click email field'
+13 Dec 2021 19:45:50 [info] [TestBase:69] - Clear 'Email id'
+13 Dec 2021 19:45:52 [info] [TestBase:69] - Click on 'Enter email id'
+13 Dec 2021 19:45:54 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- element is enabled
+13 Dec 2021 19:45:54 [info] [TestBase:69] - Save changes is clickable
+13 Dec 2021 19:45:54 [info] [TestBase:69] - Click on 'Click name field'
+13 Dec 2021 19:45:54 [info] [TestBase:69] - Clear 'Name'
+13 Dec 2021 19:45:56 [info] [TestBase:69] - Click on 'Enter name'
+13 Dec 2021 19:45:57 [info] [TestBase:69] - Click on 'Back button'
+13 Dec 2021 19:45:58 [info] [TestBase:69] - Click on 'Back button'
+13 Dec 2021 19:46:04 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- Element is not visible
+13 Dec 2021 19:46:04 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Save Changes']}) (tried for 3 second(s) with 500 milliseconds interval)
+13 Dec 2021 19:46:05 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- element is not displayed
+13 Dec 2021 19:46:05 [info] [TestBase:69] - Click on 'Open side drawer'
+13 Dec 2021 19:46:06 [info] [TestBase:69] - Click on 'Click Profile button'
+13 Dec 2021 19:46:08 [info] [TestBase:69] - Click on 'Click on profile image'
+13 Dec 2021 19:46:10 [info] [TestBase:69] - Click on 'Click on camera'
+13 Dec 2021 19:46:10 [info] [TestBase:69] - ***************[Test Passed] [Test Class: ProfileTest] [Test Method: Test_Profile_Flow] [Test Description: Verify Profile Flow on android app]***************
+13 Dec 2021 19:46:10 [info] [TestBase:69] - ***************[Test Finished][Name: AndroidAppiumAutomation]***************
+13 Dec 2021 19:46:11 [info] [TestBase:69] - App closed
+13 Dec 2021 19:46:11 [info] [TestBase:69] - ***************[Test Suite Finished][Suite Name: Default Suite]***************
+13 Dec 2021 19:51:21 [info] [TestBase:69] - ***************[Test Suite Started][Suite Name: Default Suite]***************
+13 Dec 2021 19:51:21 [info] [TestBase:69] - Starting app automation
+13 Dec 2021 19:51:21 [info] [TestBase:69] - ***************[Test Started][Name: AndroidAppiumAutomation]***************
+13 Dec 2021 19:51:21 [info] [TestBase:69] - ***************[Test Started] [Test Class: ProfileTest] [Test Method: Test_Profile_Flow] [Test Description: Verify Profile Flow on android app]***************
+13 Dec 2021 19:51:43 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='View Details']})- element is displayed
+13 Dec 2021 19:51:43 [info] [TestBase:69] - Click on 'Open side drawer'
+13 Dec 2021 19:51:44 [info] [TestBase:69] - Click on 'Click Profile button'
+13 Dec 2021 19:51:48 [info] [TestBase:69] - 9818484290- element is displayed
+13 Dec 2021 19:51:49 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- element is enabled
+13 Dec 2021 19:51:49 [info] [TestBase:69] - Save changes is clickable
+13 Dec 2021 19:51:50 [info] [TestBase:69] - Udit Gupta- element is displayed
+13 Dec 2021 19:51:50 [info] [TestBase:69] - Name or Email id is different
+13 Dec 2021 19:51:50 [info] [TestBase:69] - Click on 'Click name field'
+13 Dec 2021 19:51:51 [info] [TestBase:69] - Clear 'Name'
+13 Dec 2021 19:51:52 [info] [TestBase:69] - Click on 'Enter name'
+13 Dec 2021 19:51:54 [info] [TestBase:69] - Click on 'Click email field'
+13 Dec 2021 19:51:54 [info] [TestBase:69] - Clear 'Email id'
+13 Dec 2021 19:51:56 [info] [TestBase:69] - Click on 'Enter email id'
+13 Dec 2021 19:51:58 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- element is enabled
+13 Dec 2021 19:51:58 [info] [TestBase:69] - Save changes is clickable
+13 Dec 2021 19:51:58 [info] [TestBase:69] - Click on 'Click name field'
+13 Dec 2021 19:51:58 [info] [TestBase:69] - Clear 'Name'
+13 Dec 2021 19:52:00 [info] [TestBase:69] - Click on 'Enter name'
+13 Dec 2021 19:52:01 [info] [TestBase:69] - Click on 'Back button'
+13 Dec 2021 19:52:02 [info] [TestBase:69] - Click on 'Back button'
+13 Dec 2021 19:52:09 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- Element is not visible
+13 Dec 2021 19:52:09 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Save Changes']}) (tried for 3 second(s) with 500 milliseconds interval)
+13 Dec 2021 19:52:10 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- element is not displayed
+13 Dec 2021 19:52:10 [info] [TestBase:69] - Click on 'Open side drawer'
+13 Dec 2021 19:52:12 [info] [TestBase:69] - Click on 'Click Profile button'
+13 Dec 2021 19:52:14 [info] [TestBase:69] - Click on 'Click on profile image'
+13 Dec 2021 19:52:15 [info] [TestBase:69] - Click on 'Click on camera'
+13 Dec 2021 19:52:18 [info] [TestBase:69] - Click on 'Take picture'
+13 Dec 2021 19:52:24 [info] [TestBase:69] - Click on 'Click OK'
+13 Dec 2021 19:52:25 [info] [TestBase:69] - ***************[Test Passed] [Test Class: ProfileTest] [Test Method: Test_Profile_Flow] [Test Description: Verify Profile Flow on android app]***************
+13 Dec 2021 19:52:25 [info] [TestBase:69] - ***************[Test Finished][Name: AndroidAppiumAutomation]***************
+13 Dec 2021 19:52:25 [info] [TestBase:69] - App closed
+13 Dec 2021 19:52:25 [info] [TestBase:69] - ***************[Test Suite Finished][Suite Name: Default Suite]***************
+17 Dec 2021 12:16:33 [info] [TestBase:69] - ***************[Test Suite Started][Suite Name: Default Suite]***************
+17 Dec 2021 12:16:33 [info] [TestBase:69] - Starting app automation
+17 Dec 2021 12:16:33 [info] [TestBase:69] - ***************[Test Started][Name: AndroidAppiumAutomation]***************
+17 Dec 2021 12:16:33 [info] [TestBase:69] - ***************[Test Started] [Test Class: ProfileTest] [Test Method: Test_Profile_Flow] [Test Description: Verify Profile Flow on android app]***************
+17 Dec 2021 12:16:57 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='View Details']})- element is displayed
+17 Dec 2021 12:16:57 [info] [TestBase:69] - Click on 'Open side drawer'
+17 Dec 2021 12:16:59 [info] [TestBase:69] - Click on 'Click Profile button'
+17 Dec 2021 12:17:05 [info] [TestBase:69] - 9818484290- Element is not visible
+17 Dec 2021 12:17:05 [info] [TestBase:69] - Expected condition failed: waiting for visibility of element located by By.xpath: //*[@text='9818484290'] (tried for 5 second(s) with 500 milliseconds interval)
+17 Dec 2021 12:17:09 [info] [TestBase:69] - 9818484290- Element is not visible
+17 Dec 2021 12:17:09 [info] [TestBase:69] - Expected condition failed: waiting for visibility of element located by By.xpath: //*[@text='9818484290'] (tried for 3 second(s) with 500 milliseconds interval)
+17 Dec 2021 12:17:09 [info] [TestBase:69] - 9818484290- element is not displayed
+17 Dec 2021 12:17:09 [info] [TestBase:69] - ***************[Test Failed] [Test Class: ProfileTest] [Test Method: Test_Profile_Flow] [Test Description: Verify Profile Flow on android app]***************
+17 Dec 2021 12:17:09 [info] [TestBase:69] - ***************[Test Finished][Name: AndroidAppiumAutomation]***************
+17 Dec 2021 12:17:09 [info] [TestBase:69] - App closed
+17 Dec 2021 12:17:09 [info] [TestBase:69] - ***************[Test Suite Finished][Suite Name: Default Suite]***************
+17 Dec 2021 12:19:47 [info] [TestBase:69] - ***************[Test Suite Started][Suite Name: Default Suite]***************
+17 Dec 2021 12:19:47 [info] [TestBase:69] - Starting app automation
+17 Dec 2021 12:19:47 [info] [TestBase:69] - ***************[Test Started][Name: AndroidAppiumAutomation]***************
+17 Dec 2021 12:19:47 [info] [TestBase:69] - ***************[Test Started] [Test Class: ProfileTest] [Test Method: Test_Profile_Flow] [Test Description: Verify Profile Flow on android app]***************
+17 Dec 2021 12:20:05 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='View Details']})- element is displayed
+17 Dec 2021 12:20:05 [info] [TestBase:69] - Click on 'Open side drawer'
+17 Dec 2021 12:20:07 [info] [TestBase:69] - Click on 'Click Profile button'
+17 Dec 2021 12:20:09 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Allow']})- element is displayed
+17 Dec 2021 12:20:10 [info] [TestBase:69] - Click on 'Click Allow'
+17 Dec 2021 12:20:13 [info] [TestBase:69] - 9818484290- element is displayed
+17 Dec 2021 12:20:14 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- element is enabled
+17 Dec 2021 12:20:14 [info] [TestBase:69] - Save changes is clickable
+17 Dec 2021 12:20:15 [info] [TestBase:69] - Udit Gupta- element is displayed
+17 Dec 2021 12:20:15 [info] [TestBase:69] - Name or Email id is different
+17 Dec 2021 12:20:15 [info] [TestBase:69] - Click on 'Click name field'
+17 Dec 2021 12:20:16 [info] [TestBase:69] - Clear 'Name'
+17 Dec 2021 12:20:18 [info] [TestBase:69] - Click on 'Enter name'
+17 Dec 2021 12:20:20 [info] [TestBase:69] - Click on 'Click email field'
+17 Dec 2021 12:20:20 [info] [TestBase:69] - Clear 'Email id'
+17 Dec 2021 12:20:21 [info] [TestBase:69] - Click on 'Enter email id'
+17 Dec 2021 12:20:24 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- element is enabled
+17 Dec 2021 12:20:24 [info] [TestBase:69] - Save changes is clickable
+17 Dec 2021 12:20:24 [info] [TestBase:69] - Click on 'Click name field'
+17 Dec 2021 12:20:24 [info] [TestBase:69] - Clear 'Name'
+17 Dec 2021 12:20:26 [info] [TestBase:69] - Click on 'Enter name'
+17 Dec 2021 12:20:26 [info] [TestBase:69] - Click on 'Back button'
+17 Dec 2021 12:20:27 [info] [TestBase:69] - Click on 'Back button'
+17 Dec 2021 12:20:34 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- Element is not visible
+17 Dec 2021 12:20:34 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Save Changes']}) (tried for 3 second(s) with 500 milliseconds interval)
+17 Dec 2021 12:20:36 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- element is not displayed
+17 Dec 2021 12:20:48 [info] [TestBase:69] - Click on 'Open side drawer'
+17 Dec 2021 12:20:49 [info] [TestBase:69] - Click on 'Click Profile button'
+17 Dec 2021 12:20:51 [info] [TestBase:69] - Click on 'Click on profile image'
+17 Dec 2021 12:20:53 [info] [TestBase:69] - Click on 'Click on camera'
+17 Dec 2021 12:21:06 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Take picture']})- Element is not visible
+17 Dec 2021 12:21:06 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Take picture']}) (tried for 10 second(s) with 500 milliseconds interval)
+17 Dec 2021 12:21:06 [info] [TestBase:69] - Click on 'Take picture'
+17 Dec 2021 12:21:09 [info] [TestBase:69] - ***************[Test Failed] [Test Class: ProfileTest] [Test Method: Test_Profile_Flow] [Test Description: Verify Profile Flow on android app]***************
+17 Dec 2021 12:21:09 [info] [TestBase:69] - ***************[Test Finished][Name: AndroidAppiumAutomation]***************
+17 Dec 2021 12:21:09 [info] [TestBase:69] - App closed
+17 Dec 2021 12:21:09 [info] [TestBase:69] - ***************[Test Suite Finished][Suite Name: Default Suite]***************
+17 Dec 2021 12:22:48 [info] [TestBase:69] - ***************[Test Suite Started][Suite Name: Default Suite]***************
+17 Dec 2021 12:22:48 [info] [TestBase:69] - Starting app automation
+17 Dec 2021 12:22:48 [info] [TestBase:69] - ***************[Test Started][Name: AndroidAppiumAutomation]***************
+17 Dec 2021 12:22:48 [info] [TestBase:69] - ***************[Test Started] [Test Class: ProfileTest] [Test Method: Test_Profile_Flow] [Test Description: Verify Profile Flow on android app]***************
+17 Dec 2021 12:23:07 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='View Details']})- element is displayed
+17 Dec 2021 12:23:07 [info] [TestBase:69] - Click on 'Open side drawer'
+17 Dec 2021 12:23:09 [info] [TestBase:69] - Click on 'Click Profile button'
+17 Dec 2021 12:23:15 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Allow']})- Element is not visible
+17 Dec 2021 12:23:15 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Allow']}) (tried for 3 second(s) with 500 milliseconds interval)
+17 Dec 2021 12:23:17 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Allow']})- element is not displayed
+17 Dec 2021 12:23:18 [info] [TestBase:69] - 9818484290- element is displayed
+17 Dec 2021 12:23:19 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- element is enabled
+17 Dec 2021 12:23:19 [info] [TestBase:69] - Save changes is clickable
+17 Dec 2021 12:23:20 [info] [TestBase:69] - Udit Gupta- element is displayed
+17 Dec 2021 12:23:20 [info] [TestBase:69] - Name or Email id is different
+17 Dec 2021 12:23:20 [info] [TestBase:69] - Click on 'Click name field'
+17 Dec 2021 12:23:21 [info] [TestBase:69] - Clear 'Name'
+17 Dec 2021 12:23:23 [info] [TestBase:69] - Click on 'Enter name'
+17 Dec 2021 12:23:23 [info] [TestBase:69] - Click on 'Click email field'
+17 Dec 2021 12:23:24 [info] [TestBase:69] - Clear 'Email id'
+17 Dec 2021 12:23:26 [info] [TestBase:69] - Click on 'Enter email id'
+17 Dec 2021 12:23:27 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- element is enabled
+17 Dec 2021 12:23:27 [info] [TestBase:69] - Save changes is clickable
+17 Dec 2021 12:23:27 [info] [TestBase:69] - Click on 'Click name field'
+17 Dec 2021 12:23:27 [info] [TestBase:69] - Clear 'Name'
+17 Dec 2021 12:23:30 [info] [TestBase:69] - Click on 'Enter name'
+17 Dec 2021 12:23:30 [info] [TestBase:69] - Click on 'Back button'
+17 Dec 2021 12:23:31 [info] [TestBase:69] - Click on 'Back button'
+17 Dec 2021 12:23:37 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- Element is not visible
+17 Dec 2021 12:23:37 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Save Changes']}) (tried for 3 second(s) with 500 milliseconds interval)
+17 Dec 2021 12:23:39 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- element is not displayed
+17 Dec 2021 12:23:39 [info] [TestBase:69] - Click on 'Open side drawer'
+17 Dec 2021 12:23:40 [info] [TestBase:69] - Click on 'Click Profile button'
+17 Dec 2021 12:23:42 [info] [TestBase:69] - Click on 'Click on profile image'
+17 Dec 2021 12:23:43 [info] [TestBase:69] - Click on 'Click on camera'
+17 Dec 2021 12:23:44 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Allow']})- element is displayed
+17 Dec 2021 12:23:44 [info] [TestBase:69] - Click on 'Click Allow'
+17 Dec 2021 12:23:48 [info] [TestBase:69] - Click on 'Take picture'
+17 Dec 2021 12:23:56 [info] [TestBase:69] - Click on 'Click OK'
+17 Dec 2021 12:24:01 [info] [TestBase:69] - Click on 'Click Next'
+17 Dec 2021 12:24:14 [info] [TestBase:69] - Click on 'Click on profile image'
+17 Dec 2021 12:24:19 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Remove Photo']})- Element is not visible
+17 Dec 2021 12:24:19 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Remove Photo']}) (tried for 5 second(s) with 500 milliseconds interval)
+17 Dec 2021 12:24:30 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Remove Photo']})- Element is not visible
+17 Dec 2021 12:24:30 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Remove Photo']}) (tried for 10 second(s) with 500 milliseconds interval)
+17 Dec 2021 12:24:30 [info] [TestBase:69] - Click on 'Click Remove photo'
+17 Dec 2021 12:24:32 [info] [TestBase:69] - ***************[Test Failed] [Test Class: ProfileTest] [Test Method: Test_Profile_Flow] [Test Description: Verify Profile Flow on android app]***************
+17 Dec 2021 12:24:32 [info] [TestBase:69] - ***************[Test Finished][Name: AndroidAppiumAutomation]***************
+17 Dec 2021 12:24:33 [info] [TestBase:69] - App closed
+17 Dec 2021 12:24:33 [info] [TestBase:69] - ***************[Test Suite Finished][Suite Name: Default Suite]***************
+17 Dec 2021 12:32:47 [info] [TestBase:69] - ***************[Test Suite Started][Suite Name: Default Suite]***************
+17 Dec 2021 12:32:47 [info] [TestBase:69] - Starting app automation
+17 Dec 2021 12:32:47 [info] [TestBase:69] - ***************[Test Started][Name: AndroidAppiumAutomation]***************
+17 Dec 2021 12:32:47 [info] [TestBase:69] - ***************[Test Started] [Test Class: ProfileTest] [Test Method: Test_Profile_Flow] [Test Description: Verify Profile Flow on android app]***************
+17 Dec 2021 12:33:08 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='View Details']})- element is displayed
+17 Dec 2021 12:33:09 [info] [TestBase:69] - Click on 'Open side drawer'
+17 Dec 2021 12:33:10 [info] [TestBase:69] - Click on 'Click Profile button'
+17 Dec 2021 12:33:15 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Allow']})- Element is not visible
+17 Dec 2021 12:33:15 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Allow']}) (tried for 3 second(s) with 500 milliseconds interval)
+17 Dec 2021 12:33:17 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Allow']})- element is not displayed
+17 Dec 2021 12:33:19 [info] [TestBase:69] - 9818484290- element is displayed
+17 Dec 2021 12:33:20 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- element is enabled
+17 Dec 2021 12:33:20 [info] [TestBase:69] - Save changes is clickable
+17 Dec 2021 12:33:21 [info] [TestBase:69] - Udit Gupta- element is displayed
+17 Dec 2021 12:33:21 [info] [TestBase:69] - Name or Email id is different
+17 Dec 2021 12:33:21 [info] [TestBase:69] - Click on 'Click name field'
+17 Dec 2021 12:33:22 [info] [TestBase:69] - Clear 'Name'
+17 Dec 2021 12:33:24 [info] [TestBase:69] - Click on 'Enter name'
+17 Dec 2021 12:33:27 [info] [TestBase:69] - Click on 'Click email field'
+17 Dec 2021 12:33:27 [info] [TestBase:69] - Clear 'Email id'
+17 Dec 2021 12:33:30 [info] [TestBase:69] - Click on 'Enter email id'
+17 Dec 2021 12:33:33 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- element is enabled
+17 Dec 2021 12:33:33 [info] [TestBase:69] - Save changes is clickable
+17 Dec 2021 12:33:33 [info] [TestBase:69] - Click on 'Click name field'
+17 Dec 2021 12:33:33 [info] [TestBase:69] - Clear 'Name'
+17 Dec 2021 12:33:35 [info] [TestBase:69] - Click on 'Enter name'
+17 Dec 2021 12:33:36 [info] [TestBase:69] - Click on 'Back button'
+17 Dec 2021 12:33:37 [info] [TestBase:69] - Click on 'Back button'
+17 Dec 2021 12:33:44 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- Element is not visible
+17 Dec 2021 12:33:44 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Save Changes']}) (tried for 3 second(s) with 500 milliseconds interval)
+17 Dec 2021 12:33:47 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- element is not displayed
+17 Dec 2021 12:33:47 [info] [TestBase:69] - Click on 'Open side drawer'
+17 Dec 2021 12:33:49 [info] [TestBase:69] - Click on 'Click Profile button'
+17 Dec 2021 12:33:51 [info] [TestBase:69] - Click on 'Click on profile image'
+17 Dec 2021 12:33:53 [info] [TestBase:69] - Click on 'Click on camera'
+17 Dec 2021 12:33:58 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Allow']})- Element is not visible
+17 Dec 2021 12:33:58 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Allow']}) (tried for 3 second(s) with 500 milliseconds interval)
+17 Dec 2021 12:34:00 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Allow']})- element is not displayed
+17 Dec 2021 12:34:00 [info] [TestBase:69] - Click on 'Take picture'
+17 Dec 2021 12:34:07 [info] [TestBase:69] - Click on 'Click OK'
+17 Dec 2021 12:34:11 [info] [TestBase:69] - Click on 'Click Next'
+17 Dec 2021 12:34:25 [info] [TestBase:69] - Click on 'Click on profile image'
+17 Dec 2021 12:34:27 [info] [TestBase:69] - Click on 'Click Remove photo'
+17 Dec 2021 12:34:28 [info] [TestBase:69] - Click on 'Click on profile image'
+17 Dec 2021 12:34:29 [info] [TestBase:69] - Click on 'Click Gallery'
+17 Dec 2021 12:34:36 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.widget.FrameLayout[1]/android.widget.ImageView[1]})- Element is not visible
+17 Dec 2021 12:34:36 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //android.widget.FrameLayout[1]/android.widget.ImageView[1]}) (tried for 5 second(s) with 500 milliseconds interval)
+17 Dec 2021 12:34:41 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.widget.FrameLayout[1]/android.widget.ImageView[1]})- Element is not visible
+17 Dec 2021 12:34:41 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //android.widget.FrameLayout[1]/android.widget.ImageView[1]}) (tried for 3 second(s) with 500 milliseconds interval)
+17 Dec 2021 12:34:43 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.widget.FrameLayout[1]/android.widget.ImageView[1]})- element is not displayed
+17 Dec 2021 12:34:43 [info] [TestBase:69] - No photo is present ,Please click a photo
+17 Dec 2021 12:34:43 [info] [TestBase:69] - ***************[Test Failed] [Test Class: ProfileTest] [Test Method: Test_Profile_Flow] [Test Description: Verify Profile Flow on android app]***************
+17 Dec 2021 12:34:43 [info] [TestBase:69] - ***************[Test Finished][Name: AndroidAppiumAutomation]***************
+17 Dec 2021 12:34:43 [info] [TestBase:69] - App closed
+17 Dec 2021 12:34:43 [info] [TestBase:69] - ***************[Test Suite Finished][Suite Name: Default Suite]***************
+17 Dec 2021 12:35:55 [info] [TestBase:69] - ***************[Test Suite Started][Suite Name: Default Suite]***************
+17 Dec 2021 12:35:55 [info] [TestBase:69] - Starting app automation
+17 Dec 2021 12:35:55 [info] [TestBase:69] - ***************[Test Started][Name: AndroidAppiumAutomation]***************
+17 Dec 2021 12:35:55 [info] [TestBase:69] - ***************[Test Started] [Test Class: ProfileTest] [Test Method: Test_Profile_Flow] [Test Description: Verify Profile Flow on android app]***************
+17 Dec 2021 12:36:15 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='View Details']})- element is displayed
+17 Dec 2021 12:36:15 [info] [TestBase:69] - Click on 'Open side drawer'
+17 Dec 2021 12:36:16 [info] [TestBase:69] - Click on 'Click Profile button'
+17 Dec 2021 12:36:23 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Allow']})- Element is not visible
+17 Dec 2021 12:36:23 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Allow']}) (tried for 3 second(s) with 500 milliseconds interval)
+17 Dec 2021 12:36:25 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Allow']})- element is not displayed
+17 Dec 2021 12:36:26 [info] [TestBase:69] - 9818484290- element is displayed
+17 Dec 2021 12:36:28 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- element is enabled
+17 Dec 2021 12:36:28 [info] [TestBase:69] - Save changes is clickable
+17 Dec 2021 12:36:29 [info] [TestBase:69] - Udit Gupta- element is displayed
+17 Dec 2021 12:36:29 [info] [TestBase:69] - Name or Email id is different
+17 Dec 2021 12:36:29 [info] [TestBase:69] - Click on 'Click name field'
+17 Dec 2021 12:36:29 [info] [TestBase:69] - Clear 'Name'
+17 Dec 2021 12:36:31 [info] [TestBase:69] - Click on 'Enter name'
+17 Dec 2021 12:36:33 [info] [TestBase:69] - Click on 'Click email field'
+17 Dec 2021 12:36:33 [info] [TestBase:69] - Clear 'Email id'
+17 Dec 2021 12:36:35 [info] [TestBase:69] - Click on 'Enter email id'
+17 Dec 2021 12:36:37 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- element is enabled
+17 Dec 2021 12:36:37 [info] [TestBase:69] - Save changes is clickable
+17 Dec 2021 12:36:37 [info] [TestBase:69] - Click on 'Click name field'
+17 Dec 2021 12:36:37 [info] [TestBase:69] - Clear 'Name'
+17 Dec 2021 12:36:38 [info] [TestBase:69] - Click on 'Enter name'
+17 Dec 2021 12:36:39 [info] [TestBase:69] - Click on 'Back button'
+17 Dec 2021 12:36:40 [info] [TestBase:69] - Click on 'Back button'
+17 Dec 2021 12:36:48 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- Element is not visible
+17 Dec 2021 12:36:48 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Save Changes']}) (tried for 3 second(s) with 500 milliseconds interval)
+17 Dec 2021 12:36:50 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Save Changes']})- element is not displayed
+17 Dec 2021 12:36:50 [info] [TestBase:69] - Click on 'Open side drawer'
+17 Dec 2021 12:36:51 [info] [TestBase:69] - Click on 'Click Profile button'
+17 Dec 2021 12:36:54 [info] [TestBase:69] - Click on 'Click on profile image'
+17 Dec 2021 12:36:55 [info] [TestBase:69] - Click on 'Click on camera'
+17 Dec 2021 12:37:00 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Allow']})- Element is not visible
+17 Dec 2021 12:37:00 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Allow']}) (tried for 3 second(s) with 500 milliseconds interval)
+17 Dec 2021 12:37:02 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Allow']})- element is not displayed
+17 Dec 2021 12:37:02 [info] [TestBase:69] - Click on 'Take picture'
+17 Dec 2021 12:37:08 [info] [TestBase:69] - Click on 'Click OK'
+17 Dec 2021 12:37:11 [info] [TestBase:69] - Click on 'Click Next'
+17 Dec 2021 12:37:19 [info] [TestBase:69] - Click on 'Click on profile image'
+17 Dec 2021 12:37:20 [info] [TestBase:69] - Click on 'Click Remove photo'
+17 Dec 2021 12:37:21 [info] [TestBase:69] - Click on 'Click on profile image'
+17 Dec 2021 12:37:23 [info] [TestBase:69] - Click on 'Click Gallery'
+17 Dec 2021 12:37:24 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Allow']})- element is displayed
+17 Dec 2021 12:37:24 [info] [TestBase:69] - Click on 'Click Allow'
+17 Dec 2021 12:37:34 [info] [TestBase:69] - Located by By.chained({By.xpath: //android.widget.FrameLayout[1]/android.widget.ImageView[1]})- element is displayed
+17 Dec 2021 12:37:34 [info] [TestBase:69] - Click on 'Click Gallery'
+17 Dec 2021 12:37:41 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Next']})- Element is not visible
+17 Dec 2021 12:37:41 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Next']}) (tried for 5 second(s) with 500 milliseconds interval)
+17 Dec 2021 12:37:53 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='Next']})- Element is not visible
+17 Dec 2021 12:37:53 [info] [TestBase:69] - Expected condition failed: waiting for visibility of Located by By.chained({By.xpath: //*[@text='Next']}) (tried for 10 second(s) with 500 milliseconds interval)
+17 Dec 2021 12:37:53 [info] [TestBase:69] - Click on 'Click Next'
+17 Dec 2021 12:37:56 [info] [TestBase:69] - ***************[Test Failed] [Test Class: ProfileTest] [Test Method: Test_Profile_Flow] [Test Description: Verify Profile Flow on android app]***************
+17 Dec 2021 12:37:56 [info] [TestBase:69] - ***************[Test Finished][Name: AndroidAppiumAutomation]***************
+17 Dec 2021 12:37:57 [info] [TestBase:69] - App closed
+17 Dec 2021 12:37:57 [info] [TestBase:69] - ***************[Test Suite Finished][Suite Name: Default Suite]***************
+17 Dec 2021 16:31:59 [info] [TestBase:69] - ***************[Test Suite Started][Suite Name: Default Suite]***************
+17 Dec 2021 16:31:59 [info] [TestBase:69] - Starting app automation
+17 Dec 2021 16:31:59 [info] [TestBase:69] - ***************[Test Started][Name: AndroidAppiumAutomation]***************
+17 Dec 2021 16:31:59 [info] [TestBase:69] - ***************[Test Started] [Test Class: SupercashTest] [Test Method: Test_Supercash_Flow] [Test Description: Verify Supercash Flow on android app]***************
+17 Dec 2021 16:32:21 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='View Details']})- element is displayed
+17 Dec 2021 16:32:21 [info] [TestBase:69] - Click on 'Open side drawer'
+17 Dec 2021 16:32:23 [info] [TestBase:69] - Click on 'Click Accounts'
+17 Dec 2021 16:32:25 [info] [TestBase:69] - Click on 'Click Details'
+17 Dec 2021 16:32:26 [info] [TestBase:69] - Click on 'Click Statement'
+17 Dec 2021 16:32:26 [info] [TestBase:69] - ***************[Test Passed] [Test Class: SupercashTest] [Test Method: Test_Supercash_Flow] [Test Description: Verify Supercash Flow on android app]***************
+17 Dec 2021 16:32:26 [info] [TestBase:69] - ***************[Test Finished][Name: AndroidAppiumAutomation]***************
+17 Dec 2021 16:32:27 [info] [TestBase:69] - App closed
+17 Dec 2021 16:32:27 [info] [TestBase:69] - ***************[Test Suite Finished][Suite Name: Default Suite]***************
+17 Dec 2021 16:34:11 [info] [TestBase:69] - ***************[Test Suite Started][Suite Name: Default Suite]***************
+17 Dec 2021 16:34:11 [info] [TestBase:69] - Starting app automation
+17 Dec 2021 16:34:11 [info] [TestBase:69] - ***************[Test Started][Name: AndroidAppiumAutomation]***************
+17 Dec 2021 16:34:11 [info] [TestBase:69] - ***************[Test Started] [Test Class: SupercashTest] [Test Method: Test_Supercash_Flow] [Test Description: Verify Supercash Flow on android app]***************
+17 Dec 2021 16:34:32 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='View Details']})- element is displayed
+17 Dec 2021 16:34:32 [info] [TestBase:69] - Click on 'Open side drawer'
+17 Dec 2021 16:34:34 [info] [TestBase:69] - Click on 'Click Accounts'
+17 Dec 2021 16:34:36 [info] [TestBase:69] - Click on 'Click Details'
+17 Dec 2021 16:34:37 [info] [TestBase:69] - Click on 'Click Statement'
+17 Dec 2021 16:34:37 [info] [TestBase:69] - ***************[Test Passed] [Test Class: SupercashTest] [Test Method: Test_Supercash_Flow] [Test Description: Verify Supercash Flow on android app]***************
+17 Dec 2021 16:34:37 [info] [TestBase:69] - ***************[Test Finished][Name: AndroidAppiumAutomation]***************
+17 Dec 2021 16:34:37 [info] [TestBase:69] - App closed
+17 Dec 2021 16:34:37 [info] [TestBase:69] - ***************[Test Suite Finished][Suite Name: Default Suite]***************
+17 Dec 2021 16:35:40 [info] [TestBase:69] - ***************[Test Suite Started][Suite Name: Default Suite]***************
+17 Dec 2021 16:35:40 [info] [TestBase:69] - Starting app automation
+17 Dec 2021 16:35:40 [info] [TestBase:69] - ***************[Test Started][Name: AndroidAppiumAutomation]***************
+17 Dec 2021 16:35:40 [info] [TestBase:69] - ***************[Test Started] [Test Class: SupercashTest] [Test Method: Test_Supercash_Flow] [Test Description: Verify Supercash Flow on android app]***************
+17 Dec 2021 16:36:00 [info] [TestBase:69] - Located by By.chained({By.xpath: //*[@text='View Details']})- element is displayed
+17 Dec 2021 16:36:00 [info] [TestBase:69] - Click on 'Open side drawer'
+17 Dec 2021 16:36:03 [info] [TestBase:69] - Click on 'Click Accounts'
+17 Dec 2021 16:36:05 [info] [TestBase:69] - Click on 'Click Details'
+17 Dec 2021 16:36:06 [info] [TestBase:69] - Click on 'Click Statement'
+17 Dec 2021 16:36:14 [info] [TestBase:69] - [[io.appium.java_client.android.AndroidDriver, Capabilities: {appActivity=.MobikwikMain, appPackage=com.mobikwik_new, databaseEnabled=false, desired={platformName=android, appActivity=.MobikwikMain, appPackage=com.mobikwik_new, deviceName=RZ8N90TQDHD, noReset=true}, deviceApiLevel=29, deviceManufacturer=samsung, deviceModel=SM-M317F, deviceName=RZ8N90TQDHD, deviceScreenDensity=420, deviceScreenSize=1080x2400, deviceUDID=RZ8N90TQDHD, javascriptEnabled=true, locationContextEnabled=false, networkConnectionEnabled=true, noReset=true, pixelRatio=2.625, platform=LINUX, platformName=ANDROID, platformVersion=10, statBarHeight=93, takesScreenshot=true, viewportRect={left=0, top=93, width=1080, height=2093}, warnings={}, webStorageEnabled=false}] -> xpath: //android.widget.LinearLayout[1]/android.view.ViewGroup/android.widget.TextView[8]]- element is displayed
+17 Dec 2021 16:36:15 [info] [TestBase:69] - [[io.appium.java_client.android.AndroidDriver, Capabilities: {appActivity=.MobikwikMain, appPackage=com.mobikwik_new, databaseEnabled=false, desired={platformName=android, appActivity=.MobikwikMain, appPackage=com.mobikwik_new, deviceName=RZ8N90TQDHD, noReset=true}, deviceApiLevel=29, deviceManufacturer=samsung, deviceModel=SM-M317F, deviceName=RZ8N90TQDHD, deviceScreenDensity=420, deviceScreenSize=1080x2400, deviceUDID=RZ8N90TQDHD, javascriptEnabled=true, locationContextEnabled=false, networkConnectionEnabled=true, noReset=true, pixelRatio=2.625, platform=LINUX, platformName=ANDROID, platformVersion=10, statBarHeight=93, takesScreenshot=true, viewportRect={left=0, top=93, width=1080, height=2093}, warnings={}, webStorageEnabled=false}] -> xpath: //android.widget.LinearLayout[2]/android.view.ViewGroup/android.widget.TextView[8]]- element is displayed
+17 Dec 2021 16:36:16 [info] [TestBase:69] - [[io.appium.java_client.android.AndroidDriver, Capabilities: {appActivity=.MobikwikMain, appPackage=com.mobikwik_new, databaseEnabled=false, desired={platformName=android, appActivity=.MobikwikMain, appPackage=com.mobikwik_new, deviceName=RZ8N90TQDHD, noReset=true}, deviceApiLevel=29, deviceManufacturer=samsung, deviceModel=SM-M317F, deviceName=RZ8N90TQDHD, deviceScreenDensity=420, deviceScreenSize=1080x2400, deviceUDID=RZ8N90TQDHD, javascriptEnabled=true, locationContextEnabled=false, networkConnectionEnabled=true, noReset=true, pixelRatio=2.625, platform=LINUX, platformName=ANDROID, platformVersion=10, statBarHeight=93, takesScreenshot=true, viewportRect={left=0, top=93, width=1080, height=2093}, warnings={}, webStorageEnabled=false}] -> xpath: //android.widget.LinearLayout[3]/android.view.ViewGroup/android.widget.TextView[8]]- element is displayed
+17 Dec 2021 16:36:18 [info] [TestBase:69] - [[io.appium.java_client.android.AndroidDriver, Capabilities: {appActivity=.MobikwikMain, appPackage=com.mobikwik_new, databaseEnabled=false, desired={platformName=android, appActivity=.MobikwikMain, appPackage=com.mobikwik_new, deviceName=RZ8N90TQDHD, noReset=true}, deviceApiLevel=29, deviceManufacturer=samsung, deviceModel=SM-M317F, deviceName=RZ8N90TQDHD, deviceScreenDensity=420, deviceScreenSize=1080x2400, deviceUDID=RZ8N90TQDHD, javascriptEnabled=true, locationContextEnabled=false, networkConnectionEnabled=true, noReset=true, pixelRatio=2.625, platform=LINUX, platformName=ANDROID, platformVersion=10, statBarHeight=93, takesScreenshot=true, viewportRect={left=0, top=93, width=1080, height=2093}, warnings={}, webStorageEnabled=false}] -> xpath: //android.widget.LinearLayout[4]/android.view.ViewGroup/android.widget.TextView[8]]- element is displayed
+17 Dec 2021 16:36:20 [info] [TestBase:69] - [[io.appium.java_client.android.AndroidDriver, Capabilities: {appActivity=.MobikwikMain, appPackage=com.mobikwik_new, databaseEnabled=false, desired={platformName=android, appActivity=.MobikwikMain, appPackage=com.mobikwik_new, deviceName=RZ8N90TQDHD, noReset=true}, deviceApiLevel=29, deviceManufacturer=samsung, deviceModel=SM-M317F, deviceName=RZ8N90TQDHD, deviceScreenDensity=420, deviceScreenSize=1080x2400, deviceUDID=RZ8N90TQDHD, javascriptEnabled=true, locationContextEnabled=false, networkConnectionEnabled=true, noReset=true, pixelRatio=2.625, platform=LINUX, platformName=ANDROID, platformVersion=10, statBarHeight=93, takesScreenshot=true, viewportRect={left=0, top=93, width=1080, height=2093}, warnings={}, webStorageEnabled=false}] -> xpath: //android.widget.LinearLayout[5]/android.view.ViewGroup/android.widget.TextView[8]]- element is displayed
+17 Dec 2021 16:36:20 [info] [TestBase:69] - ***************[Test Passed] [Test Class: SupercashTest] [Test Method: Test_Supercash_Flow] [Test Description: Verify Supercash Flow on android app]***************
+17 Dec 2021 16:36:20 [info] [TestBase:69] - ***************[Test Finished][Name: AndroidAppiumAutomation]***************
+17 Dec 2021 16:36:20 [info] [TestBase:69] - App closed
+17 Dec 2021 16:36:20 [info] [TestBase:69] - ***************[Test Suite Finished][Suite Name: Default Suite]***************
