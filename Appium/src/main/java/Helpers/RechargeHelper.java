@@ -46,6 +46,9 @@ public class RechargeHelper {
     @AndroidFindBy(xpath="//*[@text='Confirm Payment']")
     private AndroidElement checkPaymentPage;
 
+    @AndroidFindBy(xpath="//android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.LinearLayout/android.widget.TextView")
+    private AndroidElement checkSupercashDeduct;
+
     String applySupercash="Apply Supercash";
 
     public RechargeHelper(AndroidDriver<AndroidElement> driver){
@@ -58,7 +61,7 @@ public class RechargeHelper {
 
         Thread.sleep(8000);
         String test;
-        String[] dataBefore;
+        String[] dataBefore,testArray;
         double balanceBefore,balanceAfter ;
         // Check for logged in user
         if(Elements.isElementPresent(driver,checkViewDetails)){
@@ -67,82 +70,94 @@ public class RechargeHelper {
             test= Elements.getText(driver,getBalance);
             dataBefore= test.split("₹");
             balanceBefore=Double.parseDouble(dataBefore[1]);
+            System.out.println(balanceBefore);
 
-            rechargeBillPage.clickHomeTab();
-            rechargeBillPage.clickRechargePayBill();
-            //Check for Swipe left blue popup
-            Elements.waitForElementToVisibleOnPage(driver,checkSwipLeftPopUp,2);
-            if(Elements.isElementPresent(driver,checkSwipLeftPopUp)){
-                rechargeBillPage.clickSwipPopUp();
-            }
-            //Check for new user or old user
-            if(Elements.isElementPresent(driver,enterNumber)){
-                rechargeBillPage.enterMobileNumber(number);
-                rechargeBillPage.clickContinue();
-            }else {
-                rechargeBillPage.clickMobileButton();
-                rechargeBillPage.enterMobileNumber(number);
-                rechargeBillPage.selectNumber();
-            }
-            Elements.waitForElementToVisibleOnPageUsingText(driver,operatorName,2);
-            //check for asking operator and circle
-            if(Elements.isElementPresent(driver,operatorName)){
-                rechargeBillPage.selectOperator(operatorName);
-                rechargeBillPage.selectCircle(circle);
-            }
-            //Check for Prepaid and Postpaid
-            if(rechargeBillPage.checkOperatorType(operatorType)){
-                rechargeBillPage.changeType();
-                rechargeBillPage.clickYes();
-            }
-            //Check for amount screen or no dues screen
-            if(rechargeBillPage.checkResultScreen(number)) {
-                rechargeBillPage.enterAmount(amount);
-                rechargeBillPage.clickNextCTA();
-                rechargeBillPage.clickConfirm();
-
-                //Check for coupon code
-                if(!coupon.equals("")){
-                    rechargeBillPage.clickApplyCoupon();
-                    if(coupon.contains(applySupercash)){
-                        rechargeBillPage.clickApplySupercash();
-                    }else{
-                        rechargeBillPage.enterCouponCode(coupon);
-                        rechargeBillPage.clickApplyButton();
-                        if(Elements.isElementPresent(driver,checkCouponPage)){
-                            Config.info("-------------Entered coupon is invalid-------------");
-                            Assert.assertTrue(false);
-                        }else if(Elements.isElementPresent(driver,checkPaymentPage)){
-                            Config.info("Coupon applied");
-                        }else{
-                            Config.info("-------------Error occurred----------------");
-                            Assert.assertTrue(false);
-                        }
-
-                    }
-                    //Check for coupon code and supercash
-                    if(coupon.contains(applySupercash)){
-                        rechargeBillPage.checkSupercashApplied();
-                    }else{
-                        rechargeBillPage.checkCouponApplied(coupon);
-                    }
+            //Check insufficient balance
+            if(balanceBefore >= Double.parseDouble(amount)) {
+                Config.logComment("Sufficient balance");
+                rechargeBillPage.clickHomeTab();
+                rechargeBillPage.clickRechargePayBill();
+                //Check for Swipe left blue popup
+                Elements.waitForElementToVisibleOnPage(driver, checkSwipLeftPopUp, 2);
+                if (Elements.isElementPresent(driver, checkSwipLeftPopUp)) {
+                    rechargeBillPage.clickSwipPopUp();
                 }
-
-                rechargeBillPage.clickPayButton();
-                rechargeBillPage.enterSecurityPin(pin);
-                //Check details on final screen
-                rechargeBillPage.checkPaymentScreen();
-
-                //Getting balance after transaction and comparing
-                test = Elements.getText(driver, getBalance);
-                dataBefore = test.split("₹");
-                balanceAfter = Double.parseDouble(dataBefore[1]);
-                if (balanceBefore - balanceAfter == Double.parseDouble(amount)) {
-                    Config.info("Balance deduction is correct");
+                //Check for new user or old user
+                if (Elements.isElementPresent(driver, enterNumber)) {
+                    rechargeBillPage.enterMobileNumber(number);
+                    rechargeBillPage.clickContinue();
                 } else {
-                    Config.info("Balance deduction is incorrect");
+                    rechargeBillPage.clickMobileButton();
+                    rechargeBillPage.enterMobileNumber(number);
+                    rechargeBillPage.selectNumber();
                 }
+                Elements.waitForElementToVisibleOnPageUsingText(driver, operatorName, 2);
+                //check for asking operator and circle
+                if (Elements.isElementPresent(driver, operatorName)) {
+                    rechargeBillPage.selectOperator(operatorName);
+                    rechargeBillPage.selectCircle(circle);
+                }
+                //Check for Prepaid and Postpaid
+                if (rechargeBillPage.checkOperatorType(operatorType)) {
+                    rechargeBillPage.changeType();
+                    rechargeBillPage.clickYes();
+                }
+                //Check for amount screen or no dues screen
+                if (rechargeBillPage.checkResultScreen(number)) {
+                    rechargeBillPage.enterAmount(amount);
+                    rechargeBillPage.clickNextCTA();
+                    rechargeBillPage.clickConfirm();
 
+                    //Check for coupon code
+                    if (!coupon.equals("")) {
+                        rechargeBillPage.clickApplyCoupon();
+                        if (coupon.contains(applySupercash)) {
+                            rechargeBillPage.clickApplySupercash();
+                        } else {
+                            rechargeBillPage.enterCouponCode(coupon);
+                            rechargeBillPage.clickApplyButton();
+                            if (Elements.isElementPresent(driver, checkCouponPage)) {
+                                Config.info("-------------Entered coupon is invalid-------------");
+                                Assert.assertTrue(false);
+                            } else if (Elements.isElementPresent(driver, checkPaymentPage)) {
+                                Config.info("Coupon applied");
+                            } else {
+                                Config.info("-------------Error occurred----------------");
+                                Assert.assertTrue(false);
+                            }
+
+                        }
+                        //Check for coupon code and supercash
+                        if (coupon.contains(applySupercash)) {
+                            rechargeBillPage.checkSupercashApplied();
+                            // Check supercash deduct amount
+                            test = Elements.getText(driver, checkSupercashDeduct);
+                            testArray = test.split("₹");
+                            balanceBefore = balanceBefore + Double.parseDouble(testArray[1]);
+                            System.out.println(balanceBefore);
+                        } else {
+                            rechargeBillPage.checkCouponApplied(coupon);
+                        }
+                    }
+
+                    rechargeBillPage.clickPayButton();
+                    rechargeBillPage.enterSecurityPin(pin);
+                    //Check details on final screen
+                    rechargeBillPage.checkPaymentScreen(number,amount);
+
+                    //Getting balance after transaction and comparing
+                    test = Elements.getText(driver, getBalance);
+                    dataBefore = test.split("₹");
+                    balanceAfter = Double.parseDouble(dataBefore[1]);
+                    if (balanceBefore - balanceAfter == Double.parseDouble(amount)) {
+                        Config.info("Balance deduction is correct");
+                    } else {
+                        Config.info("Balance deduction is incorrect");
+                    }
+
+                }
+            }else{
+                Config.logComment("Insufficient balance");
             }
 
         }else{
@@ -156,7 +171,7 @@ public class RechargeHelper {
         int flag=0;
         Thread.sleep(8000);
         String test;
-        String[] dataBefore;
+        String[] dataBefore,testArray;
         double balanceBefore,balanceAfter ;
         rechargeBillPage=new RechargeBillPage(driver);
         LoginPage loginPage = new LoginPage(driver);
@@ -185,87 +200,99 @@ public class RechargeHelper {
 
         }
         if(flag==1){
+            loginPage.clickLoginSignup();
+            if(Elements.isElementPresent(driver,noneOfAboveButton)) {
+                loginPage.clickNoneOfAbove();
+            }
+            loginPage.enterMobileNum(number);
+            loginPage.clickSendOtpbutton();
+            loginPage.clickHistoryTab();
+
             rechargeBillPage.clickHomeTab();
 
             test= Elements.getText(driver,getBalance);
             dataBefore= test.split("₹");
             balanceBefore=Double.parseDouble(dataBefore[1]);
 
-            rechargeBillPage.clickRechargePayBill();
-            //Check for Swipe left blue popup
-            Elements.waitForElementToVisibleOnPage(driver,checkSwipLeftPopUp,2);
-            if(Elements.isElementPresent(driver,checkSwipLeftPopUp)){
-                rechargeBillPage.clickSwipPopUp();
-            }
-            //Check for new user or old user
-            if(Elements.isElementPresent(driver,enterNumber)){
-                rechargeBillPage.enterMobileNumber(number);
-                rechargeBillPage.clickContinue();
-            }
-            Elements.waitForElementToVisibleOnPageUsingText(driver,operatorName,2);
-            //check for asking operator and circle
-            if(Elements.isElementPresent(driver,operatorName)){
-                rechargeBillPage.selectOperator(operatorName);
-                rechargeBillPage.selectCircle(circle);
-            }
-            if(rechargeBillPage.checkOperatorType(operatorType)){
-                rechargeBillPage.changeType();
-                rechargeBillPage.clickYes();
-            }
-            //Check for amount screen or no dues screen
-            if(rechargeBillPage.checkResultScreen(number)) {
-                rechargeBillPage.enterAmount(amount);
-                rechargeBillPage.clickNextCTA();
-                rechargeBillPage.clickConfirm();
-                rechargeBillPage.clickPayButton();
-
-                if(Elements.isElementPresent(driver,noneOfAboveButton)) {
-                    loginPage.clickNoneOfAbove();
+            if(balanceBefore >= Double.parseDouble(amount)) {
+                rechargeBillPage.clickRechargePayBill();
+                //Check for Swipe left blue popup
+                Elements.waitForElementToVisibleOnPage(driver, checkSwipLeftPopUp, 2);
+                if (Elements.isElementPresent(driver, checkSwipLeftPopUp)) {
+                    rechargeBillPage.clickSwipPopUp();
                 }
-                loginPage.enterMobileNum(number);
-                loginPage.clickSendOtpbutton();
+                //Check for new user or old user
+                if (Elements.isElementPresent(driver, enterNumber)) {
+                    rechargeBillPage.enterMobileNumber(number);
+                    rechargeBillPage.clickContinue();
+                }
+                Elements.waitForElementToVisibleOnPageUsingText(driver, operatorName, 2);
+                //check for asking operator and circle
+                if (Elements.isElementPresent(driver, operatorName)) {
+                    rechargeBillPage.selectOperator(operatorName);
+                    rechargeBillPage.selectCircle(circle);
+                }
+                if (rechargeBillPage.checkOperatorType(operatorType)) {
+                    rechargeBillPage.changeType();
+                    rechargeBillPage.clickYes();
+                }
+                //Check for amount screen or no dues screen
+                if (rechargeBillPage.checkResultScreen(number)) {
+                    rechargeBillPage.enterAmount(amount);
+                    rechargeBillPage.clickNextCTA();
+                    rechargeBillPage.clickConfirm();
+                    rechargeBillPage.clickPayButton();
 
-                //Check for coupon code
-                if(!coupon.equals("")){
-                    rechargeBillPage.clickApplyCoupon();
-                    if(coupon.contains(applySupercash)){
-                        rechargeBillPage.clickApplySupercash();
-                    }else{
-                        rechargeBillPage.enterCouponCode(coupon);
-                        rechargeBillPage.clickApplyButton();
-                        if(Elements.isElementPresent(driver,checkCouponPage)){
-                            Config.info("-------------Entered coupon is invalid-------------");
-                            Assert.assertTrue(false);
-                        }else if(Elements.isElementPresent(driver,checkPaymentPage)){
-                            Config.info("Coupon applied");
-                        }else{
-                            Config.info("-------------Error occurred----------------");
-                            Assert.assertTrue(false);
+
+                    //Check for coupon code
+                    if (!coupon.equals("")) {
+                        rechargeBillPage.clickApplyCoupon();
+                        if (coupon.contains(applySupercash)) {
+                            rechargeBillPage.clickApplySupercash();
+                        } else {
+                            rechargeBillPage.enterCouponCode(coupon);
+                            rechargeBillPage.clickApplyButton();
+                            if (Elements.isElementPresent(driver, checkCouponPage)) {
+                                Config.info("-------------Entered coupon is invalid-------------");
+                                Assert.assertTrue(false);
+                            } else if (Elements.isElementPresent(driver, checkPaymentPage)) {
+                                Config.info("Coupon applied");
+                            } else {
+                                Config.info("-------------Error occurred----------------");
+                                Assert.assertTrue(false);
+                            }
+
                         }
-
+                        //Check for coupon code and supercash
+                        if (coupon.contains(applySupercash)) {
+                            rechargeBillPage.checkSupercashApplied();
+                            // Check supercash deduct amount
+                            test = Elements.getText(driver, checkSupercashDeduct);
+                            testArray = test.split("₹");
+                            balanceBefore = balanceBefore + Double.parseDouble(testArray[1]);
+                            System.out.println(balanceBefore);
+                        } else {
+                            rechargeBillPage.checkCouponApplied(coupon);
+                        }
                     }
-                    //Check for coupon code and supercash
-                    if(coupon.contains(applySupercash)){
-                        rechargeBillPage.checkSupercashApplied();
-                    }else{
-                        rechargeBillPage.checkCouponApplied(coupon);
+
+                    rechargeBillPage.clickPayButton();
+                    rechargeBillPage.enterSecurityPin(pin);
+                    //Check details on final screen
+                    rechargeBillPage.checkPaymentScreen(number,amount);
+
+                    //Getting balance after transaction and comparing
+                    test = Elements.getText(driver, getBalance);
+                    dataBefore = test.split("₹");
+                    balanceAfter = Double.parseDouble(dataBefore[1]);
+                    if (balanceBefore - balanceAfter == Double.parseDouble(amount)) {
+                        Config.info("Balance deduction is correct");
+                    } else {
+                        Config.info("Balance deduction is incorrect");
                     }
                 }
-
-                rechargeBillPage.clickPayButton();
-                rechargeBillPage.enterSecurityPin(pin);
-                //Check details on final screen
-                rechargeBillPage.checkPaymentScreen();
-
-                //Getting balance after transaction and comparing
-                test = Elements.getText(driver, getBalance);
-                dataBefore = test.split("₹");
-                balanceAfter = Double.parseDouble(dataBefore[1]);
-                if (balanceBefore - balanceAfter == Double.parseDouble(amount)) {
-                    Config.info("Balance deduction is correct");
-                } else {
-                    Config.info("Balance deduction is incorrect");
-                }
+            }else{
+                Config.logComment("Insufficient balance");
             }
         }
 

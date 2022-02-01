@@ -28,7 +28,7 @@ public class BillViewRecharge extends TestBase {
 //            String data = Excel.readData(i, "Recharge");
 //            String[] excelData = data.split(" split ");
         RechargeHelper rechargeHelper = new RechargeHelper(initiateTest());
-        rechargeHelper.viewRechargeBillWithLogout("9818484290","Prepaid", "VI", "Delhi NCR", "100","Apply Supercash","112233");
+        rechargeHelper.viewRechargeBillWithLogout("9818484290","Prepaid", "VI", "Delhi NCR", "1","Apply Supercash","112233");
 //        }
     }
 

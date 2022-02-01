@@ -307,8 +307,16 @@ public class RechargeBillPage {
         Assert.assertTrue(Elements.isElementPresent(driver,coupon));
     }
 
-    public void checkPaymentScreen() throws InterruptedException {
-        Elements.waitForElementToVisibleOnPage(driver,success,5);
+    public void checkPaymentScreen(String number, String amount) throws InterruptedException {
+        Elements.waitForElementToVisibleOnPageUsingText(driver,number,7);
+        if(Elements.isElementPresent(driver,number) && Elements.isElementPresent(driver,"₹"+amount)){
+
+        }else{
+            Config.info("Issue in details");
+            Assert.assertTrue(false);
+        }
+
+        Elements.waitForElementToVisibleOnPage(driver,success,7);
         if(Elements.isElementPresent(driver,success) || Elements.isElementPresent(driver,pending)){
             while(!Elements.isElementPresent(driver,checkViewDetails)) {
                 Elements.back(driver, "Back button");
