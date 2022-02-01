@@ -16,9 +16,7 @@ public class LoginTest extends TestBase {
         ExtentReport.EXTENTTEST = ExtentReport.EXTENTREPORT.createTest("Test_Login_Flow");
 
         LoginHelper loginHelper = new LoginHelper(getWebDriver());
-//        loginHelper.loginViaOtp("8527797582", "T.C. Suneja", "mayank.suneja@mobikwik.com", "8527797582");
-
-        loginHelper.loginViaOtp("7795709569", "T.C. Suneja", "mayank.suneja@mobikwik.com", "7795709569");
+        loginHelper.loginViaOtp("9205299330" ,"mobi testu", "mkwik9330@gmail.com", "9205299330");
 
     }
 

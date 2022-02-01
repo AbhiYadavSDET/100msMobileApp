@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Gas Flow">
+
+    <test verbose="2" preserve-order="true" name="Gas bill flow Test">
+        <groups>
+            <run>
+                <include name="gasFlow"/>
+            </run>
+        </groups>
+
+
+        <classes>
+            <class name="BillViewGas"/>
+<!--            <class name="Utils.ExtentReport"/>-->
+        </classes>
+    </test>
+
+</suite>
