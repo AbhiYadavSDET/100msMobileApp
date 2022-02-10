@@ -1,3 +1,5 @@
+package Supercash;
+
 import Helpers.SupercashHelper;
 import Utils.TestBase;
 import org.testng.annotations.Test;

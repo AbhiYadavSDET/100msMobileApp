@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Recharge Flow">
+<suite name="Profile Flow">
 
-    <test verbose="2" preserve-order="true" name="Mobile Recharge bill flow Test">
+    <test verbose="2" preserve-order="true" name="Profile flow Test">
         <groups>
             <run>
-                <include name="rechargeFlow"/>
+                <include name="profileFlow"/>
             </run>
         </groups>
 
 
         <classes>
-            <class name="BillViewRecharge"/>
+            <class name="Profile.ProfileTest"/>
 <!--            <class name="Utils.ExtentReport"/>-->
         </classes>
     </test>

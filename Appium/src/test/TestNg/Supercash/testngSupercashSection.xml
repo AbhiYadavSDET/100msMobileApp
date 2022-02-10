@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Login Flow">
+<suite name="Supercash Flow">
 
-    <test verbose="2" preserve-order="true" name="Login flow Test">
+    <test verbose="2" preserve-order="true" name="Profile flow Test">
         <groups>
             <run>
-                <include name="loginFlow"/>
+                <include name="supercashFlow"/>
             </run>
         </groups>
 
 
         <classes>
-            <class name="LoginTest"/>
+            <class name="Supercash.SupercashTest"/>
 <!--            <class name="Utils.ExtentReport"/>-->
         </classes>
     </test>
