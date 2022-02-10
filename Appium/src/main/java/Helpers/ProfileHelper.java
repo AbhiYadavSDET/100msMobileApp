@@ -1,7 +1,9 @@
 package Helpers;
 
 
+import PageObject.HomePage;
 import PageObject.ProfilePage;
+import PageObject.SideDrawerPage;
 import Utils.Config;
 import Utils.Elements;
 import io.appium.java_client.android.AndroidDriver;
@@ -9,11 +11,14 @@ import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 public class ProfileHelper {
 
     AndroidDriver<AndroidElement> driver;
     ProfilePage profilePage;
+    SideDrawerPage sideDrawerPage;
+    HomePage homePage;
 
     @AndroidFindBy(xpath="//*[@text='Login/Signup']")
     private AndroidElement loginSignupButton;
@@ -30,6 +35,9 @@ public class ProfileHelper {
     public ProfileHelper(AndroidDriver<AndroidElement> driver){
         this.driver=driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
+        profilePage=new ProfilePage(driver);
+        sideDrawerPage=new SideDrawerPage(driver);
+        homePage=new HomePage(driver);
     }
 
     public void profileView(String mobileNumber, String name, String emailId) throws InterruptedException {
@@ -37,9 +45,8 @@ public class ProfileHelper {
 
         Thread.sleep(8000);
         if(Elements.isElementPresent(driver,checkViewDetails)){
-            profilePage=new ProfilePage(driver);
-            profilePage.openSideDrawer();
-            profilePage.clickProfile();
+            homePage.openSideDrawr();
+            sideDrawerPage.clickProfile();
             if(Elements.isElementPresent(driver,allowText)){
                 profilePage.clickAllow();
             }
@@ -55,8 +62,8 @@ public class ProfileHelper {
                 profilePage.checkDetailsOnBackClicked();
                 profilePage.clickNoThanksButton();
             }
-            profilePage.openSideDrawer();
-            profilePage.clickProfile();
+            homePage.openSideDrawr();
+            sideDrawerPage.clickProfile();
 
             //Change profile
             profilePage.clickProfileIamge();
@@ -82,6 +89,7 @@ public class ProfileHelper {
 
         }else{
             Config.logComment("Please Login/Signup and than continue");
+            Assert.assertTrue(false);
         }
 
 

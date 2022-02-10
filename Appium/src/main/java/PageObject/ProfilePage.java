@@ -73,17 +73,17 @@ public class ProfilePage {
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
-    public void openSideDrawer() {
-        Elements.selectElement(driver,clickSideDrawer,"Open side drawer");
-    }
+//    public void openSideDrawer() {
+//        Elements.selectElement(driver,clickSideDrawer,"Open side drawer");
+//    }
 
 //    public void checkNameInSideDrawer(String name) throws InterruptedException {
 //        Assert.assertFalse(Elements.isElementPresent(driver,name));
 //    }
 
-    public void clickProfile() {
-        Elements.selectElement(driver,clickProfile,"Click Profile button");
-    }
+//    public void clickProfile() {
+//        Elements.selectElement(driver,clickProfile,"Click Profile button");
+//    }
 
     public void checkNumber(String number) throws InterruptedException {
         Elements.waitForElementToVisibleOnPageUsingText(driver,number,5);
