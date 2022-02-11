@@ -1,3 +1,5 @@
+package Login;
+
 import Helpers.LoginHelper;
 import Utils.TestBase;
 import org.testng.annotations.Test;

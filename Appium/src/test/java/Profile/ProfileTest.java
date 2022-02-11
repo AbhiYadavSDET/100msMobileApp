@@ -1,3 +1,5 @@
+package Profile;
+
 import Helpers.ProfileHelper;
 import Utils.TestBase;
 import org.testng.annotations.Test;
