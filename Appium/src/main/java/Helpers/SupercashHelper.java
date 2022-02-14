@@ -1,10 +1,9 @@
 package Helpers;
 
 
-import PageObject.ProfilePage;
 import PageObject.SupercashPage;
-import Utils.Config;
-import Utils.Elements;
+import utils.Config;
+import utils.Elements;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;

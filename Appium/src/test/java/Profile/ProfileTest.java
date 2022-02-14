@@ -1,7 +1,7 @@
 package Profile;
 
 import Helpers.ProfileHelper;
-import Utils.TestBase;
+import utils.TestBase;
 import org.testng.annotations.Test;
 
 import java.io.IOException;

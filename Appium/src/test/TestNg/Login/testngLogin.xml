@@ -12,7 +12,7 @@
 
         <classes>
             <class name="Login.LoginTest"/>
-<!--            <class name="Utils.ExtentReport"/>-->
+<!--            <class name="utils.ExtentReport"/>-->
         </classes>
     </test>
 

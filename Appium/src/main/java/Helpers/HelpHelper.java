@@ -6,14 +6,14 @@ import PageObject.SideDrawerPage;
 import UITestFramework.MBReporter;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
-import org.json.JSONException;
+//import org.json.JSONException;
 import utils.Screen;
 
 import java.io.IOException;
 
 public class HelpHelper {
     TouchAction touchAction;
-    MBKPermissions mbkPermissions;
+//    MBKPermissions mbkPermissions;
     HomePage homePage;
     Screen screen;
     MBReporter mbReporter;
@@ -28,7 +28,7 @@ public class HelpHelper {
         this.driver = driver;
         homePage = new HomePage(driver);
         touchAction = new TouchAction(driver);
-        mbkPermissions = new MBKPermissions(driver);
+//        mbkPermissions = new MBKPermissions(driver);
         mbReporter = new MBReporter(driver, "testScreenshotDir");
         helpPage = new HelpPage(driver);
         permissionHelper = new PermissionHelper(driver);
@@ -36,7 +36,7 @@ public class HelpHelper {
 
     }
 
-    public void helpVerification() throws InterruptedException, IOException, JSONException {
+    public void helpVerification() throws InterruptedException, IOException {
 
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 

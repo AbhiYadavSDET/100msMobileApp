@@ -7,7 +7,6 @@ import UITestFramework.MBReporter;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import logger.Log;
-import org.json.JSONException;
 import org.openqa.selenium.By;
 import utils.*;
 
@@ -43,7 +42,7 @@ public class AddMoneyHelper {
 
     }
 
-    public void netbanking(String amount, String bankName, String bankPageLocator, String bankPageLocatorType) throws InterruptedException, IOException, JSONException {
+    public void netbanking(String amount, String bankName, String bankPageLocator, String bankPageLocatorType) throws InterruptedException, IOException {
 //        Thread.sleep(3000);
 //        homePage.clickOnCrossButton();
 //        Thread.sleep(1000);
@@ -97,7 +96,7 @@ public class AddMoneyHelper {
     }
 
 
-    public void addMoneyViaNewCard(String amount, String cardNo, String expiryMonth, String expiryYear, String cvv, String bankPassword, String successPageStatus, String successPageText) throws InterruptedException, IOException, JSONException {
+    public void addMoneyViaNewCard(String amount, String cardNo, String expiryMonth, String expiryYear, String cvv, String bankPassword, String successPageStatus, String successPageText) throws InterruptedException, IOException {
         Log.info("START", "Add Money");
         Log.info("----------- Arguments ---------------");
         Log.info("amount : " + amount);
@@ -171,7 +170,7 @@ public class AddMoneyHelper {
     }
 
 
-    public void addMoneyViaSavedCard(String amount, String cardNo, String expiryMonth, String expiryYear, String cvv, String bankPassword, String successPageStatus, String successPageText, Boolean promoCodeStatus, String promoCode) throws InterruptedException, IOException, JSONException {
+    public void addMoneyViaSavedCard(String amount, String cardNo, String expiryMonth, String expiryYear, String cvv, String bankPassword, String successPageStatus, String successPageText, Boolean promoCodeStatus, String promoCode) throws InterruptedException, IOException {
 //        Thread.sleep(1000);
 //        homePage.clickOnCrossButton();
 //        Thread.sleep(1000);
@@ -258,23 +257,23 @@ public class AddMoneyHelper {
 
     }
 
-    public void fetchDataFromSheet(int rownum) {
-
-        map = new HashMap<String, String>();
-        TestDataReader testData = Config.getCachedTestDataReaderObject("addmoney");
-        map.put("amount", testData.GetData(rownum, "amount"));
-        map.put("bankname", testData.GetData(rownum, "bankname"));
-        map.put("bankpagelocator", testData.GetData(rownum, "bankurl"));
-        map.put("cardno", testData.GetData(rownum, "cardno"));
-        map.put("expirymonth", testData.GetData(rownum, "expirymonth"));
-        map.put("expiryyear", testData.GetData(rownum, "expiryyear"));
-        map.put("cvv", testData.GetData(rownum, "cvv"));
-        map.put("password", testData.GetData(rownum, "password"));
-        map.put("successpagestatus", testData.GetData(rownum, "successpagestatus"));
-        map.put("successpagetext", testData.GetData(rownum, "successpagetext"));
-
-
-    }
+//    public void fetchDataFromSheet(int rownum) {
+//
+//        map = new HashMap<String, String>();
+//        TestDataReader testData = Config.getCachedTestDataReaderObject("addmoney");
+//        map.put("amount", testData.GetData(rownum, "amount"));
+//        map.put("bankname", testData.GetData(rownum, "bankname"));
+//        map.put("bankpagelocator", testData.GetData(rownum, "bankurl"));
+//        map.put("cardno", testData.GetData(rownum, "cardno"));
+//        map.put("expirymonth", testData.GetData(rownum, "expirymonth"));
+//        map.put("expiryyear", testData.GetData(rownum, "expiryyear"));
+//        map.put("cvv", testData.GetData(rownum, "cvv"));
+//        map.put("password", testData.GetData(rownum, "password"));
+//        map.put("successpagestatus", testData.GetData(rownum, "successpagestatus"));
+//        map.put("successpagetext", testData.GetData(rownum, "successpagetext"));
+//
+//
+//    }
 
     public void enterCardDetails(String cardNo, String expiryMonth, String expiryYear, String cvv) throws InterruptedException {
         addMoneyPage.enterCardNo(cardNo);
@@ -295,7 +294,7 @@ public class AddMoneyHelper {
 
     }
 
-    public void addMoneyViaSavedCardWithinFlow(String amount, String cardNo, String cvv, String bankPassword) throws InterruptedException, IOException, JSONException {
+    public void addMoneyViaSavedCardWithinFlow(String amount, String cardNo, String cvv, String bankPassword) throws InterruptedException, IOException {
 //        Thread.sleep(1000);
 //        homePage.clickOnCrossButton();
 //        Thread.sleep(1000);
@@ -349,7 +348,7 @@ public class AddMoneyHelper {
 
     }
 
-    public void refundAddedMoney(String amount, String cardNo, String expiryMonth, String expiryYear, String cvv, String bankPassword, String successPageStatus, String successPageText, Boolean promoCodeStatus, String promoCode) throws InterruptedException, IOException, JSONException {
+    public void refundAddedMoney(String amount, String cardNo, String expiryMonth, String expiryYear, String cvv, String bankPassword, String successPageStatus, String successPageText, Boolean promoCodeStatus, String promoCode) throws InterruptedException, IOException {
 
 
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
@@ -449,7 +448,7 @@ public class AddMoneyHelper {
     }
 
 
-    public void addMoneyInsufficientFunds(String cardNo, String cvv, String bankPassword) throws InterruptedException, IOException, JSONException {
+    public void addMoneyInsufficientFunds(String cardNo, String cvv, String bankPassword) throws InterruptedException, IOException {
 
 
         addMoneyPage = new AddMoneyPage(driver);
