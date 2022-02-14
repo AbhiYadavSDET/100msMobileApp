@@ -12,7 +12,7 @@
 
         <classes>
             <class name="Recharge.BillViewRecharge"/>
-<!--            <class name="Utils.ExtentReport"/>-->
+<!--            <class name="utils.ExtentReport"/>-->
         </classes>
     </test>
 

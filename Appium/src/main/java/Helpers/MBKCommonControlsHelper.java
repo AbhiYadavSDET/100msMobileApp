@@ -1,5 +1,6 @@
 package Helpers;
 
+import PageObject.HomePage;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import logger.Log;
@@ -11,7 +12,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
+import PageObject.MbkCommonControlsPage;
+import PageObject.WalletBalancePage;
+import PageObject.TransactionHistoryPage;
 public class MBKCommonControlsHelper {
 
     AndroidDriver driver;
@@ -172,7 +175,7 @@ public class MBKCommonControlsHelper {
         handleNPS();
     }
     public void returnToHomePageFromCCBPSuccessScreen() throws InterruptedException {
-        mbkCommonControlsPage.clickOnSuccessPageBack();
+        mbkCommonControlsPage.clickOnSuccessPageBackbutton();
         handleRatingsPopUp();
         handleNPS();
     }
@@ -294,7 +297,7 @@ public class MBKCommonControlsHelper {
             if(Element.isElementPresent(driver, By.id("base_icon_close"))){
                 mbkCommonControlsPage.clickOnSuccessPageCross();
             }else if (Element.isElementPresent(driver, By.id("base_icon_back"))){
-                mbkCommonControlsPage.clickOnSuccessPageBack();
+                mbkCommonControlsPage.clickOnSuccessPageBackbutton();
             }
         }
     }
@@ -308,7 +311,7 @@ public class MBKCommonControlsHelper {
             if(Element.isElementPresent(driver, By.id("base_icon_close"))){
             mbkCommonControlsPage.clickOnSuccessPageCross();
             }else if (Element.isElementPresent(driver, By.id("base_icon_back"))){
-                mbkCommonControlsPage.clickOnSuccessPageBack();
+                mbkCommonControlsPage.clickOnSuccessPageBackbutton();
             }
 
         }

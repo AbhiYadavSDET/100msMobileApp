@@ -1,4 +1,4 @@
-package Utils;
+package utils;
 
 public enum DateFormatEnums {
     DD_MM_YYYY("dd-MM-yyyy"),

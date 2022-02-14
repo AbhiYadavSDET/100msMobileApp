@@ -7,7 +7,6 @@ import PageObject.SupercashStatementPage;
 import UITestFramework.MBReporter;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
-import org.json.JSONException;
 import utils.Element;
 import utils.Screen;
 
@@ -42,7 +41,7 @@ public class SplitBillHelper{
 
     }
 
-    public void verifySplitBill(String name1, String name2, String amount) throws InterruptedException, JSONException, IOException{
+    public void verifySplitBill(String name1, String name2, String amount) throws InterruptedException, IOException{
 
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
         homePage.clickAllServices();

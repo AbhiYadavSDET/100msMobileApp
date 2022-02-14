@@ -1,8 +1,8 @@
 package Helpers;
 
 import PageObject.*;
-import Utils.Config;
-import Utils.Elements;
+import utils.Config;
+import utils.Elements;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -10,15 +10,18 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
+import java.io.IOException;
+
 public class RechargeHelper {
 
     //############################ Udit start ################################
     AndroidDriver<AndroidElement> driver;
-    RechargeBillPage rechargeBillPage;
+    RechargePage rechargeBillPage;
     LoginPage loginPage;
     HomePage homePage;
-    PermissionsPage permissionsPage;
+    PermissionPage permissionPage;
     SideDrawerPage sideDrawerPage;
+    PermissionHelper permissionHelper;
 
     @AndroidFindBy(xpath="//*[@text='Skip']")
     private AndroidElement checkSkip;
@@ -79,11 +82,12 @@ public class RechargeHelper {
     public RechargeHelper(AndroidDriver<AndroidElement> driver){
         this.driver=driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
-        rechargeBillPage=new RechargeBillPage(driver);
+        rechargeBillPage=new RechargePage(driver);
         loginPage = new LoginPage(driver);
         homePage=new HomePage(driver);
-        permissionsPage=new PermissionsPage(driver);
+        permissionHelper=new PermissionHelper(driver);
         sideDrawerPage=new SideDrawerPage(driver);
+
     }
 
     //############################ Udit start ################################
@@ -200,7 +204,7 @@ public class RechargeHelper {
     }
 
 
-    public void viewRechargeBillWithLogout(String number, String operatorType, String operatorName, String circle, String amount,String coupon, String pin) throws InterruptedException {
+    public void viewRechargeBillWithLogout(String number, String operatorType, String operatorName, String circle, String amount,String coupon, String pin) throws InterruptedException, IOException {
         int flag=0;
         Thread.sleep(8000);
         String test;
@@ -208,7 +212,7 @@ public class RechargeHelper {
         double balanceBefore,balanceAfter ;
         //Check for location access
         if(Elements.isElementPresent(driver,checkLocationAccess)){
-            permissionsPage.clickLocationAccess();
+            permissionHelper.permissionAllow();
 
         }
         //Checking user is logged out or not
@@ -217,7 +221,7 @@ public class RechargeHelper {
             flag=1;
             //Check for location access
             if(Elements.isElementPresent(driver,checkLocationAccess)){
-                permissionsPage.clickLocationAccess();
+                permissionHelper.permissionAllow();
 
             }
 
@@ -225,7 +229,7 @@ public class RechargeHelper {
             flag=1;
         }else if(Elements.isElementPresent(driver,checkViewDetails)){
             homePage.openSideDrawr();
-            sideDrawerPage.clickAccounts();
+            sideDrawerPage.clickOnAccountsPage();
             rechargeBillPage.clickLogout();
             flag=1;
 

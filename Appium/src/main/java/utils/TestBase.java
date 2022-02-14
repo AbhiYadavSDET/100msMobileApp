@@ -1,4 +1,4 @@
-package Utils;
+package utils;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
@@ -7,13 +7,12 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Listeners;
-import sun.rmi.runtime.Log;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-@Listeners(Utils.TestListener.class)
+@Listeners(utils.TestListener.class)
 public class TestBase {
 
     AndroidDriver driver;
