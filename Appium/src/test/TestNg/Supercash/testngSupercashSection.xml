@@ -12,7 +12,7 @@
 
         <classes>
             <class name="Supercash.SupercashTest"/>
-<!--            <class name="Utils.ExtentReport"/>-->
+<!--            <class name="utils.ExtentReport"/>-->
         </classes>
     </test>
 

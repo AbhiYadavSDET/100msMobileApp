@@ -2,10 +2,16 @@ package Helpers;
 /*
 import PageObject.AddMoneyPage;
 import PageObject.LoginPage;
-import UITestFramework.Api.ApiCommonControls;
+import PageObject.OnboardingPage;
+import PageObject.HomePage;
+import PageObject.UpiPage;
+import PageObject.SideDrawerPage;
+import PageObject.SecuritySettingsPage;
+import PageObject.WalletPage;
+//import UITestFramework.Api.ApiCommonControls;
 import UITestFramework.MBReporter;
 import io.appium.java_client.android.AndroidDriver;
-import org.json.JSONException;
+//import org.json.JSONException;
 import org.openqa.selenium.By;
 import utils.Element;
 import utils.Helper;
@@ -19,7 +25,7 @@ public class UpiHelper {
     AndroidDriver driver;
     OnboardingPage onboardingPage;
     LoginPage loginPage;
-    ApiCommonControls apiCommonControls;
+//    ApiCommonControls apiCommonControls;
     HashMap<String, String> apiOtp;
     HomePage homePage;
     MBReporter mbReporter;
@@ -39,7 +45,7 @@ public class UpiHelper {
 
     public UpiHelper(AndroidDriver driver) throws IOException {
         this.driver = driver;
-        apiCommonControls = new ApiCommonControls();
+//        apiCommonControls = new ApiCommonControls();
         apiOtp = new HashMap<>();
         mbReporter = new MBReporter(driver, "testScreenshotDir");
         mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
@@ -56,7 +62,7 @@ public class UpiHelper {
 
     }
 
-    public void sendMoneyViaUpi(String upiId, String amount, String message, String pin) throws InterruptedException, IOException, JSONException {
+    public void sendMoneyViaUpi(String upiId, String amount, String message, String pin) throws InterruptedException, IOException {
 
 
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
@@ -118,7 +124,7 @@ public class UpiHelper {
 
     }
 
-    public void sendMoneyToBankViaUpi(String beneficiaryName, String accountNumber, String ifsc, String amount, String message, String pin) throws InterruptedException, IOException, JSONException {
+    public void sendMoneyToBankViaUpi(String beneficiaryName, String accountNumber, String ifsc, String amount, String message, String pin) throws InterruptedException, IOException {
 
 
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
@@ -182,7 +188,7 @@ public class UpiHelper {
 
     }
 
-    public void requestMoneyViaUpi(String upiId, String amount, String message) throws InterruptedException, IOException, JSONException {
+    public void requestMoneyViaUpi(String upiId, String amount, String message) throws InterruptedException, IOException {
 
 
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
@@ -242,7 +248,7 @@ public class UpiHelper {
 
     }
 
-    public void checkAccountBalance(String pin) throws InterruptedException, IOException, JSONException {
+    public void checkAccountBalance(String pin) throws InterruptedException, IOException {
 
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
@@ -294,7 +300,7 @@ public class UpiHelper {
     //Payment Successful
     //Money added into your wallet successfully
 
-    public void addMoneyViaUpi(String pin, String amount, String successPageStatus, String successPageText) throws InterruptedException, IOException, JSONException {
+    public void addMoneyViaUpi(String pin, String amount, String successPageStatus, String successPageText) throws InterruptedException, IOException {
 
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
@@ -342,7 +348,7 @@ public class UpiHelper {
 
     }
 
-    public void deregisterUpi() throws InterruptedException, IOException, JSONException {
+    public void deregisterUpi() throws InterruptedException, IOException {
 
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
@@ -398,7 +404,7 @@ public class UpiHelper {
 
     }
 
-    public void registerUpi(String bankName) throws InterruptedException, IOException, JSONException {
+    public void registerUpi(String bankName) throws InterruptedException, IOException {
 
 
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);

@@ -1,12 +1,11 @@
 package Helpers;
 
-import PageObject.*;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import logger.Log;
 import org.openqa.selenium.By;
-import Utils.Element;
-import Utils.Screen;
+import utils.Element;
+import utils.Screen;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -21,7 +20,6 @@ public class MBKCommonControlsHelper {
     WalletBalancePage walletBalancePage;
     Screen screen;
     TransactionHistoryPage transactionHistoryPage;
-    SideDrawerPage sideDrawerPage;
 
     enum BalanceType {
         MAINBALANCE,
@@ -57,9 +55,6 @@ public class MBKCommonControlsHelper {
         mbkCommonControlsPage = new MbkCommonControlsPage(driver);
         element = new Element(driver);
         screen = new Screen(driver);
-        walletBalancePage=new WalletBalancePage(driver);
-        transactionHistoryPage=new TransactionHistoryPage(driver);
-        sideDrawerPage=new SideDrawerPage(driver);
 
     }
 
@@ -96,8 +91,8 @@ public class MBKCommonControlsHelper {
 
             String amount = String.valueOf(amountToAdd);
 
-//            AddMoneyHelper addmoneyHelper = new AddMoneyHelper(driver);
-//            addmoneyHelper.addMoneyViaSavedCard(amount, "4363 XXXX XXXX 4460", "12", "22", "239", "Paraj@1234", "Thanks", "Money Added Successfully", false, "NA");
+            AddMoneyHelper addmoneyHelper = new AddMoneyHelper(driver);
+            addmoneyHelper.addMoneyViaSavedCard(amount, "4363 XXXX XXXX 4460", "12", "22", "239", "Paraj@1234", "Thanks", "Money Added Successfully", false, "NA");
 
 
         }
@@ -176,11 +171,11 @@ public class MBKCommonControlsHelper {
         handleRatingsPopUp();
         handleNPS();
     }
-//    public void returnToHomePageFromCCBPSuccessScreen() throws InterruptedException {
-//        mbkCommonControlsPage.clickOnSuccessPageBack();
-//        handleRatingsPopUp();
-//        handleNPS();
-//    }
+    public void returnToHomePageFromCCBPSuccessScreen() throws InterruptedException {
+        mbkCommonControlsPage.clickOnSuccessPageBack();
+        handleRatingsPopUp();
+        handleNPS();
+    }
 
 
     public void returnToHomePageFromRechargeSuccessScreenBackButton() throws InterruptedException {
@@ -214,14 +209,10 @@ public class MBKCommonControlsHelper {
         // Goto balance details screen
         HomePage homePage = new HomePage(driver);
 
-        homePage.openSideDrawr();
-        sideDrawerPage.clickAccounts();
-        mbkCommonControlsPage.clickOnDetails();
-
-//        homePage.clickHistory();
+        transactionHistoryPage = homePage.clickHistory();
         Thread.sleep(3000);
 
-//        transactionHistoryPage.clickOnWalletBalanceCta();
+        walletBalancePage = transactionHistoryPage.clickOnWalletBalanceCta();
 
         // fetch the balance and add to Map
         Element.waitForVisibility(driver, walletBalancePage.label_available_balance);
@@ -303,7 +294,7 @@ public class MBKCommonControlsHelper {
             if(Element.isElementPresent(driver, By.id("base_icon_close"))){
                 mbkCommonControlsPage.clickOnSuccessPageCross();
             }else if (Element.isElementPresent(driver, By.id("base_icon_back"))){
-//                mbkCommonControlsPage.clickOnSuccessPageBack();
+                mbkCommonControlsPage.clickOnSuccessPageBack();
             }
         }
     }
@@ -317,7 +308,7 @@ public class MBKCommonControlsHelper {
             if(Element.isElementPresent(driver, By.id("base_icon_close"))){
             mbkCommonControlsPage.clickOnSuccessPageCross();
             }else if (Element.isElementPresent(driver, By.id("base_icon_back"))){
-//                mbkCommonControlsPage.clickOnSuccessPageBack();
+                mbkCommonControlsPage.clickOnSuccessPageBack();
             }
 
         }
@@ -389,8 +380,8 @@ public class MBKCommonControlsHelper {
         if (Element.isElementPresent(driver, By.id("tnc_layout"))) {
             Log.info("Handle", "Login User in the Flow");
 
-//            LoginHelper loginHelper=new LoginHelper(driver);
-//            loginHelper.quickLoginViaNumberWithinFlow(number,otp);
+            LoginHelper loginHelper=new LoginHelper(driver);
+            loginHelper.quickLoginViaNumberWithinFlow(number,otp);
         }
     }
 

@@ -1,7 +1,7 @@
 package Login;
 
 import Helpers.LoginHelper;
-import Utils.TestBase;
+import utils.TestBase;
 import org.testng.annotations.Test;
 
 import java.io.IOException;

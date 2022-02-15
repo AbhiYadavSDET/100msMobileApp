@@ -1,6 +1,4 @@
-package Utils;
-
-import org.apache.log4j.Level;
+package utils;
 
 public class Config extends TestBase{
 
