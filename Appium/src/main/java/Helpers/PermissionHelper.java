@@ -5,7 +5,8 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import logger.Log;
 import org.openqa.selenium.By;
-import utils.Element;
+import Utils.Element;
+import org.openqa.selenium.NoSuchElementException;
 
 import java.util.HashMap;
 
@@ -23,10 +24,13 @@ public class PermissionHelper {
     public boolean isPermissionPopUpPresent() throws InterruptedException {
         Thread.sleep(3000);
 
+        try{
         if (Element.isElementPresent(driver, By.id("com.android.packageinstaller:id/dialog_container"))) {
             return true;
         } else {
             Log.info("Permission Popup is not present");
+            return false;
+        }}catch (NoSuchElementException e){
             return false;
         }
     }
@@ -107,3 +111,5 @@ public class PermissionHelper {
 
 
 }
+
+

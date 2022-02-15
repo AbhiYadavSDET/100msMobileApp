@@ -1,5 +1,5 @@
 package IMPS;
-
+/*
 import Helpers.*;
 import UITestFramework.CreateSession;
 import dbutil.mysql.automationtest.front_end_automation.entity.FrontEndEntity;
@@ -70,3 +70,6 @@ public class Test_Imps extends CreateSession {
         Log.info("END : IMPS to VPA sanity test");
     }
 }
+
+
+ */

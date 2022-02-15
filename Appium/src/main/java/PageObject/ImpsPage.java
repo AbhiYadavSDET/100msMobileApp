@@ -7,7 +7,7 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
-import utils.Element;
+//import utils.Element;
 
 import java.io.IOException;
 
@@ -110,7 +110,7 @@ public class ImpsPage {
 
         Log.info("*****Imps Page*****");
     }
-
+/*
     public void clickOnViaWallet() throws InterruptedException {
         Element.selectElement(driver, via_Wallet, "Via Wallet on home page");
     }
@@ -224,4 +224,6 @@ public class ImpsPage {
     public String getConvFee() throws InterruptedException{
         return Element.getText(driver, imps_fee, "Get IMPS Fee");
     }
+
+ */
 }

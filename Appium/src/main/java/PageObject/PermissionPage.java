@@ -1,12 +1,13 @@
 package PageObject;
 
+import Utils.Elements;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
 import org.openqa.selenium.support.PageFactory;
-import utils.Element;
+import Utils.Element;
 
 public class PermissionPage {
 
@@ -38,6 +39,9 @@ public class PermissionPage {
 
     @AndroidFindBy (xpath="//android.widget.Button[@text= 'While using the app']")
     private AndroidElement permission_while_using_app;
+
+    @AndroidFindBy(id = "permission_allow_foreground_only_button")
+    private AndroidElement checkLocationAccess;
 
 
 
@@ -78,5 +82,10 @@ public class PermissionPage {
 
     public void clickOnPermissionAlwaysAllowV3() {
         Element.selectElement(driver, permission_always_allow_v3, "Permission Allow While Using the App");
+    }
+
+
+    public void clickLocationAccess(){
+        Elements.selectElement(driver,checkLocationAccess,"Click allow location");
     }
 }

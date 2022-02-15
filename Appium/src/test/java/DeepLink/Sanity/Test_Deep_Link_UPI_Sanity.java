@@ -1,5 +1,5 @@
 package DeepLink.Sanity;
-
+/*
 import Helpers.DeepLinkHelper;
 import Helpers.LoginHelper;
 import UITestFramework.CreateSession;
@@ -166,3 +166,6 @@ public class Test_Deep_Link_UPI_Sanity extends CreateSession {
     }
 
 }
+
+
+ */

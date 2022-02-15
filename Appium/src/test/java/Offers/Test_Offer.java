@@ -1,5 +1,5 @@
 package Offers;
-
+/*
 import Helpers.LoginHelper;
 import Helpers.OfferHelper;
 import UITestFramework.CreateSession;
@@ -11,14 +11,15 @@ import org.testng.annotations.Test;
  * automated test to verify Offers
  */
 
-public class Test_Offer extends CreateSession {
-    OfferHelper offerHelperBase;
+//public class Test_Offer extends CreateSession {
+//    OfferHelper offerHelperBase;
 
     /**
      * method to verify Offers from Home Screen
      *
      * @throws Exception
      */
+    /*
     @Test(groups = {"offerSanity", "offerSearch"}, priority = 0, dataProvider = "offersData", dataProviderClass = OffersDataProviderClass.class)
     public void Test20_offerSearch(FrontEndEntity frontEndEntity) throws Exception {
         Log.infoStartTest("offerSearch");
@@ -65,3 +66,6 @@ public class Test_Offer extends CreateSession {
 
 
 
+
+
+     */

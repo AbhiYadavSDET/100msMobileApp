@@ -6,7 +6,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
 import org.openqa.selenium.support.PageFactory;
-import utils.Element;
+//import utils.Element;
 
 import java.io.IOException;
 
@@ -75,7 +75,7 @@ public class InsurancePage {
 
         Log.info("*****Insurance Page*****");
     }
-
+/*
     public void clickOnButtonPrice() throws InterruptedException {
         Element.selectElement(driver, button_price, "Price Button");
     }
@@ -126,5 +126,7 @@ public class InsurancePage {
     public void clickOnBackButton() throws InterruptedException {
         Element.selectElement(driver, back_button, "Click on Back Button");
     }
+
+ */
 
 }

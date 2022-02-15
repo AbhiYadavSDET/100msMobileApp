@@ -7,7 +7,7 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
-import utils.Element;
+//import utils.Element;
 
 import java.io.IOException;
 
@@ -89,7 +89,7 @@ public class OnboardingPage {
 
         Log.info("*****Onboarding Page*****");
     }
-
+/*
     public void clickOnGetStartedCta() throws InterruptedException {
         Element.isElementPresent(driver, By.id("get_started_btn"));
         Element.selectElement(driver, getStartedButtoncta, "Click on Intro Page");
@@ -173,5 +173,7 @@ public class OnboardingPage {
     public void clickOnContinueCta(){
         Element.selectElement(driver, cta_continue_button_email_screen, "Click on continue Button");
     }
+
+ */
 
 }

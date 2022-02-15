@@ -7,7 +7,7 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
-import utils.Element;
+//import utils.Element;
 
 import java.io.IOException;
 
@@ -48,7 +48,7 @@ public class DealsPage {
 
     String redeemOfferList = "card_view";
 
-
+/*
     public DealsPage(AndroidDriver driver) throws IOException {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -92,6 +92,8 @@ public class DealsPage {
         Element.selectElement(driver, back_button, "Press Back Button");
     }
 
+
+ */
 
 /*
 

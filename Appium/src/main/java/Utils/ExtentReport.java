@@ -1,16 +1,16 @@
 package Utils;
 
 
-import applicationcontext.ApplicationContextProvider;
+//import applicationcontext.ApplicationContextProvider;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
-import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+//import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 import logger.Log;
-import mail.Mailer;
+//import mail.Mailer;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
@@ -31,7 +31,7 @@ public class ExtentReport {
     public static String EXTENTREPORTPATH = "./reports/TestReport.html";
     public static ExtentReports EXTENTREPORT;
     public static ExtentTest EXTENTTEST;
-    public static ExtentHtmlReporter EXTENTHTMLREPORTER;
+//    public static ExtentHtmlReporter EXTENTHTMLREPORTER;
 
 
     @BeforeSuite(alwaysRun = true)
@@ -40,10 +40,10 @@ public class ExtentReport {
 
 
         // Create Report with filepath
-        EXTENTHTMLREPORTER = new ExtentHtmlReporter(EXTENTREPORTPATH);
+//        EXTENTHTMLREPORTER = new ExtentHtmlReporter(EXTENTREPORTPATH);
         EXTENTREPORT = new ExtentReports();
-        EXTENTREPORT.attachReporter(EXTENTHTMLREPORTER);
-        EXTENTHTMLREPORTER.config().setTheme(setTheme(Configuration.ReportDefaults.REPORT_THEME));
+//        EXTENTREPORT.attachReporter(EXTENTHTMLREPORTER);
+//        EXTENTHTMLREPORTER.config().setTheme(setTheme(Configuration.ReportDefaults.REPORT_THEME));
     }
 
     public static void extentReportDisplay(Status result, String stepname, String details) throws IOException {
@@ -87,7 +87,7 @@ public class ExtentReport {
 
 
         Log.info("sendReportViaMail");
-        Mailer mailer = (Mailer) ApplicationContextProvider.getApplicationContext().getBean("mailer");
+//        Mailer mailer = (Mailer) ApplicationContextProvider.getApplicationContext().getBean("mailer");
 
         // Create the list of attachments
         List<String> listOfAttachments = new ArrayList<>();
@@ -95,11 +95,11 @@ public class ExtentReport {
         listOfAttachments.add(System.getProperty("user.dir").concat(File.separator).concat("reports/TestReport.html"));
 
         // Create the recipients array
-        String[] recipients = Configuration.Email.RECIPIENTS.split(",");
+//        String[] recipients = Configuration.Email.RECIPIENTS.split(",");
 
         Log.info("Send Mail : " + "TestReport.html");
         Log.info("Send Mail : " + "Extent.html");
-        mailer.sendMail(recipients, Configuration.Email.TEAM + " Test Execution report", Configuration.Email.MAIL_BODY_TEXT, listOfAttachments);
+//        mailer.sendMail(recipients, Configuration.Email.TEAM + " Test Execution report", Configuration.Email.MAIL_BODY_TEXT, listOfAttachments);
     }
 
     private static Theme setTheme(String themeType) {

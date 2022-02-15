@@ -1,5 +1,5 @@
 package Help;
-
+/*
 import Helpers.HelpHelper;
 import Helpers.LoginHelper;
 import UITestFramework.CreateSession;
@@ -26,3 +26,6 @@ public class Test_Help extends CreateSession {
 
 
 }
+
+
+ */

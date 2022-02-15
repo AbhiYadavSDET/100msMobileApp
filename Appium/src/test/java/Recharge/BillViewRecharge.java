@@ -1,5 +1,6 @@
 package Recharge;
 
+//import Helpers.CheckBalanceHelper;
 import Helpers.RechargeHelper;
 import Utils.Excel;
 import Utils.TestBase;
@@ -17,7 +18,7 @@ public class BillViewRecharge extends TestBase {
 //            String data = Excel.readData(i, "Recharge");
 //            String[] excelData = data.split(" split ");
             RechargeHelper rechargeHelper = new RechargeHelper(initiateTest());
-            rechargeHelper.viewRechargeBill("9311878235","Postpaid", "Jio", "Delhi NCR", "1","","112233");
+            rechargeHelper.rechargeBill("9311878235","Postpaid", "Jio", "Delhi NCR", "1","","112233");
 //        }
     }
 
@@ -29,7 +30,7 @@ public class BillViewRecharge extends TestBase {
 //            String data = Excel.readData(i, "Recharge");
 //            String[] excelData = data.split(" split ");
         RechargeHelper rechargeHelper = new RechargeHelper(initiateTest());
-        rechargeHelper.viewRechargeBill("9818484290","Prepaid", "VI", "Delhi NCR", "1","","112233");
+        rechargeHelper.rechargeBill("9818484290","Prepaid", "VI", "Delhi NCR", "1","","112233");
 //        }
     }
 
@@ -41,7 +42,7 @@ public class BillViewRecharge extends TestBase {
 //            String data = Excel.readData(i, "Recharge");
 //            String[] excelData = data.split(" split ");
         RechargeHelper rechargeHelper = new RechargeHelper(initiateTest());
-        rechargeHelper.viewRechargeBill("9311878235","Postpaid", "Jio", "Delhi NCR", "1","Apply Supercash","112233");
+        rechargeHelper.rechargeBill("9311878235","Postpaid", "Jio", "Delhi NCR", "1","Apply Supercash","112233");
 //        }
     }
 
@@ -53,7 +54,7 @@ public class BillViewRecharge extends TestBase {
 //            String data = Excel.readData(i, "Recharge");
 //            String[] excelData = data.split(" split ");
         RechargeHelper rechargeHelper = new RechargeHelper(initiateTest());
-        rechargeHelper.viewRechargeBillWithLogout("9818484290","Prepaid", "VI", "Delhi NCR", "1","Apply Supercash","112233");
+        rechargeHelper.rechargeBillWithLogout("9818484290","Prepaid", "VI", "Delhi NCR", "1","Apply Supercash","112233");
 //        }
     }
 
@@ -86,24 +87,24 @@ public class BillViewRecharge extends TestBase {
     //############################ Udit end ################################
 
     //############################ Old start ################################
-    /*
-    DatabaseSqlHelper databaseSqlHelper = new DatabaseSqlHelper();
+
+//    DatabaseSqlHelper databaseSqlHelper = new DatabaseSqlHelper();
 
 
-    @Test(groups = {"PrepaidRecharge", "rechargeSanity"}, priority = 0, dataProvider = "rechargeData", dataProviderClass = RechargeDataProviderClass.class)
-    public void Test01_prepaid_recharge(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-//        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
-        loginHelper.quickLoginViaNumber("9205299330", "547372");
+    @Test(groups = {"PrepaidRecharge", "rechargeSanity"}, priority = 0)
+    public void Test01_prepaid_recharge() throws IOException, InterruptedException {
+//        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+////        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+//        loginHelper.quickLoginViaNumber("9205299330", "547372");
 
-        CheckBalanceHelper checkBalanceHelper = new CheckBalanceHelper(getAndroidDriver());
-        checkBalanceHelper.checkBalance(frontEndEntity.getAmount());
+//        CheckBalanceHelper checkBalanceHelper = new CheckBalanceHelper(getAndroidDriver());
+//        checkBalanceHelper.checkBalance(frontEndEntity.getAmount());
 
-        RechargeHelper rechargeHelper = new RechargeHelper(getAndroidDriver());
-        rechargeHelper.prepaidRecharge(frontEndEntity.getMobileNo(), frontEndEntity.getAmount(), frontEndEntity.getCategory(), frontEndEntity.getOperator(), frontEndEntity.getTotalPayment(), frontEndEntity.getSuccessPageStatus(), frontEndEntity.getSecurityPin(), false, "N/A", frontEndEntity.getPromoCodeText());
+        RechargeHelper rechargeHelper = new RechargeHelper(initiateTest());
+        rechargeHelper.prepaidRecharge("9818484290", "10", "Prepaid", "VI", "10", "Success", "112233", false, "N/A", "");
     }
 
-
+/*
 
     @Test(groups = {"PostpaidRecharge", "rechargeSanity"}, priority = 1, dataProvider = "rechargeData", dataProviderClass = RechargeDataProviderClass.class)
     public void Test02_postpaid_recharge(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {

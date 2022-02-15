@@ -8,7 +8,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
 import org.openqa.selenium.support.PageFactory;
-import utils.Element;
+//import utils.Element;
 
 import java.io.IOException;
 import java.util.List;
@@ -58,7 +58,7 @@ public class PayRentPage {
          */
         Log.info("*****PayRent Page*****");
     }
-
+/*
     public String getTitle() throws InterruptedException{
        return Element.getText(driver, title_bar, "Title Bar Text");
     }
@@ -122,5 +122,7 @@ public class PayRentPage {
     }
 
 
+
+ */
 
 }

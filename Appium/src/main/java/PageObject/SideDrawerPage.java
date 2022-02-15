@@ -1,12 +1,13 @@
 package PageObject;
 
+import Utils.Elements;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
 import org.openqa.selenium.support.PageFactory;
-import utils.Element;
+import Utils.Element;
 
 import java.io.IOException;
 
@@ -52,6 +53,12 @@ public class SideDrawerPage {
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Use 2% SuperCash on all transactions']")
     private AndroidElement amexPageCta;
+
+    @AndroidFindBy(xpath="//*[@text='Accounts']")
+    private AndroidElement clickAccounts;
+
+    @AndroidFindBy(xpath="//*[@text='Profile']")
+    private AndroidElement clickProfile;
 
 
     public SideDrawerPage(AndroidDriver driver) {
@@ -109,4 +116,13 @@ public class SideDrawerPage {
     }
 
 
+
+
+    public void clickAccounts() {
+        Elements.selectElement(driver,clickAccounts,"Click accounts button");
+    }
+
+    public void clickProfile() {
+        Elements.selectElement(driver,clickProfile,"Click Profile button");
+    }
 }

@@ -6,7 +6,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
-import utils.Element;
+//import utils.Element;
 
 import java.io.IOException;
 
@@ -59,7 +59,7 @@ public class MutualFundPage {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
-
+/*
     public boolean isViewAllFunds() throws InterruptedException {
         return (Element.isElementPresent(driver, (By.id("viewAllFunds"))));
     }
@@ -111,4 +111,6 @@ public class MutualFundPage {
             Element.selectElement(driver, back_button, " Click on Back button");
         }
         }
+
+ */
 }

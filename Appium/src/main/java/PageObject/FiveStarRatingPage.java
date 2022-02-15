@@ -7,7 +7,7 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
-import utils.Element;
+//import utils.Element;
 
 public class FiveStarRatingPage {
 
@@ -35,7 +35,7 @@ public class FiveStarRatingPage {
 
         Log.info("*****On Five Star Rating Page*****");
     }
-
+/*
     public boolean isRatingPopUpDisplayed() throws InterruptedException {
 
         if (Element.isElementPresent(driver, By.id("rating_stars"))) {
@@ -57,5 +57,7 @@ public class FiveStarRatingPage {
         Element.selectElement(driver, cta_maybe_later, "Click on Maybe Later");
 
     }
+
+ */
 
 }

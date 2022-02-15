@@ -1,6 +1,6 @@
 package UITestFramework;
 
-import applicationcontext.ApplicationContextProvider;
+//import applicationcontext.ApplicationContextProvider;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.events.EventFiringWebDriverFactory;
@@ -8,8 +8,8 @@ import io.appium.java_client.remote.MobileCapabilityType;
 import logger.Log;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.*;
-import utils.DateHelper;
-import utils.Listeners.AppiumDriverListeners;
+//import utils.DateHelper;
+//import utils.Listeners.AppiumDriverListeners;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import static utils.DateFormatEnums.YYYY_MM_DD_HH_MM_SS;
+//import static utils.DateFormatEnums.YYYY_MM_DD_HH_MM_SS;
 
 /**
  * contains all the methods to create a new session and destroy the session
@@ -160,7 +160,7 @@ public class CreateSession {
         //Log.info("http://localhost:" + portNo + "/wd/hub");
 
         driver = new AndroidDriver(new URL("http://localhost:" + portNo + "/wd/hub"), capabilities);
-        driver = EventFiringWebDriverFactory.getEventFiringWebDriver(driver, new AppiumDriverListeners());
+//        driver = EventFiringWebDriverFactory.getEventFiringWebDriver(driver, new AppiumDriverListeners());
         androidDriverThread.set(driver);
 
 
@@ -267,7 +267,7 @@ public class CreateSession {
 
 
         Log.info("sendReportViaMail");
-        Mailer mailer = (Mailer) ApplicationContextProvider.getApplicationContext().getBean("mailer");
+//        Mailer mailer = (Mailer) ApplicationContextProvider.getApplicationContext().getBean("mailer");
 
 // Create the list of attachments
         List<String> listOfAttachments = new ArrayList<>();
@@ -279,9 +279,9 @@ public class CreateSession {
 
         Log.info("Send Mail : " + "Extent Report");
 
-        String date = DateHelper.getCurrentDate(YYYY_MM_DD_HH_MM_SS);
+//        String date = DateHelper.getCurrentDate(YYYY_MM_DD_HH_MM_SS);
 
 
-        mailer.sendMail(recipients, "Front-End Test Execution report : " + date, "Hi,<br>" + "<br>" + "PFB Front-End Automation TestReport.<br>" + "Please download and open the file with Chrome.<br>" + "<br>" + "<br>" + "Thanks,<br>" + "App Team", listOfAttachments);
+//        mailer.sendMail(recipients, "Front-End Test Execution report : " + date, "Hi,<br>" + "<br>" + "PFB Front-End Automation TestReport.<br>" + "Please download and open the file with Chrome.<br>" + "<br>" + "<br>" + "Thanks,<br>" + "App Team", listOfAttachments);
     }
 }

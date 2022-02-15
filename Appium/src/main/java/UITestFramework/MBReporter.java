@@ -8,7 +8,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.logging.LogEntry;
 import org.testng.Assert;
 import org.testng.Reporter;
-import utils.ExtentReport;
+import Utils.ExtentReport;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -39,6 +39,10 @@ public class MBReporter {
         file = new File("");
     }
 
+    public MBReporter(AndroidDriver driver){
+        this.driver = driver;
+    }
+
     public String screenShot() {
         String screenshotPath = new SimpleDateFormat("MM-dd-yyyy-HH-mm-ss").format(new GregorianCalendar().getTime())
                 + "screenshot.png";
@@ -46,7 +50,7 @@ public class MBReporter {
         System.out.println(screenshotPath);
         File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         try {
-            FileUtils.copyFile(scrFile, new File("screenshots/" + screenshotPath));
+//            FileUtils.copyFile(scrFile, new File("screenshots/" + screenshotPath));
             ownIP = InetAddress.getLocalHost();
             System.out.println("IP of my system is := " + ownIP.getHostAddress());
         } catch (IOException e) {
@@ -65,7 +69,7 @@ public class MBReporter {
         System.out.println(screenshotPath);
         File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         try {
-            FileUtils.copyFile(scrFile, new File("screenshots/" + directoryName + "/" + screenshotPath));
+//            FileUtils.copyFile(scrFile, new File("screenshots/" + directoryName + "/" + screenshotPath));
             ownIP = InetAddress.getLocalHost();
             // System.out.println("IP of my system is := " +
             // ownIP.getHostAddress());
@@ -173,7 +177,7 @@ public class MBReporter {
         //Only for logging --> System.out.println(screenshotPath);
         File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         try {
-            FileUtils.copyFile(scrFile, new File("screenshots/" + directoryName + "/" + screenshotPath));
+//            FileUtils.copyFile(scrFile, new File("screenshots/" + directoryName + "/" + screenshotPath));
             ownIP = InetAddress.getLocalHost();
 
         } catch (IOException e) {

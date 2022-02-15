@@ -6,7 +6,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
 import org.openqa.selenium.support.PageFactory;
-import utils.Element;
+//import utils.Element;
 
 import java.io.IOException;
 
@@ -59,7 +59,7 @@ public class P2MPage {
         Log.info("*****P2M Page*****");
     }
 
-
+/*
     public void clickOnLabelEnterMerchantCode() throws InterruptedException {
         Element.selectElement(driver, label_enter_mobile_number, "Click on Merchant Code");
     }
@@ -91,6 +91,8 @@ public class P2MPage {
     public String getSuccessPageCode() throws InterruptedException {
         return Element.getText(driver, label_success_screen_code, "Success page Code");
     }
+
+ */
 
 
 }

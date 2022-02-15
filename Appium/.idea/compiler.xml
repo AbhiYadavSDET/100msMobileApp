@@ -8,8 +8,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Appium" />
-        <module name="AndroidAppium" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="AndroidAppium" target="8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

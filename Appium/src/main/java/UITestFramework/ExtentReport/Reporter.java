@@ -129,7 +129,7 @@ public class Reporter {
 
         Log.info("SEND          | Mail : extent.html");
         try {
-            Mailer.reportMailer("src/UITestFramework/ExtentReport/extent.html", "extent.html");
+//            Mailer.reportMailer("src/UITestFramework/ExtentReport/extent.html", "extent.html");
         } catch (Exception e) {
             Log.info("Error         | While sending the Mailer");
             e.printStackTrace();

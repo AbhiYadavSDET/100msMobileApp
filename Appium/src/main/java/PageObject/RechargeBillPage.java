@@ -2,15 +2,18 @@ package PageObject;
 
 import Utils.Config;
 import Utils.Elements;
+import Utils.Element;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
+import java.io.IOException;
 import java.util.Locale;
 
 import static io.appium.java_client.touch.WaitOptions.waitOptions;
@@ -20,15 +23,37 @@ import static java.time.Duration.ofMillis;
 public class RechargeBillPage {
     //############################ Udit start ################################
 
-    @AndroidFindBy(xpath="//*[@text='All Services']")
+    // Login, home and permission page elements
+
+    @AndroidFindBy(id = "navigation_service")
     private AndroidElement allService;
 
-    @AndroidFindBy(xpath="//*[@text='Home']")
+    @AndroidFindBy(id = "navigation_home")
     private AndroidElement homeTab;
 
+    @AndroidFindBy(id = "skip")
+    private AndroidElement checkSkip;
+
+    @AndroidFindBy(id = "permission_allow_foreground_only_button")
+    private AndroidElement checkLocationAccess;
+
+    @AndroidFindBy(id = "icon_drawer")
+    private AndroidElement clickSideDrawer;
+
+    @AndroidFindBy(id = "drawer_row_accounts")
+    private AndroidElement clickAccounts;
+
+    @AndroidFindBy(id = "btn_logout")
+    private AndroidElement clickLogout;
+
+    // Common elements
     @AndroidFindBy(xpath="//*[@text='Continue']")
     private AndroidElement continueButton;
 
+    @AndroidFindBy(id = "view_curved")
+    private AndroidElement checkSwipLeftPopUp;
+
+    // Mobile recharge elements
     @AndroidFindBy(xpath="//*[@text='Mobile']")
     private AndroidElement mobileButton;
 
@@ -44,7 +69,7 @@ public class RechargeBillPage {
     @AndroidFindBy(xpath="//androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[1]")
     private AndroidElement selectMobile;
 
-    @AndroidFindBy(xpath="//*[@text='w']")
+    @AndroidFindBy(id = "btn_pin_submit")
     private AndroidElement nextCTA;
 
     @AndroidFindBy(xpath="//*[@text='Confirm']")
@@ -71,28 +96,10 @@ public class RechargeBillPage {
     @AndroidFindBy(xpath="//*[@text='Yes']")
     private AndroidElement yesButton;
 
-    @AndroidFindBy(xpath="//*[@text='Skip']")
-    private AndroidElement skipButton;
-
-    @AndroidFindBy(xpath="//android.view.ViewGroup[2]/android.view.View[2]")
-    private AndroidElement checkSwipLeftPopUp;
-
-    @AndroidFindBy(xpath="//android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.ImageView[3]")
-    private AndroidElement clickSideDrawer;
-
-    @AndroidFindBy(xpath="//*[@text='Allow only while using the app']")
-    private AndroidElement checkLocationAccess;
-
-    @AndroidFindBy(xpath="//*[@text='Accounts']")
-    private AndroidElement clickAccounts;
-
-    @AndroidFindBy(xpath="//*[@text='Logout']")
-    private AndroidElement clickLogout;
-
-    @AndroidFindBy(xpath="//*[contains(@text,'Apply a Coupon')]")
+    @AndroidFindBy(id = "have_a_promo_text")
     private AndroidElement clickApplyCoupon;
 
-    @AndroidFindBy(xpath="//*[@text='Apply Supercash']")
+    @AndroidFindBy(id = "radio_button_sc")
     private AndroidElement clickApplySupercash;
 
     @AndroidFindBy(xpath="//*[@class='android.widget.EditText']")
@@ -119,6 +126,7 @@ public class RechargeBillPage {
     @AndroidFindBy(xpath="//*[@text='More']")
     private AndroidElement moreButton;
 
+    // Gas elements
     @AndroidFindBy(xpath="//*[@text='Piped Gas']")
     private AndroidElement pipedGasButton;
 
@@ -137,6 +145,7 @@ public class RechargeBillPage {
     @AndroidFindBy(xpath="//*[@text='Unable to get bill details']")
     private AndroidElement unableToFetchBill;
 
+    // Electricity elements
     @AndroidFindBy(xpath="//*[@text='Electricity']")
     private AndroidElement electricityButton;
 
@@ -466,8 +475,8 @@ public class RechargeBillPage {
 //        Elements.selectElement(driver,rechargeBills,"Click Recharge & Pay Bills");
 //    }
 
-    public void clickContinue() {
-        Elements.selectElement(driver,continueButton,"Click Continue button");
+    public void clickContinue(String comment) {
+        Elements.selectElement(driver,continueButton,"Click Continue button for "+comment);
     }
 
     public void changeType() {
@@ -653,7 +662,7 @@ public class RechargeBillPage {
     //############################ Udit end ################################
 
     //############################ Old start ################################
-/*
+
     public void enterMobileNo(String cell) throws InterruptedException {
         Element.enterText(driver, textbox_mobile_no, cell, "Mobile No");
         Element.selectElement(driver, numberSelecter, "select number from List");
@@ -704,11 +713,11 @@ public class RechargeBillPage {
         Element.selectElement(driver, label_vodafone, "Operator");
     }
 
-    public void selectOperator(String operator) throws InterruptedException {
-        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text = '" + operator + "']"));
-        AndroidElement androidElement = new Element(driver).findElement(driver, By.xpath("//android.widget.TextView[@text = '" + operator + "']"));
-        Element.selectElement(driver, androidElement, "Operator");
-    }
+//    public void selectOperator(String operator) throws InterruptedException {
+//        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text = '" + operator + "']"));
+//        AndroidElement androidElement = new Element(driver).findElement(driver, By.xpath("//android.widget.TextView[@text = '" + operator + "']"));
+//        Element.selectElement(driver, androidElement, "Operator");
+//    }
 
     public void selectCircle() throws InterruptedException {
         Element.selectElement(driver, label_haryana, "Circle");
@@ -736,9 +745,9 @@ public class RechargeBillPage {
         Element.enterText(driver, textbox_enter_amount2, ConnectionNo, "Enter Connection No");
     }
 
-    public void enterAmount(String amount) throws InterruptedException {
-        Element.enterText(driver, textbox_enter_amount2, amount, "Enter Amount");
-    }
+//    public void enterAmount(String amount) throws InterruptedException {
+//        Element.enterText(driver, textbox_enter_amount2, amount, "Enter Amount");
+//    }
 
     public void clickOnContinue() throws InterruptedException {
         Element.selectElement(driver, button_continue, "Button Continue");
@@ -749,6 +758,8 @@ public class RechargeBillPage {
     }
 
     public void clickOnCtaCotinue() throws InterruptedException {
+        Thread.sleep(2000);
+
         Element.selectElement(driver, cta_continue, "CTA Continue");
     }
 
@@ -813,9 +824,9 @@ public class RechargeBillPage {
     }
 
 
-    public RechargePage clickOnElectricityBackIcon() throws IOException {
+    public RechargeBillPage clickOnElectricityBackIcon() throws IOException {
         Element.selectElement(driver, back_electricity_icon, "CLick on Electricity BAck icon ");
-        return new RechargePage(driver);
+        return new RechargeBillPage(driver);
     }
 
     public void enterDthAmount(String amount) throws InterruptedException {
@@ -927,9 +938,9 @@ public class RechargeBillPage {
         Element.selectElement(driver, cross_icon_pending_screen, "Navigate Back Tome home");
     }
 
-    public void clickApplyCoupon() throws InterruptedException {
-        Element.selectElement(driver, have_promo_code, "Select Apply a coupon");
-    }
+//    public void clickApplyCoupon() throws InterruptedException {
+//        Element.selectElement(driver, have_promo_code, "Select Apply a coupon");
+//    }
 
     public void selectVoucher() throws InterruptedException {
         Element.selectElement(driver, select_voucher, "Apply a voucher");
@@ -938,7 +949,7 @@ public class RechargeBillPage {
     public void selectCrossIcon() throws InterruptedException {
         Element.selectElement(driver, select_cross_icon, "Dismiss pop up");
     }
-*/
+
     //############################ Old end ################################
 
 }

@@ -6,7 +6,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
 import org.openqa.selenium.support.PageFactory;
-import utils.Element;
+//import utils.Element;
 
 import java.io.IOException;
 
@@ -77,7 +77,7 @@ public class SavedConnectionPage {
         Log.info("*****On Side Drawer Page*****");
     }
 
-
+/*
     public void clickAddFavouritecta() throws InterruptedException {
         Element.selectElement(driver, cta_add_favourite, "Click Add Favourite");
     }
@@ -135,5 +135,7 @@ public class SavedConnectionPage {
         return new HomePage(driver);
     }
 
+
+ */
 
 }

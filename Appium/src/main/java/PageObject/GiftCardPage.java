@@ -6,7 +6,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
-import utils.Element;
+//import utils.Element;
 
 import java.io.IOException;
 
@@ -96,7 +96,7 @@ public class GiftCardPage {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
-
+/*
 
     public void clickViewGiftCards() throws InterruptedException {
         Element.selectElement(driver, cta_view_gift_cards, "View Gift Cards");
@@ -222,5 +222,7 @@ public class GiftCardPage {
     public void selectGiftToLovedOne() throws InterruptedException{
         Element.selectElement(driver, gift_to_loved_one, "Select Gift to Loved One");
     }
+
+ */
 
 }

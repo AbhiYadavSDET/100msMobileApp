@@ -7,7 +7,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
 import org.openqa.selenium.support.PageFactory;
-import utils.Element;
+//import utils.Element;
 
 import java.io.IOException;
 
@@ -62,7 +62,7 @@ public class TransferPage {
         Log.info("*****TransferPage Page*****");
     }
 
-
+/*
     public void clickOnLabelEnterMobileNumber() throws InterruptedException {
         Element.selectElement(driver, label_enter_mobile_number, "Click on Mobile Number");
     }
@@ -99,4 +99,6 @@ public class TransferPage {
     }
 
 
+
+ */
 }

@@ -1,5 +1,5 @@
 package Helpers;
-
+/*
 import PageObject.FiveStarRatingPage;
 import PageObject.GoldPage;
 import PageObject.HomePage;
@@ -95,3 +95,6 @@ public class RatingPageHelper {
 
 
 }
+
+
+ */

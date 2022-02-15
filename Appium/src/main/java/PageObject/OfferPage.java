@@ -7,7 +7,7 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
-import utils.Element;
+//import utils.Element;
 
 import java.io.IOException;
 
@@ -44,7 +44,7 @@ public class OfferPage {
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
         Log.info("*****Offer Page*****");
     }
-
+/*
     public void clickOnSearchOption() throws InterruptedException {
         Element.selectElement(driver, offer_search_icon, "Search Option");
     }
@@ -76,6 +76,8 @@ public class OfferPage {
     public int fetchRedeemOffers() throws InterruptedException {
         return Element.findElements(driver, By.id(redeemOfferList)).size();
     }
+
+ */
 
 /*
 

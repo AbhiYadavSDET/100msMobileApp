@@ -1,5 +1,5 @@
 package NearBy;
-
+/*
 import Helpers.LoginHelper;
 import Helpers.NearByHelper;
 import UITestFramework.CreateSession;
@@ -55,3 +55,5 @@ public class Test_Nearby extends CreateSession {
         Log.info("END : Nearby Search Store test");
     }
 }
+
+ */

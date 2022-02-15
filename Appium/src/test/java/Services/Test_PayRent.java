@@ -1,5 +1,5 @@
 package Services;
-
+/*
 import Helpers.LoginHelper;
 import Helpers.MBKCommonControlsHelper;
 import Helpers.PayRentHelper;
@@ -34,3 +34,5 @@ public class Test_PayRent extends CreateSession {
 
 
 }
+
+ */

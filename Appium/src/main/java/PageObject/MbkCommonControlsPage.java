@@ -6,7 +6,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
-import utils.Element;
+import Utils.Element;
 
 import java.io.IOException;
 
@@ -60,13 +60,15 @@ public class MbkCommonControlsPage {
     @AndroidFindBy(id = "navigation_home")
     private AndroidElement navigate_home;
 
+    @AndroidFindBy(id = "view_balance_details")
+    private AndroidElement details_text;
+
 
     public MbkCommonControlsPage(AndroidDriver driver) throws IOException {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
 
     }
-
     public void applyPromoCode(String promoCode) {
         Element.selectElement(driver, have_promo_code, "Have a promo code");
         Element.enterText(driver, text_box_coupon_code, promoCode, "Promo Code");
@@ -160,6 +162,11 @@ public class MbkCommonControlsPage {
         Element.selectElement(driver, navigate_home, "Navigate Back to home");
 
     }
+
+    public void clickOnDetails(){
+        Element.selectElement(driver, details_text, "Details button");
+    }
+
 
 
 }
