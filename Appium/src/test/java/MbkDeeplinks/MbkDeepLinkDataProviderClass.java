@@ -1,5 +1,5 @@
 package MbkDeeplinks;
-
+/*
 import customexception.TestParametersNotFound;
 import dbutil.mysql.automationtest.deeplink_data.entity.DeeplinkEntity;
 import logger.Log;
@@ -31,3 +31,6 @@ public class MbkDeepLinkDataProviderClass {
         return array;
     }
 }
+
+
+ */

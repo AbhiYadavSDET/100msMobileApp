@@ -7,7 +7,7 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
-import utils.Element;
+//import utils.Element;
 
 import java.io.IOException;
 
@@ -39,7 +39,7 @@ public class WalletPage {
         Log.info("*****Wallet Page*****");
 
     }
-
+/*
     public boolean ifKycCardDisplayed() throws InterruptedException {
         if (Element.isElementPresent(driver, By.id("kyc_card"))) {
 
@@ -62,6 +62,8 @@ public class WalletPage {
         Element.selectElement(driver, label_logout, "Logout Button");
     }
 
+
+ */
 
 }
 

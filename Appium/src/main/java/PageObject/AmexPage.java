@@ -7,7 +7,7 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
-import utils.Element;
+//import utils.Element;
 
 import java.io.IOException;
 
@@ -50,7 +50,7 @@ public class AmexPage {
 
         Log.info("*****Amex Page*****");
     }
-
+/*
     public void selectAmexCard() throws InterruptedException {
         Element.selectElement(driver, amex_card_front, "Select Amex Card");
     }
@@ -78,5 +78,7 @@ public class AmexPage {
     public void clickOnBackButton() throws InterruptedException {
         Element.selectElement(driver, cta_back_button, "Click on Back Button");
     }
+
+ */
 
 }

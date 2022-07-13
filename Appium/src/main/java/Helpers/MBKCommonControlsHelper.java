@@ -1,6 +1,6 @@
 package Helpers;
 
-import PageObject.HomePage;
+import PageObject.*;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import logger.Log;
@@ -12,9 +12,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import PageObject.MbkCommonControlsPage;
-import PageObject.WalletBalancePage;
-import PageObject.TransactionHistoryPage;
+
 public class MBKCommonControlsHelper {
 
     AndroidDriver driver;
@@ -23,6 +21,7 @@ public class MBKCommonControlsHelper {
     WalletBalancePage walletBalancePage;
     Screen screen;
     TransactionHistoryPage transactionHistoryPage;
+    SideDrawerPage sideDrawerPage;
 
     enum BalanceType {
         MAINBALANCE,
@@ -58,6 +57,9 @@ public class MBKCommonControlsHelper {
         mbkCommonControlsPage = new MbkCommonControlsPage(driver);
         element = new Element(driver);
         screen = new Screen(driver);
+        walletBalancePage=new WalletBalancePage(driver);
+        transactionHistoryPage=new TransactionHistoryPage(driver);
+        sideDrawerPage=new SideDrawerPage(driver);
 
     }
 
@@ -94,8 +96,8 @@ public class MBKCommonControlsHelper {
 
             String amount = String.valueOf(amountToAdd);
 
-            AddMoneyHelper addmoneyHelper = new AddMoneyHelper(driver);
-            addmoneyHelper.addMoneyViaSavedCard(amount, "4363 XXXX XXXX 4460", "12", "22", "239", "Paraj@1234", "Thanks", "Money Added Successfully", false, "NA");
+//            AddMoneyHelper addmoneyHelper = new AddMoneyHelper(driver);
+//            addmoneyHelper.addMoneyViaSavedCard(amount, "4363 XXXX XXXX 4460", "12", "22", "239", "Paraj@1234", "Thanks", "Money Added Successfully", false, "NA");
 
 
         }
@@ -174,11 +176,11 @@ public class MBKCommonControlsHelper {
         handleRatingsPopUp();
         handleNPS();
     }
-    public void returnToHomePageFromCCBPSuccessScreen() throws InterruptedException {
-        mbkCommonControlsPage.clickOnSuccessPageBackbutton();
-        handleRatingsPopUp();
-        handleNPS();
-    }
+//    public void returnToHomePageFromCCBPSuccessScreen() throws InterruptedException {
+//        mbkCommonControlsPage.clickOnSuccessPageBack();
+//        handleRatingsPopUp();
+//        handleNPS();
+//    }
 
 
     public void returnToHomePageFromRechargeSuccessScreenBackButton() throws InterruptedException {
@@ -212,10 +214,14 @@ public class MBKCommonControlsHelper {
         // Goto balance details screen
         HomePage homePage = new HomePage(driver);
 
-        transactionHistoryPage = homePage.clickHistory();
+        homePage.openSideDrawr();
+        sideDrawerPage.clickAccounts();
+        mbkCommonControlsPage.clickOnDetails();
+
+//        homePage.clickHistory();
         Thread.sleep(3000);
 
-        walletBalancePage = transactionHistoryPage.clickOnWalletBalanceCta();
+//        transactionHistoryPage.clickOnWalletBalanceCta();
 
         // fetch the balance and add to Map
         Element.waitForVisibility(driver, walletBalancePage.label_available_balance);
@@ -264,15 +270,17 @@ public class MBKCommonControlsHelper {
 
         Log.info("-----------------------------------");
 
-        clickUpButton();
+        for(int i=0;i<2;i++) {
+            clickUpButton();
+        }
 
         Log.info("END : Fetch Wallet balance");
 
         // TO DO
-        dismissAllOnHomePage(driver);
+//        dismissAllOnHomePage(driver);
 
         // Back to Home
-        homePage.clickOnBottomBarHome();
+//        homePage.clickOnBottomBarHome();
 
         return walletBalance;
     }
@@ -297,7 +305,7 @@ public class MBKCommonControlsHelper {
             if(Element.isElementPresent(driver, By.id("base_icon_close"))){
                 mbkCommonControlsPage.clickOnSuccessPageCross();
             }else if (Element.isElementPresent(driver, By.id("base_icon_back"))){
-                mbkCommonControlsPage.clickOnSuccessPageBackbutton();
+//                mbkCommonControlsPage.clickOnSuccessPageBack();
             }
         }
     }
@@ -311,7 +319,7 @@ public class MBKCommonControlsHelper {
             if(Element.isElementPresent(driver, By.id("base_icon_close"))){
             mbkCommonControlsPage.clickOnSuccessPageCross();
             }else if (Element.isElementPresent(driver, By.id("base_icon_back"))){
-                mbkCommonControlsPage.clickOnSuccessPageBackbutton();
+//                mbkCommonControlsPage.clickOnSuccessPageBack();
             }
 
         }
@@ -383,9 +391,13 @@ public class MBKCommonControlsHelper {
         if (Element.isElementPresent(driver, By.id("tnc_layout"))) {
             Log.info("Handle", "Login User in the Flow");
 
-            LoginHelper loginHelper=new LoginHelper(driver);
-            loginHelper.quickLoginViaNumberWithinFlow(number,otp);
+//            LoginHelper loginHelper=new LoginHelper(driver);
+//            loginHelper.quickLoginViaNumberWithinFlow(number,otp);
         }
+    }
+
+    public void uncheckInsuranceCta() throws InterruptedException {
+        mbkCommonControlsPage.uncheckInsuranceCheckBox();
     }
 
 

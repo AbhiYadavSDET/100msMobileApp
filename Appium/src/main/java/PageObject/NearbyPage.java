@@ -6,7 +6,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
 import org.openqa.selenium.support.PageFactory;
-import utils.Element;
+//import utils.Element;
 
 public class NearbyPage {
 
@@ -55,7 +55,7 @@ public class NearbyPage {
         Log.info("*****On Ola Page*****");
     }
 
-
+/*
     public void clickOnBackButton() throws InterruptedException {
         Element.selectElement(driver, back_button_from_nearby_page, "Navigate back to Home");
     }
@@ -108,5 +108,7 @@ public class NearbyPage {
         Element.selectElement(driver, cta_search_icon, "Search Store");
     }
 
+
+ */
 
 }

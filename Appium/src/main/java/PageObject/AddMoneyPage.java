@@ -7,7 +7,7 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
-import utils.Element;
+//import utils.Element;
 
 import java.io.IOException;
 
@@ -110,7 +110,7 @@ public class AddMoneyPage {
         Log.info("*****Add Money Page*****");
     }
 
-
+/*
     public void clickOnAmountTextBox() throws InterruptedException {
         Element.selectElement(driver, textbox_amount, "Amount Text Box");
     }
@@ -224,5 +224,6 @@ public class AddMoneyPage {
     public void chooseUpiBank() throws InterruptedException {
         Element.selectElement(driver, select_upi_bank, "Choose Upi for Add Money");
     }
+ */
 
 }

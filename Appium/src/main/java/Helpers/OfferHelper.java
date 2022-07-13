@@ -1,22 +1,23 @@
 package Helpers;
 
-import PageObject.HomePage;
-import PageObject.OfferPage;
-import UITestFramework.Api.ApiCommonControls;
-import UITestFramework.ExtentReport.Reporter;
-import UITestFramework.MBReporter;
-import io.appium.java_client.TouchAction;
-import io.appium.java_client.android.AndroidDriver;
-import org.json.JSONException;
-import org.openqa.selenium.By;
-import utils.Element;
-import utils.Screen;
-
-import java.io.IOException;
+//import PageObject.HomePage;
+//import PageObject.OfferPage;
+//import UITestFramework.Api.ApiCommonControls;
+//import UITestFramework.ExtentReport.Reporter;
+//import UITestFramework.MBReporter;
+//import io.appium.java_client.TouchAction;
+//import io.appium.java_client.android.AndroidDriver;
+//import org.json.JSONException;
+//import org.openqa.selenium.By;
+//import utils.Element;
+//import utils.Screen;
+//
+//import java.io.IOException;
 
 /**
  * contains all methods to test Add Money Flow
  */
+/*
 public class OfferHelper {
     TouchAction touchAction;
     MBKPermissions mbkPermissions;
@@ -118,3 +119,5 @@ public class OfferHelper {
 
     }
 }
+
+ */

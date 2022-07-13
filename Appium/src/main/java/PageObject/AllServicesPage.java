@@ -6,7 +6,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
 import org.openqa.selenium.support.PageFactory;
-import utils.Element;
+//import utils.Element;
 
 import java.io.IOException;
 
@@ -34,7 +34,7 @@ public class AllServicesPage {
 
         Log.info("*****All Services Page*****");
     }
-
+/*
     public void clickOnSplitBill() throws InterruptedException{
         Element.selectElement(driver, split_bill_icon, "Click on Split Bill Button");
 
@@ -43,6 +43,8 @@ public class AllServicesPage {
     public void clickOnPayRent() throws InterruptedException{
         Element.selectElement(driver, pay_rent_icon, "Click on Pay Rent Button");
     }
+
+ */
 }
 
 

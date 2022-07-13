@@ -6,7 +6,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
 import org.openqa.selenium.support.PageFactory;
-import utils.Element;
+//import utils.Element;
 
 public class SecuritySettingsPage {
 
@@ -120,7 +120,7 @@ public class SecuritySettingsPage {
         Log.info("*****On Side Drawer Page*****");
     }
 
-
+/*
     public void ClickSecurityOptions() throws InterruptedException {
         Element.selectElement(driver, security_settings_option, "Select options");
     }
@@ -235,6 +235,8 @@ public class SecuritySettingsPage {
     }
 
 
+
+ */
 
 
 

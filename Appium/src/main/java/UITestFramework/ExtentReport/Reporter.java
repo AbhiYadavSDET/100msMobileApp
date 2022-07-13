@@ -38,7 +38,7 @@ public class Reporter {
         //File source = new File("src/UITestFramework/ExtentReport/extent.html");
 
         //String timestamp = new SimpleDateFormat("MM-dd-yyyy-HH-mm-ss").format(new GregorianCalendar().getTime());
-        //FileUtils.copyFile(source, new File("src/UITestFramework/ExtentReport/old/" + timestamp + "_extent.html"));
+        //Fileutils.copyFile(source, new File("src/UITestFramework/ExtentReport/old/" + timestamp + "_extent.html"));
 
 
     }
@@ -129,7 +129,7 @@ public class Reporter {
 
         Log.info("SEND          | Mail : extent.html");
         try {
-            Mailer.reportMailer("src/UITestFramework/ExtentReport/extent.html", "extent.html");
+//            Mailer.reportMailer("src/UITestFramework/ExtentReport/extent.html", "extent.html");
         } catch (Exception e) {
             Log.info("Error         | While sending the Mailer");
             e.printStackTrace();

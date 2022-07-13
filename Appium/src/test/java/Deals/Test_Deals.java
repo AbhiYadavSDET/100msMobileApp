@@ -1,5 +1,5 @@
 package Deals;
-
+/*
 import Helpers.DealsHelper;
 import Helpers.LoginHelper;
 import Helpers.OfferHelper;
@@ -13,14 +13,16 @@ import org.testng.annotations.Test;
  * automated test to verify Offers
  */
 
-public class Test_Deals extends CreateSession {
-    DealsHelper dealsHelper;
+//public class Test_Deals extends CreateSession {
+//    DealsHelper dealsHelper;
+
 
     /**
      * method to verify Deals from Home Screen
      *
      * @throws Exception
      */
+    /*
     @Test(groups = {"dealsSanity"}, priority = 0)
     public void Test01_validateDeals() throws Exception {
         Log.infoStartTest("Deals Sanity");
@@ -38,3 +40,6 @@ public class Test_Deals extends CreateSession {
 
 
 
+
+
+     */

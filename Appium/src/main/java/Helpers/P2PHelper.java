@@ -1,6 +1,6 @@
 package Helpers;
 
-
+/*
 import PageObject.HomePage;
 import PageObject.OnboardingPage;
 import PageObject.TransferPage;
@@ -16,9 +16,12 @@ import utils.Screen;
 import java.io.IOException;
 import java.util.HashMap;
 
+ */
+
 /**
  * contains all methods to test Add Money Flow
  */
+/*
 public class P2PHelper {
     AndroidDriver driver;
     OnboardingPage onboardingPage;
@@ -260,3 +263,6 @@ public class P2PHelper {
 
 
 }
+
+
+ */

@@ -1,5 +1,5 @@
 package Helpers;
-
+/*
 import PageObject.HelpPage;
 import PageObject.HomePage;
 import PageObject.SideDrawerPage;
@@ -64,3 +64,6 @@ public class HelpHelper {
     }
 
 }
+
+
+ */

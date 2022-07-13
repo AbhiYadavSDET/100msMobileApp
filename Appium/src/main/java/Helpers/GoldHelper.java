@@ -1,5 +1,5 @@
 package Helpers;
-
+/*
 import PageObject.GoldPage;
 import PageObject.HomePage;
 import PageObject.SideDrawerPage;
@@ -182,3 +182,6 @@ public class GoldHelper {
 
 
 }
+
+
+ */

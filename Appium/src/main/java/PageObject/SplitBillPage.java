@@ -6,7 +6,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
 import org.openqa.selenium.support.PageFactory;
-import utils.Element;
+//import utils.Element;
 
 import java.io.IOException;
 
@@ -60,7 +60,7 @@ public class SplitBillPage {
 
         Log.info("*****Split Bill Page*****");
     }
-
+/*
     public void clickOnStart() throws InterruptedException{
         Element.selectElement(driver, lets_start_button, "Click on Let's Start Button");
     }
@@ -111,4 +111,6 @@ public class SplitBillPage {
         return Element.getText(driver, my_share, "Getting my share amount");
     }
 
+
+ */
 }

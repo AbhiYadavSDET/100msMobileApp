@@ -6,7 +6,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
 import org.openqa.selenium.support.PageFactory;
-import utils.Element;
+//import utils.Element;
 
 import java.io.IOException;
 
@@ -161,7 +161,7 @@ public class UpiPage {
         Log.info("*****UPI Page*****");
     }
 
-
+/*
     public void clickOnUpiSetupCta() throws InterruptedException {
         Element.selectElement(driver, cta_start_upi_setup, "Start UPI Setup");
     }
@@ -277,5 +277,7 @@ public class UpiPage {
         return new HomePage(driver);
     }
 
+
+ */
 
 }

@@ -6,7 +6,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
 import org.openqa.selenium.support.PageFactory;
-import utils.Element;
+//import utils.Element;
 
 public class GoldPage {
 
@@ -100,7 +100,7 @@ public class GoldPage {
 
         Log.info("*****On Gold Page*****");
     }
-
+/*
     public void clickOnBuyGold() {
         Element.selectElement(driver, button_buy_gold, "Buy Gold Button");
     }
@@ -187,5 +187,7 @@ public class GoldPage {
         Element.selectElement(driver, cta_sell_gold, "Click on Sell Gold");
 
     }
+
+ */
 
 }

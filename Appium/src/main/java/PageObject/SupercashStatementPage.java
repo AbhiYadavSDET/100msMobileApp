@@ -7,7 +7,7 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
-import utils.Element;
+//import utils.Element;
 
 public class SupercashStatementPage {
 
@@ -69,7 +69,7 @@ public class SupercashStatementPage {
 
         Log.info("*****On Supercash Statement Page*****");
     }
-
+/*
     public void validateSupercashDate() throws InterruptedException{
         Element.isElementPresent(driver, By.id("supercash_record_date"));
     }
@@ -128,4 +128,6 @@ public class SupercashStatementPage {
     public void navigateBackToHome() throws InterruptedException{
         Element.selectElement(driver, back_home, "Click on Back to Home Button");
     }
+
+ */
 }

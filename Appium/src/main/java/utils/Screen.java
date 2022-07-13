@@ -5,10 +5,10 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import logger.Log;
-import net.sourceforge.tess4j.ITesseract;
-import net.sourceforge.tess4j.Tesseract;
-import net.sourceforge.tess4j.TesseractException;
-import net.sourceforge.tess4j.util.LoadLibs;
+//import net.sourceforge.tess4j.ITesseract;
+//import net.sourceforge.tess4j.Tesseract;
+//import net.sourceforge.tess4j.TesseractException;
+//import net.sourceforge.tess4j.util.LoadLibs;
 import org.openqa.selenium.Dimension;
 
 import java.io.File;
@@ -213,7 +213,7 @@ public class Screen {
             e.printStackTrace();
         }
     }
-
+/*
     public String readToastMessage(String screenShotDir, String screenShotName) throws TesseractException {
         String imgName = screenShotName;
         String result = null;
@@ -239,4 +239,6 @@ public class Screen {
         System.out.println(result);
         return result;
     }
+
+ */
 }

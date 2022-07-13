@@ -109,13 +109,15 @@ public class TransactionHistoryPage {
         return Element.getText(driver, amount_refunded, "Amount Refunded");
     }
 
-    public WalletBalancePage clickOnWalletBalanceCta() throws InterruptedException, IOException {
+    public void clickOnWalletBalanceCta() throws InterruptedException, IOException {
         Element.selectElement(driver, wallet_balance_cta, "Click on Wallet Balance cta");
-        return new WalletBalancePage(driver);
+//        return new WalletBalancePage(driver);
     }
 
     public String getLatestHistoryRecordAmount() throws InterruptedException, IOException{
         return Element.getText(driver, latest_record_amount, "Get Latest Record Amount").replace("- X", "");
     }
+
+
 
 }
