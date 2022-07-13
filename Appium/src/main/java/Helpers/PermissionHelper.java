@@ -5,7 +5,7 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import logger.Log;
 import org.openqa.selenium.By;
-import Utils.Element;
+import utils.Element;
 import org.openqa.selenium.NoSuchElementException;
 
 import java.util.HashMap;

@@ -1,0 +1,53 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+#Compiled class file
+*.class
+*.iml
+*.log
+#OS generated Files
+.DS_Store
+.DS_Store?
+#Ignore the local classpath changes
+/.classpath
+/.project
+/.settings/
+target/
+/target/*
+target/*
+reports/*
+/TestData.xlsx
+/TestData_Web.xlsx
+src/UITestFramework/ExtentReport/old
+src/UITestFramework/ExtentReport/extent.html
+# User-specific stuff:
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dictionaries
+.idea/vcs.xml
+.idea/jsLibraryMappings.xml
+.reports/
+.target/
+*.class
+../.idea/
+# Sensitive or high-churn files:
+.idea/dataSources.ids
+.idea/dataSources.xml
+.idea/dataSources.local.xml
+.idea/sqlDataSources.xml
+.idea/dynamic.xml
+.idea/uiDesigner.xml
+# Gradle/Maven
+.idea/libraries
+*.class
+*.jar
+*.war
+*.ear
+.idea/
+**/target/
+**/.idea/
+*.iml
+.classc
+.project
+**/reports/
+**/logs

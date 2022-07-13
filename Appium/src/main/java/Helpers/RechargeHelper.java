@@ -1,48 +1,62 @@
 package Helpers;
 
 import PageObject.*;
-import Utils.Config;
-import Utils.Elements;
+import UITestFramework.MBReporter;
+import utils.Config;
+import utils.Elements;
+import utils.Element;
+import utils.Screen;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import logger.Log;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+
+import java.io.IOException;
+import java.util.HashMap;
 
 public class RechargeHelper {
 
     //############################ Udit start ################################
     AndroidDriver<AndroidElement> driver;
-    RechargeBillPage rechargeBillPage;
+    RechargePage rechargeBillPage;
     LoginPage loginPage;
     HomePage homePage;
-    PermissionsPage permissionsPage;
+    PermissionPage permissionsPage;
     SideDrawerPage sideDrawerPage;
 
-    @AndroidFindBy(xpath="//*[@text='Skip']")
+    // Login and home page elements
+
+    @AndroidFindBy(id = "skip")
     private AndroidElement checkSkip;
 
-    @AndroidFindBy(xpath="//*[@text='Allow only while using the app']")
-    private AndroidElement checkLocationAccess;
+    @AndroidFindBy(id = "login_signup")
+    private AndroidElement checkLoginSignupButton;
 
-    @AndroidFindBy(xpath="//*[@text='View Details']")
+    @AndroidFindBy(id = "cancel")
+    private AndroidElement noneOfAboveButton;
+
+    @AndroidFindBy(id = "tx_balance")
+    private AndroidElement getBalance;
+
+    @AndroidFindBy(id = "tx_add_money")
     private AndroidElement checkViewDetails;
 
-    @AndroidFindBy(xpath="//*[@text='Login/Signup']")
-    private AndroidElement checkLoginSignupButton;
+    // Permission elements
+
+    @AndroidFindBy(id = "permission_allow_foreground_only_button")
+    private AndroidElement checkLocationAccess;
+
+    // Recharge elements
+
+    @AndroidFindBy(id = "view_curved")
+    private AndroidElement checkSwipLeftPopUp;
 
     @AndroidFindBy(xpath="//*[@text='Enter Mobile Number']")
     private AndroidElement enterNumber;
-
-    @AndroidFindBy(xpath="//android.view.ViewGroup[2]/android.view.View[2]")
-    private AndroidElement checkSwipLeftPopUp;
-
-    @AndroidFindBy(xpath="//*[@text='NONE OF THE ABOVE']")
-    private AndroidElement noneOfAboveButton;
-
-    @AndroidFindBy(xpath="//android.view.ViewGroup/android.view.ViewGroup/android.widget.TextView[1]")
-    private AndroidElement getBalance;
 
     @AndroidFindBy(xpath="//*[@text='Select a Coupon']")
     private AndroidElement checkCouponPage;
@@ -50,7 +64,7 @@ public class RechargeHelper {
     @AndroidFindBy(xpath="//*[@text='Confirm Payment']")
     private AndroidElement checkPaymentPage;
 
-    @AndroidFindBy(xpath="//android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.LinearLayout/android.widget.TextView")
+    @AndroidFindBy(id = "supercash_value")
     private AndroidElement checkSupercashDeduct;
 
     String applySupercash="Apply Supercash";
@@ -58,36 +72,38 @@ public class RechargeHelper {
     //############################ Udit end ################################
 
     //############################ Old start ################################
-/*
-    AndroidDriver driver;
-    HomePage homePage;
+
+//    HomePage homePage;
     Screen screen;
     Element element;
     MBKCommonControlsHelper mbkCommonControlsHelper;
     MBReporter mbReporter;
-    RechargePage rechargePage;
+//    RechargePage rechargePage;
     PermissionHelper permissionHelper;
-    AddMoneyHelper addMoneyHelper;
+//    AddMoneyHelper addMoneyHelper;
     TransactionHistoryPage transactionHistoryPage;
 
     public static HashMap<String, String> map;
     public static HashMap<String, String> balanceBefore;
     public static HashMap<String, String> balanceAfter;
-    */
+
     //############################ Old end ################################
 
-    public RechargeHelper(AndroidDriver<AndroidElement> driver){
+    public RechargeHelper(AndroidDriver<AndroidElement> driver) throws IOException {
         this.driver=driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
-        rechargeBillPage=new RechargeBillPage(driver);
+        rechargeBillPage=new RechargePage(driver);
         loginPage = new LoginPage(driver);
         homePage=new HomePage(driver);
-        permissionsPage=new PermissionsPage(driver);
+        permissionsPage=new PermissionPage(driver);
         sideDrawerPage=new SideDrawerPage(driver);
+        permissionHelper=new PermissionHelper(driver);
+        mbkCommonControlsHelper=new MBKCommonControlsHelper(driver);
+        mbReporter=new MBReporter(driver);
     }
 
     //############################ Udit start ################################
-    public void viewRechargeBill(String number,String operatorType, String operatorName, String circle, String amount,String coupon,String pin) throws InterruptedException {
+    public void rechargeBill(String number,String operatorType, String operatorName, String circle, String amount,String coupon,String pin) throws InterruptedException {
 
 
         Thread.sleep(8000);
@@ -115,7 +131,7 @@ public class RechargeHelper {
                 //Check for new user or old user
                 if (Elements.isElementPresent(driver, enterNumber)) {
                     rechargeBillPage.enterMobileNumber(number);
-                    rechargeBillPage.clickContinue();
+                    rechargeBillPage.clickContinue("Recharge");
                 } else {
                     rechargeBillPage.clickMobileButton();
                     rechargeBillPage.enterMobileNumber(number);
@@ -200,7 +216,7 @@ public class RechargeHelper {
     }
 
 
-    public void viewRechargeBillWithLogout(String number, String operatorType, String operatorName, String circle, String amount,String coupon, String pin) throws InterruptedException {
+    public void rechargeBillWithLogout(String number, String operatorType, String operatorName, String circle, String amount,String coupon, String pin) throws InterruptedException {
         int flag=0;
         Thread.sleep(8000);
         String test;
@@ -255,7 +271,7 @@ public class RechargeHelper {
                 //Check for new user or old user
                 if (Elements.isElementPresent(driver, enterNumber)) {
                     rechargeBillPage.enterMobileNumber(number);
-                    rechargeBillPage.clickContinue();
+                    rechargeBillPage.clickContinue("Recharge");
                 }
                 Elements.waitForElementToVisibleOnPageUsingText(driver, operatorName, 2);
                 //check for asking operator and circle
@@ -334,12 +350,12 @@ public class RechargeHelper {
 
         Thread.sleep(8000);
         if(Elements.isElementPresent(driver,checkViewDetails)){
-            homePage.clickAllServicesTab();
+            homePage.clickAllServicesTab("Electricity");
             rechargeBillPage.clickElectricityButtonElectricity();
             rechargeBillPage.enterBoardElectricity(operatorName);
             rechargeBillPage.selectBoardElectricity();
             rechargeBillPage.enterNumberElectricity(BP_Number);
-            rechargeBillPage.clickContinue();
+            rechargeBillPage.clickContinue("Electricity");
             rechargeBillPage.checkResultScreenElectricity(operatorName);
         }else if(Elements.isElementPresent(driver,checkLoginSignupButton)){
             Config.logComment("Please Login/Signup and than continue");
@@ -351,13 +367,13 @@ public class RechargeHelper {
 
         Thread.sleep(8000);
         if(Elements.isElementPresent(driver,checkViewDetails)){
-            homePage.clickAllServicesTab();
+            homePage.clickAllServicesTab("Gas");
             rechargeBillPage.clickMoreButtonGas();
             rechargeBillPage.clickPipedGasButtonGas();
             rechargeBillPage.enterOperatorGas(operatorName);
             rechargeBillPage.selectOperatorGas();
             rechargeBillPage.enterBPNumberGas(BP_Number);
-            rechargeBillPage.clickContinue();
+            rechargeBillPage.clickContinue("Gas");
             rechargeBillPage.checkResultScreenGas(operatorName);
         }else if(Elements.isElementPresent(driver,checkLoginSignupButton)){
             Config.logComment("Please Login/Signup and than continue");
@@ -367,124 +383,130 @@ public class RechargeHelper {
 
     //############################ Old start ################################
 
-//    public void prepaidRecharge(String mobileNo, String amount, String category, String operator, String totalPayment, String trxStatus, String securityPin, Boolean promoCodeStatus, String promoCode, String promoCodeText) throws InterruptedException, IOException, JSONException {
-//        Thread.sleep(2000);
-//
-//        balanceBefore = mbkCommonControlsHelper.getBalance();
-//
-//        homePage.clickOnRechargeLayout();
-//        rechargePage = homePage.clickOnMobileButton();
-//
-//        permissionHelper.permissionAllow();
-//
-//        rechargePage.enterMobileNo(mobileNo);
-//
-//        rechargePage.clickOnDropDown();
+    public void prepaidRecharge(String mobileNo, String amount, String category, String operator, String totalPayment, String trxStatus, String securityPin, Boolean promoCodeStatus, String promoCode, String promoCodeText) throws InterruptedException, IOException, IOException {
+        Thread.sleep(8000);
+
+        balanceBefore = mbkCommonControlsHelper.getBalance();     //Udit -Have to change code
+
+        homePage.clickOnRechargeLayout();
+
+        if (Element.isElementPresent(driver, By.id("view_curved"))) { //Added by udit
+            rechargeBillPage.clickSwipPopUp();
+        }
+
+        homePage.clickOnMobileButton();
+
+        permissionHelper.permissionAllow();
+
+        rechargeBillPage.enterMobileNo(mobileNo);
+
+//        rechargeBillPage.clickOnDropDown();
 //
 //        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text='Operators']"));
 //        screen.swipeUpMedium(driver);
-//        rechargePage.selectOperator();
+//        rechargeBillPage.selectOperator();
 //
 //        Element.waitForVisibility(driver, By.id("cir_name"));
-//        rechargePage.selectCircle();
+//        rechargeBillPage.selectCircle();
 //
-//        rechargePage.clickOnSeeAllPlans();
+//        rechargeBillPage.clickOnSeeAllPlans();
 //
 //        boolean seeAllPlans = Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text= 'TOPUP']"));
 //
 //        mbReporter.verifyTrueWithLogging(seeAllPlans, "Plans Page loaded", true, true);
 //
-//        rechargePage.clickOnBackButtonPlansPage();
+//        rechargeBillPage.clickOnBackButtonPlansPage();
 //
 //        Thread.sleep(300);
 //
-//        rechargePage.selectAmount();
-//
-//
-//        mbkCommonControlsHelper.handleRechargeAmountKeyboard(amount);
-//
-//        rechargePage.clickOnContinue();
-//
-//        rechargePage.clickOnConfirmAmountPageCta();
-//
-//        // Apply coupon code if applicable
-//        if (promoCodeStatus) {
-//            mbkCommonControlsHelper.applyPromoCodeRecharge(promoCode);
+        rechargeBillPage.selectAmount();
+
+        mbkCommonControlsHelper.handleRechargeAmountKeyboard(amount);
+
+        rechargeBillPage.clickOnContinue();
+
+        rechargeBillPage.clickOnConfirmAmountPageCta();
+
+        // Apply coupon code if applicable
+        if (promoCodeStatus) {
+            mbkCommonControlsHelper.applyPromoCodeRecharge(promoCode);
+        }
+
+        mbkCommonControlsHelper.uncheckInsuranceCta(); // To Remove insurance
+
+        rechargeBillPage.clickOnCtaCotinue(); // Not waiting for without extra wait
+
+        mbkCommonControlsHelper.handleSecurityPin(securityPin);
+
+
+        for(int i=0; i<6; i++){
+
+            if(Element.isElementPresent(driver, By.xpath("//*[@id='common_header']//*[@id='title']"))){
+                Log.info("Success Page");
+                break;
+
+            }else{
+
+                Thread.sleep(1000);
+                i++;
+
+            }
+
+        }
+
+
+
+        // Wait for the success screen
+
+        Element.waitForVisibility(driver, By.xpath("//*[@id='common_header']//*[@id='title']"));
+
+        mbkCommonControlsHelper.handleCTOverlay();
+        mbReporter.verifyEqualsWithLogging(rechargeBillPage.getSuccessPageStatus(), trxStatus, "Success Page | Verify Status", false, false);
+
+        // Assertions on the success screen
+
+        if(Element.isElementPresent(driver, By.id("cn_value") )) {
+            mbReporter.verifyEqualsWithLogging(rechargeBillPage.getSuccessPageConnectionNo(), mobileNo, "Success Page | Verify Connection number", false, false);
+        }
+
+//        if(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Category']/following::android.widget.TextView[1]"))) {
+//            mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessPageCategory(), category, "Success Page | Verify category", false, false);
 //        }
-//
-//        rechargePage.clickOnCtaCotinue();
-//
-//        mbkCommonControlsHelper.handleSecurityPin(securityPin);
-//
-//
-//        for(int i=0; i<6; i++){
-//
-//            if(Element.isElementPresent(driver, By.id("base_status_icon_animation"))){
-//                Log.info("Success Page");
-//                break;
-//
-//            }else{
-//
-//                Thread.sleep(1000);
-//                i++;
-//
-//            }
-//
+
+        if(Element.isElementPresent(driver, By.id("operator"))) {
+            mbReporter.verifyEqualsWithLogging(rechargeBillPage.getSuccessPageOperator().toLowerCase(), operator.toLowerCase(), "Success Page | Verify operator", false, false);
+        }
+
+        if(Element.isElementPresent(driver, By.id("amount"))) {
+            mbReporter.verifyEqualsWithLogging(rechargeBillPage.getSuccessPageAmount().replace("X", ""), amount, "Success Page | Verify amount", false, false);
+        }
+
+//        if(Element.isElementPresent(driver, By.id("total_amount_value"))) {
+//            mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessPageTotalPayment().replace("₹ ", ""), totalPayment, "Success Page | Verify totalPayment", false, false);
 //        }
-//
-//
-//
-//        // Wait for the success screen
-//
-//        Element.waitForVisibility(driver, By.id("base_status_icon_animation"));
-//
-//        mbkCommonControlsHelper.handleCTOverlay();
-//        mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessPageStatus(), trxStatus, "Success Page | Verify Status", false, false);
-//
-//        // Assertions on the success screen
-//
-//        if(Element.isElementPresent(driver, By.id("cn_value") )) {
-//            mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessPageConnectionNo(), mobileNo, "Success Page | Verify Connection number", false, false);
-//        }
-//
-////        if(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Category']/following::android.widget.TextView[1]"))) {
-////            mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessPageCategory(), category, "Success Page | Verify category", false, false);
-////        }
-//
-//        if(Element.isElementPresent(driver, By.id("operator"))) {
-//            mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessPageOperator().toLowerCase(), operator.toLowerCase(), "Success Page | Verify operator", false, false);
-//        }
-//
-//        if(Element.isElementPresent(driver, By.id("amount"))) {
-//            mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessPageAmount().replace("X", ""), amount, "Success Page | Verify amount", false, false);
-//        }
-//
-////        if(Element.isElementPresent(driver, By.id("total_amount_value"))) {
-////            mbReporter.verifyEqualsWithLogging(rechargePage.getSuccessPageTotalPayment().replace("₹ ", ""), totalPayment, "Success Page | Verify totalPayment", false, false);
-////        }
-//
-//        // Assert the Success page in case promo code is applied
-//        if (promoCodeStatus) {
-//            String actualPromoCodeText = rechargePage.getPromoCodeTextOnSuccessScreen();
-//            String expectedPromoCodeText = "Congrats! SuperCash worth " + promoCodeText + " will be credited within 48 hours";
-//            mbReporter.verifyEqualsWithLogging(actualPromoCodeText, expectedPromoCodeText, "After TRX | Verify Promo Code Text", false, false);
-//
-//        }
-//
-//        mbkCommonControlsHelper.returnToHomePageFromRechargeSuccessScreen();
-//
-//        balanceAfter = mbkCommonControlsHelper.getBalance();
-//
-//        // Post TRX assertions
-//        Double actualMainBalance = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100;
-//        Double actualMoneyAdded = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MONEYADDED)) * 100;
-//        Double expectedMainBalance = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100 - Double.parseDouble(amount) * 100;
-//        Double expectedMoneyAdded = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MONEYADDED)) * 100 - Double.parseDouble(amount) * 100;
-//
-//        mbReporter.verifyEqualsWithLogging(actualMainBalance, expectedMainBalance, "After TRX | Verify Main Balance", false, false);
-//        mbReporter.verifyEqualsWithLogging(actualMoneyAdded, expectedMoneyAdded, "After TRX | Verify Money Added", false, false);
-//
-//    }
+
+        // Assert the Success page in case promo code is applied
+        if (promoCodeStatus) {
+            String actualPromoCodeText = rechargeBillPage.getPromoCodeTextOnSuccessScreen();
+            String expectedPromoCodeText = "Congrats! SuperCash worth " + promoCodeText + " will be credited within 48 hours";
+            mbReporter.verifyEqualsWithLogging(actualPromoCodeText, expectedPromoCodeText, "After TRX | Verify Promo Code Text", false, false);
+
+        }
+
+        mbkCommonControlsHelper.returnToHomePageFromRechargeSuccessScreen();
+
+        balanceAfter = mbkCommonControlsHelper.getBalance();
+
+        // Post TRX assertions
+        Double actualMainBalance = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100;
+        Double actualMoneyAdded = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MONEYADDED)) * 100;
+        Double expectedMainBalance = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100 - Double.parseDouble(amount) * 100;
+        Double expectedMoneyAdded = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MONEYADDED)) * 100 - Double.parseDouble(amount) * 100;
+
+        mbReporter.verifyEqualsWithLogging(actualMainBalance, expectedMainBalance, "After TRX | Verify Main Balance", false, false);
+        mbReporter.verifyEqualsWithLogging(actualMoneyAdded, expectedMoneyAdded, "After TRX | Verify Money Added", false, false);
+
+    }
 //
 //    //Pallavi Work
 //    public void postpaidRecharge(String mobileNo, String amount, String category, String operator, String totalPayment, String trxStatus, String securityPin, Boolean promoCodeStatus, String promoCode, String promoCodeText) throws InterruptedException, IOException, JSONException {

@@ -6,7 +6,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
 import org.openqa.selenium.support.PageFactory;
-import Utils.Element;
+import utils.Element;
 
 import java.io.IOException;
 
@@ -28,7 +28,7 @@ public class WalletBalancePage {
     @AndroidFindBy(id = "text_amount")
     public AndroidElement label_total_balance_value;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'SuperCash “']/following::android.widget.TextView[2]")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'SuperCash “']/following-sibling::android.widget.TextView[1]")
     public AndroidElement label_supercash_balance_value;
 
 

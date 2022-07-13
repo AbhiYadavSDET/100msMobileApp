@@ -1,11 +1,15 @@
 package PageObject;
 
-import Utils.Elements;
+import utils.Element;
+import utils.Elements;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
+
+import java.io.IOException;
 
 public class HomePage {
 
@@ -222,8 +226,8 @@ public class HomePage {
 
     }
     //############################ Udit start ################################
-    public void clickAllServicesTab() {
-        Elements.selectElement(driver,allServicesTab,"Click All Services tab");
+    public void clickAllServicesTab(String comment) {
+        Elements.selectElement(driver,allServicesTab,"Click All Services tab for "+comment);
     }
 
     public void clickSkip() {
@@ -245,7 +249,7 @@ public class HomePage {
     //############################ Udit end ################################
 
     //############################ Old start ################################
-/*
+
     public P2MPage clickOnButtonPayToMerchant() throws InterruptedException, IOException {
         Element.selectElement(driver, button_pay_to_merchant, "Pay To Merchant");
         return new P2MPage(driver);
@@ -269,7 +273,7 @@ public class HomePage {
         return new SideDrawerPage(driver);
     }
 
-    public WalletBalancePage clickOnViewBalance() throws IOException {
+    public WalletBalancePage clickOnViewBalance() throws IOException, IOException {
         Element.selectElement(driver, label_view_balance, "View balance label");
         return new WalletBalancePage(driver);
     }
@@ -305,9 +309,9 @@ public class HomePage {
         Element.selectElement(driver, layoutSelecterRecharge, "Recharge Layout button");
     }
 
-    public RechargePage clickOnMobileButton() throws IOException {
+    public void clickOnMobileButton() throws IOException {
         Element.selectElement(driver, icon_mobile, "Mobile button");
-        return new RechargePage(driver);
+//        return new RechargeBillPage(driver);
     }
 
     public RechargePage clickElectricityButton() throws IOException {
@@ -342,10 +346,10 @@ public class HomePage {
         Element.selectElement(driver, icon_more, "More Icon");
     }
 
-    public OlaPage clickOnOlaIcon() throws IOException {
-        Element.selectElement(driver, icon_ola, "Ola button");
-        return new OlaPage(driver);
-    }
+//    public OlaPage clickOnOlaIcon() throws IOException {
+//        Element.selectElement(driver, icon_ola, "Ola button");
+//        return new OlaPage(driver);
+//    }
 
     public void clickOnBottomBarHome() throws IOException {
         Element.selectElement(driver, button_home, "Bottom Bar Home");
@@ -387,9 +391,9 @@ public class HomePage {
         return new MutualFundPage(driver);
     }
 
-    public TransactionHistoryPage clickHistory() throws IOException {
+    public void clickHistory() throws IOException {
         Element.selectElement(driver, history_tab, "History");
-        return new TransactionHistoryPage(driver);
+//        return new TransactionHistoryPage(driver);
     }
 
     public void clickBalanceDropDown() throws IOException {
@@ -404,10 +408,10 @@ public class HomePage {
         Element.selectElement(driver, more_icon_under_more_services, "More Services Icon under More Services");
     }
 
-    public BusPage clickBusIcon() throws IOException {
-        Element.selectElement(driver, icon_bus, "Bus Icon");
-        return new BusPage(driver);
-    }
+//    public BusPage clickBusIcon() throws IOException {
+//        Element.selectElement(driver, icon_bus, "Bus Icon");
+//        return new BusPage(driver);
+//    }
 
     public GiftCardPage clickGiftCardIcon() throws IOException {
         Element.selectElement(driver, icon_gift_card, "Gift Card Icon");
@@ -473,12 +477,12 @@ public class HomePage {
         Element.selectElement(driver, bottom_bar_all_services, "Open All Service Section");
     }
 
-    public DealsPage clickOnButtonDeals() throws IOException {
-        Element.selectElement(driver, button_deals, "Open Deals");
-        return new DealsPage(driver);
-
-
-    }
+//    public DealsPage clickOnButtonDeals() throws IOException {
+//        Element.selectElement(driver, button_deals, "Open Deals");
+//        return new DealsPage(driver);
+//
+//
+//    }
     public void navigateToHome() throws IOException{
         Element.selectElement(driver, bottom_bar_home, " Navigate Back To Home");
     }
@@ -486,6 +490,6 @@ public class HomePage {
     public void closeInvestmentsBottomSheet() throws InterruptedException {
         Element.selectElement(driver, cross_icon_for_recharge_services_overlay, "Close Investment Bottom Sheet.");
     }
-*/
+
     //############################ Old end ################################
 }

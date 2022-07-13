@@ -6,9 +6,11 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
-import Utils.Element;
+import utils.Element;
+import utils.Elements;
 
 import java.io.IOException;
+import java.util.Locale;
 
 public class MbkCommonControlsPage {
 
@@ -16,6 +18,9 @@ public class MbkCommonControlsPage {
 
     @AndroidFindBy(id = "have_a_promo_text")
     private AndroidElement have_promo_code;
+
+    @AndroidFindBy(id = "radio_button_sc")
+    private AndroidElement clickApplySupercash;
 
     @AndroidFindBy(id = "edit_text_mket")
     private AndroidElement text_box_coupon_code;
@@ -29,11 +34,11 @@ public class MbkCommonControlsPage {
     @AndroidFindBy(id = "mkab_icon_1")
     private AndroidElement button_up;
 
-    @AndroidFindBy(id = "base_icon_close")
+    @AndroidFindBy(id = "close_icon")
     private AndroidElement cross_icon;
 
 
-    @AndroidFindBy(id = "base_icon_back")
+    @AndroidFindBy(id = "back_icon")
     private AndroidElement arrow_back;
 
     @AndroidFindBy(id = "btn_have_promo")
@@ -63,6 +68,9 @@ public class MbkCommonControlsPage {
     @AndroidFindBy(id = "view_balance_details")
     private AndroidElement details_text;
 
+    @AndroidFindBy(id = "i_agree")
+    private AndroidElement insurance_check_cta;
+
 
     public MbkCommonControlsPage(AndroidDriver driver) throws IOException {
         this.driver = driver;
@@ -88,14 +96,19 @@ public class MbkCommonControlsPage {
     }
 
     public void applyRechargePromoCode(String promoCode) {
-        Element.selectElement(driver, have_promo_code, "Have a promo code");
-        Element.enterText(driver, text_box_coupon_code, promoCode, "Promo Code");
-        Element.selectElement(driver, button_apply_coupon, "Apply Button");
+        if(promoCode.contains("Apply Supercash")){
+            Element.selectElement(driver, have_promo_code, "Have a promo code");
+            Element.selectElement(driver,clickApplySupercash,"Apply Supercash");
+        }else {
+            Element.selectElement(driver, have_promo_code, "Have a promo code");
+            Element.enterText(driver, text_box_coupon_code, promoCode, "Promo Code");
+            Element.selectElement(driver, button_apply_coupon, "Apply Button");
+        }
     }
 
 
     public void clickOnSuccessPageCross() throws InterruptedException {
-         if (Element.isElementPresent(driver,By.id("base_icon_back"))){
+         if (Element.isElementPresent(driver,By.id("back_icon"))){
              Element.selectElement(driver, arrow_back, "base_icon_back");
          }
 
@@ -168,5 +181,10 @@ public class MbkCommonControlsPage {
     }
 
 
-
+    public void uncheckInsuranceCheckBox() throws InterruptedException {
+        Element.waitForVisibility(driver, insurance_check_cta);
+        if(Elements.isElementEnabled(driver,insurance_check_cta)) {
+            Element.selectElement(driver, insurance_check_cta, "Insurance cta");
+        }
+    }
 }

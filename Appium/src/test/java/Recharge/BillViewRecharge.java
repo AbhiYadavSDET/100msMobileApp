@@ -101,7 +101,7 @@ public class BillViewRecharge extends TestBase {
 //        checkBalanceHelper.checkBalance(frontEndEntity.getAmount());
 
         RechargeHelper rechargeHelper = new RechargeHelper(initiateTest());
-        rechargeHelper.prepaidRecharge("9818484290", "10", "Prepaid", "VI", "10", "Success", "112233", false, "N/A", "");
+        rechargeHelper.prepaidRecharge("9311878235", "1", "Prepaid", "VI", "1", "Payment Successful", "112233", false, "na", "");
     }
 
 /*

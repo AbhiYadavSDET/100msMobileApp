@@ -8,7 +8,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.logging.LogEntry;
 import org.testng.Assert;
 import org.testng.Reporter;
-import Utils.ExtentReport;
+import utils.ExtentReport;
 
 import java.io.File;
 import java.io.FileNotFoundException;
