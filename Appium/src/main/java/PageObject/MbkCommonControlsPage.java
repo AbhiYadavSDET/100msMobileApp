@@ -59,17 +59,31 @@ public class MbkCommonControlsPage {
     @AndroidFindBy(id = "cross_button")
     private AndroidElement cross_button;
 
+    @AndroidFindBy(id = "ic_close")
+    private AndroidElement loan_dialogue_cross;
+
     @AndroidFindBy(id = "com.mobikwik_new.debug:id/close_button")
     private AndroidElement gullak_cross_button;
 
     @AndroidFindBy(id = "navigation_home")
     private AndroidElement navigate_home;
 
-    @AndroidFindBy(id = "view_balance_details")
+    @AndroidFindBy(xpath="//android.widget.Button[text()='See All']")
     private AndroidElement details_text;
 
     @AndroidFindBy(id = "i_agree")
     private AndroidElement insurance_check_cta;
+
+    @AndroidFindBy(id = "ic_close")
+    private AndroidElement floating_widget_cross_button;
+
+    @AndroidFindBy(id = "tv_do_not_want_benefits")
+    private AndroidElement dont_want_security;
+
+    @AndroidFindBy(id = "close_button")
+    private AndroidElement add_money_BottomSheet;
+
+
 
 
     public MbkCommonControlsPage(AndroidDriver driver) throws IOException {
@@ -109,17 +123,10 @@ public class MbkCommonControlsPage {
 
     public void clickOnSuccessPageCross() throws InterruptedException {
          if (Element.isElementPresent(driver,By.id("back_icon"))){
-             Element.selectElement(driver, arrow_back, "base_icon_back");
-         }
-
-         else
-
-            {
-
+             Element.selectElement(driver, arrow_back, "Tap on Cross");
+         } else {
                 Element.selectElement(driver, cross_icon, "base_icon_close");
             }
-
-
     }
 
     public void clickOnSuccessPageBackbutton() {
@@ -158,9 +165,9 @@ public class MbkCommonControlsPage {
 
     }
 
-    public void clickOnGullakCross() {
+    public void clickOnLoanDialogueCross() {
 
-        Element.selectElement(driver, gullak_cross_button, "Cross Icon");
+        Element.selectElement(driver, loan_dialogue_cross, "Close Loan Dialogue");
 
     }
 
@@ -176,8 +183,8 @@ public class MbkCommonControlsPage {
 
     }
 
-    public void clickOnDetails(){
-        Element.selectElement(driver, details_text, "Details button");
+    public void clickOnSeeAll(){
+        Element.selectElement(driver, details_text, "See All Balance");
     }
 
 
@@ -187,4 +194,19 @@ public class MbkCommonControlsPage {
             Element.selectElement(driver, insurance_check_cta, "Insurance cta");
         }
     }
+
+    public void closeFloatingWidget() {
+        Element.selectElement(driver, floating_widget_cross_button, "Closing Floating Widget");
+
+    }
+
+    public void closeSecurityBottomSheet() {
+        Element.selectElement(driver, dont_want_security, "Closing Setup Security Bottom sheet - I dont want to add Security");
+
+    }
+
+    public void closeAddmoneyBottomSheet() {
+        Element.selectElement(driver, add_money_BottomSheet, "Close Add Money Bottom Sheet");
+    }
+
 }

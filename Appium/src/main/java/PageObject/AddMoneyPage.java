@@ -7,6 +7,7 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
+import utils.Element;
 //import utils.Element;
 
 import java.io.IOException;
@@ -28,11 +29,18 @@ public class AddMoneyPage {
     @AndroidFindBy(xpath = "//*[@text = 'Net Banking']")
     public AndroidElement label_netbanking;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'New Debit/Credit Card']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = '+ Add New Debit card']")
+    public AndroidElement label_new_debit_card;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = '+ Add New Credit card']")
+    public AndroidElement label_new_credit_card;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = '+ Add New Debit / Credit card']")
     public AndroidElement label_new_debit_credit_card;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Debit or Credit Card']")
-    public AndroidElement label_debit_credit_card;
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Enter your 16 digit card number']")
+    public AndroidElement label_new_user_debit_credit_card;
+
 
     @AndroidFindBy(id = "mkab_title")
     public AndroidElement label_make_payment;
@@ -44,47 +52,39 @@ public class AddMoneyPage {
     public AndroidElement button_no;
 
     //Enter card details
-    @AndroidFindBy(xpath = "//android.widget.EditText[@text = 'Card Number']")
-    public AndroidElement textbox_card_no_new;
-    //Enter card details
-    @AndroidFindBy(xpath = "//android.widget.EditText[@text = 'Card Number']")
+    @AndroidFindBy(id = "editText_card_number")
     public AndroidElement textbox_card_no;
 
-    @AndroidFindBy(xpath = "//android.widget.EditText[@text = 'Card Expiry']")
-    private AndroidElement textbox_expiry;
+    @AndroidFindBy(id = "editText_saved_card_expiry")
+    private AndroidElement text_box_expiry;
 
-    @AndroidFindBy(xpath = "//android.widget.EditText[@text = 'CVV']")
-    private AndroidElement textbox_cvv;
+    @AndroidFindBy(id = "editText_cvv")
+    private AndroidElement text_box_cvv;
 
     @AndroidFindBy(id = "btn_add_money")
-    public AndroidElement cta_pay_now;
-    @AndroidFindBy(id = "new_card_btn_pay")
     public AndroidElement cta_pay_now_new;
 
-    @AndroidFindBy(xpath = "//android.widget.RadioButton[@content-desc = 'e-Secure Password']")
-    private AndroidElement link_e_secure_password_1;
-
-    @AndroidFindBy(xpath = "//android.widget.RadioButton[@text = 'e-Secure Password']")
-    private AndroidElement link_e_secure_password_2;
-
-    @AndroidFindBy(xpath = "//android.widget.Button")
-    private AndroidElement cta_bankpage_continue;
-
-    @AndroidFindBy(xpath = "//android.widget.EditText")
+    @AndroidFindBy(id = "txtPasswordtoDisplay")
     private AndroidElement textbox_bankpage_password;
 
-    @AndroidFindBy(xpath = "//android.widget.Button")
+    @AndroidFindBy(xpath = "//android.widget.Button[@text= 'Submit']")
     private AndroidElement cta_bankpage_submit;
 
-    @AndroidFindBy(id = "base_title")
-    private AndroidElement label_success_page_status;
+    @AndroidFindBy(id = "status")
+    private AndroidElement label_success_page_status_1;
 
-    @AndroidFindBy(xpath = "//android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.TextView[@index ='0']")
-    private AndroidElement label_success_page_text;
+    @AndroidFindBy(id = "amount")
+    private AndroidElement label_success_page_status_2;
 
-    @AndroidFindBy(xpath = "//android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.TextView[@index ='1']")
+    @AndroidFindBy(id = "name")
+    private AndroidElement label_success_page_status_3;
+
+//    @AndroidFindBy(xpath = "//android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.TextView[@index ='0']")
+//    private AndroidElement label_success_page_text;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@id='right'][1]")
+//    @AndroidFindBy(xpath = "*/android.view.ViewGroup/androidx.appcompat.widget.LinearLayoutCompat/android.view.ViewGroup/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.TextView[2]")
     private AndroidElement label_success_page_wallet_balance;
-
     //Add Money Via UPI
 
     @AndroidFindBy(id = "upi_logo")
@@ -95,6 +95,9 @@ public class AddMoneyPage {
 
     @AndroidFindBy(id = "start_button")
     private AndroidElement restore_upi;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'More payment options']")
+    private AndroidElement more_payment_options;
 
 
     public AddMoneyPage(AndroidDriver driver) throws IOException {
@@ -110,7 +113,7 @@ public class AddMoneyPage {
         Log.info("*****Add Money Page*****");
     }
 
-/*
+
     public void clickOnAmountTextBox() throws InterruptedException {
         Element.selectElement(driver, textbox_amount, "Amount Text Box");
     }
@@ -128,16 +131,27 @@ public class AddMoneyPage {
     }
 
     public void clickOnNewDebitCreditCard() throws InterruptedException {
-        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'New Debit/Credit Card']"))) {
-            Element.selectElement(driver, label_new_debit_credit_card, "Debit/Credit card");
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = '+ Add New Debit card']"))){
+            Element.selectElement(driver, label_new_debit_card, "Select New Debit Card Flow");
         } else {
-            Element.selectElement(driver, label_debit_credit_card, "New Debit or Credit card");
+            Element.selectElement(driver, label_new_debit_credit_card, "Select New Debit / Credit Card Flow");
         }
     }
 
-    public void clickOnDebitCreditCard() throws InterruptedException {
-        Element.selectElement(driver, label_debit_credit_card, "Debit/Credit card");
+    public void clickOnNoCardsDebitCreditCardFlow() throws InterruptedException {
+        Element.selectElement(driver, label_new_user_debit_credit_card, "No Saved Cards user , New Debit/Credit card flow");
     }
+
+    public void enterCardDetails(String cardNo, String expiryMonthYear, String cvv) throws InterruptedException {
+
+        enterCardNo(cardNo);
+        enterExpiry(expiryMonthYear);
+        enterCvv(cvv);
+    }
+
+//    public void clickOnSavedCardsFlow() throws InterruptedException {
+//        Element.selectElement(driver, label_new_user_debit_credit_card, " Saved Cards user , Saved card flow");
+//    }
 
 
     public void clickOnYesButton() throws InterruptedException {
@@ -149,51 +163,42 @@ public class AddMoneyPage {
     }
 
     public void enterCardNo(String cardNo) throws InterruptedException {
-        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'New Debit/Credit Card]"))) {
-            Element.enterText(driver, textbox_card_no_new, cardNo, "New Card No Flow | when no Saved Card");
-        } else {
-            Element.enterText(driver, textbox_card_no, cardNo, "New Card No Flow | When Saved Cards available");
-        }
+
+            Element.enterText(driver, textbox_card_no, cardNo, "New Card No Flow | Enter Card Number");
     }
 
     public void enterExpiry(String expiry) throws InterruptedException {
-        Element.enterText(driver, textbox_expiry, expiry, "Expiry");
+
+        Element.enterText(driver, text_box_expiry, expiry, "New Card No Flow | Enter Card Expiry");
+
     }
 
     public void enterCvv(String cvv) throws InterruptedException {
-        Element.enterText(driver, textbox_cvv, cvv, "CVV");
+
+        Element.enterText(driver, text_box_cvv, cvv, "New Card No Flow | Enter Card CVV");
+
     }
 
     public void clickOnPayNow() throws InterruptedException {
-        if (Element.isElementPresent(driver, By.id("new_card_btn_pay"))) {
+        if (Element.isElementPresent(driver, By.id("btn_add_money"))) {
             Element.selectElement(driver, cta_pay_now_new, "Pay Now Button");
-
-        } else {
-            Element.selectElement(driver, cta_pay_now, "Pay Now Button");
-
         }
     }
 
     public void clickOnBankPageSecurePassword() throws InterruptedException {
-        Element.waitForVisibility(driver, By.xpath("//android.widget.Button[@text= 'Continue']"));
+        Element.waitForVisibility(driver, By.xpath("//android.widget.Button[@text= 'Submit']"));
 //        Thread.sleep(4000);
         Log.info("Bank Page Loaded");
 
-        if (Element.isElementPresent(driver, By.xpath("//android.widget.RadioButton[@text = 'e-Secure Password']"))) {
+        if (Element.isElementPresent(driver, By.id("txtPasswordtoDisplay"))) {
             Log.info("E-secure password option 1");
-            Element.selectElement(driver, link_e_secure_password_2, "Bank Page Secure Password");
-        } else {
-            Log.info("E-secure password option 2");
-            Element.selectElement(driver, link_e_secure_password_1, "Bank Page Secure Password");
+            Element.selectElement(driver, textbox_bankpage_password, "Select Bank Page Secure Pin Field");
+
         }
     }
 
-    public void clickOnBankPageContinueButton() throws InterruptedException {
-        Element.selectElement(driver, cta_bankpage_continue, "Bank Page Continue Button");
-    }
-
-    public void enterBankPagePassword(String password) throws InterruptedException {
-        Element.enterText(driver, textbox_bankpage_password, password, "Bank page Password");
+    public void enterBankPagePassword(String pin) throws InterruptedException {
+        Element.enterText(driver, textbox_bankpage_password, pin, "Enter Txn Pin");
     }
 
     public void clickOnBankPageSubmitButton() throws InterruptedException {
@@ -201,12 +206,17 @@ public class AddMoneyPage {
     }
 
     public String getSuccessPageStatus() throws InterruptedException {
-        return Element.getText(driver, label_success_page_status, "Success page status");
+        String a=Element.getText(driver, label_success_page_status_1, "Success page status Part 1");
+        String b=Element.getText(driver, label_success_page_status_2, "Success page status Part 2");
+        String c=Element.getText(driver, label_success_page_status_3, "Success page status Part 3");
+
+        String output=a+" "+b+" "+c;
+        return output;
     }
 
-    public String getSuccessPageText() throws InterruptedException {
-        return Element.getText(driver, label_success_page_text, "Success page text");
-    }
+//    public String getSuccessPageText() throws InterruptedException {
+//        return Element.getText(driver, label_success_page_text, "Success page text");
+//    }
 
     public String getSuccessPageWalletBalance() throws InterruptedException {
         return Element.getText(driver, label_success_page_wallet_balance, "Success page Wallet Balance");
@@ -224,6 +234,12 @@ public class AddMoneyPage {
     public void chooseUpiBank() throws InterruptedException {
         Element.selectElement(driver, select_upi_bank, "Choose Upi for Add Money");
     }
- */
+
+    public void chooseMoreOptions() throws InterruptedException {
+        Element.selectElement(driver, more_payment_options, "Choose More Payment Options for Add Money in Recommandation Bottom Sheet");
+    }
+
+
+
 
 }

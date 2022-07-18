@@ -47,7 +47,7 @@ public class HomePage {
     @AndroidFindBy(id = "logo")
     private AndroidElement mbk_logo;
 
-    @AndroidFindBy(id = "layout_add_money")
+    @AndroidFindBy(id = "btn_add_money")
     private AndroidElement label_view_balance;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Scan any QR']")
@@ -56,7 +56,7 @@ public class HomePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Wallet to Wallet transfer']")
     private AndroidElement button_transfer_money;
 
-    @AndroidFindBy(xpath = "//android.widget.Button[@text = 'Add Money']")
+    @AndroidFindBy(xpath = "//android.widget.Button[@text='Add Money']")
     private AndroidElement button_add_money;
 
     @AndroidFindBy(id = "magic_btn")
@@ -117,6 +117,9 @@ public class HomePage {
 
     @AndroidFindBy(id = "skip")
     public AndroidElement skip_button;
+
+    @AndroidFindBy(id ="icon_chevron")
+    public AndroidElement open_balance_drawer;
 
 
 
@@ -298,7 +301,7 @@ public class HomePage {
 
     public AddMoneyPage clickOnAddMoneyButton() throws IOException, InterruptedException {
         if(Element.isElementPresent(driver, By.id("icon_drawer"))) {
-            Element.selectElement(driver, label_view_balance, "Click on View Details");
+            Element.selectElement(driver, open_balance_drawer, "Open Balance Drawer");
             Element.selectElement(driver, button_add_money, "Add Money button");
         }
         return new AddMoneyPage(driver);
@@ -489,6 +492,11 @@ public class HomePage {
 
     public void closeInvestmentsBottomSheet() throws InterruptedException {
         Element.selectElement(driver, cross_icon_for_recharge_services_overlay, "Close Investment Bottom Sheet.");
+    }
+
+
+    public void openBalanceDrawer() throws InterruptedException{
+        Element.selectElement(driver, open_balance_drawer, "Open Balance Drawer");
     }
 
     //############################ Old end ################################
