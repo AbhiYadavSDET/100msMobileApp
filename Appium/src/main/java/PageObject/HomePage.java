@@ -82,6 +82,9 @@ public class HomePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Insurance']/following::android.widget.TextView[@text='Insurance']")
     private AndroidElement icon_insurance;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Xtra Earn 12% p.a.']")
+    private AndroidElement icon_p2p_extra;
+
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Recharge & Pay Bills']")
     private AndroidElement layoutSelecterRecharge;
 
@@ -393,6 +396,14 @@ public class HomePage {
         Element.selectElement(driver, icon_mutualFund, "Mutual Funds");
         return new MutualFundPage(driver);
     }
+
+    public P2PExtraPage clickP2PExtra() throws IOException {
+        Element.selectElement(driver, icon_p2p_extra, "P2P Extra under Investment and Insurance");
+        return new P2PExtraPage(driver);
+    }
+
+
+
 
     public void clickHistory() throws IOException {
         Element.selectElement(driver, history_tab, "History");

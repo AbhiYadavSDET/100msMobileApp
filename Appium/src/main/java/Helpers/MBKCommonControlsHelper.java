@@ -88,7 +88,7 @@ public class MBKCommonControlsHelper {
     }
 
     //Use to handle Add money anywhere.
-    public void handleAddMoney(String requiredAmount, String activity, String cardNo, String expiryMonthYear, String cvv, String bankPin) throws InterruptedException, IOException {
+    public void handleAddMoney(String activity ,String requiredAmount, String cardNo, String expiryMonthYear, String cvv, String bankPin) throws InterruptedException, IOException {
 
         //activity values "withinTestCase"=for in sufficient Flows
         //activity values "BeforeTestCase"=for sufficient Flows
@@ -117,14 +117,14 @@ public class MBKCommonControlsHelper {
                 addMoneyPage.clickOnContinueButton();
 
             AddMoneyHelper addmoneyHelper = new AddMoneyHelper(driver);
-            addmoneyHelper.handleAddMoney(amount, cardNo, expiryMonthYear,cvv,bankPin);
+            addmoneyHelper.handleAddMoney(cardNo, expiryMonthYear,cvv,bankPin);
 
             }
 
         }else{
 
             AddMoneyHelper addmoneyHelper = new AddMoneyHelper(driver);
-            addmoneyHelper.handleAddMoney(requiredAmount, cardNo, expiryMonthYear,cvv,bankPin);
+            addmoneyHelper.handleAddMoney(cardNo, expiryMonthYear,cvv,bankPin);
 
         }
 

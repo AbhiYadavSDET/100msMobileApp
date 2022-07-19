@@ -153,7 +153,7 @@ public class AddMoneyHelper {
     }
 
 
-    public void handleAddMoney(String amount, String cardNo, String expiryMonthYear, String cvv, String bankPin) throws InterruptedException, IOException {
+    public void handleAddMoney(String cardNo, String expiryMonthYear, String cvv, String bankPin) throws InterruptedException, IOException {
 
         Element.waitForVisibility(driver, addMoneyPage.label_select_payment_mode);
 
