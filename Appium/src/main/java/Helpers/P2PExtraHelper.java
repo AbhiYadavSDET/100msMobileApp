@@ -44,7 +44,7 @@ public class P2PExtraHelper {
 
 
 
-    public void investMoney(String amount, String cardNo, String expiry, String cvv, String bankPin) throws InterruptedException, IOException {
+    public void investMoney(String amount, String cardNo, String expiry, String cvv, String bankPin,Boolean validateTillOtpPage, String paymentFlow) throws InterruptedException, IOException {
 
         Log.info("START", "P2P Extra-Invest");
         Log.info("----------- Arguments ---------------");
@@ -82,27 +82,41 @@ public class P2PExtraHelper {
         mbReporter.verifyEqualsWithLogging(p2PExtraPage.getTotalInvestmentAmount(),amount,"Verify Amount entered on previous Screen , Passed Correctly",false,true);
         p2PExtraPage.proceedToPay();
 
-        mbkCommonControlsHelper.handleAddMoney("withinTestCase", amount,cardNo,expiry,cvv,bankPin);
-        Thread.sleep(3000);
-        Element.waitForVisibility(driver, By.id("small_lottie"));
+        if(validateTillOtpPage){
 
-        mbReporter.verifyEqualsWithLogging(p2PExtraPage.getSuccessPageTitleText(),"Investment is successful","Validate Success Page",true,true);
+            if (paymentFlow.equalsIgnoreCase("card")){
 
-        Log.info("Description Text : "+p2PExtraPage.getSuccessPageDescriptionText());
+                mbkCommonControlsHelper.handleAddMoneyTillOtpPage(cardNo,expiry,cvv,"card");
 
-        mbReporter.verifyEqualsWithLogging(p2PExtraPage.getSuccessPageInvestedAmount(),amount,"Validate Amount",true,true);
+            }else {
+                mbkCommonControlsHelper.handleAddMoneyTillOtpPage(cardNo,expiry,cvv,"netbanking");
+            }
 
-        p2PExtraPage.pressBackFromSuccessPage();
+        }else {
 
-        int investedAmountAfter=Integer.parseInt(p2PExtraPage.getInvestedAmount());
+            mbkCommonControlsHelper.handleAddMoney("withinTestCase", amount, cardNo, expiry, cvv, bankPin);
+            Thread.sleep(3000);
+            Element.waitForVisibility(driver, By.id("small_lottie"));
 
-        String amountIncreased= String.valueOf(investedAmountAfter-investedAmountBefore);
+            mbReporter.verifyEqualsWithLogging(p2PExtraPage.getSuccessPageTitleText(), "Investment is successful", "Validate Success Page", true, true);
 
-        mbReporter.verifyEqualsWithLogging(amountIncreased,amount,"Verify Amount on Dashboard",true, false);
+            Log.info("Description Text : " + p2PExtraPage.getSuccessPageDescriptionText());
 
-        p2PExtraPage.selectHistoryCta();
+            mbReporter.verifyEqualsWithLogging(p2PExtraPage.getSuccessPageInvestedAmount(), amount, "Validate Amount", true, true);
 
-        Log.info(p2PExtraPage.getLatestTransactionRecord());
+            p2PExtraPage.pressBackFromSuccessPage();
+
+            int investedAmountAfter = Integer.parseInt(p2PExtraPage.getInvestedAmount());
+
+            String amountIncreased = String.valueOf(investedAmountAfter - investedAmountBefore);
+
+            mbReporter.verifyEqualsWithLogging(amountIncreased, amount, "Verify Amount on Dashboard", true, false);
+
+            p2PExtraPage.selectHistoryCta();
+
+            Log.info(p2PExtraPage.getLatestTransactionRecord());
+
+        }
 
         p2PExtraPage.backButton();
 

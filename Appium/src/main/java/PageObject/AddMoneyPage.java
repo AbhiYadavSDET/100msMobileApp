@@ -26,8 +26,11 @@ public class AddMoneyPage {
     @AndroidFindBy(xpath = "//*[@text = 'Select Payment Mode']")
     public AndroidElement label_select_payment_mode;
 
-    @AndroidFindBy(xpath = "//*[@text = 'Net Banking']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Netbanking']")
     public AndroidElement label_netbanking;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'IndusInd Bank']")
+    public AndroidElement label_netbanking_indusind;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = '+ Add New Debit card']")
     public AndroidElement label_new_debit_card;
@@ -99,6 +102,12 @@ public class AddMoneyPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'More payment options']")
     private AndroidElement more_payment_options;
 
+    @AndroidFindBy (id= "mkab_icon_1")
+    private AndroidElement backButton_webview;
+
+    @AndroidFindBy ( id="horizontal_button_2")
+    private AndroidElement cancel_txn_pop_up_yes;
+
 
     public AddMoneyPage(AndroidDriver driver) throws IOException {
         this.driver = driver;
@@ -128,6 +137,10 @@ public class AddMoneyPage {
 
     public void clickOnNetbanking() throws InterruptedException {
         Element.selectElement(driver, label_netbanking, "Netbanking");
+    }
+
+    public void clickOnIndusIndBankInNetBanking() throws InterruptedException {
+        Element.selectElement(driver, label_netbanking_indusind, "Netbanking-indusind");
     }
 
     public void clickOnNewDebitCreditCard() throws InterruptedException {
@@ -238,6 +251,14 @@ public class AddMoneyPage {
     public void chooseMoreOptions() throws InterruptedException {
         Element.selectElement(driver, more_payment_options, "Choose More Payment Options for Add Money in Recommandation Bottom Sheet");
     }
+
+    public void goBackFromWebview() throws InterruptedException {
+        Element.selectElement(driver, backButton_webview, "Go Back from WebView");
+        Thread.sleep(1000);
+        Element.selectElement(driver,cancel_txn_pop_up_yes, " Cancel Txn Yes");
+    }
+
+
 
 
 

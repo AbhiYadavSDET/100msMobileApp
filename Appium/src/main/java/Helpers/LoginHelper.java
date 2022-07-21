@@ -1,6 +1,10 @@
 package Helpers;
 
+import PageObject.HomePage;
 import PageObject.LoginPage;
+import UITestFramework.MBReporter;
+import org.openqa.selenium.By;
+import utils.Element;
 import utils.Elements;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
@@ -8,53 +12,79 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.support.PageFactory;
 
+import java.io.IOException;
+
 public class LoginHelper {
-
-
 
     AndroidDriver<AndroidElement> driver;
     LoginPage loginPage;
-//    String getStartedButton ="Get Started";
-//    String loginSignupButton ="Login/Signup";
-//    String noneOfAboveButton="NONE OF THE ABOVE";
+    Element element;
+    MBKCommonControlsHelper mbkCommonControlsHelper;
+    MBReporter mbReporter;
+    PermissionHelper permissionHelper;
+    HomePage homePage;
 
-    @AndroidFindBy(xpath="//*[@text='Get Started']")
-    private AndroidElement getStartedButton;
 
-    @AndroidFindBy(xpath="//*[@text='Login/Signup']")
-    private AndroidElement loginSignupButton;
-
-    @AndroidFindBy(xpath="//*[@text='NONE OF THE ABOVE']")
-    private AndroidElement noneOfAboveButton;
-
-    public LoginHelper(AndroidDriver<AndroidElement> driver){
+    public LoginHelper(AndroidDriver driver) throws IOException {
         this.driver=driver;
+        element = new Element(driver);
+        mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
+        mbReporter = new MBReporter(driver, "testScreenshotDir");
+        permissionHelper = new PermissionHelper(driver);
+        loginPage= new LoginPage(driver);
+        homePage= new HomePage(driver);
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
-    public void loginViaOtp(String mobileNumber, String expectedName, String expectedEmailId) throws InterruptedException {
+    public void loginViaOtp(String mobileNumber) throws InterruptedException {
 
 
-        Thread.sleep(6000);
-        if(Elements.isElementPresent(driver,getStartedButton)) {
-            loginPage = new LoginPage(driver);
-            Thread.sleep(2000);
+        Thread.sleep(3000);
+        if(element.isElementPresent(driver, By.xpath("//*[@text='Get Started']"))) {
             loginPage.clickGetstarted();
-        }else if(Elements.isElementPresent(driver,loginSignupButton)){
-            loginPage = new LoginPage(driver);
-            Thread.sleep(2000);
+        }else if(element.isElementPresent(driver,By.xpath("//*[@text='Login/Signup']"))){
             loginPage.clickLoginSignup();
         }
-        if(Elements.isElementPresent(driver,noneOfAboveButton)) {
+
+        if(element.isElementPresent(driver,By.xpath("//*[@text='NONE OF THE ABOVE']"))) {
             loginPage.clickNoneOfAbove();
         }
+
+
         loginPage.enterMobileNum(mobileNumber);
         loginPage.clickSendOtpbutton();
-//        Thread.sleep(10000);
+
+        Thread.sleep(6000);
+        element.waitForVisibility(driver, By.xpath("//*[@text='History']"));
+
         loginPage.clickHistoryTab();
         loginPage.checkHistoryText();
         loginPage.clickHomeTab();
 
+
+    }
+
+    public void loginViaOtp(String mobileNumber, String otp) throws InterruptedException {
+
+
+        Thread.sleep(3000);
+        if(element.isElementPresent(driver, By.xpath("//*[@text='Get Started']"))) {
+            loginPage.clickGetstarted();
+        }else if(element.isElementPresent(driver,By.xpath("//*[@text='Login/Signup']"))){
+            loginPage.clickLoginSignup();
+        }
+
+        if(element.isElementPresent(driver,By.xpath("//*[@text='NONE OF THE ABOVE']"))) {
+            loginPage.clickNoneOfAbove();
+        }
+
+        loginPage.enterMobileNum(mobileNumber);
+        loginPage.clickSendOtpbutton();
+
+        loginPage.enterOtp(otp);
+        loginPage.clickSubmitOtpCta();
+
+        element.waitForVisibility(driver, By.xpath("//*[@text='History']"));
 
     }
 

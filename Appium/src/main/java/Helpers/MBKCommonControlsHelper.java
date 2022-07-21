@@ -130,6 +130,14 @@ public class MBKCommonControlsHelper {
 
     }
 
+    public void handleAddMoneyTillOtpPage(String cardNo, String expiryMonthYear, String cvv, String paymentFlow) throws InterruptedException, IOException {
+
+        AddMoneyHelper addmoneyHelper = new AddMoneyHelper(driver);
+        addmoneyHelper.handleAddMoney( cardNo,  expiryMonthYear, cvv, true, paymentFlow);
+
+    }
+
+
         public void handleSecurityPin (String pin) throws InterruptedException {
             String[] pinArr = pin.split("|");
 

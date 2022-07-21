@@ -194,6 +194,72 @@ public class AddMoneyHelper {
 
     }
 
+    public void handleAddMoney(String cardNo, String expiryMonthYear, String cvv,Boolean validateTillOtpPage, String paymentFlow) throws InterruptedException, IOException {
+
+        Element.waitForVisibility(driver, addMoneyPage.label_select_payment_mode);
+
+        if(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Recommended Methods']"))) {
+            addMoneyPage.chooseMoreOptions();
+        }
+
+        Element.waitForVisibility(driver, By.id("next_icon"));
+
+        if(paymentFlow.equalsIgnoreCase("card")) {
+
+            if (Element.isElementPresent(driver, By.id("bank_name"))) {
+                addMoneyPage.clickOnNewDebitCreditCard();
+            } else {
+                addMoneyPage.clickOnNoCardsDebitCreditCardFlow();
+            }
+
+            addMoneyPage.enterCardDetails(cardNo, expiryMonthYear, cvv);
+
+            addMoneyPage.clickOnPayNow();
+
+            permissionHelper.permissionAllow();
+
+            Thread.sleep(2000);
+            Element.waitForVisibility(driver, By.xpath("//*[@text ='Confirm & Pay']"));
+            Boolean ispresent=Element.isElementPresent(driver, By.id("indusind_otp"));
+            mbReporter.verifyTrueWithLogging(ispresent,"Is Indusind Webview open", false,true);
+            addMoneyPage.goBackFromWebview();
+
+        }else if(paymentFlow.equalsIgnoreCase("netbanking")){
+
+            addMoneyPage.clickOnNetbanking();
+            //Select Bank
+            Element.waitForVisibility(driver,By.xpath("//android.widget.TextView[@text = 'Select Your Bank']"));
+
+            for (int i=0;i<6;i++) {
+
+                if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'IndusInd Bank']"))) {
+                    addMoneyPage.clickOnIndusIndBankInNetBanking();
+                    break;
+
+                }else {
+                    Screen.swipeUpMore(driver);
+                    i++;
+                }
+            }
+
+            Element.waitForVisibility(driver,By.xpath("//*[@text = 'Indusind Bank']"));
+
+            Boolean ispresent=Element.isElementPresent(driver, By.xpath("//*[@text= 'Welcome To The Online Payment Page Of IndusInd Bank']"));
+            mbReporter.verifyTrueWithLogging(ispresent,"Is Indusind Webview open", false,true);
+            addMoneyPage.goBackFromWebview();
+
+
+        }else{
+
+            Log.info("Error", "No such Option Available");
+
+        }
+
+        Log.info("END", "Add Money");
+
+    }
+
+
 }
 
 
