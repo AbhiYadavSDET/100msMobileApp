@@ -62,12 +62,12 @@ public class PerformanceApiResponse {
             shortWait(driver, "//div[text()='Performance']");
             driver.findElement(By.xpath("//div[text()='Performance']")).click();
         }
-        try{
-            longWait(driver,"//span[text()=' Get started ']");
-            driver.findElement(By.xpath("//span[text()=' Get started ']")).click();
-        }catch (Exception e){
-
-        }
+//        try{
+//            longWait(driver,"//span[text()=' Get started ']");
+//            driver.findElement(By.xpath("//span[text()=' Get started ']")).click();
+//        }catch (Exception e){
+//
+//        }
         shortWait(driver, "//div[@class='selected-resource-wrapper']");
         driver.findElement(By.xpath("//div[@class='selected-resource-wrapper']")).click();
         Thread.sleep(2000);
