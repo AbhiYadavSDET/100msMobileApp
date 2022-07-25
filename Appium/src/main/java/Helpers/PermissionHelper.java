@@ -25,7 +25,7 @@ public class PermissionHelper {
         Thread.sleep(3000);
 
         try{
-        if (Element.isElementPresent(driver, By.id("com.android.packageinstaller:id/dialog_container"))) {
+        if (Element.isElementPresent(driver, By.id("com.android.packageinstaller:id/grant_dialog"))) {
             return true;
         } else {
             Log.info("Permission Popup is not present");
@@ -86,11 +86,13 @@ public class PermissionHelper {
         {
             if(isAllowOnlyOnceOptionAvailable()){
                 permissionPage.clickOnPermissionAlwaysAllowV3();
-            }
 
-            if(permissionPopOpTextV2().contains("location"))
-            {permissionPage.clickOnPermissionAlwaysAllowV2();}
-                else {permissionPage.clickOnPermissionAllowV2();}
+            } else if(permissionPopOpTextV2().contains("location"))
+            {
+                permissionPage.clickOnPermissionAlwaysAllowV2();
+            } else {
+                permissionPage.clickOnPermissionAllowV2();
+            }
         }
     }
 

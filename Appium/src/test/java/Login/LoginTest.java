@@ -12,7 +12,7 @@ public class LoginTest extends TestBase {
     public void Test_Login_Flow() throws InterruptedException, IOException {
         // Start the test
         LoginHelper loginHelp = new LoginHelper(initiateTest());
-        loginHelp.loginViaOtp("9818484290" ,"Udit Gupta", "uditgupta5j@gmail.com");
+        loginHelp.loginViaOtp("9818484290" );
 
     }
 
