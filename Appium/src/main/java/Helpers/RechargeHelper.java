@@ -2,10 +2,7 @@ package Helpers;
 
 import PageObject.*;
 import UITestFramework.MBReporter;
-import utils.Config;
-import utils.Elements;
-import utils.Element;
-import utils.Screen;
+import utils.*;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -44,6 +41,9 @@ public class RechargeHelper {
 
     @AndroidFindBy(id = "tx_add_money")
     private AndroidElement checkViewDetails;
+
+    @AndroidFindBy(id="com.android.permissioncontroller:id/permission_allow_button")
+    private AndroidElement contactPermission;
 
     // Permission elements
 
@@ -111,7 +111,7 @@ public class RechargeHelper {
         String[] dataBefore,testArray;
         double balanceBefore,balanceAfter ;
         // Check for logged in user
-        if(Elements.isElementPresent(driver,checkViewDetails)){
+        if(Elements.isElementPresent(driver,getBalance)){
             //Getting balance before transaction
             test= Elements.getText(driver,getBalance);
             dataBefore= test.split("₹");
@@ -134,6 +134,11 @@ public class RechargeHelper {
                     rechargeBillPage.clickContinue("Recharge");
                 } else {
                     rechargeBillPage.clickMobileButton();
+                    //Check contact permission
+                    Elements.waitForElementToVisibleOnPage(driver, contactPermission, 2);
+                    if(Elements.isElementPresent(driver,contactPermission)){
+                        rechargeBillPage.giveContactPermission();
+                    }
                     rechargeBillPage.enterMobileNumber(number);
                     rechargeBillPage.selectNumber();
                 }
@@ -199,19 +204,119 @@ public class RechargeHelper {
                         Config.info("Balance deduction is correct");
                     } else {
                         Config.info("Balance deduction is incorrect");
-                        Assert.assertTrue(false);
+                        Assert.assertTrue(false,"Wrong balance deduction");
                     }
 
                 }
             }else{
                 Config.logComment("Insufficient balance");
-                Assert.assertTrue(false);
+                Assert.assertTrue(false,"Don't have sufficient balance");
             }
 
         }else{
             Config.logComment("Please Login/Signup and than continue");
-            Assert.assertTrue(false);
+            Assert.assertTrue(false,"App is in logged out state");
         }
+
+    }
+    public void viewWater() throws InterruptedException {
+
+        homePage.clickAllServicesTab("Water");
+        rechargeBillPage.clickMoreButtonWater();
+        rechargeBillPage.clickWaterButton();
+//        rechargeBillPage.enterOperatorGas(operatorName);
+//        rechargeBillPage.selectOperatorGas();
+//        rechargeBillPage.enterBPNumberGas(BP_Number);
+//        rechargeBillPage.clickContinue("Gas");
+//        rechargeBillPage.checkResultScreenGas(operatorName);
+
+    }
+
+    public void viewBills(String number,String operatorType, String operatorName, String circle) throws InterruptedException, IOException {
+        Thread.sleep(8000);
+        String test;
+        String[] dataBefore,testArray;
+        double balanceBefore,balanceAfter ;
+        // Check for logged in user
+        if(Elements.isElementPresent(driver,getBalance)){
+
+                homePage.clickHomeTab();
+                homePage.clickRechargePayBill();
+                //Check for Swipe left blue popup
+                Elements.waitForElementToVisibleOnPage(driver, checkSwipLeftPopUp, 2);
+                if (Elements.isElementPresent(driver, checkSwipLeftPopUp)) {
+                    rechargeBillPage.clickSwipPopUp();
+                }
+                //Check for new user or old user
+                if (Elements.isElementPresent(driver, enterNumber)) {
+                    rechargeBillPage.enterMobileNumber(number);
+                    rechargeBillPage.clickContinue("Recharge");
+                } else {
+                    rechargeBillPage.clickMobileButton();
+                    //Check contact permission
+                    Elements.waitForElementToVisibleOnPage(driver, contactPermission, 2);
+                    if(Elements.isElementPresent(driver,contactPermission)){
+                        rechargeBillPage.giveContactPermission();
+                    }
+                    rechargeBillPage.enterMobileNumber(number);
+                    rechargeBillPage.selectNumber();
+                }
+                Elements.waitForElementToVisibleOnPageUsingText(driver, operatorName, 2);
+                //check for asking operator and circle
+                if (Elements.isElementPresent(driver, operatorName)) {
+                    rechargeBillPage.selectOperator(operatorName);
+                    rechargeBillPage.selectCircle(circle);
+                }
+                //Check for Prepaid and Postpaid
+                if (rechargeBillPage.checkOperatorType(operatorType)) {
+                    rechargeBillPage.changeType();
+                    rechargeBillPage.clickYes();
+                }
+                //Check for amount screen or no dues screen
+                rechargeBillPage.checkAmountScreen();
+                rechargeBillPage.backToHomeScreen();
+
+                //Checking for Electricity
+            Config.logComment("*************************************Start for Electricity Bill*************************************");
+            for(int i=1;i<=2;i++) {
+                String[] data = Excel.readData(i,"Electricity");
+//            String[] excelData = data.split(" split ");
+//                data[0]=BP number , data[1]=Operator name
+                homePage.clickAllServicesTab("Electricity");
+                rechargeBillPage.clickElectricityButtonElectricity();
+                rechargeBillPage.enterBoardElectricity(data[1]);
+                rechargeBillPage.selectBoardElectricity();
+                rechargeBillPage.enterNumberElectricity(data[0]);
+                rechargeBillPage.clickContinue("Electricity");
+                rechargeBillPage.checkAmountScreen();
+                rechargeBillPage.backToHomeScreen();
+            }
+            Config.logComment("*************************************End for Electricity Bill*************************************");
+
+            //Checking for Gas
+            Config.logComment("*************************************Start for Gas Bill*************************************");
+            for(int i=1;i<=2;i++) {
+                String[] data = Excel.readData(i,"Gas");
+//            String[] excelData = data.split(" split ");
+//                data[0]=BP number , data[1]=Operator name
+                homePage.clickAllServicesTab("Gas");
+                rechargeBillPage.clickMoreButtonGas();
+                rechargeBillPage.clickPipedGasButtonGas();
+                rechargeBillPage.enterOperatorGas(data[1]);
+                rechargeBillPage.selectOperatorGas();
+                rechargeBillPage.enterBPNumberGas(data[0]);
+                rechargeBillPage.clickContinue("Gas");
+                rechargeBillPage.checkResultScreenGas(operatorName);
+                rechargeBillPage.backToHomeScreen();
+            }
+            Config.logComment("*************************************End for Gas Bill*************************************");
+
+
+        }else{
+            Config.logComment("Please Login/Signup and than continue");
+            Assert.assertTrue(false,"App is in logged out state");
+        }
+
 
     }
 
@@ -349,7 +454,7 @@ public class RechargeHelper {
 
 
         Thread.sleep(8000);
-        if(Elements.isElementPresent(driver,checkViewDetails)){
+        if(Elements.isElementPresent(driver,getBalance)){
             homePage.clickAllServicesTab("Electricity");
             rechargeBillPage.clickElectricityButtonElectricity();
             rechargeBillPage.enterBoardElectricity(operatorName);

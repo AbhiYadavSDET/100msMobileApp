@@ -1,5 +1,8 @@
 package PageObject;
 
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.touch.TouchActions;
 import utils.Config;
 import utils.Elements;
 import utils.Element;
@@ -12,6 +15,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import utils.Screen;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -57,14 +61,20 @@ public class RechargePage {
     @AndroidFindBy(xpath="//*[@text='Mobile']")
     private AndroidElement mobileButton;
 
-    @AndroidFindBy(xpath="//*[@class='android.widget.EditText']")
+    @AndroidFindBy(id = "et_search")
     private AndroidElement enterNumber;
+
+    @AndroidFindBy(id = "edit_text")
+    private AndroidElement enterAmount;
 
     @AndroidFindBy(xpath="//*[@text='Bill Payment for']")
     private AndroidElement billPaymentForText;
 
     @AndroidFindBy(xpath="//*[@text='Recharge for']")
     private AndroidElement rechargeForText;
+
+    @AndroidFindBy(id = "error_text")
+    private AndroidElement errorText;
 
     @AndroidFindBy(xpath="//androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[1]")
     private AndroidElement selectMobile;
@@ -120,11 +130,14 @@ public class RechargePage {
     @AndroidFindBy(xpath="//*[contains(@text,'Pending')]")
     private AndroidElement pending;
 
-    @AndroidFindBy(xpath="//*[@text='View Details']")
-    private AndroidElement checkViewDetails;
+    @AndroidFindBy(id = "tx_balance")
+    private AndroidElement viewBalance;
 
     @AndroidFindBy(xpath="//*[@text='More']")
     private AndroidElement moreButton;
+
+    @AndroidFindBy(xpath="//*[@text='Water']")
+    private AndroidElement waterButton;
 
     // Gas elements
     @AndroidFindBy(xpath="//*[@text='Piped Gas']")
@@ -139,7 +152,7 @@ public class RechargePage {
     @AndroidFindBy(xpath="//*[@text='BP Number']")
     private AndroidElement bpNumberGas;
 
-    @AndroidFindBy(xpath="//*[@text='No Dues')]")
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='No Dues')]")
     private AndroidElement noDuesText;
 
     @AndroidFindBy(xpath="//*[@text='Unable to get bill details']")
@@ -154,6 +167,9 @@ public class RechargePage {
 
     @AndroidFindBy(xpath="//*[@class='android.widget.ImageView']")
     private AndroidElement selectBoard;
+
+    @AndroidFindBy(id="com.android.permissioncontroller:id/permission_allow_button")
+    private AndroidElement contactPermission;
 
     AndroidDriver driver;
 
@@ -404,10 +420,8 @@ public class RechargePage {
     public boolean checkResultScreen(String operator) throws InterruptedException {
         Elements.waitForElementToVisibleOnPageUsingText(driver,operator,10);
         if(Elements.isElementPresent(driver,billPaymentForText)){
-            Config.logComment("Bill is present for current bill");
             return true;
         }else if(Elements.isElementPresent(driver,rechargeForText)){
-            Config.logComment("Bill is present for current bill");
             return true;
         }else{
             Config.logComment("Currently bill is not present or unable to fetch bill");
@@ -415,12 +429,40 @@ public class RechargePage {
         }
     }
 
+    public void checkAmountScreen() throws InterruptedException {
+        if(Elements.isElementPresent(driver,billPaymentForText)){
+
+        }else if(Elements.isElementPresent(driver,rechargeForText)){
+
+        }else if(Elements.isElementPresent(driver,unableToFetchBill)){
+            Assert.assertTrue(false,"Unable to fetch bill");
+        }else if(Elements.isElementPresent(driver,errorText)){
+            if(Elements.getText(driver,errorText).contains("Incorrect / invalid customer account")){
+                Assert.assertTrue(false,"Incorrect / invalid customer account");
+            }else if(Elements.getText(driver,errorText).contains("No dues")){
+                Assert.assertTrue(true,"No dues");
+            }else{
+                Assert.assertTrue(false,"Unexpected error");
+            }
+        }else{
+            Assert.assertTrue(false,"Unexpected error");
+        }
+    }
+
+    public void backToHomeScreen() throws InterruptedException {
+        while(!Elements.isElementPresent(driver,viewBalance)) {
+            Elements.back(driver, "Back press");
+        }
+
+        Config.logComment("On home screen");
+    }
+
 //    public void clickAllServicesTab() {
 //        Elements.selectElement(driver,allService,"Click All Services tab");
 //    }
 
     public void selectOperator(String operator) {
-        Elements.selectElement(driver,operator,"Click gas operator");
+        Elements.selectElement(driver,operator,"Click operator");
     }
 
     public void clickMobileButton() {
@@ -440,10 +482,15 @@ public class RechargePage {
         Elements.selectElement(driver,circle,"Click your sim circle");
     }
 
-    public void enterAmount(String amount) {
-        Elements.waitForElementToVisibleOnPage(driver,enterNumber,5);
-        for(int i=0;i<amount.length();i++) {
-            Elements.selectElement(driver, amount.substring(i,i+1), "Enter amount");
+    public void enterAmount(String amount) throws InterruptedException {
+        Elements.waitForElementToVisibleOnPage(driver,enterAmount,5);
+        System.out.println(Elements.getText(driver,enterAmount));
+        if(Float.parseFloat(Elements.getText(driver,enterAmount))>0){
+            //If user already have a bill
+        }else {
+            for (int i = 0; i < amount.length(); i++) {
+                Elements.selectElement(driver, amount.substring(i, i + 1), "Enter amount");
+            }
         }
     }
 
@@ -592,7 +639,7 @@ public class RechargePage {
 
         Elements.waitForElementToVisibleOnPage(driver,success,7);
         if(Elements.isElementPresent(driver,success) || Elements.isElementPresent(driver,pending)){
-            while(!Elements.isElementPresent(driver,checkViewDetails)) {
+            while(!Elements.isElementPresent(driver,viewBalance)) {
                 Elements.back(driver, "Back button");
             }
 
@@ -609,13 +656,22 @@ public class RechargePage {
             Config.logComment("Unable to get bill details due to some issue");
         }else if(Elements.isElementPresent(driver,billPaymentForText)){
             Config.logComment("Bill is present for current bill");
-        }else if(Elements.isElementPresent(driver,noDuesText)){
-            Config.logComment("No dues for current bill");
+        }else if(Elements.isElementPresent(driver,errorText)){
+            if(Elements.getText(driver,errorText).contains("No Dues")){
+                System.out.println("No dues for current bill");
+            }else{
+                Assert.assertTrue(false,"Unexpected error");
+            }
+        }else{
+            Assert.assertTrue(false,"Unexpected error");
+            Config.logComment("Unexpected error");
         }
     }
 
-    public void clickMoreButtonGas() {
-        Elements.selectElement(driver,moreButton,"Click more button");
+    public void clickMoreButtonGas() throws InterruptedException {
+        if(Elements.isElementPresent(driver,moreButton)) {
+            Elements.selectElement(driver, moreButton, "Click more button");
+        }
     }
 
     public void clickPipedGasButtonGas() {
@@ -643,7 +699,10 @@ public class RechargePage {
         }else if(Elements.isElementPresent(driver,billPaymentForText)){
             Config.logComment("Bill is present for current bill");
         }else if(Elements.isElementPresent(driver,unableToFetchBill)){
+            Assert.assertTrue(false,"Unable to fetch bill");
             Config.logComment("Unable to get bill details due to some issue");
+        }else{
+            Assert.assertTrue(false,"Unexpected error");
         }
     }
 
@@ -655,14 +714,40 @@ public class RechargePage {
         Elements.enterToElement(driver, enterBoard, operatorName,"Enter board name");
     }
 
+    public void giveContactPermission() {
+        Elements.selectElement(driver,contactPermission,"Contacts permisison given");
+    }
+
     public void selectBoardElectricity() {
         Elements.selectElement(driver,selectBoard,"Click electricity board");
     }
 
     public void enterNumberElectricity(String BP_Number) {
-        Elements.waitForElementToVisibleOnPage(driver,enterNumber,5);
-        Elements.enterToElement(driver, enterNumber, BP_Number,"Enter Number");
+        Elements.waitForElementToVisibleOnPage(driver,enterAmount,5);
+        Elements.enterToElement(driver, enterAmount, BP_Number,"Enter Number");
     }
+
+    public void clickMoreButtonWater() throws InterruptedException {
+        if(Elements.isElementPresent(driver,moreButton)) {
+            Elements.selectElement(driver, moreButton, "Click more button");
+        }
+    }
+
+    public void clickWaterButton() throws InterruptedException {
+        Boolean condition=true;
+        TouchActions a= new TouchActions(driver);
+        while (condition) {
+            Screen.swipeUpMore(driver);
+            Thread.sleep(2000);
+            if(Elements.isElementPresent(driver,waterButton)){
+                Elements.selectElement(driver,waterButton,"Click water button");
+                condition =false;
+            }
+
+        }
+
+    }
+
     //############################ Udit end ################################
 
     //############################ Old start ################################
