@@ -47,7 +47,7 @@ public class HomePage {
     @AndroidFindBy(id = "logo")
     private AndroidElement mbk_logo;
 
-    @AndroidFindBy(id = "layout_add_money")
+    @AndroidFindBy(id = "btn_add_money")
     private AndroidElement label_view_balance;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Scan any QR']")
@@ -56,7 +56,7 @@ public class HomePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Wallet to Wallet transfer']")
     private AndroidElement button_transfer_money;
 
-    @AndroidFindBy(xpath = "//android.widget.Button[@text = 'Add Money']")
+    @AndroidFindBy(xpath = "//android.widget.Button[@text='Add Money']")
     private AndroidElement button_add_money;
 
     @AndroidFindBy(id = "magic_btn")
@@ -81,6 +81,9 @@ public class HomePage {
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Insurance']/following::android.widget.TextView[@text='Insurance']")
     private AndroidElement icon_insurance;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Xtra Earn 12% p.a.']")
+    private AndroidElement icon_p2p_extra;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Recharge & Pay Bills']")
     private AndroidElement layoutSelecterRecharge;
@@ -117,6 +120,9 @@ public class HomePage {
 
     @AndroidFindBy(id = "skip")
     public AndroidElement skip_button;
+
+    @AndroidFindBy(id ="icon_chevron")
+    public AndroidElement open_balance_drawer;
 
 
 
@@ -298,7 +304,7 @@ public class HomePage {
 
     public AddMoneyPage clickOnAddMoneyButton() throws IOException, InterruptedException {
         if(Element.isElementPresent(driver, By.id("icon_drawer"))) {
-            Element.selectElement(driver, label_view_balance, "Click on View Details");
+            Element.selectElement(driver, open_balance_drawer, "Open Balance Drawer");
             Element.selectElement(driver, button_add_money, "Add Money button");
         }
         return new AddMoneyPage(driver);
@@ -390,6 +396,14 @@ public class HomePage {
         Element.selectElement(driver, icon_mutualFund, "Mutual Funds");
         return new MutualFundPage(driver);
     }
+
+    public P2PExtraPage clickP2PExtra() throws IOException {
+        Element.selectElement(driver, icon_p2p_extra, "P2P Extra under Investment and Insurance");
+        return new P2PExtraPage(driver);
+    }
+
+
+
 
     public void clickHistory() throws IOException {
         Element.selectElement(driver, history_tab, "History");
@@ -489,6 +503,11 @@ public class HomePage {
 
     public void closeInvestmentsBottomSheet() throws InterruptedException {
         Element.selectElement(driver, cross_icon_for_recharge_services_overlay, "Close Investment Bottom Sheet.");
+    }
+
+
+    public void openBalanceDrawer() throws InterruptedException{
+        Element.selectElement(driver, open_balance_drawer, "Open Balance Drawer");
     }
 
     //############################ Old end ################################
