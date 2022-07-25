@@ -75,6 +75,7 @@ src/UITestFramework/ExtentReport/extent.html
 .idea/jsLibraryMappings.xml
 .reports/
 .target/
+target/
 *.class
 ../.idea/
 
