@@ -533,7 +533,7 @@ public class CheckCrashIOS {
 
     public static boolean rightClick(WebDriver driver, Actions a, WebElement web){
         try {
-            a.moveToElement(web,550,0).keyDown(Keys.COMMAND).click().perform();
+            a.moveToElement(web,750,0).keyDown(Keys.COMMAND).click().perform();
             a.moveToElement(driver.findElement(By.xpath("//i[text()='gmp_nav20_performance']"))).perform();
             return true;
         }catch (Exception e){
