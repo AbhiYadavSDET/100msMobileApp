@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Crashlytics Flow">
+
+    <test verbose="2" preserve-order="true" name="Crashlytics flow Test">
+        <groups>
+            <run>
+                <include name="CrashlyticsIssues"/>
+            </run>
+        </groups>
+
+
+        <classes>
+            <class name="CheckCrash"/>
+<!--            <class name="Utils.ExtentReport"/>-->
+        </classes>
+    </test>
+
+</suite>
+

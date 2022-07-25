@@ -18,7 +18,8 @@ public class BillViewRecharge extends TestBase {
 //            String data = Excel.readData(i, "Recharge");
 //            String[] excelData = data.split(" split ");
             RechargeHelper rechargeHelper = new RechargeHelper(initiateTest());
-            rechargeHelper.rechargeBill("9311878235","Postpaid", "Jio", "Delhi NCR", "1","","112233");
+//            rechargeHelper.viewBills("9311878235","Postpaid", "Jio", "Delhi NCR");
+            rechargeHelper.viewWater();
 //        }
     }
 

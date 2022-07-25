@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Performance api response Flow">
+
+    <test verbose="2" preserve-order="true" name="Performance api response time flow Test">
+        <groups>
+            <run>
+                <include name="performanceAPIResp"/>
+            </run>
+        </groups>
+
+
+        <classes>
+            <class name="PerformanceApiResponse"/>
+<!--            <class name="Utils.ExtentReport"/>-->
+        </classes>
+    </test>
+
+</suite>
+
