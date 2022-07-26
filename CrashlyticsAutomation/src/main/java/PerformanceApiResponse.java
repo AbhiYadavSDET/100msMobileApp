@@ -108,18 +108,14 @@ public class PerformanceApiResponse {
                 shortWait(driver, "//mat-cell[@class='mat-cell cdk-cell metric-delta-cell cdk-column-RESPONSE_TIME_DELTA mat-column-RESPONSE_TIME_DELTA ng-star-inserted']");
                 changePer = driver.findElement(By.xpath("(//mat-cell[@class='mat-cell cdk-cell metric-delta-cell cdk-column-RESPONSE_TIME_DELTA mat-column-RESPONSE_TIME_DELTA ng-star-inserted'])[" + i + "]")).getText();
                 percent = Integer.parseInt(changePer.replace("%", "").replace(",", "").replace("+", "").replace("-", "").replace(">",""));
-//                System.out.println(percent);
-//                Thread.sleep(1000);
-                System.out.println("1");
+
                 shortWait(driver,"//a[@class='mat-mdc-tooltip-trigger fire-router-link-host data-text-wrapper']");
                 name=driver.findElement(By.xpath("(//a[@class='mat-mdc-tooltip-trigger fire-router-link-host data-text-wrapper'])["+i+"]")).getText();
 //                Thread.sleep(1000);
-                System.out.println("2");
 //                System.out.println(driver.findElement(By.xpath("(//a[@class='mat-mdc-tooltip-trigger fire-router-link-host data-text-wrapper'])["+i+"]")).getText());
                 shortWait(driver,"//mat-cell[@class='mat-cell cdk-cell metric-value-cell cdk-column-SUCCESS_RATE_LATEST_VALUE mat-column-SUCCESS_RATE_LATEST_VALUE ng-star-inserted']");
                 success=driver.findElement(By.xpath("(//mat-cell[@class='mat-cell cdk-cell metric-value-cell cdk-column-SUCCESS_RATE_LATEST_VALUE mat-column-SUCCESS_RATE_LATEST_VALUE ng-star-inserted'])["+i+"]")).getText();
 //                Thread.sleep(2000);
-                System.out.println("3");
                 shortWait(driver,"//div[@class='resource-subtitle ng-star-inserted']");
                 sample=driver.findElement(By.xpath("(//div[@class='resource-subtitle ng-star-inserted'])["+i+"]")).getText();
                 samplesCheck=Float.parseFloat(sample.replace(" samples","").replace("K","").replace("M",""));
@@ -154,7 +150,7 @@ public class PerformanceApiResponse {
         for(i=0;i<changePercent.size();i++){
             System.out.println(responseTime.get(i)+"   "+changePercent.get(i)+"   "+apiName.get(i)+"   "+apiSuccess.get(i)+"   "+apiSample.get(i));
         }
-        if(changePercent.size()>0){
+        if(changePercent.size()>=0){
             sendMail=true;
             if(changePercent.size()>5){
                 changeSub=false;
@@ -232,10 +228,14 @@ public class PerformanceApiResponse {
                 // Add the subject link
                 Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 //            System.out.println(timestamp);
-                if(changeSub) {
-                    message.setSubject("Api Performance | Report | " + timestamp);
+                if(changePercent.size()>0) {
+                    if (changeSub) {
+                        message.setSubject("Api Performance | Report | " + timestamp);
+                    } else {
+                        message.setSubject("ALERT!!!!!!!!!!!!!!!!!!MAJOR CRASH!!!!!!!!!!!!!   Api Performance | Report | " + timestamp);
+                    }
                 }else{
-                    message.setSubject("ALERT!!!!!!!!!!!!!!!!!!MAJOR CRASH!!!!!!!!!!!!!   Api Performance | Report | " + timestamp);
+                    message.setSubject(":::::::::::::::::::::::Everything Looks good:::::::::::::::::::::: Api Performance | Report | " + timestamp);
                 }
 
                 message.setContent(  test , "text/html");
