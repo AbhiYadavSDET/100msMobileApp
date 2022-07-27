@@ -226,16 +226,16 @@ public class PerformanceApiResponse {
                 message.setRecipients(Message.RecipientType.CC, InternetAddress.parse("MBK-Android@mobikwik.com"));
 
                 // Add the subject link
-                Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+//                Timestamp timestamp = new Timestamp(System.currentTimeMillis()); //with date and time
 //            System.out.println(timestamp);
                 if(changePercent.size()>0) {
                     if (changeSub) {
-                        message.setSubject("Api Performance | Report | " + timestamp);
+                        message.setSubject("Api Performance | Report | " + java.time.LocalDate.now()); // with only date
                     } else {
-                        message.setSubject("ALERT!!!!!!!!!!!!!!!!!!MAJOR CRASH!!!!!!!!!!!!!   Api Performance | Report | " + timestamp);
+                        message.setSubject("!!!!!!!!!!!!!!!!!!!!ALERT!!!!!!!!!!!!!!!!!!!!!!!   Api Performance | Report | " + java.time.LocalDate.now());
                     }
                 }else{
-                    message.setSubject(":::::::::::::::::::::::Everything Looks good:::::::::::::::::::::: Api Performance | Report | " + timestamp);
+                    message.setSubject(":::::::::::::::::::::::Everything Looks good:::::::::::::::::::::: Api Performance | Report | " + java.time.LocalDate.now());
                 }
 
                 message.setContent(  test , "text/html");
