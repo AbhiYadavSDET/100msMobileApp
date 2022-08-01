@@ -35,7 +35,7 @@ public class CheckCrash {
     public static void Crashlytics() throws InterruptedException, IOException {
         String username = "mbkmobile.team@mobikwik.com";
         String pass = "Mobikwik@123456";
-        String version = "22.39.5";
+        String version = "22.40.0";
         String date = "60 m";
         String crashFreeUsers;
         int MAX_RETRIES = 2;
@@ -164,36 +164,37 @@ public class CheckCrash {
 
                             js.executeScript("window.scrollBy(0,150)", "");
                             Thread.sleep(2000);
-                            condition = rightClick(driver, a, webEleList.get(i));
+                            condition = rightClick_little_right(driver, a, webEleList.get(i));
 
                         }
                         Thread.sleep(1000);
                         j = i + 1;
 
                         crash = driver.findElement(By.xpath("(//*[text()=' Fresh issue '])[" + j
-                                + "]//parent::fire-chip/parent::div//parent::c9s-issue-tags/parent::a/parent::mat-cell/following-sibling::mat-cell[3]//a")).getText();
+                                + "]//parent::fire-chip/parent::div/parent::c9s-issue-tags/parent::div/parent::c9s-issue-caption-metadata-row/parent::div/parent::issue-caption-table-cell/parent::a/parent::mat-cell/following-sibling::mat-cell[3]/a")).getText();
 //                System.out.println(crash+"crash");
                         events.add(crash);
 
                         versionData = driver.findElement(By.xpath("(//*[text()=' Fresh issue '])[" + j
-                                + "]//parent::fire-chip/parent::div//parent::c9s-issue-tags/parent::a/parent::mat-cell/following-sibling::mat-cell[2]/a/span")).getText();
+                                + "]//parent::fire-chip/parent::div/parent::c9s-issue-tags/parent::div/parent::c9s-issue-caption-metadata-row/parent::div/parent::issue-caption-table-cell/parent::a/parent::mat-cell/following-sibling::mat-cell[2]/a")).getText();
 //                System.out.println(versionData+"version");
                         versions.add(versionData);
 
                         usersData = driver.findElement(By.xpath("(//*[text()=' Fresh issue '])[" + j
-                                + "]//parent::fire-chip/parent::div//parent::c9s-issue-tags/parent::a/parent::mat-cell/following-sibling::mat-cell[4]/a")).getText();
+                                + "]//parent::fire-chip/parent::div/parent::c9s-issue-tags/parent::div/parent::c9s-issue-caption-metadata-row/parent::div/parent::issue-caption-table-cell/parent::a/parent::mat-cell/following-sibling::mat-cell[3]/a")).getText();
 //                System.out.println(usersData+"users");
                         users.add(usersData);
 
-                        titleData = driver.findElement(By.xpath("(//*[text()=' Fresh issue '])[" + j
-                                + "]//parent::fire-chip/parent::div//parent::c9s-issue-tags/parent::a/div[1]/span[1]")).getText();
-                        titleData1 = driver.findElement(By.xpath("(//*[text()=' Fresh issue '])[" + j
-                                + "]//parent::fire-chip/parent::div//parent::c9s-issue-tags/parent::a/div[1]/span[2]")).getText();
+                        titleData = driver.findElement(By.xpath("(//*[text()=' Fresh issue '])[\" + j\n" +
+                                "                                + \"]//parent::fire-chip/parent::div/parent::c9s-issue-tags/parent::div/parent::c9s-issue-caption-metadata-row/following-sibling::div[1]/span")).getText();
+//                        titleData1 = driver.findElement(By.xpath("(//*[text()=' Fresh issue '])[" + j
+//                                + "]//parent::fire-chip/parent::div/parent::c9s-issue-tags/parent::div/parent::c9s-issue-caption-metadata-row/parent::div/parent::issue-caption-table-cell/parent::a/div[1]/span[2]")).getText();
 //                System.out.println(titleData+"titleData");
-                        title.add(titleData + titleData1);
+//                        title.add(titleData + titleData1);
+                        title.add(titleData);
 
                         subTitleData = driver.findElement(By.xpath("(//*[text()=' Fresh issue '])[" + j
-                                + "]//parent::fire-chip/parent::div//parent::c9s-issue-tags/parent::a/div[2]")).getText();
+                                + "]//parent::fire-chip/parent::div/parent::c9s-issue-tags/parent::div/parent::c9s-issue-caption-metadata-row/following-sibling::div[2]/span")).getText();
 //                System.out.println(subTitleData+"subtitle");
                         subtitle.add(subTitleData);
 
@@ -269,7 +270,7 @@ public class CheckCrash {
                 }
 
                 //////////For top 5 issues
-                if (sendMail) {
+                if (true) {
                     HSSFWorkbook workbook1 = new HSSFWorkbook();
                     HSSFSheet sheet1 = workbook1.createSheet();
                     sheet1.createRow(0);
@@ -307,11 +308,12 @@ public class CheckCrash {
                     driver.findElement(By.xpath("//*[text()='Next']")).click();
                     longWait(driver, "//*[contains(text(),'Mobikwik Android')]");
                     driver.findElement(By.xpath("//*[contains(text(),'Mobikwik Android')]")).click();
-                    try{
-                    longWait(driver, "//*[@id='nav-group-container-Release & Monitor']/div/div[2]/fire-navbar-item[1]/a/div");
-                    driver.findElement(By.xpath("//*[@id='nav-group-container-Release & Monitor']/div/div[2]/fire-navbar-item[1]/a/div")).click();
-                    }catch (Exception e){
+                    try {
+                        shortWait(driver,"//div[text()='Crashlytics']");
                         driver.findElement(By.xpath("//div[text()='Crashlytics']")).click();
+                    }catch (Exception e){
+                        shortWait(driver, "//*[@id='nav-group-container-Release & Monitor']/div/div[2]/fire-navbar-item[1]/a/div");
+                        driver.findElement(By.xpath("//*[@id='nav-group-container-Release & Monitor']/div/div[2]/fire-navbar-item[1]/a/div")).click();
                     }
                     shortWait(driver, "//div[@class='selected-resource-wrapper']");
                     driver.findElement(By.xpath("//div[@class='selected-resource-wrapper']")).click();
@@ -389,24 +391,29 @@ public class CheckCrash {
 
                         Thread.sleep(1000);
 
-                        topCrash = driver.findElement(By.xpath("(//mat-row[@class='mat-row cdk-row ng-star-inserted'])[" + i + "]/mat-cell[4]/a")).getText();
+                        topCrash = driver.findElement(By.xpath("(//mat-row[@class='mat-row cdk-row ng-star-inserted'])[" + i + "]/mat-cell[3]/a")).getText();
 //                System.out.println(topCrash+"crash");
                         topEvents.add(topCrash);
 
-                        topVersionData = driver.findElement(By.xpath("(//mat-row[@class='mat-row cdk-row ng-star-inserted'])[" + i + "]/mat-cell[3]/a/span")).getText();
+                        topVersionData = driver.findElement(By.xpath("(//mat-row[@class='mat-row cdk-row ng-star-inserted'])[" + i + "]/mat-cell[2]/a/span")).getText();
 //                System.out.println(topVersionData+"version");
                         topVersions.add(topVersionData.toString());
 
-                        topUsersData = driver.findElement(By.xpath("(//mat-row[@class='mat-row cdk-row ng-star-inserted'])[" + i + "]/mat-cell[5]/a")).getText();
+                        topUsersData = driver.findElement(By.xpath("(//mat-row[@class='mat-row cdk-row ng-star-inserted'])[" + i + "]/mat-cell[4]/a")).getText();
 //                System.out.println(topUsersData+"users");
                         topUsers.add(topUsersData);
 
-                        topTitleData = driver.findElement(By.xpath("(//mat-row[@class='mat-row cdk-row ng-star-inserted'])[" + i + "]/mat-cell[1]/a/div[1]/span")).getText();
-                        topTitleData2 = driver.findElement(By.xpath("(//mat-row[@class='mat-row cdk-row ng-star-inserted'])[" + i + "]/mat-cell[1]/a/div[1]/span[2]")).getText();
+                        topTitleData = driver.findElement(By.xpath("(//mat-row[@class='mat-row cdk-row ng-star-inserted'])[" + i + "]/mat-cell[1]/a/issue-caption-table-cell/div/div/span")).getText();
+//                        topTitleData2 = driver.findElement(By.xpath("(//mat-row[@class='mat-row cdk-row ng-star-inserted'])[" + i + "]/mat-cell[1]/a/div[1]/span[2]")).getText();
 //                System.out.println(topTitleData+"titleData");
-                        topTitle.add(topTitleData + topTitleData2.toString());
+//                        topTitle.add(topTitleData + topTitleData2.toString());
+                        topTitle.add(topTitleData);
 
-                        topSubTitleData = driver.findElement(By.xpath("(//mat-row[@class='mat-row cdk-row ng-star-inserted'])[" + i + "]/mat-cell[1]/a/div[2]")).getText();
+
+                        topSubTitleData = driver.findElement(By.xpath("(//mat-row[@class='mat-row cdk-row ng-star-inserted'])[" + i + "]/mat-cell[1]/a//div[2]")).getText();
+                        if(topSubTitleData.isEmpty()) {
+                            topSubTitleData = driver.findElement(By.xpath("(//mat-row[@class='mat-row cdk-row ng-star-inserted'])[" + i + "]/mat-cell[1]/a/issue-caption-table-cell/div/div[2]")).getText();
+                        }
 //                System.out.println(topSubTitleData+"subtitle");
                         topSubtitle.add(topSubTitleData);
 
@@ -593,9 +600,20 @@ public class CheckCrash {
         element= wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(text)));
     }
 
-    public static boolean rightClick(WebDriver driver,Actions a, WebElement web){
+    public static boolean rightClick_little_right(WebDriver driver,Actions a, WebElement web){
         try {
             a.moveToElement(web,750,0).keyDown(Keys.COMMAND).click().perform();
+            a.moveToElement(driver.findElement(By.xpath("//i[text()='gmp_nav20_performance']"))).perform();
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+
+    }
+
+    public static boolean rightClick(WebDriver driver,Actions a, WebElement web){
+        try {
+            a.moveToElement(web).keyDown(Keys.COMMAND).click().perform();
             a.moveToElement(driver.findElement(By.xpath("//i[text()='gmp_nav20_performance']"))).perform();
             return true;
         }catch (Exception e){
