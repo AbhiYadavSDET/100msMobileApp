@@ -270,7 +270,7 @@ public class CheckCrash {
                 }
 
                 //////////For top 5 issues
-                if (true) {
+                if (sendMail) {
                     HSSFWorkbook workbook1 = new HSSFWorkbook();
                     HSSFSheet sheet1 = workbook1.createSheet();
                     sheet1.createRow(0);
