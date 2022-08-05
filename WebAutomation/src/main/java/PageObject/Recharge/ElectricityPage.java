@@ -8,12 +8,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LandlinePage {
+public class ElectricityPage {
 
     WebDriver driver;
 
 
-    public LandlinePage(WebDriver driver) {
+    public ElectricityPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
 
@@ -51,12 +51,14 @@ public class LandlinePage {
     @FindBy(xpath = "//button[@class = 'cmat cls mg mg_icoclose mat-icon-button mat-button-base']")
     private WebElement crossButton;
 
-    String bill_amount = "//input[@class= 'form-input tx48 nobdr nobg nopad pleft ptop ng-untouched ng-pristine']";
+   String bill_amount = "//input[@class= 'form-input tx48 nobdr nobg nopad pleft ptop ng-untouched ng-pristine']";
 
-    String no_due_amount="//p[@class = 'ft15 smtop15 smbottom30 tcenter']";
+   String no_due_amount="//p[@class = 'ft15 smtop15 smbottom30 tcenter']";
 
     @FindBy(xpath = "//p[@class = 'ft15 smtop15 smbottom30 tcenter']")
     private WebElement error_message;
+
+
 
     String bill = "//mbk-view-payment/section";
 

@@ -64,13 +64,13 @@ public class LoginHelper {
 
             Thread.sleep(2000);
             String actualName = sideDrawerPage.getUserName();
+            MbkReporter.verifyEqualsWithLogging(actualName, expectedName, "Verify : User name displayed", false);
+
             String actualEmailId = sideDrawerPage.getEmailId();
+            MbkReporter.verifyEqualsWithLogging(actualEmailId, expectedEmailId, "Verify : User Email ID displayed", false);
+
             String actualCellNumber = sideDrawerPage.getUserCellNumber();
-
-
-            MbkReporter.verifyEqualsWithLoggingExtentReport(actualName, expectedName, "Verify : User name displayed", false);
-            MbkReporter.verifyEqualsWithLoggingExtentReport(actualEmailId, expectedEmailId, "Verify : User Email ID displayed", false);
-            MbkReporter.verifyEqualsWithLoggingExtentReport(actualCellNumber, expectedCellNumber, "Verify : User Cell Number Displayed", false);
+            MbkReporter.verifyEqualsWithLogging(actualCellNumber, expectedCellNumber, "Verify : User Cell Number Displayed", false);
 
 
             sideDrawerPage.clickHomeCtaInSideDrawer();

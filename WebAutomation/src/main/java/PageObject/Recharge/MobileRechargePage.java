@@ -13,7 +13,7 @@ import org.openqa.selenium.support.PageFactory;
 public class MobileRechargePage {
     WebDriver driver;
 
-    @FindBy(xpath = "//input[@placeholder='Mobile Number (+91)']")
+    @FindBy(xpath = "//input[@placeholder='Mobile Number']")
     private WebElement mobileNumber;
 
     @FindBy(xpath = "//div[@class='mat-radio-label-content'][text()='Prepaid']")
@@ -34,7 +34,7 @@ public class MobileRechargePage {
     @FindBy(xpath = "//span[text()='Go']")
     private WebElement ctaGo;
 
-    @FindBy(xpath = " //div[text()='Mobile Number (+91)']//following-sibling::div")
+    @FindBy(xpath = " //div[text()='Mobile Number']//following-sibling::div")
     private WebElement getPrepaidNo;
 
     @FindBy(xpath = "(//mbk-view-payment//p)[2]")
@@ -122,7 +122,7 @@ public class MobileRechargePage {
         return Element.getText(driver, getPrepaidNo, "mobile on bill");
     }
 
-    public void clickMakePayment() {
+    public void clickMakePayment() throws InterruptedException {
         Element.click(driver, makePayment, "Make Payment");
     }
 
@@ -156,8 +156,8 @@ public class MobileRechargePage {
         Element.click(driver, applyPromoCode, "promo code");
     }
 
-    public void enterPromoCode(){
-        Element.enterText(driver, inputPromoCode, "APPTEAMREC", "promo code");
+    public void enterPromoCode(String promo){
+        Element.enterText(driver, inputPromoCode, promo, "promo code");
     }
 
     public void applyPromoCode(){

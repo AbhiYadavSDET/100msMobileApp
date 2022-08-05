@@ -22,13 +22,6 @@
         </classes>
     </test>
 
-    <!--######### Insurance #############-->
-    <!--<test name="Insurance">-->
-    <!--<classes>-->
-    <!--<class name="Insurance.InsuranceTest"/>-->
-    <!--</classes>-->
-    <!--</test>-->
-
     <!--######### P2P #############-->
     <!--<test name="P2P">-->
     <!--<classes>-->
@@ -81,12 +74,6 @@
     <!--</classes>-->
     <!--</test>-->
 
-    <!--#########  Bus #############-->
-    <!--<test name="BusTest.java">-->
-    <!--<classes>-->
-    <!--<class name="BusFlow.BusTest"/>-->
-    <!--</classes>-->
-    <!--</test>-->
 
     <!--#########  Help #############-->
     <!--<test name="HelpTest.java">-->

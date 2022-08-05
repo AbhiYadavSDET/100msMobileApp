@@ -8,12 +8,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LandlinePage {
+public class CcbpPage {
 
     WebDriver driver;
 
 
-    public LandlinePage(WebDriver driver) {
+    public CcbpPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
 

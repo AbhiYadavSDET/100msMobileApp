@@ -34,7 +34,7 @@ public class TestBase {
 
         DesiredCapabilities cap=new DesiredCapabilities();
         cap.setCapability(MobileCapabilityType.PLATFORM_NAME,"ANDROID");
-        cap.setCapability(MobileCapabilityType.DEVICE_NAME,"RZ8N90TQDHD");
+        cap.setCapability(MobileCapabilityType.DEVICE_NAME,"e0cd9c9");
         cap.setCapability("appPackage","com.mobikwik_new");
         cap.setCapability("appActivity",".MobikwikMain");
         cap.setCapability("noReset","true");
