@@ -35,7 +35,7 @@ public class CheckCrash {
     public static void Crashlytics() throws InterruptedException, IOException {
         String username = "mbkmobile.team@mobikwik.com";
         String pass = "Mobikwik@123456";
-        String version = "22.40.0";
+        String version = "22.41.1";
         String date = "60 m";
         String crashFreeUsers;
         int MAX_RETRIES = 2;
@@ -171,12 +171,12 @@ public class CheckCrash {
                         j = i + 1;
 
                         crash = driver.findElement(By.xpath("(//*[text()=' Fresh issue '])[" + j
-                                + "]//parent::fire-chip/parent::div/parent::c9s-issue-tags/parent::div/parent::c9s-issue-caption-metadata-row/parent::div/parent::issue-caption-table-cell/parent::a/parent::mat-cell/following-sibling::mat-cell[3]/a")).getText();
+                                + "]//parent::fire-chip/parent::div/parent::c9s-issue-tags/parent::div/parent::c9s-issue-caption-metadata-row/parent::div/parent::issue-caption-table-cell/parent::a/parent::mat-cell/following-sibling::mat-cell[2]/a")).getText();
 //                System.out.println(crash+"crash");
                         events.add(crash);
 
                         versionData = driver.findElement(By.xpath("(//*[text()=' Fresh issue '])[" + j
-                                + "]//parent::fire-chip/parent::div/parent::c9s-issue-tags/parent::div/parent::c9s-issue-caption-metadata-row/parent::div/parent::issue-caption-table-cell/parent::a/parent::mat-cell/following-sibling::mat-cell[2]/a")).getText();
+                                + "]//parent::fire-chip/parent::div/parent::c9s-issue-tags/parent::div/parent::c9s-issue-caption-metadata-row/parent::div/parent::issue-caption-table-cell/parent::a/parent::mat-cell/following-sibling::mat-cell[1]/a")).getText();
 //                System.out.println(versionData+"version");
                         versions.add(versionData);
 
@@ -185,8 +185,8 @@ public class CheckCrash {
 //                System.out.println(usersData+"users");
                         users.add(usersData);
 
-                        titleData = driver.findElement(By.xpath("(//*[text()=' Fresh issue '])[\" + j\n" +
-                                "                                + \"]//parent::fire-chip/parent::div/parent::c9s-issue-tags/parent::div/parent::c9s-issue-caption-metadata-row/following-sibling::div[1]/span")).getText();
+                        titleData = driver.findElement(By.xpath("(//*[text()=' Fresh issue '])[" + j +
+                                "]//parent::fire-chip/parent::div/parent::c9s-issue-tags/parent::div/parent::c9s-issue-caption-metadata-row/following-sibling::div[1]/span")).getText();
 //                        titleData1 = driver.findElement(By.xpath("(//*[text()=' Fresh issue '])[" + j
 //                                + "]//parent::fire-chip/parent::div/parent::c9s-issue-tags/parent::div/parent::c9s-issue-caption-metadata-row/parent::div/parent::issue-caption-table-cell/parent::a/div[1]/span[2]")).getText();
 //                System.out.println(titleData+"titleData");
@@ -602,7 +602,7 @@ public class CheckCrash {
 
     public static boolean rightClick_little_right(WebDriver driver,Actions a, WebElement web){
         try {
-            a.moveToElement(web,750,0).keyDown(Keys.COMMAND).click().perform();
+            a.moveToElement(web,550,0).keyDown(Keys.COMMAND).click().perform();
             a.moveToElement(driver.findElement(By.xpath("//i[text()='gmp_nav20_performance']"))).perform();
             return true;
         }catch (Exception e){
