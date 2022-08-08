@@ -76,7 +76,7 @@ public class AddMoneyHelper {
         // Click on the Proceed button
         addMoneyPage.clickOnProceedToPay2();
 
-        // Handle the Indusind page
+        // Handle the Bank page
         handlePayZappWebView(bankPassword);
 
         //Assertions
@@ -163,6 +163,14 @@ public class AddMoneyHelper {
 
     }
 
+    public void handleIndusIndWebView(String password) throws InterruptedException {
+        Element.waitForVisibility(driver, addMoneyPage.indusInd_logo, "Indusind Logo");
+        addMoneyPage.enterIndusIndBankPageOtp(password);
+        addMoneyPage.clickOnIndusIndBankPageSubmitButton();
+        Thread.sleep(10000);
+
+    }
+
     public WebDriver handleAddMoney(String cardNo, String month, String year, String cvv, String bankPassword) throws InterruptedException {
         if(!Element.isElementPresent(driver, By.xpath("//*[text()='Enter Credit / Debit Card Number']"))) {
             addMoneyPage.clickOnDebitOrCreditCards("debit");
@@ -188,7 +196,7 @@ public class AddMoneyHelper {
         // Click on the Proceed button
         addMoneyPage.clickOnProceedToPay2();
 
-        // Handle the Indusind page
+        // Handle the Bank page
         handlePayZappWebView(bankPassword);
 
         Thread.sleep(3000);

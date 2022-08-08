@@ -86,14 +86,19 @@ public class AddMoneyPage {
     @FindBy(xpath = "//button[@id = 'continue']")
     private WebElement cta_bankpage_continue;
 
-    @FindBy(xpath = "//input[@name = 'pin']")
-    private WebElement textbox_bankpage_password;
+
+
+
+//Indusind Page handling
+
+    @FindBy(xpath = "//img[@src= 'https://banking-assets.s3.ap-south-1.amazonaws.com/cipher/images/indusind-logo-credit.svg']")
+    public WebElement indusInd_logo;
 
     @FindBy(xpath = "//input[@value = 'Submit']")
     private WebElement cta_bankpage_submit;
 
-    @FindBy(xpath = "//img[@id='banklogo']")
-    public WebElement indusInd_logo;
+    @FindBy(xpath = "//input[@name = 'pin']")
+    private WebElement textbox_bankpage_otp;
 
     //Payazapp Handling
     @FindBy(xpath = "//img[@alt= 'PayZapp secure PIN']")
@@ -235,13 +240,9 @@ public class AddMoneyPage {
         Element.selectElement(driver, cta_bankpage_continue, "Bank Page Continue Button");
     }
 
-    public void enterBankPagePassword(String password) throws InterruptedException {
-        Element.enterText(driver, textbox_bankpage_password, password, "Bank page Password");
-    }
 
-    public void clickOnBankPageSubmitButton() throws InterruptedException {
-        Element.selectElement(driver, cta_bankpage_submit, "Bank Page Submit Button");
-    }
+
+
 
     public String getTrxStatus() {
         return Element.getText(driver, label_trx_status, "TRX Status");
@@ -288,6 +289,16 @@ public class AddMoneyPage {
 
     public void clickOnPayzappPageSubmitButton() throws InterruptedException {
         Element.selectElement(driver, cta_payzapp_submit, "Bank Page Submit Button-Payzapp");
+    }
+
+    //Indusind Method
+
+    public void clickOnIndusIndBankPageSubmitButton() throws InterruptedException {
+        Element.selectElement(driver, cta_bankpage_submit, "Indusind Bank Page Submit Button");
+    }
+
+    public void enterIndusIndBankPageOtp(String otp) throws InterruptedException {
+        Element.enterText(driver, textbox_bankpage_otp, otp, "Indusind Bank page Password");
     }
 
 }
