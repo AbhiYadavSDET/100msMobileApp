@@ -42,11 +42,14 @@ public class MoneyTransferPage {
     @FindBy(xpath = "//div[@class = 'col-md-6 ft15 tright fw600']")
     private WebElement label_total_amount_paid;
 
+    @FindBy(xpath = "//span[text() = 'Wallet Transfer']")
+    private WebElement walletTransferButton;
+
 
     public MoneyTransferPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
-        Browser.waitForPageLoad(driver, load_money_transfer);
+        Browser.waitForPageLoad(driver, walletTransferButton);
         Config.logComment("*****On money Transfer Page*****");
     }
 
@@ -72,6 +75,7 @@ public class MoneyTransferPage {
     }
 
     public void clickOnCtaSendMoney() {
+        Element.waitForVisibility(driver,cta_send_money,"Waiting for send money button");
         Element.selectElement(driver, cta_send_money, "Cta Send Money");
     }
 
@@ -86,6 +90,7 @@ public class MoneyTransferPage {
     public String getTotalAmountPaid() {
         return Element.getText(driver, label_total_amount_paid, "Total Amount paid").replace("₹ ", "");
     }
+
 
 
 }

@@ -2,18 +2,27 @@ package Helpers;
 
 
 import PageObject.DashboardPage;
+import PageObject.HomePage;
 import PageObject.MbkCommonControlsPage;
 import PageObject.MoneyTransferPage;
+import Utils.Config;
+import Utils.Element;
 import Utils.MbkReporter;
 import Utils.TestBase;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 public class MoneyTransferHelper {
 
     WebDriver driver;
-    DashboardPage dashboardPage;
     MoneyTransferPage moneyTransferPage;
     MbkReporter mbkReporter;
+    MbkCommonControlsHelper mbkCommonControlsHelper;
+    HomePage homePage;
+    MbkCommonControlsPage mbkCommonControlsPage;
 
 
     public MoneyTransferHelper(WebDriver driver) {
@@ -21,14 +30,26 @@ public class MoneyTransferHelper {
         mbkReporter = new MbkReporter();
 
         // Mandatory pages
-        dashboardPage = new DashboardPage(driver);
+        moneyTransferPage= new MoneyTransferPage(driver);
+        mbkCommonControlsHelper= new MbkCommonControlsHelper(driver);
+        homePage=new HomePage(driver);
+        mbkCommonControlsPage = new MbkCommonControlsPage(driver);
     }
 
 
     public void p2p(String mobileNo, String expectedSuccessScreenStatus, String amount) throws InterruptedException {
 
-        // Click on Wallet Transfer from dashboard
-        moneyTransferPage = dashboardPage.clickOnWalletTransferSideDrawer();
+        // Click on Wallet Transfer
+        moneyTransferPage= homePage.clickWalletTransfer();
+
+        Double balanceBefore=Double.parseDouble(mbkCommonControlsHelper.homeScreenBalance());
+        System.out.println(balanceBefore);
+
+        // Check wallet balance
+        if(Double.parseDouble(mbkCommonControlsHelper.homeScreenBalance())<Double.parseDouble(amount)){
+            // Have to write Add money flow
+            mbkReporter.verifyTrueWithLogging(false,"Insufficient amount",false);
+        }
 
         // Click on send to wallet
         moneyTransferPage.clickOnSendToWallet();
@@ -45,18 +66,22 @@ public class MoneyTransferHelper {
         // Click on send money CTA
         moneyTransferPage.clickOnCtaSendMoney();
 
-        // Wait for visibility of the tick icon
-        moneyTransferPage.waitForTickIcon();
+        // Wait for success screen
+        if(!driver.findElement(By.xpath("//*[text()='Transfer Successful']")).isDisplayed()){
+            mbkReporter.verifyTrueWithLogging(false,"Txn not successful",false);
+        }else{
+            Config.logComment("Transfer Successful");
+            Thread.sleep(2000);
+        }
 
-        // Assertion on the success screen
-        String actualSuccessScreenStatus = moneyTransferPage.getTrxStatus();
-        String actualSuccessScreenTotalAmount = moneyTransferPage.getTotalAmountPaid();
-
-        mbkReporter.verifyEqualsWithLogging(actualSuccessScreenStatus, expectedSuccessScreenStatus, "Success Screen | TRX Status", false);
-        mbkReporter.verifyEqualsWithLogging(actualSuccessScreenTotalAmount, amount, "Success Screen | Total Amount Paid", false);
+        // Check balance after Txn
+        Double balanceAfter=Double.parseDouble(mbkCommonControlsHelper.homeScreenBalance());
+        System.out.println(balanceAfter+"  "+Double.parseDouble(amount));
+        if((balanceBefore-balanceAfter)!=Double.parseDouble(amount)){
+            mbkReporter.verifyTrueWithLogging(false,"Issue in balance deduction",false);
+        }
 
         // Come back to the homepage
-        MbkCommonControlsPage mbkCommonControlsPage = new MbkCommonControlsPage(TestBase.getWebDriver());
         mbkCommonControlsPage.clickOnLogoMbk();
     }
 

@@ -19,6 +19,9 @@ public class MbkCommonControlsPage {
     @FindBy(xpath = "//button[@class = 'cmat cls mg mg_icoclose mat-icon-button']")
     private WebElement crossButton;
 
+    @FindBy(xpath = "//div[@class='dpInBLockMid']//span[@class='tbold dpInBLockMid pad5 pleft csrPtr']")
+    private WebElement balanceBeforeTxn;
+
 
     public MbkCommonControlsPage(WebDriver driver) {
         this.driver = driver;
@@ -45,6 +48,12 @@ public class MbkCommonControlsPage {
         } else {
             return false;
         }
+    }
+
+    public String getBalance() {
+        Element.waitForVisibility(driver,balanceBeforeTxn,"Balance");
+        String balance= Element.getText(driver,balanceBeforeTxn,"Get balance").replace("₹ ","");
+        return balance;
     }
 }
 

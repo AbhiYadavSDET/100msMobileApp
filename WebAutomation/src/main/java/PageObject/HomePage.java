@@ -86,6 +86,9 @@ public class HomePage {
     @FindBy(xpath = "//a[text()= 'Help?']")
     private  WebElement help_icon;
 
+    @FindBy(xpath = "//span[text()='Wallet Transfer']")
+    private WebElement side_drawer_wallet_transfer;
+
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
@@ -211,6 +214,11 @@ public class HomePage {
     public HelpPage clickHelpIcon(){
         Element.selectElement(driver, help_icon, "Click on Help Icon");
         return new HelpPage(driver);
+    }
+
+    public MoneyTransferPage clickWalletTransfer(){
+        Element.selectElement(driver, side_drawer_wallet_transfer, "Click on Wallet Transfer");
+        return new MoneyTransferPage(driver);
     }
 
 
