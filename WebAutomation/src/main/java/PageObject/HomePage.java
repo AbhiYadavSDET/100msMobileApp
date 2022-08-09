@@ -1,9 +1,6 @@
 package PageObject;
 
-import PageObject.Recharge.DthPage;
-import PageObject.Recharge.GasPage;
-import PageObject.Recharge.LandlinePage;
-import PageObject.Recharge.MobileRechargePage;
+import PageObject.Recharge.*;
 import Utils.Browser;
 import Utils.Config;
 import Utils.Element;
@@ -28,6 +25,9 @@ public class HomePage {
 
     @FindBy(xpath = "//label[text() = 'Landline']")
     private WebElement icon_landline;
+
+    @FindBy(xpath = "//label[text() = 'Credit Card']")
+    private WebElement icon_ccbp;
 
     @FindBy(xpath = "//label[text() = 'Broadband']")
     private WebElement icon_broadband;
@@ -86,6 +86,9 @@ public class HomePage {
     @FindBy(xpath = "//a[text()= 'Help?']")
     private  WebElement help_icon;
 
+    @FindBy(xpath = "//span[text()='Wallet Transfer']")
+    private WebElement side_drawer_wallet_transfer;
+
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
@@ -117,13 +120,18 @@ public class HomePage {
         Element.selectElement(driver, icon_landline, "Icon Landline");
         return new LandlinePage(driver);
     }
+    public CcbpPage clickOnCcbp() {
+        Element.selectElement(driver, icon_ccbp, "Icon CCBP");
+        return new CcbpPage(driver);
+    }
+
+    public ElectricityPage clickOnElectricity() {
+        Element.selectElement(driver, icon_electricity, "Icon Electricity");
+        return new ElectricityPage(driver);
+    }
 
     public void clickOnBroadband() {
         Element.selectElement(driver, icon_broadband, "Icon Broadband");
-    }
-
-    public void clickOnElectricity() {
-        Element.selectElement(driver, icon_electricity, "Icon Electricity");
     }
 
     public GasPage clickOnGas() {
@@ -186,6 +194,7 @@ public class HomePage {
 //    }
 
     public SideDrawerPage clickOnProfileIcon() {
+        Element.waitForVisibility(driver,profile_icon,"Waiting for Profile Icon");
         Element.selectElement(driver, profile_icon, "Side Drawer");
         return new SideDrawerPage(driver);
     }
@@ -205,6 +214,11 @@ public class HomePage {
     public HelpPage clickHelpIcon(){
         Element.selectElement(driver, help_icon, "Click on Help Icon");
         return new HelpPage(driver);
+    }
+
+    public MoneyTransferPage clickWalletTransfer(){
+        Element.selectElement(driver, side_drawer_wallet_transfer, "Click on Wallet Transfer");
+        return new MoneyTransferPage(driver);
     }
 
 

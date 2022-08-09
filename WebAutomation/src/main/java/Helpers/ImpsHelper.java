@@ -1,21 +1,16 @@
 package Helpers;
 
 
-import PageObject.DashboardPage;
 import PageObject.HomePage;
+import PageObject.ImpsPage;
 import PageObject.MbkCommonControlsPage;
 import PageObject.MoneyTransferPage;
 import Utils.Config;
-import Utils.Element;
 import Utils.MbkReporter;
-import Utils.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.testng.Assert;
 
-public class MoneyTransferHelper {
+public class ImpsHelper {
 
     WebDriver driver;
     MoneyTransferPage moneyTransferPage;
@@ -23,9 +18,10 @@ public class MoneyTransferHelper {
     MbkCommonControlsHelper mbkCommonControlsHelper;
     HomePage homePage;
     MbkCommonControlsPage mbkCommonControlsPage;
+    ImpsPage impsPage;
 
 
-    public MoneyTransferHelper(WebDriver driver) {
+    public ImpsHelper(WebDriver driver) {
         this.driver = driver;
         mbkReporter = new MbkReporter();
 
@@ -34,55 +30,60 @@ public class MoneyTransferHelper {
         mbkCommonControlsHelper= new MbkCommonControlsHelper(driver);
         homePage=new HomePage(driver);
         mbkCommonControlsPage = new MbkCommonControlsPage(driver);
+        impsPage=new ImpsPage(driver);
     }
 
+    public void imps(String name,String account_no,String IFSC_code,String amount) throws InterruptedException {
 
-    public void p2p(String mobileNo, String expectedSuccessScreenStatus, String amount) throws InterruptedException {
-
-        // Click on Wallet Transfer
         moneyTransferPage= homePage.clickWalletTransfer();
+        Double processingFee;
 
         Double balanceBefore=Double.parseDouble(mbkCommonControlsHelper.homeScreenBalance());
-//        System.out.println(balanceBefore);
 
         // Check wallet balance
         if(Double.parseDouble(mbkCommonControlsHelper.homeScreenBalance())<Double.parseDouble(amount)){
             // Have to write Add money flow
             mbkReporter.verifyTrueWithLogging(false,"Insufficient amount",false);
+        }else if(Double.parseDouble(amount)<50){
+            mbkReporter.verifyTrueWithLogging(false,"Min amount for imps txn is 50",false);
         }
 
-        // Click on send to wallet
-        moneyTransferPage.clickOnSendToWallet();
+        impsPage.clickSendToBank();
+        impsPage.enterName(name);
+        impsPage.enterAccountNo(account_no);
+        impsPage.enterIFSCCode(IFSC_code);
+        impsPage.enteramount(amount);
 
-        // Enter the mobile number
-        moneyTransferPage.enterMobileNo(mobileNo);
+        processingFee=Double.parseDouble(impsPage.getProcessingFee());
+        System.out.println(processingFee);
 
-        // Enter the Amount
-        moneyTransferPage.enterAmount(amount);
+        impsPage.clickGoButton();
+        impsPage.clickSendMoney();
 
-        // Click on Go Button
-        moneyTransferPage.clickOnCtaGo();
-
-        // Click on send money CTA
-        moneyTransferPage.clickOnCtaSendMoney();
+//        Have to add code when OTP is fixed
+        impsPage.enterotp();
+        impsPage.clickSubmitOtp();
+//        Thread.sleep(20000);
 
         // Wait for success screen
-        if(!driver.findElement(By.xpath("//*[text()='Transfer Successful']")).isDisplayed()){
+        if(!driver.findElement(By.xpath("//*[text()='Money sent successfully']")).isDisplayed()){
             mbkReporter.verifyTrueWithLogging(false,"Txn not successful",false);
         }else{
             Config.logComment("Transfer Successful");
-            Thread.sleep(2000);
+            Thread.sleep(3000);
         }
 
         // Check balance after Txn
         Double balanceAfter=Double.parseDouble(mbkCommonControlsHelper.homeScreenBalance());
-//        System.out.println(balanceAfter+"  "+Double.parseDouble(amount));
-        if((balanceBefore-balanceAfter)!=Double.parseDouble(amount)){
+        System.out.println(balanceBefore+"   "+ balanceAfter+"   "+Double.parseDouble(amount)+"   "+processingFee);
+        if((balanceBefore-balanceAfter-processingFee)!=Double.parseDouble(amount)){
             mbkReporter.verifyTrueWithLogging(false,"Issue in balance deduction",false);
         }
 
         // Come back to the homepage
         mbkCommonControlsPage.clickOnLogoMbk();
+
+
     }
 
 

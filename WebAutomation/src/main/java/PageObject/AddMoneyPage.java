@@ -3,6 +3,7 @@ package PageObject;
 import Utils.Browser;
 import Utils.Config;
 import Utils.Element;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -18,8 +19,11 @@ public class AddMoneyPage {
     @FindBy(xpath = "//span[text() = 'Continue']")
     private WebElement cta_continue;
 
-    @FindBy(xpath = "//a[text() = 'Debit / Credit Cards']")
-    private WebElement label_debit_credit_cards;
+    @FindBy(xpath = "//div[@class='tbvtl ft15 aftrbrdr posrel']//a[1]")
+    private WebElement tab_debit_cards;
+
+    @FindBy(xpath = "//div[@class='tbvtl ft15 aftrbrdr posrel']//a[2]")
+    private WebElement tab_credit_cards;
 
     @FindBy(xpath = "//a[text() = 'Net Banking']")
     private WebElement label_netbanking;
@@ -42,7 +46,7 @@ public class AddMoneyPage {
     @FindBy(xpath = "//span[text() = 'Proceed to Pay']")
     public WebElement button_proceed_to_pay;
 
-    @FindBy(xpath = "//button[text() = 'New Debit / Credit Card']")
+    @FindBy(xpath = "//button[text() = ' New Debit / Credit Card']")
     public WebElement button_new_card;
 
     @FindBy(xpath = "//input[@id = 'cardNo']")
@@ -54,7 +58,7 @@ public class AddMoneyPage {
     @FindBy(xpath = "//label[text() = 'Expiry Year']/following::input[@type = 'text'][2]")
     public WebElement combobox_expiry_year;
 
-    @FindBy(xpath = "//label[text() = 'CVV']/following::input[3]")
+    @FindBy(xpath = "//input[@placeholder='CVV']")
     public WebElement textbox_cvv;
 
     @FindBy(xpath = "//span[contains(text(),'Proceed to Pay')]")
@@ -63,10 +67,10 @@ public class AddMoneyPage {
     @FindBy(xpath = "//label[text() = 'Expiry Month']/following::span[@class = 'ng-arrow-wrapper'][1]")
     private WebElement arrow_expiry_month;
 
-    @FindBy(xpath = "//span[text()='12']")
+    @FindBy(id="expiryMonth")
     private WebElement label_mm;
 
-    @FindBy(xpath = "//span[text()='2022']")
+    @FindBy(id= "expiryYear")
     private WebElement label_yy;
 
 
@@ -82,16 +86,35 @@ public class AddMoneyPage {
     @FindBy(xpath = "//button[@id = 'continue']")
     private WebElement cta_bankpage_continue;
 
-    @FindBy(xpath = "//input[@name = 'pin']")
-    private WebElement textbox_bankpage_password;
+
+
+
+//Indusind Page handling
+
+    @FindBy(xpath = "//img[@src= 'https://banking-assets.s3.ap-south-1.amazonaws.com/cipher/images/indusind-logo-credit.svg']")
+    public WebElement indusInd_logo;
 
     @FindBy(xpath = "//input[@value = 'Submit']")
     private WebElement cta_bankpage_submit;
 
-    @FindBy(xpath = "//img[@id='banklogo']")
-    public WebElement indusInd_logo;
+    @FindBy(xpath = "//input[@name = 'pin']")
+    private WebElement textbox_bankpage_otp;
 
-    @FindBy(xpath = "//i[@class = 'mg mg_icotick fnlgrp tgreen2']/following::div[1]")
+    //Payazapp Handling
+    @FindBy(xpath = "//img[@alt= 'PayZapp secure PIN']")
+    public WebElement payzapp_logo;
+
+    @FindBy(xpath = "//input[@id= 'txtPasswordtoDisplay']")
+    private WebElement textbox_payzapp_pin;
+
+    @FindBy(xpath = "//input[@id= 'cmdSubmit']")
+    private WebElement cta_payzapp_submit;
+
+
+
+
+
+    @FindBy(xpath = "//i[@class = 'mg mg_icotick fnlgrp tgreen2 tribg']/following::div[1]/p")
     private WebElement label_trx_status;
 
     @FindBy(xpath = "//div[@class = 'col-md-6 ft15 tright fw600']")
@@ -128,8 +151,12 @@ public class AddMoneyPage {
         Config.logComment("*****On Insurance Page*****");
     }
 
-    public void clickOnDebitCards() {
-        Element.selectElement(driver, label_debit_credit_cards, "Debit/Credit cards");
+    public void clickOnDebitOrCreditCards(String type) {
+        if(type.equalsIgnoreCase("debit")) {
+            Element.selectElement(driver, tab_debit_cards, "Debit cards");
+        }else {
+            Element.selectElement(driver, tab_credit_cards, "Credit cards");
+        }
     }
 
     public void clickOnNetbanking() {
@@ -176,7 +203,7 @@ public class AddMoneyPage {
         Element.enterText(driver, combobox_card_no, cardNo, "Card No");
     }
 
-    @FindBy(xpath = "//i[@class = 'mg mg_icotick fnlgrp tgreen2']")
+    @FindBy(xpath = "//i[@class = 'mg mg_icotick fnlgrp tgreen2 tribg']")
     private WebElement tick_icon;
 
 
@@ -184,22 +211,20 @@ public class AddMoneyPage {
         Element.selectElement(driver, button_new_card, "New Card");
     }
 
-    public void enterExpiryMonth() {
-
-        Element.selectElement(driver, arrow_expiry_month, "Arrow");
-        Browser.wait(driver, 2);
-        Element.selectElement(driver, label_mm, "Expiry Month");
-
+    public void enterExpiryMonth() throws InterruptedException {
+        Element.selectElement(driver, arrow_expiry_month, "Arrow Month");
+        Thread.sleep(2000);
     }
 
     public void enterExpiryYear() {
 
-        Element.selectElement(driver, arrow_expiry_year, "Arrow");
+        Element.selectElement(driver, arrow_expiry_year, "Arrow Year");
         Browser.wait(driver, 2);
-        Element.selectElement(driver, label_yy, "Expiry Year");
+
     }
 
     public void enterCvv(String cvv) {
+        Element.selectElement(driver, textbox_cvv,"Select CVV Box");
         Element.enterText(driver, textbox_cvv, cvv, "Cvv");
     }
 
@@ -215,13 +240,9 @@ public class AddMoneyPage {
         Element.selectElement(driver, cta_bankpage_continue, "Bank Page Continue Button");
     }
 
-    public void enterBankPagePassword(String password) throws InterruptedException {
-        Element.enterText(driver, textbox_bankpage_password, password, "Bank page Password");
-    }
 
-    public void clickOnBankPageSubmitButton() throws InterruptedException {
-        Element.selectElement(driver, cta_bankpage_submit, "Bank Page Submit Button");
-    }
+
+
 
     public String getTrxStatus() {
         return Element.getText(driver, label_trx_status, "TRX Status");
@@ -258,6 +279,28 @@ public class AddMoneyPage {
     public String getCouponCodeText() {
         return Element.getText(driver, label_coupon_code_text, "Coupon code text");
     }
+
+    //Payzapp Methods
+
+
+    public void enterPayzappPin(String password) throws InterruptedException {
+        Element.enterText(driver, textbox_payzapp_pin, password, "Bank page Pin Entered-Payzapp");
+    }
+
+    public void clickOnPayzappPageSubmitButton() throws InterruptedException {
+        Element.selectElement(driver, cta_payzapp_submit, "Bank Page Submit Button-Payzapp");
+    }
+
+    //Indusind Method
+
+    public void clickOnIndusIndBankPageSubmitButton() throws InterruptedException {
+        Element.selectElement(driver, cta_bankpage_submit, "Indusind Bank Page Submit Button");
+    }
+
+    public void enterIndusIndBankPageOtp(String otp) throws InterruptedException {
+        Element.enterText(driver, textbox_bankpage_otp, otp, "Indusind Bank page Password");
+    }
+
 }
 
 
