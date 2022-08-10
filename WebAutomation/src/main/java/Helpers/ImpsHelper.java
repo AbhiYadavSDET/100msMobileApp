@@ -46,6 +46,8 @@ public class ImpsHelper {
             mbkReporter.verifyTrueWithLogging(false,"Insufficient amount",false);
         }else if(Double.parseDouble(amount)<50){
             mbkReporter.verifyTrueWithLogging(false,"Min amount for imps txn is 50",false);
+        }else{
+            mbkReporter.verifyTrueWithLogging(true,"Balance is sufficient",false);
         }
 
         impsPage.clickSendToBank();
@@ -69,7 +71,7 @@ public class ImpsHelper {
         if(!driver.findElement(By.xpath("//*[text()='Money sent successfully']")).isDisplayed()){
             mbkReporter.verifyTrueWithLogging(false,"Txn not successful",false);
         }else{
-            Config.logComment("Transfer Successful");
+            mbkReporter.verifyTrueWithLogging(true,"Transfer Successful",false);
             Thread.sleep(3000);
         }
 
@@ -81,7 +83,7 @@ public class ImpsHelper {
         if((actualBalance-expectedBalance)>Double.parseDouble("0.01")){
             mbkReporter.verifyTrueWithLogging(false,"Issue in balance deduction",false);
         }else{
-            Config.logComment("Transfer Successful");
+            mbkReporter.verifyTrueWithLogging(true,"Transfer Successful",false);
         }
 
         // Come back to the homepage
