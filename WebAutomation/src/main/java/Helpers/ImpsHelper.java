@@ -36,7 +36,7 @@ public class ImpsHelper {
     public void imps(String name,String account_no,String IFSC_code,String amount) throws InterruptedException {
 
         moneyTransferPage= homePage.clickWalletTransfer();
-        Double processingFee;
+        Double processingFee,expectedBalance, actualBalance;
 
         Double balanceBefore=Double.parseDouble(mbkCommonControlsHelper.homeScreenBalance());
 
@@ -75,9 +75,13 @@ public class ImpsHelper {
 
         // Check balance after Txn
         Double balanceAfter=Double.parseDouble(mbkCommonControlsHelper.homeScreenBalance());
+        expectedBalance=balanceBefore-Double.parseDouble(amount)-processingFee;
+        actualBalance=balanceAfter;
         System.out.println(balanceBefore+"   "+ balanceAfter+"   "+Double.parseDouble(amount)+"   "+processingFee);
-        if((balanceBefore-balanceAfter-processingFee)!=Double.parseDouble(amount)){
+        if((actualBalance-expectedBalance)>Double.parseDouble("0.01")){
             mbkReporter.verifyTrueWithLogging(false,"Issue in balance deduction",false);
+        }else{
+            Config.logComment("Transfer Successful");
         }
 
         // Come back to the homepage
