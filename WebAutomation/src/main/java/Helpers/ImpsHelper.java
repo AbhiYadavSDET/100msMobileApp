@@ -36,7 +36,7 @@ public class ImpsHelper {
     public void imps(String name,String account_no,String IFSC_code,String amount) throws InterruptedException {
 
         moneyTransferPage= homePage.clickWalletTransfer();
-        Double processingFee;
+        Double processingFee,expectedBalance, actualBalance,delta=0.01;
 
         Double balanceBefore=Double.parseDouble(mbkCommonControlsHelper.homeScreenBalance());
 
@@ -46,6 +46,8 @@ public class ImpsHelper {
             mbkReporter.verifyTrueWithLogging(false,"Insufficient amount",false);
         }else if(Double.parseDouble(amount)<50){
             mbkReporter.verifyTrueWithLogging(false,"Min amount for imps txn is 50",false);
+        }else{
+            mbkReporter.verifyTrueWithLogging(true,"Balance is sufficient",false);
         }
 
         impsPage.clickSendToBank();
@@ -69,15 +71,19 @@ public class ImpsHelper {
         if(!driver.findElement(By.xpath("//*[text()='Money sent successfully']")).isDisplayed()){
             mbkReporter.verifyTrueWithLogging(false,"Txn not successful",false);
         }else{
-            Config.logComment("Transfer Successful");
+            mbkReporter.verifyTrueWithLogging(true,"Transfer Successful",false);
             Thread.sleep(3000);
         }
 
         // Check balance after Txn
         Double balanceAfter=Double.parseDouble(mbkCommonControlsHelper.homeScreenBalance());
+        expectedBalance=balanceBefore-Double.parseDouble(amount)-processingFee;
+        actualBalance=balanceAfter;
         System.out.println(balanceBefore+"   "+ balanceAfter+"   "+Double.parseDouble(amount)+"   "+processingFee);
-        if((balanceBefore-balanceAfter-processingFee)!=Double.parseDouble(amount)){
+        if((actualBalance-expectedBalance)>delta){
             mbkReporter.verifyTrueWithLogging(false,"Issue in balance deduction",false);
+        }else{
+            mbkReporter.verifyTrueWithLogging(true,"Transfer Successful",false);
         }
 
         // Come back to the homepage
