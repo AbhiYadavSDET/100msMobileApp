@@ -1,10 +1,13 @@
 package Helpers.Recharge;
 
+import Helpers.AddMoneyHelper;
 import PageObject.DashboardPage;
 import PageObject.HomePage;
 import PageObject.Recharge.CcbpPage;
 import PageObject.Recharge.RechargePage;
+import Utils.Element;
 import Utils.MbkReporter;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class CcbpHelper {
@@ -21,41 +24,39 @@ public class CcbpHelper {
         homePage = new HomePage(driver);
     }
 
-//    public void payCreditCardBill(String cardNo, String amount) throws InterruptedException {
-//        // Click on Landline
-//        ccbpPage = homePage.clickOnCcbp();
-//
-//        // Select the Operator
-//        ccbpPage.selectOperator(operator);
-//
-//        // Enter the Mobile No.
-//        ccbpPage.enterTelNo(mobNo);
-//
-//        // Enter the CAN
-//        ccbpPage.enterCAN(cNo);
-//
-//        // Click on Go
-//        ccbpPage.clickGo();
-//
-//        // Wait for bill window
-//        ccbpPage.waitForBillWindow();
-//
-//        // fetch the values from the screen
-//        String actualCn = ccbpPage.getCNo();
-//        String actualMNo = ccbpPage.getMNo();
-//        String actualOperator = ccbpPage.getOperator();
-//        String actualBillText = ccbpPage.getBillText();
-//
-//        mbkReporter.verifyEqualsWithLogging(actualOperator, operator, "Verify same operator", false);
-//        mbkReporter.verifyEqualsWithLogging(actualMNo, mobNo, "Verify same mob no", false);
-//        mbkReporter.verifyEqualsWithLogging(actualCn, cNo, "Verify same cno", false);
-//        mbkReporter.verifyTrueWithLogging(actualBillText.contains("Bills"), "Check if bills text present", false);
-//
-//        // Click on the close Icon
-//        Thread.sleep(3000);
-//        ccbpPage.closeBill();
-//
-//        // return back to the Hom screen
-//        homePage.clickOnLogoMbk();
-//    }
+    public void payCreditCardBill(String cardNo, String amount, String month, String year, String cvv, String bankPassword) throws InterruptedException {
+        // Click on Credit Card
+        //4386280038636225
+
+        ccbpPage = homePage.clickOnCcbp();
+
+        ccbpPage.enterCreditCard(cardNo);
+
+        ccbpPage.enterAmount(amount);
+
+        ccbpPage.clickGo();
+
+        // Wait for the Pop up window to open
+        ccbpPage.waitForConfirmWindowToOpen();
+
+        ccbpPage.clickMakePayment();
+
+        if(Element.isElementPresent(driver, By.xpath("//h3[text()= ' Select a Payment Mode ']"))){
+
+            AddMoneyHelper addMoneyHelper= new AddMoneyHelper(driver);
+            addMoneyHelper.handleAddMoney(cardNo, month, year, cvv, bankPassword);
+
+        }
+
+        mbkReporter.verifyTrueWithLogging(ccbpPage.ifSuccessTextPresent(), "success text present", false);
+
+        mbkReporter.verifyEqualsWithLogging(ccbpPage.getAmount(), amount, "Validate Amount", false);
+
+        homePage.clickOnLogoMbk();
+
+
+
+
+
+    }
 }

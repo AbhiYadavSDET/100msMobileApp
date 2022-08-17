@@ -37,7 +37,7 @@ public class InsurancePage {
     public InsurancePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
-        Browser.waitForPageLoad(driver, label_insurance_page_load);
+//        Browser.waitForPageLoad(driver, label_insurance_page_load);
         Config.logComment("*****On Insurance Page*****");
     }
 

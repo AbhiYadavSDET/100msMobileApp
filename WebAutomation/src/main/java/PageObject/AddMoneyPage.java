@@ -147,8 +147,7 @@ public class AddMoneyPage {
     public AddMoneyPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
-        Browser.waitForPageLoad(driver, textbox_amount);
-        Config.logComment("*****On Insurance Page*****");
+        Config.logComment("*****On Add Money Page*****");
     }
 
     public void clickOnDebitOrCreditCards(String type) {

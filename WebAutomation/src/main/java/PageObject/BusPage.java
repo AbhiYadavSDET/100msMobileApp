@@ -140,7 +140,7 @@ public class BusPage {
     public BusPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
-        Browser.waitForPageLoad(driver, load_bus);
+//        Browser.waitForPageLoad(driver, load_bus);
         Config.logComment("*****On Bus Page*****");
     }
 

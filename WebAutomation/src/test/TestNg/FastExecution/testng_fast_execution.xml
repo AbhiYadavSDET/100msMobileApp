@@ -3,9 +3,9 @@
 <suite name="Login Flow">
 
 <!--Listeners-->
-<listeners>
-    <listener class-name="Utils.ExtentReportListener"/>
-</listeners>
+<!--<listeners>-->
+<!--    <listener class-name="Utils.ExtentReportListener"/>-->
+<!--</listeners>-->
 
 <test verbose="2" preserve-order="true" name="Sanity Test">
     <groups>
@@ -17,7 +17,7 @@
 
     <classes>
         <class name="FastExecustion.FastExecutionTest"/>
-        <class name="Utils.ExtentReport"/>
+<!--        <class name="Utils.ExtentReport"/>-->
     </classes>
 </test>
 

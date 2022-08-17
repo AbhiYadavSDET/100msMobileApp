@@ -9,6 +9,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HomePage {
 
@@ -93,7 +95,6 @@ public class HomePage {
     public HomePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
-        Browser.waitForPageLoad(driver, load_homepage);
         Config.logComment("*****On Home-Page*****");
     }
 
@@ -193,8 +194,10 @@ public class HomePage {
 //        return new SignupPage(driver);
 //    }
 
-    public SideDrawerPage clickOnProfileIcon() {
+    public SideDrawerPage clickOnProfileIcon() throws InterruptedException {
         Element.waitForVisibility(driver,profile_icon,"Waiting for Profile Icon");
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.elementToBeClickable(profile_icon));
         Element.selectElement(driver, profile_icon, "Side Drawer");
         return new SideDrawerPage(driver);
     }

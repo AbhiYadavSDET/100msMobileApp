@@ -70,7 +70,7 @@ public class MobileRechargePage {
     public MobileRechargePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
-        Browser.waitForPageLoad(driver, mobileNumber);
+//        Browser.waitForPageLoad(driver, mobileNumber);
         Config.logComment("*****On mobile Recharge Page*****");
     }
 

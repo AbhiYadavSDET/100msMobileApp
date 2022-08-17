@@ -4,6 +4,7 @@ package Helpers;
 import PageObject.AddMoneyPage;
 import PageObject.DashboardPage;
 import PageObject.HomePage;
+import Utils.Browser;
 import Utils.Element;
 import Utils.MbkReporter;
 import org.openqa.selenium.By;
@@ -34,6 +35,7 @@ public class AddMoneyHelper {
         // Mandatory pages
         homePage = new HomePage(driver);
         dashboardPage = new DashboardPage(driver);
+        addMoneyPage = new AddMoneyPage(driver);
     }
 
 
@@ -165,16 +167,16 @@ public class AddMoneyHelper {
 
     public void handleIndusIndWebView(String password) throws InterruptedException {
         Element.waitForVisibility(driver, addMoneyPage.indusInd_logo, "Indusind Logo");
-        addMoneyPage.enterIndusIndBankPageOtp(password);
+//        addMoneyPage.enterIndusIndBankPageOtp(password);
+        Thread.sleep(6000);
         addMoneyPage.clickOnIndusIndBankPageSubmitButton();
-        Thread.sleep(10000);
+        Thread.sleep(16000);
 
     }
 
     public WebDriver handleAddMoney(String cardNo, String month, String year, String cvv, String bankPassword) throws InterruptedException {
-        if(!Element.isElementPresent(driver, By.xpath("//*[text()='Enter Credit / Debit Card Number']"))) {
-            addMoneyPage.clickOnDebitOrCreditCards("debit");
-            // Click in new Card
+        if(Element.isElementPresent(driver, By.xpath("//label[@class= 'ft12 mft13 dpBLock tgreyteel']"))) {
+            Browser.ScrollToVisibleElement(driver,By.xpath("//div[@class= 'pad40 ptop separator']"));
             addMoneyPage.clickOnNewCard();
         }
 
@@ -197,7 +199,7 @@ public class AddMoneyHelper {
         addMoneyPage.clickOnProceedToPay2();
 
         // Handle the Bank page
-        handlePayZappWebView(bankPassword);
+        handleIndusIndWebView("");
 
         Thread.sleep(3000);
 

@@ -70,6 +70,7 @@ public class LandlinePage {
     }
 
     public void enterCAN(String cNo) {
+        Element.selectElement(driver,can, "Select Connection Number");
         Element.enterText(driver, can, cNo, "cn");
     }
 
