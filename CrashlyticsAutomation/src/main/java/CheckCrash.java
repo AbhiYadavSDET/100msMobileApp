@@ -97,7 +97,12 @@ public class CheckCrash {
                     driver.findElement(By.xpath("//div[text()='Crashlytics']")).click();
                 }catch (Exception e){
                     shortWait(driver, "//*[@id='nav-group-container-Release & Monitor']/div/div[2]/fire-navbar-item[1]/a/div");
-                    driver.findElement(By.xpath("//*[@id='nav-group-container-Release & Monitor']/div/div[2]/fire-navbar-item[1]/a/div")).click();
+                    try {
+                        driver.findElement(By.xpath("//*[@id='nav-group-container-Release & Monitor']/div/div[2]/fire-navbar-item[1]/a/div")).click();
+                    }catch (ElementNotInteractableException q){
+                        driver.findElement(By.xpath("//*[@id='nav-group-container-Release & Monitor']")).click();
+                        driver.findElement(By.xpath("//*[@id='nav-group-container-Release & Monitor']/div/div[2]/fire-navbar-item[1]/a/div")).click();
+                    }
                 }
                 shortWait(driver, "//div[@class='selected-resource-wrapper']");
                 driver.findElement(By.xpath("//div[@class='selected-resource-wrapper']")).click();
@@ -313,7 +318,12 @@ public class CheckCrash {
                         driver.findElement(By.xpath("//div[text()='Crashlytics']")).click();
                     }catch (Exception e){
                         shortWait(driver, "//*[@id='nav-group-container-Release & Monitor']/div/div[2]/fire-navbar-item[1]/a/div");
-                        driver.findElement(By.xpath("//*[@id='nav-group-container-Release & Monitor']/div/div[2]/fire-navbar-item[1]/a/div")).click();
+                        try {
+                            driver.findElement(By.xpath("//*[@id='nav-group-container-Release & Monitor']/div/div[2]/fire-navbar-item[1]/a/div")).click();
+                        }catch (ElementNotInteractableException q){
+                            driver.findElement(By.xpath("//*[@id='nav-group-container-Release & Monitor']")).click();
+                            driver.findElement(By.xpath("//*[@id='nav-group-container-Release & Monitor']/div/div[2]/fire-navbar-item[1]/a/div")).click();
+                        }
                     }
                     shortWait(driver, "//div[@class='selected-resource-wrapper']");
                     driver.findElement(By.xpath("//div[@class='selected-resource-wrapper']")).click();
