@@ -35,7 +35,7 @@ public class CheckCrash {
     public static void Crashlytics() throws InterruptedException, IOException {
         String username = "mbkmobile.team@mobikwik.com";
         String pass = "Mobikwik@123456";
-        String version = "22.41.1";
+        String version = "22.42.0";
         String date = "60 m";
         String crashFreeUsers;
         int MAX_RETRIES = 2;
