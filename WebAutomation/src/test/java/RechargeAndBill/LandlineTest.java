@@ -12,6 +12,6 @@ public class LandlineTest extends TestBase {
 //        loginHelper.loginViaOtp("8527797582", "T.C. Suneja", "mayank.suneja@mobikwik.com", "8527797582");
 
         LandlineHelper landlineHelper = new LandlineHelper(getWebDriver());
-        landlineHelper.verifyLandlineBill("Delhi", "2061533162");
+        landlineHelper.verifyLandlineBill("MTNL Delhi","23693162", "2061533162");
     }
 }
