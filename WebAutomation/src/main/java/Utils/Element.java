@@ -150,6 +150,12 @@ public class Element extends TestBase {
         return webElement.getAttribute("href").toString();
     }
 
+    public static void fetchAndClickLink(WebDriver driver, WebElement webElement, String description) {
+        Browser.waitForElementToVisibleOnPage(driver, webElement, 30);
+        String hrefValue = webElement.getAttribute("href").toString();
+        driver.navigate().to(hrefValue);
+    }
+
     /**
      * This Method is used to Click on element using JavaScript
      *
