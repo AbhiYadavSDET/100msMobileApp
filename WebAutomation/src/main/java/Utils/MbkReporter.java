@@ -47,6 +47,24 @@ public class MbkReporter {
         }
     }
 
+    public static void verifyNotNullWithLogging(String value, String message, boolean exitOnFailure) {
+
+        try {
+            Assert.assertNotNull(value, message);
+            Config.logComment(Log.ANSI_GREEN + "LOG | PASS | Message : " + message + Log.ANSI_RESET);
+
+        } catch (AssertionError e) {
+            if (exitOnFailure) {
+                Config.logComment(Log.ANSI_RED + "LOG | FAIL | Message : " + message + Log.ANSI_RESET);
+                throw e;
+
+            } else {
+                Config.logComment(Log.ANSI_RED + "LOG | FAIL | Message : " + message + Log.ANSI_RESET);
+            }
+
+        }
+    }
+
 
     public static void verifyEqualsWithLogging(Object actual, Object expected, String message, boolean exitOnFailure) {
 
