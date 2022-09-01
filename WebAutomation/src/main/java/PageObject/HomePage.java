@@ -91,6 +91,18 @@ public class HomePage {
     @FindBy(xpath = "//span[text()='Wallet Transfer']")
     private WebElement side_drawer_wallet_transfer;
 
+    @FindBy(xpath = "//*[text()='About']")
+    private WebElement aboutStaticPage;
+
+    @FindBy(xpath = "//*[text()='Blog']")
+    private WebElement blogStaticPage;
+
+    @FindBy(xpath = "//a[@target='_blank' and @href='https://blog.mobikwik.com/category/press/pressreleases/']")
+    private WebElement pressStaticPage;
+
+    @FindBy(xpath = "//*[text()='Investor Relations']")
+    private WebElement IRStaticPage;
+
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
@@ -159,6 +171,9 @@ public class HomePage {
     public void clickOnLogoMbk() {
         Element.selectElement(driver, logo_mbk, "Logo Mbk");
     }
+    public void navigateToMbk() {
+        driver.navigate().to("https://www.mobikwik.com");
+    }
 
     public void clickOnMyWallet() {
         Element.selectElement(driver, logo_mbk, "My Wallet");
@@ -222,6 +237,26 @@ public class HomePage {
     public MoneyTransferPage clickWalletTransfer(){
         Element.selectElement(driver, side_drawer_wallet_transfer, "Click on Wallet Transfer");
         return new MoneyTransferPage(driver);
+    }
+    public StaticWebPages clickOnAbout() throws InterruptedException {
+        Element.selectElement(driver, aboutStaticPage, "Click on About Static Page");
+        Thread.sleep(1000);
+        return new StaticWebPages(driver);
+    }
+    public StaticWebPages clickOnBlog() throws InterruptedException {
+        Element.selectElement(driver, blogStaticPage, "Click on Blog Static Page");
+        Thread.sleep(1000);
+        return new StaticWebPages(driver);
+    }
+    public String clickOnPress() throws InterruptedException {
+        String hrefValue = Element.fetchLink(driver, pressStaticPage, "Click on Press Static Page Link");
+        Thread.sleep(1000);
+        return hrefValue;
+    }
+    public String clickOnInvestorRelations() throws InterruptedException {
+        String hrefValue = Element.fetchLink(driver, IRStaticPage, "Click on Investor Relations Static Page Link");
+        Thread.sleep(1000);
+        return hrefValue;
     }
 
 

@@ -35,7 +35,7 @@ public class CheckCrash {
     public static void Crashlytics() throws InterruptedException, IOException {
         String username = "mbkmobile.team@mobikwik.com";
         String pass = "Mobikwik@123456";
-        String version = "22.41.1";
+        String version = "22.42.0";
         String date = "60 m";
         String crashFreeUsers;
         int MAX_RETRIES = 2;
@@ -97,7 +97,12 @@ public class CheckCrash {
                     driver.findElement(By.xpath("//div[text()='Crashlytics']")).click();
                 }catch (Exception e){
                     shortWait(driver, "//*[@id='nav-group-container-Release & Monitor']/div/div[2]/fire-navbar-item[1]/a/div");
-                    driver.findElement(By.xpath("//*[@id='nav-group-container-Release & Monitor']/div/div[2]/fire-navbar-item[1]/a/div")).click();
+                    try {
+                        driver.findElement(By.xpath("//*[@id='nav-group-container-Release & Monitor']/div/div[2]/fire-navbar-item[1]/a/div")).click();
+                    }catch (ElementNotInteractableException q){
+                        driver.findElement(By.xpath("//*[@id='nav-group-container-Release & Monitor']")).click();
+                        driver.findElement(By.xpath("//*[@id='nav-group-container-Release & Monitor']/div/div[2]/fire-navbar-item[1]/a/div")).click();
+                    }
                 }
                 shortWait(driver, "//div[@class='selected-resource-wrapper']");
                 driver.findElement(By.xpath("//div[@class='selected-resource-wrapper']")).click();
@@ -313,7 +318,12 @@ public class CheckCrash {
                         driver.findElement(By.xpath("//div[text()='Crashlytics']")).click();
                     }catch (Exception e){
                         shortWait(driver, "//*[@id='nav-group-container-Release & Monitor']/div/div[2]/fire-navbar-item[1]/a/div");
-                        driver.findElement(By.xpath("//*[@id='nav-group-container-Release & Monitor']/div/div[2]/fire-navbar-item[1]/a/div")).click();
+                        try {
+                            driver.findElement(By.xpath("//*[@id='nav-group-container-Release & Monitor']/div/div[2]/fire-navbar-item[1]/a/div")).click();
+                        }catch (ElementNotInteractableException q){
+                            driver.findElement(By.xpath("//*[@id='nav-group-container-Release & Monitor']")).click();
+                            driver.findElement(By.xpath("//*[@id='nav-group-container-Release & Monitor']/div/div[2]/fire-navbar-item[1]/a/div")).click();
+                        }
                     }
                     shortWait(driver, "//div[@class='selected-resource-wrapper']");
                     driver.findElement(By.xpath("//div[@class='selected-resource-wrapper']")).click();

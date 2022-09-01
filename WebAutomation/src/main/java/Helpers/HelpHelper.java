@@ -38,7 +38,7 @@ public class HelpHelper {
         Thread.sleep(3000);
 
         // Aasertions
-        mbkReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath("//p[text()= 'Sorry for the inconvenience']")), "Ticket ID", false);
+        mbkReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath("//p[text()= ' Sorry for the inconvenience ']")), "Ticket ID", false);
 
         // Click on the cross Button
         Thread.sleep(3000);

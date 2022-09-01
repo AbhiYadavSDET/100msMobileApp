@@ -43,7 +43,7 @@ public class HelpPage {
     @FindBy(xpath = "//div[@class= 'overlaybgDark zi6 dpBLock']")
     private WebElement grey_area;
 
-    @FindBy(xpath = "//button[@class = 'posabs mg mg_icoclose zi2 mat-icon-button']")
+    @FindBy(xpath = "//button[contains(@class , 'posabs mg mg_icoclose zi2 mat-icon-button')]")
     private WebElement cross_button;
 
 

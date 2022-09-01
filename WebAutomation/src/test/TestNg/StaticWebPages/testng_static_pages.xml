@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Static Pages Sanity Flow">
+
+    <!--Listeners-->
+    <listeners>
+        <listener class-name="Utils.ExtentReportListener"/>
+    </listeners>
+
+    <test verbose="2" preserve-order="true" name="Static-WebPages Test">
+        <groups>
+            <run>
+                <include name="staticWebPagesSanity"/>
+            </run>
+        </groups>
+
+
+        <classes>
+            <class name="StaticWebPages.StaticWebPagesTest"/>
+            <class name="Utils.ExtentReport"/>
+        </classes>
+    </test>
+
+</suite>

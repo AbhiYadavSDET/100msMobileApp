@@ -225,6 +225,8 @@ public class PerformanceApiResponse {
 
                 message.setRecipients(Message.RecipientType.CC, InternetAddress.parse("MBK-Android@mobikwik.com"));
 
+                message.addRecipients(Message.RecipientType.CC, InternetAddress.parse("rakhi.bansal@mobikwik.com"));
+
                 // Add the subject link
 //                Timestamp timestamp = new Timestamp(System.currentTimeMillis()); //with date and time
 //            System.out.println(timestamp);
