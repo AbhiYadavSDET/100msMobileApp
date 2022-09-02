@@ -37,7 +37,7 @@ public class HomePage {
     @FindBy(xpath = "//label[text() = 'Electricity']")
     private WebElement icon_electricity;
 
-    @FindBy(xpath = "//label[text() = 'Gas']")
+    @FindBy(xpath = "//label[text() = 'Piped Gas']")
     private WebElement icon_gas;
 
     @FindBy(xpath = "//label[text() = 'Insurance']")

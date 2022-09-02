@@ -47,8 +47,8 @@ public class HelpHelper {
 
         }
         else{
-
-            mbkReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath("//p[text()= ' Sorry for the inconvenience ']")), "Ticket ID", false);
+            String ticketId = helpPage.getTicketId();
+            mbkReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath("//p[text()='Ticket ID']")), "Ticket ID Present : "+ticketId, false);
 
         }
 

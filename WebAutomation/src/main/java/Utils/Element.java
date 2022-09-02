@@ -104,7 +104,6 @@ public class Element extends TestBase {
 
         } catch (UnreachableBrowserException e) {
             Config.logWarning(e.toString());
-            Config.logComment("UnreachableBrowserException : "+e.toString());
         }
 
 
