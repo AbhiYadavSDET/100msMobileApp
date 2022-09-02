@@ -10,7 +10,7 @@ import java.io.IOException;
 import static Utils.TestBase.getWebDriver;
 
 public class SeoPagesTest extends TestBase {
-    @Test(groups = {"staticWebPagesSanity"}, priority = 1, description = "Verify Static Web Pages")
+    @Test(groups = {"seoWebPagesSanity"}, priority = 1, description = "Verify Seo Web Pages")
     public void Test_Category_Page() throws InterruptedException, IOException {
 
         SeoPagesHelper seoPagesHelper = new SeoPagesHelper(getWebDriver());
@@ -18,7 +18,7 @@ public class SeoPagesTest extends TestBase {
 
     }
 
-    @Test(groups = {"staticWebPagesSanity"}, priority = 2, description = "Verify Static Web Pages")
+    @Test(groups = {"seoWebPagesSanity"}, priority = 2, description = "Verify Seo Web Pages")
     public void Test_Operator_Page() throws InterruptedException, IOException {
 
         SeoPagesHelper seoPagesHelper = new SeoPagesHelper(getWebDriver());
@@ -26,14 +26,14 @@ public class SeoPagesTest extends TestBase {
     }
 
 
-    @Test(groups = {"staticWebPagesSanity"}, priority = 3, description = "Verify Static Web Pages")
+    @Test(groups = {"seoWebPagesSanity"}, priority = 3, description = "Verify Seo Web Pages")
     public void Test_Plan_Level_Page() throws InterruptedException, IOException {
 
         SeoPagesHelper seoPagesHelper = new SeoPagesHelper(getWebDriver());
         seoPagesHelper.planLevelPage();
     }
 
-    @Test(groups = {"staticWebPagesSanity"}, priority = 4, description = "Verify Static Web Pages")
+    @Test(groups = {"seoWebPagesSanity"}, priority = 4, description = "Verify Seo Web Pages")
     public void Test_Amount_Level_Page() throws InterruptedException, IOException {
 
         SeoPagesHelper seoPagesHelper = new SeoPagesHelper(getWebDriver());

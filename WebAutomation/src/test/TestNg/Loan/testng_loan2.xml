@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Seo Pages Sanity Flow">
+<suite name="Loan Sanity Flow">
 
     <!--Listeners-->
     <listeners>
         <listener class-name="Utils.ExtentReportListener"/>
     </listeners>
 
-    <test verbose="2" preserve-order="true" name="Seo-Pages Test">
+    <test verbose="2" preserve-order="true" name="Loan Test">
         <groups>
             <run>
-                <include name="seoPagesSanity"/>
+                <include name="loanSanity"/>
             </run>
         </groups>
 

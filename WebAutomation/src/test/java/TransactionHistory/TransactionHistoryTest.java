@@ -13,7 +13,7 @@ import static Utils.TestBase.getWebDriver;
 
 public class TransactionHistoryTest extends TestBase {
 
-    @Test(groups = {"Sanity"}, priority = 1, description = "Verify Add Money via New Card")
+    @Test(groups = {"transactionHistorySanity"}, priority = 1, description = "Verify Transaction History")
     public void Test_Transaction_History() throws InterruptedException, IOException {
         LoginHelper loginHelper = new LoginHelper(driver);
         loginHelper.loginViaOtp("9149237812", "Sumit Chauhan", "sumitch853@gmail.com", "9149237812");

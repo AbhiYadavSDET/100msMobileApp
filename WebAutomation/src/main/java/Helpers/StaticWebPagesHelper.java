@@ -1,6 +1,7 @@
 package Helpers;
 
 import PageObject.*;
+import Utils.Config;
 import Utils.MbkReporter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -48,7 +49,7 @@ public class StaticWebPagesHelper {
 
             mbkReporter.verifyEqualsWithLogging(noOfDirectors, boardOfDirectors.size(),"No. of Directors | " , false);
 
-            Thread.sleep(1000);
+//            Thread.sleep(1000);
 
 
         } else if (allTabs.size() > 1) {
@@ -64,7 +65,7 @@ public class StaticWebPagesHelper {
                 if (!parent.equals(child_window)) {
                     driver.switchTo().window(child_window);
 
-                    System.out.println(driver.switchTo().window(child_window).getTitle());
+                    Config.logComment(driver.switchTo().window(child_window).getTitle());
 
                     // do work here
 
@@ -79,12 +80,8 @@ public class StaticWebPagesHelper {
             }
             // switched to parent tab
             driver.switchTo().window(parent);
-            Thread.sleep(1000);
+//            Thread.sleep(1000);
 
-
-        } else {
-            //do nothing
-            Thread.sleep(1000);
 
         }
 
@@ -104,7 +101,7 @@ public class StaticWebPagesHelper {
             mbkReporter.verifyEqualsWithLogging(noOfBlogs, blogStaticPage.size(),"No. of Blogs | "  , false);
 
 
-            Thread.sleep(1000);
+//            Thread.sleep(1000);
 
 
         } else if (allTabs.size() > 1) {
@@ -120,7 +117,7 @@ public class StaticWebPagesHelper {
                 if (!parent.equals(child_window)) {
                     driver.switchTo().window(child_window);
 
-                    System.out.println(driver.switchTo().window(child_window).getTitle());
+                    Config.logComment(driver.switchTo().window(child_window).getTitle());
 
                     // do work here
 
@@ -135,12 +132,8 @@ public class StaticWebPagesHelper {
             }
             // switched to parent tab
             driver.switchTo().window(parent);
-            Thread.sleep(1000);
+//            Thread.sleep(1000);
 
-
-        } else {
-            //do nothing
-            Thread.sleep(1000);
 
         }
         homePage.clickOnLogoMbk();
@@ -160,7 +153,7 @@ public class StaticWebPagesHelper {
             mbkReporter.verifyEqualsWithLogging(noOfIR, irStaticPage.size(),"No. of Investor Relations | "  , false);
 
 
-            Thread.sleep(1000);
+//            Thread.sleep(1000);
 
 
         } else if (allTabs.size() > 1) {
@@ -176,7 +169,7 @@ public class StaticWebPagesHelper {
                 if (!parent.equals(child_window)) {
                     driver.switchTo().window(child_window);
 
-                    System.out.println(driver.switchTo().window(child_window).getTitle());
+                    Config.logComment(driver.switchTo().window(child_window).getTitle());
 
                     // do work here
 
@@ -192,12 +185,8 @@ public class StaticWebPagesHelper {
             }
             // switched to parent tab
             driver.switchTo().window(parent);
-            Thread.sleep(1000);
+//            Thread.sleep(1000);
 
-
-        } else {
-            //do nothing
-            Thread.sleep(1000);
 
         }
         homePage.clickOnLogoMbk();
@@ -219,10 +208,10 @@ public class StaticWebPagesHelper {
 //        List<WebElement> pressStaticPage = driver.findElements(By.xpath("//div[@class='col-xs-12 col-sm-4']"));
             mbkReporter.verifyEqualsWithLogging(noOfPressReleases, pressStaticPage.size(),"No. of Press Releases "  , false);
 
-            System.out.println("No. of Press Releases Expected : "+noOfPressReleases);
+            Config.logComment("No. of Press Releases Expected : "+noOfPressReleases);
 
 
-            Thread.sleep(1000);
+//            Thread.sleep(1000);
 
 
         } else if (allTabs.size() > 1) {
@@ -238,7 +227,7 @@ public class StaticWebPagesHelper {
                 if (!parent.equals(child_window)) {
                     driver.switchTo().window(child_window);
 
-                    System.out.println(driver.switchTo().window(child_window).getTitle());
+                    Config.logComment(driver.switchTo().window(child_window).getTitle());
 
                     // do work here
 
@@ -249,7 +238,7 @@ public class StaticWebPagesHelper {
 //        List<WebElement> pressStaticPage = driver.findElements(By.xpath("//div[@class='col-xs-12 col-sm-4']"));
                     mbkReporter.verifyEqualsWithLogging(noOfPressReleases, pressStaticPage.size(),"No. of Press Releases "  , false);
 
-                    System.out.println("No. of Press Releases Expected : "+noOfPressReleases);
+                    Config.logComment("No. of Press Releases Expected : "+noOfPressReleases);
 
                     // closing child tab
                     driver.close();
@@ -258,12 +247,8 @@ public class StaticWebPagesHelper {
             }
             // switched to parent tab
             driver.switchTo().window(parent);
-            Thread.sleep(1000);
+//            Thread.sleep(1000);
 
-
-        } else {
-            //do nothing
-            Thread.sleep(1000);
 
         }
         homePage.navigateToMbk();
