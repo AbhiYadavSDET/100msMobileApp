@@ -22,14 +22,14 @@ public class LandlineHelper {
         homePage = new HomePage(driver);
     }
 
-    public void verifyLandlineBill(String operator, String cNo) throws InterruptedException {
+    public void verifyLandlineBill(String operator,String tNo, String cNo) throws InterruptedException {
         // Click on Landline
         landlinePage = homePage.clickOnLandline();
 
         // Select the Operator
         landlinePage.selectOperator(operator);
 
-
+        landlinePage.enterTelNo(tNo);
         // Enter the CAN
         landlinePage.enterCAN(cNo);
 
@@ -45,7 +45,7 @@ public class LandlineHelper {
         String actualBillText = landlinePage.getBillText();
 
         mbkReporter.verifyEqualsWithLogging(actualOperator, operator, "Verify same operator", false);
-        mbkReporter.verifyEqualsWithLogging(actualCn, cNo, "Verify same cno", false);
+        mbkReporter.verifyEqualsWithLogging(actualCn, tNo, "Verify same cno", false);
         mbkReporter.verifyTrueWithLogging(actualBillText.contains("Bills"), "Check if bills text present", false);
 
         mbkReporter.verifyTrueWithLogging(landlinePage.billStatus(), "Validate Bill state", false);
