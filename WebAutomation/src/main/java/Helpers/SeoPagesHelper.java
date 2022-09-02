@@ -9,22 +9,17 @@ import java.util.List;
 
 public class SeoPagesHelper {
     WebDriver driver;
-    DashboardPage dashboardPage;
     HomePage homePage;
     MbkReporter mbkReporter;
-    AddMoneyPage addMoneyPage;
     SeoPages seoPages;
 
     public SeoPagesHelper(WebDriver driver) {
         this.driver = driver;
         mbkReporter = new MbkReporter();
-        // Mandatory pages
-//        driver.navigate().to("https://www.mobikwik.com");
         homePage = new HomePage(driver);
-//        dashboardPage = new DashboardPage(driver);
         seoPages = new SeoPages(driver);
     }
-    public void categoryPage(String url, String text,int noOfDirectors) throws InterruptedException {
+    public void categoryPage() throws InterruptedException {
         WebElement urlToClick = seoPages.getMbkUrlForCategory();
         mbkReporter.verifyNotNullWithLogging(urlToClick.getText(),"Airtel Recharge Not Url Found",false);
         Boolean allFieldsPresent = seoPages.clickOnUrlForCategory(urlToClick);
@@ -32,7 +27,7 @@ public class SeoPagesHelper {
         homePage.clickOnLogoMbk();
     }
 
-    public void operatorPage(String url, String text,int noOfBlogs) throws InterruptedException {
+    public void operatorPage() throws InterruptedException {
         WebElement urlToClick = seoPages.getMbkUrlForOperator();
         mbkReporter.verifyNotNullWithLogging(urlToClick.getText(),"Operator is not selected by default",false);
         Boolean allFieldsPresent = seoPages.clickOnUrlForOperator(urlToClick);
@@ -41,7 +36,7 @@ public class SeoPagesHelper {
         mbkReporter.verifyTrue(isplanRowSizeGreaterthanZero,"",false);
         homePage.clickOnLogoMbk();;
     }
-    public void planLevelPage(String url, String text,int noOfIR) throws InterruptedException {
+    public void planLevelPage() throws InterruptedException {
         WebElement urlToClick = seoPages.getMbkUrlForPlan();
         mbkReporter.verifyNotNullWithLogging(urlToClick.getText(),"Airtel Recharge Not Url Found",false);
         List<WebElement> allFields = seoPages.clickOnUrlForPlan(urlToClick);
@@ -53,7 +48,7 @@ public class SeoPagesHelper {
         homePage.clickOnLogoMbk();
     }
 
-    public void amountSpecificPage(String url, String text,int noOfPressReleases) throws InterruptedException {
+    public void amountSpecificPage() throws InterruptedException {
         WebElement urlToClick = seoPages.getMbkUrlForAmount();
         mbkReporter.verifyNotNullWithLogging(urlToClick.getText(),"Airtel Recharge Not Url Found",false);
         List<WebElement> allFields = seoPages.clickOnUrlForAmount(urlToClick);

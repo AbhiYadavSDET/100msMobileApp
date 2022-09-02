@@ -16,10 +16,10 @@ public class DthPage {
         PageFactory.initElements(this.driver, this);
     }
 
-    @FindBy(id = "cn")
+    @FindBy(xpath = "//input[@id='cn']")
     private WebElement bpNo;
 
-    @FindBy(id = "amt")
+    @FindBy(xpath = "//input[@id='amt']")
     private WebElement amount;
 
     @FindBy(xpath = "//span[text()='Go']")
@@ -39,12 +39,14 @@ public class DthPage {
 
     String text = "//div//p[text()='Minimum recharge amount should be Rs.20']";
 
-    public void enterBpNo(String bp) {
-
+    public void enterBpNo(String bp) throws InterruptedException {
+//        Element.click(driver,bpNo,"click ");
+        Thread.sleep(1000);
         Element.enterText(driver, bpNo, bp, "telephone no");
     }
 
     public void enterOperator(String opt) {
+        Element.click(driver,operator,"click on operator");
         Element.enterText(driver, operator, opt, "operator");
         Element.pressEnter(driver);
     }

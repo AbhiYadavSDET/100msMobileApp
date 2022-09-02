@@ -289,7 +289,7 @@ public class Browser extends TestBase {
     /**
    	 * This Method is used to Waits for the given WebElement to appear on the specified browser
      * instance
-   	 * 
+   	 *
    	 * @param driver
    	 * @param element        element to be searched
      * @param ObjectWaitTime - max time to wait for the object
@@ -330,7 +330,7 @@ public class Browser extends TestBase {
     
     /**
    	 * This Method is used to wait till element visible on page
-   	 * 
+   	 *
    	 * @param driver
    	 * @param timeIntervalInSeconds
      * @param totalTimeToWait

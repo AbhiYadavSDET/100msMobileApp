@@ -1,14 +1,12 @@
 package StaticWebPages;
 
-import Helpers.AddMoneyHelper;
-import Helpers.LoginHelper;
+
 import Helpers.StaticWebPagesHelper;
 import Utils.TestBase;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-import static Utils.TestBase.getWebDriver;
 
 public class StaticWebPagesTest extends TestBase {
     @Test(groups = {"staticWebPagesSanity"}, priority = 1, description = "Verify Static Web Pages")

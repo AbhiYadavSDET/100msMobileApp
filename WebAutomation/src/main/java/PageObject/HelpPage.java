@@ -47,6 +47,9 @@ public class HelpPage {
     private WebElement cross_button;
 
 
+    @FindBy(xpath = "//mbk-notification")
+    private WebElement error_message;
+
     public HelpPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
@@ -85,6 +88,10 @@ public class HelpPage {
 
     public void clickOnCrossButton() {
         Element.selectElement(driver, cross_button, "Cross Button");
+    }
+
+    public WebElement getErrorElement(){
+        return error_message;
     }
 
 }

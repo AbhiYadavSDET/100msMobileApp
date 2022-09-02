@@ -26,7 +26,7 @@ public class SeoPages {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
 //        Browser.waitForPageLoad(driver, labelStaticPages);
-        Config.logComment("*****On About Page*****");
+        Config.logComment("*****On Seo Page*****");
         mbkReporter = new MbkReporter();
         urlToClick = null;
     }
