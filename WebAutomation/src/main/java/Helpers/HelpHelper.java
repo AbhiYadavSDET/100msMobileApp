@@ -6,6 +6,7 @@ import Utils.Element;
 import Utils.MbkReporter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class HelpHelper {
 
@@ -37,8 +38,20 @@ public class HelpHelper {
 
         Thread.sleep(3000);
 
-        // Aasertions
-        mbkReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath("//p[text()= ' Sorry for the inconvenience ']")), "Ticket ID", false);
+        WebElement reportTicketNotAllowed = helpPage.getErrorElement();
+
+        // Assertions
+        if(reportTicketNotAllowed.isDisplayed()){
+
+            mbkReporter.verifyTrueWithLogging(reportTicketNotAllowed.isDisplayed(),"Ticket created within 24 hours",false);
+
+        }
+        else{
+
+            mbkReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath("//p[text()= ' Sorry for the inconvenience ']")), "Ticket ID", false);
+
+        }
+
 
         // Click on the cross Button
         Thread.sleep(3000);

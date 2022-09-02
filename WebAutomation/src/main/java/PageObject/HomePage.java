@@ -208,8 +208,11 @@ public class HomePage {
 //        return new SignupPage(driver);
 //    }
 
-    public SideDrawerPage clickOnProfileIcon() {
+    public SideDrawerPage clickOnProfileIcon() throws InterruptedException {
         Element.waitForVisibility(driver,profile_icon,"Waiting for Profile Icon");
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.elementToBeClickable(profile_icon));
+        Thread.sleep(2000);
         Element.selectElement(driver, profile_icon, "Side Drawer");
         return new SideDrawerPage(driver);
     }

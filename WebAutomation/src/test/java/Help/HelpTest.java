@@ -15,7 +15,7 @@ public class HelpTest extends TestBase {
     public void Test_Help_Flow() throws InterruptedException, IOException {
 
         LoginHelper loginHelper = new LoginHelper(driver);
-        loginHelper.loginViaOtp("8527797582", "T.C. Suneja", "mayank.suneja@mobikwik.com", "8527797582");
+        loginHelper.loginViaOtp("9149237812", "Sumit Chauhan", "sumitch853@gmail.com", "9149237812");
 
         HelpHelper helpHelper = new HelpHelper(driver);
         helpHelper.help("This is a test ticket being raised by automation suite. In case you are reading this , Please close the ticket.-MobiKwik Team");
