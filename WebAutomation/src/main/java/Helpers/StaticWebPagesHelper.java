@@ -10,15 +10,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import static Utils.TestBase.getWebDriver;
-
 public class StaticWebPagesHelper {
 
     WebDriver driver;
-    DashboardPage dashboardPage;
     HomePage homePage;
     MbkReporter mbkReporter;
-    AddMoneyPage addMoneyPage;
     StaticWebPages staticWebPages;
     List<WebElement> boardOfDirectors;
     List<WebElement> blogStaticPage;
@@ -28,10 +24,7 @@ public class StaticWebPagesHelper {
     public StaticWebPagesHelper(WebDriver driver) {
         this.driver = driver;
         mbkReporter = new MbkReporter();
-        // Mandatory pages
-//        driver.navigate().to("https://www.mobikwik.com");
         homePage = new HomePage(driver);
-//        dashboardPage = new DashboardPage(driver);
         staticWebPages=new StaticWebPages(driver);
         boardOfDirectors = staticWebPages.getBoardOfDirectors();
         blogStaticPage = staticWebPages.getBlogStaticPage();

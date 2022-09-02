@@ -1,15 +1,11 @@
 package TransactionHistory;
 
-import Helpers.AddMoneyHelper;
-import Helpers.LoanHelper;
 import Helpers.LoginHelper;
 import Helpers.TransactionHistoryHelper;
 import Utils.TestBase;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
-
-import static Utils.TestBase.getWebDriver;
 
 public class TransactionHistoryTest extends TestBase {
 

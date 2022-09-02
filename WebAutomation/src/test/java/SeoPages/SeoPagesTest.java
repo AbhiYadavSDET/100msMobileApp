@@ -1,13 +1,11 @@
 package SeoPages;
 
 import Helpers.SeoPagesHelper;
-import Helpers.StaticWebPagesHelper;
 import Utils.TestBase;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-import static Utils.TestBase.getWebDriver;
 
 public class SeoPagesTest extends TestBase {
     @Test(groups = {"seoWebPagesSanity"}, priority = 1, description = "Verify Seo Web Pages")

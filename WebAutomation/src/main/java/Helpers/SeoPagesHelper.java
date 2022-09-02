@@ -9,19 +9,14 @@ import java.util.List;
 
 public class SeoPagesHelper {
     WebDriver driver;
-    DashboardPage dashboardPage;
     HomePage homePage;
     MbkReporter mbkReporter;
-    AddMoneyPage addMoneyPage;
     SeoPages seoPages;
 
     public SeoPagesHelper(WebDriver driver) {
         this.driver = driver;
         mbkReporter = new MbkReporter();
-        // Mandatory pages
-//        driver.navigate().to("https://www.mobikwik.com");
         homePage = new HomePage(driver);
-//        dashboardPage = new DashboardPage(driver);
         seoPages = new SeoPages(driver);
     }
     public void categoryPage() throws InterruptedException {

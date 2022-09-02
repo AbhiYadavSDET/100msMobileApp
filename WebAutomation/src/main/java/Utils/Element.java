@@ -118,7 +118,7 @@ public class Element extends TestBase {
      * @author manojkumar
      */
     public static void selectElement(WebDriver driver, WebElement webElement, String description) {
-//        Browser.waitForElementToVisibleOnPage(driver, webElement, 30);
+        Browser.waitForElementToVisibleOnPage(driver, webElement, 30);
         click(driver, webElement, description);
     }
 
@@ -130,7 +130,7 @@ public class Element extends TestBase {
      * @author manojkumar
      */
     public static void enterText(WebDriver driver, WebElement webElement, String value, String description) {
-//        Browser.waitForElementToVisibleOnPage(driver, webElement, 30);
+        Browser.waitForElementToVisibleOnPage(driver, webElement, 30);
         enterData(driver, webElement, value, description);
     }
 

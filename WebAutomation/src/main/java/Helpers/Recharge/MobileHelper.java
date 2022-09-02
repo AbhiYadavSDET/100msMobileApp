@@ -43,18 +43,18 @@ public class MobileHelper {
         mbkReporter.verifyEqualsWithLogging(mobNo, mobileRechargePage.getPrepaidNo(), "compare number", false);
 
 
-//        if (promoCodeStatus) {
-//            mobileRechargePage.clickPromoCode();
-//
-//            mobileRechargePage.enterPromoCode(promoCode);
-//
-//            mobileRechargePage.applyPromoCode();
-//
-//            String actualPromoCodeText = mobileRechargePage.getPromoCodeTextOnSuccessScreen();
-//            String expectedPromoCodeText = "You will get ₹ " + promoCodeText + " SuperCash";
-//            mbkReporter.verifyEqualsWithLogging(actualPromoCodeText, expectedPromoCodeText, "After TRX | Verify Promo Code Text", false);
-//
-//        }
+        if (promoCodeStatus) {
+            mobileRechargePage.clickPromoCode();
+
+            mobileRechargePage.enterPromoCode(promoCode);
+
+            mobileRechargePage.applyPromoCode();
+
+            String actualPromoCodeText = mobileRechargePage.getPromoCodeTextOnSuccessScreen();
+            String expectedPromoCodeText = "You will get ₹ " + promoCodeText + " SuperCash";
+            mbkReporter.verifyEqualsWithLogging(actualPromoCodeText, expectedPromoCodeText, "After TRX | Verify Promo Code Text", false);
+
+        }
         mobileRechargePage.clickMakePayment();
 
         if(Element.isElementPresent(driver, By.xpath("//h3[text()= ' Select a Payment Mode ']"))){

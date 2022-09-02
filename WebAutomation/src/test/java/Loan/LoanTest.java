@@ -1,14 +1,11 @@
 package Loan;
 
-import Helpers.AddMoneyHelper;
+
 import Helpers.LoanHelper;
-import Helpers.LoginHelper;
 import Utils.TestBase;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
-
-import static Utils.TestBase.getWebDriver;
 
 public class LoanTest extends TestBase{
 
