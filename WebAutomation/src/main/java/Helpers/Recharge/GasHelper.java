@@ -39,9 +39,10 @@ public class GasHelper {
         // fetch the values on the window
         WebElement noDuesText = gasPage.getNoDuestext();
         List<WebElement> dateAndAmountElements = gasPage.getDateAndAmountText();
-        if(dateAndAmountElements.get(0).isDisplayed()){
-            mbkReporter.verifyEqualsWithLogging("Due Date",dateAndAmountElements.get(0),"Due Date : "+dateAndAmountElements.get(1),false);
-            mbkReporter.verifyEqualsWithLogging("Bill amount",dateAndAmountElements.get(2),"Bill Amount : "+dateAndAmountElements.get(3),false);
+        WebElement dueDateText = gasPage.getDueDateText();
+        if(dateAndAmountElements.size()>0){
+            mbkReporter.verifyEqualsWithLogging("Due Date",dateAndAmountElements.get(0).getText(),"Due Date : "+dateAndAmountElements.get(1).getText(),false);
+            mbkReporter.verifyEqualsWithLogging("Bill amount",dateAndAmountElements.get(2).getText(),"Bill Amount : "+dateAndAmountElements.get(3).getText(),false);
         }
         else{
             String actualStatus = noDuesText.getText();
@@ -58,7 +59,7 @@ public class GasHelper {
         Thread.sleep(3000);
         gasPage.closeBill();
 
-        // return back to the Hom screen
+        // return back to the Home screen
         homePage.clickOnLogoMbk();
 
     }

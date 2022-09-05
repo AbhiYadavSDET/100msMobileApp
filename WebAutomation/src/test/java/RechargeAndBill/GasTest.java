@@ -14,7 +14,7 @@ public class GasTest extends TestBase {
         loginHelper.loginViaOtp("9149237812", "Sumit Chauhan", "sumitch853@gmail.com", "9149237812");
 
         GasHelper gasHelper = new GasHelper(getWebDriver());
-        gasHelper.verifyGasBill("Indraprastha", "4000020840", "No Bills Found", "Indraprastha Gas Limited (IGL)");
+        gasHelper.verifyGasBill("Adani Gas", "1000236410", "No Bills Found", "Adani Gas");
 
     }
 }

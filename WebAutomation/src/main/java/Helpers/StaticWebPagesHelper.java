@@ -3,6 +3,7 @@ package Helpers;
 import PageObject.*;
 import Utils.Config;
 import Utils.MbkReporter;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -40,7 +41,7 @@ public class StaticWebPagesHelper {
 
             genericAssertionCheck(url, text);
 
-            mbkReporter.verifyEqualsWithLogging(noOfDirectors, boardOfDirectors.size(),"No. of Directors | " , false);
+            mbkReporter.verifyEqualsWithLogging(boardOfDirectors.size() , noOfDirectors,"No. of Directors | " , false);
 
 //            Thread.sleep(1000);
 
@@ -60,11 +61,11 @@ public class StaticWebPagesHelper {
 
                     Config.logComment(driver.switchTo().window(child_window).getTitle());
 
-                    // do work here
+
 
                     genericAssertionCheck(url, text);
 
-                    mbkReporter.verifyEqualsWithLogging(noOfDirectors, boardOfDirectors.size(),"No. of Directors | " , false);
+                    mbkReporter.verifyEqualsWithLogging(boardOfDirectors.size(),noOfDirectors, "No. of Directors | " , false);
 
                     // closing child tab
                     driver.close();
@@ -91,7 +92,7 @@ public class StaticWebPagesHelper {
 
             genericAssertionCheck(url, text);
 
-            mbkReporter.verifyEqualsWithLogging(noOfBlogs, blogStaticPage.size(),"No. of Blogs | "  , false);
+            mbkReporter.verifyEqualsWithLogging(blogStaticPage.size(),noOfBlogs, "No. of Blogs | "  , false);
 
 
 //            Thread.sleep(1000);
@@ -112,11 +113,11 @@ public class StaticWebPagesHelper {
 
                     Config.logComment(driver.switchTo().window(child_window).getTitle());
 
-                    // do work here
+
 
                     genericAssertionCheck(url, text);
 
-                    mbkReporter.verifyEqualsWithLogging(noOfBlogs, blogStaticPage.size(),"No. of Blogs | "  , false);
+                    mbkReporter.verifyEqualsWithLogging(blogStaticPage.size(),noOfBlogs, "No. of Blogs | "  , false);
 
                     // closing child tab
                     driver.close();
@@ -134,8 +135,11 @@ public class StaticWebPagesHelper {
     }
     public void investorRelationsWebPage(String url, String text,int noOfIR) throws InterruptedException {
         String parent = driver.getWindowHandle();
-        String hrefValue = homePage.clickOnInvestorRelations();
-        driver.get(hrefValue);
+        String clicklnk = Keys.chord(Keys.CONTROL,Keys.ENTER);
+        // open the link in new tab, Keys.Chord string passed to sendKeys
+        String hrefValue = homePage.clickOnInvestorRelations(clicklnk);
+
+//        driver.get(hrefValue);
         Set<String> allTabs = driver.getWindowHandles();
 
         if (allTabs.size() == 1) {
@@ -143,7 +147,7 @@ public class StaticWebPagesHelper {
             genericAssertionCheck(url, text);
             // optional checks
 
-            mbkReporter.verifyEqualsWithLogging(noOfIR, irStaticPage.size(),"No. of Investor Relations | "  , false);
+            mbkReporter.verifyEqualsWithLogging( irStaticPage.size(), noOfIR,"No. of Investor Relations | "  , false);
 
 
 //            Thread.sleep(1000);
@@ -164,12 +168,12 @@ public class StaticWebPagesHelper {
 
                     Config.logComment(driver.switchTo().window(child_window).getTitle());
 
-                    // do work here
+
 
                     genericAssertionCheck(url, text);
                     // optional checks
 
-                    mbkReporter.verifyEqualsWithLogging(noOfIR, irStaticPage.size(),"No. of Investor Relations | "  , false);
+                    mbkReporter.verifyEqualsWithLogging( irStaticPage.size(),noOfIR,"No. of Investor Relations | "  , false);
 
                     // closing child tab
                     driver.close();
@@ -188,8 +192,11 @@ public class StaticWebPagesHelper {
 
     public void pressWebPage(String url, String text,int noOfPressReleases) throws InterruptedException {
         String parent = driver.getWindowHandle();
-        String hrefValue = homePage.clickOnPress();
-        driver.navigate().to(hrefValue);
+        String clicklnk = Keys.chord(Keys.CONTROL,Keys.ENTER);
+        // open the link in new tab, Keys.Chord string passed to sendKeys
+
+        String hrefValue = homePage.clickOnPress(clicklnk);
+//        driver.navigate().to(hrefValue);
         Set<String> allTabs = driver.getWindowHandles();
 
         if (allTabs.size() == 1) {
@@ -199,7 +206,7 @@ public class StaticWebPagesHelper {
             // optional checks
 
 //        List<WebElement> pressStaticPage = driver.findElements(By.xpath("//div[@class='col-xs-12 col-sm-4']"));
-            mbkReporter.verifyEqualsWithLogging(noOfPressReleases, pressStaticPage.size(),"No. of Press Releases "  , false);
+            mbkReporter.verifyEqualsWithLogging( pressStaticPage.size(), noOfPressReleases,"No. of Press Releases "  , false);
 
             Config.logComment("No. of Press Releases Expected : "+noOfPressReleases);
 
@@ -222,14 +229,14 @@ public class StaticWebPagesHelper {
 
                     Config.logComment(driver.switchTo().window(child_window).getTitle());
 
-                    // do work here
+
 
                     genericAssertionCheck(url, text);
 
                     // optional checks
 
 //        List<WebElement> pressStaticPage = driver.findElements(By.xpath("//div[@class='col-xs-12 col-sm-4']"));
-                    mbkReporter.verifyEqualsWithLogging(noOfPressReleases, pressStaticPage.size(),"No. of Press Releases "  , false);
+                    mbkReporter.verifyEqualsWithLogging(pressStaticPage.size(),noOfPressReleases, "No. of Press Releases "  , false);
 
                     Config.logComment("No. of Press Releases Expected : "+noOfPressReleases);
 
@@ -244,13 +251,16 @@ public class StaticWebPagesHelper {
 
 
         }
-        homePage.navigateToMbk();
+        Thread.sleep(3000);
+//        homePage.navigateToMbk();
+//        homePage.clickOnLogoMbk();
+        driver.navigate().back();
 
     }
     public void genericAssertionCheck(String url, String text) {
         System.out.println(driver.getTitle());
 
-        mbkReporter.verifyEqualsWithLogging(text,driver.getTitle(), "Title of Page : ",false);
+        mbkReporter.verifyEqualsWithLogging(driver.getTitle(),text, "Title of Page : ",false);
 
 //        mbkReporter.verifyTrueWithLogging(driver.getTitle().contains(text), "Web page opened",false);
 
