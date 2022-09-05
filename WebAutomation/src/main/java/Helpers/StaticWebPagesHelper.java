@@ -2,11 +2,13 @@ package Helpers;
 
 import PageObject.*;
 import Utils.Config;
+import Utils.Log;
 import Utils.MbkReporter;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import javax.sound.sampled.Line;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -59,7 +61,7 @@ public class StaticWebPagesHelper {
                 if (!parent.equals(child_window)) {
                     driver.switchTo().window(child_window);
 
-                    Config.logComment(driver.switchTo().window(child_window).getTitle());
+                    Log.info(driver.switchTo().window(child_window).getTitle());
 
 
 
@@ -111,7 +113,7 @@ public class StaticWebPagesHelper {
                 if (!parent.equals(child_window)) {
                     driver.switchTo().window(child_window);
 
-                    Config.logComment(driver.switchTo().window(child_window).getTitle());
+                    Log.info(driver.switchTo().window(child_window).getTitle());
 
 
 
@@ -166,7 +168,7 @@ public class StaticWebPagesHelper {
                 if (!parent.equals(child_window)) {
                     driver.switchTo().window(child_window);
 
-                    Config.logComment(driver.switchTo().window(child_window).getTitle());
+                    Log.info(driver.switchTo().window(child_window).getTitle());
 
 
 
@@ -208,7 +210,7 @@ public class StaticWebPagesHelper {
 //        List<WebElement> pressStaticPage = driver.findElements(By.xpath("//div[@class='col-xs-12 col-sm-4']"));
             mbkReporter.verifyEqualsWithLogging( pressStaticPage.size(), noOfPressReleases,"No. of Press Releases "  , false);
 
-            Config.logComment("No. of Press Releases Expected : "+noOfPressReleases);
+            Log.info("No. of Press Releases Expected : "+noOfPressReleases);
 
 
 //            Thread.sleep(1000);
@@ -227,7 +229,7 @@ public class StaticWebPagesHelper {
                 if (!parent.equals(child_window)) {
                     driver.switchTo().window(child_window);
 
-                    Config.logComment(driver.switchTo().window(child_window).getTitle());
+                    Log.info(driver.switchTo().window(child_window).getTitle());
 
 
 
@@ -238,7 +240,7 @@ public class StaticWebPagesHelper {
 //        List<WebElement> pressStaticPage = driver.findElements(By.xpath("//div[@class='col-xs-12 col-sm-4']"));
                     mbkReporter.verifyEqualsWithLogging(pressStaticPage.size(),noOfPressReleases, "No. of Press Releases "  , false);
 
-                    Config.logComment("No. of Press Releases Expected : "+noOfPressReleases);
+                    Log.info("No. of Press Releases Expected : "+noOfPressReleases);
 
                     // closing child tab
                     driver.close();
@@ -253,18 +255,18 @@ public class StaticWebPagesHelper {
         }
         Thread.sleep(3000);
 //        homePage.navigateToMbk();
-//        homePage.clickOnLogoMbk();
-        driver.navigate().back();
+        homePage.clickOnLogoMbk();
+//        driver.navigate().back();
 
     }
     public void genericAssertionCheck(String url, String text) {
-        System.out.println(driver.getTitle());
+        Log.info(driver.getTitle());
 
         mbkReporter.verifyEqualsWithLogging(driver.getTitle(),text, "Title of Page : ",false);
 
 //        mbkReporter.verifyTrueWithLogging(driver.getTitle().contains(text), "Web page opened",false);
 
-        System.out.println("Web page is opened.");
+        Log.info("Web page is opened.");
 
         String currentURL = driver.getCurrentUrl();
 
@@ -272,7 +274,7 @@ public class StaticWebPagesHelper {
 
 //        Assert.assertTrue();
 
-        System.out.println("Matches : " + currentURL);
+        Log.info("Matches : " + currentURL);
     }
 
 
