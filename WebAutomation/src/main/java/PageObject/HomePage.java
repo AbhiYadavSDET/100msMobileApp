@@ -149,6 +149,8 @@ public class HomePage {
     }
 
     public GasPage clickOnGas() {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.elementToBeClickable(icon_gas));
         Element.selectElement(driver, icon_gas, "Icon Gas");
         return new GasPage(driver);
     }
@@ -214,7 +216,7 @@ public class HomePage {
         Element.waitForVisibility(driver,profile_icon,"Waiting for Profile Icon");
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.elementToBeClickable(profile_icon));
-        Thread.sleep(2000);
+        Thread.sleep(4000);
         Element.selectElement(driver, profile_icon, "Side Drawer");
         return new SideDrawerPage(driver);
     }
@@ -250,12 +252,14 @@ public class HomePage {
         Thread.sleep(1000);
         return new StaticWebPages(driver);
     }
-    public String clickOnPress() throws InterruptedException {
+    public String clickOnPress(String clicklnk) throws InterruptedException {
+        pressStaticPage.sendKeys(clicklnk);
         String hrefValue = Element.fetchLink(driver, pressStaticPage, "Click on Press Static Page Link");
         Thread.sleep(1000);
         return hrefValue;
     }
-    public String clickOnInvestorRelations() throws InterruptedException {
+    public String clickOnInvestorRelations(String clicklnk) throws InterruptedException {
+        IRStaticPage.sendKeys(clicklnk);
         String hrefValue = Element.fetchLink(driver, IRStaticPage, "Click on Investor Relations Static Page Link");
         Thread.sleep(1000);
         return hrefValue;

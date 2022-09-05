@@ -33,7 +33,7 @@ public class GasPage {
     @FindBy(xpath = "//div[@class='col-md-9']/p[3]")
     private WebElement op;
 
-    @FindBy(xpath = "//button/following::div[@class = 'mat-button-ripple mat-ripple mat-button-ripple-round']")
+    @FindBy(xpath = "//button[@class = 'cmat cls mg mg_icoclose mat-icon-button mat-button-base']")
     private WebElement crossButton;
 
     @FindBy(xpath = "//div[@class='col-md-9']/p[1]")
@@ -42,13 +42,15 @@ public class GasPage {
     @FindBy(xpath = "//mbk-view-payment")
     private WebElement window_view_bill;
 
-    @FindAll(@FindBy(xpath = "//div[@class='viewbillLst']/div[@class='row mar10 mbottom']/div']"))
+    @FindAll(@FindBy(xpath = "//div[@class='viewbillLst']/div[@class='row mar10 mbottom']/div"))
     private List<WebElement> date_and_amount_text;
 
     @FindBy(xpath = "//div[@class='col-md-9']/p[@class='fw600 ft17']")
     private WebElement no_dues_text;
 
 
+    @FindBy(xpath = "(//div[@class='viewbillLst']/div[@class='row mar10 mbottom']/div[@class='col-md-6 tgreyteel ft13'])[1]")
+    private WebElement due_date_text;
 
 
 
@@ -96,6 +98,11 @@ public class GasPage {
 
     public WebElement getNoDuestext(){
         return no_dues_text;
+    }
+
+    public WebElement getDueDateText(){
+        return due_date_text;
+
     }
 
 
