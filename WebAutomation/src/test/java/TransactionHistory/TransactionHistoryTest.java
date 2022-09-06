@@ -11,8 +11,8 @@ public class TransactionHistoryTest extends TestBase {
 
     @Test(groups = {"transactionHistorySanity"}, priority = 1, description = "Verify Transaction History")
     public void Test_Transaction_History() throws InterruptedException, IOException {
-        LoginHelper loginHelper = new LoginHelper(driver);
-        loginHelper.loginViaOtp("9149237812", "Sumit Chauhan", "sumitch853@gmail.com", "9149237812");
+//        LoginHelper loginHelper = new LoginHelper(getWebDriver());
+//        loginHelper.loginViaOtp("9818484290", "Udit Gupta", "uditgupta5j151@gmail.com", "9818484290");
 
         TransactionHistoryHelper transactionHistoryHelper = new TransactionHistoryHelper(getWebDriver());
         transactionHistoryHelper.transactionHistoryHelper();

@@ -45,6 +45,7 @@ public class MyWalletHelper {
         myWalletPage.checkSuperCashData();
         myWalletPage.clickLinkedBankAccount();
         myWalletPage.checkLinkedBankAccountData();
+        homePage.clickOnLogoMbk();
 
     }
 }

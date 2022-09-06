@@ -2,11 +2,15 @@ package PageObject.Recharge;
 
 import Utils.Element;
 import Utils.Log;
+import Utils.MbkReporter;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ElectricityPage {
 
@@ -22,6 +26,8 @@ public class ElectricityPage {
     @FindBy(xpath = "//div[@class='ng-input']/input")
     private WebElement operator;
 
+    @FindBy(xpath = "//div[@class='csloader brad4 unitset commonloader']//div[@class= 'spinloader']")
+    private WebElement loader;
     @FindBy(id = "cn")
     private WebElement telNo;
 
@@ -122,7 +128,12 @@ public class ElectricityPage {
     }
 
     public boolean billStatus() throws InterruptedException {
-
+        try{
+            WebDriverWait wait= new WebDriverWait(driver,5);
+            wait.until(ExpectedConditions.invisibilityOf(loader));
+        }catch (Exception e){
+            MbkReporter.verifyTrueWithLogging(false,"Exception : "+e.toString(),false);
+        }
         if(Element.isElementPresent(driver, By.xpath(bill_amount) )){
             Log.info("Bill amount Present");
             return true;

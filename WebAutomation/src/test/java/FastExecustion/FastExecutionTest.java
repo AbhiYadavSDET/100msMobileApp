@@ -22,6 +22,15 @@ public class FastExecutionTest extends TestBase {
 //        AddMoneyHelper addMoneyHelper = new AddMoneyHelper(getWebDriver());
 //        addMoneyHelper.addMoneyViaNewcard("5", "4799470274582974","07","2027", "443", "521991", "Money Added Successfully");
 
+        TransactionHistoryHelper transactionHistoryHelper = new TransactionHistoryHelper(getWebDriver());
+        transactionHistoryHelper.transactionHistoryHelper();
+
+        GasHelper gasHelper = new GasHelper(getWebDriver());
+        gasHelper.verifyGasBill("Adani Gas", "1000236410", "No Bills Found", "Adani Gas");
+
+        DthHelper dthHelper = new DthHelper(getWebDriver());
+        dthHelper.verifyInvalidDthBill("tata", "1043233392", "1");
+
         MyWalletHelper myWalletHelper = new MyWalletHelper(getWebDriver());
         myWalletHelper.myWalletDetails();
 
