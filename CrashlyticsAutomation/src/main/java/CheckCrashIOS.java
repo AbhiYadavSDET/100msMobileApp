@@ -25,7 +25,7 @@ public class CheckCrashIOS {
 
         String username = "mbkmobile.team@mobikwik.com";
         String pass = "Mobikwik@123456";
-        String version = "28.6";
+        String version = "28.7";
         String date = "60 m"; // only for fresh issues
         String crashFreeUsers;
         int MAX_RETRIES = 2;
