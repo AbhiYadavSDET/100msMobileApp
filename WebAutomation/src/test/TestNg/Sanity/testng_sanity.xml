@@ -15,70 +15,88 @@
     </test>
 
     <!--######### Add Money #############-->
-    <test name="Add-Money Flow">
+<!--    <test name="Add-Money Flow">-->
+<!--        <classes>-->
+<!--            <class name="AddMoney.AddMoneyTest"/>-->
+<!--            <class name="Utils.ExtentReport"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+    <!--######### Transaction History #############-->
+    <test name="Transaction history Flow">
         <classes>
-            <class name="AddMoney.AddMoneyTest"/>
+            <class name="TransactionHistory.TransactionHistoryTest"/>
             <class name="Utils.ExtentReport"/>
         </classes>
     </test>
 
-    <!--######### P2P #############-->
-    <!--<test name="P2P">-->
-    <!--<classes>-->
-    <!--<class name="P2P.P2PTest"/>-->
-    <!--</classes>-->
-    <!--</test>-->
+    <!--######### My wallet validation #############-->
+    <test name="My wallet Flow">
+        <classes>
+            <class name="MyWallet.MyWalletTest"/>
+            <class name="Utils.ExtentReport"/>
+        </classes>
+    </test>
 
-    <!--######### IMPS #############-->
-    <!--<test name="IMPS">-->
-    <!--<classes>-->
-    <!--<class name="BankTransferFlow.BankTransferTest"/>-->
-    <!--</classes>-->
-    <!--</test>-->
+<!--        #########  Offers #############-->
+    <test name="Offers flow">
+        <classes>
+            <class name="OffersTest"/>
+            <class name="Utils.ExtentReport"/>
+        </classes>
+    </test>
 
-    <!--######### Recharge #############-->
-    <!--<test name="Recharge-Mobile">-->
-    <!--<classes>-->
-    <!--<class name="RechargeAndBill.MobileRechargeTest"/>-->
-    <!--</classes>-->
-    <!--</test>-->
-    <!--<test name="Recharge-DTH">-->
-    <!--<classes>-->
-    <!--<class name="RechargeAndBill.DthTest"/>-->
-    <!--</classes>-->
-    <!--</test>-->
+    <!--    #########  Help #############-->
+    <test name="HelpTest.java">
+        <classes>
+            <class name="Help.HelpTest"/>
+            <class name="Utils.ExtentReport"/>
+        </classes>
+    </test>
 
-    <!--######### Bill Payment #############-->
-    <!--<test name="Bill Payment-Gas">-->
-    <!--<classes>-->
-    <!--<class name="RechargeAndBill.GasTest"/>-->
-    <!--</classes>-->
-    <!--</test>-->
-    <!--<test name="Bill Payment-Landline">-->
-    <!--<classes>-->
-    <!--<class name="RechargeAndBill.LandlineTest"/>-->
-    <!--</classes>-->
-    <!--</test>-->
+    <!--    ######### Static web mobules #############-->
+    <test name="Static web modules">
+        <groups>
+            <run>
+                <include name="AboutPage"/>
+                <include name="BlogPage"/>
+                <include name="PressPage"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="StaticWebPages.StaticWebPagesTest"/>
+            <class name="Utils.ExtentReport"/>
+        </classes>
+    </test>
 
-    <!--######### Nearby #############-->
-    <!--<test name="Nearby">-->
-    <!--<classes>-->
-    <!--<class name="NearByTest"/>-->
-    <!--</classes>-->
-    <!--</test>-->
+<!--    ######### P2P #############-->
+    <test name="P2P">
+        <classes>
+            <class name="P2P.P2PTest"/>
+            <class name="Utils.ExtentReport"/>
+        </classes>
+    </test>
 
-    <!--#########  Offers #############-->
-    <!--<test name="Offers">-->
-    <!--<classes>-->
-    <!--<class name="OffersTest"/>-->
-    <!--</classes>-->
-    <!--</test>-->
+<!--    ######### IMPS #############-->
+    <test name="IMPS">
+        <classes>
+            <class name="IMPS.IMPSTest"/>
+            <class name="Utils.ExtentReport"/>
+        </classes>
+    </test>
+
+<!--    ######### Recharge mobules #############-->
+    <test name="Recharge-Mobile">
+        <groups>
+            <run>
+                <include name="recharge"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="RechargeAndBill.Recharge"/>
+            <class name="Utils.ExtentReport"/>
+        </classes>
+    </test>
 
 
-    <!--#########  Help #############-->
-    <!--<test name="HelpTest.java">-->
-    <!--<classes>-->
-    <!--<class name="Help.HelpTest"/>-->
-    <!--</classes>-->
-    <!--</test>-->
 </suite>

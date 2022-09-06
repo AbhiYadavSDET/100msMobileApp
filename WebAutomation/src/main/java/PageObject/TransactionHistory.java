@@ -23,7 +23,7 @@ public class TransactionHistory {
         PageFactory.initElements(this.driver, this);
     }
     public void clickOnHistory(){
-        Element.selectElement(driver,transactionHistory,"click on loan");
+        Element.selectElement(driver,transactionHistory,"History button");
     }
     public int getInvoiceButtons(){
         return invoiceButtons.size();

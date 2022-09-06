@@ -64,7 +64,7 @@ public class MyWalletPage {
     public MyWalletPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
-        Browser.waitForPageLoad(driver, myWalletButton);
+//        Browser.waitForPageLoad(driver, myWalletButton);
         Config.logComment("*****On My wallet Page*****");
     }
 
@@ -145,13 +145,11 @@ public class MyWalletPage {
     }
 
     public void handleLoader(){
-        WebDriverWait wait= new WebDriverWait(driver,3);
         try{
+            WebDriverWait wait= new WebDriverWait(driver,3);
             wait.until(ExpectedConditions.invisibilityOf(loader));
-        }catch (TimeoutException t){
-            System.out.println(t);
         }catch (Exception e){
-            System.out.println(e);
+            MbkReporter.verifyTrueWithLogging(false,"Exception : "+e.toString(),false);
         }
     }
 }

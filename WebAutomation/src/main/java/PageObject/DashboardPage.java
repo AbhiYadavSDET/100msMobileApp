@@ -50,11 +50,6 @@ public class DashboardPage {
     }
 
 
-    public InsurancePage clickOnInsuranceSideDrawer() {
-        Element.selectElement(driver, side_drawer_insurance, "Insurance From page");
-        return new InsurancePage(driver);
-    }
-
     public RechargePage clickOnRechargeSideDrawer() {
         Element.selectElement(driver, side_drawer_recharge, "Recharge page");
         return new RechargePage(driver);
@@ -66,12 +61,7 @@ public class DashboardPage {
     }
 //
 //
-    public BusPage clickOnBusSideDrawer() {
-        Element.selectElement(driver, side_drawer_bus, "Recharge page");
-        return new BusPage(driver);
-    }
-//
-//
+
       public OffersPage clickOnOffersSideDrawer() {
           Element.selectElement(driver, side_drawer_offers, "Offers page");
           return new OffersPage(driver);

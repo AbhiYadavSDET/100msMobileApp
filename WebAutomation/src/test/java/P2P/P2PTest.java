@@ -5,17 +5,19 @@ import Helpers.MoneyTransferHelper;
 import Utils.TestBase;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
+
 public class P2PTest extends TestBase {
 
 
     @Test(groups = {"p2pSend"}, priority = 0, description = "Verify P2P Flow")
-    public void Test_P2P_Send() throws InterruptedException {
+    public void Test_P2P_Send() throws InterruptedException, IOException {
 
 //        LoginHelper loginHelper = new LoginHelper(getWebDriver());
-//        loginHelper.loginViaOtp("8527797582", "T.C. Suneja", "mayank.suneja@mobikwik.com", "8527797582");
+//        loginHelper.loginViaOtp("9818484290", "Udit Gupta", "uditgupta5j151@gmail.com", "9818484290");
 
         MoneyTransferHelper moneyTransferHelper = new MoneyTransferHelper(getWebDriver());
-        moneyTransferHelper.p2p("9461528145", "Transfer Successful", "5");
+        moneyTransferHelper.p2p("9599155446", "Transfer Successful", "5");
 
 
     }
