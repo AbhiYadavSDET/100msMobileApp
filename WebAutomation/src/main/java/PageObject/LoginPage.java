@@ -51,8 +51,8 @@ public class LoginPage {
         Element.selectElement(driver, button_get_otp, "Get OTP");
     }
 
-    public void enterOtp() {
-        Element.selectElement(driver, enter_otp, "Enter OTP");
+    public void enterOtp(String otp) {
+        Element.enterText(driver, enter_otp,otp, "Enter OTP");
     }
 
     public void clickSubmitOtp() {

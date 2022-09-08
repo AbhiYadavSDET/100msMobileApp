@@ -17,7 +17,7 @@ public class P2PTest extends TestBase {
 //        loginHelper.loginViaOtp("9818484290", "Udit Gupta", "uditgupta5j151@gmail.com", "9818484290");
 
         MoneyTransferHelper moneyTransferHelper = new MoneyTransferHelper(getWebDriver());
-        moneyTransferHelper.p2p("9599155446", "Transfer Successful", "5");
+        moneyTransferHelper.p2p("9414065033", "Transfer Successful", "5");
 
 
     }
