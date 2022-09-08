@@ -48,7 +48,7 @@ public class Recharge extends TestBase {
 //        loginHelper.loginViaOtp("9818484290", "Udit Gupta", "uditgupta5j151@gmail.com", "9818484290");
 
         MobileHelper mobileHelper = new MobileHelper(getWebDriver());
-        mobileHelper.verifyPrepaid("jio", "9149237812", "up(west)", "15", false, "APPTEAMREC", "5.0","4799470274582974","07","2027", "443", "521991");
+        mobileHelper.verifyPrepaid("Vi", "7795709569", "Delhi NCR", "10", false, "APPTEAMREC", "5.0","4799470274582974","07","2027", "443", "521991");
 
     }
 }

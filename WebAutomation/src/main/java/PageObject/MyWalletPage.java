@@ -88,16 +88,12 @@ public class MyWalletPage {
 
     public void clickSavedCards() {
         Element.click(driver,savedCardsButton,"Saved cards button");
-        handleLoader();
     }
 
     public void checkSavedCardsData() throws InterruptedException {
-
+        handleLoader(By.xpath("//button[@class='cmat btn bt48 nobg nowrap btn-primary bfancy dpInBLock mar10 mright ft16 mat-flat-button mat-button-base']"));
         if(Element.isElementPresent(driver, By.xpath("//button[@class='cmat btn bt48 nobg nowrap btn-primary bfancy dpInBLock mar10 mright ft16 mat-flat-button mat-button-base']"))){
             MbkReporter.verifyTrueWithLogging(true,"User with cards",false);
-        }else if(false){
-            //code for new user
-            MbkReporter.verifyTrueWithLogging(true,"User without cards",false);
         }else{
             MbkReporter.verifyTrueWithLogging(false,"Issue in saved cards data",false);
         }
@@ -105,15 +101,12 @@ public class MyWalletPage {
 
     public void clickSavedConnections() {
         Element.click(driver,savedConnectionsButton,"Saved connections button");
-        handleLoader();
     }
 
     public void checkSavedConnectionsData() throws InterruptedException {
+        handleLoader(By.xpath("//button[@class='cmat btn bt36 nobg nowrap btn-primary width100 bfancy dpInBLock mar20 mright ft13 mat-flat-button mat-button-base']"));
         if(Element.isElementPresent(driver, By.xpath("//button[@class='cmat btn bt36 nobg nowrap btn-primary width100 bfancy dpInBLock mar20 mright ft13 mat-flat-button mat-button-base']"))){
             MbkReporter.verifyTrueWithLogging(true,"User with saved connection",false);
-        }else if(false){
-            //code for new user
-            MbkReporter.verifyTrueWithLogging(true,"User without saved connection",false);
         }else{
             MbkReporter.verifyTrueWithLogging(false,"Issue in saved cards data",false);
         }
@@ -124,7 +117,7 @@ public class MyWalletPage {
     }
 
     public void checkSuperCashData() {
-        handleLoader();
+        handleLoader(By.xpath("//p[@class='dpTbCell vmiddle']/label[@class='tgreyteel ft13 dpBLock ln22']"));
         MbkReporter.verifyEqualsWithLogging(Element.getText(driver,verifySupercashTextData,"Supercash text"),"SuperCash Balance","Supercash text",false);
     }
 
@@ -133,21 +126,18 @@ public class MyWalletPage {
     }
 
     public void checkLinkedBankAccountData() throws InterruptedException {
-        handleLoader();
-        if(Element.isElementPresent(driver, By.xpath("//section[@class='dpInBLock brad5 greybgdark5 spall15']//a[@class= 'posrel dpBLock csrPtr ']"))){
+        handleLoader(By.xpath("//section[@class='dpInBLock brad5 greybgdark5 spall15']"));
+        if(Element.isElementPresent(driver, By.xpath("//section[@class='dpInBLock brad5 greybgdark5 spall15']"))){
             MbkReporter.verifyTrueWithLogging(true,"User having no bank account linked",false);
-        }else if(false){
-            //code for user having bank account
-            MbkReporter.verifyTrueWithLogging(true,"User having bank account linked",false);
         }else{
             MbkReporter.verifyTrueWithLogging(false,"Issue in linked bank account",false);
         }
     }
 
-    public void handleLoader(){
+    public void handleLoader(By d){
         try{
-            WebDriverWait wait= new WebDriverWait(driver,3);
-            wait.until(ExpectedConditions.invisibilityOf(loader));
+            WebDriverWait wait= new WebDriverWait(driver,10);
+            wait.until(ExpectedConditions.visibilityOf(driver.findElement(d)));
         }catch (Exception e){
             MbkReporter.verifyTrueWithLogging(false,"Exception : "+e.toString(),false);
         }
