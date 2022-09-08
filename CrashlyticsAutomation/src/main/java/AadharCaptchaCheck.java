@@ -5,6 +5,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import javax.mail.*;
@@ -17,7 +18,8 @@ import java.util.Properties;
 
 
 public class AadharCaptchaCheck {
-    public static void main (String[] args) throws IOException, InterruptedException {
+    @Test(groups = {"aadharCheckCaptcha"}, priority = 0, description = "Verify Clevertap crash")
+    public static void aadharCheck () throws IOException, InterruptedException {
         String username = "mbkmobile.team@mobikwik.com";
         String pass = "Mobikwik@123456",data="";
         Boolean aadharText,captchaText,captchaImage=false ;
@@ -76,9 +78,9 @@ public class AadharCaptchaCheck {
         try {
             Message message = new MimeMessage(session);
 //            message.setFrom(new InternetAddress("qafront-end@mobikwik.com"));
-            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("udit.gupta@mobikwik.com"));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("qafront-end@mobikwik.com"));
 
-//            message.setRecipients(Message.RecipientType.CC, InternetAddress.parse("MBK-Android@mobikwik.com"));
+            message.setRecipients(Message.RecipientType.CC, InternetAddress.parse("vipul.behl@mobikwik.com"));
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
             if(captchaImage) {
