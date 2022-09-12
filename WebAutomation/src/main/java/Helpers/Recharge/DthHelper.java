@@ -3,6 +3,8 @@ package Helpers.Recharge;
 import PageObject.HomePage;
 import PageObject.Recharge.DthPage;
 import PageObject.Recharge.RechargePage;
+import Utils.Config;
+import Utils.Log;
 import Utils.MbkReporter;
 import org.openqa.selenium.WebDriver;
 
@@ -25,12 +27,14 @@ public class DthHelper {
 
         // Enter the Operator
         dthPage.enterOperator(opt);
-
+        Thread.sleep(1000);
         // Enter the C No.
         dthPage.enterBpNo(cNo);
+        Thread.sleep(1000);
 
         // Enter the Amount
         dthPage.enterAmount(amt);
+        Thread.sleep(1000);
 
         // Click on Go
         dthPage.clickGo();

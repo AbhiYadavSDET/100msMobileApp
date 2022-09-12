@@ -3,8 +3,11 @@ package PageObject.Recharge;
 import Utils.Element;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import java.util.List;
 
 public class GasPage {
     WebDriver driver;
@@ -18,7 +21,7 @@ public class GasPage {
     @FindBy(xpath = "(//input[@role='combobox'])[1]")
     private WebElement operator;
 
-    @FindBy(id = "cn")
+    @FindBy(xpath = "//input[@id = \"cn\"]")
     private WebElement bpNo;
 
     @FindBy(xpath = "//span[text()='Go']")
@@ -30,7 +33,7 @@ public class GasPage {
     @FindBy(xpath = "//div[@class='col-md-9']/p[3]")
     private WebElement op;
 
-    @FindBy(xpath = "//button[@class = 'cmat cls mg mg_icoclose mat-icon-button']")
+    @FindBy(xpath = "//button[@class = 'cmat cls mg mg_icoclose mat-icon-button mat-button-base']")
     private WebElement crossButton;
 
     @FindBy(xpath = "//div[@class='col-md-9']/p[1]")
@@ -38,6 +41,18 @@ public class GasPage {
 
     @FindBy(xpath = "//mbk-view-payment")
     private WebElement window_view_bill;
+
+    @FindAll(@FindBy(xpath = "//div[@class='viewbillLst']/div[@class='row mar10 mbottom']/div"))
+    private List<WebElement> date_and_amount_text;
+
+    @FindBy(xpath = "//div[@class='col-md-9']/p[@class='fw600 ft17']")
+    private WebElement no_dues_text;
+
+
+    @FindBy(xpath = "(//div[@class='viewbillLst']/div[@class='row mar10 mbottom']/div[@class='col-md-6 tgreyteel ft13'])[1]")
+    private WebElement due_date_text;
+
+
 
     String billText = "No Bills Found";
 
@@ -69,12 +84,26 @@ public class GasPage {
     public String getSuccessText() {
         return Element.getText(driver, successMssg, "success message");
     }
+    public WebElement getSuccessElement() {
+        return successMssg;
+    }
 
     public void waitForViewBillWindow() {
         Element.waitForVisibility(driver, crossButton, "Cross Icon");
     }
 
+    public List<WebElement> getDateAndAmountText(){
+        return date_and_amount_text;
+    }
 
+    public WebElement getNoDuestext(){
+        return no_dues_text;
+    }
+
+    public WebElement getDueDateText(){
+        return due_date_text;
+
+    }
 
 
 }

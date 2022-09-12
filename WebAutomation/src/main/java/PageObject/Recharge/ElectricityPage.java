@@ -25,7 +25,7 @@ public class ElectricityPage {
     @FindBy(id = "cn")
     private WebElement telNo;
 
-    @FindBy(id = "cn")
+    @FindBy(xpath = "//input[@id='cn']")
     private WebElement can;
 
     @FindBy(xpath = "//span[text()='Go']")

@@ -113,7 +113,7 @@ public class Element extends TestBase {
      * This Method is used to waitForElementToVisibleOnPage + click
      *
      * @param driver
-     * @param element
+
      * @author manojkumar
      */
     public static void selectElement(WebDriver driver, WebElement webElement, String description) {
@@ -125,7 +125,7 @@ public class Element extends TestBase {
      * This Method is used to waitForElementToVisibleOnPage + enterText
      *
      * @param driver
-     * @param element
+
      * @author manojkumar
      */
     public static void enterText(WebDriver driver, WebElement webElement, String value, String description) {
@@ -136,7 +136,7 @@ public class Element extends TestBase {
     /**
      * This Method is used to waitForElementToVisibleOnPage + enterText
      *
-     * @param element
+
      * @param driver
      * @author manojkumar
      */
@@ -160,7 +160,7 @@ public class Element extends TestBase {
      * This Method is used to Click on element using JavaScript
      *
      * @param driver
-     * @param elementToBeClicked - Element to be clicked
+
      * @param description        For logging
      * @author manojkumar
      */

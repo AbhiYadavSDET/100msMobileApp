@@ -4,6 +4,9 @@ import PageObject.HomePage;
 import PageObject.Recharge.GasPage;
 import Utils.MbkReporter;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 public class GasHelper {
     WebDriver driver;
@@ -34,20 +37,29 @@ public class GasHelper {
         gasPage.waitForViewBillWindow();
 
         // fetch the values on the window
-        String actualStatus = gasPage.getSuccessText();
+        WebElement noDuesText = gasPage.getNoDuestext();
+        List<WebElement> dateAndAmountElements = gasPage.getDateAndAmountText();
+        WebElement dueDateText = gasPage.getDueDateText();
+        if(dateAndAmountElements.size()>0){
+            mbkReporter.verifyEqualsWithLogging("Due Date",dateAndAmountElements.get(0).getText(),"Due Date : "+dateAndAmountElements.get(1).getText(),false);
+            mbkReporter.verifyEqualsWithLogging("Bill amount",dateAndAmountElements.get(2).getText(),"Bill Amount : "+dateAndAmountElements.get(3).getText(),false);
+        }
+        else{
+            String actualStatus = noDuesText.getText();
+            mbkReporter.verifyEqualsWithLogging(actualStatus, text, "Verify Message For No Dues", false);
+        }
         String actualBpNo = gasPage.getCNo();
         String actualOperator = gasPage.getOperator();
 
         //Assertions
         mbkReporter.verifyEqualsWithLogging(actualBpNo, bpNo, "Verify Bp No", false);
         mbkReporter.verifyEqualsWithLogging(actualOperator, expectedOperatorText, "Verify Operator", false);
-        mbkReporter.verifyEqualsWithLogging(actualStatus, text, "Verify Message", false);
 
         // Click on the close Icon
         Thread.sleep(3000);
         gasPage.closeBill();
 
-        // return back to the Hom screen
+        // return back to the Home screen
         homePage.clickOnLogoMbk();
 
     }

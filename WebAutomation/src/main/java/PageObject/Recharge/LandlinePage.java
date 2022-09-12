@@ -22,10 +22,10 @@ public class LandlinePage {
     @FindBy(xpath = "//div[@class='ng-input']/input")
     private WebElement operator;
 
-    @FindBy(id = "cn")
+    @FindBy(xpath = "//input[@placeholder='Telephone Number (Without STD Code)']")
     private WebElement telNo;
 
-    @FindBy(id = "cn")
+    @FindBy(xpath = "//input[@id='customerAccountNumber']")
     private WebElement can;
 
     @FindBy(xpath = "//span[text()='Go']")
@@ -33,7 +33,7 @@ public class LandlinePage {
 
     String billText = "//div[@class='col-md-9']/p[1]";
 
-    @FindBy(xpath = "//div[@class='col-md-9']/p[2]")
+    @FindBy(xpath = "//p[@class='ft11 tgreyteel breakword']")
     private WebElement cNo;
 
     @FindBy(xpath = "//div[@class='col-md-9']/p[4]")
@@ -65,12 +65,15 @@ public class LandlinePage {
         Element.pressEnter(driver);
     }
 
-    public void enterTelNo(String mobNo) {
+    public void enterTelNo(String mobNo) throws InterruptedException {
+        Element.selectElement(driver,telNo,"Telephone no");
+//        Thread.sleep(3000);
         Element.enterText(driver, telNo, mobNo, "telephone no");
+//        driver.findElement(By.xpath("//input[@class='form-input tx48 ng-touched ng-dirty ng-invalid']")).sendKeys(mobNo);
     }
 
     public void enterCAN(String cNo) {
-        Element.selectElement(driver,can, "Select Connection Number");
+        Element.selectElement(driver,can,"cn");
         Element.enterText(driver, can, cNo, "cn");
     }
 
