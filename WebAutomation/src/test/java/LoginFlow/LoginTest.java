@@ -13,11 +13,11 @@ public class LoginTest extends TestBase {
     @Test(groups = {"loginFlow"}, priority = 0, description = "Verify Login Flow on Web")
     public void Test_Login_Flow() throws InterruptedException, IOException {
         // Start the test
-        ExtentReport.EXTENTTEST = ExtentReport.EXTENTREPORT.createTest("Test_Login_Flow");
+//        ExtentReport.EXTENTTEST = ExtentReport.EXTENTREPORT.createTest("Test_Login_Flow");
 
         LoginHelper loginHelper = new LoginHelper(getWebDriver());
-//        loginHelper.loginViaOtp("9205299330" ,"mobi testu", "mkwik9330@gmail.com", "9205299330");
-        loginHelper.loginViaOtp("7795709569" ,"Paraj Jai", "par.ajjain@gmail.com", "7795709569");
+        loginHelper.loginViaOtp("9205299330", "mobi testu", "mkwik9330@gmail.com", "9205299330");
+
     }
 
 

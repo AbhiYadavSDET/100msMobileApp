@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Login Flow">
+<suite name="Recharge Flow">
     <test verbose="2" preserve-order="true" name="Landline Test">
         <groups>
             <run>
-                <include name="recharge"/>
+                <include name="Landline"/>
             </run>
         </groups>
 
 
         <classes>
-            <class name="RechargeAndBill.LandlineTest"/>
+            <class name="RechargeAndBill.Recharge"/>
         </classes>
     </test>
 </suite>

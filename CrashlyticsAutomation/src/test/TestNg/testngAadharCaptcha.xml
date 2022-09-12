@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Aadhar Flow">
+
+    <test verbose="2" preserve-order="true" name="Aadhar captcha check flow Test">
+        <groups>
+            <run>
+                <include name="aadharCheckCaptcha"/>
+            </run>
+        </groups>
+
+
+        <classes>
+            <class name="AadharCaptchaCheck"/>
+<!--            <class name="Utils.ExtentReport"/>-->
+        </classes>
+    </test>
+
+</suite>
+

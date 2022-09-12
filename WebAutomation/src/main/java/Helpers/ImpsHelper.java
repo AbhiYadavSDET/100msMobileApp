@@ -57,7 +57,6 @@ public class ImpsHelper {
         impsPage.enteramount(amount);
 
         processingFee=Double.parseDouble(impsPage.getProcessingFee());
-        System.out.println(processingFee);
 
         impsPage.clickGoButton();
         impsPage.clickSendMoney();
@@ -79,7 +78,6 @@ public class ImpsHelper {
         Double balanceAfter=Double.parseDouble(mbkCommonControlsHelper.homeScreenBalance());
         expectedBalance=balanceBefore-Double.parseDouble(amount)-processingFee;
         actualBalance=balanceAfter;
-        System.out.println(balanceBefore+"   "+ balanceAfter+"   "+Double.parseDouble(amount)+"   "+processingFee);
         if((actualBalance-expectedBalance)>delta){
             mbkReporter.verifyTrueWithLogging(false,"Issue in balance deduction",false);
         }else{

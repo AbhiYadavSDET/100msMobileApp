@@ -14,10 +14,10 @@ public class HelpTest extends TestBase {
     @Test(groups = {"helpFlow"}, priority = 0, description = "Verify Help Flow on Web")
     public void Test_Help_Flow() throws InterruptedException, IOException {
 
-        LoginHelper loginHelper = new LoginHelper(driver);
-        loginHelper.loginViaOtp("9149237812", "Sumit Chauhan", "sumitch853@gmail.com", "9149237812");
+//        LoginHelper loginHelper = new LoginHelper(getWebDriver());
+//        loginHelper.loginViaOtp("9818484290", "Udit Gupta", "uditgupta5j151@gmail.com", "9818484290");
 
-        HelpHelper helpHelper = new HelpHelper(driver);
+        HelpHelper helpHelper = new HelpHelper(getWebDriver());
         helpHelper.help("This is a test ticket being raised by automation suite. In case you are reading this , Please close the ticket.-MobiKwik Team");
 
 

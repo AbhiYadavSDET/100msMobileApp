@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Recharge Flow">
-    <test verbose="2" preserve-order="true" name="Gas Test">
+<suite name="Login Flow">
+    <test name="Recharge test">
+
         <groups>
             <run>
-                <include name="Gas"/>
+                <include name="recharge"/>
             </run>
         </groups>
 
@@ -12,5 +13,6 @@
         <classes>
             <class name="RechargeAndBill.Recharge"/>
         </classes>
+
     </test>
 </suite>
