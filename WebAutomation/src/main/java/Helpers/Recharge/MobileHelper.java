@@ -1,6 +1,7 @@
 package Helpers.Recharge;
 
 import Helpers.AddMoneyHelper;
+import Helpers.MbkCommonControlsHelper;
 import PageObject.HomePage;
 import PageObject.Recharge.MobileRechargePage;
 import Utils.Element;
@@ -12,12 +13,14 @@ public class MobileHelper {
     WebDriver driver;
     MobileRechargePage mobileRechargePage;
     MbkReporter mbkReporter;
+    MbkCommonControlsHelper mbkCommonControlsHelper;
     HomePage homePage;
 
     public MobileHelper(WebDriver driver) {
         this.driver = driver;
         mbkReporter = new MbkReporter();
         homePage = new HomePage(driver);
+        mbkCommonControlsHelper= new MbkCommonControlsHelper(driver);
     }
 
     public void verifyPrepaid(String operator, String mobNo, String circle, String amount, boolean promoCodeStatus, String promoCode, String promoCodeText ,String cardNo, String month, String year, String cvv, String bankPassword) throws InterruptedException {
@@ -57,12 +60,7 @@ public class MobileHelper {
         }
         mobileRechargePage.clickMakePayment();
 
-        if(Element.isElementPresent(driver, By.xpath("//h3[text()= ' Select a Payment Mode ']"))){
-
-            AddMoneyHelper addMoneyHelper= new AddMoneyHelper(driver);
-            addMoneyHelper.handleAddMoney(cardNo, month, year, cvv, bankPassword);
-
-        }
+        mbkCommonControlsHelper.handlePayments(cardNo,month,year,cvv,bankPassword);
 
         mbkReporter.verifyTrueWithLogging(mobileRechargePage.ifSuccessTextPresent(), "success text present", false);
 

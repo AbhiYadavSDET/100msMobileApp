@@ -107,7 +107,6 @@ public class HomePage {
     public HomePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
-        Browser.waitForPageLoad(driver, load_homepage);
         Config.logComment("*****On Home-Page*****");
     }
 
@@ -216,7 +215,7 @@ public class HomePage {
         Element.waitForVisibility(driver,profile_icon,"Waiting for Profile Icon");
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.elementToBeClickable(profile_icon));
-        Thread.sleep(4000);
+        Thread.sleep(2000);
         Element.selectElement(driver, profile_icon, "Side Drawer");
         return new SideDrawerPage(driver);
     }

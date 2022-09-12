@@ -8,10 +8,16 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import logger.Log;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import utils.*;
 
 import java.io.IOException;
 import java.util.HashMap;
+
+import io.restassured.RestAssured;
+import io.restassured.http.Method;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 
 public class AddMoneyHelper {
 
@@ -145,11 +151,37 @@ public class AddMoneyHelper {
 
 
     public void handleBankWebView(String Pin) throws InterruptedException {
-        Element.waitForVisibility(driver, addMoneyPage.label_make_payment);
-        addMoneyPage.clickOnBankPageSecurePassword();
-        addMoneyPage.enterBankPagePassword(Pin);
-        addMoneyPage.clickOnBankPageSubmitButton();
         Thread.sleep(10000);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        Thread.sleep(66000);
+        String newOtp=getOtpDetails();
+
+        js.executeScript("document.getElementsByTagName(\"zwe-cipher-authentication-controls\")[0].shadowRoot.getElementById(\"indusind_otp\").focus();");
+
+
+        Thread.sleep(2000);
+
+        js.executeScript("document.getElementsByTagName('zwe-cipher-authentication-controls')[0].shadowRoot.getElementById(\"indusind_otp\").value = \""+newOtp+"\"");
+
+//        Thread.sleep(2000);
+//
+//        js.executeScript("document.getElementsByTagName('zwe-cipher-authentication-controls')[0].shadowRoot.getElementById(\"indusind_otp\").value = \""+newOtp+"\"");
+//
+//        Thread.sleep(2000);
+//
+//        js.executeScript("document.getElementsByTagName('zwe-cipher-authentication-controls')[0].shadowRoot.getElementById(\"indusind_otp\").value = \""+newOtp+"\"");
+//
+//        Thread.sleep(2000);
+
+        Thread.sleep(10000);
+
+        js.executeScript("document.getElementsByTagName(\"zwe-cipher-authentication-controls\")[0].shadowRoot.getElementById(\"submit-indusind_otp\").disabled = false");
+//
+        Thread.sleep(1000);
+
+        js.executeScript("document.getElementsByTagName('zwe-cipher-authentication-controls')[0].shadowRoot.getElementById(\"submit-indusind_otp\").click()");
+
+        Thread.sleep(16000);
     }
 
 
@@ -257,6 +289,28 @@ public class AddMoneyHelper {
 
         Log.info("END", "Add Money");
 
+    }
+
+    public String getOtpDetails() {
+        // Specify the base URL to the RESTful web service
+
+        RestAssured.baseURI = "https://firebasestorage.googleapis.com/";
+        RestAssured.basePath="v0/b/testingsyncotpfirebase.appspot.com/o";
+
+        // Get the RequestSpecification of the request to be sent to the server.
+        RequestSpecification httpRequest = RestAssured.given().log().all().urlEncodingEnabled(false);
+
+        //Specify the method type (GET) and the parameters if any.
+        //In this case the request does not take any parameters
+        Response response = httpRequest.request(Method.GET, "otpTesting%2Fotp.json?alt=media");
+        // Print the status and message body of the response received from the server
+
+        System.out.println("Status received => " + response.getStatusLine());
+        System.out.println("Response=>" + response.prettyPrint());
+
+        String output=response.prettyPrint().replace("{\"otp\":\"","").replace("\"}", "");
+        System.out.println("Output Otp=>" + output);
+        return output;
     }
 
 

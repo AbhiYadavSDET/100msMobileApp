@@ -2,14 +2,14 @@ package FastExecustion;
 
 import Helpers.*;
 import Helpers.Recharge.*;
-import Utils.ExtentReport;
+//import Utils.ExtentReport;
 import Utils.TestBase;
 import org.testng.annotations.Test;
+
 
 import java.io.IOException;
 
 public class FastExecutionTest extends TestBase {
-
 
     @Test(groups = {"sanityFlow"}, priority = 0, description = "Verify Sanity Flow on Web")
     public void Test_Sanity_Flow() throws InterruptedException, IOException {
@@ -17,7 +17,7 @@ public class FastExecutionTest extends TestBase {
 //        ExtentReport.EXTENTTEST = ExtentReport.EXTENTREPORT.createTest("Test_Sanity_Flow");
 
         LoginHelper loginHelper = new LoginHelper(getWebDriver());
-        loginHelper.loginViaOtp("9818484290", "Udit Gupta", "uditgupta5j151@gmail.com", "9818484290");
+        loginHelper.loginViaOtp("9205299330" ,"mobi testu", "mkwik9330@gmail.com", "9205299330");
 
 //        AddMoneyHelper addMoneyHelper = new AddMoneyHelper(getWebDriver());
 //        addMoneyHelper.addMoneyViaNewcard("5", "4799470274582974","07","2027", "443", "521991", "Money Added Successfully");
@@ -33,6 +33,9 @@ public class FastExecutionTest extends TestBase {
 
         MyWalletHelper myWalletHelper = new MyWalletHelper(getWebDriver());
         myWalletHelper.myWalletDetails();
+
+        MobileHelper mobileHelper = new MobileHelper(getWebDriver());
+        mobileHelper.verifyPrepaid("Vi", "7795709569", "Delhi/NCR", "10", false, "", "","4799470274582974","07","2027", "443", "521991");
 
         OfferHelper offerHelper = new OfferHelper(getWebDriver());
         offerHelper.verifyOffers("makemytrip");

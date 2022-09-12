@@ -16,7 +16,6 @@ public class RechargePage {
     public RechargePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
-        Browser.waitForPageLoad(driver, mobile);
         Config.logComment("*****On money Transfer Page*****");
     }
 

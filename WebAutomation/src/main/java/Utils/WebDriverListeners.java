@@ -93,6 +93,7 @@ public class WebDriverListeners extends TestBase implements WebDriverEventListen
             e.printStackTrace();
         } catch (Exception e) {
             Config.logComment("Unable to Save");
+            e.printStackTrace();
 
         }
 

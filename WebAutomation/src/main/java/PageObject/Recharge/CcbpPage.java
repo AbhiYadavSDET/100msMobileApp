@@ -19,120 +19,67 @@ public class CcbpPage {
 
     }
 
-    @FindBy(xpath = "//div[@class='ng-input']/input")
-    private WebElement operator;
+    @FindBy(xpath = "//input[@id='cn']")
+    private WebElement input_credit_card_number;
 
-    @FindBy(id = "cn")
-    private WebElement telNo;
+    @FindBy( xpath = "//input[@id='amt']")
+    private WebElement enter_amount;
 
-    @FindBy(id = "cn")
-    private WebElement can;
+    @FindBy (xpath = "//div[@class='col-md-1 nopad pall col-tb-12']//child::button[@type= 'submit']")
+    private WebElement cta_go;
 
-    @FindBy(xpath = "//span[text()='Go']")
-    private WebElement ctaGo;
+    @FindBy (xpath = "//p[@class='ft17 fw600 mar22 mbottom']")
+    private WebElement confirm_recharge_pop_up;
 
-    String billText = "//div[@class='col-md-9']/p[1]";
+    @FindBy (xpath= "//div[@class= 'col-md-12 tcenter paybtnWrap m_stickyBtn']//child::button[@type='submit']")
+    private WebElement cta_make_payment;
 
-    @FindBy(xpath = "//div[@class='col-md-9']/p[2]")
-    private WebElement cNo;
+    String successMsg = "//mbk-recharge-status//p[text()='Payment Successful']";
 
-    @FindBy(xpath = "//div[@class='col-md-9']/p[4]")
-    private WebElement mNo;
+    @FindBy (xpath = "//div[@class='col-md-6 ft15 tright fw600']")
+    private WebElement getAmount;
 
-    @FindBy(xpath = "//div[@class='col-md-9']/p[3]")
-    private WebElement op;
 
-    @FindBy(xpath = "/mbk-view-payment/section")
-    private WebElement bill_window;
 
-    @FindBy(xpath = "//div[@class='col-md-9']/p[1]")
-    private WebElement bill_text;
 
-    @FindBy(xpath = "//button[@class = 'cmat cls mg mg_icoclose mat-icon-button mat-button-base']")
-    private WebElement crossButton;
-
-    String bill_amount = "//input[@class= 'form-input tx48 nobdr nobg nopad pleft ptop ng-untouched ng-pristine']";
-
-    String no_due_amount="//p[@class = 'ft15 smtop15 smbottom30 tcenter']";
-
-    @FindBy(xpath = "//p[@class = 'ft15 smtop15 smbottom30 tcenter']")
-    private WebElement error_message;
-
-    String bill = "//mbk-view-payment/section";
-
-    public void selectOperator(String op) {
-        Element.enterText(driver, operator, op, "MTNL Delhi");
-        Element.pressEnter(driver);
+    public void enterCreditCard(String creditcard) {
+        Element.enterText(driver, input_credit_card_number, creditcard, "Enter credit Card Number");
     }
 
-    public void enterTelNo(String mobNo) {
-        Element.enterText(driver, telNo, mobNo, "telephone no");
-    }
-
-    public void enterCAN(String cNo) {
-        Element.enterText(driver, can, cNo, "cn");
+    public void enterAmount(String amount) {
+        Element.enterText(driver, enter_amount, amount, "Enter Amount");
     }
 
     public void clickGo() {
-        Element.click(driver, ctaGo, "Go");
+        Element.click(driver, cta_go, "Go");
     }
 
-    public String getOperator() {
-        return Element.getText(driver, op, "operator on bill");
+    public void waitForConfirmWindowToOpen() {
+        Element.waitForVisibility(driver, confirm_recharge_pop_up, "Confirm payment Screen");
     }
 
-    public String getCNo() {
-        return Element.getText(driver, cNo, "Cno on bill");
+    public void clickMakePayment(){
+        Element.selectElement(driver,cta_make_payment, "Click Make Payment" );
     }
 
-    public String getMNo() {
-        return Element.getText(driver, mNo, "Mob No on bill");
-    }
+    public boolean ifSuccessTextPresent() {
 
-    public String getBillText() {
-        return Element.getText(driver, bill_text, "Bill Text");
-    }
-
-    public boolean ifBillExists() {
         try {
-            return Element.isElementPresent(driver, By.xpath(bill));
+            Element.waitForVisibility(driver, (WebElement) By.xpath("successMsg"), "Success Page visible");
+            return Element.isElementPresent(driver, By.xpath(successMsg));
         } catch (InterruptedException e) {
             Log.info(e.getMessage().toString());
         }
         return false;
     }
 
-    public boolean ifTextPresent() {
-        try {
-            return Element.isElementPresent(driver, By.xpath(billText));
-        } catch (InterruptedException e) {
-            Log.info(e.getMessage().toString());
-        }
-        return false;
+    public String getAmount(){
+       return Element.getText(driver,getAmount,"Get amount from Success Page").replace("₹ ","");
     }
 
-    public void waitForBillWindow() {
-        Element.waitForVisibility(driver, crossButton, "Bill Window");
-    }
 
-    public void closeBill() {
-        Element.selectElement(driver, crossButton, "cross button");
-    }
 
-    public boolean billStatus() throws InterruptedException {
 
-        if(Element.isElementPresent(driver, By.xpath(bill_amount) )){
-            Log.info("Bill amount Present");
-            return true;
-        }else if( Element.isElementPresent(driver, By.xpath(no_due_amount))){
-            Log.info("No Due amount Present");
-            return true;
-        }else {
-            String Error =Element.getText(driver, error_message,"Getting Error Message");
-            Log.info(Error);
-            return false;
-        }
 
-    }
 
 }

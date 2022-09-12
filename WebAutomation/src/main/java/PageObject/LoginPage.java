@@ -36,7 +36,7 @@ public class LoginPage {
     public LoginPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
-        Browser.waitForPageLoad(driver, load_login_page);
+//        Browser.waitForPageLoad(driver, load_login_page);
         Config.logComment("*****On Login-Page*****");
 
     }

@@ -19,7 +19,7 @@ public class AddMoneyTest extends TestBase {
         loginHelper.loginViaOtp("9205299330" ,"mobi testu", "mkwik9330@gmail.com", "9205299330");
 
         AddMoneyHelper addMoneyHelper = new AddMoneyHelper(getWebDriver());
-        addMoneyHelper.addMoneyViaNewcard("5", "4799470274582974","07","2027", "443", "521991", "Money Added Successfully");
+        addMoneyHelper.addMoneyViaNewcard("5", "4389760052036060","06","2029", "068", "", "Money Added Successfully");
     }
 
 //    @Test(groups = {"addMoneySanity"}, priority = 2, description = "Verify Add Money via Saved Card")

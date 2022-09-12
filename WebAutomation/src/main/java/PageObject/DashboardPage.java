@@ -39,7 +39,6 @@ public class DashboardPage {
     public DashboardPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
-        Browser.waitForPageLoad(driver, side_drawer_recharge);
         Config.logComment("*****On Dashboard Page*****");
     }
 

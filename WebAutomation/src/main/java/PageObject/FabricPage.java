@@ -16,7 +16,7 @@ public class FabricPage {
     public FabricPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
-        Browser.waitForPageLoad(driver, page_load_welcome_text);
+//        Browser.waitForPageLoad(driver, page_load_welcome_text);
         Config.logComment("*****On Fabric Page*****");
     }
 

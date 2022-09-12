@@ -53,7 +53,7 @@ public class HelpPage {
     public HelpPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
-        Browser.waitForPageLoad(driver, button_past_issues);
+//        Browser.waitForPageLoad(driver, button_past_issues);
         Config.logComment("*****On Help-Page*****");
     }
 

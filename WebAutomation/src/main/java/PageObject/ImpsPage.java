@@ -49,7 +49,7 @@ public class ImpsPage {
     public ImpsPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
-        Browser.waitForPageLoad(driver, walletTransferButton);
+//        Browser.waitForPageLoad(driver, walletTransferButton);
         Config.logComment("*****On money Transfer Page*****");
     }
 

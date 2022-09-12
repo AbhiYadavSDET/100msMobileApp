@@ -14,7 +14,7 @@ public class NearByPage {
     public NearByPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
-        Browser.waitForPageLoad(driver, searchBox);
+//        Browser.waitForPageLoad(driver, searchBox);
         Config.logComment("*****On near by Page*****");
     }
 

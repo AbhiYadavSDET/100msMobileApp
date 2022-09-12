@@ -68,7 +68,7 @@ public class BankTransferPage {
     public BankTransferPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
-        Browser.waitForPageLoad(driver, load_bank_transfer);
+//        Browser.waitForPageLoad(driver, load_bank_transfer);
         Config.logComment("*****On Bank Transfer Page*****");
     }
 

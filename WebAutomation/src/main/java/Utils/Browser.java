@@ -1,6 +1,8 @@
 package Utils;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.remote.UnreachableBrowserException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -382,6 +384,24 @@ public class Browser extends TestBase {
 
     public static String getTitle(WebDriver driver) {
         return driver.getTitle();
+    }
+
+    /**
+     * This Method is used to scroll till element visible on page
+     * @param locator
+     * @author parajJain
+     */
+
+    public static void ScrollToVisibleElement(WebDriver driver,By locator) throws InterruptedException {
+        //Locating element by link text and store in variable "Element"
+        WebElement Element = driver.findElement(locator);
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+            // Scrolling down the page till the element is found
+            js.executeScript("arguments[0].scrollIntoView(true)", Element);
+//        js.executeScript("window.scrollBy(0,150)","");
+
+
     }
 
 }
