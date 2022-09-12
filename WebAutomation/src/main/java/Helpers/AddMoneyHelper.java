@@ -6,10 +6,19 @@ import PageObject.DashboardPage;
 import PageObject.HomePage;
 import Utils.Browser;
 import Utils.Element;
+import Utils.Log;
 import Utils.MbkReporter;
+import io.restassured.RestAssured;
+import io.restassured.http.Method;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+import org.json.JSONException;
+import org.json.simple.JSONObject;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
 
 public class AddMoneyHelper {
 
@@ -42,10 +51,12 @@ public class AddMoneyHelper {
 
     public void addMoneyViaNewcard(String amount, String cardNo, String month, String year, String cvv, String bankPassword, String expectedSuccessScreenStatus) throws InterruptedException {
 
+        Boolean newCardWindowFlow=false;
         // Click on Add Money button
         addMoneyPage = homePage.clickOnAddMoney();
 
         // Enter the amount
+        Thread.sleep(2000);
         addMoneyPage.enterAmount(amount);
 
         // Click on continue button
@@ -54,10 +65,12 @@ public class AddMoneyHelper {
 
         // Click on the New Debit/Credit card
 
-        if(!Element.isElementPresent(driver, By.xpath("//*[text()='Enter Credit / Debit Card Number']"))) {
-            addMoneyPage.clickOnDebitOrCreditCards("debit");
+        if(Element.isElementPresent(driver, By.xpath("//div[@class= 'dpTable cardSecWrap']"))) {
+//            addMoneyPage.clickOnDebitOrCreditCards("debit");
             // Click in new Card
             addMoneyPage.clickOnNewCard();
+            newCardWindowFlow=true;
+
         }
 
         // Enter the card
@@ -73,13 +86,15 @@ public class AddMoneyHelper {
         Element.selectElement(driver,expiryYear,"Enter Expiry Year");
 
         Thread.sleep(2000);
-        addMoneyPage.enterCvv(cvv);
+        addMoneyPage.enterCvv(cvv,newCardWindowFlow);
 
         // Click on the Proceed button
         addMoneyPage.clickOnProceedToPay2();
 
         // Handle the Bank page
-        handlePayZappWebView(bankPassword);
+//        handlePayZappWebView(bankPassword);
+
+        handleIndusIndWebView();
 
         //Assertions
         // Wait for visibility of the tick icon
@@ -165,19 +180,32 @@ public class AddMoneyHelper {
 
     }
 
-    public void handleIndusIndWebView(String password) throws InterruptedException {
-        Element.waitForVisibility(driver, addMoneyPage.indusInd_logo, "Indusind Logo");
-//        addMoneyPage.enterIndusIndBankPageOtp(password);
+    public void handleIndusIndWebView() throws InterruptedException {
+
+        Thread.sleep(10000);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
         Thread.sleep(6000);
-        addMoneyPage.clickOnIndusIndBankPageSubmitButton();
+        String newOtp=getOtpDetails();
+        Thread.sleep(2000);
+
+        js.executeScript("document.getElementById(\"otpValue\").value=\""+newOtp+"\";");
+        Thread.sleep(2000);
+
+        js.executeScript("document.getElementById(\"submitBtn\").click();");
         Thread.sleep(16000);
 
     }
 
     public WebDriver handleAddMoney(String cardNo, String month, String year, String cvv, String bankPassword) throws InterruptedException {
-        if(Element.isElementPresent(driver, By.xpath("//label[@class= 'ft12 mft13 dpBLock tgreyteel']"))) {
-            Browser.ScrollToVisibleElement(driver,By.xpath("//div[@class= 'pad40 ptop separator']"));
+       Boolean newCardWindowFlow=false;
+
+        if(Element.isElementPresent(driver, By.xpath("//div[@class= 'dpTable cardSecWrap']"))) {
+//            addMoneyPage.clickOnDebitOrCreditCards("debit");
+            // Click in new Card
             addMoneyPage.clickOnNewCard();
+            newCardWindowFlow=true;
+
         }
 
         // Enter the card
@@ -193,18 +221,40 @@ public class AddMoneyHelper {
         Element.selectElement(driver,expiryYear,"Enter Expiry Year");
 
         Thread.sleep(2000);
-        addMoneyPage.enterCvv(cvv);
+        addMoneyPage.enterCvv(cvv,newCardWindowFlow);
 
         // Click on the Proceed button
         addMoneyPage.clickOnProceedToPay2();
 
         // Handle the Bank page
-        handleIndusIndWebView("");
+        handleIndusIndWebView();
 
         Thread.sleep(3000);
 
         return driver;
 
+    }
+
+    public String getOtpDetails() {
+        // Specify the base URL to the RESTful web service
+
+        RestAssured.baseURI = "https://firebasestorage.googleapis.com/";
+        RestAssured.basePath="v0/b/testingsyncotpfirebase.appspot.com/o";
+
+        // Get the RequestSpecification of the request to be sent to the server.
+        RequestSpecification httpRequest = RestAssured.given().log().all().urlEncodingEnabled(false);
+
+        //Specify the method type (GET) and the parameters if any.
+        //In this case the request does not take any parameters
+        Response response = httpRequest.request(Method.GET, "otpTesting%2Fotp.json?alt=media");
+        // Print the status and message body of the response received from the server
+
+        System.out.println("Status received => " + response.getStatusLine());
+        System.out.println("Response=>" + response.prettyPrint());
+
+        String output=response.prettyPrint().replace("{\"otp\":\"","").replace("\"}", "");
+        System.out.println("Output Otp=>" + output);
+        return output;
     }
 
 //    public void applyPromoCodeAddMoney(String promoCode, String expectedText) throws InterruptedException {
@@ -223,6 +273,22 @@ public class AddMoneyHelper {
 //        String actualCouponCodeText = addMoneyPage.getCouponCodeText();
 //
 //        mbkReporter.verifyEqualsWithLogging(actualCouponCodeText, expectedText, "Coupon Code Text", false);
+//    }
+
+//    public JSONObject readJsonFromUrl(String link) throws IOException, JSONException {
+//        InputStream input = new URL(link).openStream();
+//        // Input Stream Object To Start Streaming.
+//        try {                                 // try catch for checked exception
+//            BufferedReader re = new BufferedReader(new InputStreamReader(input, Charset.forName("UTF-8")));
+//            // Buffer Reading In UTF-8
+//            String Text = Read(re);         // Handy Method To Read Data From BufferReader
+//            JSONObject json = new JSONObject(Text);    //Creating A JSON
+//            return json;    // Returning JSON
+//        } catch (Exception e) {
+//            return null;
+//        } finally {
+//            input.close();
+//        }
 //    }
 
 }

@@ -46,7 +46,9 @@ public class LoginHelper {
             loginPage.clickGetOtp();
 
             //enter otp
-            loginPage.enterOtp();
+
+            loginPage.enterOtp("547372");
+             loginPage.clickSubmitOtp();
 
             // Handle the OTP wrt headLess Flag
             if (TestBase.headLess.equalsIgnoreCase("true")) {

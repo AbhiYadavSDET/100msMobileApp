@@ -61,6 +61,9 @@ public class AddMoneyPage {
     @FindBy(xpath = "//input[@placeholder='CVV']")
     public WebElement textbox_cvv;
 
+    @FindBy(xpath = "//p[text()='Enter Card Details']/following::input[@placeholder='CVV']")
+    public WebElement textbox_cvv1;
+
     @FindBy(xpath = "//span[contains(text(),'Proceed to Pay')]")
     public WebElement button_proceed_to_pay_2;
 
@@ -99,6 +102,9 @@ public class AddMoneyPage {
 
     @FindBy(xpath = "//input[@name = 'pin']")
     private WebElement textbox_bankpage_otp;
+
+    @FindBy(xpath = "//zwe-cipher-authentication-controls")
+    private WebElement textbox_bankpage_otp1;
 
     //Payazapp Handling
     @FindBy(xpath = "//img[@alt= 'PayZapp secure PIN']")
@@ -222,9 +228,16 @@ public class AddMoneyPage {
 
     }
 
-    public void enterCvv(String cvv) {
-        Element.selectElement(driver, textbox_cvv,"Select CVV Box");
-        Element.enterText(driver, textbox_cvv, cvv, "Cvv");
+    public void enterCvv(String cvv, Boolean set) {
+
+        if(!set) {
+            Element.selectElement(driver, textbox_cvv, "Select CVV Box");
+            Element.enterText(driver, textbox_cvv, cvv, "Cvv");
+        }else {
+            Element.selectElement(driver, textbox_cvv1, "Select CVV Box in pop up Window");
+            Element.enterText(driver, textbox_cvv1, cvv, "Cvv");
+
+        }
     }
 
     public void enterSavedCardCvv(String cvv) {
@@ -299,6 +312,11 @@ public class AddMoneyPage {
     public void enterIndusIndBankPageOtp(String otp) throws InterruptedException {
         Element.enterText(driver, textbox_bankpage_otp, otp, "Indusind Bank page Password");
     }
+
+    public void selectIndusIndBankPageOtpField() throws InterruptedException {
+        Element.selectElement(driver, textbox_bankpage_otp1, "Indusind Bank page otp Field");
+    }
+
 
 }
 

@@ -213,6 +213,7 @@ public class HomePage {
         Element.waitForVisibility(driver,profile_icon,"Waiting for Profile Icon");
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.elementToBeClickable(profile_icon));
+        Thread.sleep(2000);
         Element.selectElement(driver, profile_icon, "Side Drawer");
         return new SideDrawerPage(driver);
     }
