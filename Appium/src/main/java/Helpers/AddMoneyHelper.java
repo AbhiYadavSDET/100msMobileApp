@@ -135,7 +135,7 @@ public class AddMoneyHelper {
         mbReporter.verifyEqualsWithLogging(addMoneyPage.getSuccessPageStatus(), successPageStatus, "Success Screen | Verify Status", false, false);
         mbReporter.verifyEqualsWithLogging(actualMainBalance, expectedMainBalance, "Success Screen | Verify Main Balance", false, false);
 
-        mbkCommonControlsHelper.returnToHomePageFromAddMoneySuccessScreen();
+        mbkCommonControlsHelper.returnToHomePageFromSuccessScreen();
 
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
         // POST TRX Assertions
@@ -190,7 +190,7 @@ public class AddMoneyHelper {
         //Assertions
         Boolean out= !(addMoneyPage.getSuccessPageStatus() ==null);
         mbReporter.verifyTrueWithLogging(out, "Success Screen | Verify Status", true, false);
-        mbkCommonControlsHelper.returnToHomePageFromAddMoneySuccessScreen();
+        mbkCommonControlsHelper.returnToHomePageFromSuccessScreen();
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
         Log.info("END", "Add Money");
 

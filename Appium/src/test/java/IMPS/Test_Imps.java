@@ -1,75 +1,56 @@
 package IMPS;
-/*
-import Helpers.*;
-import UITestFramework.CreateSession;
-import dbutil.mysql.automationtest.front_end_automation.entity.FrontEndEntity;
-import logger.Log;
-import org.json.JSONException;
+
+import Helpers.ImpsHelper;
+import Helpers.LoginHelper;
 import org.testng.annotations.Test;
-import utils.DatabaseSqlHelper;
+import utils.ExtentReport;
+import utils.TestBase;
 
 import java.io.IOException;
 
-public class Test_Imps extends CreateSession {
 
-    DatabaseSqlHelper databaseSqlHelper = new DatabaseSqlHelper();
-    AddMoneyHelper addMoneyHelper;
-    MBKCommonControlsHelper mbkCommonControlsHelper;
+public class Test_Imps extends TestBase {
 
-    @Test(groups = {"sendMoney", "impsSanity"}, priority = 0, dataProvider = "impsData", dataProviderClass = ImpsDataProviderClass.class)
-    public void Test01_imps(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
+    @Test(groups = {"impsNewAccountNumber", "impsSanity"}, priority = 0, description = "IMPS on New Account Number")
+    public void Test01_imps_new_account_number() throws IOException, InterruptedException {
 
-        Log.info("START : Imps sanity test");
+        // Starting the test in the extentreport
+        ExtentReport.EXTENTREPORT.createTest("Verify IMPS-New Account number Flow");
 
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
-
-
-        CheckBalanceHelper checkBalanceHelper = new CheckBalanceHelper(getAndroidDriver());
-        checkBalanceHelper.checkBalance(frontEndEntity.getAmount(), "5");
-
-//        // Add money for the amount
-//        addMoneyHelper = new AddMoneyHelper(driver);
-//        addMoneyHelper.addMoneyViaSavedCardWithinFlow(amount, "4363 XXXX XXXX 4460", "239", "Paraj@1234");
-
-        // IMPS the same amount
+        LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
+        loginHelp.loginViaOtp("9205299330", "547372");
 
         ImpsHelper impsHelper = new ImpsHelper(getAndroidDriver());
-        impsHelper.verifyImps("Paraj Jain", "917795709569", "PYTM0123456", frontEndEntity.getAmount(), frontEndEntity.getSecurityPin());
-
-        Log.info("END : Imps sanity test");
+        impsHelper.verifyImpsNewAccountTransferFlow("Paraj Jain", "218101502680", "ICIC0002181", "50", "121212", "4389760052036060", "06/29", "068");
 
     }
-    //Lakshay entries -
 
-    @Test(groups = {"sendMoneyVPA"}, priority = 0)
-    public void Test02_imps_sendMoneytoVPA() throws IOException, JSONException, InterruptedException {
+    @Test(groups = {"impsSavedAccountNumber", "impsSanity"}, priority = 1, description = "IMPS on Saved Account Number")
+    public void Test02_imps_saved_account_number() throws IOException, InterruptedException {
 
-        Log.info("START : Imps to VPA sanity test");
+        // Starting the test in the extentreport
+        ExtentReport.EXTENTREPORT.createTest("Verify IMPS-Saved Account number Flow");
 
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaNumber("9205299330", "547372");
+        LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
+        loginHelp.loginViaOtp("9205299330", "547372");
+        ImpsHelper impsHelper = new ImpsHelper(getAndroidDriver());
+        impsHelper.verifyImpsSavedAccountTransferFlow("50", "121212", "4389760052036060", "06/29", "068");
+    }
+
+    @Test(groups = {"impsSavedVpa", "impsSanity"}, priority = 1, description = "IMPS on Saved VPA")
+    public void Test03_imps_saved_vpa() throws IOException, InterruptedException {
+
+        // Starting the test in the extentreport
+        ExtentReport.EXTENTREPORT.createTest("Verify IMPS-Saved VPA Flow");
+
+        LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
+        loginHelp.loginViaOtp("9205299330", "547372");
 
         ImpsHelper impsHelper = new ImpsHelper(getAndroidDriver());
-        impsHelper.sendMoneyVPA("lakshayvrm@ybl", "50", "121212");
-
-        Log.info("END : IMPS to VPA sanity test");
+        impsHelper.verifyImpsVPATransferFlow("50", "121212", "4389760052036060", "06/29", "068");
     }
 
-    @Test(groups = {"sendMoneyBA"}, priority = 1)
-    public void Test03_imps_sendMoneytoBA() throws IOException, JSONException, InterruptedException {
 
-        Log.info("START : Imps to Bank Account sanity test");
-
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaNumber("9205299330", "547372");
-
-        ImpsHelper impsHelper = new ImpsHelper(getAndroidDriver());
-        impsHelper.sendMoneyBA("Lakshay Verma", "239001509736", "ICIC0002390", "50", "121212");
-
-        Log.info("END : IMPS to VPA sanity test");
-    }
 }
 
 
- */

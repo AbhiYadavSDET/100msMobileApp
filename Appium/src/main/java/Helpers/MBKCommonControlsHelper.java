@@ -203,20 +203,11 @@ public class MBKCommonControlsHelper {
             mbkCommonControlsPage.clickOnUpButton2();
         }
 
-        public void returnToHomePageFromSuccessScreen () throws InterruptedException {
-            mbkCommonControlsPage.clickOnSuccessPageCross();
-        }
-
         public void returnToHomePageFromRechargeSuccessScreen () throws InterruptedException {
             mbkCommonControlsPage.clickOnSuccessPageCross();
             handleRatingsPopUp();
             handleNPS();
         }
-//    public void returnToHomePageFromCCBPSuccessScreen() throws InterruptedException {
-//        mbkCommonControlsPage.clickOnSuccessPageBack();
-//        handleRatingsPopUp();
-//        handleNPS();
-//    }
 
 
         public void returnToHomePageFromRechargeSuccessScreenBackButton () throws InterruptedException {
@@ -231,7 +222,7 @@ public class MBKCommonControlsHelper {
             handleNPS();
         }
 
-        public void returnToHomePageFromAddMoneySuccessScreen () throws InterruptedException {
+        public void returnToHomePageFromSuccessScreen () throws InterruptedException {
             mbkCommonControlsPage.clickOnSuccessPageCross();
             handleRatingsPopUp();
             handleNPS();
