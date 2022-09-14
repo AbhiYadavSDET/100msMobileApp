@@ -41,7 +41,7 @@ public class P2PExtraHelper {
 
 
 
-    public void investMoney(String amount, String cardNo, String expiry, String cvv, String bankPin,Boolean validateTillOtpPage, String paymentFlow) throws InterruptedException, IOException {
+    public void investMoney(String amount, String cardNo, String expiry, String cvv,Boolean validateTillOtpPage, String paymentFlow) throws InterruptedException, IOException {
 
         Log.info("START", "P2P Extra-Invest");
         Log.info("----------- Arguments ---------------");
@@ -91,7 +91,7 @@ public class P2PExtraHelper {
 
         }else {
 
-            mbkCommonControlsHelper.handleAddMoney("withinTestCase", amount, cardNo, expiry, cvv, bankPin);
+            mbkCommonControlsHelper.handleAddMoney("withinTestCase", amount, cardNo, expiry, cvv);
             Thread.sleep(3000);
             Element.waitForVisibility(driver, By.id("small_lottie"));
 

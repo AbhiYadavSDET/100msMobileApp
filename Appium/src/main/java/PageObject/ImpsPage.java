@@ -7,7 +7,7 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import logger.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
-//import utils.Element;
+import utils.Element;
 
 import java.io.IOException;
 
@@ -15,23 +15,21 @@ public class ImpsPage {
 
     AndroidDriver driver;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Wallet to Bank']")
-    private AndroidElement via_Wallet;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Wallet to Bank Transfer']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Wallet to Bank']")
     private AndroidElement wallet_to_bank;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = '167795709569']")
-    private AndroidElement bank;
+    @AndroidFindBy(id="btn_new_transfer")
+    private AndroidElement new_transfer_cta;
 
     @AndroidFindBy(id = "edit_text")
     private AndroidElement amount_box;
 
-    @AndroidFindBy(xpath = "//android.widget.Button[@text = 'Continue']")
-    private AndroidElement continueButton;
+    @AndroidFindBy(id = "btn_pin_submit")
+    private AndroidElement continueButtonArrow;
 
-    @AndroidFindBy(xpath = "//android.widget.Button[@text = 'Make payment']")
-    private AndroidElement confirm;
+    @AndroidFindBy(id = "cta")
+    private AndroidElement pay_amount_cta;
 
     String success_text = "android.widget.TextView[@text = 'Money sent successfully']";
 
@@ -44,7 +42,7 @@ public class ImpsPage {
     @AndroidFindBy(xpath = "//android.widget.EditText[@text = 'IFSC Code']")
     private AndroidElement textbox_ifsc;
 
-    @AndroidFindBy(id = "continue_button")
+    @AndroidFindBy(id = "btn_continue")
     private AndroidElement cta_continue;
 
     @AndroidFindBy(id = "base_title")
@@ -101,39 +99,36 @@ public class ImpsPage {
 
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
-
-
-        /*
-        To Do
-        wait for Page load to be added
-         */
-
         Log.info("*****Imps Page*****");
     }
-/*
-    public void clickOnViaWallet() throws InterruptedException {
-        Element.selectElement(driver, via_Wallet, "Via Wallet on home page");
-    }
+
 
     public void clickOnWalletToBank() throws InterruptedException {
-        Element.selectElement(driver, wallet_to_bank, "Wallet to bank");
+        Element.selectElement(driver, wallet_to_bank, "Wallet to bank cta on Home page");
     }
 
-    public void clickOnBank() throws InterruptedException {
-        Element.selectElement(driver, bank, "Bank Account");
+    public void clickOnTransfertoANewAccount() throws InterruptedException {
+        Element.selectElement(driver, new_transfer_cta, "Wallet to bank cta on Home page");
     }
 
     public void sendAmount(String amount) throws InterruptedException {
         Element.enterText(driver, amount_box, amount, "Transfer amount");
     }
 
-    public void clickOnContinue() throws InterruptedException {
-        Element.selectElement(driver, continueButton, "Bank Account");
+    public void clickOnContinueArrow() throws InterruptedException {
+        Element.selectElement(driver, continueButtonArrow, "Continue Arrow Tap");
     }
 
     public void clickOnConfirm() throws InterruptedException {
-        Element.selectElement(driver, confirm, "Bank Account");
+        Element.selectElement(driver, pay_amount_cta, "Pay amount cta");
     }
+
+    public String getPayAmountCtaText() throws InterruptedException {
+        return Element.getText(driver, pay_amount_cta, "Pay amount cta Text");
+    }
+
+
+
 
     public void clickOnCtaContinue() throws InterruptedException {
         Element.selectElement(driver, cta_continue, "Cta Continue");
@@ -225,5 +220,5 @@ public class ImpsPage {
         return Element.getText(driver, imps_fee, "Get IMPS Fee");
     }
 
- */
+
 }

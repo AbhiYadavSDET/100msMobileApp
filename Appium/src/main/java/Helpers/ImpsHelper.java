@@ -1,15 +1,11 @@
 package Helpers;
-/*
+
 import PageObject.HomePage;
 import PageObject.ImpsPage;
-import PageObject.MbkCommonControlsPage;
-import PageObject.P2MPage;
-import utils.MBReporter;
 import io.appium.java_client.android.AndroidDriver;
-import logger.Log;
-import org.json.JSONException;
 import org.openqa.selenium.By;
 import utils.Element;
+import utils.MBReporter;
 import utils.Screen;
 
 import java.io.IOException;
@@ -23,10 +19,8 @@ public class ImpsHelper {
     Element element;
     MBKCommonControlsHelper mbkCommonControlsHelper;
     MBReporter mbReporter;
-    P2MPage p2mPage;
     PermissionHelper permissionHelper;
     ImpsPage impsPage;
-    MbkCommonControlsPage mbkCommonControlsPage;
 
     public static HashMap<String, String> map;
     public static HashMap<String, String> balanceBefore;
@@ -47,18 +41,16 @@ public class ImpsHelper {
     }
 
 
-    public void verifyImps(String accountName, String accountNo, String ifsc, String amount, String securityPin) throws InterruptedException, IOException, JSONException {
-        //driver.navigate().back();
-        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+    public void verifyImpsNewAccountTransferFlow(String accountName, String accountNo, String ifsc, String amount, String securityPin, String cardNumber, String expiryMonthYear, String cvv) throws InterruptedException, IOException {
 
-        impsPage.clickOnViaWallet();
+
+        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
         impsPage.clickOnWalletToBank();
 
-        // Swipe the homescreen up
-        Thread.sleep(2000);
-        screen.swipeUpLess(driver);
+        Thread.sleep(3000);
 
+        impsPage.clickOnTransfertoANewAccount();
 
         // Enter the bank details
         impsPage.enterBeneficiaryName(accountName);
@@ -69,23 +61,28 @@ public class ImpsHelper {
         impsPage.clickOnCtaContinue();
 
         impsPage.sendAmount(amount);
-        Thread.sleep(5000);
+        Thread.sleep(3000);
 
-        impsPage.clickOnContinue();
+        impsPage.clickOnContinueArrow();
 
         impsPage.clickOnConfirm();
 
-        mbkCommonControlsHelper.handleSecurityPin(securityPin);
-        Thread.sleep(3000);
+        if(impsPage.getPayAmountCtaText().equalsIgnoreCase("continue")){
+            if (Element.isElementPresent(driver, By.id("lock_rationale_text_view"))) {
+                mbkCommonControlsHelper.handleSecurityPin(securityPin);
+            }
+            Thread.sleep(3000);
 
-        // Enter the OTP
-        Log.info("Enter the OTP");
+        }else {
+            mbkCommonControlsHelper.handleAddMoney("withinTestCase", "", cardNumber, expiryMonthYear, cvv);
+            Thread.sleep(3000);
+            if (Element.isElementPresent(driver, By.id("lock_rationale_text_view"))) {
+                mbkCommonControlsHelper.handleSecurityPin(securityPin);
+            }
 
-        Element.waitForVisibility(driver, By.xpath("//android.widget.EditText[@text = '••••••']"));
+        }
 
-        impsPage.clickOnSubmitOtp();
-
-        Thread.sleep(10000);
+        Thread.sleep(5000);
 
         //Assertion on the success page
         //fetch the values
@@ -102,7 +99,7 @@ public class ImpsHelper {
     }
         //Lakshay's entries-
 
-    public void sendMoneyVPA(String vpa, String amount, String securityPin) throws InterruptedException, JSONException, IOException {
+    public void sendMoneyVPA(String vpa, String amount, String securityPin) throws InterruptedException, IOException {
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
         //Storing Available Balance (Wallet Balance)
         balanceBefore = mbkCommonControlsHelper.getBalance();
@@ -169,7 +166,7 @@ public class ImpsHelper {
 
     }
 
-    public void sendMoneyBA(String accountName, String accountNo, String ifsc, String amount, String securityPin) throws InterruptedException, IOException, JSONException {
+    public void sendMoneyBA(String accountName, String accountNo, String ifsc, String amount, String securityPin) throws InterruptedException, IOException {
         mbkCommonControlsHelper.dismissAllOnHomePage(driver);
         //Getting Wallet Balance
         balanceBefore = mbkCommonControlsHelper.getBalance();
@@ -237,6 +234,3 @@ public class ImpsHelper {
 
     }
 }
-
-
- */

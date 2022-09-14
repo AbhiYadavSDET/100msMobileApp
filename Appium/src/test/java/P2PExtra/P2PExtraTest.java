@@ -17,7 +17,7 @@ public class P2PExtraTest extends TestBase {
         loginHelp.loginViaOtp("7795709569", "547372" );
 
         P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getAndroidDriver());
-        p2PExtraHelper.investMoney("1","4363931800224460","12/22","239", "",false,"card");
+        p2PExtraHelper.investMoney("1","4363931800224460","12/22","239",false,"card");
 
     }
 
@@ -28,7 +28,7 @@ public class P2PExtraTest extends TestBase {
         loginHelp.loginViaOtp("7795709569", "547372" );
 
         P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getAndroidDriver());
-        p2PExtraHelper.investMoney("1","4363931800224460","12/22","239", "1234",true,"card");
+        p2PExtraHelper.investMoney("1","4363931800224460","12/22","239",true,"card");
 
     }
 
@@ -39,7 +39,7 @@ public class P2PExtraTest extends TestBase {
         loginHelp.loginViaOtp("7795709569", "547372" );
 
         P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getAndroidDriver());
-        p2PExtraHelper.investMoney("1","4363931800224460","12/22","239", "1234",true,"netbanking");
+        p2PExtraHelper.investMoney("1","4363931800224460","12/22","239",true,"netbanking");
 
     }
 

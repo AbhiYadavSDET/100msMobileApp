@@ -176,7 +176,6 @@ public class AddMoneyPage {
     }
 
     public void enterCardNo(String cardNo) throws InterruptedException {
-
             Element.enterText(driver, textbox_card_no, cardNo, "New Card No Flow | Enter Card Number");
     }
 

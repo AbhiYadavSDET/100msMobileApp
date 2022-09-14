@@ -49,19 +49,21 @@ public class AddMoneyHelper {
 
     }
 
+    /**
+     * This method is to Test standalone add money Flow.
+     * Flow Can Be "SavedCard" or "NewCard"
+     */
 
 
-    public void addMoneyViaCard(String Flow,String amount, String cardNo, String expiryMonthYear, String cvv, String bankPin, String successPageStatus, String successPageText) throws InterruptedException, IOException {
-
-        //Flow Can Be "SavedCard" or "NewCard"
+    public void addMoneyViaCard(boolean savedCardFlow,String amount, String cardNo, String expiryMonthYear, String cvv, String successPageStatus, String successPageText) throws InterruptedException, IOException {
 
         Log.info("START", "Add Money");
         Log.info("----------- Arguments ---------------");
         Log.info("amount : " + amount);
+        Log.info("Saved Card Flow : " + savedCardFlow);
         Log.info("cardNo : " + cardNo);
         Log.info("expiryMonth : " + expiryMonthYear);
         Log.info("cvv : " + cvv);
-        Log.info("bankPin : " + bankPin);
         Log.info("successPageStatus : " + successPageStatus);
         Log.info("successPageText : " + successPageText);
         Log.info("-------------------------------------");
@@ -90,7 +92,7 @@ public class AddMoneyHelper {
 
         Element.waitForVisibility(driver, By.id("next_icon"));
 
-        if(Flow.equalsIgnoreCase("SavedCard")){
+        if(savedCardFlow){
 
             String cardNoLastFour="";
             int length=cardNo.length();
@@ -118,7 +120,7 @@ public class AddMoneyHelper {
 
         permissionHelper.permissionAllow();
 
-        handleBankWebView(bankPin);
+        handleBankWebView();
 
         boolean condition = false;
 
@@ -150,42 +152,12 @@ public class AddMoneyHelper {
     }
 
 
-    public void handleBankWebView(String Pin) throws InterruptedException {
-        Thread.sleep(10000);
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        Thread.sleep(66000);
-        String newOtp=getOtpDetails();
+    /**
+     * This method is to handle add money within the flow.
+     * It always enter in new card Journey.
+     */
 
-        js.executeScript("document.getElementsByTagName(\"zwe-cipher-authentication-controls\")[0].shadowRoot.getElementById(\"indusind_otp\").focus();");
-
-
-        Thread.sleep(2000);
-
-        js.executeScript("document.getElementsByTagName('zwe-cipher-authentication-controls')[0].shadowRoot.getElementById(\"indusind_otp\").value = \""+newOtp+"\"");
-
-//        Thread.sleep(2000);
-//
-//        js.executeScript("document.getElementsByTagName('zwe-cipher-authentication-controls')[0].shadowRoot.getElementById(\"indusind_otp\").value = \""+newOtp+"\"");
-//
-//        Thread.sleep(2000);
-//
-//        js.executeScript("document.getElementsByTagName('zwe-cipher-authentication-controls')[0].shadowRoot.getElementById(\"indusind_otp\").value = \""+newOtp+"\"");
-//
-//        Thread.sleep(2000);
-
-        Thread.sleep(10000);
-
-        js.executeScript("document.getElementsByTagName(\"zwe-cipher-authentication-controls\")[0].shadowRoot.getElementById(\"submit-indusind_otp\").disabled = false");
-//
-        Thread.sleep(1000);
-
-        js.executeScript("document.getElementsByTagName('zwe-cipher-authentication-controls')[0].shadowRoot.getElementById(\"submit-indusind_otp\").click()");
-
-        Thread.sleep(16000);
-    }
-
-
-    public void handleAddMoney(String cardNo, String expiryMonthYear, String cvv, String bankPin) throws InterruptedException, IOException {
+    public void handleAddMoney(String cardNo, String expiryMonthYear, String cvv) throws InterruptedException, IOException {
 
         Element.waitForVisibility(driver, addMoneyPage.label_select_payment_mode);
 
@@ -204,11 +176,9 @@ public class AddMoneyHelper {
             addMoneyPage.enterCardDetails(cardNo, expiryMonthYear, cvv);
 
         addMoneyPage.clickOnPayNow();
-
-
         permissionHelper.permissionAllow();
 
-        handleBankWebView(bankPin);
+        handleBankWebView();
 
         boolean condition = false;
 
@@ -226,7 +196,15 @@ public class AddMoneyHelper {
 
     }
 
+    /**
+     * This method is to handle add money within the flow till bank otp page.
+     * It always enter in new card Journey.
+     * Use this only if card is not working.
+     */
+
     public void handleAddMoney(String cardNo, String expiryMonthYear, String cvv,Boolean validateTillOtpPage, String paymentFlow) throws InterruptedException, IOException {
+
+        Log.info("Add Money Flow Start | To be Validated till otp page : "+validateTillOtpPage+" | Payment mode provided : "+paymentFlow );
 
         Element.waitForVisibility(driver, addMoneyPage.label_select_payment_mode);
 
@@ -252,9 +230,10 @@ public class AddMoneyHelper {
 
             Thread.sleep(2000);
             Element.waitForVisibility(driver, By.xpath("//*[@text ='Confirm & Pay']"));
-            Boolean ispresent=Element.isElementPresent(driver, By.id("indusind_otp"));
-            mbReporter.verifyTrueWithLogging(ispresent,"Is Indusind Webview open", false,true);
+            Boolean ispresent=Element.isElementPresent(driver, By.id("otpValue"));
+            mbReporter.verifyTrueWithLogging(ispresent,"Is Bank Page Webview open", true,true);
             addMoneyPage.goBackFromWebview();
+
 
         }else if(paymentFlow.equalsIgnoreCase("netbanking")){
 
@@ -291,19 +270,53 @@ public class AddMoneyHelper {
 
     }
 
-    public String getOtpDetails() {
-        // Specify the base URL to the RESTful web service
+    /**
+     * This method is to handle add money with card : Currently using Debit Card
+     */
 
+    public void handleBankWebView() throws InterruptedException {
+        Thread.sleep(10000);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        Thread.sleep(6000);
+        String newOtp=getOtpDetails();
+        Thread.sleep(2000);
+
+        js.executeScript("document.getElementById(\"otpValue\").value=\""+newOtp+"\";");
+        Thread.sleep(2000);
+
+        js.executeScript("document.getElementById(\"submitBtn\").click();");
+        Thread.sleep(16000);
+    }
+
+
+
+    /**
+     * This method is gets the otp from the url provided. Apk to be installed in the phone in which otp is sent.
+     */
+
+    public String getOtpDetails() {
+        /**
+         * Specify the base URL to the Restful web service
+         */
         RestAssured.baseURI = "https://firebasestorage.googleapis.com/";
         RestAssured.basePath="v0/b/testingsyncotpfirebase.appspot.com/o";
 
-        // Get the RequestSpecification of the request to be sent to the server.
+        /**
+         * Get the RequestSpecification of the request to be sent to the server.
+         */
         RequestSpecification httpRequest = RestAssured.given().log().all().urlEncodingEnabled(false);
 
-        //Specify the method type (GET) and the parameters if any.
-        //In this case the request does not take any parameters
+        /**
+         * Specify the method type (GET) and the parameters if any.
+         * In this case the request does not take any parameters
+         */
+
         Response response = httpRequest.request(Method.GET, "otpTesting%2Fotp.json?alt=media");
-        // Print the status and message body of the response received from the server
+
+        /**
+         * Print the status and message body of the response received from the server
+         */
 
         System.out.println("Status received => " + response.getStatusLine());
         System.out.println("Response=>" + response.prettyPrint());

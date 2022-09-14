@@ -11,7 +11,6 @@ public class LoginTest extends TestBase {
 
     @Test(groups = {"loginFlow"}, priority = 0, description = "Verify Login Flow on android app")
     public void Test_Login_Flow() throws InterruptedException, IOException {
-        // Start the test
 
         ExtentReport.EXTENTREPORT.createTest("Verify Login Flow on android app");
 

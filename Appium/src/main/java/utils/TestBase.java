@@ -54,6 +54,7 @@ public class TestBase {
     /**
      * ThreadLocal variable which contains the {@link AndroidDriver} instance which
      * is used to perform browser interactions with.
+     * @author: Paraj
      */
     private ThreadLocal<AndroidDriver> androidDriverThread = new ThreadLocal<>();
     //private ThreadLocal<String> sessionId = new ThreadLocal<String>();
