@@ -3,7 +3,7 @@ package Helpers;
 import PageObject.HomePage;
 import PageObject.InsurancePage;
 import PageObject.TransactionHistoryPage;
-import UITestFramework.MBReporter;
+import utils.MBReporter;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import logger.Log;

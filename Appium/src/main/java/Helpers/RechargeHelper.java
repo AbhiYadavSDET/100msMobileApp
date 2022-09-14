@@ -1,7 +1,7 @@
 package Helpers;
 
 import PageObject.*;
-import UITestFramework.MBReporter;
+import utils.MBReporter;
 import utils.*;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;

@@ -3,21 +3,21 @@ package Helpers;
 import PageObject.AddMoneyPage;
 import PageObject.HomePage;
 import PageObject.TransactionHistoryPage;
-import UITestFramework.MBReporter;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
-import logger.Log;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import utils.*;
-
-import java.io.IOException;
-import java.util.HashMap;
-
 import io.restassured.RestAssured;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import logger.Log;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import utils.Element;
+import utils.MBReporter;
+import utils.Screen;
+
+import java.io.IOException;
+import java.util.HashMap;
 
 public class AddMoneyHelper {
 

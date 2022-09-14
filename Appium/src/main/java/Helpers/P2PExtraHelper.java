@@ -1,12 +1,9 @@
 package Helpers;
 
-import PageObject.AddMoneyPage;
 import PageObject.HomePage;
 import PageObject.P2PExtraPage;
-import PageObject.TransactionHistoryPage;
-import UITestFramework.MBReporter;
+import utils.MBReporter;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
 import logger.Log;
 import org.openqa.selenium.By;
 import utils.Element;

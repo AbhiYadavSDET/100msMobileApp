@@ -2,13 +2,11 @@ package Helpers;
 
 import PageObject.HomePage;
 import PageObject.LoginPage;
-import UITestFramework.MBReporter;
+import utils.MBReporter;
 import org.openqa.selenium.By;
 import utils.Element;
-import utils.Elements;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
-import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.support.PageFactory;
 
@@ -36,7 +34,7 @@ public class LoginHelper {
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
-    public void loginViaOtp(String mobileNumber) throws InterruptedException {
+    public void loginViaOtp(String mobileNumber) throws InterruptedException, IOException {
 
 
         Thread.sleep(3000);
@@ -57,6 +55,8 @@ public class LoginHelper {
         Thread.sleep(6000);
         element.waitForVisibility(driver, By.xpath("//*[@text='History']"));
 
+        mbReporter.verifyTrueWithLogging(element.isElementPresent(driver,By.xpath("//*[@text='Balance']")), "Verify User is Logged In", true, true);
+
         loginPage.clickHistoryTab();
         loginPage.checkHistoryText();
         loginPage.clickHomeTab();
@@ -64,8 +64,7 @@ public class LoginHelper {
 
     }
 
-    public void loginViaOtp(String mobileNumber, String otp) throws InterruptedException {
-
+    public void loginViaOtp(String mobileNumber, String otp) throws InterruptedException, IOException {
 
         Thread.sleep(3000);
         if(element.isElementPresent(driver, By.xpath("//*[@text='Get Started']"))) {
@@ -85,6 +84,9 @@ public class LoginHelper {
         loginPage.clickSubmitOtpCta();
 
         element.waitForVisibility(driver, By.xpath("//*[@text='History']"));
+
+        mbReporter.verifyTrueWithLogging(element.isElementPresent(driver,By.xpath("//*[@text='Balance']")), "Verify User is Logged In", true, true);
+
 
     }
 

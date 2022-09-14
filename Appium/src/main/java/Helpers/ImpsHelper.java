@@ -4,7 +4,7 @@ import PageObject.HomePage;
 import PageObject.ImpsPage;
 import PageObject.MbkCommonControlsPage;
 import PageObject.P2MPage;
-import UITestFramework.MBReporter;
+import utils.MBReporter;
 import io.appium.java_client.android.AndroidDriver;
 import logger.Log;
 import org.json.JSONException;

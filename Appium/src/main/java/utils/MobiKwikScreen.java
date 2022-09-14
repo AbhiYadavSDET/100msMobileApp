@@ -1,4 +1,4 @@
-package UITestFramework;
+package utils;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
@@ -243,16 +243,16 @@ public class MobiKwikScreen extends MBReporter {
         findElement(target).click();
     }
 
-    public int selectElementWithSS(By target, String directoryName, String screenName, int ssCount)
-            throws InterruptedException {
-        waitForVisibility(target);
-
-        screenShot1(directoryName, screenName + "_" + ++ssCount);
-
-        findElement(target).click();
-
-        return ssCount;
-    }
+//    public int selectElementWithSS(By target, String directoryName, String screenName, int ssCount)
+//            throws InterruptedException {
+//        waitForVisibility(target);
+//
+//        screenShot1(directoryName, screenName + "_" + ++ssCount);
+//
+//        findElement(target).click();
+//
+//        return ssCount;
+//    }
 
 
     /**

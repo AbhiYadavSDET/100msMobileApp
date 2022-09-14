@@ -2,18 +2,18 @@ package utils;
 
 
 //import applicationcontext.ApplicationContextProvider;
+
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
-//import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
-import com.aventstack.extentreports.reporter.configuration.Theme;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import logger.Log;
-//import mail.Mailer;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
+import javax.mail.MessagingException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,10 +28,10 @@ public class ExtentReport {
     }
 
 
-    public static String EXTENTREPORTPATH = "./reports/TestReport.html";
+    public static String EXTENTREPORTPATH = "./Report/ExtentReport.html";
     public static ExtentReports EXTENTREPORT;
     public static ExtentTest EXTENTTEST;
-//    public static ExtentHtmlReporter EXTENTHTMLREPORTER;
+    public static ExtentHtmlReporter EXTENTHTMLREPORTER;
 
 
     @BeforeSuite(alwaysRun = true)
@@ -40,13 +40,14 @@ public class ExtentReport {
 
 
         // Create Report with filepath
-//        EXTENTHTMLREPORTER = new ExtentHtmlReporter(EXTENTREPORTPATH);
+
+        EXTENTHTMLREPORTER = new ExtentHtmlReporter(EXTENTREPORTPATH);
         EXTENTREPORT = new ExtentReports();
-//        EXTENTREPORT.attachReporter(EXTENTHTMLREPORTER);
-//        EXTENTHTMLREPORTER.config().setTheme(setTheme(Configuration.ReportDefaults.REPORT_THEME));
+        EXTENTREPORT.attachReporter(EXTENTHTMLREPORTER);
     }
 
     public static void extentReportDisplay(Status result, String stepname, String details) throws IOException {
+
         switch (result) {
 
             case PASS:
@@ -74,12 +75,13 @@ public class ExtentReport {
     }
 
     @AfterSuite(alwaysRun = true)
-    public void extentReportTearDown() throws IOException, InterruptedException {
+    public void extentReportTearDown() throws IOException, InterruptedException, MessagingException {
         Log.info("Reporter : @AfterSuite");
 
         Log.info("Flush the Extent Report");
         EXTENTREPORT.flush();
-        sendReportViaMail();
+//        sendReportViaMail();
+        Mailer.sendMail();
 
     }
 
@@ -102,21 +104,6 @@ public class ExtentReport {
 //        mailer.sendMail(recipients, Configuration.Email.TEAM + " Test Execution report", Configuration.Email.MAIL_BODY_TEXT, listOfAttachments);
     }
 
-    private static Theme setTheme(String themeType) {
-        Theme theme;
-        switch (themeType.toUpperCase()) {
-            case ("DARK"):
-                theme = Theme.DARK;
-                break;
-            case ("STANDARD"):
-                theme = Theme.STANDARD;
-                break;
-            default:
-                theme = Theme.STANDARD;
-                break;
-        }
-        return theme;
-    }
 
 }
 

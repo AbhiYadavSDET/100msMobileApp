@@ -64,7 +64,7 @@ public class FastExecutionTest extends TestBase {
         ImpsHelper impsHelper = new ImpsHelper(getWebDriver());
         impsHelper.imps("Udit Gupta", "106207566006", "HSBC0411002","50");
 
-        MobileHelper mobileHelper = new MobileHelper(getWebDriver());
+//        MobileHelper mobileHelper = new MobileHelper(getWebDriver());
         mobileHelper.verifyPrepaid("vodafone", "7795709569", "Delhi/NCR", "10", false, "", "","4799470274582974","07","2027", "443", "521991");
 
 

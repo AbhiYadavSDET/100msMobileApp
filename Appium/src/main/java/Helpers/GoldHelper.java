@@ -3,7 +3,7 @@ package Helpers;
 import PageObject.GoldPage;
 import PageObject.HomePage;
 import PageObject.SideDrawerPage;
-import UITestFramework.MBReporter;
+import utils.MBReporter;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import org.json.JSONException;
