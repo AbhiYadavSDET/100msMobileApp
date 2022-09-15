@@ -1,8 +1,8 @@
-package utils;
+package Utils;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
-import logger.Log;
+import Logger.Log;
 import org.apache.log4j.*;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.*;
@@ -14,7 +14,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-@Listeners(utils.TestListener.class)
+@Listeners(Utils.Listeners.TestListener.class)
 public class TestBase {
 
     AndroidDriver driver;
@@ -54,6 +54,7 @@ public class TestBase {
     /**
      * ThreadLocal variable which contains the {@link AndroidDriver} instance which
      * is used to perform browser interactions with.
+     *
      * @author: Paraj
      */
     private ThreadLocal<AndroidDriver> androidDriverThread = new ThreadLocal<>();
@@ -170,7 +171,7 @@ public class TestBase {
     public void teardown() {
         Log.info("Shutting down driver");
         getAndroidDriver().quit();
-        
+
     }
 
     public static void info(String message) {

@@ -19,9 +19,9 @@
 
 
         <classes>
-            <class name="utils.TestBase"/>
+            <class name="Utils.TestBase"/>
             <class name="Login.LoginTest"/>
-            <class name="utils.ExtentReport"></class>
+            <class name="Utils.ExtentReport"></class>
         </classes>
     </test>
 

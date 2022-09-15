@@ -1,4 +1,4 @@
-package utils;
+package Utils;
 
 import javax.mail.*;
 import javax.mail.internet.MimeBodyPart;

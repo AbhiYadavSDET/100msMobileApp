@@ -12,7 +12,7 @@
 
         <classes>
             <class name="BillViewElectricity"/>
-<!--            <class name="utils.ExtentReport"/>-->
+<!--            <class name="Utils.ExtentReport"/>-->
         </classes>
     </test>
 

@@ -2,8 +2,8 @@ package Recharge;
 
 //import Helpers.CheckBalanceHelper;
 import Helpers.RechargeHelper;
-import utils.Excel;
-import utils.TestBase;
+import Utils.Excel;
+import Utils.TestBase;
 import org.testng.annotations.Test;
 
 import java.io.IOException;

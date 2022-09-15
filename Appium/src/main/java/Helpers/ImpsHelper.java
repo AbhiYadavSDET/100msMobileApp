@@ -4,9 +4,9 @@ import PageObject.HomePage;
 import PageObject.ImpsPage;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
-import utils.Element;
-import utils.MBReporter;
-import utils.Screen;
+import Utils.Element;
+import Utils.MBReporter;
+import Utils.Screen;
 
 import java.io.IOException;
 import java.util.HashMap;

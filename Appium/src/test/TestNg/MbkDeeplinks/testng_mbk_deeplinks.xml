@@ -1,8 +1,8 @@
 <suite name="DeepLink Suite">
     <listeners>
         <listener class-name="UITestFramework.retryLogic.RetryListener"/>
-        <listener class-name="utils.Listeners.TestListener"/>
-        <listener class-name="utils.ExtentReportListener"/>
+        <listener class-name="Utils.Listeners.TestListener"/>
+        <listener class-name="Utils.ExtentReportListener"/>
     </listeners>
     <parameter name="build" value="prod"/>
     <parameter name="level" value="payments"/>
@@ -21,7 +21,7 @@
 
         <classes>
             <class name="UITestFramework.CreateSession"/>
-            <class name="utils.ExtentReport"/>
+            <class name="Utils.ExtentReport"/>
             <class name="MbkDeeplinks.Test_Mbk_Deep_Link"/>
         </classes>
 

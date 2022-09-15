@@ -1,7 +1,5 @@
-package utils;
+package Utils;
 
-import io.appium.java_client.android.AndroidDriver;
-import java.io.IOException;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;

@@ -1,7 +1,11 @@
-package utils.Listeners;
+package Utils.Listeners;
 
-import logger.Log;
+
+import Logger.Log;
 import org.testng.*;
+
+import org.testng.ITestContext;
+import org.testng.ITestResult;
 
 public class TestListener implements ITestListener, ISuiteListener {
 

@@ -1,6 +1,6 @@
-package utils;
+package Utils;
 
-import logger.Log;
+import Logger.Log;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

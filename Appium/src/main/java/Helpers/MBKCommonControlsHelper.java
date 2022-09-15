@@ -3,10 +3,10 @@ package Helpers;
 import PageObject.*;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
-import logger.Log;
+import Logger.Log;
 import org.openqa.selenium.By;
-import utils.Element;
-import utils.Screen;
+import Utils.Element;
+import Utils.Screen;
 
 import java.io.IOException;
 import java.util.HashMap;

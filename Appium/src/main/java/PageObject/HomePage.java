@@ -1,7 +1,7 @@
 package PageObject;
 
-import utils.Element;
-import utils.Elements;
+import Utils.Element;
+import Utils.Elements;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;

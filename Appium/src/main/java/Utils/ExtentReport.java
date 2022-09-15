@@ -1,4 +1,4 @@
-package utils;
+package Utils;
 
 
 //import applicationcontext.ApplicationContextProvider;
@@ -9,7 +9,7 @@ import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
-import logger.Log;
+import Logger.Log;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
@@ -18,6 +18,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class ExtentReport {
 

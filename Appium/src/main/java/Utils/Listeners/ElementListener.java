@@ -1,7 +1,7 @@
-package utils.Listeners;
+package Utils.Listeners;
 
 import io.appium.java_client.events.api.general.ElementEventListener;
-import logger.Log;
+import Logger.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

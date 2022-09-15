@@ -3,8 +3,8 @@ package AddMoney;
 import Helpers.AddMoneyHelper;
 import Helpers.LoginHelper;
 import org.testng.annotations.Test;
-import utils.ExtentReport;
-import utils.TestBase;
+import Utils.ExtentReport;
+import Utils.TestBase;
 
 import java.io.IOException;
 

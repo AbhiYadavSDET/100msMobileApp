@@ -6,7 +6,7 @@ import io.appium.java_client.pagefactory.AndroidBy;
 import io.appium.java_client.pagefactory.AndroidFindAll;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import logger.Log;
+import Logger.Log;
 import org.openqa.selenium.support.PageFactory;
 //import utils.Element;
 

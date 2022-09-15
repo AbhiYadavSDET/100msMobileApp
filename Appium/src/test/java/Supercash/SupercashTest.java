@@ -1,7 +1,7 @@
 package Supercash;
 
 import Helpers.SupercashHelper;
-import utils.TestBase;
+import Utils.TestBase;
 import org.testng.annotations.Test;
 
 import java.io.IOException;

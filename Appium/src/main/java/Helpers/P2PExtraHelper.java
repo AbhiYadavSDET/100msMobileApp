@@ -2,12 +2,12 @@ package Helpers;
 
 import PageObject.HomePage;
 import PageObject.P2PExtraPage;
-import utils.MBReporter;
+import Utils.MBReporter;
 import io.appium.java_client.android.AndroidDriver;
-import logger.Log;
+import Logger.Log;
 import org.openqa.selenium.By;
-import utils.Element;
-import utils.Screen;
+import Utils.Element;
+import Utils.Screen;
 
 import java.io.IOException;
 import java.util.HashMap;

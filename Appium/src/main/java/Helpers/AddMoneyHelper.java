@@ -9,12 +9,12 @@ import io.restassured.RestAssured;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import logger.Log;
+import Logger.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import utils.Element;
-import utils.MBReporter;
-import utils.Screen;
+import Utils.Element;
+import Utils.MBReporter;
+import Utils.Screen;
 
 import java.io.IOException;
 import java.util.HashMap;

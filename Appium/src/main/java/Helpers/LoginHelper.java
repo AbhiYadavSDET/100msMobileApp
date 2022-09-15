@@ -2,9 +2,9 @@ package Helpers;
 
 import PageObject.HomePage;
 import PageObject.LoginPage;
-import utils.MBReporter;
+import Utils.MBReporter;
 import org.openqa.selenium.By;
-import utils.Element;
+import Utils.Element;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
