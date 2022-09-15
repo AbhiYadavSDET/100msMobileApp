@@ -1,90 +1,43 @@
 package AddMoney;
-/*
+
 import Helpers.AddMoneyHelper;
 import Helpers.LoginHelper;
-import UITestFramework.CreateSession;
-import dbutil.mysql.automationtest.front_end_automation.entity.FrontEndEntity;
-import org.json.JSONException;
 import org.testng.annotations.Test;
-import utils.DatabaseSqlHelper;
+import Utils.ExtentReport;
+import Utils.TestBase;
 
 import java.io.IOException;
 
-public class Test_AddMoney extends CreateSession {
+public class Test_AddMoney extends TestBase {
 
-    DatabaseSqlHelper databaseSqlHelper = new DatabaseSqlHelper();
+    @Test(groups = {"addMoneyStandAloneViaNewCard", "addMoneySanity"}, priority = 0,description = "Stand Alone Add money Testing from home page via New Card")
+    public void Test01_addmoney_via_NewCard() throws IOException, InterruptedException {
 
+        // Starting the test in the extentreport
+        ExtentReport.EXTENTREPORT.createTest("Verify Add Money Flow");
 
-    @Test(groups = {"addMoneyNetBanking"}, priority = 0, dataProvider = "addMoneyData", dataProviderClass = AddMoneyProviderClass.class)
-    public void Test01_netbanking(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaNumber("9205299330", "547372");
-        //       loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
+        LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
+        loginHelp.loginViaOtp("9205299330", "547372");
 
-
-        AddMoneyHelper addmoneyHelper = new AddMoneyHelper(getAndroidDriver());
-        addmoneyHelper.netbanking(frontEndEntity.getAmount(), frontEndEntity.getBankName(), frontEndEntity.getBankPageLocator(), frontEndEntity.getBankPageLocatorType());
-    }
-
-
-    @Test(groups = {"addMoneyNewCard", "addMoneySanity", "addMoneySanity2021"}, priority = 1, dataProvider = "addMoneyData", dataProviderClass = AddMoneyProviderClass.class)
-    public void Test02_addMoneyNewCard(FrontEndEntity frontEndEntity) throws IOException, JSONException, InterruptedException {
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaNumber(frontEndEntity.getUserName(), frontEndEntity.getPassword());
-
-        AddMoneyHelper addmoneyHelper = new AddMoneyHelper(getAndroidDriver());
-        addmoneyHelper.addMoneyViaNewCard(frontEndEntity.getAmount(), frontEndEntity.getCardNo(), frontEndEntity.getExpiryMonth(), frontEndEntity.getExpiryYear(), frontEndEntity.getCvv(), frontEndEntity.getCardPassword(), frontEndEntity.getSuccessPageStatus(), frontEndEntity
-                .getSuccessPageText());
+        AddMoneyHelper addMoneyHelper= new AddMoneyHelper(getAndroidDriver());
+        addMoneyHelper.addMoneyViaCard(false, "5", "4389760052036060", "06/29", "068", "Payment Successful", "Money added into your wallet successfully");
 
     }
 
-    @Test(groups = {"addMoneySavedCard", "addMoneySanity2021"}, priority = 2, dataProvider = "addMoneyData", dataProviderClass = AddMoneyProviderClass.class)
-    public void Test03_addMoneySavedCard() throws IOException, JSONException, InterruptedException {
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-//        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
-//        loginHelper.quickLoginViaEmail("8447405515@nocash.mobikwik.com", "priyanka123");
-        loginHelper.quickLoginViaNumber("9205299330", "547372");
-//        Log.info("Password : " + frontEndEntity.getPassword());
+    @Test(groups = {"addMoneyStandAloneViaSavedCard", "addMoneySanity"}, priority = 1,description = "Stand Alone Add money Testing from home page via Saved Card")
+    public void Test02_addmoney_via_Savedcard() throws IOException, InterruptedException {
 
-        AddMoneyHelper addmoneyHelper = new AddMoneyHelper(getAndroidDriver());
-//        addmoneyHelper.addMoneyViaSavedCard(frontEndEntity.getAmount(), frontEndEntity.getCardNo(), frontEndEntity.getExpiryMonth(), frontEndEntity.getExpiryYear(), frontEndEntity.getCvv(), frontEndEntity.getCardPassword(), frontEndEntity.getSuccessPageStatus(), frontEndEntity
-//                .getSuccessPageText(), false, frontEndEntity.getPromoCode());
-        addmoneyHelper.addMoneyViaSavedCard("5", "4363 XXXX XXXX 4460", "12", "22", "239", "Paraj@1234", "Payment Successful", "Money added into your wallet successfully", false, "NULL");
+        // Starting the test in the extentreport
+        ExtentReport.EXTENTREPORT.createTest("Verify Add Money Flow");
 
+        LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
+        loginHelp.loginViaOtp("9205299330", "547372");
+
+        AddMoneyHelper addMoneyHelper= new AddMoneyHelper(getAndroidDriver());
+        addMoneyHelper.addMoneyViaCard(true, "5", "4389760052036060", "06/29", "068", "Payment Successful", "Money added into your wallet successfully");
 
     }
-
-    @Test(groups = {"addMoneySavedCardWithPromo", "addMoneySanity2021"}, priority = 3, dataProvider = "addMoneyData", dataProviderClass = AddMoneyProviderClass.class)
-    public void Test04_addMoneySavedCardWithPromo() throws IOException, JSONException, InterruptedException {
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-//        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
-//        loginHelper.quickLoginViaEmail("8447405515@nocash.mobikwik.com", "priyanka123");
-        loginHelper.quickLoginViaNumber("9205299330", "547372");
-
-        AddMoneyHelper addmoneyHelper = new AddMoneyHelper(getAndroidDriver());
-//        addmoneyHelper.addMoneyViaSavedCard(frontEndEntity.getAmount(), frontEndEntity.getCardNo(), frontEndEntity.getExpiryMonth(), frontEndEntity.getExpiryYear(), frontEndEntity.getCvv(), frontEndEntity.getCardPassword(), frontEndEntity.getSuccessPageStatus(), frontEndEntity
-//                .getSuccessPageText(), true, frontEndEntity.getPromoCode());
-        addmoneyHelper.addMoneyViaSavedCard("5", "4363 XXXX XXXX 4460", "12", "22", "239", "Paraj@1234", "Payment Successful", "Money added into your wallet successfully", true, "addtst5m");
-
-    }
-
-    @Test(groups = {"addMoneyRefund", "addMoneySanity2021"}, priority = 4, dataProvider = "addMoneyData", dataProviderClass = AddMoneyProviderClass.class)
-    public void Test05_addMoneyRefund() throws IOException, JSONException, InterruptedException {
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-//        loginHelper.quickLoginViaEmail(frontEndEntity.getUserName(), frontEndEntity.getPassword());
-//        loginHelper.quickLoginViaEmail("8447405515@nocash.mobikwik.com", "priyanka123");
-        loginHelper.quickLoginViaNumber("9205299330", "547372");
-//        Log.info("Password : " + frontEndEntity.getPassword());
-
-        AddMoneyHelper addmoneyHelper = new AddMoneyHelper(getAndroidDriver());
-//        addmoneyHelper.refundAddedMoney(frontEndEntity.getAmount(), frontEndEntity.getCardNo(), frontEndEntity.getExpiryMonth(), frontEndEntity.getExpiryYear(), frontEndEntity.getCvv(), frontEndEntity.getCardPassword(), frontEndEntity.getSuccessPageStatus(), frontEndEntity
-//                .getSuccessPageText(), false, frontEndEntity.getPromoCode());
-        addmoneyHelper.refundAddedMoney("6", "4363 XXXX XXXX 4460", "12", "22", "239", "Paraj@1234", "Payment Successful", "Money added into your wallet successfully", false, "NULL");
-
-    }
-
 
 }
 
 
- */

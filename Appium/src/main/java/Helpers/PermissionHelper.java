@@ -3,9 +3,9 @@ package Helpers;
 import PageObject.PermissionPage;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
-import logger.Log;
+import Logger.Log;
 import org.openqa.selenium.By;
-import utils.Element;
+import Utils.Element;
 import org.openqa.selenium.NoSuchElementException;
 
 import java.util.HashMap;

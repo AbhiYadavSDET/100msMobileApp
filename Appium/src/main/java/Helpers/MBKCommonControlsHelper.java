@@ -3,10 +3,10 @@ package Helpers;
 import PageObject.*;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
-import logger.Log;
+import Logger.Log;
 import org.openqa.selenium.By;
-import utils.Element;
-import utils.Screen;
+import Utils.Element;
+import Utils.Screen;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -87,11 +87,14 @@ public class MBKCommonControlsHelper {
 
     }
 
-    //Use to handle Add money anywhere.
-    public void handleAddMoney(String activity ,String requiredAmount, String cardNo, String expiryMonthYear, String cvv, String bankPin) throws InterruptedException, IOException {
 
-        //activity values "withinTestCase"=for in sufficient Flows
-        //activity values "BeforeTestCase"=for sufficient Flows
+    /**
+     * This method is use to handle Add money anywhere.
+     * activity values "withinTestCase"=for recreating insufficient Flows
+     * activity values "BeforeTestCase"=for recreating sufficient Flows
+     */
+
+    public void handleAddMoney(String activity ,String requiredAmount, String cardNo, String expiryMonthYear, String cvv) throws InterruptedException, IOException {
 
         if (activity.equalsIgnoreCase("BeforeTestCase")) {
 
@@ -117,14 +120,14 @@ public class MBKCommonControlsHelper {
                 addMoneyPage.clickOnContinueButton();
 
             AddMoneyHelper addmoneyHelper = new AddMoneyHelper(driver);
-            addmoneyHelper.handleAddMoney(cardNo, expiryMonthYear,cvv,bankPin);
+            addmoneyHelper.handleAddMoney(cardNo, expiryMonthYear,cvv);
 
             }
 
         }else{
 
             AddMoneyHelper addmoneyHelper = new AddMoneyHelper(driver);
-            addmoneyHelper.handleAddMoney(cardNo, expiryMonthYear,cvv,bankPin);
+            addmoneyHelper.handleAddMoney(cardNo, expiryMonthYear,cvv);
 
         }
 
@@ -200,20 +203,11 @@ public class MBKCommonControlsHelper {
             mbkCommonControlsPage.clickOnUpButton2();
         }
 
-        public void returnToHomePageFromSuccessScreen () throws InterruptedException {
-            mbkCommonControlsPage.clickOnSuccessPageCross();
-        }
-
         public void returnToHomePageFromRechargeSuccessScreen () throws InterruptedException {
             mbkCommonControlsPage.clickOnSuccessPageCross();
             handleRatingsPopUp();
             handleNPS();
         }
-//    public void returnToHomePageFromCCBPSuccessScreen() throws InterruptedException {
-//        mbkCommonControlsPage.clickOnSuccessPageBack();
-//        handleRatingsPopUp();
-//        handleNPS();
-//    }
 
 
         public void returnToHomePageFromRechargeSuccessScreenBackButton () throws InterruptedException {
@@ -228,7 +222,7 @@ public class MBKCommonControlsHelper {
             handleNPS();
         }
 
-        public void returnToHomePageFromAddMoneySuccessScreen () throws InterruptedException {
+        public void returnToHomePageFromSuccessScreen () throws InterruptedException {
             mbkCommonControlsPage.clickOnSuccessPageCross();
             handleRatingsPopUp();
             handleNPS();
@@ -451,18 +445,21 @@ public class MBKCommonControlsHelper {
         }
 
 
-        /*---------------------Home Page Pop Up Handlers---------------------------*/
+        /**---------------------Home Page Pop Up Handlers---------------------------*/
 
 
-//        public void handleLogin (String number, String otp) throws InterruptedException, IOException {
-//            Thread.sleep(1000);
-//            if (Element.isElementPresent(driver, By.id("tnc_layout"))) {
-//                Log.info("Handle", "Login User in the Flow");
-//
-////            LoginHelper loginHelper=new LoginHelper(driver);
-////            loginHelper.quickLoginViaNumberWithinFlow(number,otp);
-//            }
-//        }
+        public void handleHomePageLanding () throws InterruptedException {
+            Thread.sleep(3000);
+            for(int i=0; i<10; i++){
+                if(!Element.isElementPresent(driver, By.id("view_icon_bg"))) {
+                driver.navigate().back();
+                Log.info("Pressed Back : Due to Pop UP interruption");
+                Thread.sleep(1000);
+                }else{
+                    break;
+                    }
+                }
+        }
 
         public void uncheckInsuranceCta () throws InterruptedException {
             mbkCommonControlsPage.uncheckInsuranceCheckBox();

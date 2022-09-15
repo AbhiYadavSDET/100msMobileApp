@@ -3,7 +3,7 @@ package Helpers;
 import PageObject.HomePage;
 import PageObject.SideDrawerPage;
 import PageObject.WalletPage;
-import UITestFramework.MBReporter;
+import utils.MBReporter;
 import io.appium.java_client.android.AndroidDriver;
 import logger.Log;
 import org.json.JSONException;

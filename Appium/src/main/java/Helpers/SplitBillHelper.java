@@ -4,7 +4,7 @@ import PageObject.AllServicesPage;
 import PageObject.HomePage;
 import PageObject.SplitBillPage;
 import PageObject.SupercashStatementPage;
-import UITestFramework.MBReporter;
+import utils.MBReporter;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import utils.Element;

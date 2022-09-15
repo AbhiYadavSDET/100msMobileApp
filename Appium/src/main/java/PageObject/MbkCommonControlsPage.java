@@ -6,11 +6,10 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
-import utils.Element;
-import utils.Elements;
+import Utils.Element;
+import Utils.Elements;
 
 import java.io.IOException;
-import java.util.Locale;
 
 public class MbkCommonControlsPage {
 

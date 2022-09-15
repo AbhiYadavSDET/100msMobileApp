@@ -4,10 +4,10 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import logger.Log;
+import Logger.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
-import utils.Element;
+import Utils.Element;
 //import utils.Element;
 
 import java.io.IOException;
@@ -176,7 +176,6 @@ public class AddMoneyPage {
     }
 
     public void enterCardNo(String cardNo) throws InterruptedException {
-
             Element.enterText(driver, textbox_card_no, cardNo, "New Card No Flow | Enter Card Number");
     }
 

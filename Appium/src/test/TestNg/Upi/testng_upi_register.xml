@@ -2,7 +2,7 @@
 <suite name="Appium-Framework">
     <listeners>
         <listener class-name="UITestFramework.retryLogic.RetryListener"/>
-        <listener class-name="utils.Listeners.TestListener"/>
+        <listener class-name="Utils.Listeners.TestListener"/>
     </listeners>
     <parameter name="build" value="debug"/>
     <parameter name="level" value="payments"/>

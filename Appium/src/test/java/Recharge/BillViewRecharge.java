@@ -2,8 +2,8 @@ package Recharge;
 
 //import Helpers.CheckBalanceHelper;
 import Helpers.RechargeHelper;
-import utils.Excel;
-import utils.TestBase;
+import Utils.Excel;
+import Utils.TestBase;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -17,7 +17,7 @@ public class BillViewRecharge extends TestBase {
 //        for(int i=1;i<=j;i++) {
 //            String data = Excel.readData(i, "Recharge");
 //            String[] excelData = data.split(" split ");
-            RechargeHelper rechargeHelper = new RechargeHelper(initiateTest());
+            RechargeHelper rechargeHelper = new RechargeHelper(getAndroidDriver());
 //            rechargeHelper.viewBills("9311878235","Postpaid", "Jio", "Delhi NCR");
             rechargeHelper.viewWater();
 //        }
@@ -30,7 +30,7 @@ public class BillViewRecharge extends TestBase {
 //        for(int i=1;i<=j;i++) {
 //            String data = Excel.readData(i, "Recharge");
 //            String[] excelData = data.split(" split ");
-        RechargeHelper rechargeHelper = new RechargeHelper(initiateTest());
+        RechargeHelper rechargeHelper = new RechargeHelper(getAndroidDriver());
         rechargeHelper.rechargeBill("9818484290","Prepaid", "VI", "Delhi NCR", "1","","112233");
 //        }
     }
@@ -42,7 +42,7 @@ public class BillViewRecharge extends TestBase {
 //        for(int i=1;i<=j;i++) {
 //            String data = Excel.readData(i, "Recharge");
 //            String[] excelData = data.split(" split ");
-        RechargeHelper rechargeHelper = new RechargeHelper(initiateTest());
+        RechargeHelper rechargeHelper = new RechargeHelper(getAndroidDriver());
         rechargeHelper.rechargeBill("9311878235","Postpaid", "Jio", "Delhi NCR", "1","Apply Supercash","112233");
 //        }
     }
@@ -54,7 +54,7 @@ public class BillViewRecharge extends TestBase {
 //        for(int i=1;i<=j;i++) {
 //            String data = Excel.readData(i, "Recharge");
 //            String[] excelData = data.split(" split ");
-        RechargeHelper rechargeHelper = new RechargeHelper(initiateTest());
+        RechargeHelper rechargeHelper = new RechargeHelper(getAndroidDriver());
         rechargeHelper.rechargeBillWithLogout("9818484290","Prepaid", "VI", "Delhi NCR", "1","Apply Supercash","112233");
 //        }
     }
@@ -66,7 +66,7 @@ public class BillViewRecharge extends TestBase {
             String[] data = Excel.readData(i,"Electricity");
 //            String[] excelData = data.split(" split ");
 
-            RechargeHelper rechargeHelper = new RechargeHelper(initiateTest());
+            RechargeHelper rechargeHelper = new RechargeHelper(getAndroidDriver());
             rechargeHelper.viewElectricityBill(data[0], data[1]);
         }
 
@@ -79,7 +79,7 @@ public class BillViewRecharge extends TestBase {
             String[] data = Excel.readData(i,"Gas");
 //            String[] excelData = data.split(" split ");
 
-            RechargeHelper rechargeHelper = new RechargeHelper(initiateTest());
+            RechargeHelper rechargeHelper = new RechargeHelper(getAndroidDriver());
             rechargeHelper.viewGasBill(data[0], data[1]);
         }
 
@@ -101,7 +101,7 @@ public class BillViewRecharge extends TestBase {
 //        CheckBalanceHelper checkBalanceHelper = new CheckBalanceHelper(getAndroidDriver());
 //        checkBalanceHelper.checkBalance(frontEndEntity.getAmount());
 
-        RechargeHelper rechargeHelper = new RechargeHelper(initiateTest());
+        RechargeHelper rechargeHelper = new RechargeHelper(getAndroidDriver());
         rechargeHelper.prepaidRecharge("9311878235", "1", "Prepaid", "VI", "1", "Payment Successful", "112233", false, "na", "");
     }
 

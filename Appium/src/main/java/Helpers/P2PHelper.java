@@ -4,7 +4,7 @@ package Helpers;
 import PageObject.HomePage;
 import PageObject.OnboardingPage;
 import PageObject.TransferPage;
-import UITestFramework.MBReporter;
+import utils.MBReporter;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import logger.Log;
