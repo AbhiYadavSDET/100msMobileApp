@@ -83,9 +83,11 @@ public class LoginHelper {
         loginPage.enterOtp(otp);
         loginPage.clickSubmitOtpCta();
 
+        mbkCommonControlsHelper.handleHomePageLanding();
+
         element.waitForVisibility(driver, By.xpath("//*[@text='History']"));
 
-        mbReporter.verifyTrueWithLogging(element.isElementPresent(driver,By.xpath("//*[@text='Balance']")), "Verify User is Logged In", true, true);
+        mbReporter.verifyTrueWithLogging(element.isElementPresent(driver,By.id("tx_balance")), "Is User is Logged In", true, true);
 
 
     }

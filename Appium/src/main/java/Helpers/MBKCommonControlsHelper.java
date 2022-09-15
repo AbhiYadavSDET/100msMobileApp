@@ -445,18 +445,21 @@ public class MBKCommonControlsHelper {
         }
 
 
-        /*---------------------Home Page Pop Up Handlers---------------------------*/
+        /**---------------------Home Page Pop Up Handlers---------------------------*/
 
 
-//        public void handleLogin (String number, String otp) throws InterruptedException, IOException {
-//            Thread.sleep(1000);
-//            if (Element.isElementPresent(driver, By.id("tnc_layout"))) {
-//                Log.info("Handle", "Login User in the Flow");
-//
-////            LoginHelper loginHelper=new LoginHelper(driver);
-////            loginHelper.quickLoginViaNumberWithinFlow(number,otp);
-//            }
-//        }
+        public void handleHomePageLanding () throws InterruptedException {
+            Thread.sleep(3000);
+            for(int i=0; i<10; i++){
+                if(!Element.isElementPresent(driver, By.id("view_icon_bg"))) {
+                driver.navigate().back();
+                Log.info("Pressed Back : Due to Pop UP interruption");
+                Thread.sleep(1000);
+                }else{
+                    break;
+                    }
+                }
+        }
 
         public void uncheckInsuranceCta () throws InterruptedException {
             mbkCommonControlsPage.uncheckInsuranceCheckBox();
