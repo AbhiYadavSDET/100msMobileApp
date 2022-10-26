@@ -29,6 +29,16 @@ public class PerformanceApiResponse {
         String crashFreeUsers;
         int MAX_RETRIES = 2;
         int total_fresh = 0, total_topFive;
+        String respTime, changePer, name, success, sample;
+        float respTimeCheck;
+        int i, percent, pages = 1;
+        float samplesCheck;
+        Boolean condition = true, sendMail = false, changeSub = true;
+        ArrayList<String> responseTime = new ArrayList<String>();
+        ArrayList<String> changePercent = new ArrayList<String>();
+        ArrayList<String> apiName = new ArrayList<String>();
+        ArrayList<String> apiSuccess = new ArrayList<String>();
+        ArrayList<String> apiSample = new ArrayList<String>();
 
 //        MutableCapabilities sauce= new MutableCapabilities();
 //        sauce.setCapability("username","mayanksu1989");
@@ -44,42 +54,43 @@ public class PerformanceApiResponse {
 
         System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/chromedriver");
         WebDriver driver = new ChromeDriver();
-        driver.get("https://console.firebase.google.com");
-        driver.manage().window().maximize();
-        driver.findElement(By.id("identifierId")).sendKeys(username);
-        driver.findElement(By.xpath("//*[text()='Next']")).click();
+        try {
+            driver.get("https://console.firebase.google.com");
+            driver.manage().window().maximize();
+            driver.findElement(By.id("identifierId")).sendKeys(username);
+            driver.findElement(By.xpath("//*[text()='Next']")).click();
 
-        shortWait(driver, "//input[@type='password']");
-        driver.findElement(By.xpath("//input[@type='password']")).sendKeys(pass);
-        driver.findElement(By.xpath("//*[text()='Next']")).click();
-        longWait(driver, "//*[contains(text(),'Mobikwik Android')]");
-        driver.findElement(By.xpath("//*[contains(text(),'Mobikwik Android')]")).click();
-        longWait(driver, "//div[text()=' Release & Monitor ']");
-        try{
-            driver.findElement(By.xpath("//div[text()='Performance']")).click();
-        }catch (Exception e) {
-            driver.findElement(By.xpath("//div[text()=' Release & Monitor ']")).click();
-            shortWait(driver, "//div[text()='Performance']");
-            driver.findElement(By.xpath("//div[text()='Performance']")).click();
-        }
+            shortWait(driver, "//input[@type='password']");
+            driver.findElement(By.xpath("//input[@type='password']")).sendKeys(pass);
+            driver.findElement(By.xpath("//*[text()='Next']")).click();
+            longWait(driver, "//*[contains(text(),'Mobikwik Android')]");
+            driver.findElement(By.xpath("//*[contains(text(),'Mobikwik Android')]")).click();
+            longWait(driver, "//div[text()=' Release & Monitor ']");
+            try {
+                driver.findElement(By.xpath("//div[text()='Performance']")).click();
+            } catch (Exception e) {
+                driver.findElement(By.xpath("//div[text()=' Release & Monitor ']")).click();
+                shortWait(driver, "//div[text()='Performance']");
+                driver.findElement(By.xpath("//div[text()='Performance']")).click();
+            }
 //        try{
 //            longWait(driver,"//span[text()=' Get started ']");
 //            driver.findElement(By.xpath("//span[text()=' Get started ']")).click();
 //        }catch (Exception e){
 //
 //        }
-        shortWait(driver, "//div[@class='selected-resource-wrapper']");
-        driver.findElement(By.xpath("//div[@class='selected-resource-wrapper']")).click();
-        Thread.sleep(2000);
-        shortWait(driver, "//span[text()='Mobikwik Consumer App']");
-        driver.findElement(By.xpath("//span[text()='Mobikwik Consumer App']")).click();
-        longWait(driver, "//div[@class='date-selection']");
-        driver.findElement(By.xpath("//div[@class='date-selection']")).click();
-        Thread.sleep(2000);
-        driver.findElement(By.xpath("//span[contains(text(),'24 hour')]")).click();
+            shortWait(driver, "//div[@class='selected-resource-wrapper']");
+            driver.findElement(By.xpath("//div[@class='selected-resource-wrapper']")).click();
+            Thread.sleep(2000);
+            shortWait(driver, "//span[text()='Mobikwik Consumer App']");
+            driver.findElement(By.xpath("//span[text()='Mobikwik Consumer App']")).click();
+            longWait(driver, "//div[@class='date-selection']");
+            driver.findElement(By.xpath("//div[@class='date-selection']")).click();
+            Thread.sleep(2000);
+            driver.findElement(By.xpath("//span[contains(text(),'24 hour')]")).click();
 
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0,150)", "");
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("window.scrollBy(0,150)", "");
 //        shortWait(driver,"//span[@class='header-text-wrapper ng-star-inserted'][3]");
 //        Thread.sleep(3000);
 //        driver.findElement(By.xpath("(//span[@class='header-text-wrapper ng-star-inserted'])[3]")).click();
@@ -87,79 +98,71 @@ public class PerformanceApiResponse {
 //        driver.findElement(By.xpath("(//span[@class='header-text-wrapper ng-star-inserted'])[2]")).click();
 
 
-        ArrayList<String> responseTime = new ArrayList<String>();
-        ArrayList<String> changePercent = new ArrayList<String>();
-        ArrayList<String> apiName = new ArrayList<String>();
-        ArrayList<String> apiSuccess = new ArrayList<String>();
-        ArrayList<String> apiSample = new ArrayList<String>();
 
-        String respTime,changePer,name,success,sample;
-        float respTimeCheck;
-        int i,percent,pages=1;
-        float samplesCheck;
-        Boolean condition=true,sendMail=false,changeSub=true;
+            while (condition && pages < 4) {
+                longWait(driver, "(//mat-cell[@class='mat-cell cdk-cell metric-value-cell cdk-column-RESPONSE_TIME_LATEST_VALUE mat-column-RESPONSE_TIME_LATEST_VALUE ng-star-inserted'])[1]");
+                Thread.sleep(4000);
+                for (i = 1; i <= 10; i++) {
+                    respTime = driver.findElement(By.xpath("(//mat-cell[@class='mat-cell cdk-cell metric-value-cell cdk-column-RESPONSE_TIME_LATEST_VALUE mat-column-RESPONSE_TIME_LATEST_VALUE ng-star-inserted'])[" + i + "]")).getText();
+                    respTimeCheck = Float.parseFloat(respTime.replace("s", "").replace("min", ""));
+                    shortWait(driver, "//mat-cell[@class='mat-cell cdk-cell metric-delta-cell extended cdk-column-RESPONSE_TIME_DELTA mat-column-RESPONSE_TIME_DELTA ng-star-inserted']");
+                    changePer = driver.findElement(By.xpath("(//mat-cell[@class='mat-cell cdk-cell metric-delta-cell extended cdk-column-RESPONSE_TIME_DELTA mat-column-RESPONSE_TIME_DELTA ng-star-inserted'])[" + i + "]")).getText();
+                    percent = Integer.parseInt(changePer.replace("%", "").replace(",", "").replace("+", "").replace("-", "").replace(">", ""));
 
-        while(condition && pages<4) {
-            longWait(driver, "(//mat-cell[@class='mat-cell cdk-cell metric-value-cell cdk-column-RESPONSE_TIME_LATEST_VALUE mat-column-RESPONSE_TIME_LATEST_VALUE ng-star-inserted'])[1]");
-            Thread.sleep(4000);
-            for (i = 1; i <= 10; i++) {
-                respTime = driver.findElement(By.xpath("(//mat-cell[@class='mat-cell cdk-cell metric-value-cell cdk-column-RESPONSE_TIME_LATEST_VALUE mat-column-RESPONSE_TIME_LATEST_VALUE ng-star-inserted'])[" + i + "]")).getText();
-                respTimeCheck = Float.parseFloat(respTime.replace("s", "").replace("min",""));
-                shortWait(driver, "//mat-cell[@class='mat-cell cdk-cell metric-delta-cell cdk-column-RESPONSE_TIME_DELTA mat-column-RESPONSE_TIME_DELTA ng-star-inserted']");
-                changePer = driver.findElement(By.xpath("(//mat-cell[@class='mat-cell cdk-cell metric-delta-cell cdk-column-RESPONSE_TIME_DELTA mat-column-RESPONSE_TIME_DELTA ng-star-inserted'])[" + i + "]")).getText();
-                percent = Integer.parseInt(changePer.replace("%", "").replace(",", "").replace("+", "").replace("-", "").replace(">",""));
-
-                shortWait(driver,"//a[@class='mat-mdc-tooltip-trigger fire-router-link-host data-text-wrapper']");
-                name=driver.findElement(By.xpath("(//a[@class='mat-mdc-tooltip-trigger fire-router-link-host data-text-wrapper'])["+i+"]")).getText();
+                    shortWait(driver, "//a[@class='mat-mdc-tooltip-trigger fire-router-link-host data-text-wrapper']");
+                    name = driver.findElement(By.xpath("(//a[@class='mat-mdc-tooltip-trigger fire-router-link-host data-text-wrapper'])[" + i + "]")).getText();
 //                Thread.sleep(1000);
 //                System.out.println(driver.findElement(By.xpath("(//a[@class='mat-mdc-tooltip-trigger fire-router-link-host data-text-wrapper'])["+i+"]")).getText());
-                shortWait(driver,"//mat-cell[@class='mat-cell cdk-cell metric-value-cell cdk-column-SUCCESS_RATE_LATEST_VALUE mat-column-SUCCESS_RATE_LATEST_VALUE ng-star-inserted']");
-                success=driver.findElement(By.xpath("(//mat-cell[@class='mat-cell cdk-cell metric-value-cell cdk-column-SUCCESS_RATE_LATEST_VALUE mat-column-SUCCESS_RATE_LATEST_VALUE ng-star-inserted'])["+i+"]")).getText();
+                    shortWait(driver, "//mat-cell[@class='mat-cell cdk-cell metric-value-cell cdk-column-SUCCESS_RATE_LATEST_VALUE mat-column-SUCCESS_RATE_LATEST_VALUE ng-star-inserted']");
+                    success = driver.findElement(By.xpath("(//mat-cell[@class='mat-cell cdk-cell metric-value-cell cdk-column-SUCCESS_RATE_LATEST_VALUE mat-column-SUCCESS_RATE_LATEST_VALUE ng-star-inserted'])[" + i + "]")).getText();
 //                Thread.sleep(2000);
-                shortWait(driver,"//div[@class='resource-subtitle ng-star-inserted']");
-                sample=driver.findElement(By.xpath("(//div[@class='resource-subtitle ng-star-inserted'])["+i+"]")).getText();
-                samplesCheck=Float.parseFloat(sample.replace(" samples","").replace("K","").replace("M",""));
+                    shortWait(driver, "//div[@class='resource-subtitle ng-star-inserted']");
+                    sample = driver.findElement(By.xpath("(//div[@class='resource-subtitle ng-star-inserted'])[" + i + "]")).getText();
+                    samplesCheck = Float.parseFloat(sample.replace(" samples", "").replace("K", "").replace("M", ""));
 
-                if ((respTimeCheck > 10 || respTime.contains("min")) && percent > 100 && (sample.contains("K") || samplesCheck>30 || sample.contains("M"))) {
-                    if (changePer.contains("+") || changePer.contains(">")) {
-                        responseTime.add(respTime);
-                        changePercent.add(changePer);
-                        apiName.add(name);
-                        apiSuccess.add(success);
-                        apiSample.add(sample);
+                    if ((respTimeCheck > 10 || respTime.contains("min")) && percent > 100 && (sample.contains("K") || samplesCheck > 30 || sample.contains("M"))) {
+                        if (changePer.contains("+") || changePer.contains(">")) {
+                            responseTime.add(respTime);
+                            changePercent.add(changePer);
+                            apiName.add(name);
+                            apiSuccess.add(success);
+                            apiSample.add(sample);
+                        }
+
                     }
 
+                    js.executeScript("window.scrollBy(0,100)", "");
                 }
 
+                try {
+                    if (driver.findElement(By.xpath("(//span[@class='mat-mdc-button-touch-target'])[2]")).isEnabled()) {
+                        driver.findElement(By.xpath("(//span[@class='mat-mdc-button-touch-target'])[2]")).click();
+                        pages = pages + 1;
+                        condition = true;
+                        Thread.sleep(3000);
+                    }
+                } catch (Exception e) {
+                    condition = false;
+                }
                 js.executeScript("window.scrollBy(0,100)", "");
             }
 
-            try {
-                if (driver.findElement(By.xpath("(//span[@class='mat-mdc-button-touch-target'])[2]")).isEnabled()) {
-                    driver.findElement(By.xpath("(//span[@class='mat-mdc-button-touch-target'])[2]")).click();
-                    pages=pages+1;
-                    condition = true;
-                    Thread.sleep(3000);
+            for (i = 0; i < changePercent.size(); i++) {
+                System.out.println(responseTime.get(i) + "   " + changePercent.get(i) + "   " + apiName.get(i) + "   " + apiSuccess.get(i) + "   " + apiSample.get(i));
+            }
+            if (changePercent.size() >= 0) {
+                sendMail = true;
+                if (changePercent.size() > 5) {
+                    changeSub = false;
                 }
-            } catch (Exception e) {
-                condition = false;
             }
-            js.executeScript("window.scrollBy(0,100)", "");
-        }
-
-        for(i=0;i<changePercent.size();i++){
-            System.out.println(responseTime.get(i)+"   "+changePercent.get(i)+"   "+apiName.get(i)+"   "+apiSuccess.get(i)+"   "+apiSample.get(i));
-        }
-        if(changePercent.size()>=0){
-            sendMail=true;
-            if(changePercent.size()>5){
-                changeSub=false;
-            }
-        }
-        try{
+//        try{
             driver.quit();
-        }catch (Exception e) {
-            driver.close();
+//        }catch (Exception e) {
+//            driver.close();
+//        }
+        }catch (Exception e){
+            driver.quit();
         }
 
         if(sendMail){
@@ -225,7 +228,7 @@ public class PerformanceApiResponse {
 
                 message.setRecipients(Message.RecipientType.CC, InternetAddress.parse("MBK-Android@mobikwik.com"));
 
-                message.addRecipients(Message.RecipientType.CC, InternetAddress.parse("rakhi.bansal@mobikwik.com"));
+                message.addRecipients(Message.RecipientType.CC, InternetAddress.parse("wealth-tech@mobikwik.com"));
 
                 // Add the subject link
 //                Timestamp timestamp = new Timestamp(System.currentTimeMillis()); //with date and time
