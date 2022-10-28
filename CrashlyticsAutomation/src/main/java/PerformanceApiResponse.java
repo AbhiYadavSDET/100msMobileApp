@@ -242,13 +242,13 @@ public class PerformanceApiResponse {
 
 
 //        try{
-//            driver.quit();
+            driver.quit();
 //        }catch (Exception e) {
 //            driver.close();
 //        }
         }catch (Exception e){
-            throw e;
-//            driver.quit();
+//            throw e;
+            driver.quit();
         }
 
         if(sendMail){
