@@ -87,10 +87,10 @@ public class AadharCaptchaCheck {
             try {
                 Message message = new MimeMessage(session);
 //            message.setFrom(new InternetAddress("qafront-end@mobikwik.com"));
-                message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("udit.gupta@mobikwik.com"));
+                message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("qafront-end@mobikwik.com"));
 
                 message.setRecipients(Message.RecipientType.CC, InternetAddress.parse("vipul.behl@mobikwik.com"));
-                message.setRecipients(Message.RecipientType.CC, InternetAddress.parse("aditya.upadhyay@mobikwik.com"));
+                message.addRecipients(Message.RecipientType.CC, InternetAddress.parse("aditya.upadhyay@mobikwik.com"));
                 Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
                 if (captchaImage) {
