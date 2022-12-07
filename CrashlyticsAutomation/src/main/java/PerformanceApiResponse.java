@@ -23,8 +23,8 @@ public class PerformanceApiResponse {
     @Test(groups = {"performanceAPIResp"}, priority = 0, description = "Verify api reponse time")
     public static void PerformanceApiResponse() throws InterruptedException, IOException {
         String username = "mbkmobile.team@mobikwik.com";
-        //String pass = "Mobikwik@123456";
-        String passMail = "jcrqzdelrdyrzpua";
+        String pass = "Mobikwik@123456";
+        //String passMail = "jcrqzdelrdyrzpua";
         String passLogin = "Mobikwik@123456";
 
         String version = "22.39.5";
@@ -70,7 +70,7 @@ public class PerformanceApiResponse {
             driver.findElement(By.xpath("//*[text()='Next']")).click();
 
             shortWait(driver, "//input[@type='password']");
-            driver.findElement(By.xpath("//input[@type='password']")).sendKeys(passLogin);
+            driver.findElement(By.xpath("//input[@type='password']")).sendKeys(pass);
             driver.findElement(By.xpath("//*[text()='Next']")).click();
             longWait(driver, "//*[contains(text(),'Mobikwik Android')]");
             driver.findElement(By.xpath("//*[contains(text(),'Mobikwik Android')]")).click();
@@ -305,7 +305,7 @@ public class PerformanceApiResponse {
 
                         protected PasswordAuthentication getPasswordAuthentication() {
 
-                            return new PasswordAuthentication(username, passMail);
+                            return new PasswordAuthentication("dont-reply@mobikwik.com", "mobikwik123#");
 
                         }
 
