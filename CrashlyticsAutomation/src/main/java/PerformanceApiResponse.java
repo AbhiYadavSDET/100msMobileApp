@@ -22,10 +22,13 @@ public class PerformanceApiResponse {
 
     @Test(groups = {"performanceAPIResp"}, priority = 0, description = "Verify api reponse time")
     public static void PerformanceApiResponse() throws InterruptedException, IOException {
-        String username = "mbkmobile.team@mobikwik.com";
-        String pass = "Mobikwik@123456";
-        //String passMail = "jcrqzdelrdyrzpua";
-        String passLogin = "Mobikwik@123456";
+        String usernameWebLogin = "mbkmobile.team@mobikwik.com";
+        String passWebLogin = "Mobikwik@12345";
+        String usernameMail = "mobikwiktest123@gmail.com";
+        String passMail = "njwqiqohpbaqekuq";
+
+        //njwqiqohpbaqekuq
+
 
         String version = "22.39.5";
         String date = "60 m";
@@ -66,11 +69,11 @@ public class PerformanceApiResponse {
         try {
             driver.get("https://console.firebase.google.com");
             driver.manage().window().maximize();
-            driver.findElement(By.id("identifierId")).sendKeys(username);
+            driver.findElement(By.id("identifierId")).sendKeys(usernameWebLogin);
             driver.findElement(By.xpath("//*[text()='Next']")).click();
 
             shortWait(driver, "//input[@type='password']");
-            driver.findElement(By.xpath("//input[@type='password']")).sendKeys(pass);
+            driver.findElement(By.xpath("//input[@type='password']")).sendKeys(passWebLogin);
             driver.findElement(By.xpath("//*[text()='Next']")).click();
             longWait(driver, "//*[contains(text(),'Mobikwik Android')]");
             driver.findElement(By.xpath("//*[contains(text(),'Mobikwik Android')]")).click();
@@ -287,10 +290,10 @@ public class PerformanceApiResponse {
             props.put("mail.smtp.starttls.enable", "true");
 
             // set the port of socket factory
-            props.put("mail.smtp.socketFactory.port", "587");
+            //props.put("mail.smtp.socketFactory.port", "587");
 
             // set socket factory
-            props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+            //props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 
             // set the authentication to true
             props.put("mail.smtp.auth", "true");
@@ -298,14 +301,17 @@ public class PerformanceApiResponse {
             // set the port of SMTP server
             props.put("mail.smtp.port", "587");
 
+            // Testing
+            props.put("mail.transport.protocol", "smtp");
+
             // This will handle the complete authentication
             Session session = Session.getDefaultInstance(props,
 
                     new javax.mail.Authenticator() {
 
                         protected PasswordAuthentication getPasswordAuthentication() {
-
-                            return new PasswordAuthentication("dont-reply@mobikwik.com", "mobikwik123#");
+                            System.out.println(usernameMail + passMail);
+                            return new PasswordAuthentication(usernameMail, passMail);
 
                         }
 
