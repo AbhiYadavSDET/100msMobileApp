@@ -330,7 +330,7 @@ public class PerformanceApiResponse {
                 message.setFrom(new InternetAddress("qafront-end@mobikwik.com"));
 
                 // Set the recipient address
-                message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("qafront-end@mobikwik.com"));
+                message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("mayank.suneja@mobikwik.com"));
 
                 message.setRecipients(Message.RecipientType.CC, InternetAddress.parse("MBK-Android@mobikwik.com"));
 
