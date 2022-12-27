@@ -1,11 +1,9 @@
-import com.oracle.tools.packager.Log;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.apache.xpath.operations.Bool;
 import org.jboss.aerogear.security.otp.Totp;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -15,8 +13,6 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.io.IOException;
-import java.net.URL;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -408,9 +404,10 @@ public class PerformanceApiResponse {
 
     /**
      * Method is used to get the TOTP based on the security token
+     *
      * @return
      */
-    public static String getTwoFactorCode(){
+    public static String getTwoFactorCode() {
 
         Totp totp = new Totp("bt2lxmrr5cvg32tp3cnbfkda64gctbki"); // 2FA secret key
         String twoFactorCode = totp.now(); //Generated 2FA code here
