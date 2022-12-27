@@ -1,9 +1,9 @@
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.apache.xpath.operations.Bool;
-import org.openqa.selenium.*;
+import org.jboss.aerogear.security.otp.Totp;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -13,12 +13,11 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.io.IOException;
-import java.net.URL;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Properties;
 
 public class PerformanceApiResponse {
+
 
     @Test(groups = {"performanceAPIResp"}, priority = 0, description = "Verify api reponse time")
     public static void PerformanceApiResponse() throws InterruptedException, IOException {
@@ -75,6 +74,15 @@ public class PerformanceApiResponse {
             shortWait(driver, "//input[@type='password']");
             driver.findElement(By.xpath("//input[@type='password']")).sendKeys(passWebLogin);
             driver.findElement(By.xpath("//*[text()='Next']")).click();
+
+            /**
+             *We have setup intellij as Authenticator and using it alos to genrate otp to login
+             */
+            shortWait(driver, "//input[@name='totpPin']");
+            driver.findElement(By.xpath("//input[@name='totpPin']")).sendKeys(getTwoFactorCode());
+            driver.findElement(By.xpath("//*[text()='Next']")).click();
+
+
             longWait(driver, "//*[contains(text(),'Mobikwik Android')]");
             driver.findElement(By.xpath("//*[contains(text(),'Mobikwik Android')]")).click();
             longWait(driver, "//div[text()=' Release & Monitor ']");
@@ -318,8 +326,10 @@ public class PerformanceApiResponse {
                     });
 
             String[] recipients = new String[4];
-            recipients[0] = "qafront-end@mobikwik.com";
-            recipients[1] = "MBK-Android@mobikwik.com";
+            //recipients[0] = "qafront-end@mobikwik.com";
+            recipients[0] = "mayank.suneja@mobikwik.com";
+            recipients[1] = "paraj.jain@mobikwik.com";
+            recipients[2] = "MBK-Android@mobikwik.com";
 
             try {
 
@@ -389,6 +399,20 @@ public class PerformanceApiResponse {
                 Assert.assertTrue(false);
             }
         }
+    }
+
+
+    /**
+     * Method is used to get the TOTP based on the security token
+     *
+     * @return
+     */
+    public static String getTwoFactorCode() {
+
+        Totp totp = new Totp("bt2lxmrr5cvg32tp3cnbfkda64gctbki"); // 2FA secret key
+        String twoFactorCode = totp.now(); //Generated 2FA code here
+        System.out.println(twoFactorCode);
+        return twoFactorCode;
     }
 
 }

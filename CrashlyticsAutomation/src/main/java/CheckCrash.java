@@ -35,7 +35,7 @@ public class CheckCrash {
     public static void Crashlytics() throws InterruptedException, IOException {
         String username = "mbkmobile.team@mobikwik.com";
         String pass = "Mobikwik@123456";
-        String version = "22.46.1";
+        String version = "22.46.2";
         String date = "60 m";
         String crashFreeUsers;
         int MAX_RETRIES = 2;
@@ -622,7 +622,7 @@ public class CheckCrash {
 
     public static boolean rightClick_little_right(WebDriver driver,Actions a, WebElement web){
         try {
-            a.moveToElement(web,550,0).keyDown(Keys.COMMAND).click().perform();
+            a.moveToElement(web,500,0).keyDown(Keys.COMMAND).click().perform();
             a.moveToElement(driver.findElement(By.xpath("//i[text()='gmp_nav20_performance']"))).perform();
             return true;
         }catch (Exception e){

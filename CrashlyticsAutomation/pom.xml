@@ -59,6 +59,12 @@
             <version>5.2.0</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.jboss.aerogear/aerogear-otp-java -->
+        <dependency>
+            <groupId>org.jboss.aerogear</groupId>
+            <artifactId>aerogear-otp-java</artifactId>
+            <version>1.0.0</version>
+        </dependency>
 
         <dependency>
             <groupId>org.testng</groupId>
@@ -84,6 +90,12 @@
             <groupId>javax.mail</groupId>
             <artifactId>javax.mail-api</artifactId>
             <version>1.6.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.asprise.ocr</groupId>
+            <artifactId>java-ocr-api</artifactId>
+            <version>15.3.0.3</version>
         </dependency>
 
         <dependency>
