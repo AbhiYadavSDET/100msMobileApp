@@ -149,8 +149,8 @@ public class AadharCaptchaCheck {
             }
             driver.close();
         } catch (Exception e) {
-            throw e;
-            //driver.close();
+            //throw e;
+            driver.close();
         }
     }
 
