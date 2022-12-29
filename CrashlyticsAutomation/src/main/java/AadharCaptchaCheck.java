@@ -19,31 +19,51 @@ import java.util.Properties;
 
 public class AadharCaptchaCheck {
     @Test(groups = {"aadharCheckCaptcha"}, priority = 0, description = "Verify Clevertap crash")
-    public static void aadharCheck () throws IOException, InterruptedException {
+    public static void aadharCheck() throws IOException, InterruptedException {
         String username = "mbkmobile.team@mobikwik.com";
-        String pass = "Mobikwik@123456",data="";
-        Boolean aadharText=false,captchaText=false,captchaImage=false;
-        int refreshFlag=0;
+        String pass = "Mobikwik@123456", data = "";
+
+        // User and pass to send the mail
+        String usernameMail = "mobikwiktest123@gmail.com";
+        String passMail = "njwqiqohpbaqekuq";
+
+        Boolean aadharText = false, captchaText = false, captchaImage = false;
+        int refreshFlag = 0;
         WebDriver driver;
 
-            System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/chromedriver");
-            driver = new ChromeDriver();
+        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/chromedriver");
+        driver = new ChromeDriver();
         try {
-            driver.get("https://resident.uidai.gov.in/offline-kyc");
+
+            // Open the Aadhaar Website
+            driver.get("https://myaadhaar.uidai.gov.in/");
+            driver.manage().window().maximize();
+
+            // Click on the Login Button
+            driver.findElement(By.xpath("//button[@class='button_btn__1dRFj' and contains(text(), 'Login')]")).click();
+
+            Thread.sleep(5000);
+
+
             while (refreshFlag < 2) {
                 Thread.sleep(5000);
+                System.out.println("regreshFalg : " + refreshFlag);
                 SoftAssert ar = new SoftAssert();
-                ar.assertEquals(driver.findElement(By.xpath("//label[@data-original-title='Aadhaar Number']")).getText(), "Aadhaar Number", "Aadhar card text check");
-                ar.assertEquals(driver.findElement(By.xpath("//label[@data-original-title='Captcha Verification']")).getText(), "Captcha Verification", "Captcha text check");
-                ar.assertTrue(driver.findElement(By.xpath("//img[@id='captcha-img']")).isDisplayed(), "Captcha image check");
+                ar.assertTrue(driver.findElement(By.xpath("//span[@class='label-span' and contains(text(), 'Enter Aadhaar')]")).isDisplayed(), "Aadhar card text check");
+                ar.assertTrue(driver.findElement(By.xpath("//span[@class='label-span' and contains(text(), 'Enter Above Captcha')]")).isDisplayed(), "Captcha text check");
+                ar.assertTrue(driver.findElement(By.xpath("//div[@id = 'captcha_block']/img")).isDisplayed(), "Captcha image check");
 
-                aadharText = driver.findElement(By.xpath("//label[@data-original-title='Aadhaar Number']")).isDisplayed();
-                captchaText = driver.findElement(By.xpath("//label[@data-original-title='Captcha Verification']")).isDisplayed();
+                // Setting the values of both the text on the screen
+                aadharText = driver.findElement(By.xpath("//span[@class='label-span' and contains(text(), 'Enter Aadhaar')]")).isDisplayed();
+                captchaText = driver.findElement(By.xpath("//span[@class='label-span' and contains(text(), 'Enter Above Captcha')]")).isDisplayed();
 
-                if (driver.findElement(By.xpath("//img[@id='captcha-img']")).isDisplayed()) {
-                    File src = ((TakesScreenshot) driver.findElement(By.xpath("//img[@id='captcha-img']"))).getScreenshotAs(OutputType.FILE);
+                if (driver.findElement(By.xpath("//div[@id = 'captcha_block']/img")).isDisplayed()) {
+                    File src = ((TakesScreenshot) driver.findElement(By.xpath("//div[@id = 'captcha_block']/img"))).getScreenshotAs(OutputType.FILE);
                     File dest = new File(System.getProperty("user.dir") + "/Test1.jpg");
+
                     FileUtils.copyFile(src, dest);
+                    System.out.println("Files copied from : " + src + " --> " + dest);
+                    Ocr.setUp();
                     Ocr ocr = new Ocr();
 
                     ocr.startEngine("eng", Ocr.SPEED_FASTEST);
@@ -57,7 +77,7 @@ public class AadharCaptchaCheck {
                         captchaImage = true;
                         break;
                     } else {
-                        driver.findElement(By.id("refresh-captcha")).click();
+                        driver.findElement(By.xpath("//button[@class = 'fa fa-refresh icon-style']")).click();
                         refreshFlag = refreshFlag + 1;
                     }
 
@@ -78,7 +98,7 @@ public class AadharCaptchaCheck {
 
                         protected PasswordAuthentication getPasswordAuthentication() {
 
-                            return new PasswordAuthentication(username, pass);
+                            return new PasswordAuthentication(usernameMail, passMail);
 
                         }
 
@@ -87,10 +107,11 @@ public class AadharCaptchaCheck {
             try {
                 Message message = new MimeMessage(session);
 //            message.setFrom(new InternetAddress("qafront-end@mobikwik.com"));
-                message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("qafront-end@mobikwik.com"));
-
+                message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("mayank.suneja@mobikwik.com"));
                 message.setRecipients(Message.RecipientType.CC, InternetAddress.parse("vipul.behl@mobikwik.com"));
                 message.addRecipients(Message.RecipientType.CC, InternetAddress.parse("aditya.upadhyay@mobikwik.com"));
+                message.addRecipients(Message.RecipientType.CC, InternetAddress.parse("paraj.jain@mobikwik.com"));
+
                 Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
                 if (captchaImage) {
@@ -127,12 +148,13 @@ public class AadharCaptchaCheck {
 
             }
             driver.close();
-        }catch (Exception e){
-            driver.close();
+        } catch (Exception e) {
+            throw e;
+            //driver.close();
         }
     }
 
-    }
+}
 
 
 
