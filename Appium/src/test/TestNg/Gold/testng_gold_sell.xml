@@ -1,33 +1,27 @@
-<suite name="Appium-Framework">
-    <listeners>
-        <listener class-name="UITestFramework.retryLogic.RetryListener"/>
-        <listener class-name="UITestFramework.retryLogic.TestListener"/>
-    </listeners>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Gold Flow">
+
     <parameter name="build" value="prod"/>
     <parameter name="level" value="payments"/>
     <parameter name="saucelabs" value="false"></parameter>
-    <parameter name="androidOSVersion" value="7.0"></parameter>
+    <parameter name="androidOSVersion" value="12.0"></parameter>
 
-
-    <test name="Mobikwik Automation Tests">
+    <test verbose="2" preserve-order="true" name="Gold Sell Flow Test">
         <groups>
             <run>
-                <include name="appiumStart"/>
                 <include name="setUp"/>
                 <include name="instantiateHelpers"/>
-                <include name="sellGold"/>
+                <include name="goldSell"/>
                 <include name="tearDown"/>
-                <include name="appiumStop"/>
             </run>
         </groups>
 
-        <classes>
-            <class name="UITestFramework.CreateSession"/>
-            <class name="UITestFramework.ExtentReport.Reporter"/>
-            <class name="Gold.Test_Gold"/>
 
+        <classes>
+            <class name="Utils.TestBase"/>
+            <class name="Gold.GoldTest"/>
         </classes>
-        <packages>
-        </packages>
     </test>
+
 </suite>

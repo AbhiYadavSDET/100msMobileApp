@@ -1,187 +1,70 @@
 package Helpers;
-/*
+
+import Logger.Log;
 import PageObject.GoldPage;
-import PageObject.HomePage;
-import PageObject.SideDrawerPage;
-import utils.MBReporter;
-import io.appium.java_client.TouchAction;
+import Utils.Elements;
+import Utils.Screen;
 import io.appium.java_client.android.AndroidDriver;
-import org.json.JSONException;
-import org.openqa.selenium.By;
-import utils.Element;
-import utils.Screen;
+import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
 
 public class GoldHelper {
-    TouchAction touchAction;
-    MBKPermissions mbkPermissions;
-    HomePage homePage;
-    Screen screen;
-    MBReporter mbReporter;
+
+    AndroidDriver<AndroidElement> driver;
+    Elements elements;
     GoldPage goldPage;
-    SideDrawerPage sideDrawerPage;
-    PermissionHelper permissionHelper;
-    MBKCommonControlsHelper mbkCommonControlsHelper;
-    AndroidDriver driver;
-    AddMoneyHelper addMoneyHelper;
+    Screen screen;
 
 
     public GoldHelper(AndroidDriver driver) throws IOException {
         this.driver = driver;
-        homePage = new HomePage(driver);
-        touchAction = new TouchAction(driver);
-        mbkPermissions = new MBKPermissions(driver);
-        mbReporter = new MBReporter(driver, "testScreenshotDir");
+        elements = new Elements(driver);
         goldPage = new GoldPage(driver);
-        permissionHelper = new PermissionHelper(driver);
-        mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
-
+        screen = new Screen(driver);
+        PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
+    public void goldBuy(String amount) throws InterruptedException {
 
-    public void buyGold(String securityPin, String amount) throws InterruptedException, IOException, JSONException {
+        // Tap on See All Services
+        goldPage.clickAllServices();
 
-        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+        // Swipe till the bottom
+        screen.swipeUpMore(driver);
 
-        Screen.swipeUpMore(driver);
+        // Click on 99% Buy Gold
+        goldPage.clickBuyGold();
 
-        homePage.clickInvestmentAndInsuranceLayout();
-        goldPage = homePage.clickGoldIcon();
-        Thread.sleep(3000);
+        // Click on Buy Gold
+        goldPage.clickBuyCta();
 
-        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text= 'Gold Balance :']"))) {
-
-            goldPage.clickOnBuyGoldRegisteredUser();
-        } else {
-            goldPage.clickOnBuyGold();
-        }
-
-
+        // Enter the Gold amount
         goldPage.enterAmount(amount);
 
-        goldPage.clickBuyNowCta();
+        // Click on Pay Now CTA
+        goldPage.clickPayCta();
 
-        goldPage.clickOnMakePaymentCta();
+        // Verification on the Success Screen
+        String title = goldPage.getTitle();
+        String subTitle = goldPage.getSubTitle();
+        String goldAmount = goldPage.getGoldAmount();
+        String txnAmount = goldPage.getAmount();
 
-        mbkCommonControlsHelper.handleSecurityPin(securityPin);
-        Thread.sleep(3000);
-
-
-        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Payment Successful']"));
-
-
-        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text= 'Payment Successful']")), goldPage.getTxnStatus(), true, false);
-
-        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text= 'Payment Successful']")), "Order id is : " + goldPage.getOrderId(), true, false);
-
-        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text= 'Payment Successful']")), "Quantity in gram is : " + goldPage.getQuantityInGram(), true, false);
+        Log.info("Title : " + title);
+        Log.info("Sub Title : " + subTitle);
+        Log.info("Gold Amount : " + goldAmount);
+        Log.info("Txn Amount : " + txnAmount);
 
 
-        goldPage.clickCheckYourGoldBalance();
+        // Click on the Back Icon
+        goldPage.clickCloseIcon();
 
-        goldPage.checkHistory();
-
-        goldPage.selectTransaction();
-
-
-        Element.waitForVisibility(driver, By.id("gold_purchased_or_sold"));
-
-
-        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("gold_purchased_or_sold")), "Invoice Id on History Page : " + goldPage.getInvoiceIdHistoryPage(), true, false);
-
-
-        goldPage.clickBack();
-        Thread.sleep(2000);
-
-        goldPage.clickBack();
-        Thread.sleep(2000);
-
-        goldPage.clickBack();
+        // Click on the up Icon
 
 
     }
-
-    public void sellGold(String securityPin, String amount) throws InterruptedException, IOException, JSONException {
-
-        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
-
-        Screen.swipeUpMore(driver);
-        homePage.clickInvestmentAndInsuranceLayout();
-        goldPage = homePage.clickGoldIcon();
-        Thread.sleep(3000);
-
-        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text= 'Gold Balance :']"))) {
-
-            goldPage.clickOnSellGoldRegisteredUser();
-
-            goldPage.enterAmount(amount);
-
-            goldPage.clickOnContinueCta();
-
-            if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text= 'Confirm Payment']"))) {
-
-                goldPage.clickOnSellGoldCta();
-
-                Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Payment Successful']"));
-
-
-                mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text= 'Payment Successful']")), goldPage.getTxnStatus(), true, false);
-
-                mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text= 'Payment Successful']")), "Order id is : " + goldPage.getOrderId(), true, false);
-
-                mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text= 'Payment Successful']")), "Quantity in gram is : " + goldPage.getQuantityInGram(), true, false);
-
-
-                goldPage.clickCheckYourGoldBalance();
-
-                goldPage.checkHistory();
-
-                goldPage.selectTransaction();
-
-
-                Element.waitForVisibility(driver, By.id("gold_purchased_or_sold"));
-
-                mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("gold_purchased_or_sold")), "Invoice Id on History Page : " + goldPage.getInvoiceIdHistoryPage(), true, false);
-
-                goldPage.clickBack();
-                Thread.sleep(2000);
-
-                goldPage.clickBack();
-                Thread.sleep(2000);
-
-                goldPage.clickBack();
-
-
-            } else {
-
-                String error = goldPage.getErrorDescription();
-
-                mbReporter.verifyTrueWithLogging(!Element.isElementPresent(driver, By.id("txt_description_amount")), error, true, true);
-
-                goldPage.clickBack();
-
-
-                goldPage.clickBack();
-
-            }
-
-
-        } else {
-
-            mbReporter.verifyFalse(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text= 'Why To Invest?']")), "Gold not available to sell", true, false);
-
-
-            goldPage.clickBack();
-
-
-        }
-
-
-    }
-
 
 }
-
-
- */

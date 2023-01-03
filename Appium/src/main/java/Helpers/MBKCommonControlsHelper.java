@@ -94,7 +94,7 @@ public class MBKCommonControlsHelper {
      * activity values "BeforeTestCase"=for recreating sufficient Flows
      */
 
-    public void handleAddMoney(String activity ,String requiredAmount, String cardNo, String expiryMonthYear, String cvv) throws InterruptedException, IOException {
+    public void handleAddMoney(String activity, String requiredAmount, String cardNo, String expiryMonthYear, String cvv) throws InterruptedException, IOException {
 
         if (activity.equalsIgnoreCase("BeforeTestCase")) {
 
@@ -119,15 +119,15 @@ public class MBKCommonControlsHelper {
 
                 addMoneyPage.clickOnContinueButton();
 
-            AddMoneyHelper addmoneyHelper = new AddMoneyHelper(driver);
-            addmoneyHelper.handleAddMoney(cardNo, expiryMonthYear,cvv);
+                AddMoneyHelper addmoneyHelper = new AddMoneyHelper(driver);
+                addmoneyHelper.handleAddMoney(cardNo, expiryMonthYear, cvv);
 
             }
 
-        }else{
+        } else {
 
             AddMoneyHelper addmoneyHelper = new AddMoneyHelper(driver);
-            addmoneyHelper.handleAddMoney(cardNo, expiryMonthYear,cvv);
+            addmoneyHelper.handleAddMoney(cardNo, expiryMonthYear, cvv);
 
         }
 
@@ -136,337 +136,339 @@ public class MBKCommonControlsHelper {
     public void handleAddMoneyTillOtpPage(String cardNo, String expiryMonthYear, String cvv, String paymentFlow) throws InterruptedException, IOException {
 
         AddMoneyHelper addmoneyHelper = new AddMoneyHelper(driver);
-        addmoneyHelper.handleAddMoney( cardNo,  expiryMonthYear, cvv, true, paymentFlow);
+        addmoneyHelper.handleAddMoney(cardNo, expiryMonthYear, cvv, true, paymentFlow);
 
     }
 
 
-        public void handleSecurityPin (String pin) throws InterruptedException {
-            String[] pinArr = pin.split("|");
+    public void handleSecurityPin(String pin) throws InterruptedException {
+        String[] pinArr = pin.split("|");
 
-            if (Element.isElementPresent(driver, By.id("lock_rationale_text_view"))) {
+        if (Element.isElementPresent(driver, By.id("lock_rationale_text_view"))) {
 
-                for (String e : pinArr) {
-                    //Log.info("PRESS", e);
-                    AndroidElement androidElement = element.findElement(driver, By.id("btn_pin_" + e));
-                    Element.selectElement(driver, androidElement, e);
-                }
-
-            }
-        }
-
-        public void handleRechargeAmountKeyboard (String amt) throws InterruptedException {
-            String[] amtArr = amt.split("|");
-
-            if (Element.isElementPresent(driver, By.id("layout_keyboard_btns"))) {
-
-                for (String e : amtArr) {
-                    //Log.info("PRESS", e);
-                    AndroidElement androidElement = element.findElement(driver, By.id("btn_pin_" + e));
-                    Element.selectElement(driver, androidElement, e);
-                }
-
-            }
-        }
-
-        public void handleUpiPin (String pin) throws InterruptedException {
-
-            String[] pinArr = pin.split("|");
-
-            Element.waitForVisibility(driver, By.xpath("//android.widget.TableLayout[@index='2']"));
-            Log.info(" Waiting for Element");
-
-            if (Element.isElementPresent(driver, By.xpath("//android.widget.TableLayout[@index='2']"))) {
-
-                for (String e : pinArr) {
-                    Log.info("PRESS", e);
-                    AndroidElement androidElement = element.findElement(driver, By.xpath("//android.widget.TextView[@text='" + e + "']"));
-                    Element.selectElement(driver, androidElement, e);
-                }
-
-                //Click on submit icon
-
-                AndroidElement clickElement = element.findElement(driver, By.xpath("//android.widget.TableRow[@index='3']/android.widget.ImageView[@index='2']"));
-                Element.selectElement(driver, clickElement, "Submit UPI Pin");
-
-            }
-        }
-
-        public void clickUpButton () throws InterruptedException {
-            Thread.sleep(1000);
-            mbkCommonControlsPage.clickOnUpButton();
-        }
-
-
-        public void clickUpButton2 () throws InterruptedException {
-            Thread.sleep(1000);
-            mbkCommonControlsPage.clickOnUpButton2();
-        }
-
-        public void returnToHomePageFromRechargeSuccessScreen () throws InterruptedException {
-            mbkCommonControlsPage.clickOnSuccessPageCross();
-            handleRatingsPopUp();
-            handleNPS();
-        }
-
-
-        public void returnToHomePageFromRechargeSuccessScreenBackButton () throws InterruptedException {
-            mbkCommonControlsPage.clickOnSuccessPageBackbutton();
-            handleRatingsPopUp();
-            handleNPS();
-        }
-
-        public void returnToHomePageFromP2MSuccessScreen () throws InterruptedException {
-            mbkCommonControlsPage.clickOnSuccessPageCross();
-            handleRatingsPopUp();
-            handleNPS();
-        }
-
-        public void returnToHomePageFromSuccessScreen () throws InterruptedException {
-            mbkCommonControlsPage.clickOnSuccessPageCross();
-            handleRatingsPopUp();
-            handleNPS();
-
-            if (Element.isElementPresent(driver, By.id("close_button"))) {
-                mbkCommonControlsPage.closeAddmoneyBottomSheet();
-            }
-        }
-
-        public void returnToHomePage () throws InterruptedException {
-            mbkCommonControlsPage.clickOnNavigateHome();
-        }
-
-        public void returnToHomePageByBackArrow () throws InterruptedException {
-            mbkCommonControlsPage.clickOnSuccessPageBackbutton();
-        }
-
-
-        public LinkedHashMap<String, String> getBalance () throws InterruptedException, IOException {
-
-            LinkedHashMap<String, String> walletBalance = new LinkedHashMap<>();
-
-            Log.info("START", "Fetch Wallet balance");
-
-            // Goto balance details screen
-            HomePage homePage = new HomePage(driver);
-
-            homePage.openBalanceDrawer();
-
-            mbkCommonControlsPage.clickOnSeeAll();
-
-            Thread.sleep(2000);
-
-            // fetch the balance and add to Map
-            Element.waitForVisibility(driver, walletBalancePage.label_available_balance);
-            int noOfBalance = Element.findElements(driver, By.id("bt_type")).size();
-            Log.info("noOfBalance - " + noOfBalance);
-
-            // Fetch the total balance
-            String totalBalanceText = walletBalancePage.getTotalBalanceName();
-            String totalBalanceValue = walletBalancePage.getTotalBalanceValue();
-
-            walletBalance.put(totalBalanceText, totalBalanceValue);
-
-
-            // Fetch the rest of the balances
-            for (int i = 1; i <= noOfBalance; i++) {
-
-                String balanceText = element.findElement(driver, By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.ScrollView/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.LinearLayout[" + i + "]/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.TextView[1]")).getText().replace(" “", "").trim();
-                String balanceValue = element.findElement(driver, By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.ScrollView/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.LinearLayout[\" + i + \"]/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.TextView[2]")).getText().replace("X", "").replace(",", "");
-                walletBalance.put(balanceText, balanceValue);
+            for (String e : pinArr) {
+                //Log.info("PRESS", e);
+                AndroidElement androidElement = element.findElement(driver, By.id("btn_pin_" + e));
+                Element.selectElement(driver, androidElement, e);
             }
 
-            screen.swipeUpMore(driver);
+        }
+    }
 
-            // Fetch the supercash balance
+    public void handleRechargeAmountKeyboard(String amt) throws InterruptedException {
+        String[] amtArr = amt.split("|");
 
-            if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='SuperCash “']"))) {
-                String supercashText = "SuperCash";
-                String supercashValue = walletBalancePage.getSupercashBalanceValue();
-                walletBalance.put(supercashText, supercashValue);
-            } else {
-                String supercashText = "SuperCash";
-                String supercashValue = "0";
-                walletBalance.put(supercashText, supercashValue);
+        if (Element.isElementPresent(driver, By.id("layout_keyboard_btns"))) {
+
+            for (String e : amtArr) {
+                //Log.info("PRESS", e);
+                AndroidElement androidElement = element.findElement(driver, By.id("btn_pin_" + e));
+                Element.selectElement(driver, androidElement, e);
             }
 
-            Log.info("------------ Balance --------------");
+        }
+    }
 
-            for (Map.Entry<String, String> e : walletBalance.entrySet()) {
-                Log.info(e.getKey(), e.getValue());
+    public void handleUpiPin(String pin) throws InterruptedException {
+
+        String[] pinArr = pin.split("|");
+
+        Element.waitForVisibility(driver, By.xpath("//android.widget.TableLayout[@index='2']"));
+        Log.info(" Waiting for Element");
+
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.TableLayout[@index='2']"))) {
+
+            for (String e : pinArr) {
+                Log.info("PRESS", e);
+                AndroidElement androidElement = element.findElement(driver, By.xpath("//android.widget.TextView[@text='" + e + "']"));
+                Element.selectElement(driver, androidElement, e);
             }
 
-            Log.info("-----------------------------------");
+            //Click on submit icon
 
-            for (int i = 0; i < 2; i++) {
-                clickUpButton();
-            }
-            Log.info("END : Fetch Wallet balance");
-            return walletBalance;
+            AndroidElement clickElement = element.findElement(driver, By.xpath("//android.widget.TableRow[@index='3']/android.widget.ImageView[@index='2']"));
+            Element.selectElement(driver, clickElement, "Submit UPI Pin");
+
+        }
+    }
+
+    public void clickUpButton() throws InterruptedException {
+        Thread.sleep(1000);
+        mbkCommonControlsPage.clickOnUpButton();
+    }
+
+
+    public void clickUpButton2() throws InterruptedException {
+        Thread.sleep(1000);
+        mbkCommonControlsPage.clickOnUpButton2();
+    }
+
+    public void returnToHomePageFromRechargeSuccessScreen() throws InterruptedException {
+        mbkCommonControlsPage.clickOnSuccessPageCross();
+        handleRatingsPopUp();
+        handleNPS();
+    }
+
+
+    public void returnToHomePageFromRechargeSuccessScreenBackButton() throws InterruptedException {
+        mbkCommonControlsPage.clickOnSuccessPageBackbutton();
+        handleRatingsPopUp();
+        handleNPS();
+    }
+
+    public void returnToHomePageFromP2MSuccessScreen() throws InterruptedException {
+        mbkCommonControlsPage.clickOnSuccessPageCross();
+        handleRatingsPopUp();
+        handleNPS();
+    }
+
+    public void returnToHomePageFromSuccessScreen() throws InterruptedException {
+        mbkCommonControlsPage.clickOnSuccessPageCross();
+        handleRatingsPopUp();
+        handleNPS();
+
+        if (Element.isElementPresent(driver, By.id("close_button"))) {
+            mbkCommonControlsPage.closeAddmoneyBottomSheet();
+        }
+    }
+
+    public void returnToHomePage() throws InterruptedException {
+        mbkCommonControlsPage.clickOnNavigateHome();
+    }
+
+    public void returnToHomePageByBackArrow() throws InterruptedException {
+        mbkCommonControlsPage.clickOnSuccessPageBackbutton();
+    }
+
+
+    public LinkedHashMap<String, String> getBalance() throws InterruptedException, IOException {
+
+        LinkedHashMap<String, String> walletBalance = new LinkedHashMap<>();
+
+        Log.info("START", "Fetch Wallet balance");
+
+        // Goto balance details screen
+        HomePage homePage = new HomePage(driver);
+
+        homePage.openBalanceDrawer();
+
+        mbkCommonControlsPage.clickOnSeeAll();
+
+        Thread.sleep(2000);
+
+        // fetch the balance and add to Map
+        Element.waitForVisibility(driver, walletBalancePage.label_available_balance);
+        int noOfBalance = Element.findElements(driver, By.id("bt_type")).size();
+        Log.info("noOfBalance - " + noOfBalance);
+
+        // Fetch the total balance
+        String totalBalanceText = walletBalancePage.getTotalBalanceName();
+        String totalBalanceValue = walletBalancePage.getTotalBalanceValue();
+
+        walletBalance.put(totalBalanceText, totalBalanceValue);
+
+
+        // Fetch the rest of the balances
+        for (int i = 1; i <= noOfBalance; i++) {
+
+            String balanceText = element.findElement(driver, By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.ScrollView/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.LinearLayout[" + i + "]/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.TextView[1]")).getText().replace(" “", "").trim();
+            String balanceValue = element.findElement(driver, By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.ScrollView/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.LinearLayout[\" + i + \"]/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.TextView[2]")).getText().replace("X", "").replace(",", "");
+            walletBalance.put(balanceText, balanceValue);
         }
 
-        public void handleCTOverlay () throws InterruptedException {
-            Thread.sleep(4000);
+        screen.swipeUpMore(driver);
 
-            if (Element.isElementPresent(driver, By.xpath("//android.widget.RelativeLayout[@index = '0']/android.widget" +
-                    ".ImageView[@index = '1']"))) {
+        // Fetch the supercash balance
 
-                Log.info("Handle", "CT Overlay");
-                mbkCommonControlsPage.clickOnCtOverLayCross();
-            }
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='SuperCash “']"))) {
+            String supercashText = "SuperCash";
+            String supercashValue = walletBalancePage.getSupercashBalanceValue();
+            walletBalance.put(supercashText, supercashValue);
+        } else {
+            String supercashText = "SuperCash";
+            String supercashValue = "0";
+            walletBalance.put(supercashText, supercashValue);
         }
 
-        // Added by MS@10 Oct, 2018 to handle the NPS Pop-on pressing back from the success screens
-        public void handleNPS () throws InterruptedException {
-            Thread.sleep(3000);
-            if (Element.isElementPresent(driver, By.id("rating_seekbar"))) {
-                Log.info("Handle", "NPS Screen");
-                mbkCommonControlsPage.clickOnCross();
-                if (Element.isElementPresent(driver, By.id("base_icon_close"))) {
-                    mbkCommonControlsPage.clickOnSuccessPageCross();
-                } else if (Element.isElementPresent(driver, By.id("base_icon_back"))) {
+        Log.info("------------ Balance --------------");
+
+        for (Map.Entry<String, String> e : walletBalance.entrySet()) {
+            Log.info(e.getKey(), e.getValue());
+        }
+
+        Log.info("-----------------------------------");
+
+        for (int i = 0; i < 2; i++) {
+            clickUpButton();
+        }
+        Log.info("END : Fetch Wallet balance");
+        return walletBalance;
+    }
+
+    public void handleCTOverlay() throws InterruptedException {
+        Thread.sleep(4000);
+
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.RelativeLayout[@index = '0']/android.widget" +
+                ".ImageView[@index = '1']"))) {
+
+            Log.info("Handle", "CT Overlay");
+            mbkCommonControlsPage.clickOnCtOverLayCross();
+        }
+    }
+
+    // Added by MS@10 Oct, 2018 to handle the NPS Pop-on pressing back from the success screens
+    public void handleNPS() throws InterruptedException {
+        Thread.sleep(3000);
+        if (Element.isElementPresent(driver, By.id("rating_seekbar"))) {
+            Log.info("Handle", "NPS Screen");
+            mbkCommonControlsPage.clickOnCross();
+            if (Element.isElementPresent(driver, By.id("base_icon_close"))) {
+                mbkCommonControlsPage.clickOnSuccessPageCross();
+            } else if (Element.isElementPresent(driver, By.id("base_icon_back"))) {
 //                mbkCommonControlsPage.clickOnSuccessPageBack();
-                }
             }
         }
+    }
 
-        // Added by MS@10 Oct, 2018 to handle the Rating Pop-on pressing back from the success screens
-        public void handleRatingsPopUp () throws InterruptedException {
-            Thread.sleep(3000);
-            if (Element.isElementPresent(driver, By.id("content_root"))) {
-                Log.info("Handle", "Ratings PopUp");
-                mbkCommonControlsPage.clickOnCross();
-                if (Element.isElementPresent(driver, By.id("base_icon_close"))) {
-                    mbkCommonControlsPage.clickOnSuccessPageCross();
-                } else if (Element.isElementPresent(driver, By.id("base_icon_back"))) {
+    // Added by MS@10 Oct, 2018 to handle the Rating Pop-on pressing back from the success screens
+    public void handleRatingsPopUp() throws InterruptedException {
+        Thread.sleep(3000);
+        if (Element.isElementPresent(driver, By.id("content_root"))) {
+            Log.info("Handle", "Ratings PopUp");
+            mbkCommonControlsPage.clickOnCross();
+            if (Element.isElementPresent(driver, By.id("base_icon_close"))) {
+                mbkCommonControlsPage.clickOnSuccessPageCross();
+            } else if (Element.isElementPresent(driver, By.id("base_icon_back"))) {
 //                mbkCommonControlsPage.clickOnSuccessPageBack();
-                }
-
             }
+
         }
+    }
 
 
-        /*---------------------Home Page Pop Up Handlers---------------------------*/
+    /*---------------------Home Page Pop Up Handlers---------------------------*/
 
-        public void handleReferAndEarnBottomSheet () throws InterruptedException {
-            Thread.sleep(2000);
-            if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text= 'Refer Now']"))) {
-                Log.info("Handle", "Refer & Earn Bottom sheet");
-                mbkCommonControlsPage.clickOnReferAndEarnBottonSheetCross();
-            }
+    public void handleReferAndEarnBottomSheet() throws InterruptedException {
+        Thread.sleep(2000);
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text= 'Refer Now']"))) {
+            Log.info("Handle", "Refer & Earn Bottom sheet");
+            mbkCommonControlsPage.clickOnReferAndEarnBottonSheetCross();
         }
+    }
 
-        public void handleUpiBottomSheet (AndroidDriver driver) throws InterruptedException {
-            Thread.sleep(2000);
-            if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Link Your Bank Account']"))) {
-                Log.info("Handle", "Upi Bottom sheet");
-                driver.navigate().back();
-            }
+    public void handleUpiBottomSheet(AndroidDriver driver) throws InterruptedException {
+        Thread.sleep(2000);
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Link Your Bank Account']"))) {
+            Log.info("Handle", "Upi Bottom sheet");
+            driver.navigate().back();
         }
+    }
 
-        public void handleGetInstantLoanBottomSheet () throws InterruptedException {
-            Thread.sleep(2000);
-            if (Element.isElementPresent(driver, By.id("cross_button"))) {
-                Log.info("Handle", "Get Instant Loan Bottom sheet");
-                mbkCommonControlsPage.clickOnGetInstantLoanBottonSheetCross();
-            } else if (Element.isElementPresent(driver, By.id("ic_close"))) {
-                Log.info("Handle", "Get Instant ZIP Dialogue");
-                mbkCommonControlsPage.clickOnLoanDialogueCross();
+    public void handleGetInstantLoanBottomSheet() throws InterruptedException {
+        Thread.sleep(2000);
+        if (Element.isElementPresent(driver, By.id("cross_button"))) {
+            Log.info("Handle", "Get Instant Loan Bottom sheet");
+            mbkCommonControlsPage.clickOnGetInstantLoanBottonSheetCross();
+        } else if (Element.isElementPresent(driver, By.id("ic_close"))) {
+            Log.info("Handle", "Get Instant ZIP Dialogue");
+            mbkCommonControlsPage.clickOnLoanDialogueCross();
 
-            }
         }
+    }
 
-        public void handleFloatingWidget () throws InterruptedException {
-            Thread.sleep(2000);
-            if (Element.isElementPresent(driver, By.id("home_floating_widget"))) {
-                Log.info("Handle", "Home Floating Widget");
-                mbkCommonControlsPage.closeFloatingWidget();
-            }
+    public void handleFloatingWidget() throws InterruptedException {
+        Thread.sleep(2000);
+        if (Element.isElementPresent(driver, By.id("home_floating_widget"))) {
+            Log.info("Handle", "Home Floating Widget");
+            mbkCommonControlsPage.closeFloatingWidget();
         }
+    }
 
-        public void handleClevertapPromotion (AndroidDriver driver) throws InterruptedException {
-            Thread.sleep(2000);
-            if (Element.isElementPresent(driver, By.id("half_interstitial_image"))) {
-                Log.info("Handle", "Clevertap Promotion");
+    public void handleClevertapPromotion(AndroidDriver driver) throws InterruptedException {
+        Thread.sleep(2000);
+        if (Element.isElementPresent(driver, By.id("half_interstitial_image"))) {
+            Log.info("Handle", "Clevertap Promotion");
 //                driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ImageView").click();
-                driver.navigate().back();
+            driver.navigate().back();
 
-            } else if (Element.isElementPresent(driver, By.id("alertTitle"))) {
-                Log.info("Handle", "Clevertap Promotion Message");
-                if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text= 'SKIP']"))) {
-                    driver.findElementById("button1").click();
-                } else {
-                    driver.findElementById("button2").click();
-                }
-            }
-
-        }
-
-        public void handleSetupSecurityBottomSheet () throws InterruptedException {
-            Thread.sleep(2000);
-            if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Enable secure login']"))) {
-                Log.info("Handle", "Setup Security Bottom Sheet");
-                mbkCommonControlsPage.closeSecurityBottomSheet();
+        } else if (Element.isElementPresent(driver, By.id("alertTitle"))) {
+            Log.info("Handle", "Clevertap Promotion Message");
+            if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text= 'SKIP']"))) {
+                driver.findElementById("button1").click();
+            } else {
+                driver.findElementById("button2").click();
             }
         }
 
+    }
 
-        public void dismissAllOnHomePage (AndroidDriver driver) throws InterruptedException {
+    public void handleSetupSecurityBottomSheet() throws InterruptedException {
+        Thread.sleep(2000);
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Enable secure login']"))) {
+            Log.info("Handle", "Setup Security Bottom Sheet");
+            mbkCommonControlsPage.closeSecurityBottomSheet();
+        }
+    }
+
+
+    public void dismissAllOnHomePage(AndroidDriver driver) throws InterruptedException {
 //        Handle Expense Manager Bottom sheet
 
-            Thread.sleep(2000);
-            if (Element.isElementPresent(driver, By.id("navigation_home"))) {
+        Thread.sleep(2000);
+        if (Element.isElementPresent(driver, By.id("navigation_home"))) {
 
-                Log.info("No Home Card");
+            Log.info("No Home Card");
 
-            } else if (Element.isElementPresent(driver, By.id("cross_button"))) {
-                Log.info("Handle", "Any Other Bottom sheet");
-                driver.navigate().back();
-            } else {
+        } else if (Element.isElementPresent(driver, By.id("cross_button"))) {
+            Log.info("Handle", "Any Other Bottom sheet");
+            driver.navigate().back();
+        } else {
 
-                Log.info("Checking", "Clevertap Alerts");
-                handleClevertapPromotion(driver);
+            Log.info("Checking", "Clevertap Alerts");
+            handleClevertapPromotion(driver);
 
-                Log.info("Checking", "Security Bottom sheet");
-                handleSetupSecurityBottomSheet();
+            Log.info("Checking", "Security Bottom sheet");
+            handleSetupSecurityBottomSheet();
 
-                Log.info("Checking", "Get Instant Loan Bottom sheet or ZIP Dialogue");
-                handleGetInstantLoanBottomSheet();
+            Log.info("Checking", "Get Instant Loan Bottom sheet or ZIP Dialogue");
+            handleGetInstantLoanBottomSheet();
 
-                Log.info("Checking", "Upi Bottom sheet");
-                handleUpiBottomSheet(driver);
+            Log.info("Checking", "Upi Bottom sheet");
+            handleUpiBottomSheet(driver);
 
-                Log.info("Checking", "Refer and Earn Bottom sheet");
-                handleReferAndEarnBottomSheet();
-            }
-
-            handleFloatingWidget();
-
+            Log.info("Checking", "Refer and Earn Bottom sheet");
+            handleReferAndEarnBottomSheet();
         }
 
+        handleFloatingWidget();
 
-        /**---------------------Home Page Pop Up Handlers---------------------------*/
+    }
 
 
-        public void handleHomePageLanding () throws InterruptedException {
-            Thread.sleep(3000);
-            for(int i=0; i<10; i++){
-                if(!Element.isElementPresent(driver, By.id("view_icon_bg"))) {
+    /**
+     * ---------------------Home Page Pop Up Handlers---------------------------
+     */
+
+
+    public void handleHomePageLanding() throws InterruptedException {
+        Thread.sleep(5000);
+        for (int i = 0; i < 10; i++) {
+            if (!Element.isElementPresent(driver, By.id("view_icon_bg"))) {
                 driver.navigate().back();
                 Log.info("Pressed Back : Due to Pop UP interruption");
                 Thread.sleep(1000);
-                }else{
-                    break;
-                    }
-                }
+            } else {
+                break;
+            }
         }
-
-        public void uncheckInsuranceCta () throws InterruptedException {
-            mbkCommonControlsPage.uncheckInsuranceCheckBox();
-        }
-
-
     }
+
+    public void uncheckInsuranceCta() throws InterruptedException {
+        mbkCommonControlsPage.uncheckInsuranceCheckBox();
+    }
+
+
+}
 
 
 
