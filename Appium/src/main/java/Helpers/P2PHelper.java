@@ -1,268 +1,84 @@
 package Helpers;
 
-/*
-import PageObject.HomePage;
-import PageObject.OnboardingPage;
-import PageObject.TransferPage;
-import utils.MBReporter;
-import io.appium.java_client.TouchAction;
+import Logger.Log;
+import PageObject.GoldPage;
+import Utils.Elements;
+import Utils.MBReporter;
+import Utils.Screen;
 import io.appium.java_client.android.AndroidDriver;
-import logger.Log;
-import org.json.JSONException;
-import org.openqa.selenium.By;
-import utils.Element;
-import utils.Screen;
+import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
-import java.util.HashMap;
 
- */
-
-/**
- * contains all methods to test Add Money Flow
- */
-/*
 public class P2PHelper {
-    AndroidDriver driver;
-    OnboardingPage onboardingPage;
-    TouchAction touchAction;
-    MBKPermissions mbkPermissions;
-    MBReporter mbReporter;
-    MBKCommonControlsHelper mbkCommonControlsHelper;
-    HomePage homePage;
-    TransferPage transferPage;
-    LoginHelper loginHelper;
-    PermissionHelper permissionHelper;
-    Screen screen;
 
-    public static HashMap<String, String> map;
-    public static HashMap<String, String> balanceBefore;
-    public static HashMap<String, String> balanceAfter;
+    AndroidDriver<AndroidElement> driver;
+    Elements elements;
+    GoldPage goldPage;
+    Screen screen;
+    MBReporter mbReporter;
 
 
     public P2PHelper(AndroidDriver driver) throws IOException {
         this.driver = driver;
-        touchAction = new TouchAction(driver);
-        mbkPermissions = new MBKPermissions(driver);
+        elements = new Elements(driver);
+        goldPage = new GoldPage(driver);
         screen = new Screen(driver);
-        mbReporter = new MBReporter(driver, "testScreenshotDir");
-        mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
-        onboardingPage = new OnboardingPage(driver);
-        loginHelper= new LoginHelper(driver);
-        permissionHelper = new PermissionHelper(driver);
-        homePage = new HomePage(driver);
-        transferPage = new TransferPage(driver);
-
+        mbReporter = new MBReporter(driver);
+        PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
+    public void goldBuy(String amount, String expTitle, String expSubTitle, String expGoldAmount, String expAmount) throws InterruptedException, IOException {
 
-    public void p2pSufficient(String mobile, String amount, String securityPin, String successPageStatus, String successPageName) throws InterruptedException, IOException,
-            JSONException {
+        // Tap on See All Services
+        goldPage.clickAllServices();
 
-        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+        // Swipe till the bottom
+        screen.swipeUpMore(driver);
 
-        balanceBefore = mbkCommonControlsHelper.getBalance();
+        // Click on 99% Buy Gold
+        goldPage.clickBuyGold();
 
-        homePage.clickOnAllServicesSection();
+        // Click on Buy Gold
+        goldPage.clickBuyCta();
 
-        for(int i=0; i<6; i++){
+        // Enter the Gold amount
+        goldPage.enterAmount(amount);
 
-            if(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Wallet to Wallet transfer']"))){
-                screen.swipeUpMedium(driver);
-                Log.info("Wallet to Wallet Transfer found");
-                break;
+        // Click on Pay Now CTA
+        goldPage.clickPayCta();
 
-            }else{
+        // Verification on the Success Screen
+        String title = goldPage.getTitle();
+        String subTitle = goldPage.getSubTitle();
+        String goldAmount = goldPage.getGoldAmount();
+        String txnAmount = goldPage.getAmount();
 
-                screen.swipeUpMedium(driver);
-                Log.info("Option not on Screen");
+        // Display the values
+        Log.info("Title : " + title);
+        Log.info("Sub Title : " + subTitle);
+        Log.info("Gold Amount : " + goldAmount);
+        Log.info("Txn Amount : " + txnAmount);
 
-            }
+        // Add the assertions
+        mbReporter.verifyEquals(title, expTitle, "Verify Title", false, false);
+        mbReporter.verifyEquals(subTitle, expSubTitle, "Verify Sub Title", false, false);
+        mbReporter.verifyEquals(goldAmount, expGoldAmount, "Verify Gold Amount", false, false);
+        mbReporter.verifyEquals(txnAmount, expAmount, "Verify Amount", false, false);
 
-        }
 
-        transferPage=homePage.clickOnButtonP2P();
+        // Click on the Back Icon
+        goldPage.clickCloseIcon();
 
-        transferPage.clickOnLabelEnterMobileNumber();
-        transferPage.enterMobileNumber(mobile);
-        transferPage.enterAmount(amount);
-        transferPage.clickOnCtaConfirmTransfer();
-        mbkCommonControlsHelper.handleSecurityPin(securityPin);
-        Thread.sleep(5000);
+        // Click on the up Icon
+        goldPage.clickUpIcon();
 
-        // Assertion on the success screen
-        String actualSuccessScreenStatus = transferPage.getSuccessPageStatus();
-        String actualSuccessScreenAmount = transferPage.getSuccessPageAmount();
-        String actualSuccessScreenNumber = transferPage.getSuccessPageNumber();
+        // Click on Home
 
-
-        mbReporter.verifyEqualsWithLogging(actualSuccessScreenStatus, "Your Transfer is Successful", "Success Screen | Verify Status", false, false);
-        mbReporter.verifyEqualsWithLogging(actualSuccessScreenNumber, mobile, "Success Screen | Verify Code", false, false);
-        mbReporter.verifyEqualsWithLogging(actualSuccessScreenAmount, "X5.0", "Success Screen | Verify Amount", false, false);
-
-
-
-        Thread.sleep(5000);
-
-        mbkCommonControlsHelper.returnToHomePageFromP2MSuccessScreen();
-
-        // POST TRX Assertions
-        balanceAfter = mbkCommonControlsHelper.getBalance();
-        Double actualMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100;
-        Double actualSuperCashBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
-        Double expectedMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100 - Double.parseDouble(amount) * 100;
-        Double expectedSuperCashBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
-        mbReporter.verifyEqualsWithLogging(actualMainBalanceAfter, expectedMainBalanceAfter, "After TRX | Verify Wallet Main Balance", false, false);
-        mbReporter.verifyEqualsWithLogging(actualSuperCashBalanceAfter, expectedSuperCashBalanceAfter, "After TRX | Verify Supercash Balance", false, false);
-
-
-
-
-
-
-    }
-
-    public void p2pSufficientLoggedOut(String loginMobileNumber, String otp, String mobile, String amount, String securityPin, String successPageStatus, String successPageName) throws InterruptedException, IOException,
-            JSONException {
-
-        Log.info("START", "Start");
-        Log.info("----------- Arguments ---------------");
-        Log.info("-------------------------------------");
-
-        onboardingPage.clickOnGetStartedCta();
-
-        if (loginHelper.isOnboardingPresent()) {
-            Log.info("User is logged out, logging in");
-        }
-
-            homePage = onboardingPage.clickOnSkip();
-
-            mbkCommonControlsHelper.handleGetInstantLoanBottomSheet();
-
-            mbkCommonControlsHelper.dismissAllOnHomePage(driver);
-
-
-            homePage.clickOnAllServicesSection();
-
-            for(int i=0; i<6; i++){
-
-                if(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Wallet to Wallet transfer']"))){
-                    screen.swipeUpMedium(driver);
-                    Log.info("Wallet to Wallet Transfer found");
-                    break;
-
-                }else{
-
-                    screen.swipeUpMedium(driver);
-                    Log.info("Option not on Screen");
-
-                }
-
-            }
-
-            homePage.clickOnButtonP2P();
-            mbkCommonControlsHelper.handleLogin(loginMobileNumber,otp);
-
-        transferPage.clickOnLabelEnterMobileNumber();
-        transferPage.enterMobileNumber(mobile);
-        transferPage.enterAmount(amount);
-        transferPage.clickOnCtaConfirmTransfer();
-        mbkCommonControlsHelper.handleSecurityPin(securityPin);
-        Thread.sleep(5000);
-
-        // Assertion on the success screen
-        String actualSuccessScreenStatus = transferPage.getSuccessPageStatus();
-        String actualSuccessScreenAmount = transferPage.getSuccessPageAmount();
-        String actualSuccessScreenNumber = transferPage.getSuccessPageNumber();
-
-        mbReporter.verifyEqualsWithLogging(actualSuccessScreenStatus, "Your Transfer is Successful", "Success Screen | Verify Status", false, false);
-        mbReporter.verifyEqualsWithLogging(actualSuccessScreenNumber, mobile, "Success Screen | Verify Code", false, false);
-        mbReporter.verifyEqualsWithLogging(actualSuccessScreenAmount, "X5.0", "Success Screen | Verify Amount", false, false);
-
-
-        Thread.sleep(5000);
-
-        mbkCommonControlsHelper.returnToHomePageFromP2MSuccessScreen();
-
-
-    }
-
-
-    public void p2pInSufficient(String mobile, String amount, String securityPin) throws InterruptedException, IOException,
-            JSONException {
-
-
-        String newAmount=getRequiredAmount(amount);
-
-        homePage.clickOnAllServicesSection();
-
-        for(int i=0; i<6; i++){
-
-            if(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Wallet to Wallet transfer']"))){
-                screen.swipeUpMedium(driver);
-                Log.info("Wallet to Wallet Transfer found");
-                break;
-
-            }else{
-
-                screen.swipeUpMedium(driver);
-                Log.info("Option not on Screen");
-
-            }
-
-        }
-
-        homePage.clickOnButtonP2P();
-        transferPage.clickOnLabelEnterMobileNumber();
-        transferPage.enterMobileNumber(mobile);
-        transferPage.enterAmount(newAmount);
-        transferPage.clickOnCtaConfirmTransfer();
-        mbkCommonControlsHelper.handleSecurityPin(securityPin);
-        Thread.sleep(5000);
-
-        //AddMoney Page Validation
-
-        String actualAddMoneyPageTitle = transferPage.getAddMoneyPageTitle();
-
-        mbReporter.verifyEqualsWithLogging(actualAddMoneyPageTitle, "Select Payment Mode", "Add Money Screen | Verify Add Money screen Opened", false, false);
-
-        for(int i=0; i<6; i++){
-            if(Element.isElementPresent(driver, By.id("navigation_home"))){
-                break;
-            }else{
-                driver.navigate().back();
-            }
-        }
-
-        mbkCommonControlsHelper.returnToHomePage();
-
-
-
-    }
-
-    public String getRequiredAmount(String amount) throws InterruptedException, IOException {
-
-        balanceBefore = mbkCommonControlsHelper.getBalance();
-
-        String availableAmount  = mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE);
-
-        if (Double.parseDouble(amount) < Double.parseDouble(availableAmount)) {
-
-            int amountToTransfer = Integer.parseInt(amount) + Integer.parseInt(availableAmount);
-
-            String newAmount = String.valueOf(amountToTransfer);
-
-            return newAmount;
-
-        } else {
-            String newAmount = amount;
-            return newAmount;
-        }
 
     }
 
 
 }
-
-
- */
