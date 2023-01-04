@@ -26,14 +26,13 @@ public class MBReporter {
     ExtentReport reporter = new ExtentReport();
 
 
-
     public MBReporter(AndroidDriver driver, String testScreenshotDir) {
         this.driver = driver;
         this.testScreenshotDir = testScreenshotDir;
         file = new File("");
     }
 
-    public MBReporter(AndroidDriver driver){
+    public MBReporter(AndroidDriver driver) {
         this.driver = driver;
     }
 
@@ -87,6 +86,46 @@ public class MBReporter {
      *                            condition else false
      */
 
+    public void verifyEquals(Object actual, Object expected, String stepName, boolean screenshotOnFailure,
+                             boolean exitOnFailure) throws IOException {
+
+        Reporter.log("<br>");
+
+        try {
+            Assert.assertEquals(actual, expected, stepName);
+            Reporter.log("<Font Color=#008000> PASS </Font>" + stepName);
+            Log.info(Log.ANSI_GREEN + "LOG | PASS | " + stepName + " | Actual : " + actual + " | Expected : " + expected + Log.ANSI_RESET);
+
+
+        } catch (AssertionError e) {
+            this.testCaseStatus = false;
+            if (screenshotOnFailure) {
+
+                String s = screenShot();
+                Reporter.log("<a href='" + s + "'> <Font Color=red> FAIL </Font> </a>" + stepName);
+                Log.info(Log.ANSI_RED + "LOG | FAIL | " + stepName + " | Actual : " + actual + " | Expected : " + expected + Log.ANSI_RESET);
+
+
+            } else {
+
+                Reporter.log("<Font Color=red> FAIL </Font> " + stepName);
+                Log.info(Log.ANSI_RED + "LOG | FAIL | " + stepName + " | Actual : " + actual + " | Expected : " + expected + Log.ANSI_RESET);
+
+
+            }
+
+            if (exitOnFailure) {
+                Reporter.log("<br>");
+
+                Reporter.log("Exiting this function as exitOnFail flag is set to True. Will move to next test.");
+
+                throw e;
+
+            }
+
+        }
+    }
+
 
     public void verifyEqualsWithLogging(Object actual, Object expected, String stepName, boolean screenshotOnFailure,
                                         boolean exitOnFailure) throws IOException {
@@ -103,7 +142,7 @@ public class MBReporter {
             Reporter.log("<Font Color=#008000> PASS </Font>" + stepName);
             Log.info(Log.ANSI_GREEN + "LOG | PASS | " + stepName + " | Actual : " + actual + " | Expected : " + expected + Log.ANSI_RESET);
 
-            if(logExtentReport) {
+            if (logExtentReport) {
                 reporter.extentReportDisplay(ExtentReport.Status.PASS, stepName, "");
             }
 
@@ -111,10 +150,10 @@ public class MBReporter {
             this.testCaseStatus = false;
             if (screenshotOnFailure) {
 
-                String s= screenShot();
+                String s = screenShot();
                 Reporter.log("<a href='" + s + "'> <Font Color=red> FAIL </Font> </a>" + stepName);
                 Log.info(Log.ANSI_RED + "LOG | FAIL | " + stepName + " | Actual : " + actual + " | Expected : " + expected + Log.ANSI_RESET);
-                if(logExtentReport) {
+                if (logExtentReport) {
                     reporter.extentReportDisplay(ExtentReport.Status.FAIL, stepName, s);
                 }
 
@@ -124,7 +163,7 @@ public class MBReporter {
                 Reporter.log("<Font Color=red> FAIL </Font> " + stepName);
                 Log.info(Log.ANSI_RED + "LOG | FAIL | " + stepName + " | Actual : " + actual + " | Expected : " + expected + Log.ANSI_RESET);
 
-                if(logExtentReport) {
+                if (logExtentReport) {
                     reporter.extentReportDisplay(ExtentReport.Status.FAIL, stepName, "");
                 }
 
@@ -144,7 +183,7 @@ public class MBReporter {
 
     public void verifyTrueWithLogging(boolean condition, String stepName, boolean screenshotOnFailure,
                                       boolean exitOnFailure) throws IOException {
-    verifyTrueWithLogging(condition, stepName, screenshotOnFailure, exitOnFailure, true);
+        verifyTrueWithLogging(condition, stepName, screenshotOnFailure, exitOnFailure, true);
 
     }
 
@@ -158,7 +197,7 @@ public class MBReporter {
             Reporter.log("<Font Color=#008000> PASS </Font>" + stepName);
             Log.info(Log.ANSI_GREEN + "LOG | PASS | " + stepName + Log.ANSI_RESET);
 
-            if(logExtentReport) {
+            if (logExtentReport) {
                 reporter.extentReportDisplay(ExtentReport.Status.PASS, stepName, "");
             }
 
@@ -167,11 +206,11 @@ public class MBReporter {
             this.testCaseStatus = false;
             if (screenshotOnFailure) {
 
-                String s= screenShot();
+                String s = screenShot();
                 Reporter.log("<a href='" + s + "'> <Font Color=red> FAIL </Font> </a>" + stepName);
                 Log.info(Log.ANSI_RED + "LOG | FAIL | " + stepName + Log.ANSI_RESET);
 
-                if(logExtentReport) {
+                if (logExtentReport) {
                     reporter.extentReportDisplay(ExtentReport.Status.FAIL, stepName, s);
                 }
 
@@ -181,7 +220,7 @@ public class MBReporter {
                 Reporter.log("<Font Color=red> FAIL </Font> " + stepName);
                 Log.info(Log.ANSI_RED + "LOG | FAIL | " + stepName + Log.ANSI_RESET);
 
-                if(logExtentReport) {
+                if (logExtentReport) {
                     reporter.extentReportDisplay(ExtentReport.Status.FAIL, stepName, "");
                 }
 

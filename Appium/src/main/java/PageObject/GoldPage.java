@@ -23,7 +23,7 @@ public class GoldPage {
     private AndroidElement buyGoldButton;
 
     @AndroidFindBy(id = "sell_gold_button_registered")
-    private AndroidElement buySellButton;
+    private AndroidElement sellGoldButton;
 
     @AndroidFindBy(xpath = "//*/android.widget.AutoCompleteTextView[@text = '₹']")
     private AndroidElement textAmount;
@@ -33,6 +33,12 @@ public class GoldPage {
 
     @AndroidFindBy(id = "buy_now_button")
     private AndroidElement buyNowCta;
+
+    @AndroidFindBy(id = "btn_gold_action")
+    private AndroidElement continueCta;
+
+    @AndroidFindBy(id = "btn_gold_action")
+    private AndroidElement sellGoldCta;
 
     @AndroidFindBy(id = "base_title")
     private AndroidElement successScreenBaseTitle;
@@ -48,6 +54,9 @@ public class GoldPage {
 
     @AndroidFindBy(id = "base_icon_close")
     private AndroidElement successScreenCloseIcon;
+
+    @AndroidFindBy(id = "mkab_icon_1")
+    private AndroidElement successScreenUpButton;
 
     public GoldPage(AndroidDriver driver) {
         this.driver = driver;
@@ -67,12 +76,24 @@ public class GoldPage {
         Elements.selectElement(driver, buyGoldButton, "Buy Gold");
     }
 
+    public void clickSellCta() {
+        Elements.selectElement(driver, sellGoldButton, "Sell Gold");
+    }
+
     public void enterAmount(String amount) {
         Elements.enterToElement(driver, textAmount, amount, "Amount");
     }
 
     public void clickPayCta() {
         Elements.selectElement(driver, buyNowCta, "Pay Now");
+    }
+
+    public void clickContinueCta() {
+        Elements.selectElement(driver, continueCta, "Continue");
+    }
+
+    public void clickSellGoldCta() {
+        Elements.selectElement(driver, sellGoldCta, "Sell Gold");
     }
 
     // Success Screen methods
@@ -94,6 +115,10 @@ public class GoldPage {
 
     public void clickCloseIcon() {
         Elements.selectElement(driver, successScreenCloseIcon, "Close Icon");
+    }
+
+    public void clickUpIcon() {
+        Elements.selectElement(driver, successScreenUpButton, "Up Icon");
     }
 
 }
