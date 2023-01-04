@@ -23,7 +23,7 @@ public class GoldTest extends TestBase {
 
         // Execute the test
         GoldHelper goldHelper = new GoldHelper(getAndroidDriver());
-        goldHelper.goldBuy("1");
+        goldHelper.goldBuy("1", "Payment Successful", "Gold Purchase", "0.0002", "₹1");
 
         Log.info("======= END : Gold Buy test =======");
 
@@ -40,8 +40,8 @@ public class GoldTest extends TestBase {
         loginHelp.quickLoginViaOtp("9205299330", "547372");
 
         // Execute the test
-        /*GoldHelper goldHelper = new GoldHelper(getAndroidDriver());
-        goldHelper.buyGold(frontEndEntity.getSecurityPin(), frontEndEntity.getAmount());*/
+        GoldHelper goldHelper = new GoldHelper(getAndroidDriver());
+        goldHelper.goldSell("1", "Payment Successful", "Sell Gold", "0.0002", "₹1");
 
         Log.info("======= END : Gold Sell test =======");
 
