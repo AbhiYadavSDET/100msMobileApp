@@ -76,8 +76,22 @@ public class PerformanceApiResponse {
             driver.findElement(By.xpath("//*[text()='Next']")).click();
 
             /**
-             *We have setup intellij as Authenticator and using it alos to genrate otp to login
+             *We have setup intellij as Authenticator and using it also to generate otp to login
              */
+
+            Thread.sleep(2000);
+
+            if (driver.findElement(By.xpath("//span[text()= 'Try another way']")).isDisplayed()){
+                driver.findElement(By.xpath("//span[text()= 'Try another way']")).click();
+            }
+
+            Thread.sleep(1000);
+
+            if (driver.findElement(By.xpath("//div[@class= 'vxx8jf']/strong[text()= 'Google Authenticator']")).isDisplayed()){
+                driver.findElement(By.xpath("//div[@class= 'vxx8jf']/strong[text()= 'Google Authenticator']")).click();
+            }
+
+
             shortWait(driver, "//input[@name='totpPin']");
             driver.findElement(By.xpath("//input[@name='totpPin']")).sendKeys(getTwoFactorCode());
             driver.findElement(By.xpath("//*[text()='Next']")).click();
