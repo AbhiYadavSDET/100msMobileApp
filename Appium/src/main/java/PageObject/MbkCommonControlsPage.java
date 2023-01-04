@@ -1,15 +1,16 @@
 package PageObject;
 
+import Utils.Element;
+import Utils.Elements;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
-import Utils.Element;
-import Utils.Elements;
 
 import java.io.IOException;
+import java.time.Duration;
 
 public class MbkCommonControlsPage {
 
@@ -67,7 +68,7 @@ public class MbkCommonControlsPage {
     @AndroidFindBy(id = "navigation_home")
     private AndroidElement navigate_home;
 
-    @AndroidFindBy(xpath="//android.widget.Button[text()='See All']")
+    @AndroidFindBy(xpath = "//android.widget.Button[text()='See All']")
     private AndroidElement details_text;
 
     @AndroidFindBy(id = "i_agree")
@@ -83,13 +84,13 @@ public class MbkCommonControlsPage {
     private AndroidElement add_money_BottomSheet;
 
 
-
-
     public MbkCommonControlsPage(AndroidDriver driver) throws IOException {
         this.driver = driver;
-        PageFactory.initElements(new AppiumFieldDecorator(driver), this);
+        PageFactory.initElements(new AppiumFieldDecorator(driver, Duration.ofSeconds(10)), this);
+
 
     }
+
     public void applyPromoCode(String promoCode) {
         Element.selectElement(driver, have_promo_code, "Have a promo code");
         Element.enterText(driver, text_box_coupon_code, promoCode, "Promo Code");
@@ -109,10 +110,10 @@ public class MbkCommonControlsPage {
     }
 
     public void applyRechargePromoCode(String promoCode) {
-        if(promoCode.contains("Apply Supercash")){
+        if (promoCode.contains("Apply Supercash")) {
             Element.selectElement(driver, have_promo_code, "Have a promo code");
-            Element.selectElement(driver,clickApplySupercash,"Apply Supercash");
-        }else {
+            Element.selectElement(driver, clickApplySupercash, "Apply Supercash");
+        } else {
             Element.selectElement(driver, have_promo_code, "Have a promo code");
             Element.enterText(driver, text_box_coupon_code, promoCode, "Promo Code");
             Element.selectElement(driver, button_apply_coupon, "Apply Button");
@@ -121,11 +122,11 @@ public class MbkCommonControlsPage {
 
 
     public void clickOnSuccessPageCross() throws InterruptedException {
-         if (Element.isElementPresent(driver,By.id("back_icon"))){
-             Element.selectElement(driver, arrow_back, "Tap on Cross");
-         } else {
-                Element.selectElement(driver, cross_icon, "base_icon_close");
-            }
+        if (Element.isElementPresent(driver, By.id("back_icon"))) {
+            Element.selectElement(driver, arrow_back, "Tap on Cross");
+        } else {
+            Element.selectElement(driver, cross_icon, "base_icon_close");
+        }
     }
 
     public void clickOnSuccessPageBackbutton() {
@@ -182,14 +183,14 @@ public class MbkCommonControlsPage {
 
     }
 
-    public void clickOnSeeAll(){
+    public void clickOnSeeAll() {
         Element.selectElement(driver, details_text, "See All Balance");
     }
 
 
     public void uncheckInsuranceCheckBox() throws InterruptedException {
         Element.waitForVisibility(driver, insurance_check_cta);
-        if(Elements.isElementEnabled(driver,insurance_check_cta)) {
+        if (Elements.isElementEnabled(driver, insurance_check_cta)) {
             Element.selectElement(driver, insurance_check_cta, "Insurance cta");
         }
     }

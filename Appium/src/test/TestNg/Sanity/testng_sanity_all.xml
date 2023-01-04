@@ -268,9 +268,9 @@
         </classes>
     </test>
 
-    <!--######### Gold #############-->
+    <!--######### Gold_old #############-->
 
-    <test name="Gold Sanity">
+    <test name="Gold_old Sanity">
         <groups>
             <run>
                 <include name="setUp"/>
@@ -282,7 +282,7 @@
 
         <classes>
             <class name="UITestFramework.CreateSession"/>
-            <class name="Gold.Test_Gold"/>
+            <class name="Gold_old.Test_Gold"/>
 
         </classes>
     </test>

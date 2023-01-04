@@ -24,13 +24,13 @@ public class LoginHelper {
 
 
     public LoginHelper(AndroidDriver driver) throws IOException {
-        this.driver=driver;
+        this.driver = driver;
         element = new Element(driver);
         mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
         mbReporter = new MBReporter(driver, "testScreenshotDir");
         permissionHelper = new PermissionHelper(driver);
-        loginPage= new LoginPage(driver);
-        homePage= new HomePage(driver);
+        loginPage = new LoginPage(driver);
+        homePage = new HomePage(driver);
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
@@ -38,13 +38,13 @@ public class LoginHelper {
 
 
         Thread.sleep(3000);
-        if(element.isElementPresent(driver, By.xpath("//*[@text='Get Started']"))) {
+        if (element.isElementPresent(driver, By.xpath("//*[@text='Get Started']"))) {
             loginPage.clickGetstarted();
-        }else if(element.isElementPresent(driver,By.xpath("//*[@text='Login/Signup']"))){
+        } else if (element.isElementPresent(driver, By.xpath("//*[@text='Login/Signup']"))) {
             loginPage.clickLoginSignup();
         }
 
-        if(element.isElementPresent(driver,By.xpath("//*[@text='NONE OF THE ABOVE']"))) {
+        if (element.isElementPresent(driver, By.xpath("//*[@text='NONE OF THE ABOVE']"))) {
             loginPage.clickNoneOfAbove();
         }
 
@@ -55,7 +55,7 @@ public class LoginHelper {
         Thread.sleep(6000);
         element.waitForVisibility(driver, By.xpath("//*[@text='History']"));
 
-        mbReporter.verifyTrueWithLogging(element.isElementPresent(driver,By.xpath("//*[@text='Balance']")), "Verify User is Logged In", true, true);
+        mbReporter.verifyTrueWithLogging(element.isElementPresent(driver, By.xpath("//*[@text='Balance']")), "Verify User is Logged In", true, true);
 
         loginPage.clickHistoryTab();
         loginPage.checkHistoryText();
@@ -67,13 +67,13 @@ public class LoginHelper {
     public void loginViaOtp(String mobileNumber, String otp) throws InterruptedException, IOException {
 
         Thread.sleep(3000);
-        if(element.isElementPresent(driver, By.xpath("//*[@text='Get Started']"))) {
+        if (element.isElementPresent(driver, By.xpath("//*[@text='Get Started']"))) {
             loginPage.clickGetstarted();
-        }else if(element.isElementPresent(driver,By.xpath("//*[@text='Login/Signup']"))){
+        } else if (element.isElementPresent(driver, By.xpath("//*[@text='Login/Signup']"))) {
             loginPage.clickLoginSignup();
         }
 
-        if(element.isElementPresent(driver,By.xpath("//*[@text='NONE OF THE ABOVE']"))) {
+        if (element.isElementPresent(driver, By.xpath("//*[@text='NONE OF THE ABOVE']"))) {
             loginPage.clickNoneOfAbove();
         }
 
@@ -87,9 +87,33 @@ public class LoginHelper {
 
         element.waitForVisibility(driver, By.xpath("//*[@text='History']"));
 
-        mbReporter.verifyTrueWithLogging(element.isElementPresent(driver,By.id("tx_balance")), "Is User is Logged In", true, true);
+        mbReporter.verifyTrueWithLogging(element.isElementPresent(driver, By.id("tx_balance")), "Is User is Logged In", true, true);
 
 
+    }
+
+    public void quickLoginViaOtp(String mobileNumber, String otp) throws InterruptedException {
+
+        Thread.sleep(3000);
+        if (element.isElementPresent(driver, By.xpath("//*[@text='Get Started']"))) {
+            loginPage.clickGetstarted();
+        } else if (element.isElementPresent(driver, By.xpath("//*[@text='Login/Signup']"))) {
+            loginPage.clickLoginSignup();
+        }
+
+        if (element.isElementPresent(driver, By.xpath("//*[@text='NONE OF THE ABOVE']"))) {
+            loginPage.clickNoneOfAbove();
+        }
+
+        loginPage.enterMobileNum(mobileNumber);
+        loginPage.clickSendOtpbutton();
+
+        loginPage.enterOtp(otp);
+        loginPage.clickSubmitOtpCta();
+
+        mbkCommonControlsHelper.handleHomePageLanding();
+
+        element.waitForVisibility(driver, By.xpath("//*[@text='History']"));
     }
 
 }

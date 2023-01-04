@@ -21,25 +21,25 @@ public class LoginPage {
 
     AndroidDriver driver;
 
-    @AndroidFindBy(xpath="//*[@text='Get Started']")
+    @AndroidFindBy(xpath = "//*[@text='Get Started']")
     private AndroidElement getStartedButton;
 
-    @AndroidFindBy(xpath="//*[@text='NONE OF THE ABOVE']")
+    @AndroidFindBy(xpath = "//*[@text='NONE OF THE ABOVE']")
     private AndroidElement noneOfAboveButton;
 
-    @AndroidFindBy(xpath="//*[@class='android.widget.EditText']")
+    @AndroidFindBy(xpath = "//*[@class='android.widget.EditText']")
     private AndroidElement editTextField;
 
-    @AndroidFindBy(xpath="//*[@text='Send OTP']")
+    @AndroidFindBy(xpath = "//*[@text='Send OTP']")
     private AndroidElement sendOtpButton;
 
-    @AndroidFindBy(xpath="//*[@text='History']")
+    @AndroidFindBy(xpath = "//*[@text='History']")
     private AndroidElement history;
 
-    @AndroidFindBy(xpath="//*[@text='Home']")
+    @AndroidFindBy(xpath = "//*[@text='Home']")
     private AndroidElement homeTab;
 
-    @AndroidFindBy(xpath="//*[@text='Login/Signup']")
+    @AndroidFindBy(xpath = "//*[@text='Login/Signup']")
     private AndroidElement loginSignupButton;
 
     @AndroidFindBy(id = "edit_text_otp")
@@ -49,46 +49,45 @@ public class LoginPage {
     private AndroidElement cta_submit_otp;
 
 
-
-    public LoginPage(AndroidDriver driver){
-        this.driver=driver;
+    public LoginPage(AndroidDriver driver) {
+        this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
 
-    public void clickGetstarted(){
-        Elements.selectElement(driver,getStartedButton,"Click Get Started button");
+    public void clickGetstarted() {
+        Elements.selectElement(driver, getStartedButton, "Click Get Started button");
     }
 
 
     public void clickNoneOfAbove() {
-        Elements.selectElement(driver,noneOfAboveButton,"Click None of the Above button");
+        Elements.selectElement(driver, noneOfAboveButton, "Click None of the Above button");
     }
 
     public void enterMobileNum(String mobileNumber) {
-        Elements.clearText(driver, editTextField,"Clear mobile number");
-        Elements.enterToElement(driver, editTextField, mobileNumber,"Enter mobile number");
+        Elements.clearText(driver, editTextField, "Clear mobile number");
+        Elements.enterToElement(driver, editTextField, mobileNumber, "Enter mobile number");
     }
 
     public void clickSendOtpbutton() {
-        Elements.selectElement(driver,sendOtpButton,"Click Send OTP button");
+        Elements.selectElement(driver, sendOtpButton, "Click Send OTP button");
     }
 
     public void clickHistoryTab() {
-        Elements.waitForElementToVisibleOnPage(driver,history,15);
-        Elements.selectElement(driver,history,"Click history tab");
+        Elements.waitForElementToVisibleOnPage(driver, history, 15);
+        Elements.selectElement(driver, history, "Click history tab");
     }
 
     public void checkHistoryText() {
-        Elements.waitForElementToVisibleOnPage(driver,history,10);
+        Elements.waitForElementToVisibleOnPage(driver, history, 10);
     }
 
     public void clickHomeTab() {
-        Elements.selectElement(driver,homeTab,"Click on home tab");
+        Elements.selectElement(driver, homeTab, "Click on home tab");
     }
 
     public void clickLoginSignup() {
-        Elements.selectElement(driver,loginSignupButton,"Click on Login/Signup button");
+        Elements.selectElement(driver, loginSignupButton, "Click on Login/Signup button");
     }
 
     public void enterOtp(String otp) throws InterruptedException {
@@ -98,8 +97,6 @@ public class LoginPage {
     public void clickSubmitOtpCta() {
         Element.selectElement(driver, cta_submit_otp, "Submit OTP CTA");
     }
-
-
 
 
 }
