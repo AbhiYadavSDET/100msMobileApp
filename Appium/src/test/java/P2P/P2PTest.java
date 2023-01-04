@@ -1,7 +1,7 @@
 package P2P;
 
-import Helpers.GoldHelper;
 import Helpers.LoginHelper;
+import Helpers.P2PHelper;
 import Logger.Log;
 import Utils.TestBase;
 import org.testng.annotations.Test;
@@ -22,8 +22,8 @@ public class P2PTest extends TestBase {
         loginHelper.quickLoginViaOtp("9205299330", "547372");
 
         // Execute the test
-        GoldHelper goldHelper = new GoldHelper(getAndroidDriver());
-        goldHelper.goldBuy("1", "9414065033");
+        P2PHelper p2PHelper = new P2PHelper(getAndroidDriver());
+        p2PHelper.p2pSend("9414065033", "5", "You Sent", "₹5", "to Ruchi Kumari Jain", "9414065033", "Wallet", "Activate Now");
 
         Log.info("======= END : P2P Send test =======");
 

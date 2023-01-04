@@ -2,6 +2,7 @@ package Helpers;
 
 import Logger.Log;
 import PageObject.GoldPage;
+import PageObject.P2PPage;
 import Utils.Elements;
 import Utils.MBReporter;
 import Utils.Screen;
@@ -17,6 +18,7 @@ public class P2PHelper {
     AndroidDriver<AndroidElement> driver;
     Elements elements;
     GoldPage goldPage;
+    P2PPage p2PPage;
     Screen screen;
     MBReporter mbReporter;
 
@@ -25,55 +27,63 @@ public class P2PHelper {
         this.driver = driver;
         elements = new Elements(driver);
         goldPage = new GoldPage(driver);
+        p2PPage = new P2PPage(driver);
         screen = new Screen(driver);
         mbReporter = new MBReporter(driver);
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
-    public void goldBuy(String amount, String expTitle, String expSubTitle, String expGoldAmount, String expAmount) throws InterruptedException, IOException {
+    public void p2pSend(String mobileNo, String amount, String expStatus, String expAmount, String expReceiverName, String expReceiverMobileNo, String expPaymentMode, String expZipCtaText) throws InterruptedException, IOException {
 
         // Tap on See All Services
-        goldPage.clickAllServices();
+        p2PPage.clickAllServices();
 
         // Swipe till the bottom
         screen.swipeUpMore(driver);
+        screen.swipeUpMore(driver);
+        //screen.swipeUpMore(driver);
 
-        // Click on 99% Buy Gold
-        goldPage.clickBuyGold();
+        // Click on Wallet to Wallet Transfer
+        p2PPage.clickP2PButton();
 
-        // Click on Buy Gold
-        goldPage.clickBuyCta();
+        // Enter Mobile No
+        p2PPage.enterMobileNo(mobileNo);
 
-        // Enter the Gold amount
-        goldPage.enterAmount(amount);
+        // Enter the amount
+        p2PPage.enterAmount(amount);
 
-        // Click on Pay Now CTA
-        goldPage.clickPayCta();
+        // Click on Transfer Now CTA
+        p2PPage.clickTransferNowCta();
 
         // Verification on the Success Screen
-        String title = goldPage.getTitle();
-        String subTitle = goldPage.getSubTitle();
-        String goldAmount = goldPage.getGoldAmount();
-        String txnAmount = goldPage.getAmount();
+        String actualStatus = p2PPage.getStatus();
+        String actualAmount = p2PPage.getAmount();
+        String actualReceiverName = p2PPage.getReceiverName();
+        String actualReceiverMobileNo = p2PPage.getReceiverMobileNumber();
+        String actualPaymentMode = p2PPage.getPaymentMode();
+        String actualZipCtaText = p2PPage.getZipCtaText();
+
 
         // Display the values
-        Log.info("Title : " + title);
-        Log.info("Sub Title : " + subTitle);
-        Log.info("Gold Amount : " + goldAmount);
-        Log.info("Txn Amount : " + txnAmount);
+        Log.info("Status : " + actualStatus);
+        Log.info("Amount : " + actualAmount);
+        Log.info("Receiver Name : " + actualReceiverName);
+        Log.info("Receiver Mobile No. : " + actualReceiverMobileNo);
+        Log.info("Payment Mode : " + actualPaymentMode);
+        Log.info("Zip Cta Text : " + actualZipCtaText);
+
 
         // Add the assertions
-        mbReporter.verifyEquals(title, expTitle, "Verify Title", false, false);
-        mbReporter.verifyEquals(subTitle, expSubTitle, "Verify Sub Title", false, false);
-        mbReporter.verifyEquals(goldAmount, expGoldAmount, "Verify Gold Amount", false, false);
-        mbReporter.verifyEquals(txnAmount, expAmount, "Verify Amount", false, false);
+        mbReporter.verifyEquals(actualStatus, expStatus, "Verify Title", false, false);
+        mbReporter.verifyEquals(actualAmount, expAmount, "Verify Sub Title", false, false);
+        mbReporter.verifyEquals(actualReceiverName, expReceiverName, "Verify Gold Amount", false, false);
+        mbReporter.verifyEquals(actualReceiverMobileNo, expReceiverMobileNo, "Verify Amount", false, false);
+        mbReporter.verifyEquals(actualPaymentMode, expPaymentMode, "Verify Amount", false, false);
+        mbReporter.verifyEquals(actualZipCtaText, expZipCtaText, "Verify Amount", false, false);
 
-
-        // Click on the Back Icon
-        goldPage.clickCloseIcon();
 
         // Click on the up Icon
-        goldPage.clickUpIcon();
+
 
         // Click on Home
 

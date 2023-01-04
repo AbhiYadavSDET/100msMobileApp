@@ -12,51 +12,45 @@ public class P2PPage {
 
     AndroidDriver driver;
 
-
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'All Services']")
     private AndroidElement allServicesButton;
 
-    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Buy 99.5% pure gold']")
-    private AndroidElement goldButton;
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Wallet to Wallet transfer']")
+    private AndroidElement p2pButton;
 
-    @AndroidFindBy(id = "buy_gold_button_registered")
-    private AndroidElement buyGoldButton;
+    @AndroidFindBy(xpath = "//*/android.widget.EditText[@text = 'Enter 10 digit mobile number']")
+    private AndroidElement mobileNoTextBox;
 
-    @AndroidFindBy(id = "sell_gold_button_registered")
-    private AndroidElement sellGoldButton;
+    @AndroidFindBy(id = "edt_txt_transfer_amount")
+    private AndroidElement amountTextBox;
 
-    @AndroidFindBy(xpath = "//*/android.widget.AutoCompleteTextView[@text = '₹']")
-    private AndroidElement textAmount;
+    @AndroidFindBy(id = "btn_p2p_action")
+    private AndroidElement transferNowCta;
 
-    @AndroidFindBy(xpath = "//*/android.widget.AutoCompleteTextView[@text = 'gm']")
-    private AndroidElement textWeight;
+    @AndroidFindBy(id = "status")
+    private AndroidElement successScreenStatus;
 
-    @AndroidFindBy(id = "buy_now_button")
-    private AndroidElement buyNowCta;
+    @AndroidFindBy(id = "amount")
+    private AndroidElement successScreenAmount;
 
-    @AndroidFindBy(id = "btn_gold_action")
-    private AndroidElement continueCta;
+    @AndroidFindBy(id = "name")
+    private AndroidElement successScreenReceiverName;
 
-    @AndroidFindBy(id = "btn_gold_action")
-    private AndroidElement sellGoldCta;
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Mobile Number']/following-sibling::android.widget.TextView")
 
-    @AndroidFindBy(id = "base_title")
-    private AndroidElement successScreenBaseTitle;
+    private AndroidElement successScreenReceiverMobileNo;
 
-    @AndroidFindBy(id = "base_subtitle")
-    private AndroidElement successScreenBaseSubTitle;
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Payment Mode']/following-sibling::android.widget.TextView")
+    private AndroidElement successScreenPaymentMode;
 
-    @AndroidFindBy(id = "txt_amount")
-    private AndroidElement successScreenGoldWeight;
-
-    @AndroidFindBy(id = "txt_total_amount")
-    private AndroidElement successScreenTrxAmount;
-
-    @AndroidFindBy(id = "base_icon_close")
-    private AndroidElement successScreenCloseIcon;
+    @AndroidFindBy(id = "cta")
+    private AndroidElement successScreenZipCta;
 
     @AndroidFindBy(id = "mkab_icon_1")
     private AndroidElement successScreenUpButton;
+
+    // --------------------------------------------------
+
 
     public P2PPage(AndroidDriver driver) {
         this.driver = driver;
@@ -68,57 +62,46 @@ public class P2PPage {
         Elements.selectElement(driver, allServicesButton, "All Services");
     }
 
-    public void clickBuyGold() {
-        Elements.selectElement(driver, goldButton, "Buy Gold");
+    public void clickP2PButton() {
+        Elements.selectElement(driver, p2pButton, "P2P Button");
     }
 
-    public void clickBuyCta() {
-        Elements.selectElement(driver, buyGoldButton, "Buy Gold");
-    }
-
-    public void clickSellCta() {
-        Elements.selectElement(driver, sellGoldButton, "Sell Gold");
+    public void enterMobileNo(String mobileNo) {
+        Elements.enterToElement(driver, mobileNoTextBox, mobileNo, "Mobile No.");
     }
 
     public void enterAmount(String amount) {
-        Elements.enterToElement(driver, textAmount, amount, "Amount");
+        Elements.enterToElement(driver, amountTextBox, amount, "Amount");
     }
 
-    public void clickPayCta() {
-        Elements.selectElement(driver, buyNowCta, "Pay Now");
-    }
-
-    public void clickContinueCta() {
-        Elements.selectElement(driver, continueCta, "Continue");
-    }
-
-    public void clickSellGoldCta() {
-        Elements.selectElement(driver, sellGoldCta, "Sell Gold");
+    public void clickTransferNowCta() {
+        Elements.selectElement(driver, transferNowCta, "Transfer Now Cta");
     }
 
     // Success Screen methods
-    public String getTitle() throws InterruptedException {
-        return Elements.getText(driver, successScreenBaseTitle, "Base Title");
-    }
-
-    public String getSubTitle() throws InterruptedException {
-        return Elements.getText(driver, successScreenBaseSubTitle, "Sub Title");
-    }
-
-    public String getGoldAmount() throws InterruptedException {
-        return Elements.getText(driver, successScreenGoldWeight, "Gold Amount");
+    public String getStatus() throws InterruptedException {
+        return Elements.getText(driver, successScreenStatus, "Status");
     }
 
     public String getAmount() throws InterruptedException {
-        return Elements.getText(driver, successScreenTrxAmount, "Amount");
+        return Elements.getText(driver, successScreenAmount, "Amount");
     }
 
-    public void clickCloseIcon() {
-        Elements.selectElement(driver, successScreenCloseIcon, "Close Icon");
+    public String getReceiverName() throws InterruptedException {
+        return Elements.getText(driver, successScreenReceiverName, "Receiver Name");
     }
 
-    public void clickUpIcon() {
-        Elements.selectElement(driver, successScreenUpButton, "Up Icon");
+    public String getReceiverMobileNumber() throws InterruptedException {
+        return Elements.getText(driver, successScreenReceiverMobileNo, "Receiver Mobile No.");
     }
+
+    public String getPaymentMode() throws InterruptedException {
+        return Elements.getText(driver, successScreenPaymentMode, "Payment Mode");
+    }
+
+    public String getZipCtaText() throws InterruptedException {
+        return Elements.getText(driver, successScreenZipCta, "Zip Cta Text");
+    }
+
 
 }

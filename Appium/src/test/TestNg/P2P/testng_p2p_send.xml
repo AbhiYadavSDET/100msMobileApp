@@ -20,7 +20,7 @@
 
         <classes>
             <class name="Utils.TestBase"/>
-            <class name="Gold.GoldTest"/>
+            <class name="P2P.P2PTest"/>
         </classes>
     </test>
 
