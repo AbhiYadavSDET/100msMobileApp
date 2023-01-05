@@ -1,105 +1,98 @@
 package Helpers;
-/*
-import PageObject.HomePage;
+
+import Logger.Log;
+import PageObject.GoldPage;
 import PageObject.P2MPage;
-import utils.MBReporter;
+import Utils.Elements;
+import Utils.MBReporter;
+import Utils.Screen;
 import io.appium.java_client.android.AndroidDriver;
-import org.json.JSONException;
-import org.openqa.selenium.By;
-import utils.Element;
-import utils.Screen;
+import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 public class P2MHelper {
 
-    AndroidDriver driver;
-    HomePage homePage;
-    Screen screen;
-    Element element;
-    MBKCommonControlsHelper mbkCommonControlsHelper;
-    MBReporter mbReporter;
+    AndroidDriver<AndroidElement> driver;
+    Elements elements;
+    GoldPage goldPage;
     P2MPage p2mPage;
-    PermissionHelper permissionHelper;
-
-    public static HashMap<String, String> map;
-    public static HashMap<String, String> balanceBefore;
-    public static HashMap<String, String> balanceAfter;
+    Screen screen;
+    MBReporter mbReporter;
 
 
     public P2MHelper(AndroidDriver driver) throws IOException {
         this.driver = driver;
-
-        homePage = new HomePage(driver);
+        elements = new Elements(driver);
+        goldPage = new GoldPage(driver);
+        p2mPage = new P2MPage(driver);
         screen = new Screen(driver);
-        element = new Element(driver);
-        mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
-        mbReporter = new MBReporter(driver, "testScreenshotDir");
-        permissionHelper = new PermissionHelper(driver);
-
+        mbReporter = new MBReporter(driver);
+        PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
+    public void p2mSend(String merchantCode, String amount, String expStatus, String expAmount, String expReceiverName, String expMerchantName, String expMerchantCode, String expZipCtaText) throws InterruptedException, IOException {
 
-    public void p2mSendMoney(String merchantCode, String amount, String securityPin, String successPageStatus, String successPageName) throws InterruptedException, IOException, JSONException {
-        homePage.clickOnCrossButton();
-        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+        // Tap the QR code Icon on Homepage
+        p2mPage.clickScanQR();
 
-        balanceBefore = mbkCommonControlsHelper.getBalance();
+        // Allow the Permission
+        Thread.sleep(3000);
+        p2mPage.allowPermission();
 
-        p2mPage = homePage.clickOnButtonPayToMerchant();
+        // Click on merchant code text box
+        p2mPage.clickMerchantCodeTextBox();
 
-        permissionHelper.permissionAllow();
+        // Allow the Permission
+        p2mPage.allowPermission2();
 
-        p2mPage.clickOnLabelEnterMerchantCode();
-
-        permissionHelper.permissionAllow();
-
+        // enter the merchant code
         p2mPage.enterMerchantCode(merchantCode);
 
-        Thread.sleep(3000);
+        // select the merchant
+        p2mPage.selectMerchant();
 
-        p2mPage.clickOnMerchantCodeFromList();
-
+        // Enter the amount
         p2mPage.enterAmount(amount);
 
-        Element.waitForVisibility(driver, By.id("tv_wallet_balance"));
+        // Click on the Confirm Payment CTA
+        p2mPage.clickConfirmPayment();
 
-        p2mPage.clickOnCtaConfirmTransfer();
+        // Verification on the Success Screen
+        String actualStatus = p2mPage.getStatus();
+        String actualAmount = p2mPage.getAmount();
+        String actualReceiverName = p2mPage.getReceiverName();
+        String actualMerchantName = p2mPage.getMerchantName();
+        String actualMerchantCode = p2mPage.getMerchantCode();
+        String actualZipCtaText = p2mPage.getZipCtaText();
 
-        mbkCommonControlsHelper.handleSecurityPin(securityPin);
+        // Display the values
+        Log.info("Status : " + actualStatus);
+        Log.info("Amount : " + actualAmount);
+        Log.info("Receiver Name : " + actualReceiverName);
+        Log.info("Merchant Name : " + actualMerchantName);
+        Log.info("Merchant Code : " + actualMerchantCode);
+        Log.info("Zip Cta Text : " + actualZipCtaText);
 
-        // Assertion on the success screen
 
-        if(Element.isElementPresent(driver, By.id("base_check_icon"))){
-            Screen.swipeDownMedium(driver);
-        }
-        String actualSuccessScreenStatus = p2mPage.getSuccessPageStatus();
-//        String actualSuccessScreenName = p2mPage.getSuccessPageName();
-        String actualSuccessScreenCode = p2mPage.getSuccessPageCode();
+        // Add the assertions
+        mbReporter.verifyEquals(actualStatus, expStatus, "Verify Title", false, false);
+        mbReporter.verifyEquals(actualAmount, expAmount, "Verify Sub Title", false, false);
+        mbReporter.verifyEquals(actualReceiverName, expReceiverName, "Verify Gold Amount", false, false);
+        mbReporter.verifyEquals(actualMerchantName, expMerchantName, "Verify Amount", false, false);
+        mbReporter.verifyEquals(actualMerchantCode, expMerchantCode, "Verify Amount", false, false);
+        mbReporter.verifyEquals(actualZipCtaText, expZipCtaText, "Verify Amount", false, false);
 
-        mbReporter.verifyEqualsWithLogging(actualSuccessScreenStatus, successPageStatus, "Success Screen | Verify Status", false, false);
-        //mbReporter.verifyEqualsWithLogging(actualSuccessScreenName.toUpperCase(), successPageName.toUpperCase(), "Success Screen | Verify Name", false, false);
-        mbReporter.verifyEqualsWithLogging(actualSuccessScreenCode.toLowerCase(), merchantCode.toLowerCase(), "Success Screen | Verify Code", false, false);
 
-        // Test
-        Thread.sleep(2000);
+        // Click on the up Icon
 
-        mbkCommonControlsHelper.returnToHomePageFromP2MSuccessScreen();
 
-        // POST TRX Assertions
-        balanceAfter = mbkCommonControlsHelper.getBalance();
-        Double actualMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100;
-        Double actualSuperCashBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
-        Double expectedMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100 - Double.parseDouble(amount) * 100;
-        Double expectedSuperCashBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
-        mbReporter.verifyEqualsWithLogging(actualMainBalanceAfter, expectedMainBalanceAfter, "After TRX | Verify Wallet Main Balance", false, false);
-        mbReporter.verifyEqualsWithLogging(actualSuperCashBalanceAfter, expectedSuperCashBalanceAfter, "After TRX | Verify Supercash Balance", false, false);
+        // Click on Home
+
 
     }
 
 
 }
-
-
- */
