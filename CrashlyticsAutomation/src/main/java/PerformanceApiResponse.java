@@ -15,6 +15,7 @@ import javax.mail.internet.MimeMessage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 public class PerformanceApiResponse {
 
@@ -76,8 +77,29 @@ public class PerformanceApiResponse {
             driver.findElement(By.xpath("//*[text()='Next']")).click();
 
             /**
-             *We have setup intellij as Authenticator and using it alos to genrate otp to login
+             *We have setup intellij as Authenticator and using it also to generate otp to login
              */
+
+
+
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            Thread.sleep(3000);
+
+            try{
+            if (driver.findElement(By.xpath("//div[@class= 'vxx8jf']/strong[text()= 'Google Authenticator']")).isDisplayed()){
+                driver.findElement(By.xpath("//div[@class= 'vxx8jf']/strong[text()= 'Google Authenticator']")).click();
+            }
+
+        } catch (Exception e)
+            {
+                driver.findElement(By.xpath("//span[text()= 'Try another way']")).click();
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                Thread.sleep(5000);
+                driver.findElement(By.xpath("//div[@class= 'vxx8jf']/strong[text()= 'Google Authenticator']")).click();
+
+            }
+
+
             shortWait(driver, "//input[@name='totpPin']");
             driver.findElement(By.xpath("//input[@name='totpPin']")).sendKeys(getTwoFactorCode());
             driver.findElement(By.xpath("//*[text()='Next']")).click();
@@ -260,8 +282,9 @@ public class PerformanceApiResponse {
 //            driver.close();
 //        }
         } catch (Exception e) {
-//            throw e;
+
             driver.quit();
+//            throw e;
         }
 
         if (sendMail) {
