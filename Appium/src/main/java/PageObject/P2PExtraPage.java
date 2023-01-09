@@ -58,13 +58,13 @@ public class P2PExtraPage {
     @AndroidFindBy (id="tvAvailableBal")
     private AndroidElement available_balance_to_withdraw;
 
-    @AndroidFindBy (xpath = "//*/android.widget.TextView[@text = 'Withdraw']")
+    @AndroidFindBy (id = "cta")
     private AndroidElement withdraw_on_withdrawal_amount_page;
 
     @AndroidFindBy (id ="bank_name")
     private AndroidElement select_bank_to_withdraw;
 
-    @AndroidFindBy (xpath = "//*/android.widget.TextView[@text = 'Withdraw ₹']")
+    @AndroidFindBy (id = "cta")
     private AndroidElement withdraw_on_bottom_sheet;
 
 
@@ -137,6 +137,30 @@ public class P2PExtraPage {
 
     public void enterAmount(String amount) {
         Elements.enterToElement(driver,withdrawal_amount_textBox, amount, "Amount");
+    }
+
+    public String getWithdrawalAmount() throws InterruptedException{
+        return Element.getText(driver, withdrawal_amount,"Get User Earned Amount");
+    }
+
+    public String getWithdrawalStatus() throws InterruptedException{
+        return Element.getText(driver, withdrawal_status,"Get User Earned Amount");
+    }
+
+
+    public int getIntegerPortfolioValue() throws InterruptedException{
+        String portfolioValue = Element.getText(driver, portfolio_value,"Get User Portfolio Value");
+        int lengthOfPV = portfolioValue.length();
+        if(lengthOfPV >= 3){
+            if(portfolioValue.charAt(lengthOfPV - 3) == '.'){
+                portfolioValue = portfolioValue.substring(0,lengthOfPV-3);
+            }
+            else if(portfolioValue.charAt(lengthOfPV - 2) == '.'){
+                portfolioValue = portfolioValue.substring(0,lengthOfPV-2);
+            }
+        }
+        int value = Integer.parseInt(portfolioValue);
+        return value;
     }
 
 
