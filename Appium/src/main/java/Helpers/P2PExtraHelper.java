@@ -1,13 +1,13 @@
 package Helpers;
 
+import Logger.Log;
 import PageObject.HomePage;
 import PageObject.P2PExtraPage;
-import Utils.MBReporter;
-import io.appium.java_client.android.AndroidDriver;
-import Logger.Log;
-import org.openqa.selenium.By;
 import Utils.Element;
+import Utils.MBReporter;
 import Utils.Screen;
+import io.appium.java_client.android.AndroidDriver;
+
 import java.io.IOException;
 
 
@@ -32,9 +32,8 @@ public class P2PExtraHelper {
 
     }
 
-    public void withdraw(String amount , String expAmount , String expStatus) throws InterruptedException, IOException {
+    public void withdraw(String amount, String expAmount, String expStatus) throws InterruptedException, IOException {
 
-        Log.info("START", "P2P Extra-Withdraw");
         Log.info("----------- Arguments ---------------");
         Log.info("amount : " + amount);
 
@@ -59,7 +58,7 @@ public class P2PExtraHelper {
         int integerPortfolioValue = p2PExtraPage.getIntegerPortfolioValue();
         Log.info("Portfolio Value in integer : " + integerPortfolioValue);
 
-        if(integerPortfolioValue >= Integer.parseInt(amount)){
+        if (integerPortfolioValue >= Integer.parseInt(amount)) {
 
             // Click on withdraw on Xtra main page.
             p2PExtraPage.selectWithdraw();
@@ -73,29 +72,30 @@ public class P2PExtraHelper {
             //Click on bank account to select bank account.
             p2PExtraPage.selectBankOnBottomSheet();
 
+            // Swipe up the page in case of more banks
+            screen.swipeUpMore(driver);
+
             //Click on withdraw on bottom sheet.
             p2PExtraPage.selectWithdrawOnBottomSheet();
 
             Thread.sleep(5000);
 
-            // Print on success page
+            // Verification on the Success Screen
             String actualAmount = p2PExtraPage.getWithdrawalAmount();
             String actualStatus = p2PExtraPage.getWithdrawalStatus();
 
+            // Display the values
             Log.info("Withdrawal amount : " + actualAmount);
             Log.info("Withdrawal status : " + actualStatus);
 
+            // Add the assertions
             mbReporter.verifyEquals(actualAmount, expAmount, "Verify Withdrawal amount", false, false);
             mbReporter.verifyEquals(actualStatus, expStatus, "Verify Withdrawal status", false, false);
 
             Thread.sleep(5000);
-        }
-
-        else{
+        } else {
             Log.info("Portfolio value is less then amount entered");
         }
-
-        Log.info("END", "Withdraw Money : P2P Extra");
 
     }
 
