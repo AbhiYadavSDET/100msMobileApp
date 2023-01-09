@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="P2PExtra Flow">
+<suite name="Mutual Funds Flow">
 
     <parameter name="build" value="prod"/>
     <parameter name="level" value="payments"/>
     <parameter name="saucelabs" value="false"></parameter>
     <parameter name="androidOSVersion" value="12.0"></parameter>
 
-    <test verbose="2" preserve-order="true" name="P2P Extra flow Test">
+    <test verbose="2" preserve-order="true" name="Mutual Funds flow Test">
         <groups>
             <run>
                 <include name="setUp"/>
