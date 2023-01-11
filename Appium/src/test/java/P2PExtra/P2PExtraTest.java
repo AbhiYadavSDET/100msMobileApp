@@ -18,7 +18,7 @@ public class P2PExtraTest extends TestBase {
 
         // Start the test
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.quickLoginViaOtp("9953138474", "");
+        loginHelp.quickLoginViaOtp("8076595767", "547372");
 
         P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getAndroidDriver());
         p2PExtraHelper.withdraw("1", "₹1", "Withdrawal request placed successfully");

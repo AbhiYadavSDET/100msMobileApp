@@ -78,7 +78,6 @@ public class P2PExtraHelper {
             //Click on withdraw on bottom sheet.
             p2PExtraPage.selectWithdrawOnBottomSheet();
 
-            Thread.sleep(5000);
 
             // Verification on the Success Screen
             String actualAmount = p2PExtraPage.getWithdrawalAmount();
@@ -92,7 +91,6 @@ public class P2PExtraHelper {
             mbReporter.verifyEquals(actualAmount, expAmount, "Verify Withdrawal amount", false, false);
             mbReporter.verifyEquals(actualStatus, expStatus, "Verify Withdrawal status", false, false);
 
-            Thread.sleep(5000);
         } else {
             Log.info("Portfolio value is less then amount entered");
         }
