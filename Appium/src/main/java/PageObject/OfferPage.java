@@ -1,89 +1,82 @@
 package PageObject;
 
+import Utils.Elements;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import Logger.Log;
 import org.openqa.selenium.support.PageFactory;
-//import utils.Element;
-
-import java.io.IOException;
 
 public class OfferPage {
+
+
     AndroidDriver driver;
 
-    @AndroidFindBy(id = "btn_search")
-    private AndroidElement offer_search_icon;
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Offers']")
+    private AndroidElement offerButton;
 
-    @AndroidFindBy(xpath = "//android.widget.LinearLayout/android.view.ViewGroup")
-    private AndroidElement offer_list;
+    @AndroidFindBy(id = "btn_search")
+    private AndroidElement searchOffersButton;
 
     @AndroidFindBy(id = "offerSearchView")
-    private AndroidElement offerSearchView;
+    private AndroidElement searchTextBox;
 
-    @AndroidFindBy(id = "btn_categories")
-    private AndroidElement offer_categories;
+    @AndroidFindBy(id = "offer_desc")
+    private AndroidElement tileTitle;
 
-    @AndroidFindBy(xpath = "//android.widget.LinearLayout/android.view.ViewGroup")
-    private AndroidElement offer_list2;
+    @AndroidFindBy(id = "offer_type")
+    private AndroidElement tileDescription;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'REDEEM SUPERCASH']")
-    private AndroidElement redeemOffer;
+    @AndroidFindBy(id = "logo_image")
+    private AndroidElement tileLogo;
 
-    String close = "close_button";
+    @AndroidFindBy(id = "tv_title")
+    private AndroidElement title;
 
-    String categoryText = "text";
+    @AndroidFindBy(id = "button_launch_mobile_site")
+    private AndroidElement cta;
 
-    String redeemOfferList = "card_view";
+
+    // -----------------------------------
 
 
-    public OfferPage(AndroidDriver driver) throws IOException {
+    public OfferPage(AndroidDriver driver) {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
-        Log.info("*****Offer Page*****");
-    }
-/*
-    public void clickOnSearchOption() throws InterruptedException {
-        Element.selectElement(driver, offer_search_icon, "Search Option");
     }
 
-    public int noOfOffers() throws InterruptedException {
-        return Element.findElements(driver, By.xpath("//android.widget.LinearLayout/android.view.ViewGroup")).size();
+
+    public void clickOffers() {
+        Elements.selectElement(driver, offerButton, "Offers");
     }
 
-    public void selectCategoryOption() throws InterruptedException {
-        Element.selectElement(driver, offer_categories, "Select category option");
+    public void clickSearchOfferButton() {
+        Elements.selectElement(driver, searchOffersButton, "Search Offers");
     }
 
-    public void sendOfferName(String offerName) throws InterruptedException {
-        Element.enterText(driver, offerSearchView, offerName, "Enter offer name ");
+    public void enterOffer(String offer) {
+        Elements.enterToElement(driver, searchTextBox, offer, "Enter Offer");
     }
 
-    public boolean isCloseButtonVisible() throws InterruptedException {
-        return Element.waitForVisibility(driver, By.id(close));
+    public String getTileTitle() throws InterruptedException {
+        return Elements.getText(driver, tileTitle, "Tile Title");
     }
 
-    public int fetchCategoryList() throws InterruptedException {
-        return Element.findElements(driver, By.id(categoryText)).size();
+    public String getTileDescription() throws InterruptedException {
+        return Elements.getText(driver, tileDescription, "Tile Description");
     }
 
-    public void clickOnRedeemOffer() throws InterruptedException {
-        Element.selectElement(driver, redeemOffer, "redeem offer");
+    public void clickLogo() {
+        Elements.selectElement(driver, tileLogo, "Logo");
     }
 
-    public int fetchRedeemOffers() throws InterruptedException {
-        return Element.findElements(driver, By.id(redeemOfferList)).size();
+    public String getTitle() throws InterruptedException {
+        return Elements.getText(driver, title, "Title");
     }
 
- */
-
-/*
-
-    public void navigateBack() throws InterruptedException{
-        Element.
+    public String getCtaText() throws InterruptedException {
+        return Elements.getText(driver, cta, "Cta Text");
     }
-*/
 
 
 }

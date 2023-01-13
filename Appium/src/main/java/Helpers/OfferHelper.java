@@ -1,123 +1,71 @@
 package Helpers;
 
-//import PageObject.HomePage;
-//import PageObject.OfferPage;
-//import UITestFramework.Api.ApiCommonControls;
-//import UITestFramework.ExtentReport.Reporter;
-//import utils.MBReporter;
-//import io.appium.java_client.TouchAction;
-//import io.appium.java_client.android.AndroidDriver;
-//import org.json.JSONException;
-//import org.openqa.selenium.By;
-//import utils.Element;
-//import utils.Screen;
-//
-//import java.io.IOException;
+import Logger.Log;
+import PageObject.OfferPage;
+import Utils.Elements;
+import Utils.MBReporter;
+import Utils.Screen;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import org.openqa.selenium.support.PageFactory;
 
-/**
- * contains all methods to test Add Money Flow
- */
-/*
+import java.io.IOException;
+
 public class OfferHelper {
-    TouchAction touchAction;
-    MBKPermissions mbkPermissions;
-    ApiCommonControls apiCommonControls;
-    Reporter reporter = new Reporter();
-    HomePage homePage;
+
+    AndroidDriver<AndroidElement> driver;
+    Elements elements;
     OfferPage offerPage;
-    MBReporter mbReporter;
-    PermissionHelper permissionHelper;
-    AndroidDriver driver;
-    MBKCommonControlsHelper mbkCommonControlsHelper;
     Screen screen;
+    MBReporter mbReporter;
+
 
     public OfferHelper(AndroidDriver driver) throws IOException {
         this.driver = driver;
-        touchAction = new TouchAction(driver);
-        mbkPermissions = new MBKPermissions(driver);
-        apiCommonControls = new ApiCommonControls();
-        homePage = new HomePage(driver);
-        mbReporter = new MBReporter(driver, "testScreenshotDir");
-        permissionHelper = new PermissionHelper(driver);
-        mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
+        elements = new Elements(driver);
+        offerPage = new OfferPage(driver);
         screen = new Screen(driver);
+        mbReporter = new MBReporter(driver);
+        PageFactory.initElements(new AppiumFieldDecorator(driver), this);
+    }
+
+    public void searchOffers(String offerName, String expTileTitle, String expTileDescription, String expTitle, String expCtaText) throws InterruptedException, IOException {
+
+        // Click on Offers Button
+        offerPage.clickOffers();
+
+        // Click on Search Button
+        offerPage.clickSearchOfferButton();
+
+        // Enter the name of the offer
+        offerPage.enterOffer(offerName);
+
+        // Get & Assert the Tile details
+        String tileTitle = offerPage.getTileTitle();
+        String tileDescription = offerPage.getTileDescription();
+
+        Log.info("Tile Title : " + tileTitle);
+        Log.info("Tile Description : " + tileDescription);
+
+        mbReporter.verifyEquals(tileTitle, expTileTitle, "Verify Tile Title", false, false);
+        mbReporter.verifyEquals(tileDescription, expTileDescription, "Verify Tile Decription", false, false);
+
+        // Click on the tile
+        offerPage.clickLogo();
+
+        // Assert the Label and Cta Text
+        String title = offerPage.getTitle();
+        String ctaText = offerPage.getCtaText();
+
+        Log.info("Title : " + title);
+        Log.info("Cta Text : " + ctaText);
+
+        mbReporter.verifyEquals(title, expTitle, "Verify Title", false, false);
+        mbReporter.verifyEquals(ctaText, expCtaText, "Verify Cta Text", false, false);
+
 
     }
 
 
-    public void offerSearch(String offerName, String directoryName, String screenName) throws InterruptedException, IOException, JSONException {
-        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
-
-        permissionHelper.permissionAllow();
-        Thread.sleep(3000);
-        homePage.clickOnCrossButton();
-        Thread.sleep(1000);
-        // Step 1 | Goto Offers page
-        offerPage = homePage.clickOffers();
-
-        // Step 2 | Select the search option
-        offerPage.clickOnSearchOption();
-
-        // Step 3 | Enter the offer name
-        offerPage.sendOfferName(offerName);
-        Thread.sleep(3000);
-
-        // Step 4 | Verify the number of results
-        int noOfOffers = offerPage.noOfOffers();
-        mbReporter.verifyTrueWithLogging(noOfOffers > 0, "Actual : " + noOfOffers + " | Expected : > 0", false, false);
-
-    }
-
-    public void offerCategoryCheck(String directoryName, String screenName) throws InterruptedException, IOException, JSONException {
-        int noOfCategories = 0;
-
-        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
-
-        permissionHelper.permissionAllow();
-        Thread.sleep(3000);
-        homePage.clickOnCrossButton();
-        Thread.sleep(1000);
-        // Step 1 | Goto Offers page
-        offerPage = homePage.clickOffers();
-
-        // Step 2 | Select the Category option
-        offerPage.selectCategoryOption();
-
-        // Step 3 | Fetch all the categories that are getting displayed
-        if (offerPage.isCloseButtonVisible()) {
-            noOfCategories = offerPage.fetchCategoryList();
-        }
-
-        // Step 4 | Apply the assertions
-        mbReporter.verifyTrueWithLogging(noOfCategories > 0, "Actual : " + noOfCategories + " | Expected > 0", false, false);
-
-    }
-
-    public void redeemOffersCheck(String directoryName, String screenName) throws InterruptedException, IOException, JSONException {
-        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
-
-        permissionHelper.permissionAllow();
-        Thread.sleep(3000);
-        homePage.clickOnCrossButton();
-        Thread.sleep(1000);
-        // Step 1 | Goto Offers page
-        offerPage = homePage.clickOffers();
-
-        // Step 2 | Go to redeem offer tab
-        offerPage.clickOnRedeemOffer();
-
-        Element.waitForVisibility(driver, By.id("card_view"));
-
-        screen.swipeUpMedium(driver);
-
-        // Step 3 | Fetch the list of offers
-        int listSize = offerPage.fetchRedeemOffers();
-
-        // Step 4 | Apply the assertions
-        mbReporter.verifyTrueWithLogging(listSize > 0, "Actual : " + listSize + " | Expected > 0", false, false);
-
-
-    }
 }
-
- */
