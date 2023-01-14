@@ -15,10 +15,10 @@ public class LoanPage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Loans']")
     private AndroidElement loansButton;
 
-    @AndroidFindBy(id = "com.mobikwik_new.debug:id/titleText")
+    @AndroidFindBy(id = "titleText")
     private AndroidElement loansText;
 
-    @AndroidFindBy(id = "com.mobikwik_new.debug:id/cta")
+    @AndroidFindBy(id = "cta")
     private AndroidElement loansCtaText;
 
 

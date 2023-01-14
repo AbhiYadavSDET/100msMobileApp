@@ -46,13 +46,13 @@ public class MutualFundPage {
     @AndroidFindBy(id = "vertical_button_2")
     private AndroidElement backToHome;
 
-    @AndroidFindBy(id = "com.mobikwik_new.debug:id/title_text")
+    @AndroidFindBy(id = "title_text")
     private AndroidElement popUPTitle;
 
-    @AndroidFindBy(id = "com.mobikwik_new.debug:id/body_text")
+    @AndroidFindBy(id = "body_text")
     private AndroidElement popUPSubTitle;
 
-    @AndroidFindBy(id = "com.mobikwik_new.debug:id/primary_button")
+    @AndroidFindBy(id = "primary_button")
     private AndroidElement popUPCtaText;
 
 
