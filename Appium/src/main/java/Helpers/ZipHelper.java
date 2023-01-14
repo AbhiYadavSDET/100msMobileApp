@@ -38,11 +38,13 @@ public class ZipHelper {
         zipPage.clickCtaActivate();
 
         // Click on Allow CTa
-        zipPage.clickAllow();
+        if(zipPage.isClickAllowPresent()) {zipPage.clickAllow();}
 
         // Allow all the permission
-        //zipPage.allowPermission1();
-        //zipPage.allowPermission2();
+        if(zipPage.isPermissionLocationPresent()) {zipPage.allowPermissionLocation();}
+        if(zipPage.isPermissionContactsPresent()) {zipPage.allowPermissionContacts();}
+        if(zipPage.isPermissionMessagePresent()) {zipPage.allowPermissionMessage();}
+
 
         // Verification on the Zip screen
         String actualZipPageTitle = zipPage.getTitle();
