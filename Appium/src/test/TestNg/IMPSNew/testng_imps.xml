@@ -21,7 +21,7 @@
         <classes>
             <class name="Utils.TestBase"/>
             <class name="IMPSNew.IMPSTest"/>
-<!--            <class name="Utils.ExtentReport"></class>-->
+            <class name="Utils.ExtentReport"></class>
         </classes>
     </test>
 

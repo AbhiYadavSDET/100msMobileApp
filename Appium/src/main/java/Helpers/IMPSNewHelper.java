@@ -114,8 +114,14 @@ public class IMPSNewHelper {
         impsPage.clickOnSetAmount();
         impsPage.clickOnContinueToPinCTA();
 
-        //Entering Security PIN
-        impsPage.setSecurityPIN(securityPin);
+        //Check Security PIN Page
+        if(impsPage.checkSecurityPINPage()==true){
+            //Security PIN is there
+            //Entering Security PIN
+            impsPage.setSecurityPIN(securityPin);
+
+        }
+
 
         //Assertion Check on Confirmation Page
         Thread.sleep(3000);
@@ -127,7 +133,7 @@ public class IMPSNewHelper {
         String expectedAmt= "₹"+amount;
 
         Log.info("Actual Message on Screen is :" + actualMessage);
-        Log.info("Actual Amount on Screen is" + actualAmount);
+        Log.info("Actual Amount on Screen is : " + actualAmount);
 
         mbReporter.verifyEquals(actualMessage, "Transfer Successful", "Success Page | Message", false, false);
         mbReporter.verifyEquals(actualAmount, expectedAmt, "Success Page | Amount", false, false);
@@ -161,8 +167,13 @@ public class IMPSNewHelper {
         impsPage.clickOnSetAmount();
         impsPage.clickOnContinueToPinCTA();
 
-        //Entering Security PIN
-        impsPage.setSecurityPIN(securityPin);
+        //Check Security PIN Page
+        if(impsPage.checkSecurityPINPage()==true){
+            //Security PIN is there
+            //Entering Security PIN
+            impsPage.setSecurityPIN(securityPin);
+
+        }
 
         //Assertion Check on Confirmation Page
         Thread.sleep(3000);

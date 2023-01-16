@@ -123,7 +123,7 @@ public class IMPSNewPage {
     }
 
     public void setUPIID(String upi) throws InterruptedException{
-        Elements.enterToElement(driver,upi_field,"9555746475@ibl","UPI Field set");
+        Elements.enterToElement(driver,upi_field,upi,"UPI Field set");
     }
 
     public void clickOnContinueToAmtCTA() throws InterruptedException{

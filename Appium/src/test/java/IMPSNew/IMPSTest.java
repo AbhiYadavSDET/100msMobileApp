@@ -3,6 +3,7 @@ package IMPSNew;
 import Helpers.IMPSNewHelper;
 import Helpers.LoginHelper;
 import Logger.Log;
+import Utils.Element;
 import Utils.Elements;
 import Utils.ExtentReport;
 import Utils.TestBase;
@@ -30,7 +31,9 @@ public class IMPSTest extends TestBase {
         Log.info("======= START : IMPS to New Account Number Test =======");
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.loginViaOtp("9205299330","547372");
+
+        loginHelp.quickLoginViaOtp("9205299330","547372");
+
 
 
         IMPSNewHelper impsHelper = new IMPSNewHelper(getAndroidDriver());
@@ -46,10 +49,10 @@ public class IMPSTest extends TestBase {
         Log.info("======= START : IMPS to New UPI ID Test =======");
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.loginViaOtp("9205299330","547372");
+        loginHelp.quickLoginViaOtp("9205299330","547372");
 
         IMPSNewHelper impsHelper = new IMPSNewHelper(getAndroidDriver());
-        impsHelper.verifyIMPSNewUPITransferFlow("7795709569@paytml","50","121212");
+        impsHelper.verifyIMPSNewUPITransferFlow("7795709569@paytm","50","121212");
 
         Log.info("======= END : IMPS to New Account Number Test =======");
     }
@@ -61,7 +64,7 @@ public class IMPSTest extends TestBase {
         Log.info("======= START : IMPS to Saved VPA Test =======");
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.loginViaOtp("9205299330","547372");
+        loginHelp.quickLoginViaOtp("9205299330","547372");
 
 
         IMPSNewHelper impsHelper = new IMPSNewHelper(getAndroidDriver());
