@@ -8,7 +8,7 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import org.openqa.selenium.By;
-import Utils.Element;
+import Utils.Elements;
 import Utils.MBReporter;
 import Utils.Screen;
 
@@ -23,7 +23,7 @@ public class IMPSNewHelper {
     AndroidDriver driver;
     HomePage homePage;
     Screen screen;
-    Element element;
+    Elements element;
     MBKCommonControlsHelper mbkCommonControlsHelper;
     MBReporter mbReporter;
     PermissionHelper permissionHelper;
@@ -33,7 +33,7 @@ public class IMPSNewHelper {
         this.driver = driver;
         homePage = new HomePage(driver);
         screen = new Screen(driver);
-        element = new Element(driver);
+        element = new Elements(driver);
         mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
         mbReporter = new MBReporter(driver, "testScreenshotDir");
         permissionHelper = new PermissionHelper(driver);
@@ -63,8 +63,14 @@ public class IMPSNewHelper {
         impsPage.clickOnSetAmount();
         impsPage.clickOnContinueToPinCTA();
 
-        //Entering Security PIN
-        impsPage.setSecurityPIN(securityPin);
+        //Check Security PIN Page
+        if(impsPage.checkSecurityPINPage()==true){
+            //Security PIN is there
+            //Entering Security PIN
+            impsPage.setSecurityPIN(securityPin);
+
+        }
+
 
         //Assertion Check on Confirmation Page
         Thread.sleep(3000);
@@ -108,8 +114,14 @@ public class IMPSNewHelper {
         impsPage.clickOnSetAmount();
         impsPage.clickOnContinueToPinCTA();
 
-        //Entering Security PIN
-        impsPage.setSecurityPIN(securityPin);
+        //Check Security PIN Page
+        if(impsPage.checkSecurityPINPage()==true){
+            //Security PIN is there
+            //Entering Security PIN
+            impsPage.setSecurityPIN(securityPin);
+
+        }
+
 
         //Assertion Check on Confirmation Page
         Thread.sleep(3000);
@@ -131,7 +143,7 @@ public class IMPSNewHelper {
 
     }
 
-    public void verifyIMPSSavedVPATransfer(String upiID,String amount, String securityPin) throws InterruptedException, IOException {
+    public void verifyIMPSSavedAccountTransfer(String upiID,String amount, String securityPin) throws InterruptedException, IOException {
 
 
         //Dismiss All Ads
@@ -147,8 +159,7 @@ public class IMPSNewHelper {
 
         //Select already saved VPA using XPath calculated above
         AndroidElement savedVPA= (AndroidElement) driver.findElementByXPath(xpathSavedUPI);
-        Element.click(driver,  savedVPA,"Tapped On Saved VPA");
-        impsPage.clickOnSavedVPA();
+        impsPage.clickOnSavedVPA(savedVPA);
 
 
         //Entering Amount and Continue to PIN
@@ -156,8 +167,13 @@ public class IMPSNewHelper {
         impsPage.clickOnSetAmount();
         impsPage.clickOnContinueToPinCTA();
 
-        //Entering Security PIN
-        impsPage.setSecurityPIN(securityPin);
+        //Check Security PIN Page
+        if(impsPage.checkSecurityPINPage()==true){
+            //Security PIN is there
+            //Entering Security PIN
+            impsPage.setSecurityPIN(securityPin);
+
+        }
 
         //Assertion Check on Confirmation Page
         Thread.sleep(3000);
