@@ -12,28 +12,31 @@ public class ZipPage {
 
     AndroidDriver driver;
 
-    @AndroidFindBy(id = "com.mobikwik_new.debug:id/navigation_zip")
+    @AndroidFindBy(id = "navigation_zip")
     private AndroidElement zipButton;
 
-    @AndroidFindBy(id = "com.mobikwik_new.debug:id/btn_activate")
+    @AndroidFindBy(id = "btn_activate")
     private AndroidElement cta;
 
-    @AndroidFindBy(id = "com.android.permissioncontroller:id/permission_allow_foreground_only_button")
+    @AndroidFindBy(id = "button_accept")
     private AndroidElement buttonAllow;
 
-    @AndroidFindBy(id = "com.mobikwik_new.debug:id/button_skip")
-    private AndroidElement buttonSkip;
+    @AndroidFindBy(id = "button_skip")
+    private AndroidElement buttonNotNow;
 
     @AndroidFindBy(id = "com.android.permissioncontroller:id/permission_allow_foreground_only_button")
-    private AndroidElement permissionAllow1;
+    private AndroidElement permissionAllowLocation;
 
     @AndroidFindBy(id = "com.android.permissioncontroller:id/permission_allow_button")
-    private AndroidElement permissionAllow2;
+    private AndroidElement permissionAllowContacts;
 
-    @AndroidFindBy(id = "com.mobikwik_new.debug:id/mkab_title")
+    @AndroidFindBy(id = "com.android.permissioncontroller:id/permission_allow_button")
+    private AndroidElement permissionAllowMessages;
+
+    @AndroidFindBy(id = "mkab_title")
     private AndroidElement title;
 
-    @AndroidFindBy(id = "com.mobikwik_new.debug:id/tv_label")
+    @AndroidFindBy(id = "tv_label")
     private AndroidElement label;
 
 
@@ -51,16 +54,40 @@ public class ZipPage {
         Elements.selectElement(driver, cta, "Cta Activate");
     }
 
+    public void clickNotNow() {
+        Elements.selectElement(driver, buttonNotNow, "Not Now");
+    }
+
+    public boolean isClickAllowPresent() throws InterruptedException {
+        return Elements.isElementPresent(driver, buttonAllow);
+    }
+
     public void clickAllow() {
         Elements.selectElement(driver, buttonAllow, "Allow");
     }
 
-    public void allowPermission1() {
-        Elements.selectElement(driver, permissionAllow1, "Permission 1");
+    public boolean isPermissionLocationPresent() throws InterruptedException {
+        return Elements.isElementPresent(driver, permissionAllowLocation);
     }
 
-    public void allowPermission2() {
-        Elements.selectElement(driver, permissionAllow2, "Permission 2");
+    public boolean isPermissionContactsPresent() throws InterruptedException {
+        return Elements.isElementPresent(driver, permissionAllowContacts);
+    }
+
+    public boolean isPermissionMessagePresent() throws InterruptedException {
+        return Elements.isElementPresent(driver, permissionAllowMessages);
+    }
+
+    public void allowPermissionLocation() {
+        Elements.selectElement(driver, permissionAllowLocation, "Permission Location");
+    }
+
+    public void allowPermissionContacts() {
+        Elements.selectElement(driver, permissionAllowContacts, "Permission Contacts");
+    }
+
+    public void allowPermissionMessage() {
+        Elements.selectElement(driver, permissionAllowMessages, "Permission Message");
     }
 
     public String getTitle() throws InterruptedException {
@@ -70,5 +97,7 @@ public class ZipPage {
     public String getLabel() throws InterruptedException {
         return Elements.getText(driver, label, "Label");
     }
+
+
 
 }
