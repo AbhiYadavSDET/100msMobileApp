@@ -1,98 +1,138 @@
 package PageObject;
 
+import Utils.Elements;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import Logger.Log;
 import org.openqa.selenium.support.PageFactory;
-//import utils.Element;
-
-import java.io.IOException;
 
 public class P2MPage {
 
+
     AndroidDriver driver;
 
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Scan any QR']")
+    private AndroidElement scanQrButton;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Enter Mobile Number or Merchant Code']")
-    private AndroidElement label_enter_mobile_number;
+    @AndroidFindBy(id = "com.android.permissioncontroller:id/permission_allow_foreground_only_button")
+    private AndroidElement permissionWhileUsingApp;
+
+    @AndroidFindBy(id = "permission_allow_one_time_button")
+    private AndroidElement permissionThisTime;
+
+    @AndroidFindBy(id = "permission_deny_button")
+    private AndroidElement permissionDeny;
+
+    @AndroidFindBy(id = "btn_continue")
+    private AndroidElement ctaEnable;
+
+    @AndroidFindBy(id = "merchant_code")
+    private AndroidElement merchantCodeTextBoxForClick;
+
+    @AndroidFindBy(id = "com.android.permissioncontroller:id/permission_allow_button")
+    private AndroidElement permissionAllow;
 
     @AndroidFindBy(id = "search_edittext")
-    private AndroidElement textbox_search;
+    private AndroidElement merchantCodeTextBox;
 
-    @AndroidFindBy(id = "image_tse")
-    private AndroidElement image_merchant;
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'BLF001']")
+    private AndroidElement selectMerchant;
 
-    @AndroidFindBy(id = "edt_txt_transfer_amount")
-    private AndroidElement enter_amount;
+    @AndroidFindBy(id = "edit_text")
+    private AndroidElement amountTextBox;
 
-    @AndroidFindBy(id = "btn_p2p_action")
-    private AndroidElement cta_confirm_transfer;
+    @AndroidFindBy(id = "cta")
+    private AndroidElement ctaConfirmPayment;
 
-    @AndroidFindBy(id = "base_title")
-    private AndroidElement label_success_page_status;
+    @AndroidFindBy(id = "status")
+    private AndroidElement successScreenStatus;
 
-    @AndroidFindBy(id = "amount_value")
-    private AndroidElement label_amount;
+    @AndroidFindBy(id = "amount")
+    private AndroidElement successScreenAmount;
 
-    @AndroidFindBy(id = "total_amount_value")
-    private AndroidElement label_total_payment;
+    @AndroidFindBy(id = "name")
+    private AndroidElement successScreenReceiverName;
 
-    @AndroidFindBy(id = "txt_info")
-    private AndroidElement label_success_screen_name;
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Merchant Name']/following-sibling::android.widget.TextView")
+    private AndroidElement successScreenMerchantName;
 
-    @AndroidFindBy(id = "txt_cn_value")
-    private AndroidElement label_success_screen_code;
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Merchant Code']/following-sibling::android.widget.TextView")
+    private AndroidElement successScreenMerchantCode;
+
+    @AndroidFindBy(id = "cta")
+    private AndroidElement successScreenZipCta;
+
+    @AndroidFindBy(id = "mkab_icon_1")
+    private AndroidElement successScreenUpButton;
 
 
-    public P2MPage(AndroidDriver driver) throws IOException {
+    public P2MPage(AndroidDriver driver) {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
-
-
-        /*
-        To Do
-        wait for Page load to be added
-         */
-
-        Log.info("*****P2M Page*****");
     }
 
-/*
-    public void clickOnLabelEnterMerchantCode() throws InterruptedException {
-        Element.selectElement(driver, label_enter_mobile_number, "Click on Merchant Code");
+
+    public void clickScanQR() {
+        Elements.selectElement(driver, scanQrButton, "Scan any QR");
     }
 
-    public void enterMerchantCode(String merchantCode) throws InterruptedException {
-        Element.enterText(driver, textbox_search, merchantCode, "Enter Merchant Code");
+    public void allowPermission() {
+        Elements.selectElement(driver, permissionWhileUsingApp, "Permission : While using app");
     }
 
-    public void clickOnMerchantCodeFromList() throws InterruptedException {
-        Element.selectElement(driver, image_merchant, "Click on Merchant Code from List");
+    public void allowPermission2() {
+        Elements.selectElement(driver, permissionAllow, "Permission : Allow");
     }
 
-    public void enterAmount(String amount) throws InterruptedException {
-        Element.enterText(driver, enter_amount, amount, "Enter Amount");
+    public void clickEnableButton() {
+        Elements.selectElement(driver, ctaEnable, "Enable");
     }
 
-    public void clickOnCtaConfirmTransfer() throws InterruptedException {
-        Element.selectElement(driver, cta_confirm_transfer, "Click on Cta Confirm Transfer");
+    public void clickMerchantCodeTextBox() {
+        Elements.selectElement(driver, merchantCodeTextBoxForClick, "Merchant Code Text Box");
     }
 
-    public String getSuccessPageStatus() throws InterruptedException {
-        return Element.getText(driver, label_success_page_status, "Success page Status");
+    public void enterMerchantCode(String merchantCode) {
+        Elements.enterToElement(driver, merchantCodeTextBox, merchantCode, "Merchant Code");
     }
 
-    public String getSuccessPageName() throws InterruptedException {
-        return Element.getText(driver, label_success_screen_name, "Success page name");
+    public void selectMerchant() {
+        Elements.selectElement(driver, selectMerchant, "Merchant");
     }
 
-    public String getSuccessPageCode() throws InterruptedException {
-        return Element.getText(driver, label_success_screen_code, "Success page Code");
+    public void enterAmount(String amount) {
+        Elements.enterToElement(driver, amountTextBox, amount, "Amount");
     }
 
- */
+    public void clickConfirmPayment() {
+        Elements.selectElement(driver, ctaConfirmPayment, "Confirm Payment");
+    }
+
+    // Success Screen methods
+    public String getStatus() throws InterruptedException {
+        return Elements.getText(driver, successScreenStatus, "Status");
+    }
+
+    public String getAmount() throws InterruptedException {
+        return Elements.getText(driver, successScreenAmount, "Amount");
+    }
+
+    public String getReceiverName() throws InterruptedException {
+        return Elements.getText(driver, successScreenReceiverName, "Receiver Name");
+    }
+
+    public String getMerchantName() throws InterruptedException {
+        return Elements.getText(driver, successScreenMerchantName, "Merchant Name");
+    }
+
+    public String getMerchantCode() throws InterruptedException {
+        return Elements.getText(driver, successScreenMerchantCode, "Merchant Code");
+    }
+
+    public String getZipCtaText() throws InterruptedException {
+        return Elements.getText(driver, successScreenZipCta, "Zip Cta Text");
+    }
 
 
 }

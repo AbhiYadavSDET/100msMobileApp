@@ -91,7 +91,9 @@ public class LoginPage {
     }
 
     public void enterOtp(String otp) throws InterruptedException {
-        Element.enterText(driver, textbox_enter_otp, otp, "Enter OTP");
+        if (otp.length() > 0) {
+            Element.enterText(driver, textbox_enter_otp, otp, "Enter OTP");
+        }
     }
 
     public void clickSubmitOtpCta() {

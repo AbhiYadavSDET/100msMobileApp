@@ -1,116 +1,125 @@
 package PageObject;
 
+import Utils.Element;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
-//import utils.Element;
 
 import java.io.IOException;
 
 public class MutualFundPage {
     AndroidDriver driver;
 
-    @AndroidFindBy(id = "viewAllFunds")
-    private AndroidElement viewFunds;
 
-    @AndroidFindBy(id = "mkiv_image")
-    private AndroidElement image_growth;
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'Direct Mutual Funds']")
+    private AndroidElement directMutualFunds;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'Wealth Portfolios']")
-    private AndroidElement cta_wealth_portfolios;
+    @AndroidFindBy(id = "btn_get_started")
+    private AndroidElement getStarted;
 
-    @AndroidFindBy(id="tv_label_pack_list")
-    private AndroidElement get_Label_text;
+    @AndroidFindBy(id = "tv_explore_button")
+    private AndroidElement exploreMutualFunds;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'Kwik Save: Instant Withdrawal']")
-    private AndroidElement cta_kwik_save_instant_withdrawal;
+    @AndroidFindBy(id = "title")
+    private AndroidElement mutualFundName;
 
-    @AndroidFindBy(id="content_title")
-    private AndroidElement get_title_text;
+    @AndroidFindBy(id = "mininvestment_tv_value")
+    private AndroidElement minimumInvestmentValue;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'Save monthly with SIPs']")
-    private AndroidElement cta_save_monthly_with_sip;
+    @AndroidFindBy(id = "returns_value")
+    private AndroidElement returnsValue;
 
-    @AndroidFindBy(id="riskBaseTitle")
-    private AndroidElement get_risk_base_title;
+    @AndroidFindBy(id = "rating_tv_value")
+    private AndroidElement rating;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'Make a one time investment']")
-    private AndroidElement cta_make_a_one_time_investment;
+    @AndroidFindBy(id = "dropDownView")
+    private AndroidElement selectMutualFunds;
 
-    @AndroidFindBy(id="mkab_title")
-    private  AndroidElement get_header_text;
+    @AndroidFindBy(id = "btnOneTime")
+    private AndroidElement oneTime;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'Save Taxes with ELSS Mutual Funds']")
-    private AndroidElement cta_elss_mutual_funds;
+    @AndroidFindBy(id = "btnSip")
+    private AndroidElement sip;
 
-    @AndroidFindBy(id="icon_back")
-    private AndroidElement back_button;
+    @AndroidFindBy(id = "vertical_button_2")
+    private AndroidElement backToHome;
 
-    @AndroidFindBy(id="mkab_icon_1")
-    private AndroidElement back_button_2;
+    @AndroidFindBy(id = "title_text")
+    private AndroidElement popUPTitle;
 
+    @AndroidFindBy(id = "body_text")
+    private AndroidElement popUPSubTitle;
 
+    @AndroidFindBy(id = "primary_button")
+    private AndroidElement popUPCtaText;
 
 
     public MutualFundPage(AndroidDriver driver) throws IOException {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
-/*
-    public boolean isViewAllFunds() throws InterruptedException {
-        return (Element.isElementPresent(driver, (By.id("viewAllFunds"))));
+
+    public void clickOnMutualFunds() throws InterruptedException {
+        Element.selectElement(driver, directMutualFunds, "Click on Mutual Funds");
     }
 
-    public boolean isVisibleGrowthImage() throws InterruptedException {
-        return (Element.isElementPresent(driver, By.id("mkiv_image")));
+//    public boolean isGetStartedPresent() throws InterruptedException {
+//        return Element.isElementPresent(driver,getStarted);
+//    }
+
+    public void clickOnGetStarted() throws InterruptedException {
+        Element.selectElement(driver, getStarted, "Click on Get Started");
     }
 
-    public void clickOnWealthPortfolios() throws InterruptedException {
-        Element.selectElement(driver, cta_wealth_portfolios, " Click on Wealth Portfolios");
+
+    public void clickOnExploreMutualFunds() throws InterruptedException {
+        Element.selectElement(driver, exploreMutualFunds, "Click on Explore Mutual Funds");
     }
 
-    public String getLabelText() throws InterruptedException{
-        return Element.getText(driver, get_Label_text, "Get Label Text");
+    public void selectMutualFund() throws InterruptedException {
+        Element.selectElement(driver, selectMutualFunds, "Click on Mutual Fund");
     }
 
-    public void clickOnKwikSave() throws InterruptedException {
-        Element.selectElement(driver, cta_kwik_save_instant_withdrawal, " Click on Kwik Save");
+    public void clickOnOneTime() throws InterruptedException {
+        Element.selectElement(driver, oneTime, "Click on one time pay");
     }
 
-    public String getTitleText() throws InterruptedException{
-        return Element.getText(driver, get_title_text, "Get Title Text");
+    public void clickOnSip() throws InterruptedException {
+        Element.selectElement(driver, sip, "Click on SIP");
     }
 
-    public void clickOnMonthlySip() throws InterruptedException {
-        Element.selectElement(driver, cta_save_monthly_with_sip, " Click on Save on Monthly SIP");
+    public void clickOnBackToHome() throws InterruptedException {
+        Element.selectElement(driver, backToHome, "Click on Wealth Portfolios");
     }
 
-    public String getRiskBaseTitle() throws InterruptedException{
-        return Element.getText(driver, get_risk_base_title, "Get Risk Base Title");
+    public String getMutualFundName() throws InterruptedException {
+        return Element.getText(driver, mutualFundName, "Get Mutual Fund Name");
     }
 
-    public void clickOnOneTimeInvestment() throws InterruptedException {
-        Element.selectElement(driver, cta_make_a_one_time_investment, " Click on One Time Investment");
+    public String getMinimumInvestmentAmount() throws InterruptedException {
+        return Element.getText(driver, minimumInvestmentValue, "Get Minimum Investment Amount");
     }
 
-    public String getHeaderTitleText() throws InterruptedException{
-        return Element.getText(driver, get_header_text, "Get Header Title Page");
+    public String getReturns() throws InterruptedException {
+        return Element.getText(driver, returnsValue, "Get Mutual Fund Returns");
     }
 
-    public void clickOnElssMutualFunds() throws InterruptedException {
-        Element.selectElement(driver, cta_elss_mutual_funds, " Click on Elss Mutual Funds");
+    public String getRating() throws InterruptedException {
+        return Element.getText(driver, rating, "Get Mutual Fund Rating");
     }
 
-    public void clickOnBackButton() throws InterruptedException {
-        if(Element.isElementPresent(driver,By.id("mkab_icon_1"))){
-            Element.selectElement(driver, back_button_2, " Click on Back button 2");
-        }else {
-            Element.selectElement(driver, back_button, " Click on Back button");
-        }
-        }
+    public String getPopUpTitle() throws InterruptedException {
+        return Element.getText(driver, popUPTitle, "Pop Up Title");
+    }
 
- */
+    public String getPopUpSubTitle() throws InterruptedException {
+        return Element.getText(driver, popUPSubTitle, "Pop Up Sub Title");
+    }
+
+    public String getPopUpCtaText() throws InterruptedException {
+        return Element.getText(driver, popUPCtaText, "Pop Up Cta Text");
+    }
+
 }
