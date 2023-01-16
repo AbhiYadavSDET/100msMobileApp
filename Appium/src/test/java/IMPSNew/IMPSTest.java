@@ -3,7 +3,7 @@ package IMPSNew;
 import Helpers.IMPSNewHelper;
 import Helpers.LoginHelper;
 import Logger.Log;
-import Utils.Element;
+import Utils.Elements;
 import Utils.ExtentReport;
 import Utils.TestBase;
 import org.apache.groovy.json.internal.IO;
@@ -17,7 +17,7 @@ public class IMPSTest extends TestBase {
 
     public void login() throws IOException, InterruptedException{
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.loginViaOtp("9555746475","547372");
+        loginHelp.loginViaOtp("9205299330","547372");
 
     }
     @Test(groups = {"impsNewAccountNumber", "impsSanity"}, priority = 0, description = "IMPS on New Account Number")
@@ -30,11 +30,11 @@ public class IMPSTest extends TestBase {
         Log.info("======= START : IMPS to New Account Number Test =======");
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.loginViaOtp("9555746475","547372");
+        loginHelp.loginViaOtp("9205299330","547372");
 
 
         IMPSNewHelper impsHelper = new IMPSNewHelper(getAndroidDriver());
-        impsHelper.verifyIMPSNewAccountTransferFlow("Harsh Tyagi", "1942500101801601", "KARB0000194", "50", "121212");
+        impsHelper.verifyIMPSNewAccountTransferFlow("Paraj Jain", "218101502680", "ICIC0002181", "50", "121212");
 
         Log.info("======= END : IMPS to New Account Number Test =======");
 
@@ -46,10 +46,10 @@ public class IMPSTest extends TestBase {
         Log.info("======= START : IMPS to New UPI ID Test =======");
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.loginViaOtp("9555746475","547372");
+        loginHelp.loginViaOtp("9205299330","547372");
 
         IMPSNewHelper impsHelper = new IMPSNewHelper(getAndroidDriver());
-        impsHelper.verifyIMPSNewUPITransferFlow("9555746475@ibl","50","121212");
+        impsHelper.verifyIMPSNewUPITransferFlow("7795709569@paytml","50","121212");
 
         Log.info("======= END : IMPS to New Account Number Test =======");
     }
@@ -61,11 +61,11 @@ public class IMPSTest extends TestBase {
         Log.info("======= START : IMPS to Saved VPA Test =======");
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.loginViaOtp("9555746475","547372");
+        loginHelp.loginViaOtp("9205299330","547372");
 
 
         IMPSNewHelper impsHelper = new IMPSNewHelper(getAndroidDriver());
-        impsHelper.verifyIMPSSavedVPATransfer("9555746475@ibl","50","121212");
+        impsHelper.verifyIMPSSavedAccountTransfer("7795709569@paytm","50","121212");
 
         Log.info("======= END : IMPS to Saved VPA Test =======");
     }

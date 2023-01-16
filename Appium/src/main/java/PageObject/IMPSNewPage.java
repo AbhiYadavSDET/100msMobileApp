@@ -5,7 +5,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import Logger.Log;
 import org.openqa.selenium.support.PageFactory;
-import Utils.Element;
+import Utils.Elements;
 
 import java.io.IOException;
 
@@ -60,8 +60,6 @@ public class IMPSNewPage {
     @AndroidFindBy(id = "btn_continue")
     private AndroidElement upi_continue_cta ;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = '9555746475@ibl']")
-    private AndroidElement saved_vpa;
 
     public IMPSNewPage(AndroidDriver driver) throws IOException {
 
@@ -71,66 +69,70 @@ public class IMPSNewPage {
     }
 
     public void clickOnWalletToBank() throws InterruptedException{
-        Element.selectElement(driver,wallet_to_bank,"Tapped on Wallet To Bank Transfer Button");
+        Elements.selectElement(driver,wallet_to_bank,"Tapped on Wallet To Bank Transfer Button");
     }
     public void clickOnTransferToNewAccount() throws InterruptedException{
-        Element.selectElement(driver,transfer_to_new_account,"Tapped on Transfer to New Account");
+        Elements.selectElement(driver,transfer_to_new_account,"Tapped on Transfer to New Account");
     }
 
     public void setBeneficiaryName(String name) throws InterruptedException{
-        Element.enterText(driver,beneficiary_name_field,name,"Beneficiary Name set..");
+        Elements.enterToElement(driver,beneficiary_name_field,name,"Beneficiary Name set..");
     }
     public void setAccountNumber(String account_number) throws InterruptedException{
-        Element.enterText(driver,account_number_field,account_number,"Account Number set..");
+        Elements.enterToElement(driver,account_number_field,account_number,"Account Number set..");
     }
 
     public void setIFSC_Code(String ifsc) throws InterruptedException{
-        Element.enterText(driver,ifsc_code_field,ifsc,"IFSC Code set..");
+        Elements.enterToElement(driver,ifsc_code_field,ifsc,"IFSC Code set..");
     }
 
     public void clickOnContinueCTA() throws InterruptedException{
-        Element.selectElement(driver,continue_cta,"Continue to Entering Amount");
+        Elements.selectElement(driver,continue_cta,"Continue to Entering Amount");
     }
 
     public void setAmount(String amt) throws InterruptedException{
-        Element.enterText(driver,amount_field,amt,"Amount set..");
+        Elements.enterToElement(driver,amount_field,amt,"Amount set..");
     }
 
     public void clickOnSetAmount() throws InterruptedException{
-        Element.selectElement(driver,btn_set_amount,"Amount is correct. Go !!!");
+        Elements.selectElement(driver,btn_set_amount,"Amount is correct. Go !!!");
     }
 
     public void clickOnContinueToPinCTA() throws  InterruptedException{
-        Element.selectElement(driver,continue_pin_cta,"Now switching to Security PIN Windows");
+        Elements.selectElement(driver,continue_pin_cta,"Now switching to Security PIN Windows");
     }
 
+    public boolean checkSecurityPINPage() throws  InterruptedException{
+        return Elements.isElementPresent(driver,security_pin_field);
+    }
     public void setSecurityPIN(String pin) throws InterruptedException{
-        Element.enterText(driver,security_pin_field,pin,"Pin set....");
+        Elements.enterToElement(driver,security_pin_field,pin,"Pin set....");
     }
 
 
-    public String getSuccessMessage() {
-        return Element.getText(driver, label_success_message, "Success Message");
+    public String getSuccessMessage() throws InterruptedException{
+        return Elements.getText(driver, label_success_message, "Success Message");
     }
 
-    public String getSuccessPageAmount() {
-        return Element.getText(driver, label_amount, "Success Page | Amount");
+    public String getSuccessPageAmount() throws InterruptedException{
+        return Elements.getText(driver, label_amount, "Success Page | Amount");
     }
 
-    public void clickOnUPIRadioBtn(){
-        Element.selectElement(driver,radio_upi,"Tapped on UPI Radio Button");
+    public void clickOnUPIRadioBtn() throws InterruptedException{
+        Elements.selectElement(driver,radio_upi,"Tapped on UPI Radio Button");
     }
 
-    public void setUPIID(String upi){
-        Element.enterText(driver,upi_field,"9555746475@ibl","UPI Field set");
+    public void setUPIID(String upi) throws InterruptedException{
+        Elements.enterToElement(driver,upi_field,"9555746475@ibl","UPI Field set");
     }
 
-    public void clickOnContinueToAmtCTA(){
-        Element.selectElement(driver,upi_continue_cta,"Tapped on Continue to Amt Page CTA");
+    public void clickOnContinueToAmtCTA() throws InterruptedException{
+        Elements.selectElement(driver,upi_continue_cta,"Tapped on Continue to Amt Page CTA");
     }
 
-    public void clickOnSavedVPA(){
-        Element.selectElement(driver,saved_vpa,"Tapped on Saved VPA 9555746475@ibl");
+    public void clickOnSavedVPA(AndroidElement saved_vpa) throws InterruptedException{
+        String comment= "Tapped on Saved VPA "+saved_vpa;
+        Elements.selectElement(driver,saved_vpa,comment);
     }
 }
 
