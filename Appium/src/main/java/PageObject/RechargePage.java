@@ -26,7 +26,7 @@ public class RechargePage {
     private AndroidElement postpaid;
 
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = '9311878235']")
-    private AndroidElement selectNumber;
+    private AndroidElement selectNumberPostpaid;
 
     @AndroidFindBy(id = "et_amt")
     private AndroidElement enterAmountPostpaid;
@@ -40,19 +40,16 @@ public class RechargePage {
     @AndroidFindBy(id = "btn_pay")
     private AndroidElement pay;
 
-    @AndroidFindBy(id = "search_bar")
-    private AndroidElement enterNumberTap;
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = '7795709569']")
+    private AndroidElement selectNumberPrepaid;
+
+    @AndroidFindBy(id = "tv_search_collapsed")
+    private AndroidElement tapToSearchPlan;
 
     @AndroidFindBy(id = "et_search")
-    private AndroidElement enterNumberBox;
+    private AndroidElement enterPlanAmountToSearch;
 
-    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Special Offer']")
-    private AndroidElement specialOfferButton;
-
-    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Top Up']")
-    private AndroidElement topUpButton;
-
-    @AndroidFindBy(id = "cl_root")
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Talktime']")
     private AndroidElement selectPlan;
 
     @AndroidFindBy(id = "title")
@@ -88,8 +85,8 @@ public class RechargePage {
         Elements.selectElement(driver, postpaid, "click on Postpaid");
     }
 
-    public void selectNumber() {
-        Elements.selectElement(driver, selectNumber, "select Mobile Number");
+    public void selectNumberPostpaid() {
+        Elements.selectElement(driver, selectNumberPostpaid, "select Mobile Number");
     }
 
     public void setEnterAmountPostpaid(String amount) {
@@ -100,6 +97,23 @@ public class RechargePage {
         Elements.selectElement(driver, continuePostpaid, "click on Continue");
     }
 
+
+    public void selectNumberPrepaid() {
+        Elements.selectElement(driver, selectNumberPrepaid, "select Mobile Number");
+    }
+
+    public void tapToSearchPlan() {
+        Elements.selectElement(driver,tapToSearchPlan , "Tap To Search Plan");
+    }
+
+    public void searchPlanPrepaid(String amount) {
+        Elements.enterToElement(driver, enterPlanAmountToSearch, amount,"Enter amount to search plan");
+    }
+
+    public void selectPlan() {
+        Elements.selectElement(driver, selectPlan, "Tap To Select Plan");
+    }
+
     public void clickOnPay() {
         Elements.selectElement(driver, pay, "click on Pay");
     }
@@ -108,6 +122,8 @@ public class RechargePage {
     public String getAmountOnPayment() throws InterruptedException {
         return Elements.getText(driver, amountDisplayed, "Amount on payment screen");
     }
+
+
 
 
     // Success Screen methods

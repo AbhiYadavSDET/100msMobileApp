@@ -54,15 +54,64 @@ public class RechargeHelper {
         rechargePage.clickOnPostpaid();
 
         // Click on Select Number
-        rechargePage.selectNumber();
+        rechargePage.selectNumberPostpaid();
 
         // Enter amount on payment screen
         rechargePage.setEnterAmountPostpaid(amount);
 
         // Click on Continue
-        rechargePage.selectNumber();
 
         rechargePage.clickOnContinue();
+
+
+        // Verification on the Payment Screen
+        String amountOnPaymentScreen = rechargePage.getAmountOnPayment();
+        Log.info("Amount on Payment Screen : " + amountOnPaymentScreen);
+        mbReporter.verifyEquals(amountOnPaymentScreen, expAmountOnPaymentScreen, "Verify Amount on Payment screen", false, false);
+
+        rechargePage.clickOnPay();
+
+        // Verification on the Success Screen
+        String title = rechargePage.getTitle();
+        String subTitle = rechargePage.getSubTitle();
+        String amountOnSuccesScreen = rechargePage.getAmountOnSuccessScreen();
+
+        // Display the values
+        Log.info("Title : " + title);
+        Log.info("Sub Title : " + subTitle);
+        Log.info("Amount On Success Screen : " + amountOnSuccesScreen);
+
+
+        // Add the assertions
+        mbReporter.verifyEquals(title, expTitle, "Verify Title", false, false);
+        mbReporter.verifyEquals(subTitle, expSubTitle, "Verify Sub Title", false, false);
+        mbReporter.verifyEquals(amountOnSuccesScreen, expAmountOnSuccessScreen, "Verify Gold Amount", false, false);
+
+    }
+
+
+    public void prepaidRecharge(String amount, String expAmountOnPaymentScreen, String expTitle, String expSubTitle, String expAmountOnSuccessScreen) throws InterruptedException, IOException {
+
+        // Click on Recharge And PayBills
+        rechargePage.clickRechargeAndPayBills();
+
+        // Click on outside Swipe Left Bottom Popup
+        rechargePage.clickSwipeLeftBottomRemove();
+
+        // Click on Mobile
+        rechargePage.clickOnMobile();
+
+        // Click on Select Number
+        rechargePage.selectNumberPrepaid();
+
+        // Tap to search plan
+        rechargePage.tapToSearchPlan();
+
+        // Enter amount to search plan
+        rechargePage.searchPlanPrepaid(amount);
+
+        // Click to select plan
+        rechargePage.selectPlan();
 
 
         // Verification on the Payment Screen
