@@ -28,6 +28,7 @@
             <class name="Loan.LoanTest"/>
             <class name="Zip.ZipTest"/>
             <class name="Offers.OfferTest"/>
+            <class name="Rewards.RewardsTest"/>
 
         </classes>
     </test>

@@ -33,6 +33,7 @@ public class RewardsHelper {
     public void spinTheWheel(String expTitle, String expSubTitle, String expCtaText) throws InterruptedException, IOException {
 
         // Click on the Trophy Icon
+        Thread.sleep(5000);
         rewardsPage.clickTrophyIcon();
 
         // Click the CTA - Get started
