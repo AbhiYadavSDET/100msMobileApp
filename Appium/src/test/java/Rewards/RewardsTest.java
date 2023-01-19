@@ -19,12 +19,12 @@ public class RewardsTest extends TestBase {
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-//        loginHelper.quickLoginViaOtp("9205299330", "547372");
-        loginHelper.quickLoginViaOtp("9953138474", "");
+        loginHelper.quickLoginViaOtp("9205299330", "547372");
+        //loginHelper.quickLoginViaOtp("9953138474", "");
 
         // Execute the test
         RewardsHelper rewardsHelper = new RewardsHelper(getAndroidDriver());
-        rewardsHelper.spinTheWheel("1", "Payment Successful", "Gold Purchase");
+        rewardsHelper.spinTheWheel("Feeling Lucky?", "Spin the wheel and win exciting rewards everyday.", "Spin the wheel");
 
         Log.info("======= END : Spin the Wheel test =======");
 
