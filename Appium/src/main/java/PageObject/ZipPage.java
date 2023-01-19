@@ -15,7 +15,7 @@ public class ZipPage {
     @AndroidFindBy(id = "navigation_zip")
     private AndroidElement zipButton;
 
-    @AndroidFindBy(id = "btn_activate")
+    @AndroidFindBy(id = "cta")
     private AndroidElement cta;
 
     @AndroidFindBy(id = "button_accept")
@@ -33,7 +33,7 @@ public class ZipPage {
     @AndroidFindBy(id = "com.android.permissioncontroller:id/permission_allow_button")
     private AndroidElement permissionAllowMessages;
 
-    @AndroidFindBy(id = "mkab_title")
+    @AndroidFindBy(id = "tv_title")
     private AndroidElement title;
 
     @AndroidFindBy(id = "tv_label")
