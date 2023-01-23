@@ -11,6 +11,7 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
+import java.util.LinkedHashMap;
 
 public class LoanHelper {
 
@@ -19,6 +20,9 @@ public class LoanHelper {
     LoanPage loanPage;
     Screen screen;
     MBReporter mbReporter;
+    MBKCommonControlsHelper mbkCommonControlsHelper;
+    LinkedHashMap<String, String> balanceBefore;
+    LinkedHashMap<String, String> balanceAfter;
 
 
     public LoanHelper(AndroidDriver driver) throws IOException {
@@ -27,10 +31,12 @@ public class LoanHelper {
         loanPage = new LoanPage(driver);
         screen = new Screen(driver);
         mbReporter = new MBReporter(driver);
+        mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
     public void verifyLoan(String expLoanPageText, String expLoanPageCtaText) throws InterruptedException, IOException {
+
         // Tap on Loan Page
         loanPage.clickLoansIcon();
 

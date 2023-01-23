@@ -16,25 +16,39 @@ public class HomePage {
 
     AndroidDriver driver;
     //############################ Udit start ################################
-    @AndroidFindBy(xpath="//*[@text='All Services']")
+
+    @AndroidFindBy(id = "icon_chevron")
+    public AndroidElement walletBalanceDropDown;
+
+    @AndroidFindBy(id = "tx_balance")
+    public AndroidElement totalBalance;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Added Balance']/following-sibling::android.widget.TextView[1]")
+    private AndroidElement addmoneyBalance;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'SuperCash Balance']/following-sibling::android.widget.TextView[1]")
+    private AndroidElement supercashBalance;
+
+
+    @AndroidFindBy(xpath = "//*[@text='All Services']")
     private AndroidElement allServicesTab;
 
-    @AndroidFindBy(xpath="//*[@text='Skip']")
+    @AndroidFindBy(xpath = "//*[@text='Skip']")
     private AndroidElement checkSkip;
 
-    @AndroidFindBy(xpath="//*[@text='View Details']")
+    @AndroidFindBy(xpath = "//*[@text='View Details']")
     private AndroidElement checkViewDetails;
 
-    @AndroidFindBy(xpath="//*[@text='Home']")
+    @AndroidFindBy(xpath = "//*[@text='Home']")
     private AndroidElement homeTab;
 
-    @AndroidFindBy(xpath="//*[@text='Recharge & Pay Bills']")
+    @AndroidFindBy(xpath = "//*[@text='Recharge & Pay Bills']")
     private AndroidElement rechargeBills;
 
-    @AndroidFindBy(xpath="//android.view.ViewGroup/android.view.ViewGroup/android.widget.TextView[1]")
+    @AndroidFindBy(xpath = "//android.view.ViewGroup/android.view.ViewGroup/android.widget.TextView[1]")
     private AndroidElement getBalance;
 
-    @AndroidFindBy(xpath="//android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.ImageView[3]")
+    @AndroidFindBy(xpath = "//android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.ImageView[3]")
     private AndroidElement clickSideDrawer;
 
     //############################ Udit end ################################
@@ -69,7 +83,6 @@ public class HomePage {
     private AndroidElement layoutSelecterInvestmentAndInsurance;
 
 
-
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Buy 99.5% pure gold']")
     private AndroidElement icon_gold;
 
@@ -101,7 +114,6 @@ public class HomePage {
     private AndroidElement icon_gas;
 
 
-
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Credit Card']")
     private AndroidElement icon_credit_card;
 
@@ -121,9 +133,8 @@ public class HomePage {
     @AndroidFindBy(id = "skip")
     public AndroidElement skip_button;
 
-    @AndroidFindBy(id ="icon_chevron")
+    @AndroidFindBy(id = "icon_chevron")
     public AndroidElement open_balance_drawer;
-
 
 
 //    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Wallet']")
@@ -131,6 +142,7 @@ public class HomePage {
 
 //    @AndroidFindBy(xpath = "//android.widget.TextView[@text='History']")
 //    private AndroidElement button_history;
+
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Expense Manager']")
     private AndroidElement button_expense;
@@ -226,30 +238,35 @@ public class HomePage {
 
     //############################ Old end ################################
 
-    public HomePage(AndroidDriver driver){
-        this.driver=driver;
+    public HomePage(AndroidDriver driver) {
+        this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
 
     }
+
     //############################ Udit start ################################
     public void clickAllServicesTab(String comment) {
-        Elements.selectElement(driver,allServicesTab,"Click All Services tab for "+comment);
+        Elements.selectElement(driver, allServicesTab, "Click All Services tab for " + comment);
     }
 
     public void clickSkip() {
-        Elements.selectElement(driver,checkSkip,"Click Skip");
+        Elements.selectElement(driver, checkSkip, "Click Skip");
+    }
+
+    public void clickWalletBalanceDropDown() {
+        Elements.selectElement(driver, walletBalanceDropDown, "Click Wallet Balance Drop Down");
     }
 
     public void clickHomeTab() {
-        Elements.selectElement(driver,homeTab,"Click Home tab");
+        Elements.selectElement(driver, homeTab, "Click Home tab");
     }
 
     public void clickRechargePayBill() {
-        Elements.selectElement(driver,rechargeBills,"Click Recharge & Pay Bills");
+        Elements.selectElement(driver, rechargeBills, "Click Recharge & Pay Bills");
     }
 
     public void openSideDrawr() {
-        Elements.selectElement(driver,clickSideDrawer,"Open side drawer");
+        Elements.selectElement(driver, clickSideDrawer, "Open side drawer");
     }
 
     //############################ Udit end ################################
@@ -303,7 +320,7 @@ public class HomePage {
     }
 
     public AddMoneyPage clickOnAddMoneyButton() throws IOException, InterruptedException {
-        if(Element.isElementPresent(driver, By.id("icon_drawer"))) {
+        if (Element.isElementPresent(driver, By.id("icon_drawer"))) {
             Element.selectElement(driver, open_balance_drawer, "Open Balance Drawer");
             Element.selectElement(driver, button_add_money, "Add Money button");
         }
@@ -334,7 +351,6 @@ public class HomePage {
         Element.selectElement(driver, icon_gas, "Gas Icon");
         return new RechargePage(driver);
     }
-
 
 
     public RechargePage clickCreditCardIcon() throws IOException {
@@ -401,8 +417,6 @@ public class HomePage {
         Element.selectElement(driver, icon_p2p_extra, "P2P Extra under Investment and Insurance");
         return new P2PExtraPage(driver);
     }
-
-
 
 
     public void clickHistory() throws IOException {
@@ -487,17 +501,17 @@ public class HomePage {
         Element.selectElement(driver, cross_icon_for_more_services_overlay, "Close Overlay");
     }
 
-    public void clickOnAllServicesSection() throws InterruptedException{
+    public void clickOnAllServicesSection() throws InterruptedException {
         Element.selectElement(driver, bottom_bar_all_services, "Open All Service Section");
     }
 
-//    public DealsPage clickOnButtonDeals() throws IOException {
+    //    public DealsPage clickOnButtonDeals() throws IOException {
 //        Element.selectElement(driver, button_deals, "Open Deals");
 //        return new DealsPage(driver);
 //
 //
 //    }
-    public void navigateToHome() throws IOException{
+    public void navigateToHome() throws IOException {
         Element.selectElement(driver, bottom_bar_home, " Navigate Back To Home");
     }
 
@@ -506,8 +520,20 @@ public class HomePage {
     }
 
 
-    public void openBalanceDrawer() throws InterruptedException{
+    public void openBalanceDrawer() throws InterruptedException {
         Element.selectElement(driver, open_balance_drawer, "Open Balance Drawer");
+    }
+
+    public String getSuperCashBalance() throws InterruptedException {
+        return Elements.getText(driver, supercashBalance, "SuperCash");
+    }
+
+    public String getAddMoney() throws InterruptedException {
+        return Elements.getText(driver, addmoneyBalance, "Add Money");
+    }
+
+    public String getTotalBalance() throws InterruptedException {
+        return Elements.getText(driver, totalBalance, "Total balance");
     }
 
     //############################ Old end ################################

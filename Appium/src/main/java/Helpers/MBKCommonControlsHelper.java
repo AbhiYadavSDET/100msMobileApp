@@ -35,12 +35,12 @@ public class MBKCommonControlsHelper {
     public String getBalance(HashMap<String, String> balance, BalanceType balanceType) {
         switch (balanceType) {
             case MAINBALANCE:
-                return balance.get("Available Balance");
+                return balance.get("Balance");
             case SUPERCASH:
-                return balance.get("SuperCash");
+                return balance.get("Supercash");
 
             case MONEYADDED:
-                return balance.get("Money Added");
+                return balance.get("AddMoney");
 
 
             case FOODBALANCE:
@@ -243,52 +243,31 @@ public class MBKCommonControlsHelper {
 
     public LinkedHashMap<String, String> getBalance() throws InterruptedException, IOException {
 
-        LinkedHashMap<String, String> walletBalance = new LinkedHashMap<>();
-
         Log.info("START", "Fetch Wallet balance");
 
-        // Goto balance details screen
+        LinkedHashMap<String, String> walletBalance = new LinkedHashMap<>();
+
+        // Click on the Wallet balance Drop down
         HomePage homePage = new HomePage(driver);
-
-        homePage.openBalanceDrawer();
-
-        mbkCommonControlsPage.clickOnSeeAll();
+        homePage.clickWalletBalanceDropDown();
 
         Thread.sleep(2000);
 
-        // fetch the balance and add to Map
-        Element.waitForVisibility(driver, walletBalancePage.label_available_balance);
-        int noOfBalance = Element.findElements(driver, By.id("bt_type")).size();
-        Log.info("noOfBalance - " + noOfBalance);
+        // Display the Nos. of balance for the user
+        int noOfBalance = Element.findElements(driver, By.id("amount")).size();
+        Log.info("noOfBalance - " + (noOfBalance - 2));
 
-        // Fetch the total balance
-        String totalBalanceText = walletBalancePage.getTotalBalanceName();
-        String totalBalanceValue = walletBalancePage.getTotalBalanceValue();
+        // Get the "Total Balance" and add to Map
+        String totalBalance = homePage.getTotalBalance().replace("Balance: ₹", "");
+        walletBalance.put("Balance", totalBalance);
 
-        walletBalance.put(totalBalanceText, totalBalanceValue);
+        // Get the "Add Money" Balance
+        String addmoney = homePage.getAddMoney().replace("₹", "");
+        walletBalance.put("AddMoney", addmoney);
 
-
-        // Fetch the rest of the balances
-        for (int i = 1; i <= noOfBalance; i++) {
-
-            String balanceText = element.findElement(driver, By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.ScrollView/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.LinearLayout[" + i + "]/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.TextView[1]")).getText().replace(" “", "").trim();
-            String balanceValue = element.findElement(driver, By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.ScrollView/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.LinearLayout[\" + i + \"]/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.TextView[2]")).getText().replace("X", "").replace(",", "");
-            walletBalance.put(balanceText, balanceValue);
-        }
-
-        screen.swipeUpMore(driver);
-
-        // Fetch the supercash balance
-
-        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='SuperCash “']"))) {
-            String supercashText = "SuperCash";
-            String supercashValue = walletBalancePage.getSupercashBalanceValue();
-            walletBalance.put(supercashText, supercashValue);
-        } else {
-            String supercashText = "SuperCash";
-            String supercashValue = "0";
-            walletBalance.put(supercashText, supercashValue);
-        }
+        // Get the "Supercash" Balance
+        String supercash = homePage.getSuperCashBalance().replace("₹", "");
+        walletBalance.put("Supercash", supercash);
 
         Log.info("------------ Balance --------------");
 
@@ -298,12 +277,13 @@ public class MBKCommonControlsHelper {
 
         Log.info("-----------------------------------");
 
-        for (int i = 0; i < 2; i++) {
-            clickUpButton();
-        }
+        // Click on the
+        homePage.clickWalletBalanceDropDown();
+
         Log.info("END : Fetch Wallet balance");
         return walletBalance;
     }
+
 
     public void handleCTOverlay() throws InterruptedException {
         Thread.sleep(4000);

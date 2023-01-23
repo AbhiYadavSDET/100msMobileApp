@@ -66,6 +66,15 @@ public class P2MPage {
     @AndroidFindBy(id = "mkab_icon_1")
     private AndroidElement successScreenUpButton;
 
+    @AndroidFindBy(id = "back_icon")
+    private AndroidElement upButtom;
+
+    @AndroidFindBy(id = "close_button")
+    private AndroidElement backButton;
+
+    @AndroidFindBy(id = "add_account_button")
+    public AndroidElement upiBottomSheetCta;
+
 
     public P2MPage(AndroidDriver driver) {
         this.driver = driver;
@@ -134,5 +143,12 @@ public class P2MPage {
         return Elements.getText(driver, successScreenZipCta, "Zip Cta Text");
     }
 
+    public void clickUpButton() {
+        Elements.selectElement(driver, upButtom, "Up Button");
+    }
+
+    public void clickBackButton() {
+        Elements.selectElement(driver, backButton, "Close Icon");
+    }
 
 }
