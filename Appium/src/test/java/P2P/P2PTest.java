@@ -23,7 +23,7 @@ public class P2PTest extends TestBase {
 
         // Execute the test
         P2PHelper p2PHelper = new P2PHelper(getAndroidDriver());
-        p2PHelper.p2pSend("9811499418", "5", "You Sent", "₹5", "to Ashima bhatnagar", "9811499418", "Wallet", "Activate Now");
+        p2PHelper.p2pSend("9999301210", "5", "You Sent", "₹5", "to Neelam Suneja", "9999301210", "Wallet", "Activate Now");
 
         Log.info("======= END : P2P Send test =======");
 

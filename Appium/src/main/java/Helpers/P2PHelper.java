@@ -2,6 +2,7 @@ package Helpers;
 
 import Logger.Log;
 import PageObject.GoldPage;
+import PageObject.P2MPage;
 import PageObject.P2PPage;
 import Utils.Elements;
 import Utils.MBReporter;
@@ -12,6 +13,7 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
+import java.util.LinkedHashMap;
 
 public class P2PHelper {
 
@@ -19,8 +21,12 @@ public class P2PHelper {
     Elements elements;
     GoldPage goldPage;
     P2PPage p2PPage;
+    P2MPage p2MPage;
     Screen screen;
     MBReporter mbReporter;
+    LinkedHashMap<String, String> balanceBefore;
+    LinkedHashMap<String, String> balanceAfter;
+    MBKCommonControlsHelper mbkCommonControlsHelper;
 
 
     public P2PHelper(AndroidDriver driver) throws IOException {
@@ -28,12 +34,17 @@ public class P2PHelper {
         elements = new Elements(driver);
         goldPage = new GoldPage(driver);
         p2PPage = new P2PPage(driver);
+        p2MPage = new P2MPage(driver);
         screen = new Screen(driver);
         mbReporter = new MBReporter(driver);
+        mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
     public void p2pSend(String mobileNo, String amount, String expStatus, String expAmount, String expReceiverName, String expReceiverMobileNo, String expPaymentMode, String expZipCtaText) throws InterruptedException, IOException {
+
+        // Get the Balance if the User Before TRX
+        balanceBefore = mbkCommonControlsHelper.getBalance();
 
         // Tap on See All Services
         p2PPage.clickAllServices();
@@ -81,11 +92,37 @@ public class P2PHelper {
         mbReporter.verifyEquals(actualPaymentMode, expPaymentMode, "Verify Amount", false, false);
         mbReporter.verifyEquals(actualZipCtaText, expZipCtaText, "Verify Amount", false, false);
 
+        // Click on the up Icon
+        p2MPage.clickUpButton();
+
+        // Click Cross Buttonm
+        p2MPage.clickBackButton();
 
         // Click on the up Icon
+        p2MPage.clickUpButton();
+
+        // Click on the back button if the bottom sheet is present
+        Thread.sleep(3000);
+        if (Elements.isElementPresent(driver, p2MPage.upiBottomSheetCta)) {
+            Elements.back(driver, "Navigate Back");
+        }
+
+        // Get the Balance if the User Before TRX
+        balanceAfter = mbkCommonControlsHelper.getBalance();
 
 
-        // Click on Home
+        // Assertions on the balance deducted
+        Double actualMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100;
+        Double actualMoneyAddedAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MONEYADDED)) * 100;
+        Double actualSupercashAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
+
+        Double expectedMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100 - Double.parseDouble(amount) * 100;
+        Double expectedMoneyAddedAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MONEYADDED)) * 100 - Double.parseDouble(amount) * 100;
+        Double expectedSupercashAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
+
+        mbReporter.verifyEquals(actualMainBalanceAfter, expectedMainBalanceAfter, "Post TRX | Verify Wallet Main Balance", false, false);
+        mbReporter.verifyEquals(actualMoneyAddedAfter, expectedMoneyAddedAfter, "Post TRX | Verify Money Added Balance", false, false);
+        mbReporter.verifyEquals(actualSupercashAfter, expectedSupercashAfter, "Post TRX | Verify Supercash Balance", false, false);
 
 
     }
