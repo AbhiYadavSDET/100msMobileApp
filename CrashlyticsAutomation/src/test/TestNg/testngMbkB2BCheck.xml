@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Mobikwik B2B Flow">
+
+    <test verbose="2" preserve-order="true" name="MBK B2B check flow Test">
+        <groups>
+            <run>
+                <include name="mobikwikB2BCheck"/>
+            </run>
+        </groups>
+
+
+        <classes>
+            <class name="MobikwikB2BCheck"/>
+        </classes>
+    </test>
+
+</suite>
+
