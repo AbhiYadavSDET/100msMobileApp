@@ -29,7 +29,7 @@
             <class name="Zip.ZipTest"/>
             <class name="Offers.OfferTest"/>
             <class name="Rewards.RewardsTest"/>
-
+            <class name="Recharge.RechargeTest"/>
         </classes>
     </test>
 
