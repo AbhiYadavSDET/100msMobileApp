@@ -27,6 +27,7 @@ public class MobikwikWebCheck {
         String otp="547372";
         String data = "";
         String exception="";
+        String buildNumber="";
 
         Boolean userLoggedIn=false;
 
@@ -63,6 +64,10 @@ public class MobikwikWebCheck {
                 userLoggedIn = true;
             }
 
+            buildNumber= driver.findElement(By.xpath("//div[@class='bluebgdark2 tcenter twhite_80 ft13 ln35 copyright']")).getText().replace("© 2023 One MobiKwik Systems Limited | All rights reserved. |", "");
+
+            Thread.sleep(1000);
+
 
         }catch (Exception e) {
 
@@ -97,16 +102,17 @@ public class MobikwikWebCheck {
             try {
                 Message message = new MimeMessage(session);
 
-                message.addRecipients(Message.RecipientType.TO, InternetAddress.parse("paraj.jain@mobikwik.com"));
+
                 message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("mayank.suneja@mobikwik.com"));
                 message.setRecipients(Message.RecipientType.CC, InternetAddress.parse("mbk-web@mobikwik.com"));
+                message.addRecipients(Message.RecipientType.CC, InternetAddress.parse("paraj.jain@mobikwik.com"));
 
                 Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
                 if (userLoggedIn) {
-                    message.setSubject("MobiKwik Website Running | LOGIN PASS | " + timestamp);
+                    message.setSubject("Build Number :"+buildNumber+" MobiKwik Website Running | LOGIN PASS | " + timestamp);
                 } else {
-                    message.setSubject("ALERT!!!!!!!!!!!!!MobiKwik Website Not Running | LOGIN FAILED |" + timestamp + "!!!!!!!!!!!!");
+                    message.setSubject("ALERT!!!!!!!!!!!!!"+" Build Number :"+buildNumber+" MobiKwik Website Not Running | LOGIN FAILED | " + timestamp + "!!!!!!!!!!!!");
                 }
 
                 if (userLoggedIn) {
