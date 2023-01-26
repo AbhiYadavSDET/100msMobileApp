@@ -2,6 +2,7 @@ package Helpers;
 
 import Logger.Log;
 import PageObject.GoldPage;
+import PageObject.SecurityPinPage;
 import Utils.Elements;
 import Utils.MBReporter;
 import Utils.Screen;
@@ -19,6 +20,7 @@ public class GoldHelper {
     GoldPage goldPage;
     Screen screen;
     MBReporter mbReporter;
+    SecurityPinPage securityPinPage;
 
 
     public GoldHelper(AndroidDriver driver) throws IOException {
@@ -27,6 +29,7 @@ public class GoldHelper {
         goldPage = new GoldPage(driver);
         screen = new Screen(driver);
         mbReporter = new MBReporter(driver);
+        securityPinPage = new SecurityPinPage(driver);
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
@@ -49,6 +52,11 @@ public class GoldHelper {
 
         // Click on Pay Now CTA
         goldPage.clickPayCta();
+
+        // checking for security pin
+        if(securityPinPage.getTitle().equals("Security PIN")){
+            securityPinPage.enterSecurityPin();
+        }
 
         // Verification on the Success Screen
         String title = goldPage.getTitle();
@@ -105,6 +113,7 @@ public class GoldHelper {
 
         // Click on Sell Gold Cta
         goldPage.clickSellGoldCta();
+
 
         // Verification on the Success Screen
         String title = goldPage.getTitle();
