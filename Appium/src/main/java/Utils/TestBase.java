@@ -24,6 +24,8 @@ public class TestBase {
     String udid = "e0cd9c9";
     String deviceName = "OnePlus 8T";
 
+    Boolean cloudRun= false;
+
     private static FileAppender appender;
     private static PatternLayout layout = new PatternLayout("%d{dd MMM yyyy HH:mm:ss} [%M] [%C{1}:%L] - %m%n ");
     private static ConsoleAppender consoleAppender;
@@ -72,16 +74,15 @@ public class TestBase {
      * @param androidOSVersion - for specifying the OS version of te device
      * @throws Exception issue while loading properties files or creation of driver.
      */
-    @Parameters({"build", "methodName", "portNo", "androidOSVersion", "deviceName", "udid"})
+    @Parameters({"build", "methodName", "portNo", "androidOSVersion", "deviceName", "udid", "cloudRun"})
     @BeforeMethod(groups = "setUp", alwaysRun = true)
-    public void createDriver(String build, @Optional String methodName, @Optional String portNo, @Optional String androidOSVersion, @Optional String deviceName, @Optional String udid) throws Exception {
+    public void createDriver(String build, @Optional String methodName, @Optional String portNo, @Optional String androidOSVersion, @Optional String deviceName, @Optional String udid , @Optional Boolean cloudRun) throws Exception {
 
         // Initializing the test and load the config files
         intialization();
 
         if (portNo == null) {
             portNo = this.portNo;
-
         }
 
         if (androidOSVersion == null) {
@@ -96,18 +97,33 @@ public class TestBase {
             udid = this.udid;
         }
 
+        if (cloudRun== null) {
+            cloudRun = this.cloudRun;
+        }
 
-        Log.info("------ Arguments -------------");
-        Log.info(build);
-        Log.info(methodName);
-        Log.info(portNo);
-        Log.info(deviceName);
-        Log.info(udid);
-        Log.info(androidOSVersion);
-        Log.info("--------------------------------");
+
+        if(!cloudRun) {
+            Log.info("------ Arguments -------------");
+            Log.info(build);
+            Log.info(methodName);
+            Log.info(portNo);
+            Log.info(deviceName);
+            Log.info(udid);
+            Log.info(androidOSVersion);
+            Log.info("--------------------------------");
+        }else {
+
+            Log.info("------ Arguments -------------");
+            Log.info("MBK Signed APK");
+            Log.info("Samsung Galaxy S22 Ultra");
+            Log.info("12.0");
+            Log.info("Cloud Run : BrowserStack");
+            Log.info("--------------------------------");
+
+        }
 
         String buildPath = choosebuild(build);
-        initiateTest(buildPath, methodName, portNo, androidOSVersion, deviceName, udid);
+        initiateTest(buildPath, methodName, portNo, androidOSVersion, deviceName, udid, cloudRun);
 
     }
 
@@ -118,9 +134,11 @@ public class TestBase {
      * @return instance of iOS driver
      * @throws MalformedURLException Thrown to indicate that a malformed URL has occurred.
      */
-    protected AndroidDriver initiateTest(String buildPath, String methodName, String portNo, String androidOSVersion, String deviceName, String udid) throws MalformedURLException {
+    protected AndroidDriver initiateTest(String buildPath, String methodName, String portNo, String androidOSVersion, String deviceName, String udid, Boolean cloudRun) throws MalformedURLException {
 
-        File app = new File(buildPath);
+
+        if(!cloudRun) {
+            File app = new File(buildPath);
         DesiredCapabilities cap = new DesiredCapabilities();
         cap.setCapability(MobileCapabilityType.PLATFORM_NAME, "ANDROID");
         cap.setCapability(MobileCapabilityType.DEVICE_NAME, "e0cd9c9");
@@ -132,8 +150,35 @@ public class TestBase {
         cap.setCapability("app", app.getAbsolutePath());
 //        cap.setCapability("app","//Users//uditgupta//Desktop//MK_Android_App-prod-debug.apk");
         AndroidDriver driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), cap);
-        androidDriverThread.set(driver);
-        return androidDriverThread.get();
+            androidDriverThread.set(driver);
+            return androidDriverThread.get();
+
+
+        }else {
+            DesiredCapabilities caps = new DesiredCapabilities();
+
+            // Set your access credentials
+            caps.setCapability("browserstack.user", "parajjain_X3pLgw");
+            caps.setCapability("browserstack.key", "5QyNfuj7vp3qsNWTvWsF");
+            // Set URL of the application under test
+            caps.setCapability("app", "bs://a0d375e87b22893f753a7379ddeb9e7bf6182a54");
+            // Specify device and os_version for testing
+            caps.setCapability("device", "Samsung Galaxy S22 Ultra");
+            caps.setCapability("os_version", "12.0");
+            // Set other BrowserStack capabilities
+            caps.setCapability("project", "MBK Sanity Project");
+            caps.setCapability("build", "browserstack-build-1");
+            caps.setCapability("name", "first_test");
+
+            // Initialize the remote Webdriver using BrowserStack remote URL
+            // and desired capabilities defined above
+
+            AndroidDriver driver = new AndroidDriver(new URL("http://hub.browserstack.com/wd/hub"), caps);
+            androidDriverThread.set(driver);
+            return androidDriverThread.get();
+
+        }
+
     }
 
     public String choosebuild(String build) {
