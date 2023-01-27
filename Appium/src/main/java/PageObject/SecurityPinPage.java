@@ -35,6 +35,11 @@ public class SecurityPinPage {
     @AndroidFindBy(id = "tv_title")
     private AndroidElement title;
 
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Security PIN']")
+    private AndroidElement securityPin;
+
+
+
 
     public SecurityPinPage(AndroidDriver driver) {
         this.driver = driver;
@@ -68,6 +73,10 @@ public class SecurityPinPage {
            Elements.selectElement(driver, oneButton, "click on one");
            Elements.selectElement(driver, twoButton, "click on two");
        }
+    }
+
+    public boolean checkSecurityPinPage() throws InterruptedException {
+        return Elements.isElementPresent(driver, securityPin);
     }
 
 }
