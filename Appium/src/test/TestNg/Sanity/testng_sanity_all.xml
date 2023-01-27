@@ -30,6 +30,7 @@
             <class name="Offers.OfferTest"/>
             <class name="Rewards.RewardsTest"/>
             <class name="Recharge.RechargeTest"/>
+            <class name="SecurityPin.SecurityPinTest"/>
         </classes>
     </test>
 
