@@ -10,7 +10,7 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.support.PageFactory;
-
+import java.util.LinkedHashMap;
 import java.io.IOException;
 
 public class GoldHelper {
@@ -21,6 +21,9 @@ public class GoldHelper {
     Screen screen;
     MBReporter mbReporter;
     SecurityPinPage securityPinPage;
+    MBKCommonControlsHelper mbkCommonControlsHelper;
+    LinkedHashMap<String, String> balanceBefore;
+    LinkedHashMap<String, String> balanceAfter;
 
 
     public GoldHelper(AndroidDriver driver) throws IOException {
@@ -30,10 +33,14 @@ public class GoldHelper {
         screen = new Screen(driver);
         mbReporter = new MBReporter(driver);
         securityPinPage = new SecurityPinPage(driver);
+        mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
     public void goldBuy(String amount, String expTitle, String expSubTitle, String expGoldAmount, String expAmount) throws InterruptedException, IOException {
+
+        // Get the Balance if the User Before TRX
+        balanceBefore = mbkCommonControlsHelper.getBalance();
 
         // Tap on See All Services
         goldPage.clickAllServices();
@@ -54,7 +61,7 @@ public class GoldHelper {
         goldPage.clickPayCta();
 
         // checking for security pin
-        if(securityPinPage.getTitle().equals("Security PIN")){
+        if(securityPinPage.checkSecurityPinPage()){
             securityPinPage.enterSecurityPin();
         }
 
@@ -77,13 +84,30 @@ public class GoldHelper {
         mbReporter.verifyEquals(txnAmount, expAmount, "Verify Amount", false, false);
 
 
-        // Click on the Back Icon
-        goldPage.clickCloseIcon();
+        // back to home
+        mbkCommonControlsHelper.pressback(3);
 
-        // Click on the up Icon
-        goldPage.clickUpIcon();
+        // Click on the back button if the bottom sheet is present
+        mbkCommonControlsHelper.handleHomePageLanding();
 
-        // Click on Home
+        // Get the Balance if the User Before TRX
+        balanceAfter = mbkCommonControlsHelper.getBalance();
+
+
+        // Assertions on the balance deducted
+        Double actualMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100;
+        Double actualMoneyAddedAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MONEYADDED)) * 100;
+        Double actualSupercashAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
+
+        Double expectedMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100 - Double.parseDouble(amount) * 100;
+        Double expectedMoneyAddedAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MONEYADDED)) * 100 - Double.parseDouble(amount) * 100;
+        Double expectedSupercashAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
+
+        mbReporter.verifyEquals(actualMainBalanceAfter, expectedMainBalanceAfter, "Post TRX | Verify Wallet Main Balance", false, false);
+        mbReporter.verifyEquals(actualMoneyAddedAfter, expectedMoneyAddedAfter, "Post TRX | Verify Money Added Balance", false, false);
+        mbReporter.verifyEquals(actualSupercashAfter, expectedSupercashAfter, "Post TRX | Verify Supercash Balance", false, false);
+
+        mbkCommonControlsHelper.pressback();
 
 
     }
@@ -140,6 +164,8 @@ public class GoldHelper {
         goldPage.clickUpIcon();
 
         // Click on Home
+
+
 
 
     }

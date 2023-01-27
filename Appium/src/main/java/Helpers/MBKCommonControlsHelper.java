@@ -6,6 +6,7 @@ import io.appium.java_client.android.AndroidElement;
 import Logger.Log;
 import org.openqa.selenium.By;
 import Utils.Element;
+import Utils.Elements;
 import Utils.Screen;
 
 import java.io.IOException;
@@ -18,6 +19,7 @@ public class MBKCommonControlsHelper {
     AndroidDriver driver;
     MbkCommonControlsPage mbkCommonControlsPage;
     Element element;
+    Elements elements;
     WalletBalancePage walletBalancePage;
     Screen screen;
     TransactionHistoryPage transactionHistoryPage;
@@ -57,6 +59,7 @@ public class MBKCommonControlsHelper {
         this.driver = driver;
         mbkCommonControlsPage = new MbkCommonControlsPage(driver);
         element = new Element(driver);
+        elements = new Elements(driver);
         screen = new Screen(driver);
         walletBalancePage = new WalletBalancePage(driver);
         transactionHistoryPage = new TransactionHistoryPage(driver);
@@ -447,6 +450,14 @@ public class MBKCommonControlsHelper {
         mbkCommonControlsPage.uncheckInsuranceCheckBox();
     }
 
+    public void pressback(Integer times) throws InterruptedException {
+        for(int i = 0 ; i < times ; i++){
+            Elements.back(driver,"press back");
+        }
+    }
+    public void pressback() throws InterruptedException {
+        Elements.back(driver,"press back");
+    }
 
 }
 
