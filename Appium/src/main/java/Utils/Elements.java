@@ -38,6 +38,7 @@ public class Elements extends TestBase {
 
         Config.logComment("Clear '" + comments + "'");
         element.clear();
+
     }
 
     private static void click(AndroidDriver driver, AndroidElement element, String comments) {
