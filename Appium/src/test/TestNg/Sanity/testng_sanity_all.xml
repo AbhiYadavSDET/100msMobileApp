@@ -9,6 +9,7 @@
 
     <listeners>
         <listener class-name="Utils.Listeners.AnnotationTransformer"/>
+        <listener class-name="Utils.ExtentReportListener"/>
     </listeners>
 
     <test verbose="2" preserve-order="true" name="Sanity Test">
