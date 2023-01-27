@@ -14,6 +14,7 @@ import org.testng.Assert;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class RechargeHelper {
 
@@ -25,21 +26,30 @@ public class RechargeHelper {
     PermissionPage permissionsPage;
     Screen screen;
     MBReporter mbReporter;
+    SecurityPinPage securityPinPage;
+    MBKCommonControlsHelper mbkCommonControlsHelper;
+    LinkedHashMap<String, String> balanceBefore;
+    LinkedHashMap<String, String> balanceAfter;
 
 
 
     public RechargeHelper(AndroidDriver<AndroidElement> driver) throws IOException {
-        this.driver=driver;
+        this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
-        rechargePage=new RechargePage(driver);
+        rechargePage = new RechargePage(driver);
         loginPage = new LoginPage(driver);
-        homePage=new HomePage(driver);
-        permissionsPage=new PermissionPage(driver);
-        mbReporter=new MBReporter(driver);
+        homePage = new HomePage(driver);
+        permissionsPage = new PermissionPage(driver);
+        mbReporter = new MBReporter(driver);
+        securityPinPage = new SecurityPinPage(driver);
+        mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
     }
 
 
     public void postpaidRecharge(String amount, String expAmountOnPaymentScreen, String expTitle, String expSubTitle, String expAmountOnSuccessScreen) throws InterruptedException, IOException {
+
+        // Get the Balance if the User Before TRX
+        balanceBefore = mbkCommonControlsHelper.getBalance();
 
         // Click on Recharge And PayBills
         rechargePage.clickRechargeAndPayBills();
@@ -60,7 +70,6 @@ public class RechargeHelper {
         rechargePage.setEnterAmountPostpaid(amount);
 
         // Click on Continue
-
         rechargePage.clickOnContinue();
 
 
@@ -70,6 +79,11 @@ public class RechargeHelper {
         mbReporter.verifyEquals(amountOnPaymentScreen, expAmountOnPaymentScreen, "Verify Amount on Payment screen", false, false);
 
         rechargePage.clickOnPay();
+
+        // checking for security pin
+        if(securityPinPage.checkSecurityPinPage()){
+            securityPinPage.enterSecurityPin();
+        }
 
         // Verification on the Success Screen
         String title = rechargePage.getTitle();
@@ -87,10 +101,38 @@ public class RechargeHelper {
         mbReporter.verifyEquals(subTitle, expSubTitle, "Verify Sub Title", false, false);
         mbReporter.verifyEquals(amountOnSuccesScreen, expAmountOnSuccessScreen, "Verify Gold Amount", false, false);
 
+        mbkCommonControlsHelper.pressback(3);
+
+        // Click on the back button if the bottom sheet is present
+        mbkCommonControlsHelper.handleHomePageLanding();
+
+        // Get the Balance if the User Before TRX
+        balanceAfter = mbkCommonControlsHelper.getBalance();
+
+
+        // Assertions on the balance deducted
+        Double actualMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100;
+        Double actualMoneyAddedAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MONEYADDED)) * 100;
+        Double actualSupercashAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
+
+        Double expectedMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100 - Double.parseDouble(amount) * 100;
+        Double expectedMoneyAddedAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MONEYADDED)) * 100 - Double.parseDouble(amount) * 100;
+        Double expectedSupercashAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
+
+        mbReporter.verifyEquals(actualMainBalanceAfter, expectedMainBalanceAfter, "Post TRX | Verify Wallet Main Balance", false, false);
+        mbReporter.verifyEquals(actualMoneyAddedAfter, expectedMoneyAddedAfter, "Post TRX | Verify Money Added Balance", false, false);
+        mbReporter.verifyEquals(actualSupercashAfter, expectedSupercashAfter, "Post TRX | Verify Supercash Balance", false, false);
+
+        mbkCommonControlsHelper.pressback();
+
+
     }
 
 
     public void prepaidRecharge(String amount, String expAmountOnPaymentScreen, String expTitle, String expSubTitle, String expAmountOnSuccessScreen) throws InterruptedException, IOException {
+
+        // Get the Balance if the User Before TRX
+        balanceBefore = mbkCommonControlsHelper.getBalance();
 
         // Click on Recharge And PayBills
         rechargePage.clickRechargeAndPayBills();
@@ -121,6 +163,10 @@ public class RechargeHelper {
 
         rechargePage.clickOnPay();
 
+        if(securityPinPage.checkSecurityPinPage()){
+            securityPinPage.enterSecurityPin();
+        }
+
         // Verification on the Success Screen
         String title = rechargePage.getTitle();
         String subTitle = rechargePage.getSubTitle();
@@ -136,6 +182,30 @@ public class RechargeHelper {
         mbReporter.verifyEquals(title, expTitle, "Verify Title", false, false);
         mbReporter.verifyEquals(subTitle, expSubTitle, "Verify Sub Title", false, false);
         mbReporter.verifyEquals(amountOnSuccesScreen, expAmountOnSuccessScreen, "Verify Gold Amount", false, false);
+
+        mbkCommonControlsHelper.pressback(3);
+
+        // Click on the back button if the bottom sheet is present
+        mbkCommonControlsHelper.handleHomePageLanding();
+
+        // Get the Balance if the User Before TRX
+        balanceAfter = mbkCommonControlsHelper.getBalance();
+
+
+        // Assertions on the balance deducted
+        Double actualMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100;
+        Double actualMoneyAddedAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MONEYADDED)) * 100;
+        Double actualSupercashAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
+
+        Double expectedMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100 - Double.parseDouble(amount) * 100;
+        Double expectedMoneyAddedAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MONEYADDED)) * 100 - Double.parseDouble(amount) * 100;
+        Double expectedSupercashAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
+
+        mbReporter.verifyEquals(actualMainBalanceAfter, expectedMainBalanceAfter, "Post TRX | Verify Wallet Main Balance", false, false);
+        mbReporter.verifyEquals(actualMoneyAddedAfter, expectedMoneyAddedAfter, "Post TRX | Verify Money Added Balance", false, false);
+        mbReporter.verifyEquals(actualSupercashAfter, expectedSupercashAfter, "Post TRX | Verify Supercash Balance", false, false);
+
+        mbkCommonControlsHelper.pressback();
 
     }
 

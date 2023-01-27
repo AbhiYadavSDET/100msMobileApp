@@ -7,6 +7,11 @@
     <parameter name="saucelabs" value="false"></parameter>
     <parameter name="androidOSVersion" value="12.0"></parameter>
 
+    <listeners>
+        <listener class-name="Utils.Listeners.AnnotationTransformer"/>
+        <listener class-name="Utils.ExtentReportListener"/>
+    </listeners>
+
     <test verbose="2" preserve-order="true" name="Sanity Test">
         <groups>
             <run>
