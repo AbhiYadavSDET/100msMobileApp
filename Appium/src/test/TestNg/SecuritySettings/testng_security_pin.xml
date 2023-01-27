@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Sanity">
+<suite name="Gold Flow">
 
     <parameter name="build" value="prod"/>
     <parameter name="level" value="payments"/>
     <parameter name="saucelabs" value="false"></parameter>
     <parameter name="androidOSVersion" value="12.0"></parameter>
 
-    <test verbose="2" preserve-order="true" name="Sanity Test">
+    <test verbose="2" preserve-order="true" name="Gold flow Test">
         <groups>
             <run>
                 <include name="setUp"/>
@@ -20,16 +20,6 @@
 
         <classes>
             <class name="Utils.TestBase"/>
-            <class name="P2P.P2PTest"/>
-            <class name="P2M.P2MTest"/>
-            <class name="P2PExtra.P2PExtraTest"/>
-            <class name="MutualFunds.MutualFundsTest"/>
-            <class name="Gold.GoldTest"/>
-            <class name="Loan.LoanTest"/>
-            <class name="Zip.ZipTest"/>
-            <class name="Offers.OfferTest"/>
-            <class name="Rewards.RewardsTest"/>
-            <class name="Recharge.RechargeTest"/>
             <class name="SecurityPin.SecurityPinTest"/>
         </classes>
     </test>
