@@ -7,12 +7,34 @@ import org.apache.log4j.*;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.*;
 
+//import javax.mail.Message;
+//import javax.mail.Session;
+//import javax.mail.internet.InternetAddress;
+//import javax.mail.internet.MimeMessage;
 import java.io.File;
 import java.io.IOException;
+//import java.net.Authenticator;
 import java.net.MalformedURLException;
+//import java.net.PasswordAuthentication;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+//import java.util.Properties;
+
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.sql.Timestamp;
+import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 @Listeners(Utils.Listeners.TestListener.class)
 public class TestBase {
@@ -23,6 +45,8 @@ public class TestBase {
     String portNo = "4723";
     String udid = "e0cd9c9";
     String deviceName = "OnePlus 8T";
+
+
 
     Boolean cloudRun= false;
 
@@ -232,24 +256,73 @@ public class TestBase {
 
     private static void sendReportViaMail() {
 
-
-        Log.info("sendReportViaMail");
-//        Mailer mailer = (Mailer) ApplicationContextProvider.getApplicationContext().getBean("mailer");
-
-// Create the list of attachments
-        List<String> listOfAttachments = new ArrayList<>();
-        listOfAttachments.add("/home/parajjain/Documents/MK-Automation/AndroidApp/test-output/ExtentReports/ExtentReport.html");
-
-// Create the recipients array
-        String[] recipients = {"QAfront-End@mobikwik.com"};
-//        String[] recipients = {"paraj.jain@mobikwik.com"};
-
-        Log.info("Send Mail : " + "Extent Report");
-
-//        String date = DateHelper.getCurrentDate(YYYY_MM_DD_HH_MM_SS);
+        String usernameMail = "mobikwiktest123@gmail.com";
+        String passMail = "njwqiqohpbaqekuq";
+        String data = "";
 
 
-//        mailer.sendMail(recipients, "Front-End Test Execution report : " + date, "Hi,<br>" + "<br>" + "PFB Front-End Automation TestReport.<br>" + "Please download and open the file with Chrome.<br>" + "<br>" + "<br>" + "Thanks,<br>" + "App Team", listOfAttachments);
+        Properties props = new Properties();
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.socketFactory.port", "465");
+        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.port", "465");
+        Session session = Session.getDefaultInstance(props,
+
+                new Authenticator() {
+
+                    protected PasswordAuthentication getPasswordAuthentication() {
+
+                        return new PasswordAuthentication(usernameMail, passMail);
+
+                    }
+
+                });
+
+        try {
+            Message message = new MimeMessage(session);
+
+            message.addRecipients(Message.RecipientType.TO, InternetAddress.parse("paraj.jain@mobikwik.com"));
+
+//            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("mayank.suneja@mobikwik.com"));
+//            message.setRecipients(Message.RecipientType.CC, InternetAddress.parse("MBK-Android@mobikwik.com"));
+//            message.addRecipients(Message.RecipientType.CC, InternetAddress.parse("paraj.jain@mobikwik.com"));
+
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
+
+                message.setSubject("Android App Periodic Sanity : " + timestamp);
+
+
+            BodyPart messageBodyPart1 = new MimeBodyPart();
+            messageBodyPart1.setText("Sanity Report is Attached with this mail.\nPlease open in CHROME and check for all cases execution status.");
+
+            MimeBodyPart messageBodyPart2 = new MimeBodyPart();
+            String filename="ExtentReport.html";
+            String filesource = "/Users/parajjain/IdeaProjects/MK-Automation/Appium/test-output/ExtentReports/ExtentReport.html";//change accordingly
+            DataSource source = new FileDataSource(filesource);
+            messageBodyPart2.setDataHandler(new DataHandler(source));
+            messageBodyPart2.setFileName(filename);
+
+            Multipart multipart = new MimeMultipart();
+            multipart.addBodyPart(messageBodyPart1);
+            multipart.addBodyPart(messageBodyPart2);
+
+            message.setContent(multipart);
+
+            // finally send the email
+            Transport.send(message);
+            Log.info("Email Sent");
+
+            System.out.println("=====Email Sent=====");
+
+        } catch (MessagingException e) {
+
+            throw new RuntimeException(e);
+
+        }
+
+
     }
 
 }
