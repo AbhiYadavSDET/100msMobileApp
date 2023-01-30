@@ -114,6 +114,9 @@ public class GoldHelper {
 
     public void goldSell(String amount, String expTitle, String expSubTitle, String expGoldAmount, String expAmount) throws InterruptedException, IOException {
 
+        // Get the Balance if the User Before TRX
+        balanceBefore = mbkCommonControlsHelper.getBalance();
+
         // Tap on See All Services
         goldPage.clickAllServices();
 
@@ -157,15 +160,30 @@ public class GoldHelper {
         mbReporter.verifyEquals(goldAmount, expGoldAmount, "Verify Gold Amount", false, false);
         mbReporter.verifyEquals(txnAmount, expAmount, "Verify Amount", false, false);
 
-        // Click on the Back Icon
-        goldPage.clickCloseIcon();
+        // back to home
+        mbkCommonControlsHelper.pressback(3);
 
-        // Click on the up Icon
-        goldPage.clickUpIcon();
+        // Click on the back button if the bottom sheet is present
+        mbkCommonControlsHelper.handleHomePageLanding();
 
-        // Click on Home
+        // Get the Balance if the User Before TRX
+        balanceAfter = mbkCommonControlsHelper.getBalance();
 
 
+        // Assertions on the balance deducted
+        Double actualMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100;
+        Double actualMoneyAddedAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MONEYADDED)) * 100;
+        Double actualSupercashAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
+
+        Double expectedMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100 + Double.parseDouble(amount) * 100;
+        Double expectedMoneyAddedAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MONEYADDED)) * 100 + Double.parseDouble(amount) * 100;
+        Double expectedSupercashAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
+
+        mbReporter.verifyEquals(actualMainBalanceAfter, expectedMainBalanceAfter, "Post TRX | Verify Wallet Main Balance", false, false);
+        mbReporter.verifyEquals(actualMoneyAddedAfter, expectedMoneyAddedAfter, "Post TRX | Verify Money Added Balance", false, false);
+        mbReporter.verifyEquals(actualSupercashAfter, expectedSupercashAfter, "Post TRX | Verify Supercash Balance", false, false);
+
+        mbkCommonControlsHelper.pressback();
 
 
     }
