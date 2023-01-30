@@ -23,7 +23,7 @@ public class P2MTest extends TestBase {
 
         // Execute the test
         P2MHelper p2mHelper = new P2MHelper(getAndroidDriver());
-        p2mHelper.p2mSend("blf001", "1", "You Paid", "₹1", "to Bayleaf @ MobiKwik", "Bayleaf @ MobiKwik", "BLF001", "Activate Now");
+        p2mHelper.p2mSend("blf001", "1", "You Paid", "₹1", "to Bayleaf @ MobiKwik", "Bayleaf @ MobiKwik", "BLF001", "Activate Now", "Paid to Bayleaf @ MobiKwik", "₹1", "Success");
 
         Log.info("======= END : P2M Send test =======");
 

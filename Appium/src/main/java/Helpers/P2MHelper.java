@@ -12,6 +12,7 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 public class P2MHelper {
@@ -38,7 +39,7 @@ public class P2MHelper {
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
-    public void p2mSend(String merchantCode, String amount, String expStatus, String expAmount, String expReceiverName, String expMerchantName, String expMerchantCode, String expZipCtaText) throws InterruptedException, IOException {
+    public void p2mSend(String merchantCode, String amount, String expStatus, String expAmount, String expReceiverName, String expMerchantName, String expMerchantCode, String expZipCtaText, String expectedHistoryDescription, String expectedHistoryAmount, String expectedHistoryStatus) throws InterruptedException, IOException {
 
         // Get the Balance if the User Before TRX
         balanceBefore = mbkCommonControlsHelper.getBalance();
@@ -126,6 +127,17 @@ public class P2MHelper {
         mbReporter.verifyEquals(actualMainBalanceAfter, expectedMainBalanceAfter, "Post TRX | Verify Wallet Main Balance", false, false);
         mbReporter.verifyEquals(actualMoneyAddedAfter, expectedMoneyAddedAfter, "Post TRX | Verify Money Added Balance", false, false);
         mbReporter.verifyEquals(actualSupercashAfter, expectedSupercashAfter, "Post TRX | Verify Supercash Balance", false, false);
+
+        // Verify the History details
+        HashMap<String, String> historyDetails = mbkCommonControlsHelper.getHistoryDetails(driver);
+
+        Log.info(historyDetails.get("description"));
+        Log.info(historyDetails.get("amount"));
+        Log.info(historyDetails.get("status"));
+
+        mbReporter.verifyEquals(historyDetails.get("description"), expectedHistoryDescription, "Post TRX | Verify History Description", false, false);
+        mbReporter.verifyEquals(historyDetails.get("amount"), expectedHistoryAmount, "Post TRX | Verify History Amount", false, false);
+        mbReporter.verifyEquals(historyDetails.get("status"), expectedHistoryStatus, "Post TRX | Verify History Status", false, false);
 
 
     }

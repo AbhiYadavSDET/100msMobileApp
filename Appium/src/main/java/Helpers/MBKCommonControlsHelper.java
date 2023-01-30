@@ -451,12 +451,44 @@ public class MBKCommonControlsHelper {
     }
 
     public void pressback(Integer times) throws InterruptedException {
-        for(int i = 0 ; i < times ; i++){
-            Elements.back(driver,"press back");
+        for (int i = 0; i < times; i++) {
+            Elements.back(driver, "press back");
         }
     }
+
     public void pressback() throws InterruptedException {
-        Elements.back(driver,"press back");
+        Elements.back(driver, "press back");
+    }
+
+    // Verify the History Section
+    public HashMap<String, String> getHistoryDetails(AndroidDriver driver) throws InterruptedException {
+        HistoryPage historyPage;
+
+        historyPage = new HistoryPage(driver);
+
+        // Click on the History Tab
+        Thread.sleep(5000);
+        historyPage.clickHistoryTab();
+
+        // Get the details from the latest entry in history section
+        String historyDescription = historyPage.getDescription();
+        String historyAmount = historyPage.getAmount();
+        String historyStatus = historyPage.getStatus();
+
+        Log.info(historyDescription);
+        Log.info(historyAmount);
+        Log.info(historyStatus);
+
+        HashMap<String, String> historyDetails = new HashMap<String, String>();
+        historyDetails.put("description", historyDescription);
+        historyDetails.put("amount", historyAmount);
+        historyDetails.put("status", historyStatus);
+
+        // Click on the History Tab
+        historyPage.clickHomeTab();
+
+        return historyDetails;
+
     }
 
 }
