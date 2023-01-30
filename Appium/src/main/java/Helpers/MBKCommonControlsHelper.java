@@ -115,22 +115,22 @@ public class MBKCommonControlsHelper {
                 addMoneyPage = homePage.clickOnAddMoneyButton();
 
                 // Click on the text box and Enter amount
-                addMoneyPage.clickOnAmountTextBox();
+                //addMoneyPage.clickOnAmountTextBox();
                 addMoneyPage.enterAmount(amount);
 
                 Thread.sleep(1000);
 
-                addMoneyPage.clickOnContinueButton();
+                //addMoneyPage.clickOnContinueButton();
 
                 AddMoneyHelper addmoneyHelper = new AddMoneyHelper(driver);
-                addmoneyHelper.handleAddMoney(cardNo, expiryMonthYear, cvv);
+                //addmoneyHelper.handleAddMoney(cardNo, expiryMonthYear, cvv);
 
             }
 
         } else {
 
             AddMoneyHelper addmoneyHelper = new AddMoneyHelper(driver);
-            addmoneyHelper.handleAddMoney(cardNo, expiryMonthYear, cvv);
+            //addmoneyHelper.handleAddMoney(cardNo, expiryMonthYear, cvv);
 
         }
 
@@ -139,7 +139,7 @@ public class MBKCommonControlsHelper {
     public void handleAddMoneyTillOtpPage(String cardNo, String expiryMonthYear, String cvv, String paymentFlow) throws InterruptedException, IOException {
 
         AddMoneyHelper addmoneyHelper = new AddMoneyHelper(driver);
-        addmoneyHelper.handleAddMoney(cardNo, expiryMonthYear, cvv, true, paymentFlow);
+        //addmoneyHelper.handleAddMoney(cardNo, expiryMonthYear, cvv, true, paymentFlow);
 
     }
 
