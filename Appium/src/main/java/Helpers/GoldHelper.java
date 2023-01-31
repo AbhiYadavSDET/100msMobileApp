@@ -37,7 +37,7 @@ public class GoldHelper {
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
-    public void goldBuy(String amount, String expTitle, String expSubTitle, String expGoldAmount, String expAmount) throws InterruptedException, IOException {
+    public void goldBuy(String amount, String expTitle, String expSubTitle, String expGoldAmount, String expAmount,String expectedHistoryDescription, String expectedHistoryAmount, String expectedHistoryStatus) throws InterruptedException, IOException {
 
         // Get the Balance if the User Before TRX
         balanceBefore = mbkCommonControlsHelper.getBalance();
@@ -93,26 +93,16 @@ public class GoldHelper {
         // Get the Balance if the User Before TRX
         balanceAfter = mbkCommonControlsHelper.getBalance();
 
-
         // Assertions on the balance deducted
-        Double actualMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100;
-        Double actualMoneyAddedAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MONEYADDED)) * 100;
-        Double actualSupercashAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
+        mbkCommonControlsHelper.verifyWalletBalanceAfterTransaction(driver, balanceBefore, balanceAfter, amount, "Sub");
 
-        Double expectedMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100 - Double.parseDouble(amount) * 100;
-        Double expectedMoneyAddedAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MONEYADDED)) * 100 - Double.parseDouble(amount) * 100;
-        Double expectedSupercashAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
-
-        mbReporter.verifyEquals(actualMainBalanceAfter, expectedMainBalanceAfter, "Post TRX | Verify Wallet Main Balance", false, false);
-        mbReporter.verifyEquals(actualMoneyAddedAfter, expectedMoneyAddedAfter, "Post TRX | Verify Money Added Balance", false, false);
-        mbReporter.verifyEquals(actualSupercashAfter, expectedSupercashAfter, "Post TRX | Verify Supercash Balance", false, false);
-
-        mbkCommonControlsHelper.pressback();
+        // Verify the History details
+        mbkCommonControlsHelper.verifyHistoryDetails(driver ,expectedHistoryDescription,expectedHistoryAmount,expectedHistoryStatus);
 
 
     }
 
-    public void goldSell(String amount, String expTitle, String expSubTitle, String expGoldAmount, String expAmount) throws InterruptedException, IOException {
+    public void goldSell(String amount, String expTitle, String expSubTitle, String expGoldAmount, String expAmount,String expectedHistoryDescription, String expectedHistoryAmount, String expectedHistoryStatus) throws InterruptedException, IOException {
 
         // Get the Balance if the User Before TRX
         balanceBefore = mbkCommonControlsHelper.getBalance();
@@ -171,19 +161,10 @@ public class GoldHelper {
 
 
         // Assertions on the balance deducted
-        Double actualMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100;
-        Double actualMoneyAddedAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MONEYADDED)) * 100;
-        Double actualSupercashAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
+        mbkCommonControlsHelper.verifyWalletBalanceAfterTransaction(driver, balanceBefore, balanceAfter, amount, "Add");
 
-        Double expectedMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100 + Double.parseDouble(amount) * 100;
-        Double expectedMoneyAddedAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MONEYADDED)) * 100 + Double.parseDouble(amount) * 100;
-        Double expectedSupercashAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
-
-        mbReporter.verifyEquals(actualMainBalanceAfter, expectedMainBalanceAfter, "Post TRX | Verify Wallet Main Balance", false, false);
-        mbReporter.verifyEquals(actualMoneyAddedAfter, expectedMoneyAddedAfter, "Post TRX | Verify Money Added Balance", false, false);
-        mbReporter.verifyEquals(actualSupercashAfter, expectedSupercashAfter, "Post TRX | Verify Supercash Balance", false, false);
-
-        mbkCommonControlsHelper.pressback();
+        // Verify the History details
+        mbkCommonControlsHelper.verifyHistoryDetails(driver ,expectedHistoryDescription,expectedHistoryAmount,expectedHistoryStatus);
 
 
     }

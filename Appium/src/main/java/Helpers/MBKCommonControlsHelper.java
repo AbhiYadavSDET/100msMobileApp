@@ -8,7 +8,7 @@ import org.openqa.selenium.By;
 import Utils.Element;
 import Utils.Elements;
 import Utils.Screen;
-
+import Utils.MBReporter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -26,6 +26,7 @@ public class MBKCommonControlsHelper {
     SideDrawerPage sideDrawerPage;
     HomePage homePage;
     AddMoneyPage addMoneyPage;
+    MBReporter mbReporter;
 
     enum BalanceType {
         MAINBALANCE,
@@ -54,6 +55,35 @@ public class MBKCommonControlsHelper {
         }
     }
 
+    public void verifyWalletBalanceAfterTransaction(AndroidDriver driver, HashMap<String, String> balanceBefore, HashMap<String, String> balanceAfter , String amount , String change) throws IOException {
+
+
+        Double actualMainBalanceAfter = Double.parseDouble(getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100;
+        Double actualMoneyAddedAfter = Double.parseDouble(getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MONEYADDED)) * 100;
+        Double actualSupercashAfter = Double.parseDouble(getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
+
+        Double expectedMainBalanceAfter = Double.parseDouble(getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100 ;
+        Double expectedMoneyAddedAfter = Double.parseDouble(getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MONEYADDED)) * 100 ;
+        Double expectedSupercashAfter = Double.parseDouble(getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
+
+        if(change.charAt(0) == 'a' || change.charAt(0) == 'A'){
+            expectedMainBalanceAfter = expectedMainBalanceAfter + Double.parseDouble(amount) * 100;
+            expectedMoneyAddedAfter = expectedMoneyAddedAfter + Double.parseDouble(amount) * 100;
+        }
+        else{
+            expectedMainBalanceAfter = expectedMainBalanceAfter - Double.parseDouble(amount) * 100;
+            expectedMoneyAddedAfter = expectedMoneyAddedAfter - Double.parseDouble(amount) * 100;
+        }
+
+        mbReporter.verifyEquals(actualMainBalanceAfter, expectedMainBalanceAfter, "Post TRX | Verify Wallet Main Balance", false, false);
+        mbReporter.verifyEquals(actualMoneyAddedAfter, expectedMoneyAddedAfter, "Post TRX | Verify Money Added Balance", false, false);
+        mbReporter.verifyEquals(actualSupercashAfter, expectedSupercashAfter, "Post TRX | Verify Supercash Balance", false, false);
+
+
+    }
+
+
+
 
     public MBKCommonControlsHelper(AndroidDriver driver) throws IOException {
         this.driver = driver;
@@ -65,6 +95,7 @@ public class MBKCommonControlsHelper {
         transactionHistoryPage = new TransactionHistoryPage(driver);
         sideDrawerPage = new SideDrawerPage(driver);
         homePage = new HomePage(driver);
+        mbReporter = new MBReporter(driver);
 
     }
 
@@ -490,6 +521,23 @@ public class MBKCommonControlsHelper {
         return historyDetails;
 
     }
+
+    public void verifyHistoryDetails(AndroidDriver driver ,String expectedHistoryDescription, String expectedHistoryAmount, String expectedHistoryStatus) throws InterruptedException, IOException {
+
+        HashMap<String, String> historyDetails = getHistoryDetails(driver);
+
+        Log.info(historyDetails.get("description"));
+        Log.info(historyDetails.get("amount"));
+        Log.info(historyDetails.get("status"));
+
+        mbReporter.verifyEquals(historyDetails.get("description"), expectedHistoryDescription, "Post TRX | Verify History Description", false, false);
+        mbReporter.verifyEquals(historyDetails.get("amount"), expectedHistoryAmount, "Post TRX | Verify History Amount", false, false);
+        mbReporter.verifyEquals(historyDetails.get("status"), expectedHistoryStatus, "Post TRX | Verify History Status", false, false);
+
+
+    }
+
+
 
 }
 
