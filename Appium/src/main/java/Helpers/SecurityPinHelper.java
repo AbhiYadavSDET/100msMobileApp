@@ -91,7 +91,7 @@ public class SecurityPinHelper {
         //Enable Security Pin
         securityPinFlow("Disabled",expSecuritySettingsTitle,expSecurityPinTitle);
 
-        goldHelper.goldBuy("1", "Payment Successful", "Gold Purchase", "0.0002", "₹1");
+        goldHelper.goldBuy("1", "Payment Successful", "Gold Purchase", "0.0002", "₹1","Purchased Gold", "₹1", "Success");
 
         mbkCommonControlsHelper.handleHomePageLanding();
 
