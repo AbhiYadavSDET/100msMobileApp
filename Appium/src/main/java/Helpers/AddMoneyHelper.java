@@ -4,6 +4,7 @@ import PageObject.AddMoneyPage;
 import PageObject.HomePage;
 import PageObject.SecurityPinPage;
 import PageObject.TransactionHistoryPage;
+import PageObject.PermissionPage;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.restassured.RestAssured;
@@ -30,8 +31,8 @@ public class AddMoneyHelper {
     Element element;
     MBKCommonControlsHelper mbkCommonControlsHelper;
     MBReporter mbReporter;
-    TransactionHistoryPage transactionHistoryPage;
-    PermissionHelper permissionHelper;
+    PermissionPage permissionPage;
+
 
     public static HashMap<String, String> map;
     public static HashMap<String, String> balanceBefore;
@@ -48,7 +49,7 @@ public class AddMoneyHelper {
         securityPinPage = new SecurityPinPage(driver);
         mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
         mbReporter = new MBReporter(driver, "testScreenshotDir");
-        permissionHelper = new PermissionHelper(driver);
+        permissionPage = new PermissionPage(driver);
 
     }
 
@@ -89,6 +90,10 @@ public class AddMoneyHelper {
 
         // Click on Pay
         addMoneyPage.clickOnPay();
+
+        Thread.sleep(3000);
+
+        if(permissionPage.isPermissionMessagePresent()){ permissionPage.allowPermissionMessage(); }
 
         Thread.sleep(3000);
 

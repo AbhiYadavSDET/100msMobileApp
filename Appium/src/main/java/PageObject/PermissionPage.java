@@ -43,6 +43,17 @@ public class PermissionPage {
     @AndroidFindBy(id = "permission_allow_foreground_only_button")
     private AndroidElement checkLocationAccess;
 
+    @AndroidFindBy(id = "com.android.permissioncontroller:id/permission_allow_foreground_only_button")
+    private AndroidElement permissionAllowLocation;
+
+    @AndroidFindBy(id = "com.android.permissioncontroller:id/permission_allow_button")
+    private AndroidElement permissionAllowContacts;
+
+    @AndroidFindBy(id = "com.android.permissioncontroller:id/permission_allow_button")
+    private AndroidElement permissionAllowMessages;
+
+
+
 
 
     public PermissionPage(AndroidDriver driver) {
@@ -87,5 +98,29 @@ public class PermissionPage {
 
     public void clickLocationAccess(){
         Elements.selectElement(driver,checkLocationAccess,"Click allow location");
+    }
+
+    public boolean isPermissionLocationPresent() throws InterruptedException {
+        return Elements.isElementPresent(driver, permissionAllowLocation);
+    }
+
+    public boolean isPermissionContactsPresent() throws InterruptedException {
+        return Elements.isElementPresent(driver, permissionAllowContacts);
+    }
+
+    public boolean isPermissionMessagePresent() throws InterruptedException {
+        return Elements.isElementPresent(driver, permissionAllowMessages);
+    }
+
+    public void allowPermissionLocation() {
+        Elements.selectElement(driver, permissionAllowLocation, "Permission Location");
+    }
+
+    public void allowPermissionContacts() {
+        Elements.selectElement(driver, permissionAllowContacts, "Permission Contacts");
+    }
+
+    public void allowPermissionMessage() {
+        Elements.selectElement(driver, permissionAllowMessages, "Permission Message");
     }
 }
