@@ -45,8 +45,9 @@ public class ExtentReport {
         EXTENTREPORT = new ExtentReports();
         EXTENTHTMLREPORTER = new ExtentHtmlReporter(EXTENTREPORTPATH);
         EXTENTREPORT.attachReporter(EXTENTHTMLREPORTER);
-        EXTENTHTMLREPORTER.config().setReportName("Extent Report Name");
-        EXTENTHTMLREPORTER.config().setDocumentTitle("Document Title");
+
+        // Initialise the report
+
 
 
     }
