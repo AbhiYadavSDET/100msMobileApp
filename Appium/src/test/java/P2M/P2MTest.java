@@ -3,6 +3,7 @@ package P2M;
 import Helpers.LoginHelper;
 import Helpers.P2MHelper;
 import Logger.Log;
+import Utils.ExtentReport;
 import Utils.TestBase;
 import org.testng.annotations.Test;
 
@@ -16,6 +17,8 @@ public class P2MTest extends TestBase {
     public void Test01_p2mSend() throws IOException, InterruptedException {
 
         Log.info("======= START : P2M Send test =======");
+        // Starting the test in the extentreport
+        ExtentReport.EXTENTREPORT.createTest("P2M Send test");
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());

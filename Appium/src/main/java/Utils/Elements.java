@@ -2,11 +2,19 @@ package Utils;
 
 import Logger.Log;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static io.appium.java_client.touch.WaitOptions.waitOptions;
+import static io.appium.java_client.touch.offset.PointOption.point;
+import static java.time.Duration.ofMillis;
+import static java.time.Duration.ofSeconds;
 
 public class Elements extends TestBase {
 
@@ -150,6 +158,22 @@ public class Elements extends TestBase {
         Log.info("Get Text | " + comments);
         text = element.getText().toString();
         return text;
+    }
+
+    //Tap by coordinates
+    public static void tapByCoordinates(int x, int y, AndroidDriver driver) {
+        new TouchAction(driver)
+                .tap(point(x, y))
+                .waitAction(waitOptions(ofMillis(250))).perform();
+    }
+
+    //Press by coordinates
+    public static void pressByCoordinates(int x, int y, long seconds, AndroidDriver driver) {
+        new TouchAction(driver)
+                .press(point(x, y))
+                .waitAction(waitOptions(ofSeconds(seconds)))
+                .release()
+                .perform();
     }
 
 }

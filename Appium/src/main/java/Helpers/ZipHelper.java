@@ -38,12 +38,20 @@ public class ZipHelper {
         zipPage.clickCtaActivate();
 
         // Click on Allow CTa
-        if(zipPage.isClickAllowPresent()) {zipPage.clickAllow();}
+        if (zipPage.isClickAllowPresent()) {
+            zipPage.clickAllow();
+        }
 
         // Allow all the permission
-        if(zipPage.isPermissionLocationPresent()) {zipPage.allowPermissionLocation();}
-        if(zipPage.isPermissionContactsPresent()) {zipPage.allowPermissionContacts();}
-        if(zipPage.isPermissionMessagePresent()) {zipPage.allowPermissionMessage();}
+        if (zipPage.isPermissionLocationPresent()) {
+            zipPage.allowPermissionLocation();
+        }
+        if (zipPage.isPermissionContactsPresent()) {
+            zipPage.allowPermissionContacts();
+        }
+        if (zipPage.isPermissionMessagePresent()) {
+            zipPage.allowPermissionMessage();
+        }
 
 
         // Verification on the Zip screen
@@ -56,8 +64,8 @@ public class ZipHelper {
 
 
         // Add the assertions
-        mbReporter.verifyEquals(actualZipPageTitle, expZipPageTitle, "Verify Zip Page Title", false, false);
-        mbReporter.verifyEquals(actualZipPageLabel, expZipPageLabel, "Verify Zip Page Label", false, false);
+        mbReporter.verifyEqualsWithLogging(actualZipPageTitle, expZipPageTitle, "Verify Zip Page Title", false, false, true);
+        mbReporter.verifyEqualsWithLogging(actualZipPageLabel, expZipPageLabel, "Verify Zip Page Label", false, false, true);
 
 
     }

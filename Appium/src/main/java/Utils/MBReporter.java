@@ -23,13 +23,13 @@ public class MBReporter {
     private File file;
     private String testScreenshotDir;
     private InetAddress ownIP;
-    ExtentReport reporter = new ExtentReport();
-
+    //ExtentReport reporter = new ExtentReport();
 
     public MBReporter(AndroidDriver driver, String testScreenshotDir) {
         this.driver = driver;
         this.testScreenshotDir = testScreenshotDir;
         file = new File("");
+
     }
 
     public MBReporter(AndroidDriver driver) {
@@ -143,7 +143,10 @@ public class MBReporter {
             Log.info(Log.ANSI_GREEN + "LOG | PASS | " + stepName + " | Actual : " + actual + " | Expected : " + expected + Log.ANSI_RESET);
 
             if (logExtentReport) {
-                reporter.extentReportDisplay(ExtentReport.Status.PASS, stepName, "");
+
+                ExtentReport.extentReportDisplay(ExtentReport.Status.PASS, stepName);
+
+
             }
 
         } catch (AssertionError | IOException e) {
@@ -154,7 +157,7 @@ public class MBReporter {
                 Reporter.log("<a href='" + s + "'> <Font Color=red> FAIL </Font> </a>" + stepName);
                 Log.info(Log.ANSI_RED + "LOG | FAIL | " + stepName + " | Actual : " + actual + " | Expected : " + expected + Log.ANSI_RESET);
                 if (logExtentReport) {
-                    reporter.extentReportDisplay(ExtentReport.Status.FAIL, stepName, s);
+                    ExtentReport.extentReportDisplay(ExtentReport.Status.FAIL, stepName, s);
                 }
 
 
@@ -164,7 +167,7 @@ public class MBReporter {
                 Log.info(Log.ANSI_RED + "LOG | FAIL | " + stepName + " | Actual : " + actual + " | Expected : " + expected + Log.ANSI_RESET);
 
                 if (logExtentReport) {
-                    reporter.extentReportDisplay(ExtentReport.Status.FAIL, stepName, "");
+                    ExtentReport.extentReportDisplay(ExtentReport.Status.FAIL, stepName);
                 }
 
             }
@@ -198,7 +201,7 @@ public class MBReporter {
             Log.info(Log.ANSI_GREEN + "LOG | PASS | " + stepName + Log.ANSI_RESET);
 
             if (logExtentReport) {
-                reporter.extentReportDisplay(ExtentReport.Status.PASS, stepName, "");
+                ExtentReport.extentReportDisplay(ExtentReport.Status.PASS, stepName, "");
             }
 
 
@@ -211,7 +214,7 @@ public class MBReporter {
                 Log.info(Log.ANSI_RED + "LOG | FAIL | " + stepName + Log.ANSI_RESET);
 
                 if (logExtentReport) {
-                    reporter.extentReportDisplay(ExtentReport.Status.FAIL, stepName, s);
+                    ExtentReport.extentReportDisplay(ExtentReport.Status.FAIL, stepName, s);
                 }
 
 
@@ -221,7 +224,7 @@ public class MBReporter {
                 Log.info(Log.ANSI_RED + "LOG | FAIL | " + stepName + Log.ANSI_RESET);
 
                 if (logExtentReport) {
-                    reporter.extentReportDisplay(ExtentReport.Status.FAIL, stepName, "");
+                    ExtentReport.extentReportDisplay(ExtentReport.Status.FAIL, stepName, "");
                 }
 
 

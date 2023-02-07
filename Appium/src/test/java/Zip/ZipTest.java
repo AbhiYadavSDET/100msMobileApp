@@ -3,6 +3,7 @@ package Zip;
 import Helpers.LoginHelper;
 import Helpers.ZipHelper;
 import Logger.Log;
+import Utils.ExtentReport;
 import Utils.TestBase;
 import org.testng.annotations.Test;
 
@@ -16,6 +17,9 @@ public class ZipTest extends TestBase {
     public void Test01_verifyZipPage() throws IOException, InterruptedException {
 
         Log.info("======= START : Zip Verify test =======");
+        // Starting the test in the extentreport
+        ExtentReport.EXTENTTEST = ExtentReport.EXTENTREPORT.createTest("Zip Verify test");
+
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
