@@ -1,25 +1,11 @@
 package Utils;
 
+import Logger.Log;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
-import Logger.Log;
 import org.apache.log4j.*;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.*;
-
-//import javax.mail.Message;
-//import javax.mail.Session;
-//import javax.mail.internet.InternetAddress;
-//import javax.mail.internet.MimeMessage;
-import java.io.File;
-import java.io.IOException;
-//import java.net.Authenticator;
-import java.net.MalformedURLException;
-//import java.net.PasswordAuthentication;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-//import java.util.Properties;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -29,12 +15,20 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.Timestamp;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
+
+//import javax.mail.Message;
+//import javax.mail.Session;
+//import javax.mail.internet.InternetAddress;
+//import javax.mail.internet.MimeMessage;
+//import java.net.Authenticator;
+//import java.net.PasswordAuthentication;
+//import java.util.Properties;
 
 @Listeners(Utils.Listeners.TestListener.class)
 public class TestBase {
@@ -43,12 +37,11 @@ public class TestBase {
 
     String androidOSVersion = "8.0";
     String portNo = "4723";
-    String udid = "e0cd9c9";
+    String udid = "adb-RZCR9090Z9E-h85GC2._adb-tls-connect._tcp.";
     String deviceName = "OnePlus 8T";
 
 
-
-    Boolean cloudRun= false;
+    Boolean cloudRun = false;
 
     private static FileAppender appender;
     private static PatternLayout layout = new PatternLayout("%d{dd MMM yyyy HH:mm:ss} [%M] [%C{1}:%L] - %m%n ");
@@ -65,12 +58,10 @@ public class TestBase {
     }
 
 
-    @BeforeSuite
+    @BeforeSuite(alwaysRun = true)
     public void initialSetup() throws IOException {
 
-
-        Log.info("Initialising the Extent Report");
-
+        Log.info("Testbase : Initialising the Extent Report");
         ExtentReport extentReport = new ExtentReport();
         extentReport.extentReportSetup();
 
@@ -100,7 +91,7 @@ public class TestBase {
      */
     @Parameters({"build", "methodName", "portNo", "androidOSVersion", "deviceName", "udid", "cloudRun"})
     @BeforeMethod(groups = "setUp", alwaysRun = true)
-    public void createDriver(@Optional String build, @Optional String methodName, @Optional String portNo, @Optional String androidOSVersion, @Optional String deviceName, @Optional String udid , @Optional Boolean cloudRun) throws Exception {
+    public void createDriver(@Optional String build, @Optional String methodName, @Optional String portNo, @Optional String androidOSVersion, @Optional String deviceName, @Optional String udid, @Optional Boolean cloudRun) throws Exception {
 
         // Initializing the test and load the config files
         intialization();
@@ -121,12 +112,12 @@ public class TestBase {
             udid = this.udid;
         }
 
-        if (cloudRun== null) {
+        if (cloudRun == null) {
             cloudRun = this.cloudRun;
         }
 
 
-        if(!cloudRun) {
+        if (!cloudRun) {
             Log.info("------ Arguments -------------");
             Log.info(build);
             Log.info(methodName);
@@ -135,7 +126,7 @@ public class TestBase {
             Log.info(udid);
             Log.info(androidOSVersion);
             Log.info("--------------------------------");
-        }else {
+        } else {
 
             Log.info("------ Arguments -------------");
             Log.info("MBK Signed APK");
@@ -161,23 +152,23 @@ public class TestBase {
     protected AndroidDriver initiateTest(String buildPath, String methodName, String portNo, String androidOSVersion, String deviceName, String udid, Boolean cloudRun) throws MalformedURLException {
 
 
-        if(!cloudRun) {
+        if (!cloudRun) {
             File app = new File(buildPath);
-        DesiredCapabilities cap = new DesiredCapabilities();
-        cap.setCapability(MobileCapabilityType.PLATFORM_NAME, "ANDROID");
-        cap.setCapability(MobileCapabilityType.DEVICE_NAME, "e0cd9c9");
+            DesiredCapabilities cap = new DesiredCapabilities();
+            cap.setCapability(MobileCapabilityType.PLATFORM_NAME, "ANDROID");
+            cap.setCapability(MobileCapabilityType.DEVICE_NAME, "e0cd9c9");
 //        cap.setCapability("avd","Pixel_3a");
-        cap.setCapability("noSign", true);
-        cap.setCapability("appPackage", "com.mobikwik_new");
-        cap.setCapability("appActivity", ".MobikwikMain");
-        cap.setCapability("noReset", "false");
-        cap.setCapability("app", app.getAbsolutePath());
-//        cap.setCapability("app","//Users//uditgupta//Desktop//MK_Android_App-prod-debug.apk");
-        AndroidDriver driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), cap);
+            cap.setCapability("noSign", true);
+            cap.setCapability("appPackage", "com.mobikwik_new");
+            cap.setCapability("appActivity", ".MobikwikMain");
+            cap.setCapability("noReset", "false");
+            cap.setCapability("app", app.getAbsolutePath());
+            cap.setCapability("app", "//Users//mayanksuneja//Downloads//MK_Android_App-prod-debug.apk");
+            AndroidDriver driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), cap);
             androidDriverThread.set(driver);
             return androidDriverThread.get();
 
-        }else {
+        } else {
             DesiredCapabilities caps = new DesiredCapabilities();
             // Set your access credentials
             caps.setCapability("browserstack.user", "parajjain_X3pLgw");
@@ -249,9 +240,15 @@ public class TestBase {
     }
 
     @AfterSuite(alwaysRun = true)
-    public void cleanUpActions() {
-        Log.info("cleanUpActions");
-        sendReportViaMail();
+    public void cleanUpActions() throws MessagingException, IOException, InterruptedException {
+        Log.info("TestBase : cleanUpActions");
+
+        Log.info("Flush the Report");
+        ExtentReport extentReport = new ExtentReport();
+        extentReport.extentReportTearDown();
+
+        Log.info("Send the Mail");
+        //sendReportViaMail();
     }
 
     private static void sendReportViaMail() {
@@ -291,14 +288,14 @@ public class TestBase {
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
 
-                message.setSubject("Android App Periodic Sanity : " + timestamp);
+            message.setSubject("Android App Periodic Sanity : " + timestamp);
 
 
             BodyPart messageBodyPart1 = new MimeBodyPart();
             messageBodyPart1.setText("Sanity Report is Attached with this mail.\nPlease open in CHROME and check for all cases execution status.");
 
             MimeBodyPart messageBodyPart2 = new MimeBodyPart();
-            String filename="ExtentReport.html";
+            String filename = "ExtentReport.html";
             String filesource = "/Users/parajjain/IdeaProjects/MK-Automation/Appium/test-output/ExtentReports/ExtentReport.html";//change accordingly
             DataSource source = new FileDataSource(filesource);
             messageBodyPart2.setDataHandler(new DataHandler(source));
