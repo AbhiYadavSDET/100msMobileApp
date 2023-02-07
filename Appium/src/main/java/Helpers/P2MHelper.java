@@ -88,12 +88,12 @@ public class P2MHelper {
 
 
         // Add the assertions
-        mbReporter.verifyEquals(actualStatus, expStatus, "Verify Title", false, false);
-        mbReporter.verifyEquals(actualAmount, expAmount, "Verify Sub Title", false, false);
-        mbReporter.verifyEquals(actualReceiverName, expReceiverName, "Verify Gold Amount", false, false);
-        mbReporter.verifyEquals(actualMerchantName, expMerchantName, "Verify Amount", false, false);
-        mbReporter.verifyEquals(actualMerchantCode, expMerchantCode, "Verify Amount", false, false);
-        mbReporter.verifyEquals(actualZipCtaText, expZipCtaText, "Verify Amount", false, false);
+        mbReporter.verifyEqualsWithLogging(actualStatus, expStatus, "Verify Title", false, false, true);
+        mbReporter.verifyEqualsWithLogging(actualAmount, expAmount, "Verify Sub Title", false, false, true);
+        mbReporter.verifyEqualsWithLogging(actualReceiverName, expReceiverName, "Verify Gold Amount", false, false, true);
+        mbReporter.verifyEqualsWithLogging(actualMerchantName, expMerchantName, "Verify Amount", false, false, true);
+        mbReporter.verifyEqualsWithLogging(actualMerchantCode, expMerchantCode, "Verify Amount", false, false, true);
+        mbReporter.verifyEqualsWithLogging(actualZipCtaText, expZipCtaText, "Verify Amount", false, false, true);
 
 
         // Click on the up Icon
@@ -124,9 +124,9 @@ public class P2MHelper {
         Double expectedMoneyAddedAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MONEYADDED)) * 100 - Double.parseDouble(amount) * 100;
         Double expectedSupercashAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
 
-        mbReporter.verifyEquals(actualMainBalanceAfter, expectedMainBalanceAfter, "Post TRX | Verify Wallet Main Balance", false, false);
-        mbReporter.verifyEquals(actualMoneyAddedAfter, expectedMoneyAddedAfter, "Post TRX | Verify Money Added Balance", false, false);
-        mbReporter.verifyEquals(actualSupercashAfter, expectedSupercashAfter, "Post TRX | Verify Supercash Balance", false, false);
+        mbReporter.verifyEqualsWithLogging(actualMainBalanceAfter, expectedMainBalanceAfter, "Post TRX | Verify Wallet Main Balance", false, false);
+        mbReporter.verifyEqualsWithLogging(actualMoneyAddedAfter, expectedMoneyAddedAfter, "Post TRX | Verify Money Added Balance", false, false);
+        mbReporter.verifyEqualsWithLogging(actualSupercashAfter, expectedSupercashAfter, "Post TRX | Verify Supercash Balance", false, false);
 
         // Verify the History details
         HashMap<String, String> historyDetails = mbkCommonControlsHelper.getHistoryDetails(driver);
@@ -135,9 +135,9 @@ public class P2MHelper {
         Log.info(historyDetails.get("amount"));
         Log.info(historyDetails.get("status"));
 
-        mbReporter.verifyEquals(historyDetails.get("description"), expectedHistoryDescription, "Post TRX | Verify History Description", false, false);
-        mbReporter.verifyEquals(historyDetails.get("amount"), expectedHistoryAmount, "Post TRX | Verify History Amount", false, false);
-        mbReporter.verifyEquals(historyDetails.get("status"), expectedHistoryStatus, "Post TRX | Verify History Status", false, false);
+        mbReporter.verifyEqualsWithLogging(historyDetails.get("description"), expectedHistoryDescription, "Post TRX | Verify History Description", false, false);
+        mbReporter.verifyEqualsWithLogging(historyDetails.get("amount"), expectedHistoryAmount, "Post TRX | Verify History Amount", false, false);
+        mbReporter.verifyEqualsWithLogging(historyDetails.get("status"), expectedHistoryStatus, "Post TRX | Verify History Status", false, false);
 
 
     }
