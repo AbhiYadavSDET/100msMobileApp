@@ -22,13 +22,6 @@ import java.net.URL;
 import java.sql.Timestamp;
 import java.util.Properties;
 
-//import javax.mail.Message;
-//import javax.mail.Session;
-//import javax.mail.internet.InternetAddress;
-//import javax.mail.internet.MimeMessage;
-//import java.net.Authenticator;
-//import java.net.PasswordAuthentication;
-//import java.util.Properties;
 
 @Listeners(Utils.Listeners.TestListener.class)
 public class TestBase {

@@ -2,10 +2,8 @@ package Utils.Listeners;
 
 
 import Logger.Log;
+import Utils.ExtentReport;
 import org.testng.*;
-
-import org.testng.ITestContext;
-import org.testng.ITestResult;
 
 public class TestListener implements ITestListener, ISuiteListener {
 
@@ -13,7 +11,10 @@ public class TestListener implements ITestListener, ISuiteListener {
     @Override
     public void onTestStart(ITestResult iTestResult) {
         Log.info(Log.ANSI_BLUE + "***************[Test Started] [Test Class: " + iTestResult.getInstanceName() + "] [Test Method: " + iTestResult.getMethod().getMethodName() + "] [Test Description: " + iTestResult.getMethod().getDescription() + "]***************" + Log.ANSI_RESET);
+        Log.info("This is onTestStart " + iTestResult.getInstanceName());
 
+        // Starting the test in the extentreport
+        ExtentReport.EXTENTTEST = ExtentReport.EXTENTREPORT.createTest(iTestResult.getMethod().getMethodName());
     }
 
     @Override
@@ -52,6 +53,7 @@ public class TestListener implements ITestListener, ISuiteListener {
     @Override
     public void onStart(ISuite iSuite) {
         Log.info(Log.ANSI_CYAN + "***************[Test Suite Started][Suite Name: " + iSuite.getName() + "]***************" + Log.ANSI_RESET);
+
 
     }
 
