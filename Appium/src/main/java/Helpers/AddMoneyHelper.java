@@ -7,17 +7,20 @@ import PageObject.TransactionHistoryPage;
 import PageObject.PermissionPage;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.android.nativekey.AndroidKey;
 import io.restassured.RestAssured;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import Logger.Log;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
-import Utils.Element;
+import Utils.Elements;
 import Utils.MBReporter;
 import Utils.Screen;
 
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -28,7 +31,7 @@ public class AddMoneyHelper {
     AddMoneyPage addMoneyPage;
     SecurityPinPage securityPinPage;
     Screen screen;
-    Element element;
+
     MBKCommonControlsHelper mbkCommonControlsHelper;
     MBReporter mbReporter;
     PermissionPage permissionPage;
@@ -45,7 +48,7 @@ public class AddMoneyHelper {
         addMoneyPage = new AddMoneyPage(driver);
         homePage = new HomePage(driver);
         screen = new Screen(driver);
-        element = new Element(driver);
+
         securityPinPage = new SecurityPinPage(driver);
         mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
         mbReporter = new MBReporter(driver, "testScreenshotDir");
@@ -58,14 +61,104 @@ public class AddMoneyHelper {
      * Flow Can Be "SavedCard" or "NewCard"
      */
 
+    public String getOtpDetails() {
+        /**
+         * Specify the base URL to the Restful web service
+         */
+        RestAssured.baseURI = "https://firebasestorage.googleapis.com/";
+        RestAssured.basePath="v0/b/testingsyncotpfirebase.appspot.com/o";
 
-    public void addMoneyViaCard(String amount, String cvv) throws InterruptedException, IOException {
+        /**
+         * Get the RequestSpecification of the request to be sent to the server.
+         */
+        RequestSpecification httpRequest = RestAssured.given().log().all().urlEncodingEnabled(false);
+
+        /**
+         * Specify the method type (GET) and the parameters if any.
+         * In this case the request does not take any parameters
+         */
+
+        Response response = httpRequest.request(Method.GET, "otpTesting%2Fotp.json?alt=media");
+
+        /**
+         * Print the status and message body of the response received from the server
+         */
+
+        System.out.println("Status received => " + response.getStatusLine());
+        System.out.println("Response=>" + response.prettyPrint());
+
+        String output=response.prettyPrint().replace("{\"otp\":\"","").replace("\"}", "");
+        System.out.println("Output Otp=>" + output);
+        return output;
+    }
+
+
+    public void enterOtpDetails(int width , int height) {
+      String otp = getOtpDetails();
+
+        //String otp = "078926";
+
+
+        for(int i = 0 ; i < otp.length() ; i++){
+            char c = otp.charAt(i);
+
+            Log.info("TAP " + c);
+
+            switch (c) {
+                case '2':
+                    Elements.tapByCoordinates(width*5,height*16, driver);
+                    break;
+
+                case '5':
+                    Elements.tapByCoordinates(width*5,height*17, driver);
+                    break;
+
+                case '8':
+                    Elements.tapByCoordinates(width*5,height*18, driver);
+                    break;
+
+                case '0':
+                    Elements.tapByCoordinates(width*5,(height*39)/2, driver);
+                    break;
+
+                case '1':
+                    Elements.tapByCoordinates(width*3,height*16, driver);
+                    break;
+
+                case '4':
+                    Elements.tapByCoordinates(width*3,height*17, driver);
+                    break;
+
+                case '7':
+                    Elements.tapByCoordinates(width*3,height*18, driver);
+                    break;
+
+                case '3':
+                    Elements.tapByCoordinates(width*7,height*16, driver);
+                    break;
+
+                case '6':
+                    Elements.tapByCoordinates(width*7,height*17, driver);
+                    break;
+
+                case '9':
+                    Elements.tapByCoordinates(width*7,height*18, driver);
+                    break;
+            }
+        }
+    }
+
+
+    public void addMoneyViaCard(String amount, String cvv , String expTitle, String expSubTitle, String expAmount,String expectedHistoryDescription, String expectedHistoryAmount, String expectedHistoryStatus) throws InterruptedException, IOException {
 
         Log.info("START", "Add Money");
         Log.info("----------- Arguments ---------------");
         Log.info("amount : " + amount);
         Log.info("cvv : " + cvv);
         Log.info("-------------------------------------");
+
+        // Get the Balance if the User Before TRX
+        balanceBefore = mbkCommonControlsHelper.getBalance();
 
         // Click on the profile
         securityPinPage.clickOnProfile();
@@ -93,10 +186,68 @@ public class AddMoneyHelper {
 
         Thread.sleep(3000);
 
-        if(permissionPage.isPermissionMessagePresent()){ permissionPage.allowPermissionMessage(); }
+        if(permissionPage.isPermissionMessagePresent()){
+            permissionPage.allowPermissionMessage();
+        }
 
+        Dimension dimension = driver.manage().window().getSize();
+
+        int width = dimension.getWidth()/10;
+        int height = dimension.getHeight()/20;
+
+        Log.info("WAIT");
+        Thread.sleep(20000);
+
+
+        Log.info("TAP on text box");
+        Elements.tapByCoordinates(width*5,height*8, driver);
+
+        Log.info("WAIT");
         Thread.sleep(3000);
 
+        Log.info("Enter OTP Details");
+        enterOtpDetails(width,height);
+
+        Log.info("WAIT");
+        Thread.sleep(3000);
+
+        Log.info("TAP on Confirm and Pay");
+        Elements.tapByCoordinates(width*5,height*9, driver);
+
+
+        Log.info("WAIT");
+        Thread.sleep(20000);
+
+        // Verification on the Success Screen
+        String title = addMoneyPage.getTitleOnSuccess();
+        String subTitle = addMoneyPage.getSubTitleOnSuccess();
+        String amountOnSuccess = addMoneyPage.getAmountOnSuccess();
+
+        // Display the values
+        Log.info("Title : " + title);
+        Log.info("Sub Title : " + subTitle);
+        Log.info("Amount : " + amountOnSuccess);
+
+        // Add the assertions
+        mbReporter.verifyEquals(title, expTitle, "Verify Title", false, false);
+        mbReporter.verifyEquals(subTitle, expSubTitle, "Verify Sub Title", false, false);
+        mbReporter.verifyEquals(amountOnSuccess, expAmount, "Verify Amount", false, false);
+
+
+        mbkCommonControlsHelper.pressback(3);
+
+        // Click on the back button if the bottom sheet is present
+        mbkCommonControlsHelper.handleHomePageLanding();
+
+        // Get the Balance if the User Before TRX
+        balanceAfter = mbkCommonControlsHelper.getBalance();
+
+
+        // Assertions on the balance deducted
+        mbkCommonControlsHelper.verifyWalletBalanceAfterTransaction(driver, balanceBefore, balanceAfter, amount, "Add");
+
+        // Verify the History details
+        mbkCommonControlsHelper.verifyHistoryDetails(driver ,expectedHistoryDescription,expectedHistoryAmount,expectedHistoryStatus);
     }
 
 }
