@@ -20,8 +20,14 @@ import Utils.Elements;
 import Utils.MBReporter;
 import Utils.Screen;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URL;
 import java.util.HashMap;
 
 public class AddMoneyHelper {
@@ -61,6 +67,45 @@ public class AddMoneyHelper {
      * Flow Can Be "SavedCard" or "NewCard"
      */
 
+    public String getOtpDetailsByJsonFile() {
+
+        String otp = "";
+        try {
+            // Open the link in the default web browser
+            Desktop desktop = Desktop.getDesktop();
+            URI uri = new URI("https://firebasestorage.googleapis.com/v0/b/testingsyncotpfirebase.appspot.com/o/otpTesting%2Fotp.json?alt=media");
+            desktop.browse(uri);
+
+            // Wait for the file to be downloaded
+            Thread.sleep(5000);
+
+            // Read the contents of the JSON file
+            URL fileUrl = new URL("file:////Users/ashishkumarpradhan/Downloads/otp.json");
+            BufferedReader reader = new BufferedReader(new FileReader(new File(fileUrl.toURI())));
+            System.out.println("JSON File Contents:");
+            String line = "";
+            while ((line = reader.readLine()) != null) {
+                otp = line.substring(8,14);
+                System.out.println(line);
+            }
+
+
+            reader.close();
+            File file = new File(fileUrl.toURI());
+            if (file.delete()) {
+                System.out.println("File deleted successfully");
+            } else {
+                System.out.println("File deletion failed");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return otp;
+
+    }
+
     public String getOtpDetails() {
         /**
          * Specify the base URL to the Restful web service
@@ -94,9 +139,9 @@ public class AddMoneyHelper {
 
 
     public void enterOtpDetails(int width , int height) {
-      String otp = getOtpDetails();
 
-        //String otp = "078926";
+        String otp = getOtpDetailsByJsonFile();
+        //String otp = getOtpDetails();
 
 
         for(int i = 0 ; i < otp.length() ; i++){
