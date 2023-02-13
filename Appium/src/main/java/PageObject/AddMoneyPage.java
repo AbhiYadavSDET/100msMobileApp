@@ -41,6 +41,15 @@ public class AddMoneyPage {
     @AndroidFindBy(id = "btn_add_money")
     private AndroidElement pay;
 
+    @AndroidFindBy(id = "status")
+    private AndroidElement titleOnSuccess;
+
+    @AndroidFindBy(id = "amount")
+    private AndroidElement amountOnSuccess;
+
+    @AndroidFindBy(id = "name")
+    private AndroidElement subTitleOnSuccess;
+
 
 
     public AddMoneyPage(AndroidDriver driver) throws IOException {
@@ -81,5 +90,18 @@ public class AddMoneyPage {
         Elements.enterToElement(driver, enter_CVV , CVV, "Enter CVV");
     }
 
+
+    // Success Screen methods
+    public String getTitleOnSuccess() throws InterruptedException {
+        return Elements.getText(driver, titleOnSuccess, "Base Title");
+    }
+
+    public String getSubTitleOnSuccess() throws InterruptedException {
+        return Elements.getText(driver, subTitleOnSuccess, "Sub Title");
+    }
+
+    public String getAmountOnSuccess() throws InterruptedException {
+        return Elements.getText(driver, amountOnSuccess, "Amount");
+    }
 
 }
