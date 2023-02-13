@@ -83,6 +83,13 @@ public class MbkCommonControlsPage {
     @AndroidFindBy(id = "close_button")
     private AndroidElement add_money_BottomSheet;
 
+    @AndroidFindBy(id = "android:id/alertTitle")
+    private AndroidElement white_pop_up;
+
+    @AndroidFindBy(id = "android:id/button2")
+    private AndroidElement close_pop_up;
+
+
 
     public MbkCommonControlsPage(AndroidDriver driver) throws IOException {
         this.driver = driver;
@@ -209,4 +216,11 @@ public class MbkCommonControlsPage {
         Element.selectElement(driver, add_money_BottomSheet, "Close Add Money Bottom Sheet");
     }
 
+    public boolean isWhitePopUpPresent() throws InterruptedException {
+        return Elements.isElementPresent(driver, white_pop_up);
+    }
+
+    public void closeWhitePopUp() {
+        Element.selectElement(driver, close_pop_up, "Close Pop Up");
+    }
 }

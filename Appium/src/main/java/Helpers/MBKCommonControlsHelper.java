@@ -466,6 +466,9 @@ public class MBKCommonControlsHelper {
 
     public void handleHomePageLanding() throws InterruptedException {
         Thread.sleep(5000);
+        if(mbkCommonControlsPage.isWhitePopUpPresent()){
+            mbkCommonControlsPage.closeWhitePopUp();
+        }
         for (int i = 0; i < 10; i++) {
             if (!Element.isElementPresent(driver, By.id("view_icon_bg"))) {
                 driver.navigate().back();
