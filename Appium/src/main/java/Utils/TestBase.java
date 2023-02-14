@@ -155,8 +155,8 @@ public class TestBase {
             cap.setCapability("appPackage", "com.mobikwik_new");
             cap.setCapability("appActivity", ".MobikwikMain");
             cap.setCapability("noReset", "false");
-            cap.setCapability("app", app.getAbsolutePath());
-            cap.setCapability("app", "//Users//mayanksuneja//Downloads//MK_Android_App-prod-debug.apk");
+//            cap.setCapability("app", app.getAbsolutePath());
+            cap.setCapability("app", "//Users//ashishkumarpradhan//app//mobikwik.apk");
             AndroidDriver driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), cap);
             androidDriverThread.set(driver);
             return androidDriverThread.get();
@@ -164,10 +164,10 @@ public class TestBase {
         } else {
             DesiredCapabilities caps = new DesiredCapabilities();
             // Set your access credentials
-            caps.setCapability("browserstack.user", "parajjain_X3pLgw");
-            caps.setCapability("browserstack.key", "5QyNfuj7vp3qsNWTvWsF");
+            caps.setCapability("browserstack.user", "ashishkumarpradh_AcLpQo");
+            caps.setCapability("browserstack.key", "1WgsTq2sxrDMA5Nvyqzx");
             // Set URL of the application under test
-            caps.setCapability("app", "bs://a0d375e87b22893f753a7379ddeb9e7bf6182a54");
+            caps.setCapability("app", "bs://28df29e8ba7402555d63155fbe75e3d57edf26e3");
             // Specify device and os_version for testing
             caps.setCapability("device", "Samsung Galaxy S22 Ultra");
             caps.setCapability("os_version", "12.0");
