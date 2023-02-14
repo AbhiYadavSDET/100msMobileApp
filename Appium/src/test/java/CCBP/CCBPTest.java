@@ -24,7 +24,8 @@ public class CCBPTest extends TestBase {
 
         // Execute the test
         CCBPHelper ccbpHelper  = new CCBPHelper(getAndroidDriver());
-        ccbpHelper.creditCardBillPayment("100", "₹100");
+        ccbpHelper.creditCardBillPayment("100", "₹100", "4375517199762008","Payment Successful", "for Credit Card XXXXXXXXXXXX2008", "₹101.18","Credit Card Bill Payment", "Success","₹100");
+
 
     }
 

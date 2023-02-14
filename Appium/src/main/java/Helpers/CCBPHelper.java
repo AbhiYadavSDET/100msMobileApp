@@ -8,6 +8,8 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.support.PageFactory;
+import io.appium.java_client.android.nativekey.KeyEvent;
+
 
 import java.io.IOException;
 import java.util.LinkedHashMap;
@@ -44,7 +46,7 @@ public class CCBPHelper {
         mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
     }
 
-    public void creditCardBillPayment(String amount, String expAmountOnPaymentScreen) throws IOException, InterruptedException {
+    public void creditCardBillPayment(String amount, String expAmountOnPaymentScreen, String cardNumber, String expTitle, String expSubTitle, String expAmountOnSuccessScreen, String expectedHistoryDescription, String expectedHistoryStatus, String expectedHistoryAmount) throws IOException, InterruptedException {
 
 
         // Get the Balance if the User Before TRX
@@ -75,19 +77,17 @@ public class CCBPHelper {
         //Click on Enter card number text box
         ccPage.clickEnterCardNumber();
 
+        ccPage.enterCardNumber(cardNumber);
+
         //Enter credit card number
-        ccPage.clickFourButton();
-        ccPage.clickThreeButton();
-        ccPage.clickSevenButton();
-        ccPage.clickFiveButton();
-        ccPage.clickFiveButton();
-        ccPage.clickOneButton();
-        ccPage.clickFiveButton();ccPage.clickFiveButton();ccPage.clickFiveButton();ccPage.clickFiveButton();ccPage.clickFiveButton();
-        ccPage.clickFiveButton();ccPage.clickFiveButton();ccPage.clickFiveButton();ccPage.clickFiveButton();ccPage.clickFiveButton();
-
-
-        //Click on Enter card number text box
-        ccPage.clickEnterCardNumber();
+//        ccPage.clickFourButton();
+//        ccPage.clickThreeButton();
+//        ccPage.clickSevenButton();
+//        ccPage.clickFiveButton();
+//        ccPage.clickFiveButton();
+//        ccPage.clickOneButton();
+//        ccPage.clickFiveButton();ccPage.clickFiveButton();ccPage.clickFiveButton();ccPage.clickFiveButton();ccPage.clickFiveButton();
+//        ccPage.clickFiveButton();ccPage.clickFiveButton();ccPage.clickFiveButton();ccPage.clickFiveButton();ccPage.clickFiveButton();
 
         //Click Continue CTA
         ccPage.clickContinueCTA();
@@ -98,10 +98,15 @@ public class CCBPHelper {
         //Enter amount
         ccPage.clickEnterAmountField();
 
-        //Enter 100 rupees amount
-        ccPage.clickOneButton();
-        ccPage.clickZeroButton();
-        ccPage.clickZeroButton();
+        //Enter amount in enter amount manually field
+        //ccPage.enterEnterAmountManually();
+
+        ccPage.enterCardNumber(expAmountOnPaymentScreen);
+
+//        //Enter 100 rupees amount
+//        ccPage.clickOneButton();
+//        ccPage.clickZeroButton();
+//        ccPage.clickZeroButton();
 
 
         //click Continue CTA
@@ -112,14 +117,54 @@ public class CCBPHelper {
         Log.info("Amount on Payment Screen : " + amountOnPaymentScreen);
         mbReporter.verifyEquals(amountOnPaymentScreen, expAmountOnPaymentScreen, "Verify Amount on Payment screen", false, false);
 
+        ccPage.clickOnPay();
+
+        //Click on wallet balance
+        ccPage.clickWalletBalance();
+
+        //Click on pay button on Payable amount bottom sheet
+        ccPage.clickPayAmount();
+
+        // checking for security pin
+        if(securityPinPage.checkSecurityPinPage()){
+            securityPinPage.enterSecurityPin();
+        }
+
+        // Verification on the Success Screen
+        String title = ccPage.getTitle();
+        String subTitle = ccPage.getSubTitle();
+        String amountOnSuccesScreen = ccPage.getAmountOnSuccessScreen();
+
+        // Display the values
+        Log.info("Title : " + title);
+        Log.info("Sub Title : " + subTitle);
+        Log.info("Amount On Success Screen : " + amountOnSuccesScreen);
 
 
+        // Add the assertions
+        mbReporter.verifyEquals(title, expTitle, "Verify Title", false, false);
+        mbReporter.verifyEquals(subTitle, expSubTitle, "Verify Sub Title", false, false);
+        mbReporter.verifyEquals(amountOnSuccesScreen, expAmountOnSuccessScreen, "Verify Gold Amount", false, false);
+
+        mbkCommonControlsHelper.pressback(3);
+
+        // Click on the back button if the bottom sheet is present
+        mbkCommonControlsHelper.handleHomePageLanding();
+
+        // Get the Balance if the User Before TRX
+        balanceAfter = mbkCommonControlsHelper.getBalance();
+
+
+        // Assertions on the balance deducted
+        mbkCommonControlsHelper.verifyWalletBalanceAfterTransaction(driver, balanceBefore, balanceAfter, "101.18", "Sub");
+
+        // Verify the History details
+        mbkCommonControlsHelper.verifyHistoryDetails(driver ,expectedHistoryDescription,expectedHistoryAmount,expectedHistoryStatus);
 
     }
 
+}
 
-
-    }
 
 
 
