@@ -151,43 +151,43 @@ public class AddMoneyHelper {
 
             switch (c) {
                 case '2':
-                    Elements.tapByCoordinates(width*5,height*16, driver);
+                    Elements.tapByCoordinates(width*2,height*14, driver);
                     break;
 
                 case '5':
-                    Elements.tapByCoordinates(width*5,height*17, driver);
+                    Elements.tapByCoordinates(width*2,height*16, driver);
                     break;
 
                 case '8':
-                    Elements.tapByCoordinates(width*5,height*18, driver);
+                    Elements.tapByCoordinates(width*2,height*18, driver);
                     break;
 
                 case '0':
-                    Elements.tapByCoordinates(width*5,(height*39)/2, driver);
+                    Elements.tapByCoordinates(width*2,height*20, driver);
                     break;
 
                 case '1':
-                    Elements.tapByCoordinates(width*3,height*16, driver);
+                    Elements.tapByCoordinates(width,height*14, driver);
                     break;
 
                 case '4':
-                    Elements.tapByCoordinates(width*3,height*17, driver);
+                    Elements.tapByCoordinates(width,height*16, driver);
                     break;
 
                 case '7':
-                    Elements.tapByCoordinates(width*3,height*18, driver);
+                    Elements.tapByCoordinates(width,height*18, driver);
                     break;
 
                 case '3':
-                    Elements.tapByCoordinates(width*7,height*16, driver);
+                    Elements.tapByCoordinates(width*3,height*14, driver);
                     break;
 
                 case '6':
-                    Elements.tapByCoordinates(width*7,height*17, driver);
+                    Elements.tapByCoordinates(width*3,height*16, driver);
                     break;
 
                 case '9':
-                    Elements.tapByCoordinates(width*7,height*18, driver);
+                    Elements.tapByCoordinates(width*3,height*18, driver);
                     break;
             }
         }
@@ -237,7 +237,7 @@ public class AddMoneyHelper {
 
         Dimension dimension = driver.manage().window().getSize();
 
-        int width = dimension.getWidth()/10;
+        int width = dimension.getWidth()/4;
         int height = dimension.getHeight()/20;
 
         Log.info("WAIT");
@@ -245,7 +245,7 @@ public class AddMoneyHelper {
 
 
         Log.info("TAP on text box");
-        Elements.tapByCoordinates(width*5,height*8, driver);
+        Elements.tapByCoordinates(width*2,height*8, driver);
 
         Log.info("WAIT");
         Thread.sleep(3000);
@@ -257,7 +257,7 @@ public class AddMoneyHelper {
         Thread.sleep(3000);
 
         Log.info("TAP on Confirm and Pay");
-        Elements.tapByCoordinates(width*5,height*9, driver);
+        Elements.tapByCoordinates(width*2,height*10, driver);
 
 
         Log.info("WAIT");
