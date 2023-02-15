@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Account Aggregator Flow">
+
+    <parameter name="build" value="prod"/>
+    <parameter name="level" value="wealth"/>
+    <parameter name="saucelabs" value="false"></parameter>
+    <parameter name="androidOSVersion" value="11.0"></parameter>
+
+
+    <test verbose="2" preserve-order="true" name="Account Aggregator">
+        <groups>
+            <run>
+                <include name="setUp"/>
+                <include name="instantiateHelpers"/>
+                <include name="AccountAggregator"/>
+
+            </run>
+        </groups>
+
+
+        <classes>
+            <class name="Utils.TestBase"/>
+            <class name="AccountAggregator.Test_AccountAggregator"/>
+            <class name="Utils.ExtentReport"></class>
+
+            
+
+        </classes>
+    </test>
+
+</suite>
