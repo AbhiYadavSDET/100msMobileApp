@@ -24,6 +24,8 @@
             <class name="AccountAggregator.Test_AccountAggregator"/>
             <class name="Utils.ExtentReport"></class>
 
+            
+
         </classes>
     </test>
 

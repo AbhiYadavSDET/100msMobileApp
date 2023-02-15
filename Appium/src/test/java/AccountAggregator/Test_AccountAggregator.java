@@ -16,7 +16,6 @@ public class Test_AccountAggregator extends TestBase {
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
         loginHelp.quickLoginViaOtp("7367905899");
 
-        // Thread.sleep(5000);
 
         AAHelper aaHelper = new AAHelper(getAndroidDriver());
         aaHelper.existingUser();

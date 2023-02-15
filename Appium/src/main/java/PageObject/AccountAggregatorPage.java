@@ -25,13 +25,11 @@ public class AccountAggregatorPage {
     @AndroidFindBy(xpath = "//*[@text = 'Track investments']")
     private AndroidElement trackInvestmentCTA;
 
-    @AndroidFindBy(xpath = "hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[2]")
-    private AndroidElement newAACardCTA;
 
     @AndroidFindBy(xpath = "//*[@text='Bank Accounts']")
     private AndroidElement accountAggregatorCard;
 
-    @AndroidFindBy(id="com.mobikwik_new.debug:id/touch_outside")
+    @AndroidFindBy(id="touch_outside")
     private AndroidElement touchOutsideCTA;
 
 
@@ -92,10 +90,6 @@ public class AccountAggregatorPage {
         Elements.selectElement(driver, trackInvestmentCTA, "Click on Track all your investment cta");
     }
 
-
-    public void newAACardCTA() throws InterruptedException{
-        Elements.selectElement(driver, newAACardCTA, "New user card");
-    }
 
     public void accountAggregatorCard()  throws InterruptedException{
         Elements.selectElement(driver, accountAggregatorCard, "Click on AA card in services section on Wealth dashboard");
