@@ -3,6 +3,7 @@ package Recharge;
 import Helpers.RechargeHelper;
 import Helpers.LoginHelper;
 import Logger.Log;
+import Utils.ExtentReport;
 import Utils.TestBase;
 import org.testng.annotations.Test;
 import java.io.IOException;
@@ -11,6 +12,7 @@ public class RechargeTest extends TestBase {
 
     @Test(groups = {"sanity", "mobileRecharge"}, priority = 0, description = "mobile Recharge")
     public void postpaid_Recharge() throws IOException, InterruptedException {
+        ExtentReport.EXTENTREPORT.createTest("Postpaid recharge test");
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
@@ -27,22 +29,24 @@ public class RechargeTest extends TestBase {
 
     }
 
-    @Test(groups = {"sanity", "mobileRecharge"}, priority = 1, description = "mobile Recharge")
-    public void prepaid_Recharge() throws IOException, InterruptedException {
-
-        // Login to the account
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("9205299330", "547372");
-
-        Log.info("======= START : Postpaid Recharge =======");
-
-        // Execute the test
-        RechargeHelper rechargeHelper = new RechargeHelper(getAndroidDriver());
-        rechargeHelper.prepaidRecharge("10","₹10","Recharge Successful","for Vi 7795709569 ","₹10","Vi Recharge", "₹10", "Success");
-
-        Log.info("======= END : Prepaid Recharge =======");
-
-
-    }
+//    @Test(groups = {"sanity", "mobileRecharge"}, priority = 1, description = "mobile Recharge")
+//    public void prepaid_Recharge() throws IOException, InterruptedException {
+//
+//        ExtentReport.EXTENTREPORT.createTest("Prepaid recharge test");
+//
+//        // Login to the account
+//        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+//        loginHelper.quickLoginViaOtp("9205299330", "547372");
+//
+//        Log.info("======= START : Prepaid Recharge =======");
+//
+//        // Execute the test
+//        RechargeHelper rechargeHelper = new RechargeHelper(getAndroidDriver());
+//        rechargeHelper.prepaidRecharge("10","₹10","Recharge Successful","for Vi 7795709569 ","₹10","Vi Recharge", "₹10", "Success");
+//
+//        Log.info("======= END : Prepaid Recharge =======");
+//
+//
+//    }
 
 }

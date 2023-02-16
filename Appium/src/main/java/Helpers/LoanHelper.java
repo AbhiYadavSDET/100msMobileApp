@@ -50,9 +50,8 @@ public class LoanHelper {
 
 
         // Add the assertions
-        mbReporter.verifyEquals(actualLoanPageText, expLoanPageText, "Verify Loan Page Text", false, false);
-        mbReporter.verifyEquals(actualLoanPageCtaText, expLoanPageCtaText, "Verify Loan Page Cta Text", false, false);
-
+        mbReporter.verifyEqualsWithLogging(actualLoanPageText, expLoanPageText, "Verify Loan Page Text", false,false,true);
+        mbReporter.verifyEqualsWithLogging(actualLoanPageCtaText, expLoanPageCtaText, "Verify Loan Page Cta Text", false,false,true);
 
     }
 

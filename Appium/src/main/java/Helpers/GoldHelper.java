@@ -78,10 +78,10 @@ public class GoldHelper {
         Log.info("Txn Amount : " + txnAmount);
 
         // Add the assertions
-        mbReporter.verifyEquals(title, expTitle, "Verify Title", false, false);
-        mbReporter.verifyEquals(subTitle, expSubTitle, "Verify Sub Title", false, false);
-        mbReporter.verifyEquals(goldAmount, expGoldAmount, "Verify Gold Amount", false, false);
-        mbReporter.verifyEquals(txnAmount, expAmount, "Verify Amount", false, false);
+        mbReporter.verifyEqualsWithLogging(title, expTitle, "Verify Title", false, false,true);
+        mbReporter.verifyEqualsWithLogging(subTitle, expSubTitle, "Verify Sub Title", false, false,true);
+        mbReporter.verifyEqualsWithLogging(goldAmount, expGoldAmount, "Verify Gold Amount", false, false,true);
+        mbReporter.verifyEqualsWithLogging(txnAmount, expAmount, "Verify Amount", false, false,true);
 
 
         // back to home
@@ -145,10 +145,10 @@ public class GoldHelper {
         Log.info("Txn Amount : " + txnAmount);
 
         // Add the assertions
-        mbReporter.verifyEquals(title, expTitle, "Verify Title", false, false);
-        mbReporter.verifyEquals(subTitle, expSubTitle, "Verify Sub Title", false, false);
-        mbReporter.verifyEquals(goldAmount, expGoldAmount, "Verify Gold Amount", false, false);
-        mbReporter.verifyEquals(txnAmount, expAmount, "Verify Amount", false, false);
+        mbReporter.verifyEqualsWithLogging(title, expTitle, "Verify Title", false, false,true);
+        mbReporter.verifyEqualsWithLogging(subTitle, expSubTitle, "Verify Sub Title", false, false,true);
+        mbReporter.verifyEqualsWithLogging(goldAmount, expGoldAmount, "Verify Gold Amount", false, false,true);
+        mbReporter.verifyEqualsWithLogging(txnAmount, expAmount, "Verify Amount", false, false,true);
 
         // back to home
         mbkCommonControlsHelper.pressback(3);

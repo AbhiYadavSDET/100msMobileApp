@@ -85,12 +85,12 @@ public class P2PHelper {
 
 
         // Add the assertions
-        mbReporter.verifyEquals(actualStatus, expStatus, "Verify Title", false, false);
-        mbReporter.verifyEquals(actualAmount, expAmount, "Verify Sub Title", false, false);
-        mbReporter.verifyEquals(actualReceiverName, expReceiverName, "Verify Gold Amount", false, false);
-        mbReporter.verifyEquals(actualReceiverMobileNo, expReceiverMobileNo, "Verify Amount", false, false);
-        mbReporter.verifyEquals(actualPaymentMode, expPaymentMode, "Verify Amount", false, false);
-        mbReporter.verifyEquals(actualZipCtaText, expZipCtaText, "Verify Amount", false, false);
+        mbReporter.verifyEqualsWithLogging(actualStatus, expStatus, "Verify Title", false, false,true);
+        mbReporter.verifyEqualsWithLogging(actualAmount, expAmount, "Verify Sub Title", false, false,true);
+        mbReporter.verifyEqualsWithLogging(actualReceiverName, expReceiverName, "Verify Gold Amount", false, false,true);
+        mbReporter.verifyEqualsWithLogging(actualReceiverMobileNo, expReceiverMobileNo, "Verify Amount", false, false,true);
+        mbReporter.verifyEqualsWithLogging(actualPaymentMode, expPaymentMode, "Verify Amount", false, false,true);
+        mbReporter.verifyEqualsWithLogging(actualZipCtaText, expZipCtaText, "Verify Amount", false, false,true);
 
         // Click on the up Icon
         p2MPage.clickUpButton();

@@ -53,9 +53,9 @@ public class RewardsHelper {
         Log.info("Cta text : " + actualCtaText);
 
         // Add the assertions
-        mbReporter.verifyEquals(actualTitle, expTitle, "Verify Title", false, false);
-        mbReporter.verifyEquals(actualSubTitle, expSubTitle, "Verify Sub Title", false, false);
-        mbReporter.verifyEquals(actualCtaText, expCtaText, "Verify Cta Text", false, false);
+        mbReporter.verifyEqualsWithLogging(actualTitle, expTitle, "Verify Title", false,false,true);
+        mbReporter.verifyEqualsWithLogging(actualSubTitle, expSubTitle, "Verify Sub Title", false,false,true);
+        mbReporter.verifyEqualsWithLogging(actualCtaText, expCtaText, "Verify Cta Text", false,false,true);
 
         // Click on the cross button
         rewardsPage.clickCrossButton();

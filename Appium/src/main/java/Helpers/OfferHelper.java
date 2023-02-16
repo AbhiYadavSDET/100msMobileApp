@@ -48,8 +48,8 @@ public class OfferHelper {
         Log.info("Tile Title : " + tileTitle);
         Log.info("Tile Description : " + tileDescription);
 
-        mbReporter.verifyEquals(tileTitle, expTileTitle, "Verify Tile Title", false, false);
-        mbReporter.verifyEquals(tileDescription, expTileDescription, "Verify Tile Decription", false, false);
+        mbReporter.verifyEqualsWithLogging(tileTitle, expTileTitle, "Verify Tile Title", false,false,true);
+        mbReporter.verifyEqualsWithLogging(tileDescription, expTileDescription, "Verify Tile Decription", false,false,true);
 
         // Click on the tile
         offerPage.clickLogo();
@@ -61,8 +61,8 @@ public class OfferHelper {
         Log.info("Title : " + title);
         Log.info("Cta Text : " + ctaText);
 
-        mbReporter.verifyEquals(title, expTitle, "Verify Title", false, false);
-        mbReporter.verifyEquals(ctaText, expCtaText, "Verify Cta Text", false, false);
+        mbReporter.verifyEqualsWithLogging(title, expTitle, "Verify Title", false,false,true);
+        mbReporter.verifyEqualsWithLogging(ctaText, expCtaText, "Verify Cta Text", false,false,true);
 
 
     }
