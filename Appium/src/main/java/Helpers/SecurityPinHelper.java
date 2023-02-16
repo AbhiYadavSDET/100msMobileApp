@@ -61,8 +61,8 @@ public class SecurityPinHelper {
         Log.info("Current Security State : " + currentStateText);
 
         // Add the assertions
-        mbReporter.verifyEquals(securitySettingPageTitle, expSecuritySettingsTitle , "Verify Title", false, false);
-        mbReporter.verifyEquals(currentStateText, "Security PIN: "+currentState, "Verify Current Sate", false, false);
+        mbReporter.verifyEqualsWithLogging(securitySettingPageTitle, expSecuritySettingsTitle , "Verify Title", false, false,true);
+        mbReporter.verifyEqualsWithLogging(currentStateText, "Security PIN: "+currentState, "Verify Current Sate", false, false,true);
 
         if(securityPinPage.getCurrentState().equals("Security PIN: "+currentState)){
 
@@ -72,7 +72,7 @@ public class SecurityPinHelper {
             // Verification on the Security Settings screen
             String securityPinPageTitle = securityPinPage.getTitle();
             Log.info("Title : " + securityPinPageTitle);
-            mbReporter.verifyEquals(securityPinPageTitle, expSecurityPinTitle , "Verify Title", false, false);
+            mbReporter.verifyEqualsWithLogging(securityPinPageTitle, expSecurityPinTitle , "Verify Title", false, false,true);
 
             // Enter security pin
             securityPinPage.enterSecurityPin();

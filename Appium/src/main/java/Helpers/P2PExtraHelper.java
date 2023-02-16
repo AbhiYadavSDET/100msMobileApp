@@ -88,8 +88,8 @@ public class P2PExtraHelper {
             Log.info("Withdrawal status : " + actualStatus);
 
             // Add the assertions
-            mbReporter.verifyEquals(actualAmount, expAmount, "Verify Withdrawal amount", false, false);
-            mbReporter.verifyEquals(actualStatus, expStatus, "Verify Withdrawal status", false, false);
+            mbReporter.verifyEqualsWithLogging(actualAmount, expAmount, "Verify Withdrawal amount", false,false,true);
+            mbReporter.verifyEqualsWithLogging(actualStatus, expStatus, "Verify Withdrawal status", false,false,true);
 
         } else {
             Log.info("Portfolio value is less then amount entered");

@@ -75,9 +75,9 @@ public class MBKCommonControlsHelper {
             expectedMoneyAddedAfter = expectedMoneyAddedAfter - Double.parseDouble(amount) * 100;
         }
 
-        mbReporter.verifyEquals(actualMainBalanceAfter, expectedMainBalanceAfter, "Post TRX | Verify Wallet Main Balance", false, false);
-        mbReporter.verifyEquals(actualMoneyAddedAfter, expectedMoneyAddedAfter, "Post TRX | Verify Money Added Balance", false, false);
-        mbReporter.verifyEquals(actualSupercashAfter, expectedSupercashAfter, "Post TRX | Verify Supercash Balance", false, false);
+        mbReporter.verifyEqualsWithLogging(actualMainBalanceAfter, expectedMainBalanceAfter, "Post TRX | Verify Wallet Main Balance", false, false,true);
+        mbReporter.verifyEqualsWithLogging(actualMoneyAddedAfter, expectedMoneyAddedAfter, "Post TRX | Verify Money Added Balance", false, false,true);
+        mbReporter.verifyEqualsWithLogging(actualSupercashAfter, expectedSupercashAfter, "Post TRX | Verify Supercash Balance", false, false,true);
 
 
     }
@@ -533,9 +533,9 @@ public class MBKCommonControlsHelper {
         Log.info(historyDetails.get("amount"));
         Log.info(historyDetails.get("status"));
 
-        mbReporter.verifyEquals(historyDetails.get("description"), expectedHistoryDescription, "Post TRX | Verify History Description", false, false);
-        mbReporter.verifyEquals(historyDetails.get("amount"), expectedHistoryAmount, "Post TRX | Verify History Amount", false, false);
-        mbReporter.verifyEquals(historyDetails.get("status"), expectedHistoryStatus, "Post TRX | Verify History Status", false, false);
+        mbReporter.verifyEqualsWithLogging(historyDetails.get("description"), expectedHistoryDescription, "Post TRX | Verify History Description", false, false,true);
+        mbReporter.verifyEqualsWithLogging(historyDetails.get("amount"), expectedHistoryAmount, "Post TRX | Verify History Amount", false, false,true);
+        mbReporter.verifyEqualsWithLogging(historyDetails.get("status"), expectedHistoryStatus, "Post TRX | Verify History Status", false, false,true);
 
 
     }
