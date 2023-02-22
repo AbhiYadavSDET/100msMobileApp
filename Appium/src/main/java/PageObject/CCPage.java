@@ -1,6 +1,5 @@
 package PageObject;
 
-import Utils.Element;
 import Utils.Elements;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
@@ -26,6 +25,9 @@ public class CCPage {
 
     @AndroidFindBy(id = "cl_root")
     private AndroidElement addNewCreditCard;
+
+    @AndroidFindBy(id = "pay_button")
+    private AndroidElement payNowButton;
 
     @AndroidFindBy(id = "edit_text")
     private AndroidElement enterText;
@@ -66,6 +68,18 @@ public class CCPage {
     @AndroidFindBy(id = "cl_amt_manual")
     private AndroidElement enterAmountManually;
 
+    @AndroidFindBy(id = "cl_coupon_view")
+    private AndroidElement applyCoupon;
+
+    @AndroidFindBy(id = "edit_text")
+    private AndroidElement enterCouponCode;
+
+    @AndroidFindBy(id = "textinput_suffix_text")
+    private AndroidElement applyButton;
+
+    @AndroidFindBy(id = "tv_title")
+    private AndroidElement couponApplied;
+
     @AndroidFindBy(id = "tv_total")
     private AndroidElement amountDisplayed;
 
@@ -74,6 +88,9 @@ public class CCPage {
 
     @AndroidFindBy(id = "right_icon_wallet")
     private AndroidElement walletBalance;
+
+    @AndroidFindBy(id = "right_icon_pg")
+    private AndroidElement otherPaymentOptions;
 
     @AndroidFindBy(id = "action_button")
     private AndroidElement payAmount;
@@ -108,6 +125,10 @@ public class CCPage {
 
     public void clickSyncEmailBottomSheet() {
         Elements.selectElement(driver, syncEmailBottomSheet, "Click close to close Sync Email bottom sheet");
+    }
+
+    public void clickPayNowButton() {
+        Elements.selectElement(driver, payNowButton, "Click on Pay now button of saved card");
     }
 
     public void clickAddNewCreditCard(){
@@ -186,8 +207,6 @@ public class CCPage {
         for(int i = 0 ; i < number.length() ; i++) {
             char c = number.charAt(i);
 
-            // Log.info("TAP " + c);
-
             switch (c) {
                 case '2':
                     clickTwoButton();
@@ -233,14 +252,23 @@ public class CCPage {
         }
     }
 
+    public void clickApplyCoupon(){ Elements.selectElement(driver, applyCoupon, "Click on Apply coupon"); }
 
-    public void clickOnPay() {
-        Elements.selectElement(driver, pay, "click on Pay");
+    public void enterEnterCouponCode(){ Elements.enterToElement(driver, enterCouponCode, "CCPAY" ,"Enter CCPAY as coupon code"); }
+
+    public void clickApplyButton() { Elements.selectElement(driver, applyButton, "Click on Apply button"); }
+
+    public String getCouponTitle() throws InterruptedException {
+        return Elements.getText(driver, couponApplied, "Coupon Applied on payment screen");
     }
+
+    public void clickOnPay() { Elements.selectElement(driver, pay, "click on Pay"); }
 
     public void clickWalletBalance(){
         Elements.selectElement(driver, walletBalance, "Click on wallet balance");
     }
+
+    public void clickOtherPaymentOptions(){Elements.selectElement(driver, otherPaymentOptions, "Click on Other Payment options");}
 
     public void clickPayAmount(){
         Elements.selectElement(driver, payAmount, "Click on Pay button");

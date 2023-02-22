@@ -8,7 +8,6 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.support.PageFactory;
-import io.appium.java_client.android.nativekey.KeyEvent;
 
 
 import java.io.IOException;
@@ -68,26 +67,10 @@ public class CCBPHelper {
             syncEmailBottomSheet.clickSyncEmailBottomSheet();
         }
 
-//        //Close Email sync bottom sheet
-//        ccPage.clickSyncEmailBottomSheet();
-//
-//        //Click on Add new credit card option
-//        ccPage.clickAddNewCreditCard();
-
         //Click on Enter card number text box
         ccPage.clickEnterCardNumber();
 
         ccPage.enterCardNumber(cardNumber);
-
-        //Enter credit card number
-//        ccPage.clickFourButton();
-//        ccPage.clickThreeButton();
-//        ccPage.clickSevenButton();
-//        ccPage.clickFiveButton();
-//        ccPage.clickFiveButton();
-//        ccPage.clickOneButton();
-//        ccPage.clickFiveButton();ccPage.clickFiveButton();ccPage.clickFiveButton();ccPage.clickFiveButton();ccPage.clickFiveButton();
-//        ccPage.clickFiveButton();ccPage.clickFiveButton();ccPage.clickFiveButton();ccPage.clickFiveButton();ccPage.clickFiveButton();
 
         //Click Continue CTA
         ccPage.clickContinueCTA();
@@ -98,16 +81,8 @@ public class CCBPHelper {
         //Enter amount
         ccPage.clickEnterAmountField();
 
-        //Enter amount in enter amount manually field
-        //ccPage.enterEnterAmountManually();
-
+        //Enter amount
         ccPage.enterCardNumber(expAmountOnPaymentScreen);
-
-//        //Enter 100 rupees amount
-//        ccPage.clickOneButton();
-//        ccPage.clickZeroButton();
-//        ccPage.clickZeroButton();
-
 
         //click Continue CTA
         ccPage.clickContinueCTA();
@@ -163,7 +138,107 @@ public class CCBPHelper {
 
     }
 
-}
+    public void existingUserCCBP(String amount, String expAmountOnPaymentScreen,String expCouponApplied, String cardNumber, String expTitle, String expSubTitle, String expAmountOnSuccessScreen, String expectedHistoryDescription, String expectedHistoryStatus, String expectedHistoryAmount) throws IOException, InterruptedException {
+        // Get the Balance if the User Before TRX
+        balanceBefore = mbkCommonControlsHelper.getBalance();
+
+        // Click on Recharge And PayBills
+        ccPage.clickRechargeAndPayBills();
+
+        // Click on outside Swipe Left Bottom Popup
+        ccPage.clickSwipeLeftBottomRemove();
+
+        // Click on Credit card payment option
+        ccPage.clickOnCreditCardPayment();
+
+
+        //Close Email Sync Bottom sheet
+        if(syncEmailBottomSheet.checkEmailSyncBottomSheet())
+        {
+            syncEmailBottomSheet.clickSyncEmailBottomSheet();
+        }
+        //Click Pay now button on saved card
+        ccPage.clickPayNowButton();
+
+        //Enter amount
+        ccPage.clickEnterAmountField();
+
+        ccPage.enterCardNumber(expAmountOnPaymentScreen);
+
+        //click Continue CTA
+        ccPage.clickContinueCTA();
+
+        //Click Apply coupon field
+        ccPage.clickApplyCoupon();
+
+        //Enter coupon code
+        ccPage.enterEnterCouponCode();
+
+        //Click Apply button after entering coupon code
+        ccPage.clickApplyButton();
+
+        // Verification on the Payment Screen
+        String amountOnPaymentScreen = rechargePage.getAmountOnPayment();
+        Log.info("Amount on Payment Screen : " + amountOnPaymentScreen);
+        mbReporter.verifyEquals(amountOnPaymentScreen, expAmountOnPaymentScreen, "Verify Amount on Payment screen", false, false);
+
+        // Verification of coupon applied on the Payment Screen
+        String couponApplied = ccPage.getCouponTitle();
+        Log.info("Coupon Applied on Payment Screen : " + couponApplied);
+        mbReporter.verifyEquals(couponApplied, expCouponApplied, "Verify coupon applied on Payment screen", false, false);
+
+        Thread.sleep(3000);
+        //Click on Pay button
+        ccPage.clickOnPay();
+
+        //Click on Other payment options
+        ccPage.clickOtherPaymentOptions();
+
+        //Click on pay button on Payable amount bottom sheet
+        ccPage.clickPayAmount();
+
+        // checking for security pin
+        if(securityPinPage.checkSecurityPinPage()){
+            securityPinPage.enterSecurityPin();
+        }
+
+        mbkCommonControlsHelper.handleAddMoney("CCBP", "100", "4375517199762008","04/27","123");
+
+
+        // Verification on the Success Screen
+        String title = ccPage.getTitle();
+        String subTitle = ccPage.getSubTitle();
+        String amountOnSuccesScreen = ccPage.getAmountOnSuccessScreen();
+
+        // Display the values
+        Log.info("Title : " + title);
+        Log.info("Sub Title : " + subTitle);
+        Log.info("Amount On Success Screen : " + amountOnSuccesScreen);
+
+
+        // Add the assertions
+        mbReporter.verifyEqualsWithLogging(title, expTitle, "Verify Title", false, false, true);
+        mbReporter.verifyEqualsWithLogging(subTitle, expSubTitle, "Verify Sub Title", false, false, true);
+        mbReporter.verifyEqualsWithLogging(amountOnSuccesScreen, expAmountOnSuccessScreen, "Verify Credit Card Bill Payment Amount", false, false, true);
+
+        mbkCommonControlsHelper.pressback(3);
+
+        // Click on the back button if the bottom sheet is present
+        mbkCommonControlsHelper.handleHomePageLanding();
+
+        // Get the Balance if the User Before TRX
+        balanceAfter = mbkCommonControlsHelper.getBalance();
+
+
+        // Assertions on the balance deducted
+        mbkCommonControlsHelper.verifyWalletBalanceAfterTransaction(driver, balanceBefore, balanceAfter, "101.18", "Sub");
+
+        // Verify the History details
+        mbkCommonControlsHelper.verifyHistoryDetails(driver ,expectedHistoryDescription,expectedHistoryAmount,expectedHistoryStatus);
+
+
+    }
+    }
 
 
 
