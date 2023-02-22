@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class CCBPTest extends TestBase {
 
-    @Test(groups = {"sanity", "ccbp Payment"}, priority = 1, description = "ccbp Payment")
+    @Test(groups = {"sanity", "ccbp Payment"}, priority = 0, description = "ccbp Payment")
 
     public void creditCardBill_Payment() throws InterruptedException, IOException {
 
@@ -33,7 +33,7 @@ public class CCBPTest extends TestBase {
         Log.info("======= END : Credit card bill Payment =======");
     }
 
-    @Test(groups = {"sanity", "ccbp Payment"}, priority = 0, description = "existing user ccbp Payment")
+    @Test(groups = {"sanity", "ccbp Payment"}, priority = 1, description = "existing user ccbp Payment")
 
     public void existingUserCreditCardBill_Payment() throws InterruptedException, IOException {
 

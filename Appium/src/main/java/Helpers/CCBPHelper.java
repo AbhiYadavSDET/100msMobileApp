@@ -45,6 +45,16 @@ public class CCBPHelper {
         mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
     }
 
+    public static String actualDeductedAmount(String amount){
+
+        double deductedAmount = Double.parseDouble(amount);
+        double totalDeductedAmount = (101.18 * deductedAmount)/100;
+
+        String newAmount = String.valueOf(totalDeductedAmount);
+
+        return newAmount;
+    }
+
     public void creditCardBillPayment(String amount, String expAmountOnPaymentScreen, String cardNumber, String expTitle, String expSubTitle, String expAmountOnSuccessScreen, String expectedHistoryDescription, String expectedHistoryStatus, String expectedHistoryAmount) throws IOException, InterruptedException {
 
 
@@ -131,7 +141,7 @@ public class CCBPHelper {
 
 
         // Assertions on the balance deducted
-        mbkCommonControlsHelper.verifyWalletBalanceAfterTransaction(driver, balanceBefore, balanceAfter, "101.18", "Sub");
+        mbkCommonControlsHelper.verifyWalletBalanceAfterTransaction(driver, balanceBefore, balanceAfter, actualDeductedAmount(amount), "Sub");
 
         // Verify the History details
         mbkCommonControlsHelper.verifyHistoryDetails(driver ,expectedHistoryDescription,expectedHistoryAmount,expectedHistoryStatus);
@@ -180,12 +190,12 @@ public class CCBPHelper {
         // Verification on the Payment Screen
         String amountOnPaymentScreen = rechargePage.getAmountOnPayment();
         Log.info("Amount on Payment Screen : " + amountOnPaymentScreen);
-        mbReporter.verifyEquals(amountOnPaymentScreen, expAmountOnPaymentScreen, "Verify Amount on Payment screen", false, false);
+        mbReporter.verifyEqualsWithLogging(amountOnPaymentScreen, expAmountOnPaymentScreen, "Verify Amount on Payment screen", false, false, true);
 
         // Verification of coupon applied on the Payment Screen
         String couponApplied = ccPage.getCouponTitle();
         Log.info("Coupon Applied on Payment Screen : " + couponApplied);
-        mbReporter.verifyEquals(couponApplied, expCouponApplied, "Verify coupon applied on Payment screen", false, false);
+        mbReporter.verifyEqualsWithLogging(couponApplied, expCouponApplied, "Verify coupon applied on Payment screen", false, false,true);
 
         Thread.sleep(3000);
         //Click on Pay button
@@ -231,7 +241,7 @@ public class CCBPHelper {
 
 
         // Assertions on the balance deducted
-        mbkCommonControlsHelper.verifyWalletBalanceAfterTransaction(driver, balanceBefore, balanceAfter, "101.18", "Sub");
+        mbkCommonControlsHelper.verifyWalletBalanceAfterTransaction(driver, balanceBefore, balanceAfter, actualDeductedAmount(amount), "Sub");
 
         // Verify the History details
         mbkCommonControlsHelper.verifyHistoryDetails(driver ,expectedHistoryDescription,expectedHistoryAmount,expectedHistoryStatus);
