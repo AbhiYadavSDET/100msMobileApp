@@ -6,6 +6,9 @@
     <parameter name="level" value="payments"/>
     <parameter name="saucelabs" value="false"></parameter>
     <parameter name="androidOSVersion" value="7.0"></parameter>
+    <parameter name="userName" value="ashishkumarpradhan"></parameter>
+    <parameter name="deviceID" value="0"></parameter>
+
 
     <test verbose="2" preserve-order="true" name="Add Money flow Test">
         <groups>
@@ -16,7 +19,6 @@
                 <include name="tearDown"/>
             </run>
         </groups>
-
 
         <classes>
             <class name="Utils.TestBase"/>
