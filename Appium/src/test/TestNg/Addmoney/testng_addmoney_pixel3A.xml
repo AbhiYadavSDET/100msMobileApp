@@ -4,15 +4,11 @@
 
     <parameter name="build" value="prod"/>
     <parameter name="level" value="payments"/>
-    <parameter name="cloudRun" value="true"></parameter>
+    <parameter name="saucelabs" value="false"></parameter>
+    <parameter name="androidOSVersion" value="7.0"></parameter>
     <parameter name="userName" value="ashishkumarpradhan"></parameter>
-    <parameter name="deviceID" value="1"></parameter>
+    <parameter name="deviceID" value="3"></parameter>
 
-
-    <listeners>
-        <listener class-name="Utils.Listeners.AnnotationTransformer"/>
-        <listener class-name="Utils.ExtentReportListener"/>
-    </listeners>
 
     <test verbose="2" preserve-order="true" name="Add Money flow Test">
         <groups>
@@ -23,7 +19,6 @@
                 <include name="tearDown"/>
             </run>
         </groups>
-
 
         <classes>
             <class name="Utils.TestBase"/>

@@ -128,6 +128,8 @@ public class GoldHelper {
         // Click on Continue CTA
         goldPage.clickContinueCta();
 
+        Thread.sleep(3000);
+
         // Click on Sell Gold Cta
         goldPage.clickSellGoldCta();
 
