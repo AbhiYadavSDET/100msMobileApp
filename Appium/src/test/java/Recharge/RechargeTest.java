@@ -29,16 +29,14 @@ public class RechargeTest extends TestBase {
 
     }
 
-//    @Test(groups = {"sanity", "mobileRecharge"}, priority = 1, description = "mobile Recharge")
+//    @Test(groups = {"sanity", "mobileRecharge","prepaidRecharge"}, priority = 1, description = "mobile Recharge")
 //    public void prepaid_Recharge() throws IOException, InterruptedException {
-//
-//        ExtentReport.EXTENTREPORT.createTest("Prepaid recharge test");
 //
 //        // Login to the account
 //        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
 //        loginHelper.quickLoginViaOtp("9205299330", "547372");
 //
-//        Log.info("======= START : Prepaid Recharge =======");
+//        Log.info("======= START : Postpaid Recharge =======");
 //
 //        // Execute the test
 //        RechargeHelper rechargeHelper = new RechargeHelper(getAndroidDriver());

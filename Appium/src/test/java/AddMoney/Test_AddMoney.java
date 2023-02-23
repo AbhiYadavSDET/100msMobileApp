@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public class Test_AddMoney extends TestBase {
 
-    String deviceID = "1";
+    String deviceID = "0";
     String userName = "ashishkumarpradhan";
 
     @Parameters({"deviceID","userName"})
