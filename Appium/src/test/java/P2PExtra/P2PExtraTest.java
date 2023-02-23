@@ -3,6 +3,7 @@ package P2PExtra;
 import Helpers.LoginHelper;
 import Helpers.P2PExtraHelper;
 import Logger.Log;
+import Utils.ExtentReport;
 import org.testng.annotations.Test;
 import Utils.TestBase;
 
@@ -15,6 +16,8 @@ public class P2PExtraTest extends TestBase {
     public void Test_Withdraw_Money() throws InterruptedException, IOException {
 
         Log.info("======= START : p2p Xtra Withdraw test =======");
+
+        ExtentReport.EXTENTREPORT.createTest("p2p Xtra Withdraw test");
 
         // Start the test
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());

@@ -109,9 +109,9 @@ public class AddMoneyHelper {
         Log.info("Amount : " + amountOnSuccess);
 
         // Add the assertions
-        mbReporter.verifyEquals(title, expTitle, "Verify Title", false, false);
-        mbReporter.verifyEquals(subTitle, expSubTitle, "Verify Sub Title", false, false);
-        mbReporter.verifyEquals(amountOnSuccess, expAmount, "Verify Amount", false, false);
+        mbReporter.verifyEqualsWithLogging(title, expTitle, "Verify Title", false, false,true);
+        mbReporter.verifyEqualsWithLogging(subTitle, expSubTitle, "Verify Sub Title", false, false,true);
+        mbReporter.verifyEqualsWithLogging(amountOnSuccess, expAmount, "Verify Amount", false, false,true);
 
 
         mbkCommonControlsHelper.pressback(3);

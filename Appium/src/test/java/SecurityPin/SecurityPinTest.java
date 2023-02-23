@@ -3,6 +3,7 @@ package SecurityPin;
 import Helpers.SecurityPinHelper;
 import Helpers.LoginHelper;
 import Logger.Log;
+import Utils.ExtentReport;
 import Utils.TestBase;
 import org.testng.annotations.Test;
 
@@ -15,6 +16,8 @@ public class SecurityPinTest extends TestBase {
     public void SecurityPinTest1() throws IOException, InterruptedException {
 
         Log.info("======= START : Security Pin Test =======");
+
+        ExtentReport.EXTENTREPORT.createTest("Security Pin test");
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());

@@ -3,6 +3,7 @@ package MutualFunds;
 import Helpers.LoginHelper;
 import Helpers.MutualFundsHelper;
 import Logger.Log;
+import Utils.ExtentReport;
 import org.testng.annotations.Test;
 import Utils.TestBase;
 
@@ -15,6 +16,8 @@ public class MutualFundsTest extends TestBase {
     public void Explore_Mutual_Funds() throws InterruptedException, IOException {
 
         Log.info("======= START : Mutual Funds Flow test =======");
+
+        ExtentReport.EXTENTREPORT.createTest("Mutual Funds Flow test");
 
         // Start the test
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
