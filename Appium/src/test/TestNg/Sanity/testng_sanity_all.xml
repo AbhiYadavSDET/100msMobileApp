@@ -25,6 +25,7 @@
 
         <classes>
             <class name="Utils.TestBase"/>
+            <class name="AddMoney.Test_AddMoney"/>
             <class name="P2P.P2PTest"/>
             <class name="P2M.P2MTest"/>
             <class name="P2PExtra.P2PExtraTest"/>
@@ -36,6 +37,7 @@
             <class name="Rewards.RewardsTest"/>
             <class name="Recharge.RechargeTest"/>
             <class name="SecurityPin.SecurityPinTest"/>
+            <class name="AccountAggregator.Test_AccountAggregator"/>
         </classes>
     </test>
 
