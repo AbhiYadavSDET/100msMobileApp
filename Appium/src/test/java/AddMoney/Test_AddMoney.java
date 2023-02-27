@@ -18,7 +18,7 @@ public class Test_AddMoney extends TestBase {
     String userName = "ashishkumarpradhan";
 
     @Parameters({"deviceID","userName"})
-    @Test(groups = {"addMoney", "Sanity"}, priority = 1,description = "Stand Alone Add money Testing from home page via Saved Card")
+    @Test(groups = {"addMoney", "sanity"}, priority = 0,description = "Stand Alone Add money Testing from home page via Saved Card")
     public void Test02_addmoney_via_Savedcard(@Optional String deviceID, @Optional String userName) throws IOException, InterruptedException {
 
         if (deviceID == null) {

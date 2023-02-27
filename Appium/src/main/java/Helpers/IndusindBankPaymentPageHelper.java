@@ -130,7 +130,7 @@ public class IndusindBankPaymentPageHelper {
         int height = dimension.getHeight()/20;
 
         Log.info("WAIT");
-        Thread.sleep(20000);
+        Thread.sleep(60000);
 
 
         Log.info("TAP on text box");
