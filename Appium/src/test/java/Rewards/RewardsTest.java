@@ -3,6 +3,7 @@ package Rewards;
 import Helpers.LoginHelper;
 import Helpers.RewardsHelper;
 import Logger.Log;
+import Utils.ExtentReport;
 import Utils.TestBase;
 import org.testng.annotations.Test;
 
@@ -16,6 +17,8 @@ public class RewardsTest extends TestBase {
     public void Test01_buyGold() throws IOException, InterruptedException {
 
         Log.info("======= START : Spin the Wheel test =======");
+
+        ExtentReport.EXTENTREPORT.createTest("Spin the Wheel test");
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());

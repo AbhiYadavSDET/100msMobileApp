@@ -3,6 +3,7 @@ package Offers;
 import Helpers.LoginHelper;
 import Helpers.OfferHelper;
 import Logger.Log;
+import Utils.ExtentReport;
 import Utils.TestBase;
 import org.testng.annotations.Test;
 
@@ -16,6 +17,7 @@ public class OfferTest extends TestBase {
     public void Test01_offerSearch() throws IOException, InterruptedException {
 
         Log.info("======= START : Offer Search test =======");
+        ExtentReport.EXTENTREPORT.createTest("Offer Search test");
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());

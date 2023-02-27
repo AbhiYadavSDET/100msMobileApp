@@ -3,14 +3,16 @@ package Recharge;
 import Helpers.RechargeHelper;
 import Helpers.LoginHelper;
 import Logger.Log;
+import Utils.ExtentReport;
 import Utils.TestBase;
 import org.testng.annotations.Test;
 import java.io.IOException;
 
 public class RechargeTest extends TestBase {
 
-    @Test(groups = {"sanity", "mobileRecharge","postpaidRecharge"}, priority = 0, description = "mobile Recharge")
+    @Test(groups = {"sanity", "mobileRecharge"}, priority = 0, description = "mobile Recharge")
     public void postpaid_Recharge() throws IOException, InterruptedException {
+        ExtentReport.EXTENTREPORT.createTest("Postpaid recharge test");
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
@@ -23,6 +25,7 @@ public class RechargeTest extends TestBase {
         rechargeHelper.postpaidRecharge("1","₹1","Payment Successful","for Jio 9311878235 ","₹1","Jio Bill Payment", "₹1", "Success");
 
         Log.info("======= END : Postpaid Recharge =======");
+
 
     }
 
