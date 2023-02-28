@@ -72,7 +72,8 @@ public class ElectricityPage {
     }
 
     public void enterSearchElectricityBrand(String brandName) throws InterruptedException {
-        Elements.isElementPresent(driver, searchElectricityBrand);
+        //Elements.isElementPresent(driver, searchElectricityBrand);
+        Elements.enterToElement(driver, searchElectricityBrand, brandName,"Enter Brand Name");
     }
 
     public void clickSelectBrand(){
@@ -84,7 +85,8 @@ public class ElectricityPage {
     }
 
     public void enterCaNumber(String CA_Number) throws InterruptedException {
-        Elements.isElementPresent(driver, caNumber);
+        //Elements.isElementPresent(driver, caNumber);
+        Elements.enterToElement(driver, caNumber, CA_Number, "Enter CA number");
         }
 
     public void clickContinueButton(){
