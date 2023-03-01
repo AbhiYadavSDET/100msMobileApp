@@ -85,10 +85,10 @@ public class SideDrawerPage {
         return label_mobile.getText();
     }
 
-    public HelpPage clickOnHelp() throws IOException {
-        Element.selectElement(driver, help, "Click on Help");
-        return new HelpPage(driver);
-    }
+//    public HelpPage clickOnHelp() throws IOException {
+//        Element.selectElement(driver, help, "Click on Help");
+//        return new HelpPage(driver);
+//    }
 
     public SecuritySettingsPage clickOnSecuritySettings() throws IOException {
         Element.selectElement(driver, security_settings, "Click on Security Settings");
