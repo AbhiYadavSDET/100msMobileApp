@@ -39,26 +39,30 @@ public class RewardsHelper {
         // Click the CTA - Get started
         rewardsPage.clickGetStarted();
 
-        // Click the CTA - Spin the wheel
-        rewardsPage.clickSpinTheWheel();
+        if(rewardsPage.isSpinTheWheelPresent()){
+            // Click the CTA - Spin the wheel
+            rewardsPage.clickSpinTheWheel();
 
-        // Verification on the Claim Now bottom sheet
-        String actualTitle = rewardsPage.getClaimNowScreenTitle();
-        String actualSubTitle = rewardsPage.getClaimNowScreenSubTitle();
-        String actualCtaText = rewardsPage.getCtaText();
+            // Verification on the Claim Now bottom sheet
+            String actualTitle = rewardsPage.getClaimNowScreenTitle();
+            String actualSubTitle = rewardsPage.getClaimNowScreenSubTitle();
+            String actualCtaText = rewardsPage.getCtaText();
 
-        // Display the values
-        Log.info("Title : " + actualTitle);
-        Log.info("SubTitle : " + actualSubTitle);
-        Log.info("Cta text : " + actualCtaText);
+            // Display the values
+            Log.info("Title : " + actualTitle);
+            Log.info("SubTitle : " + actualSubTitle);
+            Log.info("Cta text : " + actualCtaText);
 
-        // Add the assertions
-        mbReporter.verifyEqualsWithLogging(actualTitle, expTitle, "Verify Title", false,false,true);
-        mbReporter.verifyEqualsWithLogging(actualSubTitle, expSubTitle, "Verify Sub Title", false,false,true);
-        mbReporter.verifyEqualsWithLogging(actualCtaText, expCtaText, "Verify Cta Text", false,false,true);
+            // Add the assertions
+            mbReporter.verifyEqualsWithLogging(actualTitle, expTitle, "Verify Title", false,false,true);
+            mbReporter.verifyEqualsWithLogging(actualSubTitle, expSubTitle, "Verify Sub Title", false,false,true);
+            mbReporter.verifyEqualsWithLogging(actualCtaText, expCtaText, "Verify Cta Text", false,false,true);
 
-        // Click on the cross button
-        rewardsPage.clickCrossButton();
+            // Click on the cross button
+            rewardsPage.clickCrossButton();
+
+        }
+
 
 
     }

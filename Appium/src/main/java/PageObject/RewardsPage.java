@@ -50,6 +50,10 @@ public class RewardsPage {
         Elements.selectElement(driver, ctaGetStarted, "Get Started");
     }
 
+    public boolean isSpinTheWheelPresent() throws InterruptedException {
+        return Elements.isElementPresent(driver, ctaSpinTheWheel);
+    }
+
     public void clickSpinTheWheel() {
         Elements.selectElement(driver, ctaSpinTheWheel, "Spin the Wheel");
     }
