@@ -15,35 +15,24 @@ import java.util.LinkedHashMap;
 public class PipedGasHelper {
 
     AndroidDriver<AndroidElement> driver;
-    RechargePage rechargePage;
-    CCPage ccPage;
-    LoginPage loginPage;
-    HomePage homePage;
-    PermissionPage permissionsPage;
-    Screen screen;
-    MBReporter mbReporter;
-    SecurityPinPage securityPinPage;
-    MBKCommonControlsHelper mbkCommonControlsHelper;
-    LinkedHashMap<String, String> balanceBefore;
-    LinkedHashMap<String, String> balanceAfter;
-    SyncEmailBottomSheet syncEmailBottomSheet;
-    ElectricityPage electricityPage;
-    PipedGasPage pipedGasPage;
+
+        CCPage ccPage;
+        MBReporter mbReporter;
+        MBKCommonControlsHelper mbkCommonControlsHelper;
+        LinkedHashMap<String, String> balanceBefore;
+        ElectricityPage electricityPage;
+        PipedGasPage pipedGasPage;
 
     public PipedGasHelper(AndroidDriver<AndroidElement> driver) throws IOException {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
-        rechargePage = new RechargePage(driver);
+
         ccPage = new CCPage(driver);
         electricityPage = new ElectricityPage(driver);
-        loginPage = new LoginPage(driver);
-        homePage = new HomePage(driver);
-        permissionsPage = new PermissionPage(driver);
-        mbReporter = new MBReporter(driver);
-        securityPinPage = new SecurityPinPage(driver);
-        syncEmailBottomSheet = new SyncEmailBottomSheet(driver);
-        mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
         pipedGasPage = new PipedGasPage(driver);
+        mbReporter = new MBReporter(driver);
+        mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
+
 
     }
     public void viewPipedGasBill(String expUserName, String expTitle, String expSubTitle, String brandName, String CA_number) throws IOException, InterruptedException {

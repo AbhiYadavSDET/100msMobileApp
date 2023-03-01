@@ -1,10 +1,8 @@
 package ViewPipedGasBill;
 
-import Helpers.ElectricityHelper;
 import Helpers.LoginHelper;
 import Helpers.PipedGasHelper;
 import Logger.Log;
-import Utils.ExtentReport;
 import Utils.TestBase;
 import org.testng.annotations.Test;
 
@@ -17,10 +15,7 @@ public class ViewPipedGasBillTest extends TestBase {
         public void viewPipedGasBill() throws InterruptedException, IOException {
 
 
-            Log.info("======= START : P2M Send test =======");
-            // Starting the test in the extentreport
-            ExtentReport.EXTENTREPORT.createTest("CCBP test");
-
+            Log.info("======= START : Login Test =======");
             // Login to the account
             LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
             loginHelper.quickLoginViaOtp("9205299330", "547372");
