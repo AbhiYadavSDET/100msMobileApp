@@ -17,7 +17,7 @@ public class LoanTest extends TestBase {
     public void Test01_verifyLoanPage() throws IOException, InterruptedException {
 
         Log.info("======= START : Loan Verify test =======");
-        ExtentReport.EXTENTREPORT.createTest("Loan Verify test");
+
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());

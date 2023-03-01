@@ -17,7 +17,6 @@ public class P2PTest extends TestBase {
     public void Test01_p2pSend() throws IOException, InterruptedException {
 
         Log.info("======= START : P2P Send test =======");
-        ExtentReport.EXTENTREPORT.createTest("P2P Send test");
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());

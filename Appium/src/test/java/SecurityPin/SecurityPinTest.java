@@ -17,7 +17,6 @@ public class SecurityPinTest extends TestBase {
 
         Log.info("======= START : Security Pin Test =======");
 
-        ExtentReport.EXTENTREPORT.createTest("Security Pin test");
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());

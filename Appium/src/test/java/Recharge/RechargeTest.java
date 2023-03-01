@@ -12,7 +12,7 @@ public class RechargeTest extends TestBase {
 
     @Test(groups = {"sanity", "mobileRecharge"}, priority = 0, description = "mobile Recharge")
     public void postpaid_Recharge() throws IOException, InterruptedException {
-        ExtentReport.EXTENTREPORT.createTest("Postpaid recharge test");
+
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());

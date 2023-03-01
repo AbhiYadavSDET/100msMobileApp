@@ -18,7 +18,6 @@ public class RewardsTest extends TestBase {
 
         Log.info("======= START : Spin the Wheel test =======");
 
-        ExtentReport.EXTENTREPORT.createTest("Spin the Wheel test");
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());

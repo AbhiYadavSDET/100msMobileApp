@@ -14,7 +14,6 @@ public class Test_HelpAndSupport  extends TestBase {
     @Test(groups = {"sanity", "helpAndSupport"}, priority = 0, description = "Verify Help And Support")
     public void Test01_HelpAndSupport() throws IOException, InterruptedException {
 
-        Log.info("======= START : Help And Support test =======");
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
