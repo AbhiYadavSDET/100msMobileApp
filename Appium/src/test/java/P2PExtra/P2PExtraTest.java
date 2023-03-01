@@ -17,7 +17,6 @@ public class P2PExtraTest extends TestBase {
 
         Log.info("======= START : p2p Xtra Withdraw test =======");
 
-        ExtentReport.EXTENTREPORT.createTest("p2p Xtra Withdraw test");
 
         // Start the test
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());

@@ -18,7 +18,7 @@ public class P2MTest extends TestBase {
 
         Log.info("======= START : P2M Send test =======");
         // Starting the test in the extentreport
-        ExtentReport.EXTENTREPORT.createTest("P2M Send test");
+
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());

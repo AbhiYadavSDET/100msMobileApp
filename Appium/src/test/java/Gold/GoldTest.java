@@ -17,7 +17,7 @@ public class GoldTest extends TestBase {
     public void Test01_buyGold() throws IOException, InterruptedException {
 
         Log.info("======= START : Gold Buy test =======");
-        ExtentReport.EXTENTREPORT.createTest("Gold Buy test");
+
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
@@ -36,7 +36,7 @@ public class GoldTest extends TestBase {
     public void Test02_buySell() throws IOException, InterruptedException {
 
         Log.info("======= START : Gold Sell test =======");
-        ExtentReport.EXTENTREPORT.createTest(" Gold Sell test");
+
 
         // Login to the account
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());

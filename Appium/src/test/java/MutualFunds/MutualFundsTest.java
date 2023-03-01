@@ -17,7 +17,6 @@ public class MutualFundsTest extends TestBase {
 
         Log.info("======= START : Mutual Funds Flow test =======");
 
-        ExtentReport.EXTENTREPORT.createTest("Mutual Funds Flow test");
 
         // Start the test
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
