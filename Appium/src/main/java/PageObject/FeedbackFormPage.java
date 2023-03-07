@@ -11,7 +11,7 @@ public class FeedbackFormPage {
 
     AndroidDriver driver;
 
-    @AndroidFindBy(id = "mkab_left_icon")
+    @AndroidFindBy(id = "tool_bar")
     private AndroidElement backButton;
 
     @AndroidFindBy(id = "iv_cross")
@@ -20,7 +20,7 @@ public class FeedbackFormPage {
     @AndroidFindBy(xpath = "//*/android.widget.CompoundButton[@text = 'Trying out']")
     private AndroidElement suggestion1;
 
-    @AndroidFindBy(xpath = "/*//android.widget.CompoundButton[@text = 'Recharge & Bill Payments']")
+    @AndroidFindBy(id = "layout_title")
     private AndroidElement title;
 
 //    @AndroidFindBy(xpath = "//*/android.widget.CompoundButton[@text = 'Not able to make payment']")
