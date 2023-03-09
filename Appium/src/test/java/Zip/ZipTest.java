@@ -26,7 +26,7 @@ public class ZipTest extends TestBase {
 
         // Execute the test
         ZipHelper zipHelper = new ZipHelper(getAndroidDriver());
-        zipHelper.verifyZip("Personal Information", "Lets start with basic personal details.");
+        zipHelper.verifyZip("KYC Details", "Lets start with basic personal details.");
 
         Log.info("======= END : Zip Verify test =======");
 
