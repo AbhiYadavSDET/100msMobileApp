@@ -27,16 +27,13 @@ public class AadharCaptchaCheck {
         String data = "";
         String subject = "";
         String sentFrom = "qafront-end@mobikwik.com";
-        String mailTo = "ashishkumarpradhan2022@gmail.com," +
-                "ashish.pradhan@mobikwik.com";
+        String mailTo = "mayank.suneja@mobikwik.com";
         String mailCC = "vipul.behl@mobikwik.com," +
                 "aditya.upadhyay@mobikwik.com," +
-                "paraj.jain@mobikwik.com";
+                "paraj.jain@mobikwik.com," +
+                "ashish.pradhan@mobikwik.com";
         String mailBCC = "";
 
-        // User and pass to send the mail
-        String usernameMail = "mobikwiktest123@gmail.com";
-        String passMail = "njwqiqohpbaqekuq";
 
         Boolean aadharText = false, captchaText = false, captchaImage = false;
         int refreshFlag = 0;
@@ -48,10 +45,9 @@ public class AadharCaptchaCheck {
 
             // Open the Aadhaar Website
              driver.get("https://myaadhaar.uidai.gov.in/");
-            //driver.get("https://www.mobikwik.com/");
             driver.manage().window().maximize();
 
-            if(Elements.isElementPresent(driver,"//button[@class='button_btn__1dRFj' and contains(text(), 'Login')]")){
+            if(Elements.isElementPresent(driver,"//button[@class='button_btn__1dRFj' and contains(text(), 'Login')]" , "xpath") ){
                 driver.findElement(By.xpath("//button[@class='button_btn__1dRFj' and contains(text(), 'Login')]")).click();
             }
             // Click on the Login Button
@@ -65,10 +61,10 @@ public class AadharCaptchaCheck {
                 System.out.println("regreshFalg : " + refreshFlag);
 
                 // Setting the values of both the text on the screen
-                aadharText = Elements.isElementPresent(driver,"//span[@class='label-span' and contains(text(), 'Enter Aadhaar')]");
-                captchaText = Elements.isElementPresent(driver,"//span[@class='label-span' and contains(text(), 'Enter Above Captcha')]");
+                aadharText = Elements.isElementPresent(driver,"//span[@class='label-span' and contains(text(), 'Enter Aadhaar')]", "xpath");
+                captchaText = Elements.isElementPresent(driver,"//span[@class='label-span' and contains(text(), 'Enter Above Captcha')]", "xpath");
 
-                if (Elements.isElementPresent(driver,"//div[@id = 'captcha_block']/img")) {
+                if (Elements.isElementPresent(driver,"//div[@id = 'captcha_block']/img", "xpath")) {
                     File src = ((TakesScreenshot) driver.findElement(By.xpath("//div[@id = 'captcha_block']/img"))).getScreenshotAs(OutputType.FILE);
                     File dest = new File(System.getProperty("user.dir") + "/Test1.jpg");
 

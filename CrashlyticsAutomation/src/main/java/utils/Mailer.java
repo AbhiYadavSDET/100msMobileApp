@@ -32,17 +32,11 @@ public class Mailer {
 
         try {
             Message message = new MimeMessage(session);
-            //           message.setFrom(new InternetAddress("qafront-end@mobikwik.com"));
-//                message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("mayank.suneja@mobikwik.com"));
-//                message.setRecipients(Message.RecipientType.CC, InternetAddress.parse("vipul.behl@mobikwik.com"));
-//                message.addRecipients(Message.RecipientType.CC, InternetAddress.parse("aditya.upadhyay@mobikwik.com"));
-//                message.addRecipients(Message.RecipientType.CC, InternetAddress.parse("paraj.jain@mobikwik.com"));
-//            message.addRecipients(Message.RecipientType.CC, InternetAddress.parse("ashish.pradhan@mobikwik.com"));
 
-                //message.setFrom(new InternetAddress(sentFrom));
+                message.setFrom(new InternetAddress(sentFrom));
                 message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mailTo));
-//            message.setRecipients(Message.RecipientType.CC, InternetAddress.parse(mailCC));
-//            message.setRecipients(Message.RecipientType.BCC, InternetAddress.parse(mailBCC));
+            message.setRecipients(Message.RecipientType.CC, InternetAddress.parse(mailCC));
+            message.setRecipients(Message.RecipientType.BCC, InternetAddress.parse(mailBCC));
 
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
             message.setSubject(subject + timestamp);
