@@ -118,10 +118,10 @@ public class AadharCaptchaCheck {
             Mailer.sendMail(subject,data,sentFrom,mailTo,mailCC,mailBCC);
 
 
-            driver.close();
+            driver.quit();
         } catch (Exception e) {
             //throw e;
-            driver.close();
+            driver.quit();
         }
     }
 

@@ -67,6 +67,7 @@ public class MobikwikWebCheck {
             buildNumber= driver.findElement(By.xpath("//div[@class='bluebgdark2 tcenter twhite_80 ft13 ln35 copyright']")).getText().replace("© 2023 One MobiKwik Systems Limited | All rights reserved. |", "");
 
             Thread.sleep(1000);
+            driver.quit();
 
 
         }catch (Exception e) {
@@ -75,6 +76,7 @@ public class MobikwikWebCheck {
             e.printStackTrace(new PrintWriter(sw));
             exception = sw.toString();
             System.out.println(exception);
+            driver.quit();
 
             }
 
@@ -138,7 +140,7 @@ public class MobikwikWebCheck {
                 throw new RuntimeException(e);
 
             }
-            driver.close();
+        driver.quit();
 
 
 

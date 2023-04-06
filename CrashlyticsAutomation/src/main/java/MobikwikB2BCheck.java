@@ -71,6 +71,7 @@ public class MobikwikB2BCheck {
             buildNumber= driver.findElement(By.xpath("//div[@class='tcenter footerColor ft13 ln35 smleft28 smright28']")).getText().replace("Powered By One MobiKwik Systems Limited |", "");
 
             Thread.sleep(1000);
+            driver.quit();
 
 
         }catch (Exception e) {
@@ -79,6 +80,7 @@ public class MobikwikB2BCheck {
             e.printStackTrace(new PrintWriter(sw));
             exception = sw.toString();
             System.out.println(exception);
+            driver.quit();
 
             }
 
@@ -143,7 +145,7 @@ public class MobikwikB2BCheck {
                 throw new RuntimeException(e);
 
             }
-            driver.close();
+        driver.quit();
 
 
 
