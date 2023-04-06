@@ -140,8 +140,11 @@ public class PerformanceApiResponse {
             } catch (Exception e) {
                 System.out.println("Select Performance Backup under Release & Monitor from Side Drawer");
                 driver.findElement(By.xpath("//div[text()=' Release & Monitor ']")).click();
-                shortWait(driver, "//div[text()='Performance']");
-                driver.findElement(By.xpath("//div[text()='Performance']")).click();
+
+                Thread.sleep(2000);
+
+                shortWait(driver, "//a[@role='treeitem']//div[text()='Performance']");
+                driver.findElement(By.xpath("//a[@role='treeitem']//div[text()='Performance']")).click();
             }
 
             /** App Selector */
