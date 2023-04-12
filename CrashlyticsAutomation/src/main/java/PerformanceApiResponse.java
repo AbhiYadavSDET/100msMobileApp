@@ -4,6 +4,8 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.logging.LogEntries;
+import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -14,6 +16,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -22,24 +25,32 @@ public class PerformanceApiResponse {
 
     @Test(groups = {"performanceAPIResp"}, priority = 0, description = "Verify api reponse time")
     public static void PerformanceApiResponse() throws InterruptedException, IOException {
+        /** Username and Password to login on Firebase */
+
+        System.out.println("Username and Password to login on Firebase");
+
         String usernameWebLogin = "mbkmobile.team@mobikwik.com";
         String passWebLogin = "Mobikwik@12345";
+
+        /**Username and Password will be used to send mail */
+        System.out.println("Username and Password will be used to send mail");
+
         String usernameMail = "mobikwiktest123@gmail.com";
         String passMail = "njwqiqohpbaqekuq";
 
-        //njwqiqohpbaqekuq
+        /** Variables Declaration */
+        System.out.println("Variables Declaration");
 
-
-        String version = "22.39.5";
-        String date = "60 m";
-        String crashFreeUsers;
-        int MAX_RETRIES = 2;
-        int total_fresh = 0, total_topFive;
         String respTime, changePer, name, success, sample, changeSuccess;
         float respTimeCheck, successCheck;
         int i, percent, pages = 1;
         float samplesCheck;
         Boolean condition = true, sendMail = false, changeSub = true;
+
+
+        /** Array List for Data */
+        System.out.println("Array List for Data");
+
         ArrayList<String> responseTime = new ArrayList<String>();
         ArrayList<String> changePercent = new ArrayList<String>();
         ArrayList<String> apiName = new ArrayList<String>();
@@ -52,23 +63,26 @@ public class PerformanceApiResponse {
         ArrayList<String> apiSample1 = new ArrayList<String>();
         ArrayList<String> changeSuccess1 = new ArrayList<String>();
 
-//        MutableCapabilities sauce= new MutableCapabilities();
-//        sauce.setCapability("username","mayanksu1989");
-//        sauce.setCapability("accessKey","9cb455fe-5e98-4f07-8f8c-87d8c0fd6642");
-//        DesiredCapabilities cap= new DesiredCapabilities();
-//        cap.setCapability("sauce:options",sauce);
-//        cap.setCapability("browserVersion","latest");
-//
-//        WebDriverManager.chromedriver().setup();
-//        cap.setCapability("browserName","chrome");
-//        //https://Paraj_Jain:dd1554a0-cc13-448b-80bb-f4dbe427dfde@ondemand.us-west-1.saucelabs.com:443/wd/hub
-//        WebDriver driver= new RemoteWebDriver(new URL("https://ondemand.us-west-1.saucelabs.com:443/wd/hub"),cap);
+
+
+        /** Initiating Chrome driver */
+        System.out.println("Initiating Chrome driver");
 
         System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/chromedriver");
         WebDriver driver = new ChromeDriver();
+//        LogEntries log= driver.manage().logs().get("browser");
+//        List<LogEntry> logs=log.getAll();
+
         try {
+
+            /** Opening Firebase URL */
+            System.out.println("Opening Firebase URL");
+
             driver.get("https://console.firebase.google.com");
             driver.manage().window().maximize();
+
+            /** Logging into Firebase  */
+            System.out.println("Logging into Firebase");
             driver.findElement(By.id("identifierId")).sendKeys(usernameWebLogin);
             driver.findElement(By.xpath("//*[text()='Next']")).click();
 
@@ -82,8 +96,11 @@ public class PerformanceApiResponse {
 
 
 
+
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
             Thread.sleep(3000);
+
+            System.out.println("Tap Google Authenticator");
 
             try{
             if (driver.findElement(By.xpath("//div[@class= 'vxx8jf']/strong[text()= 'Google Authenticator']")).isDisplayed()){
@@ -92,6 +109,7 @@ public class PerformanceApiResponse {
 
         } catch (Exception e)
             {
+                System.out.println("Exception : Try Another Way , Then Tap Google Authenticator");
                 driver.findElement(By.xpath("//span[text()= 'Try another way']")).click();
                 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 Thread.sleep(5000);
@@ -99,66 +117,98 @@ public class PerformanceApiResponse {
 
             }
 
+            /** Getting 2FA Code from the method getTwoFactorCode : Which is set as authenticator App */
+
+            System.out.println("Getting 2FA Code from the method getTwoFactorCode : Which is set as authenticator App");
 
             shortWait(driver, "//input[@name='totpPin']");
             driver.findElement(By.xpath("//input[@name='totpPin']")).sendKeys(getTwoFactorCode());
             driver.findElement(By.xpath("//*[text()='Next']")).click();
 
+            /** Test Case Starts */
 
+            System.out.println("Test Case Starts");
+
+
+            System.out.println("Project Selector Page");
             longWait(driver, "//*[contains(text(),'Mobikwik Android')]");
             driver.findElement(By.xpath("//*[contains(text(),'Mobikwik Android')]")).click();
             longWait(driver, "//div[text()=' Release & Monitor ']");
             try {
+                System.out.println("Select Performance Main Title from Side Drawer");
                 driver.findElement(By.xpath("//div[text()='Performance']")).click();
             } catch (Exception e) {
+                System.out.println("Select Performance Backup under Release & Monitor from Side Drawer");
                 driver.findElement(By.xpath("//div[text()=' Release & Monitor ']")).click();
-                shortWait(driver, "//div[text()='Performance']");
-                driver.findElement(By.xpath("//div[text()='Performance']")).click();
+
+                Thread.sleep(2000);
+
+                shortWait(driver, "//a[@role='treeitem']//div[text()='Performance']");
+                driver.findElement(By.xpath("//a[@role='treeitem']//div[text()='Performance']")).click();
             }
-//        try{
-//            longWait(driver,"//span[text()=' Get started ']");
-//            driver.findElement(By.xpath("//span[text()=' Get started ']")).click();
-//        }catch (Exception e){
-//
-//        }
+
+            /** App Selector */
+
+
+            System.out.println("Open App Selector Dropdown");
             shortWait(driver, "//div[@class='selected-resource-wrapper']");
             driver.findElement(By.xpath("//div[@class='selected-resource-wrapper']")).click();
             Thread.sleep(2000);
-            shortWait(driver, "//span[text()='Mobikwik Consumer App']");
-            driver.findElement(By.xpath("//span[text()='Mobikwik Consumer App']")).click();
+
+            /** Select Mobikwik Consumer App from the List */
+
+            System.out.println("Select Mobikwik Consumer App from the List");
+
+            shortWait(driver, "//button[@role='menuitem']//span[text()='Mobikwik Consumer App']");
+            driver.findElement(By.xpath("//button[@role='menuitem']//span[text()='Mobikwik Consumer App']")).click();
+
+            /** Setting period for Results from Calender Icon */
+
+            System.out.println("Setting period for Results from Calender Icon");
+
             longWait(driver, "//div[@class='date-selection']");
             driver.findElement(By.xpath("//div[@class='date-selection']")).click();
             Thread.sleep(2000);
             driver.findElement(By.xpath("//span[contains(text(),'24 hour')]")).click();
 
+            System.out.println("Scroll to View Api Data");
+
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("window.scrollBy(0,150)", "");
-//        shortWait(driver,"//span[@class='header-text-wrapper ng-star-inserted'][3]");
-//        Thread.sleep(3000);
-//        driver.findElement(By.xpath("(//span[@class='header-text-wrapper ng-star-inserted'])[3]")).click();
-//        shortWait(driver,"//span[@class='header-text-wrapper ng-star-inserted'][2]");
-//        driver.findElement(By.xpath("(//span[@class='header-text-wrapper ng-star-inserted'])[2]")).click();
+
+            /** Extracting Data and validating through conditions */
+            /** Locators of Network Request Tables */
+
+            System.out.println("Extracting Data and validating through conditions");
+
+            String responseTimeCell="(//mat-cell[@class='mat-cell cdk-cell metric-value-cell cdk-column-RESPONSE_TIME_LATEST_VALUE mat-column-RESPONSE_TIME_LATEST_VALUE ng-star-inserted'])";
+            String responseTimeChange= "(//mat-cell[@class='mat-cell cdk-cell metric-delta-cell extended cdk-column-RESPONSE_TIME_DELTA mat-column-RESPONSE_TIME_DELTA ng-star-inserted'])";
+            String networkApiName= "(//a[@class='mat-mdc-tooltip-trigger fire-router-link-host data-text-wrapper'])";
+            String successPercentage= "(//mat-cell[@class='mat-cell cdk-cell metric-value-cell cdk-column-SUCCESS_RATE_LATEST_VALUE mat-column-SUCCESS_RATE_LATEST_VALUE ng-star-inserted'])";
+            String sampleSize= "(//div[@class='resource-subtitle ng-star-inserted']/p)";
+            String hourlyChange="(//mat-cell[@class='mat-cell cdk-cell metric-delta-cell standard cdk-column-SUCCESS_RATE_DELTA mat-column-SUCCESS_RATE_DELTA ng-star-inserted'])";
+            String pageNavigation="//button[@aria-label='Next page']";
 
 
             while (condition && pages < 4) {
-                longWait(driver, "(//mat-cell[@class='mat-cell cdk-cell metric-value-cell cdk-column-RESPONSE_TIME_LATEST_VALUE mat-column-RESPONSE_TIME_LATEST_VALUE ng-star-inserted'])[1]");
+                longWait(driver, responseTimeCell);
                 Thread.sleep(4000);
                 for (i = 1; i <= 10; i++) {
-                    respTime = driver.findElement(By.xpath("(//mat-cell[@class='mat-cell cdk-cell metric-value-cell cdk-column-RESPONSE_TIME_LATEST_VALUE mat-column-RESPONSE_TIME_LATEST_VALUE ng-star-inserted'])[" + i + "]")).getText();
+
+                    respTime = driver.findElement(By.xpath(responseTimeCell+"[" + i + "]")).getText();
                     respTimeCheck = Float.parseFloat(respTime.replace("s", "").replace("min", ""));
-                    shortWait(driver, "//mat-cell[@class='mat-cell cdk-cell metric-delta-cell extended cdk-column-RESPONSE_TIME_DELTA mat-column-RESPONSE_TIME_DELTA ng-star-inserted']");
-                    changePer = driver.findElement(By.xpath("(//mat-cell[@class='mat-cell cdk-cell metric-delta-cell extended cdk-column-RESPONSE_TIME_DELTA mat-column-RESPONSE_TIME_DELTA ng-star-inserted'])[" + i + "]")).getText();
+                    shortWait(driver, responseTimeChange);
+                    changePer = driver.findElement(By.xpath(responseTimeChange+"[" + i + "]")).getText();
                     percent = Integer.parseInt(changePer.replace("%", "").replace(",", "").replace("+", "").replace("-", "").replace(">", ""));
 
-                    shortWait(driver, "//a[@class='mat-mdc-tooltip-trigger fire-router-link-host data-text-wrapper']");
-                    name = driver.findElement(By.xpath("(//a[@class='mat-mdc-tooltip-trigger fire-router-link-host data-text-wrapper'])[" + i + "]")).getText();
-//                Thread.sleep(1000);
-//                System.out.println(driver.findElement(By.xpath("(//a[@class='mat-mdc-tooltip-trigger fire-router-link-host data-text-wrapper'])["+i+"]")).getText());
-                    shortWait(driver, "//mat-cell[@class='mat-cell cdk-cell metric-value-cell cdk-column-SUCCESS_RATE_LATEST_VALUE mat-column-SUCCESS_RATE_LATEST_VALUE ng-star-inserted']");
-                    success = driver.findElement(By.xpath("(//mat-cell[@class='mat-cell cdk-cell metric-value-cell cdk-column-SUCCESS_RATE_LATEST_VALUE mat-column-SUCCESS_RATE_LATEST_VALUE ng-star-inserted'])[" + i + "]")).getText();
-//                Thread.sleep(2000);
-                    shortWait(driver, "//div[@class='resource-subtitle ng-star-inserted']");
-                    sample = driver.findElement(By.xpath("(//div[@class='resource-subtitle ng-star-inserted']/p)[" + i + "]")).getText();
+                    shortWait(driver, networkApiName);
+                    name = driver.findElement(By.xpath(networkApiName+"[" + i + "]")).getText();
+
+                    shortWait(driver, successPercentage);
+                    success = driver.findElement(By.xpath(successPercentage+"[" + i + "]")).getText();
+
+                    shortWait(driver, sampleSize);
+                    sample = driver.findElement(By.xpath(sampleSize+"[" + i + "]")).getText();
                     samplesCheck = Float.parseFloat(sample.replace(" samples", "").replace("K", "").replace("M", ""));
 
                     if ((respTimeCheck > 10 || respTime.contains("min")) && percent > 100 && (sample.contains("K") || samplesCheck > 30 || sample.contains("M"))) {
@@ -176,8 +226,8 @@ public class PerformanceApiResponse {
                 }
 
                 try {
-                    if (driver.findElement(By.xpath("(//span[@class='mat-mdc-button-touch-target'])[2]")).isEnabled()) {
-                        driver.findElement(By.xpath("(//span[@class='mat-mdc-button-touch-target'])[2]")).click();
+                    if (driver.findElement(By.xpath(pageNavigation)).isEnabled()) {
+                        driver.findElement(By.xpath(pageNavigation)).click();
                         pages = pages + 1;
                         condition = true;
                         Thread.sleep(3000);
@@ -188,9 +238,6 @@ public class PerformanceApiResponse {
                 js.executeScript("window.scrollBy(0,100)", "");
             }
 
-//            for (i = 0; i < changePercent.size(); i++) {
-//                System.out.println(responseTime.get(i) + "   " + changePercent.get(i) + "   " + apiName.get(i) + "   " + apiSuccess.get(i) + "   " + apiSample.get(i));
-//            }
             if (changePercent.size() >= 0) {
                 sendMail = true;
                 if (changePercent.size() > 5) {
@@ -209,34 +256,34 @@ public class PerformanceApiResponse {
             js.executeScript("window.scrollBy(0,150)", "");
             WebDriverWait wait = new WebDriverWait(driver, 10);
             wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@class='header-text-wrapper ng-star-inserted']")));
-            shortWait(driver, "[//mat-cell(@class='mat-cell cdk-cell metric-delta-cell standard cdk-column-SUCCESS_RATE_DELTA mat-column-SUCCESS_RATE_DELTA ng-star-inserted'])[1]");
+            shortWait(driver, hourlyChange+"[1]");
             driver.findElement(By.xpath("(//span[@class='header-text-wrapper ng-star-inserted'])[5]")).click();
 
             condition = true;
             pages = 1;
             while (condition && pages < 4) {
-                longWait(driver, "(//mat-cell[@class='mat-cell cdk-cell metric-delta-cell standard cdk-column-SUCCESS_RATE_DELTA mat-column-SUCCESS_RATE_DELTA ng-star-inserted'])[1]");
+                longWait(driver, hourlyChange+"[1]");
                 Thread.sleep(4000);
                 for (i = 1; i <= 10; i++) {
-                    respTime = driver.findElement(By.xpath("(//mat-cell[@class='mat-cell cdk-cell metric-value-cell cdk-column-RESPONSE_TIME_LATEST_VALUE mat-column-RESPONSE_TIME_LATEST_VALUE ng-star-inserted'])[" + i + "]")).getText();
+                    respTime = driver.findElement(By.xpath(responseTimeCell+"[" + i + "]")).getText();
 //                    respTimeCheck = Float.parseFloat(respTime.replace("s", "").replace("min", ""));
-                    shortWait(driver, "//mat-cell[@class='mat-cell cdk-cell metric-delta-cell extended cdk-column-RESPONSE_TIME_DELTA mat-column-RESPONSE_TIME_DELTA ng-star-inserted']");
-                    changePer = driver.findElement(By.xpath("(//mat-cell[@class='mat-cell cdk-cell metric-delta-cell extended cdk-column-RESPONSE_TIME_DELTA mat-column-RESPONSE_TIME_DELTA ng-star-inserted'])[" + i + "]")).getText();
+                    shortWait(driver, responseTimeChange);
+                    changePer = driver.findElement(By.xpath(responseTimeChange+"[" + i + "]")).getText();
 //                    percent = Integer.parseInt(changePer.replace("%", "").replace(",", "").replace("+", "").replace("-", "").replace(">", ""));
 
-                    shortWait(driver, "//a[@class='mat-mdc-tooltip-trigger fire-router-link-host data-text-wrapper']");
-                    name = driver.findElement(By.xpath("(//a[@class='mat-mdc-tooltip-trigger fire-router-link-host data-text-wrapper'])[" + i + "]")).getText();
+                    shortWait(driver, networkApiName);
+                    name = driver.findElement(By.xpath(networkApiName+"[" + i + "]")).getText();
 //                Thread.sleep(1000);
-//                System.out.println(driver.findElement(By.xpath("(//a[@class='mat-mdc-tooltip-trigger fire-router-link-host data-text-wrapper'])["+i+"]")).getText());
-                    shortWait(driver, "//mat-cell[@class='mat-cell cdk-cell metric-value-cell cdk-column-SUCCESS_RATE_LATEST_VALUE mat-column-SUCCESS_RATE_LATEST_VALUE ng-star-inserted']");
-                    success = driver.findElement(By.xpath("(//mat-cell[@class='mat-cell cdk-cell metric-value-cell cdk-column-SUCCESS_RATE_LATEST_VALUE mat-column-SUCCESS_RATE_LATEST_VALUE ng-star-inserted'])[" + i + "]")).getText();
+//                System.out.println(driver.findElement(By.xpath(networkApiName+"["+i+"]")).getText());
+                    shortWait(driver, successPercentage);
+                    success = driver.findElement(By.xpath(successPercentage+"[" + i + "]")).getText();
                     successCheck = Float.parseFloat(success.replace("%", ""));
 //                Thread.sleep(2000);
-                    shortWait(driver, "//div[@class='resource-subtitle ng-star-inserted']");
-                    sample = driver.findElement(By.xpath("(//div[@class='resource-subtitle ng-star-inserted']/p)[" + i + "]")).getText();
+                    shortWait(driver, sampleSize);
+                    sample = driver.findElement(By.xpath(sampleSize+"[" + i + "]")).getText();
                     samplesCheck = Float.parseFloat(sample.replace(" samples", "").replace("K", "").replace("M", ""));
 
-                    changeSuccess = driver.findElement(By.xpath("(//mat-cell[@class='mat-cell cdk-cell metric-delta-cell standard cdk-column-SUCCESS_RATE_DELTA mat-column-SUCCESS_RATE_DELTA ng-star-inserted'])[" + i + "]")).getText();
+                    changeSuccess = driver.findElement(By.xpath(hourlyChange+"[" + i + "]")).getText();
 
                     if ((sample.contains("K") || samplesCheck > 30 || sample.contains("M")) && !name.startsWith("static") && successCheck < 90) {
                         if (changeSuccess.contains("-") || changeSuccess.contains(">")) {
@@ -254,8 +301,8 @@ public class PerformanceApiResponse {
 
                 }
                 try {
-                    if (driver.findElement(By.xpath("(//span[@class='mat-mdc-button-touch-target'])[2]")).isEnabled()) {
-                        driver.findElement(By.xpath("(//span[@class='mat-mdc-button-touch-target'])[2]")).click();
+                    if (driver.findElement(By.xpath(pageNavigation)).isEnabled()) {
+                        driver.findElement(By.xpath(pageNavigation)).click();
                         pages = pages + 1;
                         condition = true;
                         Thread.sleep(3000);
@@ -395,6 +442,85 @@ public class PerformanceApiResponse {
                 throw new RuntimeException(e);
 
             }
+        }else {
+
+            /**Sending Suite Failure Mail*/
+
+
+            Properties props = new Properties();
+
+            // this will set host of server- you can change based on your requirement
+            props.put("mail.smtp.host", "smtp.gmail.com");
+
+            props.put("mail.smtp.starttls.enable", "true");
+
+            // set the authentication to true
+            props.put("mail.smtp.auth", "true");
+
+            // set the port of SMTP server
+            props.put("mail.smtp.port", "587");
+
+            // Testing
+            props.put("mail.transport.protocol", "smtp");
+
+            // This will handle the complete authentication
+            Session session = Session.getDefaultInstance(props,
+
+                    new javax.mail.Authenticator() {
+
+                        protected PasswordAuthentication getPasswordAuthentication() {
+                            System.out.println(usernameMail + passMail);
+                            return new PasswordAuthentication(usernameMail, passMail);
+
+                        }
+
+                    });
+
+            String[] recipients = new String[4];
+            recipients[0] = "mayank.suneja@mobikwik.com";
+            recipients[1] = "paraj.jain@mobikwik.com";
+
+
+            try {
+
+                // Create object of MimeMessage class
+                Message message = new MimeMessage(session);
+
+                // Set the from address
+                message.setFrom(new InternetAddress("qafront-end@mobikwik.com"));
+
+                // Set the recipient address
+//
+                message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("mayank.suneja@mobikwik.com"));
+
+                message.setRecipients(Message.RecipientType.CC, InternetAddress.parse("MBK-Android@mobikwik.com"));
+
+                message.setSubject(" ALERT !!!! SUITE FAILURE | Api Performance | FOCAL : Front-End Team QA Team "); // with only date
+
+//                String messageContent= logs.toString();
+                String messageContent="";
+                System.out.println("------");
+
+
+                message.setContent(messageContent, "text/html");
+
+
+                // finally send the email
+                Transport.send(message);
+
+                System.out.println("=====Failure Email=====");
+
+                System.out.println("=====Email Sent=====");
+
+            } catch (MessagingException e) {
+
+                throw new RuntimeException(e);
+
+            }
+
+
+
+
         }
 
 
@@ -434,7 +560,7 @@ public class PerformanceApiResponse {
 
         Totp totp = new Totp("bt2lxmrr5cvg32tp3cnbfkda64gctbki"); // 2FA secret key
         String twoFactorCode = totp.now(); //Generated 2FA code here
-        System.out.println(twoFactorCode);
+        System.out.println("Two Factor Code = "+twoFactorCode);
         return twoFactorCode;
     }
 
