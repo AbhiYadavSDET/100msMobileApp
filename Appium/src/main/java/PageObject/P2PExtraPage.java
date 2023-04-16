@@ -48,6 +48,9 @@ public class P2PExtraPage {
     @AndroidFindBy ( id= "ctaInvest")
     private AndroidElement cta_invest;
 
+    @AndroidFindBy (xpath = "//*/android.widget.TextView[@text = 'Got it']")
+    private AndroidElement bottom_sheet_ad;
+
 
 
     // Withdrawal Amount Main Page.
@@ -131,8 +134,8 @@ public class P2PExtraPage {
         Element.selectElement(driver, cta_invest,"Invest More Amount cta");
     }
 
-    public void removeBottomSheet() throws InterruptedException{
-        Element.selectElement(driver, bottom_sheet_xtra_main_page_remove,"remove bottom sheet");
+    public void tapOutsideBottomSheet() throws InterruptedException{
+        Element.selectElement(driver, bottom_sheet_xtra_main_page_remove,"Tap outside bottom sheet");
     }
 
     public void enterAmount(String amount) {
@@ -145,6 +148,14 @@ public class P2PExtraPage {
 
     public String getWithdrawalStatus() throws InterruptedException{
         return Element.getText(driver, withdrawal_status,"Get User Earned Amount");
+    }
+
+    public boolean isBottomSheetPresent() throws InterruptedException{
+        return Elements.isElementPresent(driver, bottom_sheet_ad);
+    }
+
+    public void removeBottomSheet() throws InterruptedException{
+        Element.selectElement(driver, bottom_sheet_ad,"remove bottom sheet");
     }
 
 

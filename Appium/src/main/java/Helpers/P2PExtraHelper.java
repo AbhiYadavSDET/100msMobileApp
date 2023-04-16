@@ -40,8 +40,11 @@ public class P2PExtraHelper {
         // Click on xtra icon on home page.
         p2PExtraPage.selectXtra();
 
+        // Click on Got it to remove referral bottom sheet.
+        if(p2PExtraPage.isBottomSheetPresent()) p2PExtraPage.removeBottomSheet();
+
         // Click on screen to remove bottom sheet.
-        p2PExtraPage.removeBottomSheet();
+        p2PExtraPage.tapOutsideBottomSheet();
 
         // Printing portfolio values.
         String portfolioValue = p2PExtraPage.getPortfolioValue();
@@ -62,6 +65,9 @@ public class P2PExtraHelper {
 
             // Click on withdraw on Xtra main page.
             p2PExtraPage.selectWithdraw();
+
+            // Click on Got it to remove referral bottom sheet.
+            if(p2PExtraPage.isBottomSheetPresent()) p2PExtraPage.removeBottomSheet();
 
             // Enter amount on withdrawal amount page.
             p2PExtraPage.enterAmount(amount);
