@@ -69,7 +69,7 @@ public class PerformanceApiResponse {
         /** Initiating Chrome driver */
         System.out.println("Initiating Chrome driver");
 
-        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/chromedriver_linux64");
+        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/chromedriver");
 //        WebDriver driver = new ChromeDriver();
 
 
