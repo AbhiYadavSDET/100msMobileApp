@@ -4,6 +4,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -69,7 +70,15 @@ public class PerformanceApiResponse {
         System.out.println("Initiating Chrome driver");
 
         System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/chromedriver");
-        WebDriver driver = new ChromeDriver();
+//        WebDriver driver = new ChromeDriver();
+
+
+//        System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver");
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--headless");
+
+        WebDriver driver = new ChromeDriver(chromeOptions);
+
 //        LogEntries log= driver.manage().logs().get("browser");
 //        List<LogEntry> logs=log.getAll();
 
