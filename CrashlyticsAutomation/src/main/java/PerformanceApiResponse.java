@@ -7,6 +7,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogEntry;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -16,7 +18,10 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.io.IOException;
+import java.net.URL;
+import java.security.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
@@ -26,6 +31,8 @@ public class PerformanceApiResponse {
 
     @Test(groups = {"performanceAPIResp"}, priority = 0, description = "Verify api reponse time")
     public static void PerformanceApiResponse() throws InterruptedException, IOException {
+        System.out.println("Branch : pj/chromeFix");
+
         /** Username and Password to login on Firebase */
 
         System.out.println("Username and Password to login on Firebase");
@@ -38,6 +45,15 @@ public class PerformanceApiResponse {
 
         String usernameMail = "mobikwiktest123@gmail.com";
         String passMail = "njwqiqohpbaqekuq";
+
+
+
+        /**BrowserStack Credentials */
+        String username = "parajjain_sbic3m";
+        String accessKey = "UiQCwarqqgMmUwmdBH7V";
+//        String buildName = "TestMbk";
+
+
 
         /** Variables Declaration */
         System.out.println("Variables Declaration");
@@ -66,21 +82,39 @@ public class PerformanceApiResponse {
 
 
 
-        /** Initiating Chrome driver */
-        System.out.println("Initiating Chrome driver");
-
-        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/chromedriver");
-//        WebDriver driver = new ChromeDriver();
-
-
-//        System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver");
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--headless");
-
-        WebDriver driver = new ChromeDriver(chromeOptions);
+//        /** Initiating Chrome driver */
+//        System.out.println("Initiating Chrome driver");
+//
+//        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/chromedriver");
+////        WebDriver driver = new ChromeDriver();
+//
+//
+////        System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver");
+//        ChromeOptions chromeOptions = new ChromeOptions();
+//        chromeOptions.addArguments("--headless");
+//
+//        WebDriver driver = new ChromeDriver(chromeOptions);
 
 //        LogEntries log= driver.manage().logs().get("browser");
 //        List<LogEntry> logs=log.getAll();
+
+
+
+        /** Initiating Browserstack Chrome driver */
+        System.out.println("Initiating Browserstack Chrome driver");
+
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("os", "Windows");
+        capabilities.setCapability("os_version", "10");
+        capabilities.setCapability("browser", "chrome");
+        capabilities.setCapability("browser_version", "latest");
+        capabilities.setCapability("name", "MBKTest"); // test buildName
+//        capabilities.setCapability("build", buildName); // CI/CD job name using BROWSERSTACK_BUILD_NAME env variable
+
+        WebDriver driver = new RemoteWebDriver(new URL("https://" + username + ":" + accessKey + "@hub.browserstack.com/wd/hub"), capabilities);
+
+
+
 
         try {
 
