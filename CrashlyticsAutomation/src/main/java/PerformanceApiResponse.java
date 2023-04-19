@@ -43,8 +43,11 @@ public class PerformanceApiResponse {
         /**Username and Password will be used to send mail */
         System.out.println("Username and Password will be used to send mail");
 
-        String usernameMail = "mobikwiktest123@gmail.com";
-        String passMail = "njwqiqohpbaqekuq";
+//        String usernameMail = "mobikwiktest123@gmail.com";
+//        String passMail = "njwqiqohpbaqekuq";
+
+        String usernameMail = "dont-reply@mobikwik.com";
+        String passMail = "mobikwik123#";
 
 
 
