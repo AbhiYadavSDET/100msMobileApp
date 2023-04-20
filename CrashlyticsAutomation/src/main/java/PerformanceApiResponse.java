@@ -409,7 +409,7 @@ public class PerformanceApiResponse {
             Properties props = new Properties();
 
             // this will set host of server- you can change based on your requirement
-            props.put("mail.smtp.host", "10.110.9.212");
+            props.put("mail.smtp.host", "10.10.116.180");
 
             props.put("mail.smtp.starttls.enable", "true");
 
@@ -417,7 +417,7 @@ public class PerformanceApiResponse {
             props.put("mail.smtp.auth", "true");
 
             // set the port of SMTP server
-            props.put("mail.smtp.port", "25");
+            props.put("mail.smtp.port", "587");
 
             // Testing
             props.put("mail.transport.protocol", "smtp");
@@ -489,7 +489,7 @@ public class PerformanceApiResponse {
             Properties props = new Properties();
 
             // this will set host of server- you can change based on your requirement
-            props.put("mail.smtp.host", "10.110.9.212");
+            props.put("mail.smtp.host", "10.10.116.180");
 
             props.put("mail.smtp.starttls.enable", "true");
 
@@ -497,7 +497,7 @@ public class PerformanceApiResponse {
             props.put("mail.smtp.auth", "true");
 
             // set the port of SMTP server
-            props.put("mail.smtp.port", "25");
+            props.put("mail.smtp.port", "587");
 
             // Testing
             props.put("mail.transport.protocol", "smtp");
