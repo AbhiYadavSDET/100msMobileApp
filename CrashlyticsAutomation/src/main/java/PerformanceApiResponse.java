@@ -52,8 +52,8 @@ public class PerformanceApiResponse {
 
 
         /**BrowserStack Credentials */
-        String username = "parajjain_sbic3m";
-        String accessKey = "UiQCwarqqgMmUwmdBH7V";
+        String username = "parajjain_X3pLgw";
+        String accessKey = "5QyNfuj7vp3qsNWTvWsF";
 //        String buildName = "TestMbk";
 
 
