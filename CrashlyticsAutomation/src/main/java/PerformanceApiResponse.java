@@ -31,7 +31,7 @@ public class PerformanceApiResponse {
 
     @Test(groups = {"performanceAPIResp"}, priority = 0, description = "Verify api reponse time")
     public static void PerformanceApiResponse() throws InterruptedException, IOException {
-        System.out.println("Branch : pj/chromeFix");
+        System.out.println("Branch : Master");
 
         /** Username and Password to login on Firebase */
 
