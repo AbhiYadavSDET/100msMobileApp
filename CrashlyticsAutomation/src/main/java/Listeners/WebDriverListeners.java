@@ -1,5 +1,6 @@
 package Listeners;
 
+import Logger.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
@@ -69,12 +70,12 @@ public class WebDriverListeners implements WebDriverEventListener {
 
     @Override
     public void beforeFindBy(By by, WebElement element, WebDriver driver) {
-        System.out.println("Before Find By" + by);
+        //System.out.println("Before Find By" + by);
     }
 
     @Override
     public void afterFindBy(By by, WebElement element, WebDriver driver) {
-        System.out.println("After Find By" + by);
+        Log.info("-----> After Find By" + " | " + by);
     }
 
     @Override
@@ -85,7 +86,7 @@ public class WebDriverListeners implements WebDriverEventListener {
 
     @Override
     public void afterClickOn(WebElement element, WebDriver driver) {
-        System.out.println("-----> After Element Click" + element);
+        Log.info("-----> After Element Click" + " | " + element);
 
     }
 
