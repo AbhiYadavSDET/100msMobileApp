@@ -79,13 +79,13 @@ public class WebDriverListeners implements WebDriverEventListener {
 
     @Override
     public void beforeClickOn(WebElement element, WebDriver driver) {
-        System.out.println("Before Element Click" + element);
+        //System.out.println("Before Element Click" + element);
 
     }
 
     @Override
     public void afterClickOn(WebElement element, WebDriver driver) {
-        System.out.println("After Element Click" + element);
+        System.out.println("-----> After Element Click" + element);
 
     }
 
