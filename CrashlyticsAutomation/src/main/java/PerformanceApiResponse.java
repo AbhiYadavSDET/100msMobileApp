@@ -90,7 +90,7 @@ public class PerformanceApiResponse {
         ArrayList<String> changeSuccess1 = new ArrayList<String>();
 
 
-/** Driver Initiate Method 1 : Chorme Browser Local */
+/** Driver Initiate Method 1 : Chrome Browser Local */
 //
 //        /** Initiating Chrome driver */
 //        System.out.println("Initiating Chrome driver");
@@ -108,7 +108,7 @@ public class PerformanceApiResponse {
 //        eventDriver.register(webDriverEventListener);
 
 
-/** Driver Initiate Method 2 : Chorme Browser Browserstack */
+/** Driver Initiate Method 2 : Chrome Browser Browserstack */
 
 
         /** Initiating Browserstack Chrome driver */
