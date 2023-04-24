@@ -1,3 +1,4 @@
+import Listeners.WebDriverListeners;
 import org.jboss.aerogear.security.otp.Totp;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -9,6 +10,8 @@ import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
+import org.openqa.selenium.support.events.WebDriverEventListener;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -71,11 +74,14 @@ public class PerformanceApiResponse {
         /** Array List for Data */
         System.out.println("Array List for Data");
 
+        /** Array List for Response Change Tables */
         ArrayList<String> responseTime = new ArrayList<String>();
         ArrayList<String> changePercent = new ArrayList<String>();
         ArrayList<String> apiName = new ArrayList<String>();
         ArrayList<String> apiSuccess = new ArrayList<String>();
         ArrayList<String> apiSample = new ArrayList<String>();
+
+        /** Array List for Success Change Tables */
         ArrayList<String> responseTime1 = new ArrayList<String>();
         ArrayList<String> changePercent1 = new ArrayList<String>();
         ArrayList<String> apiName1 = new ArrayList<String>();
@@ -84,23 +90,25 @@ public class PerformanceApiResponse {
         ArrayList<String> changeSuccess1 = new ArrayList<String>();
 
 
-
+/** Driver Initiate Method 1 : Chrome Browser Local */
+//
 //        /** Initiating Chrome driver */
 //        System.out.println("Initiating Chrome driver");
 //
-//        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/chromedriver");
-////        WebDriver driver = new ChromeDriver();
+//        System.setProperty("webDriver.chrome.driver", System.getProperty("user.dir") + "/chromedriver");
 //
-//
-////        System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver");
 //        ChromeOptions chromeOptions = new ChromeOptions();
-//        chromeOptions.addArguments("--headless");
+////        chromeOptions.addArguments("--headless");
+//
 //
 //        WebDriver driver = new ChromeDriver(chromeOptions);
+//        EventFiringWebDriver eventDriver = new EventFiringWebDriver(driver);
+//
+//        WebDriverEventListener webDriverEventListener = new WebDriverListeners();
+//        eventDriver.register(webDriverEventListener);
 
-//        LogEntries log= driver.manage().logs().get("browser");
-//        List<LogEntry> logs=log.getAll();
 
+/** Driver Initiate Method 2 : Chrome Browser Browserstack */
 
 
         /** Initiating Browserstack Chrome driver */
@@ -116,6 +124,10 @@ public class PerformanceApiResponse {
 
         WebDriver driver = new RemoteWebDriver(new URL("https://" + username + ":" + accessKey + "@hub.browserstack.com/wd/hub"), capabilities);
 
+        EventFiringWebDriver eventDriver = new EventFiringWebDriver(driver);
+
+        WebDriverEventListener webDriverEventListener = new WebDriverListeners();
+        eventDriver.register(webDriverEventListener);
 
 
 
@@ -124,17 +136,17 @@ public class PerformanceApiResponse {
             /** Opening Firebase URL */
             System.out.println("Opening Firebase URL");
 
-            driver.get("https://console.firebase.google.com");
-            driver.manage().window().maximize();
+            eventDriver.get("https://console.firebase.google.com");
+            eventDriver.manage().window().maximize();
 
             /** Logging into Firebase  */
             System.out.println("Logging into Firebase");
-            driver.findElement(By.id("identifierId")).sendKeys(usernameWebLogin);
-            driver.findElement(By.xpath("//*[text()='Next']")).click();
+            eventDriver.findElement(By.id("identifierId")).sendKeys(usernameWebLogin);
+            eventDriver.findElement(By.xpath("//*[text()='Next']")).click();
 
-            shortWait(driver, "//input[@type='password']");
-            driver.findElement(By.xpath("//input[@type='password']")).sendKeys(passWebLogin);
-            driver.findElement(By.xpath("//*[text()='Next']")).click();
+            shortWait(eventDriver, "//input[@type='password']");
+            eventDriver.findElement(By.xpath("//input[@type='password']")).sendKeys(passWebLogin);
+            eventDriver.findElement(By.xpath("//*[text()='Next']")).click();
 
             /**
              *We have setup intellij as Authenticator and using it also to generate otp to login
@@ -143,23 +155,23 @@ public class PerformanceApiResponse {
 
 
 
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            eventDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
             Thread.sleep(3000);
 
             System.out.println("Tap Google Authenticator");
 
             try{
-            if (driver.findElement(By.xpath("//div[@class= 'vxx8jf']/strong[text()= 'Google Authenticator']")).isDisplayed()){
-                driver.findElement(By.xpath("//div[@class= 'vxx8jf']/strong[text()= 'Google Authenticator']")).click();
+            if (eventDriver.findElement(By.xpath("//div[@class= 'vxx8jf']/strong[text()= 'Google Authenticator']")).isDisplayed()){
+                eventDriver.findElement(By.xpath("//div[@class= 'vxx8jf']/strong[text()= 'Google Authenticator']")).click();
             }
 
         } catch (Exception e)
             {
                 System.out.println("Exception : Try Another Way , Then Tap Google Authenticator");
-                driver.findElement(By.xpath("//span[text()= 'Try another way']")).click();
-                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                eventDriver.findElement(By.xpath("//span[text()= 'Try another way']")).click();
+                eventDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 Thread.sleep(5000);
-                driver.findElement(By.xpath("//div[@class= 'vxx8jf']/strong[text()= 'Google Authenticator']")).click();
+                eventDriver.findElement(By.xpath("//div[@class= 'vxx8jf']/strong[text()= 'Google Authenticator']")).click();
 
             }
 
@@ -167,9 +179,9 @@ public class PerformanceApiResponse {
 
             System.out.println("Getting 2FA Code from the method getTwoFactorCode : Which is set as authenticator App");
 
-            shortWait(driver, "//input[@name='totpPin']");
-            driver.findElement(By.xpath("//input[@name='totpPin']")).sendKeys(getTwoFactorCode());
-            driver.findElement(By.xpath("//*[text()='Next']")).click();
+            shortWait(eventDriver, "//input[@name='totpPin']");
+            eventDriver.findElement(By.xpath("//input[@name='totpPin']")).sendKeys(getTwoFactorCode());
+            eventDriver.findElement(By.xpath("//*[text()='Next']")).click();
 
             /** Test Case Starts */
 
@@ -177,45 +189,46 @@ public class PerformanceApiResponse {
 
 
             System.out.println("Project Selector Page");
-            longWait(driver, "//*[contains(text(),'Mobikwik Android')]");
-            driver.findElement(By.xpath("//*[contains(text(),'Mobikwik Android')]")).click();
-            longWait(driver, "//div[text()=' Release & Monitor ']");
+            longWait(eventDriver, "//*[contains(text(),'Mobikwik Android')]");
+            eventDriver.findElement(By.xpath("//*[contains(text(),'Mobikwik Android')]")).click();
+            longWait(eventDriver, "//div[text()=' Release & Monitor ']");
             try {
                 System.out.println("Select Performance Main Title from Side Drawer");
-                driver.findElement(By.xpath("//div[text()='Performance']")).click();
+                eventDriver.findElement(By.xpath("//div[text()='Performance']")).click();
+
             } catch (Exception e) {
-                System.out.println("Select Performance Backup under Release & Monitor from Side Drawer");
-                driver.findElement(By.xpath("//div[text()=' Release & Monitor ']")).click();
+                System.out.println(" EXCEPTION : Select Performance Backup under Release & Monitor from Side Drawer");
+                eventDriver.findElement(By.xpath("//div[text()=' Release & Monitor ']")).click();
 
                 Thread.sleep(2000);
 
-                shortWait(driver, "//a[@role='treeitem']//div[text()='Performance']");
-                driver.findElement(By.xpath("//a[@role='treeitem']//div[text()='Performance']")).click();
+                shortWait(eventDriver, "//a[@role='treeitem']//div[text()='Performance']");
+                eventDriver.findElement(By.xpath("//a[@role='treeitem']//div[text()='Performance']")).click();
             }
 
             /** App Selector */
 
 
             System.out.println("Open App Selector Dropdown");
-            shortWait(driver, "//div[@class='selected-resource-wrapper']");
-            driver.findElement(By.xpath("//div[@class='selected-resource-wrapper']")).click();
+            shortWait(eventDriver, "//div[@class='selected-resource-wrapper']");
+            eventDriver.findElement(By.xpath("//div[@class='selected-resource-wrapper']")).click();
             Thread.sleep(2000);
 
             /** Select Mobikwik Consumer App from the List */
 
             System.out.println("Select Mobikwik Consumer App from the List");
 
-            shortWait(driver, "//button[@role='menuitem']//span[text()='Mobikwik Consumer App']");
-            driver.findElement(By.xpath("//button[@role='menuitem']//span[text()='Mobikwik Consumer App']")).click();
+            shortWait(eventDriver, "//button[@role='menuitem']//span[text()='Mobikwik Consumer App']");
+            eventDriver.findElement(By.xpath("//button[@role='menuitem']//span[text()='Mobikwik Consumer App']")).click();
 
             /** Setting period for Results from Calender Icon */
 
             System.out.println("Setting period for Results from Calender Icon");
 
-            longWait(driver, "//div[@class='date-selection']");
-            driver.findElement(By.xpath("//div[@class='date-selection']")).click();
+            longWait(eventDriver, "//div[@class='date-selection']");
+            eventDriver.findElement(By.xpath("//div[@class='date-selection']")).click();
             Thread.sleep(2000);
-            driver.findElement(By.xpath("//span[contains(text(),'24 hour')]")).click();
+            eventDriver.findElement(By.xpath("//span[contains(text(),'24 hour')]")).click();
 
             System.out.println("Scroll to View Api Data");
 
@@ -227,6 +240,8 @@ public class PerformanceApiResponse {
 
             System.out.println("Extracting Data and validating through conditions");
 
+
+            System.out.println("Initializing Page Locators");
             String responseTimeCell="(//mat-cell[@class='mat-cell cdk-cell metric-value-cell cdk-column-RESPONSE_TIME_LATEST_VALUE mat-column-RESPONSE_TIME_LATEST_VALUE ng-star-inserted'])";
             String responseTimeChange= "(//mat-cell[@class='mat-cell cdk-cell metric-delta-cell extended cdk-column-RESPONSE_TIME_DELTA mat-column-RESPONSE_TIME_DELTA ng-star-inserted'])";
             String networkApiName= "(//a[@class='mat-mdc-tooltip-trigger fire-router-link-host data-text-wrapper'])";
@@ -236,29 +251,46 @@ public class PerformanceApiResponse {
             String pageNavigation="//button[@aria-label='Next page']";
 
 
+            /** Response Change Table Process Begins */
+            System.out.println("Response Change Table Process Begins");
+
             while (condition && pages < 4) {
-                longWait(driver, responseTimeCell);
+                System.out.println("While Loop Starts for Multiple Pages");
+                System.out.println("Page Number : "+pages);
+                System.out.println("Condition TRUE/FALSE : " + condition);
+                longWait(eventDriver, responseTimeCell);
                 Thread.sleep(4000);
+
+
                 for (i = 1; i <= 10; i++) {
 
-                    respTime = driver.findElement(By.xpath(responseTimeCell+"[" + i + "]")).getText();
+                    System.out.println("Extracting Response Time For Record Number : "+i+ " And on Page number : "+ pages);
+                    respTime = eventDriver.findElement(By.xpath(responseTimeCell+"[" + i + "]")).getText();
                     respTimeCheck = Float.parseFloat(respTime.replace("s", "").replace("min", ""));
-                    shortWait(driver, responseTimeChange);
-                    changePer = driver.findElement(By.xpath(responseTimeChange+"[" + i + "]")).getText();
+
+                    System.out.println("Extracting Change Percentage For Record Number : "+i+ " And on Page number : "+ pages);
+                    shortWait(eventDriver, responseTimeChange);
+                    changePer = eventDriver.findElement(By.xpath(responseTimeChange+"[" + i + "]")).getText();
                     percent = Integer.parseInt(changePer.replace("%", "").replace(",", "").replace("+", "").replace("-", "").replace(">", ""));
 
-                    shortWait(driver, networkApiName);
-                    name = driver.findElement(By.xpath(networkApiName+"[" + i + "]")).getText();
+                    System.out.println("Extracting Name For Record Number : "+i+ " And on Page number : "+ pages);
+                    shortWait(eventDriver, networkApiName);
+                    name = eventDriver.findElement(By.xpath(networkApiName+"[" + i + "]")).getText();
 
-                    shortWait(driver, successPercentage);
-                    success = driver.findElement(By.xpath(successPercentage+"[" + i + "]")).getText();
+                    System.out.println("Extracting Api Success Percentage For Record Number : "+i+ " And on Page number : "+ pages);
+                    shortWait(eventDriver, successPercentage);
+                    success = eventDriver.findElement(By.xpath(successPercentage+"[" + i + "]")).getText();
 
-                    shortWait(driver, sampleSize);
-                    sample = driver.findElement(By.xpath(sampleSize+"[" + i + "]")).getText();
+                    System.out.println("Extracting API Sample Size For Record Number : "+i+ " And on Page number : "+ pages);
+                    shortWait(eventDriver, sampleSize);
+                    sample = eventDriver.findElement(By.xpath(sampleSize+"[" + i + "]")).getText();
                     samplesCheck = Float.parseFloat(sample.replace(" samples", "").replace("K", "").replace("M", ""));
 
                     if ((respTimeCheck > 10 || respTime.contains("min")) && percent > 100 && (sample.contains("K") || samplesCheck > 30 || sample.contains("M"))) {
                         if (changePer.contains("+") || changePer.contains(">")) {
+
+                            System.out.println("Adding All Response Change data for Record : "+i+ " For page : "+ pages+" to the respective Lists");
+
                             responseTime.add(respTime);
                             changePercent.add(changePer);
                             apiName.add(name);
@@ -272,18 +304,32 @@ public class PerformanceApiResponse {
                 }
 
                 try {
-                    if (driver.findElement(By.xpath(pageNavigation)).isEnabled()) {
-                        driver.findElement(By.xpath(pageNavigation)).click();
+                    if (eventDriver.findElement(By.xpath(pageNavigation)).isEnabled()) {
+                        System.out.println("Clicked > for Next page");
+                        eventDriver.findElement(By.xpath(pageNavigation)).click();
                         pages = pages + 1;
                         condition = true;
                         Thread.sleep(3000);
                     }
                 } catch (Exception e) {
+                    System.out.println("EXCEPTION : Clicking > for Next page for Response Change");
                     condition = false;
                 }
                 js.executeScript("window.scrollBy(0,100)", "");
             }
 
+            for (i = 0; i < responseTime.size(); i++) {
+                System.out.println(responseTime.get(i) + "   " + changePercent.get(i) + "   " + apiName.get(i) + "   " + apiSuccess.get(i) + "   " + apiSample.get(i) + " ");
+            }
+
+
+
+
+            /** Response Change Table Process Ends */
+            System.out.println("Response Change Table Process Ends");
+
+            /** Send Mail */
+            System.out.println("Send Mail Config Setting True/False based on condition");
             if (changePercent.size() >= 0) {
                 sendMail = true;
                 if (changePercent.size() > 5) {
@@ -292,47 +338,68 @@ public class PerformanceApiResponse {
             }
 
 
-            driver.navigate().refresh();
+            /** Success Change Table Process Begins */
+            System.out.println("Success Change Table Process Begins");
+
+            eventDriver.navigate().refresh();
             Thread.sleep(2000);
-            longWait(driver, "//div[@class='date-selection']");
-            driver.findElement(By.xpath("//div[@class='date-selection']")).click();
+            longWait(eventDriver, "//div[@class='date-selection']");
+            System.out.println("Open Date Selector");
+            eventDriver.findElement(By.xpath("//div[@class='date-selection']")).click();
             Thread.sleep(2000);
-            driver.findElement(By.xpath("//span[contains(text(),'24 hour')]")).click();
+            System.out.println("Select 24 hrs Data");
+            eventDriver.findElement(By.xpath("//span[contains(text(),'24 hour')]")).click();
 
             js.executeScript("window.scrollBy(0,150)", "");
-            WebDriverWait wait = new WebDriverWait(driver, 10);
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@class='header-text-wrapper ng-star-inserted']")));
-            shortWait(driver, hourlyChange+"[1]");
-            driver.findElement(By.xpath("(//span[@class='header-text-wrapper ng-star-inserted'])[5]")).click();
+            WebDriverWait wait = new WebDriverWait(eventDriver, 10);
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@class='header-text-wrapper fire-popover-trigger ng-star-inserted']")));
+            shortWait(eventDriver, hourlyChange+"[1]");
+            System.out.println("Sort Success Change Ascending");
+            eventDriver.findElement(By.xpath("//span[@class='header-text-wrapper fire-popover-trigger ng-star-inserted']")).click();
 
             condition = true;
             pages = 1;
             while (condition && pages < 4) {
-                longWait(driver, hourlyChange+"[1]");
+                System.out.println("While Loop Starts for Multiple Pages");
+                System.out.println("Page Number : "+pages);
+                System.out.println("Condition TRUE/FALSE : " + condition);
+                longWait(eventDriver, hourlyChange+"[1]");
                 Thread.sleep(4000);
-                for (i = 1; i <= 10; i++) {
-                    respTime = driver.findElement(By.xpath(responseTimeCell+"[" + i + "]")).getText();
-//                    respTimeCheck = Float.parseFloat(respTime.replace("s", "").replace("min", ""));
-                    shortWait(driver, responseTimeChange);
-                    changePer = driver.findElement(By.xpath(responseTimeChange+"[" + i + "]")).getText();
-//                    percent = Integer.parseInt(changePer.replace("%", "").replace(",", "").replace("+", "").replace("-", "").replace(">", ""));
 
-                    shortWait(driver, networkApiName);
-                    name = driver.findElement(By.xpath(networkApiName+"[" + i + "]")).getText();
+                for (i = 1; i <= 10; i++) {
+                    System.out.println("Extracting Response Time For Record Number : "+i+ " And on Page number : "+ pages);
+                    respTime = eventDriver.findElement(By.xpath(responseTimeCell+"[" + i + "]")).getText();
+//                    respTimeCheck = Float.parseFloat(respTime.replace("s", "").replace("min", ""));
+                    shortWait(eventDriver, responseTimeChange);
+
+                    System.out.println("Extracting Change Percentage For Record Number : "+i+ " And on Page number : "+ pages);
+                    changePer = eventDriver.findElement(By.xpath(responseTimeChange+"[" + i + "]")).getText();
+//                    percent = Integer.parseInt(changePer.replace("%", "").replace(",", "").replace("+", "").replace("-", "").replace(">", ""));
+                    shortWait(eventDriver, networkApiName);
+
+                    System.out.println("Extracting Name For Record Number : "+i+ " And on Page number : "+ pages);
+                    name = eventDriver.findElement(By.xpath(networkApiName+"[" + i + "]")).getText();
 //                Thread.sleep(1000);
-//                System.out.println(driver.findElement(By.xpath(networkApiName+"["+i+"]")).getText());
-                    shortWait(driver, successPercentage);
-                    success = driver.findElement(By.xpath(successPercentage+"[" + i + "]")).getText();
+//                System.out.println(eventDriver.findElement(By.xpath(networkApiName+"["+i+"]")).getText());
+                    shortWait(eventDriver, successPercentage);
+
+                    System.out.println("Extracting Api Success Percentage For Record Number : "+i+ " And on Page number : "+ pages);
+                    success = eventDriver.findElement(By.xpath(successPercentage+"[" + i + "]")).getText();
                     successCheck = Float.parseFloat(success.replace("%", ""));
 //                Thread.sleep(2000);
-                    shortWait(driver, sampleSize);
-                    sample = driver.findElement(By.xpath(sampleSize+"[" + i + "]")).getText();
+                    shortWait(eventDriver, sampleSize);
+
+                    System.out.println("Extracting API Sample Size For Record Number : "+i+ " And on Page number : "+ pages);
+                    sample = eventDriver.findElement(By.xpath(sampleSize+"[" + i + "]")).getText();
                     samplesCheck = Float.parseFloat(sample.replace(" samples", "").replace("K", "").replace("M", ""));
 
-                    changeSuccess = driver.findElement(By.xpath(hourlyChange+"[" + i + "]")).getText();
+                    System.out.println("Extracting 24 Hour change For Record Number : "+i+ " And on Page number : "+ pages);
+                    changeSuccess = eventDriver.findElement(By.xpath(hourlyChange+"[" + i + "]")).getText();
 
                     if ((sample.contains("K") || samplesCheck > 30 || sample.contains("M")) && !name.startsWith("static") && successCheck < 90) {
                         if (changeSuccess.contains("-") || changeSuccess.contains(">")) {
+
+                            System.out.println("Adding All Success Change data for Record : "+i+ " For page : "+ pages+" to the respective Lists");
                             responseTime1.add(respTime);
                             changePercent1.add(changePer);
                             apiName1.add(name);
@@ -347,20 +414,27 @@ public class PerformanceApiResponse {
 
                 }
                 try {
-                    if (driver.findElement(By.xpath(pageNavigation)).isEnabled()) {
-                        driver.findElement(By.xpath(pageNavigation)).click();
+                    if (eventDriver.findElement(By.xpath(pageNavigation)).isEnabled()) {
+                        System.out.println("Clicking > for Next page");
+                        eventDriver.findElement(By.xpath(pageNavigation)).click();
                         pages = pages + 1;
                         condition = true;
                         Thread.sleep(3000);
                     }
                 } catch (Exception e) {
+                    System.out.println("EXCEPTION : Clicking > for Next page for Success Change for Success Change");
                     condition = false;
                 }
                 js.executeScript("window.scrollBy(0,100)", "");
             }
+
             for (i = 0; i < changePercent1.size(); i++) {
                 System.out.println(responseTime1.get(i) + "   " + changePercent1.get(i) + "   " + apiName1.get(i) + "   " + apiSuccess1.get(i) + "   " + apiSample1.get(i) + " " + changeSuccess1.get(i));
             }
+
+
+            /** Send Mail */
+            System.out.println("Send Mail Config Setting True/False based on condition");
             if (changeSuccess1.size() >= 0) {
                 sendMail = true;
                 if (changeSuccess1.size() > 5) {
@@ -369,18 +443,20 @@ public class PerformanceApiResponse {
             }
 
 
-//        try{
-            driver.quit();
-//        }catch (Exception e) {
-//            driver.close();
-//        }
+
+            eventDriver.quit();
+
         } catch (Exception e) {
 
-            driver.quit();
-//            throw e;
+            System.out.println("EXCEPTION : Generic Exception Caught in main Code");
+            eventDriver.quit();
+
         }
 
+        /** Send Mail */
+
         if (sendMail) {
+            System.out.println("Send Mail Method Initiated");
             String m;
             int n;
             n = changePercent.size();
@@ -477,7 +553,7 @@ public class PerformanceApiResponse {
                 System.out.println("=====Email Sent=====");
 
             } catch (MessagingException e) {
-
+                System.out.println("EXCEPTION : While Sending Mail");
                 throw new RuntimeException(e);
 
             }
@@ -485,6 +561,7 @@ public class PerformanceApiResponse {
 
             /**Sending Suite Failure Mail*/
 
+            System.out.println("Send Mail: Suite Failure Method Initiated");
 
             Properties props = new Properties();
 
@@ -553,6 +630,7 @@ public class PerformanceApiResponse {
 
             } catch (MessagingException e) {
 
+                System.out.println("EXCEPTION : While Sending Failure Suite Mail");
                 throw new RuntimeException(e);
 
             }
@@ -571,6 +649,7 @@ public class PerformanceApiResponse {
             WebElement element;
             element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(text)));
         } catch (Exception e) {
+            System.out.println("EXCEPTION : Caught in Short Wait");
             if (!e.toString().contains("TimeoutException")) {
                 Assert.assertTrue(false);
             }
@@ -583,6 +662,8 @@ public class PerformanceApiResponse {
             WebElement element;
             element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(text)));
         } catch (Exception e) {
+
+            System.out.println("EXCEPTION : Caught in Long Wait");
             if (!e.toString().contains("TimeoutException")) {
                 Assert.assertTrue(false);
             }
