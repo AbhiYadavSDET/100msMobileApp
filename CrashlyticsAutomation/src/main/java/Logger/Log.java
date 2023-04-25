@@ -36,7 +36,7 @@ public class Log {
     static {
         try {
             consoleAppender = new ConsoleAppender(layout, "System.out");
-            appender = new FileAppender(layout, "LogFile.txt", true);
+            appender = new FileAppender(layout, "LogFile.txt", false);
         } catch (IOException exception) {
             exception.printStackTrace();
         }
