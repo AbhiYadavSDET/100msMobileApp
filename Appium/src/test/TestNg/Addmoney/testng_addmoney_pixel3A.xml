@@ -6,7 +6,6 @@
     <parameter name="level" value="payments"/>
     <parameter name="saucelabs" value="false"></parameter>
     <parameter name="androidOSVersion" value="7.0"></parameter>
-    <parameter name="userName" value="ashishkumarpradhan"></parameter>
     <parameter name="deviceID" value="3"></parameter>
 
 
