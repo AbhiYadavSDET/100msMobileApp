@@ -53,6 +53,10 @@ public class PerformanceApiResponse {
         String passMail = "mobikwik123#";
 
 
+        /**Run Configuration : Uncomment jenkins before committing, for running local uncomment local and comment jenkins*/
+        String run= "local";
+//        String run="jenkins";
+
 
         /**BrowserStack Credentials */
         String username = "parajjain_X3pLgw";
@@ -113,7 +117,6 @@ public class PerformanceApiResponse {
 
         /** Initiating Browserstack Chrome driver */
         System.out.println("Initiating Browserstack Chrome driver");
-
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("os", "Windows");
         capabilities.setCapability("os_version", "10");
@@ -484,16 +487,33 @@ public class PerformanceApiResponse {
 
             Properties props = new Properties();
 
-            // this will set host of server- you can change based on your requirement
-            props.put("mail.smtp.host", "10.10.116.180");
+            if(run!="local") {
+
+                // this will set host of server- you can change based on your requirement
+                props.put("mail.smtp.host", "10.10.116.180");
+
+                // set the port of SMTP server
+                props.put("mail.smtp.port", "587");
+
+            }else{
+                // this will set host of server- you can change based on your requirement
+                props.put("mail.smtp.host", "smtp.gmail.com");
+
+                // set the port of SMTP server
+                props.put("mail.smtp.port", "587");
+
+                // set the port of socket factory
+                props.put("mail.smtp.socketFactory.port", "587");
+
+                // set socket factory
+                props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+
+            }
 
             props.put("mail.smtp.starttls.enable", "true");
 
             // set the authentication to true
             props.put("mail.smtp.auth", "true");
-
-            // set the port of SMTP server
-            props.put("mail.smtp.port", "587");
 
             // Testing
             props.put("mail.transport.protocol", "smtp");
@@ -565,19 +585,37 @@ public class PerformanceApiResponse {
 
             Properties props = new Properties();
 
-            // this will set host of server- you can change based on your requirement
-            props.put("mail.smtp.host", "10.10.116.180");
+            if(run!="local") {
+
+                // this will set host of server- you can change based on your requirement
+                props.put("mail.smtp.host", "10.10.116.180");
+
+                // set the port of SMTP server
+                props.put("mail.smtp.port", "587");
+
+            }else{
+                // this will set host of server- you can change based on your requirement
+                props.put("mail.smtp.host", "smtp.gmail.com");
+
+                // set the port of SMTP server
+                props.put("mail.smtp.port", "587");
+
+                // set the port of socket factory
+                props.put("mail.smtp.socketFactory.port", "587");
+
+                // set socket factory
+                props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+
+            }
 
             props.put("mail.smtp.starttls.enable", "true");
 
             // set the authentication to true
             props.put("mail.smtp.auth", "true");
 
-            // set the port of SMTP server
-            props.put("mail.smtp.port", "587");
-
             // Testing
             props.put("mail.transport.protocol", "smtp");
+
 
             // This will handle the complete authentication
             Session session = Session.getDefaultInstance(props,
