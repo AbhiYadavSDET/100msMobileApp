@@ -93,42 +93,42 @@ public class PerformanceApiResponse {
 
 /** Driver Initiate Method 1 : Chrome Browser Local */
 
-        /** Initiating Chrome driver */
-        Log.info("Initiating Chrome driver");
-
-        System.setProperty("webDriver.chrome.driver", System.getProperty("user.dir") + "/chromedriver");
-
-        ChromeOptions chromeOptions = new ChromeOptions();
-//        chromeOptions.addArguments("--headless");
-
-
-        WebDriver driver = new ChromeDriver(chromeOptions);
-        EventFiringWebDriver eventDriver = new EventFiringWebDriver(driver);
-
-        WebDriverEventListener webDriverEventListener = new WebDriverListeners();
-        eventDriver.register(webDriverEventListener);
+//        /** Initiating Chrome driver */
+//        Log.info("Initiating Chrome driver");
+//
+//        System.setProperty("webDriver.chrome.driver", System.getProperty("user.dir") + "/chromedriver");
+//
+//        ChromeOptions chromeOptions = new ChromeOptions();
+////        chromeOptions.addArguments("--headless");
+//
+//
+//        WebDriver driver = new ChromeDriver(chromeOptions);
+//        EventFiringWebDriver eventDriver = new EventFiringWebDriver(driver);
+//
+//        WebDriverEventListener webDriverEventListener = new WebDriverListeners();
+//        eventDriver.register(webDriverEventListener);
 
 
 /** Driver Initiate Method 2 : Chrome Browser Browserstack */
 
 
-//        /** Initiating Browserstack Chrome driver */
-//        Log.info("Initiating Browserstack Chrome driver");
-//
-//        DesiredCapabilities capabilities = new DesiredCapabilities();
-//        capabilities.setCapability("os", "Windows");
-//        capabilities.setCapability("os_version", "10");
-//        capabilities.setCapability("browser", "chrome");
-//        capabilities.setCapability("browser_version", "latest");
-//        capabilities.setCapability("name", "MBKTest"); // test buildName
-////        capabilities.setCapability("build", buildName); // CI/CD job name using BROWSERSTACK_BUILD_NAME env variable
-//
-//        WebDriver driver = new RemoteWebDriver(new URL("https://" + username + ":" + accessKey + "@hub.browserstack.com/wd/hub"), capabilities);
-//
-//        EventFiringWebDriver eventDriver = new EventFiringWebDriver(driver);
-//
-//        WebDriverEventListener webDriverEventListener = new WebDriverListeners();
-//        eventDriver.register(webDriverEventListener);
+        /** Initiating Browserstack Chrome driver */
+        Log.info("Initiating Browserstack Chrome driver");
+
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("os", "Windows");
+        capabilities.setCapability("os_version", "10");
+        capabilities.setCapability("browser", "chrome");
+        capabilities.setCapability("browser_version", "latest");
+        capabilities.setCapability("name", "MBKTest"); // test buildName
+//        capabilities.setCapability("build", buildName); // CI/CD job name using BROWSERSTACK_BUILD_NAME env variable
+
+        WebDriver driver = new RemoteWebDriver(new URL("https://" + username + ":" + accessKey + "@hub.browserstack.com/wd/hub"), capabilities);
+
+        EventFiringWebDriver eventDriver = new EventFiringWebDriver(driver);
+
+        WebDriverEventListener webDriverEventListener = new WebDriverListeners();
+        eventDriver.register(webDriverEventListener);
 
 
 
