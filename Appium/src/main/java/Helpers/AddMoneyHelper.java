@@ -55,7 +55,7 @@ public class AddMoneyHelper {
 
 
 
-    public void addMoneyViaCard(String amount, String cvv , String expTitle, String expSubTitle, String expAmount,String expectedHistoryDescription, String expectedHistoryAmount, String expectedHistoryStatus, String deviceId , String userName) throws InterruptedException, IOException {
+    public void addMoneyViaCard(String amount, String cvv , String expTitle, String expSubTitle, String expAmount,String expectedHistoryDescription, String expectedHistoryAmount, String expectedHistoryStatus, String deviceId) throws InterruptedException, IOException {
 
         Log.info("START", "Add Money");
         Log.info("----------- Arguments ---------------");
@@ -96,7 +96,7 @@ public class AddMoneyHelper {
             permissionPage.allowPermissionMessage();
         }
 
-        indusindBankPaymentPageHelper.paymentPageHelper(deviceId,userName);
+        indusindBankPaymentPageHelper.paymentPageHelper(deviceId);
 
         // Verification on the Success Screen
         String title = addMoneyPage.getTitleOnSuccess();

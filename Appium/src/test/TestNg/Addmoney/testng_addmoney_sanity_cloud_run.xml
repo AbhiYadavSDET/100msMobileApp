@@ -5,7 +5,6 @@
     <parameter name="build" value="prod"/>
     <parameter name="level" value="payments"/>
     <parameter name="cloudRun" value="true"></parameter>
-    <parameter name="userName" value="ashishkumarpradhan"></parameter>
     <parameter name="deviceID" value="1"></parameter>
 
 

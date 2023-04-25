@@ -25,7 +25,27 @@ public class IndusindBankPaymentPageHelper {
         this.driver = driver;
     }
 
-    public String getOtpDetailsByJsonFile(String userName) {
+    public String getUserDownloadPath(){
+        String curPath = System.getProperty("user.dir");
+        String downloadPath = "";
+        int count = 0;
+        for(int i = 0 ; i < curPath.length() ; i++){
+            char c = curPath.charAt(i);
+            if(c == '/') {
+                count++;
+            }
+            downloadPath = downloadPath + c;
+
+            if(count > 2){
+                break;
+            }
+        }
+        downloadPath = "file:///" + downloadPath + "Downloads/otp.json";
+        Log.info(downloadPath);
+        return downloadPath;
+    }
+
+    public String getOtpDetailsByJsonFile() {
 
         String otp = "";
         try {
@@ -37,8 +57,10 @@ public class IndusindBankPaymentPageHelper {
             // Wait for the file to be downloaded
             Thread.sleep(5000);
 
+            System.out.println();
+
             // Read the contents of the JSON file
-            String downloadLocation = "file:////Users/"+userName+"/Downloads/otp.json";
+            String downloadLocation = getUserDownloadPath();
             URL fileUrl = new URL(downloadLocation);
             BufferedReader reader = new BufferedReader(new FileReader(new File(fileUrl.toURI())));
             System.out.println("JSON File Contents:");
@@ -96,31 +118,31 @@ public class IndusindBankPaymentPageHelper {
         return output;
     }
 
-    public void paymentPageHelper(String deviceId , String userName) throws InterruptedException {
+    public void paymentPageHelper(String deviceId ) throws InterruptedException {
         int device = Integer.parseInt(deviceId);
 
         switch (device) {
             case 0:
-                paymentPageAshishPhone(userName);
+                paymentPageAshishPhone();
                 break;
 
             case 1:
-                paymentPageCloudRun(userName);
+                paymentPageCloudRun();
                 break;
 
             case 2:
-                paymentPageLenovo(userName);
+                paymentPageLenovo();
                 break;
 
             case 3:
-                paymentPagePixel3A(userName);
+                paymentPagePixel3A();
                 break;
 
         }
 
     }
 
-    public void paymentPageCloudRun(String userName) throws InterruptedException {
+    public void paymentPageCloudRun() throws InterruptedException {
 
         Log.info("Running on Cloud");
 
@@ -140,7 +162,7 @@ public class IndusindBankPaymentPageHelper {
         Thread.sleep(3000);
 
         Log.info("Enter OTP Details");
-        String otp = getOtpDetailsByJsonFile(userName);
+        String otp = getOtpDetailsByJsonFile();
         //String otp = getOtpDetails();
 
 
@@ -204,7 +226,7 @@ public class IndusindBankPaymentPageHelper {
     }
 
 
-    public void paymentPageAshishPhone(String userName) throws InterruptedException {
+    public void paymentPageAshishPhone() throws InterruptedException {
 
         Log.info("Running on Ashish Phone");
 
@@ -225,7 +247,7 @@ public class IndusindBankPaymentPageHelper {
 
         Log.info("Enter OTP Details");
 
-        String otp = getOtpDetailsByJsonFile(userName);
+        String otp = getOtpDetailsByJsonFile();
         //String otp = getOtpDetails();
 
         // String otp = "258016";
@@ -291,7 +313,7 @@ public class IndusindBankPaymentPageHelper {
     }
 
 
-    public void paymentPageLenovo(String userName) throws InterruptedException {
+    public void paymentPageLenovo() throws InterruptedException {
 
         Log.info("Running on Lenovo");
 
@@ -311,7 +333,7 @@ public class IndusindBankPaymentPageHelper {
         Thread.sleep(3000);
 
         Log.info("Enter OTP Details");
-        String otp = getOtpDetailsByJsonFile(userName);
+        String otp = getOtpDetailsByJsonFile();
         //String otp = getOtpDetails();
         //String otp = "258013";
 
@@ -376,7 +398,7 @@ public class IndusindBankPaymentPageHelper {
     }
 
 
-    public void paymentPagePixel3A(String userName) throws InterruptedException {
+    public void paymentPagePixel3A() throws InterruptedException {
 
         Log.info("Running on Cloud");
 
@@ -396,7 +418,7 @@ public class IndusindBankPaymentPageHelper {
         Thread.sleep(3000);
 
         Log.info("Enter OTP Details");
-        String otp = getOtpDetailsByJsonFile(userName);
+        String otp = getOtpDetailsByJsonFile();
         //String otp = getOtpDetails();
 
 
