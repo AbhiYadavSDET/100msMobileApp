@@ -344,7 +344,9 @@ public class PerformanceApiResponse {
             /** Success Change Table Process Begins */
             Log.info("Success Change Table Process Begins");
 
+
             eventDriver.navigate().refresh();
+            js.executeScript("window.scrollBy(100,0)", "");
             Thread.sleep(2000);
             longWait(eventDriver, "//div[@class='date-selection']");
             Log.info("Open Date Selector");
