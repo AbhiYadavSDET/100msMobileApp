@@ -454,6 +454,7 @@ public class PerformanceApiResponse {
 
             Log.info("EXCEPTION : Generic Exception Caught in main Code");
             loggingException= String.valueOf(e);
+            sendMail=false;
             eventDriver.quit();
 
         }
