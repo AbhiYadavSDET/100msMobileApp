@@ -70,6 +70,7 @@ public class PerformanceApiResponse {
         int i, percent, pages = 1;
         float samplesCheck;
         Boolean condition = true, sendMail = false, changeSub = true;
+        String loggingException="";
 
 
         /** Array List for Data */
@@ -249,7 +250,9 @@ public class PerformanceApiResponse {
             String successPercentage= "(//mat-cell[@class='mat-cell cdk-cell metric-value-cell cdk-column-SUCCESS_RATE_LATEST_VALUE mat-column-SUCCESS_RATE_LATEST_VALUE ng-star-inserted'])";
             String sampleSize= "(//div[@class='resource-subtitle ng-star-inserted']/p)";
             String hourlyChange="(//mat-cell[@class='mat-cell cdk-cell metric-delta-cell standard cdk-column-SUCCESS_RATE_DELTA mat-column-SUCCESS_RATE_DELTA ng-star-inserted'])";
-            String pageNavigation="//button[@aria-label='Next page']";
+//            String pageNavigation="//button[@aria-label='Next page']";
+
+            String pageNavigation="//aaa[@aria-label='Next page']";
 
 
             /** Response Change Table Process Begins */
@@ -450,6 +453,7 @@ public class PerformanceApiResponse {
         } catch (Exception e) {
 
             Log.info("EXCEPTION : Generic Exception Caught in main Code");
+            loggingException= String.valueOf(e);
             eventDriver.quit();
 
         }
@@ -617,13 +621,11 @@ public class PerformanceApiResponse {
 
                 // Append the log.info file for failure
 
-
-
-
-//                String messageContent= logs.toString();
-                String messageContent="";
                 Log.info("------");
 
+                String messageContent="";
+                messageContent = "<H2>API Performance</H2><H3>Exception Logs Below:</H3>";
+                messageContent=messageContent+loggingException;
 
                 message.setContent(messageContent, "text/html");
 
