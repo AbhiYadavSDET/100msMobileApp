@@ -625,7 +625,10 @@ public class PerformanceApiResponse {
                 Log.info("------");
 
                 String messageContent="";
-                messageContent = "<H2>API Performance</H2><H3>Exception Logs Below:</H3>";
+                String logContent=Log.returnLogs();
+                messageContent = "<H2>API Performance</H2><H3>Logs Below:</H3>";
+                messageContent=messageContent+logContent;
+                messageContent=messageContent+"<H3>Exception Below:</H3>";
                 messageContent=messageContent+loggingException;
 
                 message.setContent(messageContent, "text/html");
