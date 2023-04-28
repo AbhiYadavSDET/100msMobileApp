@@ -113,7 +113,7 @@ public class Log {
 
 
     public static void loginfo(String message) {
-        logInformation=logInformation+message+"\n";
+        logInformation=logInformation+"\n"+message;
 
     }
 
