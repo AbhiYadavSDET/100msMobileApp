@@ -11,6 +11,9 @@ import java.io.IOException;
 public class Log {
 
 
+    static String logInformation="";
+
+
     /**
      * contains all the methods to show the logs on console
      * and save the logs in LogFile.txt of each run.
@@ -69,6 +72,8 @@ public class Log {
         LOGGER.addAppender(appender);
         LOGGER.setLevel((Level) Level.INFO);
         LOGGER.info(ANSI_RESET + message);
+        loginfo(message);
+
     }
 
     public static String info(String action, String description) {
@@ -105,6 +110,17 @@ public class Log {
     public static String padLeft(String s, int n) {
         return String.format("%1$" + n + "s", s);
     }
+
+
+    public static void loginfo(String message) {
+        logInformation=logInformation+message+"<br>";
+
+    }
+
+    public static String returnLogs(){
+        return logInformation;
+    }
+
 
 
 }
