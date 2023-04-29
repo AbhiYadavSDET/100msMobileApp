@@ -347,7 +347,7 @@ public class PerformanceApiResponse {
 
             eventDriver.navigate().refresh();
             Thread.sleep(5000);
-            longWait(eventDriver, "//div[@class='date-selection']");
+            longWait(eventDriver, responseTimeCell);
             Log.info("Open Date Selector");
 //            js.executeScript("window.scrollBy(100,0)", "");
             eventDriver.findElement(By.xpath("//div[@class='date-selection']")).click();
