@@ -344,13 +344,11 @@ public class PerformanceApiResponse {
             /** Success Change Table Process Begins */
             Log.info("Success Change Table Process Begins");
             eventDriver.navigate().refresh();
-
-            eventDriver.findElement(By.xpath("//div[@id='cdk-drop-list-0']//fire-navbar-item[3]")).click();
-            Thread.sleep(2000);
-
-            eventDriver.findElement(By.xpath("//div[@id='cdk-drop-list-0']//fire-navbar-item[4]")).click();
-            Thread.sleep(5000);
             longWait(eventDriver, responseTimeCell);
+
+            js.executeScript("window.scrollTo(0,0)", "");
+            Thread.sleep(3000);
+
             Log.info("Open Date Selector");
 
             eventDriver.findElement(By.xpath("//div[@class='date-selection']")).click();
