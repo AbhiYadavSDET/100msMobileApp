@@ -343,10 +343,12 @@ public class PerformanceApiResponse {
 
             /** Success Change Table Process Begins */
             Log.info("Success Change Table Process Begins");
-
-            js.executeScript("window.scrollBy(0, -300)", "");
-
             eventDriver.navigate().refresh();
+
+            eventDriver.findElement(By.xpath("//div[@id='cdk-drop-list-0']//fire-navbar-item[3]")).click();
+            Thread.sleep(2000);
+
+            eventDriver.findElement(By.xpath("//div[@id='cdk-drop-list-0']//fire-navbar-item[4]")).click();
             Thread.sleep(5000);
             longWait(eventDriver, responseTimeCell);
             Log.info("Open Date Selector");
