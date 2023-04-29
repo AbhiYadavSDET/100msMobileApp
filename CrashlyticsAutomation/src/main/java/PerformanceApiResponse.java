@@ -344,12 +344,13 @@ public class PerformanceApiResponse {
             /** Success Change Table Process Begins */
             Log.info("Success Change Table Process Begins");
 
+            js.executeScript("window.scrollBy(0, -300)", "");
 
             eventDriver.navigate().refresh();
             Thread.sleep(5000);
             longWait(eventDriver, responseTimeCell);
             Log.info("Open Date Selector");
-            js.executeScript("window.scrollBy(0, -300)", "");
+
             eventDriver.findElement(By.xpath("//div[@class='date-selection']")).click();
             Thread.sleep(2000);
             Log.info("Select 24 hrs Data");
