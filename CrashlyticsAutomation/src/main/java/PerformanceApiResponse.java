@@ -56,8 +56,8 @@ public class PerformanceApiResponse {
 
 
         /**BrowserStack Credentials */
-        String username = "parajjain_X3pLgw";
-        String accessKey = "5QyNfuj7vp3qsNWTvWsF";
+        String username = "parajjain_sbic3m";
+        String accessKey = "UiQCwarqqgMmUwmdBH7V";
 //        String buildName = "TestMbk";
 
 
@@ -343,13 +343,14 @@ public class PerformanceApiResponse {
 
             /** Success Change Table Process Begins */
             Log.info("Success Change Table Process Begins");
-
-
             eventDriver.navigate().refresh();
-            js.executeScript("window.scrollBy(100,0)", "");
-            Thread.sleep(2000);
-            longWait(eventDriver, "//div[@class='date-selection']");
+            longWait(eventDriver, responseTimeCell);
+
+            js.executeScript("window.scrollTo(0,0)", "");
+            Thread.sleep(3000);
+
             Log.info("Open Date Selector");
+
             eventDriver.findElement(By.xpath("//div[@class='date-selection']")).click();
             Thread.sleep(2000);
             Log.info("Select 24 hrs Data");
