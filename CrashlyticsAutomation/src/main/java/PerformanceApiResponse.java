@@ -349,7 +349,7 @@ public class PerformanceApiResponse {
             Thread.sleep(5000);
             longWait(eventDriver, responseTimeCell);
             Log.info("Open Date Selector");
-//            js.executeScript("window.scrollBy(100,0)", "");
+            js.executeScript("window.scrollBy(0, window.innerHeight)", "");
             eventDriver.findElement(By.xpath("//div[@class='date-selection']")).click();
             Thread.sleep(2000);
             Log.info("Select 24 hrs Data");
