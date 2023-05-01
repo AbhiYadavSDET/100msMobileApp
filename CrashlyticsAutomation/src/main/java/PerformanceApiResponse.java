@@ -58,7 +58,13 @@ public class PerformanceApiResponse {
         /**BrowserStack Credentials */
         String username = "mayanksuneja1";
         String accessKey = "kVYjq5yiytVYpajyVVzF";
-//        String buildName = "TestMbk";
+
+
+
+        /**Lambdatest Credentials */
+        String L_username="paraj.jain";
+        String L_accessKey ="D58QQ0amE9Pp8LxsObyHVmPNrHIbNTBI1z6iXPaH0HFTCHv3eY";
+
 
 
 
@@ -112,24 +118,48 @@ public class PerformanceApiResponse {
 
 /** Driver Initiate Method 2 : Chrome Browser Browserstack */
 
+//
+//        /** Initiating Browserstack Chrome driver */
+//        Log.info("Initiating Browserstack Chrome driver");
+//
+//        DesiredCapabilities capabilities = new DesiredCapabilities();
+//        capabilities.setCapability("os", "Windows");
+//        capabilities.setCapability("os_version", "10");
+//        capabilities.setCapability("browser", "chrome");
+//        capabilities.setCapability("browser_version", "latest");
+//        capabilities.setCapability("name", "MBKTest"); // test buildName
+////        capabilities.setCapability("build", buildName); // CI/CD job name using BROWSERSTACK_BUILD_NAME env variable
+//
+//        WebDriver driver = new RemoteWebDriver(new URL("https://" + username + ":" + accessKey + "@hub.browserstack.com/wd/hub"), capabilities);
+//
+//        EventFiringWebDriver eventDriver = new EventFiringWebDriver(driver);
+//
+//        WebDriverEventListener webDriverEventListener = new WebDriverListeners();
+//        eventDriver.register(webDriverEventListener);
 
-        /** Initiating Browserstack Chrome driver */
-        Log.info("Initiating Browserstack Chrome driver");
+
+
+        /** Driver Initiate Method 3 : Chrome Browser Lambdatest */
+
+
+        /** Initiating Lambdatest Chrome driver */
+        Log.info("Initiating Lambdatest Chrome driver");
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("os", "Windows");
-        capabilities.setCapability("os_version", "10");
-        capabilities.setCapability("browser", "chrome");
-        capabilities.setCapability("browser_version", "latest");
-        capabilities.setCapability("name", "MBKTest"); // test buildName
-//        capabilities.setCapability("build", buildName); // CI/CD job name using BROWSERSTACK_BUILD_NAME env variable
+        capabilities.setCapability("browserName", "Chrome");
+        capabilities.setCapability("version", "109.0");
+        capabilities.setCapability("platform", "Windows 10");
+        capabilities.setCapability("resolution", "1024x768");
+        capabilities.setCapability("build", "LambdaTestSampleApp"); // CI/CD job or build name;
+        capabilities.setCapability("name", "LambdaTestJavaSample"); // Test name
 
-        WebDriver driver = new RemoteWebDriver(new URL("https://" + username + ":" + accessKey + "@hub.browserstack.com/wd/hub"), capabilities);
+        WebDriver driver = new RemoteWebDriver(new URL("https://" + L_username + ":" + L_accessKey + "@hub.lambdatest.com/wd/hub"), capabilities);
 
         EventFiringWebDriver eventDriver = new EventFiringWebDriver(driver);
 
         WebDriverEventListener webDriverEventListener = new WebDriverListeners();
         eventDriver.register(webDriverEventListener);
+
 
 
 
