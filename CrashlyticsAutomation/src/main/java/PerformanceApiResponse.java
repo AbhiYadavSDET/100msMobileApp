@@ -100,20 +100,20 @@ public class PerformanceApiResponse {
 
 /** Driver Initiate Method 1 : Chrome Browser Local */
 
-//        /** Initiating Chrome driver */
-//        Log.info("Initiating Chrome driver");
-//
-//        System.setProperty("webDriver.chrome.driver", System.getProperty("user.dir") + "/chromedriver");
-//
-//        ChromeOptions chromeOptions = new ChromeOptions();
-////        chromeOptions.addArguments("--headless");
-//
-//
-//        WebDriver driver = new ChromeDriver(chromeOptions);
-//        EventFiringWebDriver eventDriver = new EventFiringWebDriver(driver);
-//
-//        WebDriverEventListener webDriverEventListener = new WebDriverListeners();
-//        eventDriver.register(webDriverEventListener);
+        /** Initiating Chrome driver */
+        Log.info("Initiating Chrome driver");
+
+        System.setProperty("webDriver.chrome.driver", System.getProperty("user.dir") + "/chromedriver");
+
+        ChromeOptions chromeOptions = new ChromeOptions();
+//        chromeOptions.addArguments("--headless");
+
+
+        WebDriver driver = new ChromeDriver(chromeOptions);
+        EventFiringWebDriver eventDriver = new EventFiringWebDriver(driver);
+
+        WebDriverEventListener webDriverEventListener = new WebDriverListeners();
+        eventDriver.register(webDriverEventListener);
 
 
 /** Driver Initiate Method 2 : Chrome Browser Browserstack */
@@ -142,23 +142,23 @@ public class PerformanceApiResponse {
         /** Driver Initiate Method 3 : Chrome Browser Lambdatest */
 
 
-        /** Initiating Lambdatest Chrome driver */
-        Log.info("Initiating Lambdatest Chrome driver");
-
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("browserName", "Chrome");
-        capabilities.setCapability("version", "109.0");
-        capabilities.setCapability("platform", "Windows 10");
-        capabilities.setCapability("resolution", "1024x768");
-        capabilities.setCapability("build", "LambdaTestSampleApp"); // CI/CD job or build name;
-        capabilities.setCapability("name", "LambdaTestJavaSample"); // Test name
-
-        WebDriver driver = new RemoteWebDriver(new URL("https://" + L_username + ":" + L_accessKey + "@hub.lambdatest.com/wd/hub"), capabilities);
-
-        EventFiringWebDriver eventDriver = new EventFiringWebDriver(driver);
-
-        WebDriverEventListener webDriverEventListener = new WebDriverListeners();
-        eventDriver.register(webDriverEventListener);
+//        /** Initiating Lambdatest Chrome driver */
+//        Log.info("Initiating Lambdatest Chrome driver");
+//
+//        DesiredCapabilities capabilities = new DesiredCapabilities();
+//        capabilities.setCapability("browserName", "Chrome");
+//        capabilities.setCapability("version", "109.0");
+//        capabilities.setCapability("platform", "Windows 10");
+//        capabilities.setCapability("resolution", "1024x768");
+//        capabilities.setCapability("build", "LambdaTestSampleApp"); // CI/CD job or build name;
+//        capabilities.setCapability("name", "LambdaTestJavaSample"); // Test name
+//
+//        WebDriver driver = new RemoteWebDriver(new URL("https://" + L_username + ":" + L_accessKey + "@hub.lambdatest.com/wd/hub"), capabilities);
+//
+//        EventFiringWebDriver eventDriver = new EventFiringWebDriver(driver);
+//
+//        WebDriverEventListener webDriverEventListener = new WebDriverListeners();
+//        eventDriver.register(webDriverEventListener);
 
 
 
