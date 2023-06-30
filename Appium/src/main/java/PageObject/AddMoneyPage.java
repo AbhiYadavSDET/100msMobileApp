@@ -17,7 +17,7 @@ public class AddMoneyPage {
     AndroidDriver driver;
 
 
-    @AndroidFindBy(id = "btn_add_money")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Add Money']")
     private AndroidElement add_Money;
 
     @AndroidFindBy(id = "edit_text")

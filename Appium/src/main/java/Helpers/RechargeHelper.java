@@ -54,6 +54,17 @@ public class RechargeHelper {
         // Click on Recharge And PayBills
         rechargePage.clickRechargeAndPayBills();
 
+        //
+       // rechargePage.clickEnableSecureLoginBottomSheet();
+
+        //
+        if(rechargePage.clickMobileRechargeAlert()){
+            rechargePage.clickToCloseMobileRechargeAlert();
+        }
+
+        //Press back to close Third Time Lucky Popup
+        //rechargePage.clickThirdTimeLuckyPopupRemove();
+
         // Click on outside Swipe Left Bottom Popup
         rechargePage.clickSwipeLeftBottomRemove();
 

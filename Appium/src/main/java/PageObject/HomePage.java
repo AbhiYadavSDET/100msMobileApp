@@ -17,18 +17,23 @@ public class HomePage {
     AndroidDriver driver;
     //############################ Udit start ################################
 
-    @AndroidFindBy(id = "icon_chevron")
+    @AndroidFindBy(id = "vfLogo")
     public AndroidElement walletBalanceDropDown;
 
-    @AndroidFindBy(id = "tx_balance")
+    @AndroidFindBy(id = "balance_value")
     public AndroidElement totalBalance;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Added Balance']/following-sibling::android.widget.TextView[1]")
+    @AndroidFindBy(id = "balance_value")
     private AndroidElement addmoneyBalance;
+
+    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[2]/android.widget.TextView[1]")
+    private AndroidElement superCashBalanceText;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'SuperCash Balance']/following-sibling::android.widget.TextView[1]")
     private AndroidElement supercashBalance;
 
+    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.ImageView")
+    public AndroidElement closeWalletBalanceDropDown;
 
     @AndroidFindBy(xpath = "//*[@text='All Services']")
     private AndroidElement allServicesTab;
@@ -51,11 +56,15 @@ public class HomePage {
     @AndroidFindBy(xpath = "//android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.ImageView[3]")
     private AndroidElement clickSideDrawer;
 
+
+    @AndroidFindBy(id = "navigation_zip")
+    private AndroidElement zipIcon;
+
     //############################ Udit end ################################
 
     //############################ Old start ################################
 
-    @AndroidFindBy(id = "icon_drawer")
+    @AndroidFindBy(id = "vfLogo")
     public AndroidElement sidedrawer_icon;
 
     @AndroidFindBy(id = "logo")
@@ -257,6 +266,10 @@ public class HomePage {
         Elements.selectElement(driver, walletBalanceDropDown, "Click Wallet Balance Drop Down");
     }
 
+    public void clickCloseWalletBalanceDropDown() {
+        Elements.selectElement(driver, closeWalletBalanceDropDown, "Click Cross(x) to close Balance Drop Down");
+    }
+
     public void clickHomeTab() {
         Elements.selectElement(driver, homeTab, "Click Home tab");
     }
@@ -267,6 +280,10 @@ public class HomePage {
 
     public void openSideDrawr() {
         Elements.selectElement(driver, clickSideDrawer, "Open side drawer");
+    }
+
+    public Boolean isZipIconPresent() throws InterruptedException {
+        return Elements.isElementPresent(driver, zipIcon);
     }
 
     //############################ Udit end ################################
@@ -320,7 +337,7 @@ public class HomePage {
     }
 
     public AddMoneyPage clickOnAddMoneyButton() throws IOException, InterruptedException {
-        if (Element.isElementPresent(driver, By.id("icon_drawer"))) {
+        if (Element.isElementPresent(driver, By.id("vfLogo"))) {
             Element.selectElement(driver, open_balance_drawer, "Open Balance Drawer");
             Element.selectElement(driver, button_add_money, "Add Money button");
         }
@@ -524,8 +541,13 @@ public class HomePage {
         Element.selectElement(driver, open_balance_drawer, "Open Balance Drawer");
     }
 
+
     public String getSuperCashBalance() throws InterruptedException {
         return Elements.getText(driver, supercashBalance, "SuperCash");
+    }
+
+    public Boolean isSuperCashBalancePresent() throws InterruptedException {
+        return Elements.isElementPresent(driver, superCashBalanceText);
     }
 
     public String getAddMoney() throws InterruptedException {

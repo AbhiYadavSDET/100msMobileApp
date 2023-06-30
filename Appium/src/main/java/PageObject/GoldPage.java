@@ -19,16 +19,16 @@ public class GoldPage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Buy 99.5% pure gold']")
     private AndroidElement goldButton;
 
-    @AndroidFindBy(id = "buy_gold_button_registered")
+    @AndroidFindBy(id = "buy_gold_btn")
     private AndroidElement buyGoldButton;
 
-    @AndroidFindBy(id = "sell_gold_button_registered")
+    @AndroidFindBy(id = "sell_gold_btn")
     private AndroidElement sellGoldButton;
 
-    @AndroidFindBy(xpath = "//*/android.widget.AutoCompleteTextView[@text = '₹']")
+    @AndroidFindBy(xpath = "//*/android.widget.EditText[@text = 'In Rupees']")
     private AndroidElement textAmount;
 
-    @AndroidFindBy(xpath = "//*/android.widget.AutoCompleteTextView[@text = 'gm']")
+    @AndroidFindBy(xpath = "//*/android.widget.EditText[@text = 'In grams']")
     private AndroidElement textWeight;
 
     @AndroidFindBy(id = "buy_now_button")
@@ -70,6 +70,10 @@ public class GoldPage {
 
     public void clickBuyGold() {
         Elements.selectElement(driver, goldButton, "Buy Gold");
+    }
+
+    public boolean isBuyGoldPresent() throws InterruptedException {
+        return Elements.isElementPresent(driver, buyGoldButton);
     }
 
     public void clickBuyCta() {
