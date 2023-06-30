@@ -51,8 +51,15 @@ public class GoldHelper {
         // Click on 99% Buy Gold
         goldPage.clickBuyGold();
 
+
+        // Close what's new in gold bottom sheet
+        if(!goldPage.isBuyGoldPresent()){
+            mbkCommonControlsHelper.pressback();
+        }
+
         // Click on Buy Gold
         goldPage.clickBuyCta();
+
 
         // Enter the Gold amount
         goldPage.enterAmount(amount);
@@ -85,7 +92,7 @@ public class GoldHelper {
 
 
         // back to home
-        mbkCommonControlsHelper.pressback(3);
+        mbkCommonControlsHelper.pressback(2);
 
         // Click on the back button if the bottom sheet is present
         mbkCommonControlsHelper.handleHomePageLanding();
@@ -115,6 +122,11 @@ public class GoldHelper {
 
         // Click on 99% Buy Gold
         goldPage.clickBuyGold();
+
+        // Close what's new in gold bottom sheet
+        if(!goldPage.isBuyGoldPresent()){
+            mbkCommonControlsHelper.pressback();
+        }
 
         // Click on Sell Gold
         goldPage.clickSellCta();
@@ -153,7 +165,7 @@ public class GoldHelper {
         mbReporter.verifyEqualsWithLogging(txnAmount, expAmount, "Verify Amount", false, false,true);
 
         // back to home
-        mbkCommonControlsHelper.pressback(3);
+        mbkCommonControlsHelper.pressback(2);
 
         // Click on the back button if the bottom sheet is present
         mbkCommonControlsHelper.handleHomePageLanding();

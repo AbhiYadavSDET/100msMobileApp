@@ -17,7 +17,20 @@ public class RechargePage {
     private AndroidElement rechargeAndPayBills;
 
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Recharge & Bill Payments']")
+    private AndroidElement thirdTimeLuckyPopupRemove;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Recharge & Bill Payments']")
     private AndroidElement swipeLeftBottomRemove;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Enable secure login']")
+    private AndroidElement enableSecureLoginBottomSheet;
+
+    @AndroidFindBy(id = "android:id/alertTitle")
+    private AndroidElement mobileRechargeAlert;
+
+    @AndroidFindBy(id = "android:id/button2")
+    private  AndroidElement closeMobileRechargeAlert;
+
 
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Mobile']")
     private AndroidElement mobileButton;
@@ -76,6 +89,27 @@ public class RechargePage {
     public void clickSwipeLeftBottomRemove() {
         Elements.selectElement(driver, swipeLeftBottomRemove, "Tap to remove Swipe Left Bottom Pop Up");
     }
+
+    public void clickThirdTimeLuckyPopupRemove() {
+        Elements.back(driver, "Tap to remove Third Time Lucky Pop Up");
+
+    }
+
+    public void clickEnableSecureLoginBottomSheet() {
+        Elements.back(driver, "Tap to remove Enable Secure Login Bottom Sheet");
+
+    }
+
+    public Boolean clickMobileRechargeAlert() throws InterruptedException {
+        return Elements.isElementPresent(driver, mobileRechargeAlert);
+
+    }
+
+    public void clickToCloseMobileRechargeAlert()
+    {
+        Elements.selectElement(driver, closeMobileRechargeAlert, "Click Later to close Mobile Recharge Bonanza Alert");
+    }
+
 
     public void clickOnMobile() {
         Elements.selectElement(driver, mobileButton, "click on Mobile");

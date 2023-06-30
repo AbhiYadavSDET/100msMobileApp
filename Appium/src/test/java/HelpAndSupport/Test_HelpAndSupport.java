@@ -21,7 +21,7 @@ public class Test_HelpAndSupport  extends TestBase {
 
         // Execute the test
         HelpAndSupportHelper helpAndSupportHelper = new HelpAndSupportHelper(getAndroidDriver());
-        helpAndSupportHelper.helpAndSupport("Hey my name is Ashish", "Help & Support", "Select Your Transaction", "Help & Support");
+        helpAndSupportHelper.helpAndSupport("Hey my name is Ashish. Raising a demo ticket for testing purpose.", "Help & Support", "Select Your Transaction", "Help & Support");
 
         Log.info("======= END : Help And Support test =======");
 

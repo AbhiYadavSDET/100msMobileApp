@@ -43,7 +43,8 @@ public class HelpAndSupportHelper {
         Thread.sleep(2000);
 
         // Swipe till the bottom
-        screen.swipeUpMoreFromRightSide(driver);
+        screen.swipeUpMore(driver);
+        screen.swipeUpMore(driver);
 
         // Click on Help and Support
         helpAndSupportPage.clickOnHelpAndSupport();

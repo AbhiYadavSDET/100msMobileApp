@@ -11,10 +11,10 @@ public class SecurityPinPage {
 
     AndroidDriver driver;
 
-    @AndroidFindBy(id = "icon_drawer")
+    @AndroidFindBy(id = "vfLogo")
     private AndroidElement profileSectionButton;
 
-    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Security Settings']")
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Security']")
     private AndroidElement securitySettingButton;
 
     @AndroidFindBy(id = "switch_enable_pin")

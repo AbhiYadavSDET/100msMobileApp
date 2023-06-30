@@ -299,6 +299,13 @@ public class MBKCommonControlsHelper {
         String addmoney = homePage.getAddMoney().replace("₹", "");
         walletBalance.put("AddMoney", addmoney);
 
+
+        // Swipe Up if supercash balance card is not present
+        if(!homePage.isSuperCashBalancePresent()){
+
+            screen.swipeUpMore(driver);
+        }
+
         // Get the "Supercash" Balance
         String supercash = homePage.getSuperCashBalance().replace("₹", "");
         walletBalance.put("Supercash", supercash);
@@ -311,8 +318,13 @@ public class MBKCommonControlsHelper {
 
         Log.info("-----------------------------------");
 
-        // Click on the
-        homePage.clickWalletBalanceDropDown();
+        // Click to close profile screen
+        homePage.clickCloseWalletBalanceDropDown();
+
+        // Handling Enable secure Pin bottom sheet
+        if(!homePage.isZipIconPresent()){
+            pressback();
+        }
 
         Log.info("END : Fetch Wallet balance");
         return walletBalance;

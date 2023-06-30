@@ -13,7 +13,7 @@ import java.io.IOException;
 public class HelpAndSupportPage {
     AndroidDriver driver;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Help & Support']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Help']")
     private AndroidElement helpAndSupport;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Money Transfer']")
