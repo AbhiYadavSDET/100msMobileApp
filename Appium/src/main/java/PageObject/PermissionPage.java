@@ -52,6 +52,9 @@ public class PermissionPage {
     @AndroidFindBy(id = "com.android.permissioncontroller:id/permission_allow_button")
     private AndroidElement permissionAllowMessages;
 
+    @AndroidFindBy(id = "com.android.permissioncontroller:id/permission_allow_button")
+    private AndroidElement permissionAllowNotifications;
+
 
 
 
@@ -112,6 +115,10 @@ public class PermissionPage {
         return Elements.isElementPresent(driver, permissionAllowMessages);
     }
 
+    public boolean isPermissionNotificationsPresent() throws InterruptedException {
+        return Elements.isElementPresent(driver, permissionAllowNotifications);
+    }
+
     public void allowPermissionLocation() {
         Elements.selectElement(driver, permissionAllowLocation, "Permission Location");
     }
@@ -122,5 +129,9 @@ public class PermissionPage {
 
     public void allowPermissionMessage() {
         Elements.selectElement(driver, permissionAllowMessages, "Permission Message");
+    }
+
+    public void allowPermissionNotifications() {
+        Elements.selectElement(driver, permissionAllowNotifications, "Permission Notifications");
     }
 }

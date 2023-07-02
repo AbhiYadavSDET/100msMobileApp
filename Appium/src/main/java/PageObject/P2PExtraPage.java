@@ -61,7 +61,7 @@ public class P2PExtraPage {
     @AndroidFindBy (id="tvAvailableBal")
     private AndroidElement available_balance_to_withdraw;
 
-    @AndroidFindBy (id = "cta")
+    @AndroidFindBy (xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.widget.TextView[3]")
     private AndroidElement withdraw_on_withdrawal_amount_page;
 
     @AndroidFindBy (id ="bank_name")
