@@ -4,6 +4,7 @@ import Logger.Log;
 import PageObject.GoldPage;
 import PageObject.P2MPage;
 import PageObject.P2PPage;
+import PageObject.SecurityPinPage;
 import Utils.Elements;
 import Utils.MBReporter;
 import Utils.Screen;
@@ -22,6 +23,7 @@ public class P2PHelper {
     GoldPage goldPage;
     P2PPage p2PPage;
     P2MPage p2MPage;
+    SecurityPinPage securityPinPage;
     Screen screen;
     MBReporter mbReporter;
     LinkedHashMap<String, String> balanceBefore;
@@ -35,6 +37,7 @@ public class P2PHelper {
         goldPage = new GoldPage(driver);
         p2PPage = new P2PPage(driver);
         p2MPage = new P2MPage(driver);
+        securityPinPage = new SecurityPinPage(driver);
         screen = new Screen(driver);
         mbReporter = new MBReporter(driver);
         mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
@@ -65,6 +68,11 @@ public class P2PHelper {
 
         // Click on Transfer Now CTA
         p2PPage.clickTransferNowCta();
+
+        // checking for security pin
+        if(securityPinPage.checkSecurityPinPage()){
+            securityPinPage.enterSecurityPin();
+        }
 
         // Verification on the Success Screen
         String actualStatus = p2PPage.getStatus();

@@ -1,8 +1,10 @@
 package Helpers;
 
 import Logger.Log;
+import PageObject.CustomKeyboardPage;
 import PageObject.GoldPage;
 import PageObject.P2MPage;
+import PageObject.SecurityPinPage;
 import Utils.Elements;
 import Utils.MBReporter;
 import Utils.Screen;
@@ -21,6 +23,8 @@ public class P2MHelper {
     Elements elements;
     GoldPage goldPage;
     P2MPage p2mPage;
+    SecurityPinPage securityPinPage;
+    CustomKeyboardPage customKeyboardPage;
     Screen screen;
     MBReporter mbReporter;
     LinkedHashMap<String, String> balanceBefore;
@@ -33,6 +37,8 @@ public class P2MHelper {
         elements = new Elements(driver);
         goldPage = new GoldPage(driver);
         p2mPage = new P2MPage(driver);
+        customKeyboardPage = new CustomKeyboardPage(driver);
+        securityPinPage = new SecurityPinPage(driver);
         screen = new Screen(driver);
         mbReporter = new MBReporter(driver);
         mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
@@ -43,7 +49,6 @@ public class P2MHelper {
 
         // Get the Balance if the User Before TRX
         balanceBefore = mbkCommonControlsHelper.getBalance();
-
 
         // Tap the QR code Icon on Homepage
         p2mPage.clickScanQR();
@@ -65,10 +70,18 @@ public class P2MHelper {
         p2mPage.selectMerchant();
 
         // Enter the amount
-        p2mPage.enterAmount(amount);
+        customKeyboardPage.enterAmount(amount);
+
+        // Click on the Continue CTA
+        p2mPage.clickOnContinue();
 
         // Click on the Confirm Payment CTA
         p2mPage.clickConfirmPayment();
+
+        // checking for security pin
+        if(securityPinPage.checkSecurityPinPage()){
+            securityPinPage.enterSecurityPin();
+        }
 
         // Verification on the Success Screen
         String actualStatus = p2mPage.getStatus();

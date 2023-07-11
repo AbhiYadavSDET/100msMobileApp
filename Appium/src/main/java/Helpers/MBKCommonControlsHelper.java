@@ -292,7 +292,7 @@ public class MBKCommonControlsHelper {
         Log.info("noOfBalance - " + (noOfBalance - 2));
 
         // Get the "Total Balance" and add to Map
-        String totalBalance = homePage.getTotalBalance().replace("Balance: ₹", "");
+        String totalBalance = homePage.getTotalBalance().replace("₹", "");
         walletBalance.put("Balance", totalBalance);
 
         // Get the "Add Money" Balance

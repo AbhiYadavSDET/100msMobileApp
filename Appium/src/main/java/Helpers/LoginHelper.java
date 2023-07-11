@@ -2,6 +2,7 @@ package Helpers;
 
 import PageObject.HomePage;
 import PageObject.LoginPage;
+import PageObject.PermissionPage;
 import Utils.MBReporter;
 import org.openqa.selenium.By;
 import Utils.Element;
@@ -21,6 +22,7 @@ public class LoginHelper {
     MBReporter mbReporter;
     PermissionHelper permissionHelper;
     HomePage homePage;
+    PermissionPage permissionPage;
 
 
     public LoginHelper(AndroidDriver driver) throws IOException {
@@ -31,12 +33,13 @@ public class LoginHelper {
         permissionHelper = new PermissionHelper(driver);
         loginPage = new LoginPage(driver);
         homePage = new HomePage(driver);
+        permissionPage = new PermissionPage(driver);
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
     public void loginViaOtp(String mobileNumber) throws InterruptedException, IOException {
 
-
+        if(permissionPage.isPermissionNotificationsPresent()) { permissionPage.allowPermissionNotifications();}
         Thread.sleep(3000);
         if (element.isElementPresent(driver, By.xpath("//*[@text='Get Started']"))) {
             loginPage.clickGetstarted();
@@ -66,6 +69,8 @@ public class LoginHelper {
 
     public void loginViaOtp(String mobileNumber, String otp) throws InterruptedException, IOException {
 
+        if(permissionPage.isPermissionNotificationsPresent()) { permissionPage.allowPermissionNotifications();}
+
         Thread.sleep(3000);
         if (element.isElementPresent(driver, By.xpath("//*[@text='Get Started']"))) {
             loginPage.clickGetstarted();
@@ -94,7 +99,9 @@ public class LoginHelper {
 
     public void quickLoginViaOtp(String mobileNumber, String otp) throws InterruptedException {
 
-        Thread.sleep(3000);
+        if(permissionPage.isPermissionNotificationsPresent()) { permissionPage.allowPermissionNotifications();}
+
+        Thread.sleep(1000);
         if (element.isElementPresent(driver, By.xpath("//*[@text='Get Started']"))) {
             loginPage.clickGetstarted();
         } else if (element.isElementPresent(driver, By.xpath("//*[@text='Login/Signup']"))) {
@@ -111,7 +118,7 @@ public class LoginHelper {
         loginPage.enterOtp(otp);
         loginPage.clickSubmitOtpCta();
 
-        mbkCommonControlsHelper.handleHomePage();
+        mbkCommonControlsHelper.handleHomePageLanding();
 
         element.waitForVisibility(driver, By.xpath("//*[@text='History']"));
     }

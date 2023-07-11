@@ -57,23 +57,31 @@ public class P2PExtraHelper {
 //        Log.info("Earned Amount : " + earnedAmount);
         Log.info("Per Day Earning : " + perDayEarning);
 
+        // Click on withdraw on Xtra main page.
+        p2PExtraPage.selectWithdraw();
 
-        int integerPortfolioValue = p2PExtraPage.getIntegerPortfolioValue();
-        Log.info("Portfolio Value in integer : " + integerPortfolioValue);
+        // Click on Got it to remove one time withdrawal bottom sheet.
+        if(p2PExtraPage.isBottomSheetPresent()) p2PExtraPage.removeBottomSheet();
 
-        if (integerPortfolioValue >= Integer.parseInt(amount)) {
+        // Click on Got it to remove bank holiday bottom sheet.
+        if(p2PExtraPage.isBottomSheetPresent()) p2PExtraPage.removeBottomSheet();
 
-            // Click on withdraw on Xtra main page.
-            p2PExtraPage.selectWithdraw();
+        // Enter amount on withdrawal amount page.
+        p2PExtraPage.enterAmount(amount);
 
-            // Click on Got it to remove referral bottom sheet.
-            if(p2PExtraPage.isBottomSheetPresent()) p2PExtraPage.removeBottomSheet();
+        //Click on withdraw on withdrawal amount page.
+        p2PExtraPage.selectWithdrawOnWithdrawAmount();
 
-            // Enter amount on withdrawal amount page.
-            p2PExtraPage.enterAmount(amount);
+        // Checking pending withdrawal request bottom sheet.
+        if(p2PExtraPage.isBottomSheetPresent()){
+            Log.info("You allready have pending withdrawal request");
 
-            //Click on withdraw on withdrawal amount page.
-            p2PExtraPage.selectWithdrawOnWithdrawAmount();
+            // removing withdrawal request bottom sheet.
+            p2PExtraPage.removeBottomSheet();
+
+        }
+
+        else{
 
             //Click on bank account to select bank account.
             p2PExtraPage.selectBankOnBottomSheet();
@@ -97,9 +105,8 @@ public class P2PExtraHelper {
             mbReporter.verifyEqualsWithLogging(actualAmount, expAmount, "Verify Withdrawal amount", false,false,true);
             mbReporter.verifyEqualsWithLogging(actualStatus, expStatus, "Verify Withdrawal status", false,false,true);
 
-        } else {
-            Log.info("Portfolio value is less then amount entered");
         }
+
 
     }
 

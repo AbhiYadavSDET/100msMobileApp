@@ -42,6 +42,9 @@ public class P2MPage {
     @AndroidFindBy(id = "edit_text")
     private AndroidElement amountTextBox;
 
+    @AndroidFindBy(id = "btn_submit")
+    private AndroidElement ctaContinue;
+
     @AndroidFindBy(id = "cta")
     private AndroidElement ctaConfirmPayment;
 
@@ -112,6 +115,10 @@ public class P2MPage {
 
     public void enterAmount(String amount) {
         Elements.enterToElement(driver, amountTextBox, amount, "Amount");
+    }
+
+    public void clickOnContinue() {
+        Elements.selectElement(driver, ctaContinue, "Continue");
     }
 
     public void clickConfirmPayment() {
