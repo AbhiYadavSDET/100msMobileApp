@@ -2,6 +2,7 @@ package Helpers;
 
 import Logger.Log;
 import PageObject.HomePage;
+import PageObject.MbkCommonControlsPage;
 import PageObject.P2PExtraPage;
 import Utils.Element;
 import Utils.MBReporter;
@@ -19,6 +20,7 @@ public class P2PExtraHelper {
     Screen screen;
     Element element;
     MBReporter mbReporter;
+    MbkCommonControlsPage mbkCommonControlsPage;
 
 
     public P2PExtraHelper(AndroidDriver driver) throws IOException {
@@ -29,6 +31,7 @@ public class P2PExtraHelper {
         element = new Element(driver);
         p2PExtraPage = new P2PExtraPage(driver);
         mbReporter = new MBReporter(driver);
+        mbkCommonControlsPage = new MbkCommonControlsPage(driver);
 
     }
 
@@ -40,11 +43,14 @@ public class P2PExtraHelper {
         // Click on xtra icon on home page.
         p2PExtraPage.selectXtra();
 
+
+        if(mbkCommonControlsPage.isWhitePopUpPresent()){ mbkCommonControlsPage.closeWhitePopUp(); }
+
         // Click on Got it to remove referral bottom sheet.
         if(p2PExtraPage.isBottomSheetPresent()) p2PExtraPage.removeBottomSheet();
 
         // Click on screen to remove bottom sheet.
-        p2PExtraPage.tapOutsideBottomSheet();
+        // p2PExtraPage.tapOutsideBottomSheet();
 
         // Printing portfolio values.
         String portfolioValue = p2PExtraPage.getPortfolioValue();
@@ -72,26 +78,17 @@ public class P2PExtraHelper {
         //Click on withdraw on withdrawal amount page.
         p2PExtraPage.selectWithdrawOnWithdrawAmount();
 
+        //Click on withdraw on bottom sheet.
+        p2PExtraPage.selectWithdrawOnBottomSheet();
+
         // Checking pending withdrawal request bottom sheet.
         if(p2PExtraPage.isBottomSheetPresent()){
-            Log.info("You allready have pending withdrawal request");
 
-            // removing withdrawal request bottom sheet.
-            p2PExtraPage.removeBottomSheet();
+            Log.info("You allready have pending withdrawal request");
 
         }
 
         else{
-
-            //Click on bank account to select bank account.
-            p2PExtraPage.selectBankOnBottomSheet();
-
-            // Swipe up the page in case of more banks
-            screen.swipeUpMore(driver);
-
-            //Click on withdraw on bottom sheet.
-            p2PExtraPage.selectWithdrawOnBottomSheet();
-
 
             // Verification on the Success Screen
             String actualAmount = p2PExtraPage.getWithdrawalAmount();
