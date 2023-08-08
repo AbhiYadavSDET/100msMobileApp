@@ -115,6 +115,9 @@ public class P2PHelper {
             Elements.back(driver, "Navigate Back");
         }
 
+        // Handel home page pop-up after transaction
+        mbkCommonControlsHelper.handleHomePageLanding();
+
         // Get the Balance if the User Before TRX
         balanceAfter = mbkCommonControlsHelper.getBalance();
 
