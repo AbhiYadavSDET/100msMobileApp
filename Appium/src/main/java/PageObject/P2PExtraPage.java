@@ -67,7 +67,7 @@ public class P2PExtraPage {
     @AndroidFindBy (id ="bank_name")
     private AndroidElement select_bank_to_withdraw;
 
-    @AndroidFindBy (id = "cta")
+    @AndroidFindBy (id = "cta_escape")
     private AndroidElement withdraw_on_bottom_sheet;
 
 
