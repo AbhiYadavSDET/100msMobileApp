@@ -25,7 +25,7 @@ public class LoanTest extends TestBase {
 
         // Execute the test
         LoanHelper loanHelper = new LoanHelper(getAndroidDriver());
-        loanHelper.verifyLoan("Get offer upto ₹2,00,000 and pay in easy EMIs", "Get started");
+        loanHelper.verifyLoan("Get loan upto ₹2,00,000 and pay in easy EMIs", "Get started");
 
         Log.info("======= END : Loan Verify test =======");
 

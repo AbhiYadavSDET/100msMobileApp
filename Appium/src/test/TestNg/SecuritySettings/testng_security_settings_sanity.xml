@@ -1,30 +1,27 @@
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="Appium-Framework">
-    <listeners>
-        <listener class-name="UITestFramework.retryLogic.RetryListener"/>
-        <listener class-name="Utils.Listeners.TestListener"/>
-    </listeners>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Security Pin Flow">
+
     <parameter name="build" value="prod"/>
     <parameter name="level" value="payments"/>
     <parameter name="saucelabs" value="false"></parameter>
-    <parameter name="methodName" value="onboardingLogin"></parameter>
+    <parameter name="androidOSVersion" value="12.0"></parameter>
 
-
-    <test name="Mobikwik Automation Tests">
+    <test verbose="2" preserve-order="true" name="Security Pin Flow">
         <groups>
             <run>
                 <include name="setUp"/>
                 <include name="instantiateHelpers"/>
-                <include name="forgotSecurityPinViaOtherOptions"/>
+                <include name="sanity"/>
                 <include name="tearDown"/>
             </run>
         </groups>
 
-        <classes>
-            <class name="UITestFramework.CreateSession"/>
-            <class name="UITestFramework.ExtentReport.Reporter"/>
-            <class name="SecuritySettings.Test_SecuritySettings"/>
-        </classes>
 
+        <classes>
+            <class name="Utils.TestBase"/>
+            <class name="SecurityPin.SecurityPinTest"/>
+        </classes>
     </test>
+
 </suite>

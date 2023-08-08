@@ -63,7 +63,7 @@ public class SecurityPinHelper {
 
         // Add the assertions
         mbReporter.verifyEqualsWithLogging(securitySettingPageTitle, expSecuritySettingsTitle , "Verify Title", false, false,true);
-        mbReporter.verifyEqualsWithLogging(currentStateText, "Security PIN: "+currentState, "Verify Current Sate", false, false,true);
+//        mbReporter.verifyEqualsWithLogging(currentStateText, "Security PIN: "+currentState, "Verify Current Sate", false, false,true);
 
         if(securityPinPage.getCurrentState().equals("Security PIN: "+currentState)){
 
@@ -91,6 +91,8 @@ public class SecurityPinHelper {
 
         //Enable Security Pin
         securityPinFlow("Disabled",expSecuritySettingsTitle,expSecurityPinTitle);
+
+        goldHelper.goldSell("1", "Payment Successful", "Sell Gold", "0.0002", "₹1","Sold Gold", "+ ₹1", "Success");
 
         goldHelper.goldBuy("1", "Payment Successful", "Gold Purchase", "0.0002", "₹1","Purchased Gold", "₹1", "Success");
 

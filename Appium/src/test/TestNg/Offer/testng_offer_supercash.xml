@@ -1,14 +1,13 @@
-<suite name="Appium-Framework">
-    <listeners>
-        <listener class-name="UITestFramework.retryLogic.RetryListener"/>
-        <listener class-name="Utils.Listeners.TestListener"/>
-    </listeners>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="P2M Send Flow">
+
     <parameter name="build" value="prod"/>
     <parameter name="level" value="payments"/>
     <parameter name="saucelabs" value="false"></parameter>
-    <parameter name="androidOSVersion" value="7.0"></parameter>
+    <parameter name="androidOSVersion" value="12.0"></parameter>
 
-    <test name="Mobikwik Automation Tests">
+    <test verbose="2" preserve-order="true" name="Offer Test">
         <groups>
             <run>
                 <include name="setUp"/>
@@ -18,11 +17,11 @@
             </run>
         </groups>
 
-        <classes>
-            <class name="UITestFramework.CreateSession"/>
-            <class name="UITestFramework.ExtentReport.Reporter"/>
-            <class name ="Supercash.Test_Supercash"/>
-        </classes>
 
+        <classes>
+            <class name="Utils.TestBase"/>
+            <class name="Offers.OfferTest"/>
+        </classes>
     </test>
+
 </suite>

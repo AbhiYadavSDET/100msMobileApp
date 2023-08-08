@@ -14,10 +14,9 @@ public class RewardsTest extends TestBase {
 
 
     @Test(groups = {"sanity", "spinthewheel"}, priority = 0, description = "Spin the Wheel")
-    public void Test01_buyGold() throws IOException, InterruptedException {
+    public void Test01_spinTheWheel() throws IOException, InterruptedException {
 
         Log.info("======= START : Spin the Wheel test =======");
-
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());

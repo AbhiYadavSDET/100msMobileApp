@@ -482,7 +482,10 @@ public class MBKCommonControlsHelper {
             if (!Element.isElementPresent(driver, By.id("view_icon_bg"))) {
                 driver.navigate().back();
                 Log.info("Pressed Back : Due to Pop UP interruption");
-                Thread.sleep(1000);
+                Thread.sleep(2000);
+                if (Element.isElementPresent(driver, By.id("ic_close"))){
+                    driver.findElementById("ic_close").click();
+                }
             } else {
                 break;
             }

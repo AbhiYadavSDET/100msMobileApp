@@ -14,7 +14,7 @@ public class Test_AccountAggregator extends TestBase {
     public void Test01_existing_User() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.quickLoginViaOtp("8076595767" , "547372");
+        loginHelp.quickLoginViaOtp("7795709569" , "547372");
 
 
         AAHelper aaHelper = new AAHelper(getAndroidDriver());
