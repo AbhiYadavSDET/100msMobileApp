@@ -77,6 +77,14 @@ public class CCBPHelper {
             syncEmailBottomSheet.clickSyncEmailBottomSheet();
         }
 
+        if(ccPage.getAddNewCreditCard()){
+            //Click Add new credit card
+            ccPage.clickAddNewCreditCard();
+
+        }else{
+            ccPage.clickOnAddCardButton();
+        }
+
         //Click on Enter card number text box
         ccPage.clickEnterCardNumber();
 
@@ -168,7 +176,7 @@ public class CCBPHelper {
             syncEmailBottomSheet.clickSyncEmailBottomSheet();
         }
         //Click Pay now button on saved card
-        ccPage.clickPayNowButton();
+        ccPage.clickOnSavedCardPayButton();
 
         //Enter amount
         ccPage.clickEnterAmountField();
@@ -178,8 +186,10 @@ public class CCBPHelper {
         //click Continue CTA
         ccPage.clickContinueCTA();
 
-        //Click Apply coupon field
+        //Click Apply coupon option
         ccPage.clickApplyCoupon();
+
+        Thread.sleep(5000);
 
         //Enter coupon code
         ccPage.enterEnterCouponCode();
@@ -187,12 +197,12 @@ public class CCBPHelper {
         //Click Apply button after entering coupon code
         ccPage.clickApplyButton();
 
-        // Verification on the Payment Screen
+        //Verification on the Payment Screen
         String amountOnPaymentScreen = rechargePage.getAmountOnPayment();
         Log.info("Amount on Payment Screen : " + amountOnPaymentScreen);
         mbReporter.verifyEqualsWithLogging(amountOnPaymentScreen, expAmountOnPaymentScreen, "Verify Amount on Payment screen", false, false, true);
 
-        // Verification of coupon applied on the Payment Screen
+        //Verification of coupon applied on the Payment Screen
         String couponApplied = ccPage.getCouponTitle();
         Log.info("Coupon Applied on Payment Screen : " + couponApplied);
         mbReporter.verifyEqualsWithLogging(couponApplied, expCouponApplied, "Verify coupon applied on Payment screen", false, false,true);
@@ -201,8 +211,11 @@ public class CCBPHelper {
         //Click on Pay button
         ccPage.clickOnPay();
 
+        //Click on wallet balance
+        ccPage.clickWalletBalance();
+
         //Click on Other payment options
-        ccPage.clickOtherPaymentOptions();
+//        ccPage.clickOtherPaymentOptions();
 
         //Click on pay button on Payable amount bottom sheet
         ccPage.clickPayAmount();

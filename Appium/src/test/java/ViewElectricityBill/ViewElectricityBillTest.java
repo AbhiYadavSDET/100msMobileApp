@@ -29,7 +29,7 @@ public class ViewElectricityBillTest extends TestBase {
 
         // Execute the test
         ElectricityHelper electricityHelper  = new ElectricityHelper(getAndroidDriver());
-        electricityHelper.viewElectricityBill("KULDIP","04 Mar 2023","101003577","BSES Yamuna","1,320","BSES Yamuna", "101003577");
+        electricityHelper.viewElectricityBill("KULDIP","04 Mar 2023","60003686668","Tata Power Delhi Distribution Ltd - TTPDDL","1,320","Tata Power", "60003686668");
 
         Log.info("======= END : View Electricity Bill =======");
     }
