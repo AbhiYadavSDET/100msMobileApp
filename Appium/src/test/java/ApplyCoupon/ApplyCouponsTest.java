@@ -16,7 +16,7 @@ public class ApplyCouponsTest extends TestBase {
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("8527029916", "");
+        loginHelper.quickLoginViaOtp("9205299330", "547372");
 
         Log.info("======= START : Apply Coupons =======");
 
@@ -34,7 +34,7 @@ public class ApplyCouponsTest extends TestBase {
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("8527029916", "");
+        loginHelper.quickLoginViaOtp("9205299330", "547372");
 
         Log.info("======= START : Apply SuperCash =======");
 
