@@ -17,6 +17,10 @@ public class FeedbackFormPage {
     @AndroidFindBy(id = "iv_cross")
     private AndroidElement crossButton;
 
+    @AndroidFindBy(id = "tv_title")
+    private AndroidElement feedbackFormTitle;
+
+
     @AndroidFindBy(xpath = "//*/android.widget.CompoundButton[@text = 'Trying out']")
     private AndroidElement suggestion1;
 
@@ -77,6 +81,10 @@ public class FeedbackFormPage {
     public String getTitle() throws InterruptedException {
         return Elements.getText(driver, title, "Base Title");
 
+    }
+
+    public boolean getFeedbackFormTitle() throws InterruptedException {
+        return Elements.isElementPresent(driver, crossButton);
     }
 
 

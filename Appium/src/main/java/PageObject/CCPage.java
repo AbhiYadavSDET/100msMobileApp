@@ -1,5 +1,6 @@
 package PageObject;
 
+import Utils.Element;
 import Utils.Elements;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
@@ -23,8 +24,11 @@ public class CCPage {
     @AndroidFindBy(id = "close_button")
     private AndroidElement syncEmailBottomSheet;
 
-    @AndroidFindBy(id = "cl_root")
+    @AndroidFindBy(id = "ic_add")
     private AndroidElement addNewCreditCard;
+
+    @AndroidFindBy(id = "ll_add_new_card")
+    private AndroidElement addCard;
 
     @AndroidFindBy(id = "pay_button")
     private AndroidElement payNowButton;
@@ -98,11 +102,14 @@ public class CCPage {
     @AndroidFindBy(id = "title")
     private AndroidElement title;
 
-    @AndroidFindBy(id = "common_header")
+    @AndroidFindBy(id = "subtitle")
     private AndroidElement subtitle;
 
     @AndroidFindBy(id = "right")
     private AndroidElement amountOnSuccessScreen;
+
+    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[3]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.TextView[3]")
+    private AndroidElement savedCardPayButton;
 
 
 
@@ -131,8 +138,14 @@ public class CCPage {
         Elements.selectElement(driver, payNowButton, "Click on Pay now button of saved card");
     }
 
+    public Boolean getAddNewCreditCard() throws InterruptedException {
+        return Elements.isElementPresent(driver, addNewCreditCard);
+    }
     public void clickAddNewCreditCard(){
-        Elements.selectElement(driver, addNewCreditCard, "click on Add new credit card");
+        Elements.selectElement(driver, addNewCreditCard, "Click on Add new credit card button");
+    }
+    public void clickOnAddCardButton(){
+        Elements.selectElement(driver, addCard, "click on Add card button");
     }
 
     public void clickEnterCardNumber(){
@@ -273,6 +286,9 @@ public class CCPage {
     public void clickPayAmount(){
         Elements.selectElement(driver, payAmount, "Click on Pay button");
     }
+
+    public void clickOnSavedCardPayButton() { Elements.selectElement(driver, savedCardPayButton, "click on PayNow button of saved card"); }
+
 
 
     // Success Screen methods

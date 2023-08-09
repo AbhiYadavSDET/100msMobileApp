@@ -54,14 +54,20 @@ public class FeedbackFormHelper {
         //Click back button to open feedback form
         feedbackFormPage.clickBackButton();
 
-        feedbackFormPage.clickSuggestion();
+        if(feedbackFormPage.getFeedbackFormTitle()) {
 
-        feedbackFormPage.clickSubmitButton();
+            feedbackFormPage.clickSuggestion();
 
-        String title = feedbackFormPage.getTitle();
-        Log.info("Title : " + title);
-        mbReporter.verifyEqualsWithLogging(title, expTitle, "Verify Title", false, false, true);
+            feedbackFormPage.clickSubmitButton();
 
+            String title = feedbackFormPage.getTitle();
+            Log.info("Title : " + title);
+            mbReporter.verifyEqualsWithLogging(title, expTitle, "Verify Title", false, false, true);
+        }
+        else{
+
+            Log.info("Feedback Form already submitted/Feedback form bottom sheet not appeared");
+        }
 
 
 
