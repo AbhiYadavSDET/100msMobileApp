@@ -487,6 +487,10 @@ public class MBKCommonControlsHelper {
                     driver.findElementById("ic_close").click();
                 }
             } else {
+                Thread.sleep(2000);
+                if (Element.isElementPresent(driver, By.id("ic_close"))){
+                    driver.findElementById("ic_close").click();
+                }
                 break;
             }
         }
