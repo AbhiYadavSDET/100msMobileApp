@@ -82,6 +82,37 @@ public class MBKCommonControlsHelper {
 
     }
 
+    public void verifyWalletBalanceAfterTransactionWithConvenienceFee(AndroidDriver driver, HashMap<String, String> balanceBefore, HashMap<String, String> balanceAfter , String amount , double percentageConvenienceFee) throws IOException {
+
+
+        Double actualMainBalanceAfter = Double.parseDouble(getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100;
+        Double actualMoneyAddedAfter = Double.parseDouble(getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MONEYADDED)) * 100;
+        Double actualSupercashAfter = Double.parseDouble(getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
+
+        Double expectedMainBalanceAfter = Double.parseDouble(getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100 ;
+        Double expectedMoneyAddedAfter = Double.parseDouble(getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MONEYADDED)) * 100 ;
+        Double expectedSupercashAfter = Double.parseDouble(getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
+
+        Double actualAmount = Double.parseDouble(amount) * 100;
+        Double convFeeAmount = Double.parseDouble(amount) * percentageConvenienceFee;
+        Double gstAmount = convFeeAmount * 0.18;
+        actualAmount = actualAmount + convFeeAmount + gstAmount;
+
+
+        Log.info("expectedMainBalanceAfter = " + expectedMainBalanceAfter);
+        Log.info("actualAmount = " + actualAmount);
+        expectedMainBalanceAfter = expectedMainBalanceAfter - actualAmount;
+        expectedMoneyAddedAfter = expectedMoneyAddedAfter - actualAmount;
+        Log.info("expectedMainBalanceAfter = " + expectedMainBalanceAfter);
+
+
+        mbReporter.verifyEqualsWithLogging(actualMainBalanceAfter, expectedMainBalanceAfter, "Post TRX | Verify Wallet Main Balance", false, false,true);
+        mbReporter.verifyEqualsWithLogging(actualMoneyAddedAfter, expectedMoneyAddedAfter, "Post TRX | Verify Money Added Balance", false, false,true);
+        mbReporter.verifyEqualsWithLogging(actualSupercashAfter, expectedSupercashAfter, "Post TRX | Verify Supercash Balance", false, false,true);
+
+
+    }
+
 
 
 
@@ -321,10 +352,7 @@ public class MBKCommonControlsHelper {
         // Click to close profile screen
         homePage.clickCloseWalletBalanceDropDown();
 
-        // Handling Enable secure Pin bottom sheet
-        if(!homePage.isZipIconPresent()){
-            pressback();
-        }
+        handleHomePageLanding();
 
         Log.info("END : Fetch Wallet balance");
         return walletBalance;

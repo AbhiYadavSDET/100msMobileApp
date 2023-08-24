@@ -3,6 +3,7 @@ package Helpers;
 import Logger.Log;
 import PageObject.HomePage;
 import PageObject.IMPSNewPage;
+import PageObject.SecurityPinPage;
 import com.aventstack.extentreports.gherkin.model.And;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
@@ -13,6 +14,7 @@ import Utils.MBReporter;
 import Utils.Screen;
 
 import java.io.IOException;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 
@@ -28,6 +30,10 @@ public class IMPSNewHelper {
     MBReporter mbReporter;
     PermissionHelper permissionHelper;
     IMPSNewPage impsPage;
+    SecurityPinPage securityPinPage;
+    LinkedHashMap<String, String> balanceBefore;
+    LinkedHashMap<String, String> balanceAfter;
+
 
     public IMPSNewHelper(AndroidDriver driver) throws  IOException{
         this.driver = driver;
@@ -38,12 +44,13 @@ public class IMPSNewHelper {
         mbReporter = new MBReporter(driver, "testScreenshotDir");
         permissionHelper = new PermissionHelper(driver);
         impsPage = new IMPSNewPage(driver);
+        securityPinPage = new SecurityPinPage(driver);
     }
 
-    public void verifyIMPSNewAccountTransferFlow(String accountName, String accountNo, String ifsc, String amount, String securityPin) throws InterruptedException, IOException {
+    public void verifyIMPSNewAccount(String accountName, String accountNo, String ifsc, String amount, String expectedMessage, String expectedAmount, String expectedHistoryDescription, String expectedHistoryAmount, String expectedHistoryStatus) throws InterruptedException, IOException {
 
-        //Dismiss All Ads
-        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+        // Get the Balance if the User Before TRX
+        balanceBefore = mbkCommonControlsHelper.getBalance();
 
         //Going to IMPS Option
         impsPage.clickOnWalletToBank();
@@ -64,13 +71,7 @@ public class IMPSNewHelper {
         impsPage.clickOnContinueToPinCTA();
 
         //Check Security PIN Page
-        if(impsPage.checkSecurityPINPage()==true){
-            //Security PIN is there
-            //Entering Security PIN
-            impsPage.setSecurityPIN(securityPin);
-
-        }
-
+        if(securityPinPage.checkSecurityPinPage()) securityPinPage.enterSecurityPin();
 
         //Assertion Check on Confirmation Page
         Thread.sleep(3000);
@@ -79,22 +80,33 @@ public class IMPSNewHelper {
         //Storing Actual Message on Screen and Expected Result in String
         String actualMessage = impsPage.getSuccessMessage();
         String actualAmount = impsPage.getSuccessPageAmount();
-        String expectedAmt= "₹"+amount;
 
+        // Display the values
         Log.info("Actual Message on Screen is :" + actualMessage);
         Log.info("Actual Amount on Screen is" + actualAmount);
 
-        mbReporter.verifyEquals(actualMessage, "Transfer Successful", "Success Page | Message", false, false);
-        mbReporter.verifyEquals(actualAmount, expectedAmt, "Success Page | Amount", false, false);
+        // Add the assertions
+        mbReporter.verifyEqualsWithLogging(actualMessage, expectedMessage, "Success Page | Message", false, false);
+        mbReporter.verifyEqualsWithLogging(actualAmount, expectedAmount, "Success Page | Amount", false, false);
 
-        mbkCommonControlsHelper.returnToHomePageFromSuccessScreen();
+        // back to home
+        mbkCommonControlsHelper.handleHomePageLanding();
+
+        // Get the Balance if the User Before TRX
+        balanceAfter = mbkCommonControlsHelper.getBalance();
+
+        // Assertions on the balance deducted
+        mbkCommonControlsHelper.verifyWalletBalanceAfterTransactionWithConvenienceFee(driver, balanceBefore, balanceAfter, amount, 2);
+
+        // Verify the History details
+        mbkCommonControlsHelper.verifyHistoryDetails(driver ,expectedHistoryDescription,expectedHistoryAmount,expectedHistoryStatus);
 
     }
 
-    public void verifyIMPSNewUPITransferFlow(String upiID, String amount, String securityPin) throws InterruptedException, IOException{
+    public void verifyIMPSNewVPA(String upiID, String amount, String expectedMessage, String expectedAmount, String expectedHistoryDescription, String expectedHistoryAmount, String expectedHistoryStatus) throws InterruptedException, IOException{
 
-        //Dismiss All Ads
-        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+        // Get the Balance if the User Before TRX
+        balanceBefore = mbkCommonControlsHelper.getBalance();
 
         //Going to IMPS Option
         impsPage.clickOnWalletToBank();
@@ -115,13 +127,7 @@ public class IMPSNewHelper {
         impsPage.clickOnContinueToPinCTA();
 
         //Check Security PIN Page
-        if(impsPage.checkSecurityPINPage()==true){
-            //Security PIN is there
-            //Entering Security PIN
-            impsPage.setSecurityPIN(securityPin);
-
-        }
-
+        if(securityPinPage.checkSecurityPinPage()) securityPinPage.enterSecurityPin();
 
         //Assertion Check on Confirmation Page
         Thread.sleep(3000);
@@ -130,24 +136,38 @@ public class IMPSNewHelper {
         //Storing Actual Message on Screen and Expected Result in String
         String actualMessage = impsPage.getSuccessMessage();
         String actualAmount = impsPage.getSuccessPageAmount();
-        String expectedAmt= "₹"+amount;
 
+        // Display the values
         Log.info("Actual Message on Screen is :" + actualMessage);
-        Log.info("Actual Amount on Screen is : " + actualAmount);
+        Log.info("Actual Amount on Screen is" + actualAmount);
 
-        mbReporter.verifyEquals(actualMessage, "Transfer Successful", "Success Page | Message", false, false);
-        mbReporter.verifyEquals(actualAmount, expectedAmt, "Success Page | Amount", false, false);
+        // Add the assertions
+        mbReporter.verifyEqualsWithLogging(actualMessage, expectedMessage, "Success Page | Message", false, false);
+        mbReporter.verifyEqualsWithLogging(actualAmount, expectedAmount, "Success Page | Amount", false, false);
 
-        mbkCommonControlsHelper.returnToHomePageFromSuccessScreen();
+        // back to home
+        mbkCommonControlsHelper.handleHomePageLanding();
+
+
+        // Get the Balance if the User Before TRX
+        balanceAfter = mbkCommonControlsHelper.getBalance();
+
+        // Assertions on the balance deducted
+        mbkCommonControlsHelper.verifyWalletBalanceAfterTransactionWithConvenienceFee(driver, balanceBefore, balanceAfter, amount, 2);
+
+        // Verify the History details
+        mbkCommonControlsHelper.verifyHistoryDetails(driver ,expectedHistoryDescription,expectedHistoryAmount,expectedHistoryStatus);
+
+
+
 
 
     }
 
-    public void verifyIMPSSavedAccountTransfer(String upiID,String amount, String securityPin) throws InterruptedException, IOException {
+    public void verifyIMPSSavedVPA(String upiID, String amount, String expectedMessage, String expectedAmount, String expectedHistoryDescription, String expectedHistoryAmount, String expectedHistoryStatus) throws InterruptedException, IOException {
 
-
-        //Dismiss All Ads
-        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+        // Get the Balance if the User Before TRX
+        balanceBefore = mbkCommonControlsHelper.getBalance();
 
         //Going to IMPS Option
         impsPage.clickOnWalletToBank();
@@ -161,19 +181,13 @@ public class IMPSNewHelper {
         AndroidElement savedVPA= (AndroidElement) driver.findElementByXPath(xpathSavedUPI);
         impsPage.clickOnSavedVPA(savedVPA);
 
-
         //Entering Amount and Continue to PIN
         impsPage.setAmount(amount);
         impsPage.clickOnSetAmount();
         impsPage.clickOnContinueToPinCTA();
 
         //Check Security PIN Page
-        if(impsPage.checkSecurityPINPage()==true){
-            //Security PIN is there
-            //Entering Security PIN
-            impsPage.setSecurityPIN(securityPin);
-
-        }
+        if(securityPinPage.checkSecurityPinPage()) securityPinPage.enterSecurityPin();
 
         //Assertion Check on Confirmation Page
         Thread.sleep(3000);
@@ -182,15 +196,26 @@ public class IMPSNewHelper {
         //Storing Actual Message on Screen and Expected Result in String
         String actualMessage = impsPage.getSuccessMessage();
         String actualAmount = impsPage.getSuccessPageAmount();
-        String expectedAmt= "₹"+amount;
 
+        // Display the values
         Log.info("Actual Message on Screen is :" + actualMessage);
         Log.info("Actual Amount on Screen is" + actualAmount);
 
-        mbReporter.verifyEquals(actualMessage, "Transfer Successful", "Success Page | Message", false, false);
-        mbReporter.verifyEquals(actualAmount, expectedAmt, "Success Page | Amount", false, false);
+        // Add the assertions
+        mbReporter.verifyEqualsWithLogging(actualMessage, expectedMessage, "Success Page | Message", false, false);
+        mbReporter.verifyEqualsWithLogging(actualAmount, expectedAmount, "Success Page | Amount", false, false);
 
-        mbkCommonControlsHelper.returnToHomePageFromSuccessScreen();
+        // back to home
+        mbkCommonControlsHelper.handleHomePageLanding();
+
+        // Get the Balance if the User Before TRX
+        balanceAfter = mbkCommonControlsHelper.getBalance();
+
+        // Assertions on the balance deducted
+        mbkCommonControlsHelper.verifyWalletBalanceAfterTransactionWithConvenienceFee(driver, balanceBefore, balanceAfter, amount, 2);
+
+        // Verify the History details
+        mbkCommonControlsHelper.verifyHistoryDetails(driver ,expectedHistoryDescription,expectedHistoryAmount,expectedHistoryStatus);
 
     }
 }

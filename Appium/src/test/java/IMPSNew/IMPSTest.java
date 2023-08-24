@@ -16,28 +16,16 @@ import java.io.IOException;
 
 public class IMPSTest extends TestBase {
 
-    public void login() throws IOException, InterruptedException{
-        LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.loginViaOtp("9205299330","547372");
-
-    }
     @Test(groups = {"impsNewAccountNumber", "impsSanity"}, priority = 0, description = "IMPS on New Account Number")
     public void Test01_imps_new_account_number() throws IOException, InterruptedException {
-
-
-        // Starting the test in the extentreport
-        //ExtentReport.EXTENTREPORT.createTest("Verify IMPS-New Account number Flow");
 
         Log.info("======= START : IMPS to New Account Number Test =======");
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-
-        loginHelp.quickLoginViaOtp("9205299330","547372");
-
-
+        loginHelp.quickLoginViaOtp("8076595767","547372");
 
         IMPSNewHelper impsHelper = new IMPSNewHelper(getAndroidDriver());
-        impsHelper.verifyIMPSNewAccountTransferFlow("Paraj Jain", "218101502680", "ICIC0002181", "50", "121212");
+        impsHelper.verifyIMPSNewAccount("Ashish Kumar Pradhan", "040801000080315", "IOBA0000408", "50","Transfer Successful" , "₹50","Bank transfer to  Ashish Kumar Pradhan (XXXXXXXXXXX0315)","₹51.18","Success");
 
         Log.info("======= END : IMPS to New Account Number Test =======");
 
@@ -49,10 +37,10 @@ public class IMPSTest extends TestBase {
         Log.info("======= START : IMPS to New UPI ID Test =======");
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.quickLoginViaOtp("9205299330","547372");
+        loginHelp.quickLoginViaOtp("8076595767","547372");
 
         IMPSNewHelper impsHelper = new IMPSNewHelper(getAndroidDriver());
-        impsHelper.verifyIMPSNewUPITransferFlow("7795709569@paytm","50","121212");
+        impsHelper.verifyIMPSNewVPA("8882305453@paytm","50", "Transfer Successful" , "₹50","Bank transfer to  Ashish Kumar Pradhan (8882305453@paytm)","₹51.18","Success");
 
         Log.info("======= END : IMPS to New Account Number Test =======");
     }
@@ -64,11 +52,12 @@ public class IMPSTest extends TestBase {
         Log.info("======= START : IMPS to Saved VPA Test =======");
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.quickLoginViaOtp("9205299330","547372");
+        loginHelp.quickLoginViaOtp("8076595767","547372");
 
 
         IMPSNewHelper impsHelper = new IMPSNewHelper(getAndroidDriver());
-        impsHelper.verifyIMPSSavedAccountTransfer("7795709569@paytm","50","121212");
+        impsHelper.verifyIMPSSavedVPA("8882305453@paytm","50", "Transfer Successful" , "₹50","Bank transfer to  Ashish Kumar Pradhan (8882305453@paytm)","₹51.18","Success");
+
 
         Log.info("======= END : IMPS to Saved VPA Test =======");
     }
