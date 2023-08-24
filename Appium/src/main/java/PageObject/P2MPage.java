@@ -30,7 +30,9 @@ public class P2MPage {
     @AndroidFindBy(id = "merchant_code")
     private AndroidElement merchantCodeTextBoxForClick;
 
-    @AndroidFindBy(id = "com.android.permissioncontroller:id/permission_allow_button")
+//    com.android.packageinstaller:id/permission_allow_button
+//    com.android.permissioncontroller:id/permission_allow_button
+    @AndroidFindBy(xpath = "//*/android.widget.Button[@text = 'ALLOW']")
     private AndroidElement permissionAllow;
 
     @AndroidFindBy(id = "search_edittext")
@@ -78,6 +80,21 @@ public class P2MPage {
     @AndroidFindBy(id = "add_account_button")
     public AndroidElement upiBottomSheetCta;
 
+    @AndroidFindBy(id = "text_gallery")
+    public AndroidElement text_gallery;
+
+    @AndroidFindBy(id = "name_initial_text_view")
+    public AndroidElement recent_merchant;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'MobikwikQr.jpg']")
+    private AndroidElement mobikwik_qr;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'SonuQr.jpg']")
+    private AndroidElement sonu_qr;
+
+    @AndroidFindBy(id = "com.android.documentsui:id/icon_thumb")
+    public AndroidElement qr_code;
+
 
     public P2MPage(AndroidDriver driver) {
         this.driver = driver;
@@ -89,11 +106,11 @@ public class P2MPage {
         Elements.selectElement(driver, scanQrButton, "Scan any QR");
     }
 
-    public void allowPermission() {
+    public void allowPermissionWhileUsingApp() {
         Elements.selectElement(driver, permissionWhileUsingApp, "Permission : While using app");
     }
 
-    public void allowPermission2() {
+    public void allowPermissionAllow() {
         Elements.selectElement(driver, permissionAllow, "Permission : Allow");
     }
 
@@ -156,6 +173,33 @@ public class P2MPage {
 
     public void clickBackButton() {
         Elements.selectElement(driver, backButton, "Close Icon");
+    }
+
+    public void clickOnGallery() {
+        Elements.selectElement(driver, text_gallery, "click on gallery");
+    }
+
+    public void clickOnRecentMerchant() {
+        Elements.selectElement(driver, recent_merchant, "click on Recent Merchant");
+    }
+
+    public void clickOnMobikwikQRCode() {
+        Elements.selectElement(driver, mobikwik_qr, "click on Mobikwik QR Code");
+    }
+
+    public void clickOnSonuQRCode() {
+        Elements.selectElement(driver, sonu_qr, "click on Sonu QR Code");
+    }
+
+    public void clickOnQRCode() {
+        Elements.selectElement(driver, qr_code, "click on QR Code");
+    }
+
+    public boolean checkWhileUsingAppPermission() throws InterruptedException {
+        return Elements.isElementPresent(driver, permissionWhileUsingApp);
+    }
+    public boolean checkAllowPermission() throws InterruptedException {
+        return Elements.isElementPresent(driver, permissionAllow);
     }
 
 }
