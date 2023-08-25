@@ -95,6 +95,26 @@ public class P2MPage {
     @AndroidFindBy(id = "com.android.documentsui:id/icon_thumb")
     public AndroidElement qr_code;
 
+    @AndroidFindBy(id = "cta_otp_totp")
+    public AndroidElement offline_payment_code;
+
+    @AndroidFindBy(id = "nearby_stores")
+    public AndroidElement nearby_stores;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Current location']")
+    public AndroidElement current_location_title;
+
+    @AndroidFindBy(id = "tv_store_address")
+    public AndroidElement store_by_address;
+
+    @AndroidFindBy(id = "mkab_title")
+    public AndroidElement pay_at_store_title;
+
+    @AndroidFindBy(id = "instructionText")
+    public AndroidElement instruction_text;
+
+
+
 
     public P2MPage(AndroidDriver driver) {
         this.driver = driver;
@@ -142,31 +162,6 @@ public class P2MPage {
         Elements.selectElement(driver, ctaConfirmPayment, "Confirm Payment");
     }
 
-    // Success Screen methods
-    public String getStatus() throws InterruptedException {
-        return Elements.getText(driver, successScreenStatus, "Status");
-    }
-
-    public String getAmount() throws InterruptedException {
-        return Elements.getText(driver, successScreenAmount, "Amount");
-    }
-
-    public String getReceiverName() throws InterruptedException {
-        return Elements.getText(driver, successScreenReceiverName, "Receiver Name");
-    }
-
-    public String getMerchantName() throws InterruptedException {
-        return Elements.getText(driver, successScreenMerchantName, "Merchant Name");
-    }
-
-    public String getMerchantCode() throws InterruptedException {
-        return Elements.getText(driver, successScreenMerchantCode, "Merchant Code");
-    }
-
-    public String getZipCtaText() throws InterruptedException {
-        return Elements.getText(driver, successScreenZipCta, "Zip Cta Text");
-    }
-
     public void clickUpButton() {
         Elements.selectElement(driver, upButtom, "Up Button");
     }
@@ -193,6 +188,53 @@ public class P2MPage {
 
     public void clickOnQRCode() {
         Elements.selectElement(driver, qr_code, "click on QR Code");
+    }
+
+    public void clickOnOfflinePaymentCode() { Elements.selectElement(driver, offline_payment_code, "click on Offline Payment Code"); }
+
+    public void clickOnNearbyStores() {
+        Elements.selectElement(driver, nearby_stores, "click on Nearby Stores");
+    }
+
+    // Success Screen methods
+    public String getStatus() throws InterruptedException {
+        return Elements.getText(driver, successScreenStatus, "Status");
+    }
+
+    public String getAmount() throws InterruptedException {
+        return Elements.getText(driver, successScreenAmount, "Amount");
+    }
+
+    public String getReceiverName() throws InterruptedException {
+        return Elements.getText(driver, successScreenReceiverName, "Receiver Name");
+    }
+
+    public String getMerchantName() throws InterruptedException {
+        return Elements.getText(driver, successScreenMerchantName, "Merchant Name");
+    }
+
+    public String getMerchantCode() throws InterruptedException {
+        return Elements.getText(driver, successScreenMerchantCode, "Merchant Code");
+    }
+
+    public String getZipCtaText() throws InterruptedException {
+        return Elements.getText(driver, successScreenZipCta, "Zip Cta Text");
+    }
+
+    public String getCurrentLocationTitle() throws InterruptedException {
+        return Elements.getText(driver, current_location_title, "Current Location Title");
+    }
+
+    public String getStoreByAddress() throws InterruptedException {
+        return Elements.getText(driver, store_by_address, "Store By Address");
+    }
+
+    public String getPayAtStoreTitle() throws InterruptedException {
+        return Elements.getText(driver, pay_at_store_title, "Pay At Store Title");
+    }
+
+    public String getInstructionText() throws InterruptedException {
+        return Elements.getText(driver, instruction_text, "Instruction Text");
     }
 
     public boolean checkWhileUsingAppPermission() throws InterruptedException {

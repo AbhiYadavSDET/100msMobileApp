@@ -137,12 +137,60 @@ public class P2MHelper {
         // Get the Balance if the User Before TRX
         balanceAfter = mbkCommonControlsHelper.getBalance();
 
-
         // Assertions on the balance deducted
        mbkCommonControlsHelper.verifyWalletBalanceAfterTransaction(driver, balanceBefore, balanceAfter, amount, "Sub");
 
         // Verify the History details
         mbkCommonControlsHelper.verifyHistoryDetails(driver ,expectedHistoryDescription,expectedHistoryAmount,expectedHistoryStatus);
+
+    }
+
+
+    public void p2mVerify(String flow, String expTitle, String expText) throws InterruptedException, IOException {
+
+        // Tap the QR code Icon on Homepage
+        p2mPage.clickScanQR();
+
+        // Allow the Permission
+        if(p2mPage.checkWhileUsingAppPermission()){ p2mPage.allowPermissionWhileUsingApp();}
+        else if(p2mPage.checkAllowPermission()){ p2mPage.allowPermissionAllow(); }
+
+        String actualTitle;
+        String actualText;
+
+        if(flow.equals("NearbyStores")){
+
+            // Click on the up Nearby Stores
+            p2mPage.clickOnNearbyStores();
+
+            // Allow the Permission
+            p2mPage.allowPermissionWhileUsingApp();
+
+            // Verification on the Success Screen
+            actualTitle = p2mPage.getCurrentLocationTitle();
+            actualText = p2mPage.getStoreByAddress();
+        }
+        else {
+
+            // Click on the up Nearby Stores
+            p2mPage.clickOnOfflinePaymentCode();
+
+            // Verification on the Success Screen
+            actualTitle = p2mPage.getPayAtStoreTitle();
+            actualText = p2mPage.getInstructionText();
+
+        }
+
+        // Display the values
+        Log.info("Title : " + actualTitle);
+        Log.info("Text : " + actualText);
+
+
+        // Add the assertions
+        mbReporter.verifyEqualsWithLogging(actualTitle, expTitle, "Verify Title", false, false, true);
+        mbReporter.verifyEqualsWithLogging(actualText, expText, "Verify Text", false, false, true);
+
+
 
     }
 
