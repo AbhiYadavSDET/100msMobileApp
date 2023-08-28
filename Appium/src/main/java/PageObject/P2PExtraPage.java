@@ -115,6 +115,31 @@ public class P2PExtraPage {
     private AndroidElement referrals_tab;
 
 
+    //Default Bank Account
+    @AndroidFindBy (xpath = "//*/android.widget.TextView[@text = 'Settings']")
+    private AndroidElement settings_option;
+
+    @AndroidFindBy (xpath = "//*/android.widget.TextView[@text = 'Default Bank Account']")
+    private AndroidElement default_bank_account_option;
+
+    @AndroidFindBy (id = "ctaEscape")
+    private AndroidElement cancel_btn;
+
+
+    @AndroidFindBy (xpath = "//*/android.widget.TextView[@text = 'Nominee']")
+    private AndroidElement nominee_option;
+
+    @AndroidFindBy (xpath = "//*/android.widget.TextView[@text = 'Add Nominee']")
+    private AndroidElement add_nominee;
+
+    @AndroidFindBy (xpath = "//*/android.widget.TextView[@text = 'Add Bank']")
+    private AndroidElement add_bank;
+
+    @AndroidFindBy (id = "mkab_left_icon")
+    private AndroidElement back_btn;
+
+
+
 
     public P2PExtraPage(AndroidDriver driver) throws IOException {
 
@@ -258,6 +283,46 @@ public class P2PExtraPage {
     public void clickReferrals() throws InterruptedException{
         Element.selectElement(driver, referrals_tab,"Click on Referrals on Earning Page");
     }
+
+    public void clickSettings() throws InterruptedException{
+        Element.selectElement(driver, settings_option,"Click on Settings Option From XTRA dashboard screen");
+    }
+
+    public void clickDefaultBankAccount() throws InterruptedException{
+        Element.selectElement(driver, default_bank_account_option,"Click on Default Bank Account option");
+    }
+
+    public void clickNominee() throws InterruptedException{
+        Element.selectElement(driver, nominee_option,"Click on Nominee Option");
+    }
+
+    public void clickCancelBtn() throws InterruptedException{
+        Element.selectElement(driver, cancel_btn,"Click on Cancel Button");
+    }
+
+    public boolean checkAddNomineeOptn() throws InterruptedException{
+        return Elements.isElementPresent(driver, add_nominee );
+    }
+
+    public boolean checkAddBankOptn() throws InterruptedException{
+        return Elements.isElementPresent(driver, add_bank );
+    }
+
+    public void clickAddNominee() throws InterruptedException{
+        Element.selectElement(driver, add_nominee,"Click on Add Nominee Option");
+    }
+
+    public void clickBackBtn() throws InterruptedException{
+        Element.selectElement(driver, back_btn,"Click on Top Left Back Button");
+    }
+
+    public void clickAddBankBtn() throws InterruptedException{
+        Element.selectElement(driver, add_bank,"Click on Add Bank Option");
+    }
+
+
+
+
 
 
 

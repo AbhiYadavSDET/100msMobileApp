@@ -108,4 +108,25 @@ public class P2PExtraTest extends TestBase {
 
 
 
+
+    @Test(groups = {"p2pXtraDefaultBankAccount", "sanity", "sanityPrime"}, priority = 0, description = "Verify Xtra : Default Bank Account from settings option")
+    public void Test_Default_bank_account() throws InterruptedException, IOException {
+
+        Log.info("======= START : XTRA - Default Account flow from Settings Option=======");
+
+        // Start the test
+        LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
+        loginHelp.quickLoginViaOtp("8076595767", "547372");
+
+        P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getAndroidDriver());
+        p2PExtraHelper.setDefaultBankAccount("1", "₹1", "Withdrawal request placed successfully");
+
+        Log.info("======= END : XTRA - Default Account flow  =======");
+
+    }
+
+
+
+
+
 }

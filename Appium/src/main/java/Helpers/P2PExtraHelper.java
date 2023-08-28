@@ -311,8 +311,86 @@ public class P2PExtraHelper {
 
 
 
+    }
+
+
+
+
+    public void setDefaultBankAccount(String amount, String expAmount, String expStatus) throws InterruptedException, IOException {
+
+        Log.info("----------- Arguments ---------------");
+        Log.info("amount : " + amount);
+
+        // Click on xtra icon on home page.
+        p2PExtraPage.selectXtra();
+
+        if(mbkCommonControlsPage.isWhitePopUpPresent()){ mbkCommonControlsPage.closeWhitePopUp(); }
+
+        // Click on Got it to remove referral bottom sheet.
+        if(p2PExtraPage.isBottomSheetPresent()) p2PExtraPage.removeBottomSheet();
+
+        // Click on screen to remove bottom sheet.
+        // p2PExtraPage.tapOutsideBottomSheet();
+
+
+
+
+        //Swipe till the bottom | Settings Option
+        screen.swipeUpMore(driver);
+        screen.swipeUpMore(driver);
+
+        //Click on Settings option on XTRA dashboard
+        p2PExtraPage.clickSettings();
+
+
+        //If Default Bank Account is already setup
+        if(!p2PExtraPage.checkAddBankOptn())
+        {
+            //Click on Default Bank Account
+            p2PExtraPage.clickDefaultBankAccount();
+
+            //Wait for 1 sec
+            Thread.sleep(1000);
+
+            // Click on cancel button to remove bottom sheet
+            p2PExtraPage.clickCancelBtn();
+
+        } else {
+
+            //Click on Add Bank Option
+            p2PExtraPage.clickAddBankBtn();
+
+            //Click on Back Button
+            p2PExtraPage.clickBackBtn();
+
+        }
+
+
+        //If Nominee is already setup
+        if(!p2PExtraPage.checkAddNomineeOptn()){
+
+            // Select Nominee from Settings option
+            p2PExtraPage.clickNominee();
+
+
+        } else {
+
+            //Click on Add Nominee Option
+            p2PExtraPage.clickAddNominee();
+
+            //Click on Back Button
+            p2PExtraPage.clickBackBtn();
+
+        }
+
+
+
+
+
+
 
     }
+
 
 
 
