@@ -1,6 +1,7 @@
 package PageObject;
 
 import Utils.Elements;
+import Utils.MobiKwikScreen;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -138,7 +139,20 @@ public class P2PExtraPage {
     @AndroidFindBy (id = "mkab_left_icon")
     private AndroidElement back_btn;
 
+    @AndroidFindBy (xpath = "//*/android.view.ViewGroup[@index = 0]")
+    private AndroidElement first_fixed_investment;
 
+    @AndroidFindBy (xpath = "//*/android.widget.TextView[@text = 'Re-invest']")
+    private AndroidElement reinvest_btn;
+
+    @AndroidFindBy (xpath = "//*/android.widget.TextView[@text = 'Transfer to Flexi']")
+    private AndroidElement transfer_flexi_btn;
+
+    @AndroidFindBy (xpath = "//*/android.widget.RelativeLayout[@index = 0]")
+    private AndroidElement select_reinvest;
+
+    @AndroidFindBy (xpath = "//*/android.widget.RelativeLayout[@index = 1]")
+    private AndroidElement select_transfer_to_flexi;
 
 
     public P2PExtraPage(AndroidDriver driver) throws IOException {
@@ -320,10 +334,29 @@ public class P2PExtraPage {
         Element.selectElement(driver, add_bank,"Click on Add Bank Option");
     }
 
+    public void click1stFixedInvestment() throws InterruptedException{
+        Element.selectElement(driver, first_fixed_investment,"Click on First Fixed Investment");
+    }
 
+    public boolean checkReinvestBtn() throws InterruptedException{
+        return Elements.isElementPresent(driver, reinvest_btn );
+    }
 
+    public void selectReinvestBtn() throws InterruptedException{
+        Element.selectElement(driver,reinvest_btn ,"Tap on Reinvest Button");
+    }
 
+    public void selectTransferToFlexiBtn() throws InterruptedException{
+        Element.selectElement(driver,transfer_flexi_btn ,"Tap on Transfer To Flexi Button");
+    }
 
+    public void selectReinvestoption() throws InterruptedException{
+        Element.selectElement(driver,select_reinvest ,"Change option to Re-invest");
+    }
+
+    public void selectTransferToFlexioption() throws InterruptedException{
+        Element.selectElement(driver,select_transfer_to_flexi ,"Change option to Transfer to Flexi");
+    }
 
 
 }

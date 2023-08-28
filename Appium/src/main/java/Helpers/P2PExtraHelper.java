@@ -385,11 +385,87 @@ public class P2PExtraHelper {
 
 
 
+    }
+
+
+
+
+    public void reinvest(String amount, String expAmount, String expStatus) throws InterruptedException, IOException {
+
+        Log.info("----------- Arguments ---------------");
+
+
+        // Click on xtra icon on home page.
+        p2PExtraPage.selectXtra();
+
+        if(mbkCommonControlsPage.isWhitePopUpPresent()){ mbkCommonControlsPage.closeWhitePopUp(); }
+
+        // Click on Got it to remove referral bottom sheet.
+        if(p2PExtraPage.isBottomSheetPresent()) p2PExtraPage.removeBottomSheet();
+
+        // Click on screen to remove bottom sheet.
+        // p2PExtraPage.tapOutsideBottomSheet();
+
+
+
+
+        //Swipe till the bottom | Settings Option
+        screen.swipeUpMore(driver);
+
+
+        //Click on first fixed investment
+        p2PExtraPage.click1stFixedInvestment();
+
+        //Wait for 3 seconds
+        Thread.sleep(3000);
+
+        //Click on On-Maturity Option
+        //If User already selected reinvest while investing
+        if(p2PExtraPage.checkReinvestBtn()){
+
+            //Click on Re-invest Option
+            p2PExtraPage.selectReinvestBtn();
+
+            //Wait for 2 seconds
+            Thread.sleep(2000);
+
+            //Change to Transfer to Flexi Option
+            p2PExtraPage.selectTransferToFlexioption();
+
+            //Wait for 3 seconds
+            Thread.sleep(3000);
+
+
+        } else {
+            //If User already selected transfer to flexi  while investing
+            //Click on Transfer to Flexi Option
+            p2PExtraPage.selectTransferToFlexiBtn();
+
+            //Wait for 2 seconds
+            Thread.sleep(2000);
+
+            //Change to Reinvest option
+            p2PExtraPage.selectReinvestoption();
+
+            //Wait for 3 seconds
+            Thread.sleep(3000);
+
+        }
+
+
+
+
+
 
 
 
 
     }
+
+
+
+
+
 
 
 

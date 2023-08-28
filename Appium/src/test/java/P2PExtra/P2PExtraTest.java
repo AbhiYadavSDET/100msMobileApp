@@ -126,6 +126,27 @@ public class P2PExtraTest extends TestBase {
     }
 
 
+    @Test(groups = {"p2pXtraReInvest", "sanity", "sanityPrime"}, priority = 0, description = "Verify Xtra : Change Maturity Options of Fixed Investment")
+    public void Test_Reinvest() throws InterruptedException, IOException {
+
+        Log.info("======= START : XTRA - Re-Invest=======");
+
+        // Start the test
+        LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
+        loginHelp.quickLoginViaOtp("9991015888", "547372");
+
+
+        //Wait for 10 sec
+        Thread.sleep(10000);
+
+        P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getAndroidDriver());
+        p2PExtraHelper.reinvest("1", "₹1", "Withdrawal request placed successfully");
+
+        Log.info("======= END : XTRA - Re-Invest  =======");
+
+    }
+
+
 
 
 
