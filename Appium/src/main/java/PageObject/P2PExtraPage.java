@@ -45,8 +45,26 @@ public class P2PExtraPage {
     @AndroidFindBy ( id= "ctaWithdraw")
     private AndroidElement cta_withdraw;
 
-    @AndroidFindBy ( id= "ctaInvest")
+    @AndroidFindBy ( id= "cta")
     private AndroidElement cta_invest;
+
+    @AndroidFindBy ( id= "tvOk")
+    private AndroidElement plus_ok_popup;
+
+    @AndroidFindBy ( id= "rbFlexi")
+    private AndroidElement sliderBtnFlexi;
+
+    @AndroidFindBy ( id= "ivFixed")
+    private AndroidElement sliderBtnFixed;
+
+    @AndroidFindBy (xpath = "//*/android.widget.TextView[@text = 'Net Banking']")
+    private AndroidElement selectNBOnCheckoutScreen;
+
+    @AndroidFindBy (xpath = "//*/android.widget.TextView[@text = 'Axis Bank']")
+    private AndroidElement selectAxisBankFromBankList;
+
+    @AndroidFindBy (xpath = "//*/android.widget.TextView[@text = 'Complete your KYC']")
+    private AndroidElement completeKycBottomsheet;
 
     @AndroidFindBy (xpath = "//*/android.widget.TextView[@text = 'Got it']")
     private AndroidElement bottom_sheet_ad;
@@ -78,6 +96,23 @@ public class P2PExtraPage {
 
     @AndroidFindBy (id="subtitle")
     private AndroidElement withdrawal_status;
+
+    @AndroidFindBy (id="tvHeading")
+    private AndroidElement weekend_approaching;
+
+    @AndroidFindBy (id="cta")
+    private AndroidElement weekend_approaching_got_it_cta;
+
+
+    //Refer & Earn Widget
+    @AndroidFindBy (id = "referral_widget_layout")
+    private AndroidElement referral_widget;
+
+    @AndroidFindBy (id = "cl_total_earnings")
+    private AndroidElement total_earnings_table;
+
+    @AndroidFindBy (xpath = "//*/android.widget.TextView[@text = 'Referrals']")
+    private AndroidElement referrals_tab;
 
 
 
@@ -134,6 +169,26 @@ public class P2PExtraPage {
         Element.selectElement(driver, cta_invest,"Invest More Amount cta");
     }
 
+    public void selectOkfromPlusPopUp() throws InterruptedException{
+        Element.selectElement(driver, plus_ok_popup,"Click OK on Tool tip of Xtra Plus Pop Up ");
+    }
+
+    public void selectFlexiFromNavBar() throws InterruptedException{
+        Element.selectElement(driver, sliderBtnFlexi,"Select Flexi From Navbar");
+    }
+
+    public void selectFixedFromNavBar() throws InterruptedException{
+        Element.selectElement(driver, sliderBtnFixed,"Select Fixed From Navbar");
+    }
+
+    public void selectNBOnCheckoutScreen() throws InterruptedException{
+        Element.selectElement(driver, selectNBOnCheckoutScreen,"Select NetBanking From Checkout Screen");
+    }
+
+    public void selectAxisBankInNB() throws InterruptedException{
+        Element.selectElement(driver, selectAxisBankFromBankList,"Select Axis Bank NetBanking option");
+    }
+
     public void tapOutsideBottomSheet() throws InterruptedException{
         Element.selectElement(driver, bottom_sheet_xtra_main_page_remove,"Tap outside bottom sheet");
     }
@@ -152,10 +207,16 @@ public class P2PExtraPage {
 
     public boolean isBottomSheetPresent() throws InterruptedException{
         return Elements.isElementPresent(driver, bottom_sheet_ad);
+
     }
 
     public void removeBottomSheet() throws InterruptedException{
         Element.selectElement(driver, bottom_sheet_ad,"remove bottom sheet");
+    }
+
+    public boolean isKYCBottomSheetPresent() throws InterruptedException{
+        return Elements.isElementPresent(driver, completeKycBottomsheet);
+
     }
 
 
@@ -173,6 +234,31 @@ public class P2PExtraPage {
         int value = Integer.parseInt(portfolioValue);
         return value;
     }
+
+    public boolean checkWeekendApproachingBottomsheet() throws InterruptedException{
+       return Elements.isElementPresent(driver, weekend_approaching);
+    }
+
+    public boolean checkOkfromPlusPopUp() throws InterruptedException{
+        return Elements.isElementPresent(driver, plus_ok_popup );
+    }
+
+    public void clickGotItCtaWeekendApproaching() throws InterruptedException{
+        Element.selectElement(driver, withdraw_on_withdrawal_amount_page,"Click on Got It Cta");
+    }
+
+    public void clickReferAndEarnWidget() throws InterruptedException{
+        Element.selectElement(driver, referral_widget,"Click on Refer & Earn Widget");
+    }
+
+    public void clickEarningsTable() throws InterruptedException{
+        Element.selectElement(driver, total_earnings_table,"Click on Earnings Table");
+    }
+
+    public void clickReferrals() throws InterruptedException{
+        Element.selectElement(driver, referrals_tab,"Click on Referrals on Earning Page");
+    }
+
 
 
 }

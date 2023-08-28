@@ -117,7 +117,7 @@ public class GoldHelper {
         // Tap on See All Services
         goldPage.clickAllServices();
 
-        // Swipe till the bottom
+        //Swipe till the bottom
         screen.swipeUpMore(driver);
 
         // Click on 99% Buy Gold
