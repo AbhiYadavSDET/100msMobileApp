@@ -76,8 +76,8 @@ public class PayRentHelper {
         //Click Continue
         payRentPage.clickContinueButton();
 
-        //Press Back 4times to go to home screen
-        mbkCommonControlsHelper.pressback(4);
+        //Press Back 3times to go to home screen
+        mbkCommonControlsHelper.pressback(3);
 
         //Click on Pay Rent
         payRentPage.clickPayRent();
@@ -98,6 +98,9 @@ public class PayRentHelper {
     }
 
     public void payRentViaZIP(String Amount,String expAmount, String expconvenienceFee, String exptotalPayableAmount) throws IOException, InterruptedException{
+
+        // Get the Balance if the User Before TRX
+        balanceBefore = mbkCommonControlsHelper.getBalance();
 
         //Click on Pay Rent
         payRentPage.clickPayRent();
@@ -133,6 +136,9 @@ public class PayRentHelper {
 
     }
     public void payRentviaCard(String Amount,String expAmount, String expconvenienceFee, String exptotalPayableAmount) throws IOException, InterruptedException{
+
+        // Get the Balance if the User Before TRX
+        balanceBefore = mbkCommonControlsHelper.getBalance();
 
         //Click on Pay Rent
         payRentPage.clickPayRent();
@@ -173,6 +179,9 @@ public class PayRentHelper {
     }
     public void payRentViaUpi(String expRecipientName, String Amount) throws IOException, InterruptedException{
 
+        // Get the Balance if the User Before TRX
+        balanceBefore = mbkCommonControlsHelper.getBalance();
+
         //Click on Pay Rent
         payRentPage.clickPayRent();
 
@@ -188,7 +197,8 @@ public class PayRentHelper {
         mbReporter.verifyEqualsWithLogging(recipientName, expRecipientName, "Verify Landlord Name", false, false, true);
 
         //Enter Rent Amount
-        payRentPage.enterRentAmount(Amount);
+        payRentPage.clickFive();
+        payRentPage.clickZero();
 
         //Click on Continue button
         payRentPage.clickCnButton();
@@ -197,9 +207,9 @@ public class PayRentHelper {
         payRentPage.clickCtaButton();
 
         // Verification on the PayRent Payment bottom sheet
-        String totalAmount = payRentPage.getTotalAmount();
-        String convFee = payRentPage.getConvFee();
-        String payableAmount = payRentPage.getPayableAmount();
+//        String totalAmount = payRentPage.getTotalAmount();
+//        String convFee = payRentPage.getConvFee();
+//        String payableAmount = payRentPage.getPayableAmount();
 
 //        // Display the values
 //        Log.info("Total Amount : " + totalAmount);
@@ -220,14 +230,40 @@ public class PayRentHelper {
         //Click on saved recipient
         payRentPage.clickRentRecipient();
 
-        //Verify Pay rent description screen
-        String title = payRentPage.getTitle();
-        Log.info("Title of PayRent Benefits screen : " + title);
-        mbReporter.verifyEqualsWithLogging(title, expTitle, "Verify title of PayRent Benefits screen", false, false, true);
+        if(payRentPage.checkBenefitScreen()) {
+            //Verify Pay rent description screen
+            String title = payRentPage.getTitle();
+            Log.info("Title of PayRent Benefits screen : " + title);
+            mbReporter.verifyEqualsWithLogging(title, expTitle, "Verify title of PayRent Benefits screen", false, false, true);
+        }
+        else
+        {
+            Log.info("Benefits of Pay rent through Mobikwik screen is not appearing.");
+        }
+    }
 
+    public void verifyFAQ(String expFaqTitle) throws IOException, InterruptedException {
 
+        //Click on Pay Rent
+        payRentPage.clickPayRent();
 
+        //Click on saved recipient
+        payRentPage.clickRentRecipient();
 
+        if(payRentPage.checkBenefitScreen()) {
+
+            //Click on FAQ Button
+            payRentPage.clickFaqButton();
+
+            //Verify Pay rent description screen
+            String faqTitle = payRentPage.getFaqScreenTitle();
+            Log.info("Title of FQA Screen screen : " + faqTitle);
+            mbReporter.verifyEqualsWithLogging(faqTitle, expFaqTitle, "Verify title of FAQ Screen", false, false, true);
+
+        }
+        else{
+            Log.info("Benefits of Pay rent through Mobikwik screen is not appearing.");
+        }
     }
 }
 

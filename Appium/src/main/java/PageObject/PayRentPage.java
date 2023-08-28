@@ -68,8 +68,11 @@ public class PayRentPage {
     @AndroidFindBy(id = "transfer_to")
     private AndroidElement transferToName;
 
-    @AndroidFindBy(id = "edit_text")
-    private AndroidElement payRentAmount;
+    @AndroidFindBy(id = "btn_pin_5")
+    private AndroidElement fiveButton;
+
+    @AndroidFindBy(id = "btn_pin_0")
+    private AndroidElement zeroButton;
 
     @AndroidFindBy(id = "btn_submit")
     private AndroidElement cnButton;
@@ -78,27 +81,13 @@ public class PayRentPage {
     private AndroidElement ctaButton;
 
     @AndroidFindBy(id = "title")
-    private AndroidElement title;
+    private AndroidElement benefitScreenTitle;
 
-    @AndroidFindBy(xpath = "//*/android.view.ViewGroup[1]/android.widget.TextView")
-    private AndroidElement heading1;
+    @AndroidFindBy(id = "ic_text")
+    private AndroidElement faqButton;
 
-    @AndroidFindBy(xpath = "//*/android.view.ViewGroup[2]/android.widget.TextView")
-    private AndroidElement heading2;
-
-    @AndroidFindBy(xpath = "//*/android.view.ViewGroup[3]/android.widget.TextView")
-    private AndroidElement heading3;
-
-    @AndroidFindBy(xpath = "//*/android.view.ViewGroup[4]/android.widget.TextView")
-    private AndroidElement heading4;
-
-    @AndroidFindBy(xpath = "//*/android.view.ViewGroup[5]/android.widget.TextView")
-    private AndroidElement heading5;
-
-    @AndroidFindBy(id = "benefits_recycler_view")
-    private AndroidElement subHeadings;
-
-
+    @AndroidFindBy(id = "tv_title")
+    private AndroidElement faqScreen;
 
 
     public PayRentPage(AndroidDriver driver) throws IOException {
@@ -184,8 +173,12 @@ public class PayRentPage {
        return Elements.getText(driver, transferToName, "Get Name of the recipient");
     }
 
-    public void enterPayRentAmount() throws InterruptedException{
-         Elements.selectElement(driver, payRentAmount, "Enter pay Rent Amount");
+    public void clickFive(){
+        Elements.selectElement(driver, fiveButton, "Click on five");
+    }
+
+    public void clickZero(){
+        Elements.selectElement(driver, zeroButton, "Click on zero");
     }
 
     public void clickCnButton() throws InterruptedException{
@@ -196,29 +189,17 @@ public class PayRentPage {
         Elements.selectElement(driver, ctaButton, "click Continue button");
     }
 
+    public boolean checkBenefitScreen() throws InterruptedException {
+        return Elements.isElementPresent(driver, benefitScreenTitle);
+    }
+
     public String getTitle() throws InterruptedException{
-        return Elements.getText(driver, title, "Get Title of Pay rent description screen");
+        return Elements.getText(driver, benefitScreenTitle, "Get Title of Pay rent description screen");
     }
 
-    public String getHeading1() throws InterruptedException{
-        return Elements.getText(driver, heading1, "Get Title of heading1 of Pay rent description screen");
-    }
-    public String getHeading2() throws InterruptedException{
-        return Elements.getText(driver, heading2, "Get Title of heading2 of Pay rent description screen");
-    }
-    public String getHeading3() throws InterruptedException{
-        return Elements.getText(driver, heading3, "Get Title of heading3 of Pay rent description screen");
-    }
-    public String getHeading4() throws InterruptedException{
-        return Elements.getText(driver, heading4, "Get Title of heading4 of Pay rent description screen");
-    }
-    public String getHeading5() throws InterruptedException{
-        return Elements.getText(driver, heading5, "Get Title of heading5 of Pay rent description screen");
-    }
+    public void clickFaqButton() { Elements.selectElement(driver, faqButton , "Click on FAQ Button"); }
 
-    public String getSubHeading() throws InterruptedException{
-        return Elements.getText(driver, subHeadings, "Get Sub heading of PayRent description Screen");
-    }
+    public String getFaqScreenTitle() throws InterruptedException { return Elements.getText(driver, faqScreen , "Get Title of FAQ Screen"); }
 
 }
 
