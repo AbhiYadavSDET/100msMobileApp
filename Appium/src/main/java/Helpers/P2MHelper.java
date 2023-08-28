@@ -45,7 +45,7 @@ public class P2MHelper {
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
-    public void p2mSend(String merchantCode, String amount, String expStatus, String expAmount, String expReceiverName, String expMerchantName, String expMerchantCode, String expZipCtaText, String expectedHistoryDescription, String expectedHistoryAmount, String expectedHistoryStatus) throws InterruptedException, IOException {
+    public void p2mSend(String merchant, String amount, String expStatus, String expAmount, String expReceiverName, String expMerchantName, String expMerchantCode, String expZipCtaText, String expectedHistoryDescription, String expectedHistoryAmount, String expectedHistoryStatus) throws InterruptedException, IOException {
 
         // Get the Balance if the User Before TRX
         balanceBefore = mbkCommonControlsHelper.getBalance();
@@ -54,20 +54,27 @@ public class P2MHelper {
         p2mPage.clickScanQR();
 
         // Allow the Permission
-        Thread.sleep(3000);
-        p2mPage.allowPermission();
+        if(p2mPage.checkWhileUsingAppPermission()){ p2mPage.allowPermissionWhileUsingApp();}
+        else if(p2mPage.checkAllowPermission()){ p2mPage.allowPermissionAllow(); }
 
-        // Click on merchant code text box
-        p2mPage.clickMerchantCodeTextBox();
+        if(merchant.equals("RecentMerchant")){
+            p2mPage.clickOnRecentMerchant();
 
-        // Allow the Permission
-        p2mPage.allowPermission2();
+        }else{
 
-        // enter the merchant code
-        p2mPage.enterMerchantCode(merchantCode);
+            // Click on merchant code text box
+            p2mPage.clickOnGallery();
 
-        // select the merchant
-        p2mPage.selectMerchant();
+            // Allow the Permission
+            p2mPage.allowPermissionAllow();
+
+            if(merchant.equals("MobikwikQr")){
+                p2mPage.clickOnMobikwikQRCode();
+            }
+            else if(merchant.equals("SonuQr")){
+                p2mPage.clickOnSonuQRCode();
+            }
+        }
 
         // Enter the amount
         customKeyboardPage.enterAmount(amount);
@@ -130,12 +137,60 @@ public class P2MHelper {
         // Get the Balance if the User Before TRX
         balanceAfter = mbkCommonControlsHelper.getBalance();
 
-
         // Assertions on the balance deducted
        mbkCommonControlsHelper.verifyWalletBalanceAfterTransaction(driver, balanceBefore, balanceAfter, amount, "Sub");
 
         // Verify the History details
         mbkCommonControlsHelper.verifyHistoryDetails(driver ,expectedHistoryDescription,expectedHistoryAmount,expectedHistoryStatus);
+
+    }
+
+
+    public void p2mVerify(String flow, String expTitle, String expText) throws InterruptedException, IOException {
+
+        // Tap the QR code Icon on Homepage
+        p2mPage.clickScanQR();
+
+        // Allow the Permission
+        if(p2mPage.checkWhileUsingAppPermission()){ p2mPage.allowPermissionWhileUsingApp();}
+        else if(p2mPage.checkAllowPermission()){ p2mPage.allowPermissionAllow(); }
+
+        String actualTitle;
+        String actualText;
+
+        if(flow.equals("NearbyStores")){
+
+            // Click on the up Nearby Stores
+            p2mPage.clickOnNearbyStores();
+
+            // Allow the Permission
+            p2mPage.allowPermissionWhileUsingApp();
+
+            // Verification on the Success Screen
+            actualTitle = p2mPage.getCurrentLocationTitle();
+            actualText = p2mPage.getStoreByAddress();
+        }
+        else {
+
+            // Click on the up Nearby Stores
+            p2mPage.clickOnOfflinePaymentCode();
+
+            // Verification on the Success Screen
+            actualTitle = p2mPage.getPayAtStoreTitle();
+            actualText = p2mPage.getInstructionText();
+
+        }
+
+        // Display the values
+        Log.info("Title : " + actualTitle);
+        Log.info("Text : " + actualText);
+
+
+        // Add the assertions
+        mbReporter.verifyEqualsWithLogging(actualTitle, expTitle, "Verify Title", false, false, true);
+        mbReporter.verifyEqualsWithLogging(actualText, expText, "Verify Text", false, false, true);
+
+
 
     }
 

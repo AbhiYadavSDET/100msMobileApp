@@ -1,51 +1,93 @@
 package PageObject;
 
+import Utils.Elements;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
-import io.appium.java_client.pagefactory.AndroidBy;
-import io.appium.java_client.pagefactory.AndroidFindAll;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import Logger.Log;
 import org.openqa.selenium.support.PageFactory;
-//import utils.Element;
-
 import java.io.IOException;
-import java.util.List;
+
 
 public class PayRentPage {
 
     AndroidDriver driver;
 
-    @AndroidFindBy(xpath="//android.widget.TextView['Benefits of paying rent through Credit card']")
-    public AndroidElement home_title;
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Pay Rent']")
+    private AndroidElement payRent;
 
-    @AndroidFindBy(id="mkab_title")
-    private AndroidElement title_bar;
+    @AndroidFindBy(id = "btnSubmit")
+    private AndroidElement addNewPropertyButton;
 
-    @AndroidFindBy(id="textActionButton")
-    private AndroidElement faq_button;
+    @AndroidFindBy(xpath = "//*/android.widget.EditText[@text = 'Account Number']")
+    private AndroidElement accountNumber;
 
-    @AndroidFindBy(id="card_button")
-    private AndroidElement use_credit_card;
+    @AndroidFindBy(xpath = "//*/android.widget.EditText[@text = 'IFSC Code']")
+    private AndroidElement ifscCode;
 
-    @AndroidFindBy(id="upi_button")
-    private AndroidElement use_upi;
+    @AndroidFindBy(id = "continue_btn")
+    private AndroidElement continueButton;
 
-    @AndroidFindBy(id="mkab_icon_1")
-    private AndroidElement back_button;
+    @AndroidFindBy(xpath = "//*/android.widget.EditText[@text = 'Landlord Name']")
+    private AndroidElement landlordName;
 
-    @AndroidFindAll(@AndroidBy(id="edit_text_mket"))
-    private List<AndroidElement> text_fields;
+    @AndroidFindBy(xpath = "//*/android.widget.EditText[@text = 'Enter Rent Amount']")
+    private AndroidElement rentAmount;
 
-    @AndroidFindBy(id="continue_btn")
-    private AndroidElement continue_button_detailsPage;
+    @AndroidFindBy(id = "landlord_name")
+    private AndroidElement name;
 
-    @AndroidFindBy(id="processing_fee_discounted")
-    private AndroidElement processing_fee;
+    @AndroidFindBy(id = "account_number")
+    private AndroidElement number;
 
-    @AndroidFindBy(id="address")
-    private AndroidElement address_home;
+    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[1]")
+    private AndroidElement rentRecipient;
+
+    @AndroidFindBy(xpath = "//*/android.widget.Button[@text = 'Continue with Zip/Cards']")
+    private AndroidElement continueWithZipNCards;
+
+    @AndroidFindBy(id = "text_total_amount")
+    private AndroidElement totalAmount;
+
+    @AndroidFindBy(id = "text_conv_fee")
+    private AndroidElement convFee;
+
+    @AndroidFindBy(id = "text_payable_amount")
+    private AndroidElement payableAmount;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'More payment options']")
+    private AndroidElement morePaymentOptions;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Add New Debit / Credit card']")
+    private AndroidElement addNewDebitCard;
+
+    @AndroidFindBy(id = "upi_button")
+    private AndroidElement useUpi;
+
+    @AndroidFindBy(id = "transfer_to")
+    private AndroidElement transferToName;
+
+    @AndroidFindBy(id = "btn_pin_5")
+    private AndroidElement fiveButton;
+
+    @AndroidFindBy(id = "btn_pin_0")
+    private AndroidElement zeroButton;
+
+    @AndroidFindBy(id = "btn_submit")
+    private AndroidElement cnButton;
+
+    @AndroidFindBy(id = "cta")
+    private AndroidElement ctaButton;
+
+    @AndroidFindBy(id = "title")
+    private AndroidElement benefitScreenTitle;
+
+    @AndroidFindBy(id = "ic_text")
+    private AndroidElement faqButton;
+
+    @AndroidFindBy(id = "tv_title")
+    private AndroidElement faqScreen;
 
 
     public PayRentPage(AndroidDriver driver) throws IOException {
@@ -58,71 +100,106 @@ public class PayRentPage {
          */
         Log.info("*****PayRent Page*****");
     }
-/*
+
+    public void clickPayRent() {
+        Elements.selectElement(driver, payRent, "Click on Pay Rent");
+    }
+
+    public void clickAddNewPropertyButton() {
+        Elements.selectElement(driver, addNewPropertyButton, "Click on Add New Property");
+    }
+
+    public void enterAccountNumber(String AccountNumber){
+        Elements.enterToElement(driver, accountNumber, AccountNumber, "Enter Account Number");
+    }
+
+    public void enterIfscCode(String IfscCode){
+        Elements.enterToElement(driver, ifscCode, IfscCode, "Enter IFSC Code");
+    }
+
+    public void clickContinueButton() {
+        Elements.selectElement(driver, continueButton, "Click on continue button");
+    }
+
+    public void enterLandlordName(String Name ){
+        Elements.enterToElement(driver, landlordName, Name, "Enter Landlord Name");
+    }
+
+    public void enterRentAmount(String Amount){
+        Elements.enterToElement(driver, rentAmount,Amount, "Enter Rent Amount");
+    }
+
+    public String getLandlordName()throws InterruptedException{
+        return Elements.getText(driver, name, "Get Landlord name");
+    }
+
+    public String getAccountNumber()throws InterruptedException{
+        return Elements.getText(driver, number, "Get Account number");
+    }
+
+    public void clickRentRecipient(){
+        Elements.selectElement(driver, rentRecipient, "Click on saved rent recipient");
+    }
+
+    public void clickContinueWithZipAndCards(){
+        Elements.selectElement(driver, continueWithZipNCards, "Click on continue with zip/cards button");
+    }
+
+    public String getTotalAmount() throws InterruptedException{
+        return Elements.getText(driver, totalAmount, "Get Total Amount on Bottom sheet");
+    }
+
+    public String getConvFee() throws InterruptedException{
+        return Elements.getText(driver, convFee, "Get convenience fee on Bottom sheet");
+    }
+
+    public String getPayableAmount() throws InterruptedException{
+        return Elements.getText(driver, payableAmount, "Get Payable Amount on Bottom sheet");
+    }
+
+    public void clickMorePaymentOptions(){
+        Elements.selectElement(driver, morePaymentOptions, "Click on more payment options");
+    }
+
+    public void clickAddNewDebitCard(){
+        Elements.selectElement(driver, addNewDebitCard, "Click on Add new debit card");
+    }
+
+    public void clickUseUpi(){
+        Elements.selectElement(driver, useUpi, "Click on Use UPI button");
+    }
+
+    public String getTransaferToName() throws InterruptedException{
+       return Elements.getText(driver, transferToName, "Get Name of the recipient");
+    }
+
+    public void clickFive(){
+        Elements.selectElement(driver, fiveButton, "Click on five");
+    }
+
+    public void clickZero(){
+        Elements.selectElement(driver, zeroButton, "Click on zero");
+    }
+
+    public void clickCnButton() throws InterruptedException{
+        Elements.selectElement(driver, cnButton, "Click Continue button");
+    }
+
+    public void clickCtaButton() throws InterruptedException{
+        Elements.selectElement(driver, ctaButton, "click Continue button");
+    }
+
+    public boolean checkBenefitScreen() throws InterruptedException {
+        return Elements.isElementPresent(driver, benefitScreenTitle);
+    }
+
     public String getTitle() throws InterruptedException{
-       return Element.getText(driver, title_bar, "Title Bar Text");
+        return Elements.getText(driver, benefitScreenTitle, "Get Title of Pay rent description screen");
     }
 
-    public String getTitleText() throws  InterruptedException{
-        return Element.getText(driver, home_title, "Home Page Title Bar Text");
-    }
+    public void clickFaqButton() { Elements.selectElement(driver, faqButton , "Click on FAQ Button"); }
 
-    public void clickFAQ() throws InterruptedException{
-        Element.selectElement(driver, faq_button, "click on FAQ Button");
-    }
-
-    public void clickCCButton() throws InterruptedException{
-        Element.selectElement(driver, use_credit_card, "Click on Credit Card Button");
-    }
-
-    public void clickUPIButton() throws InterruptedException{
-        Element.selectElement(driver, use_upi, "Click on UPI Button");
-    }
-
-    public void selectAndEnterAddress(String address) throws  InterruptedException{
-        Element.selectElement(driver, text_fields.get(0) ,"Selecting Address Field");
-        Element.enterText(driver, text_fields.get(0), address, "Entering Address Field");
-    }
-
-    public void selectAndEnterPincode(String pincode) throws InterruptedException{
-        Element.selectElement(driver, text_fields.get(1),"Selecting Pincode");
-        Element.enterText(driver, text_fields.get(1), pincode, "Entering Pincode");
-    }
-
-    public void clickOnContinueButton() throws InterruptedException{
-        Element.selectElement(driver, continue_button_detailsPage, "Clicking on Continue Button");
-    }
-
-    public void selectAndEnterLandlordName(String name) throws InterruptedException{
-        Element.selectElement(driver, text_fields.get(0), "Selecting Landlord Name");
-        Element.enterText(driver, text_fields.get(0), name, "Entering Landlord Name");
-    }
-
-    public void selectAndEnterAmount(String amount) throws InterruptedException{
-        Element.selectElement(driver, text_fields.get(1), "Selecting Amount");
-        Element.enterText(driver, text_fields.get(1), amount, "Entering amount");
-    }
-
-    public String getProcessingFees() throws InterruptedException{
-        return Element.getText(driver, processing_fee, "Get Processing Fees");
-    }
-
-    public void selectAndEnterBankAccountNumber(String bankAccNum) throws InterruptedException{
-        Element.selectElement(driver, text_fields.get(0), "Selecting Bank Account Number");
-        Element.enterText(driver, text_fields.get(0), bankAccNum, "Entering Account Number");
-    }
-
-    public void selectAndEnterIFSC(String ifsc) throws InterruptedException{
-        Element.selectElement(driver, text_fields.get(1), "Selecting IFSC Field");
-        Element.enterText(driver, text_fields.get(1), ifsc, "Entering IFSC Code");
-    }
-
-    public void clickExisting() throws InterruptedException{
-        Element.selectElement(driver, address_home, "Click on Existing Property");
-    }
-
-
-
- */
+    public String getFaqScreenTitle() throws InterruptedException { return Elements.getText(driver, faqScreen , "Get Title of FAQ Screen"); }
 
 }
+
