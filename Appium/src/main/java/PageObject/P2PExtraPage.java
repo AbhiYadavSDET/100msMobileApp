@@ -154,6 +154,12 @@ public class P2PExtraPage {
     @AndroidFindBy (xpath = "//*/android.widget.RelativeLayout[@index = 1]")
     private AndroidElement select_transfer_to_flexi;
 
+    @AndroidFindBy (id = "tvSubHeading")
+    private AndroidElement add_nominee_page_title;
+
+    @AndroidFindBy (id = "tvHeading")
+    private AndroidElement dafault_bankAc_bottomsheet_title;
+
 
     public P2PExtraPage(AndroidDriver driver) throws IOException {
 
@@ -356,6 +362,14 @@ public class P2PExtraPage {
 
     public void selectTransferToFlexioption() throws InterruptedException{
         Element.selectElement(driver,select_transfer_to_flexi ,"Change option to Transfer to Flexi");
+    }
+
+    public String getNomineeTitle() throws InterruptedException{
+        return Elements.getText(driver, add_nominee_page_title,"Get Sub-Heading on Add Nominee Page");
+    }
+
+    public String getDefaultBankAccTitle() throws InterruptedException{
+        return Elements.getText(driver, dafault_bankAc_bottomsheet_title,"Get Heading on Default Bank Account Bottomsheet");
     }
 
 
