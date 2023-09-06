@@ -28,10 +28,10 @@ public class TestBase {
 
     AndroidDriver driver;
 
-    String androidOSVersion = "8.0";
+    String androidOSVersion = "13.0";
     String portNo = "4723";
-    String udid = "93JAY0BLRH";
-    String deviceName = "OnePlus 8T";
+    String udid = "2C161FDH200GLN";
+    String deviceName = "Google Pixel 7";
 
 
     Boolean cloudRun = false;
@@ -149,14 +149,14 @@ public class TestBase {
             File app = new File(buildPath);
             DesiredCapabilities cap = new DesiredCapabilities();
             cap.setCapability(MobileCapabilityType.PLATFORM_NAME, "ANDROID");
-            cap.setCapability(MobileCapabilityType.DEVICE_NAME, "93JAY0BLRH");
+            cap.setCapability(MobileCapabilityType.DEVICE_NAME, "2C161FDH200GLN");
 //        cap.setCapability("avd","Pixel_3a");
             cap.setCapability("noSign", true);
-            cap.setCapability("appPackage", "com.mobikwik_new.debug");
-            cap.setCapability("appActivity", "com.mobikwik_new.MobikwikMain");
+            cap.setCapability("appPackage", "com.mobikwik_new");
+            cap.setCapability("appActivity", ".MobikwikMain");
             cap.setCapability("noReset", "false");
-//            cap.setCapability("app", app.getAbsolutePath());
-            cap.setCapability("app", "//Users//inderkantpippal//APK//ProdDebug.apk");
+            cap.setCapability("app", app.getAbsolutePath());
+//            cap.setCapability("app", "//Users//ashishkumarpradhan//app//mobikwik.apk");
             AndroidDriver driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), cap);
             androidDriverThread.set(driver);
             return androidDriverThread.get();
@@ -164,10 +164,10 @@ public class TestBase {
         } else {
             DesiredCapabilities caps = new DesiredCapabilities();
             // Set your access credentials
-            caps.setCapability("browserstack.user", "ashishkumarpradh_AcLpQo");
-            caps.setCapability("browserstack.key", "1WgsTq2sxrDMA5Nvyqzx");
+            caps.setCapability("browserstack.user", "parajjain_sbic3m");
+            caps.setCapability("browserstack.key", "UiQCwarqqgMmUwmdBH7V");
             // Set URL of the application under test
-            caps.setCapability("app", "bs://28df29e8ba7402555d63155fbe75e3d57edf26e3");
+            caps.setCapability("app", "bs://13c268d959c97610e9f4125fd24392e75f5be7d1");
             // Specify device and os_version for testing
             caps.setCapability("device", "Samsung Galaxy S22 Ultra");
             caps.setCapability("os_version", "12.0");
