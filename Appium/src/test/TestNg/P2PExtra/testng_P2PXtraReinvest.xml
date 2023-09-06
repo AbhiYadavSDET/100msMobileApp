@@ -12,7 +12,8 @@
             <run>
                 <include name="setUp"/>
                 <include name="instantiateHelpers"/>
-                <include name="p2pXtraReInvest"/>
+                <include name="p2pXtraReInvestFromFixed"/>
+                <include name="p2pXtraReInvestFromFlexi"/>
                 <include name="tearDown"/>
             </run>
         </groups>

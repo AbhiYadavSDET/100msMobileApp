@@ -7,7 +7,7 @@
     <parameter name="saucelabs" value="false"></parameter>
     <parameter name="androidOSVersion" value="12.0"></parameter>
 
-    <test verbose="2" preserve-order="true" name="P2P XTRA Default Bank Account">
+    <test verbose="2" preserve-order="true" name="P2P XTRA Nominee Flow">
         <groups>
             <run>
                 <include name="setUp"/>

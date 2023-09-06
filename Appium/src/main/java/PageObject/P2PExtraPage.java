@@ -166,6 +166,23 @@ public class P2PExtraPage {
     @AndroidFindBy (xpath = "//*/android.widget.TextView[@text = 'NAME']")
     private AndroidElement nominee_name;
 
+    @AndroidFindBy (id = "ctaTransfer")
+    private AndroidElement transfer_to_plus_btn;
+
+    @AndroidFindBy (xpath = "//*/android.widget.TextView[@text = 'Confirm']")
+    private AndroidElement confirm_btn;
+
+    @AndroidFindBy (xpath = "//*/android.view.ViewGroup[]")
+    private AndroidElement first_investment_widget;
+
+
+
+    @AndroidFindBy (id="title")
+    private AndroidElement reinvested_amount_flexi;
+
+    @AndroidFindBy (id="tvViewMore")
+    private AndroidElement view_all_btn;
+
     public P2PExtraPage(AndroidDriver driver) throws IOException {
 
         this.driver = driver;
@@ -310,7 +327,7 @@ public class P2PExtraPage {
     }
 
     public void clickSettings() throws InterruptedException{
-        Element.selectElement(driver, settings_option,"Click on Settings Option From XTRA dashboard screen");
+        Element.selectElement(driver, settings_option,"Click on Settings Option ");
     }
 
     public void clickDefaultBankAccount() throws InterruptedException{
@@ -384,6 +401,27 @@ public class P2PExtraPage {
     public String getNomineeName() throws InterruptedException{
         return Elements.getText(driver, nominee_name,"Get Name of Nominee");
     }
+
+    public String selectTransferToPlusBtn() throws InterruptedException{
+        return Elements.getText(driver, transfer_to_plus_btn,"Click on Transfer to Plus Button");
+    }
+
+    public String selectConfirmBtn() throws InterruptedException{
+        return Elements.getText(driver, confirm_btn,"Click on Confirm Button");
+    }
+
+    public String getTransferAmount() throws InterruptedException{
+        return Elements.getText(driver, reinvested_amount_flexi,"Get Amount on Txn Status Screen");
+    }
+
+    public String selectViewAllBtn() throws InterruptedException{
+        return Elements.getText(driver, view_all_btn,"Click on View All Button");
+    }
+
+    public String selectFirstInvestment() throws InterruptedException{
+        return Elements.getText(driver, first_investment_widget,"Click on 1st Investment");
+    }
+
 
 }
 

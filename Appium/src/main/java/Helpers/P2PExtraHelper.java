@@ -270,10 +270,9 @@ public class P2PExtraHelper {
 
 
 
-        public void referAndEarnFlow(String amount, String expAmount, String expStatus) throws InterruptedException, IOException {
+        public void referAndEarnFlow() throws InterruptedException, IOException {
 
             Log.info("----------- Arguments ---------------");
-            Log.info("amount : " + amount);
 
             // Click on xtra icon on home page.
             p2PExtraPage.selectXtra();
@@ -481,9 +480,14 @@ public class P2PExtraHelper {
         //Swipe till the bottom | Settings Option
         screen.swipeUpMore(driver);
 
+        //Click on View All button
+        p2PExtraPage.selectViewAllBtn();
 
         //Click on first fixed investment
-        p2PExtraPage.click1stFixedInvestment();
+        //p2PExtraPage.click1stFixedInvestment();
+
+        // Click on First Investment
+        p2PExtraPage.selectFirstInvestment();
 
         //Wait for 3 seconds
         Thread.sleep(3000);
@@ -519,11 +523,7 @@ public class P2PExtraHelper {
             //Wait for 3 seconds
             Thread.sleep(3000);
 
-        }
-
-
-
-
+            }
 
 
     }
@@ -531,6 +531,54 @@ public class P2PExtraHelper {
 
 
 
+
+
+        public void reinvestFlexi(String expAmount,String expStatus) throws InterruptedException, IOException {
+
+                Log.info("----------- Arguments ---------------");
+
+
+                // Click on xtra icon on home page.
+                p2PExtraPage.selectXtra();
+
+                if(mbkCommonControlsPage.isWhitePopUpPresent()){ mbkCommonControlsPage.closeWhitePopUp(); }
+
+                // Click on Got it to remove referral bottom sheet.
+                if(p2PExtraPage.isBottomSheetPresent()) p2PExtraPage.removeBottomSheet();
+
+
+                // Click on withdraw on Xtra main page.
+                p2PExtraPage.selectWithdraw();
+
+                // Click on Got it to remove one time withdrawal bottom sheet.
+                if(p2PExtraPage.isBottomSheetPresent()) p2PExtraPage.removeBottomSheet();
+
+                // Click on Got it to remove bank holiday bottom sheet.
+                if(p2PExtraPage.isBottomSheetPresent()) p2PExtraPage.removeBottomSheet();
+
+                // Enter amount on withdrawal amount page.
+                p2PExtraPage.enterAmount(expAmount);
+
+                // Click on Tranfer to Plus button if activates
+                p2PExtraPage.selectTransferToPlusBtn();
+
+                // Click on Confirm button
+                p2PExtraPage.selectConfirmBtn();
+
+                // Wait for 1 sec
+                Thread.sleep(1000);
+
+                // Verification on the Success Screen
+                String actualAmount = p2PExtraPage.getTransferAmount();
+
+                // Display the values
+                Log.info("Amount Reinvested to FIXED :" + actualAmount );
+
+                // Assertion
+                mbReporter.verifyEqualsWithLogging(actualAmount, expAmount, "Verify Re-invested amount", false,false,true);
+
+
+        }
 
 
 
@@ -542,3 +590,4 @@ public class P2PExtraHelper {
 
 
 }
+

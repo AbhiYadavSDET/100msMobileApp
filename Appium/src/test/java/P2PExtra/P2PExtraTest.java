@@ -100,7 +100,7 @@ public class P2PExtraTest extends TestBase {
         loginHelp.quickLoginViaOtp("8076595767", "547372");
 
         P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getAndroidDriver());
-        p2PExtraHelper.referAndEarnFlow("1", "₹1", "Withdrawal request placed successfully");
+        p2PExtraHelper.referAndEarnFlow();
 
         Log.info("======= END : XTRA - Refer & Earn flow =======");
 
@@ -160,18 +160,15 @@ public class P2PExtraTest extends TestBase {
 
 
 
-    @Test(groups = {"p2pXtraReInvest", "sanity", "sanityPrime"}, priority = 0, description = "Verify Xtra : Change Maturity Options of Fixed Investment")
+    @Test(groups = {"p2pXtraReInvestFromFixed", "sanity", "sanityPrime"}, priority = 0, description = "Verify Xtra : Change Maturity Options of Fixed Investment")
     public void Test_Reinvest_Fixed() throws InterruptedException, IOException {
 
         Log.info("======= START : XTRA - Re-Invest in Fixed=======");
 
         // Start the test
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.quickLoginViaOtp("9991015888", "547372");
+        loginHelp.quickLoginViaOtp("7795709569", "547372");
 
-
-        //Wait for 10 sec
-        Thread.sleep(10000);
 
         P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getAndroidDriver());
         p2PExtraHelper.reinvestFixed("1", "₹1", "Withdrawal request placed successfully");
@@ -180,6 +177,23 @@ public class P2PExtraTest extends TestBase {
 
     }
 
+
+
+    @Test(groups = {"p2pXtraReInvestFromFlexi", "sanity", "sanityPrime"}, priority = 0, description = "Verify Xtra : Reinvest(in FXIED) From Flexi Investment")
+    public void Test_Reinvest_Flexi() throws InterruptedException, IOException {
+
+        Log.info("======= START : XTRA - Reinvest(in FXIED) From Flexi=======");
+
+        // Start the test
+        LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
+        loginHelp.quickLoginViaOtp("7795709569", "547372");
+
+        P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getAndroidDriver());
+        p2PExtraHelper.reinvestFlexi( "1000","Re-Invest from Flexi to FIXED(Summary Page)");
+
+        Log.info("======= END : XTRA - Re-Invest in Fixed =======");
+
+    }
 
 
 
