@@ -137,14 +137,31 @@ public class P2PExtraTest extends TestBase {
 
         P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getAndroidDriver());
         p2PExtraHelper.setNomineeFlow("Add Nominee Flow","In case you don't login for a period of at least 2 years, we will reach out to you and your nominee");
-
         Log.info("======= END : XTRA - Add Nominee flow from Settings Option  =======");
 
     }
 
 
+
+    @Test(groups = {"p2pXtraNomineeDetails", "sanity", "sanityPrime"}, priority = 0, description = "Verify Xtra : Add Nominee from settings option")
+    public void Test_Check_Nominee_Details() throws InterruptedException, IOException {
+
+        Log.info("======= START : XTRA - Check Nominee Details from Settings Option=======");
+
+        // Start the test
+        LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
+        loginHelp.quickLoginViaOtp("8076595767", "547372");
+
+        P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getAndroidDriver());
+        p2PExtraHelper.checkNomineeDetailsFlow("Check Nominee Details","NAME","In case you don't login for a period of at least 2 years, we will reach out to you and your nominee");
+        Log.info("======= END : XTRA - Check Nominee Details from Settings Option  =======");
+
+    }
+
+
+
     @Test(groups = {"p2pXtraReInvest", "sanity", "sanityPrime"}, priority = 0, description = "Verify Xtra : Change Maturity Options of Fixed Investment")
-    public void Test_Reinvest() throws InterruptedException, IOException {
+    public void Test_Reinvest_Fixed() throws InterruptedException, IOException {
 
         Log.info("======= START : XTRA - Re-Invest in Fixed=======");
 
@@ -157,7 +174,7 @@ public class P2PExtraTest extends TestBase {
         Thread.sleep(10000);
 
         P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getAndroidDriver());
-        p2PExtraHelper.reinvest("1", "₹1", "Withdrawal request placed successfully");
+        p2PExtraHelper.reinvestFixed("1", "₹1", "Withdrawal request placed successfully");
 
         Log.info("======= END : XTRA - Re-Invest in Fixed =======");
 

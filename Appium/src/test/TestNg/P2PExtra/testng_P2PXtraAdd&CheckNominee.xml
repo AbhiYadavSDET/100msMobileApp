@@ -13,6 +13,7 @@
                 <include name="setUp"/>
                 <include name="instantiateHelpers"/>
                 <include name="p2pXtraAddNominee"/>
+                <include name="p2pXtraNomineeDetails"/>
                 <include name="tearDown"/>
             </run>
         </groups>

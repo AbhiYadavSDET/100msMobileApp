@@ -160,6 +160,11 @@ public class P2PExtraPage {
     @AndroidFindBy (id = "tvHeading")
     private AndroidElement dafault_bankAc_bottomsheet_title;
 
+    @AndroidFindBy (id = "tvHeading")
+    private AndroidElement nominee_details_page_heading;
+
+    @AndroidFindBy (xpath = "//*/android.widget.TextView[@text = 'NAME']")
+    private AndroidElement nominee_name;
 
     public P2PExtraPage(AndroidDriver driver) throws IOException {
 
@@ -372,6 +377,13 @@ public class P2PExtraPage {
         return Elements.getText(driver, dafault_bankAc_bottomsheet_title,"Get Heading on Default Bank Account Bottomsheet");
     }
 
+    public String getNomineeDetails() throws InterruptedException{
+        return Elements.getText(driver, nominee_details_page_heading,"Get Heading on Nominee Details Page");
+    }
+
+    public String getNomineeName() throws InterruptedException{
+        return Elements.getText(driver, nominee_name,"Get Name of Nominee");
+    }
 
 }
 

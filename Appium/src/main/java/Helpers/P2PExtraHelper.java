@@ -363,9 +363,6 @@ public class P2PExtraHelper {
 
 
 
-
-
-
     }
 
 
@@ -410,13 +407,59 @@ public class P2PExtraHelper {
 
         //Click on Back Button
         p2PExtraPage.clickBackBtn();
+
+    }
+
+
+
+    //User already added XTRA-Nominee
+    public void checkNomineeDetailsFlow(String expStatus, String expName, String expSubTitle) throws InterruptedException, IOException {
+
+        Log.info("----------- Arguments ---------------");
+
+        // Click on xtra icon on home page.
+        p2PExtraPage.selectXtra();
+
+        if (mbkCommonControlsPage.isWhitePopUpPresent()) {
+            mbkCommonControlsPage.closeWhitePopUp();
+        }
+
+        // Click on Got it to remove referral bottom sheet.
+        if (p2PExtraPage.isBottomSheetPresent()) p2PExtraPage.removeBottomSheet();
+
+        // Click on screen to remove bottom sheet.
+        // p2PExtraPage.tapOutsideBottomSheet();
+
+
+        //Swipe till the bottom | Settings Option
+        screen.swipeUpMore(driver);
+        screen.swipeUpMore(driver);
+
+        //Click on Settings option on XTRA dashboard
+        p2PExtraPage.clickSettings();
+
+        //Click on Nominee Option
+        p2PExtraPage.clickNominee();
+
+        String subTitle = p2PExtraPage.getNomineeTitle();
+        Log.info("Sub-Title : " + subTitle);
+        String name = p2PExtraPage.getNomineeName();
+        Log.info("Name of Nominee : " + name);
+
+        // Add the assertions
+        mbReporter.verifyEqualsWithLogging(subTitle, expSubTitle, "Verify Title", false, false, true);
+        mbReporter.verifyEqualsWithLogging(name, expName, "Verify Title", false, false, true);
+
+
     }
 
 
 
 
 
-        public void reinvest(String amount, String expAmount, String expStatus) throws InterruptedException, IOException {
+
+
+        public void reinvestFixed(String amount, String expAmount, String expStatus) throws InterruptedException, IOException {
 
         Log.info("----------- Arguments ---------------");
 
@@ -477,9 +520,6 @@ public class P2PExtraHelper {
             Thread.sleep(3000);
 
         }
-
-
-
 
 
 
