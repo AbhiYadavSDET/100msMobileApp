@@ -457,7 +457,6 @@ public class P2PExtraHelper {
 
 
 
-
         public void reinvestFixed(String amount, String expAmount, String expStatus) throws InterruptedException, IOException {
 
         Log.info("----------- Arguments ---------------");
@@ -484,10 +483,10 @@ public class P2PExtraHelper {
         p2PExtraPage.selectViewAllBtn();
 
         //Click on first fixed investment
-        //p2PExtraPage.click1stFixedInvestment();
+        p2PExtraPage.click1stFixedInvestment();
 
         // Click on First Investment
-        p2PExtraPage.selectFirstInvestment();
+       // p2PExtraPage.selectFirstInvestment();
 
         //Wait for 3 seconds
         Thread.sleep(3000);
@@ -526,8 +525,7 @@ public class P2PExtraHelper {
             }
 
 
-    }
-
+        }
 
 
 
