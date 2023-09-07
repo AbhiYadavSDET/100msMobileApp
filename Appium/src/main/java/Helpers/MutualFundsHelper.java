@@ -50,7 +50,7 @@ public class MutualFundsHelper {
 
         // Swipe till the bottom
         screen.swipeUpMore(driver);
-        screen.swipeUpMore(driver);
+        screen.swipeUpLess(driver);
 
 
         // Click on explore mutual funds.
