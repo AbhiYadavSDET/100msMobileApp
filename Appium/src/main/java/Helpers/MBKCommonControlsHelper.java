@@ -527,7 +527,7 @@ public class MBKCommonControlsHelper {
     public void handleHomePage() throws InterruptedException {
         if(mbkCommonControlsPage.isWhitePopUpPresent()){
             mbkCommonControlsPage.closeWhitePopUp();
-            Thread.sleep(1000);
+            Thread.sleep(3000);
         }
         for (int i = 0; i < 10; i++) {
             if (!Element.isElementPresent(driver, By.id("view_icon_bg"))) {
@@ -564,6 +564,10 @@ public class MBKCommonControlsHelper {
         Thread.sleep(5000);
         historyPage.clickHistoryTab();
 
+        Thread.sleep(2000);
+
+        pressback(1);
+
         // Get the details from the latest entry in history section
         String historyDescription = historyPage.getDescription();
         String historyAmount = historyPage.getAmount();
@@ -599,8 +603,6 @@ public class MBKCommonControlsHelper {
 
 
     }
-
-
 
 }
 

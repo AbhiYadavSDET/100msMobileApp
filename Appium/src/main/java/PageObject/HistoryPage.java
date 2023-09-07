@@ -18,13 +18,13 @@ public class HistoryPage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Home']")
     private AndroidElement homeTab;
 
-    @AndroidFindBy(id = "history_textview_desc")
+    @AndroidFindBy(id = "txt_transaction_summary")
     private AndroidElement historyDescription;
 
-    @AndroidFindBy(id = "history_textview_amount")
+    @AndroidFindBy(id = "txt_amount")
     private AndroidElement historyAmount;
 
-    @AndroidFindBy(id = "status_text")
+    @AndroidFindBy(id = "txt_status")
     private AndroidElement historyStatus;
 
 

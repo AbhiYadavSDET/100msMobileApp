@@ -88,6 +88,8 @@ public class LoginHelper {
         loginPage.enterOtp(otp);
         loginPage.clickSubmitOtpCta();
 
+        Thread.sleep(5000);
+
         mbkCommonControlsHelper.handleHomePage();
 
         element.waitForVisibility(driver, By.xpath("//*[@text='History']"));
@@ -117,6 +119,8 @@ public class LoginHelper {
 
         loginPage.enterOtp(otp);
         loginPage.clickSubmitOtpCta();
+
+        Thread.sleep(5000);
 
         mbkCommonControlsHelper.handleHomePageLanding();
 
