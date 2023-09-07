@@ -50,7 +50,7 @@ public class P2PExtraHelper {
         if(p2PExtraPage.isBottomSheetPresent()) p2PExtraPage.removeBottomSheet();
 
         // Click on screen to remove bottom sheet.
-        // p2PExtraPage.tapOutsideBottomSheet();
+         p2PExtraPage.tapOutsideBottomSheet();
 
         // Printing portfolio values.
         String portfolioValue = p2PExtraPage.getPortfolioValue();
@@ -62,6 +62,8 @@ public class P2PExtraHelper {
 //        Log.info("Invested Amount : " + investedAmount);
 //        Log.info("Earned Amount : " + earnedAmount);
         Log.info("Per Day Earning : " + perDayEarning);
+
+        screen.swipeUpLess(driver);
 
         // Click on withdraw on Xtra main page.
         p2PExtraPage.selectWithdraw();
