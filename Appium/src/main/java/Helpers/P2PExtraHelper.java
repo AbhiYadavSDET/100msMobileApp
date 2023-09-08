@@ -63,6 +63,9 @@ public class P2PExtraHelper {
 //        Log.info("Earned Amount : " + earnedAmount);
         Log.info("Per Day Earning : " + perDayEarning);
 
+        // If notification alerts are present, then swipe up
+        if(p2PExtraPage.checkNotificationAlert()) screen.swipeUpMedium(driver);
+
         // Click on withdraw on Xtra main page.
         p2PExtraPage.selectWithdraw();
 
@@ -109,10 +112,10 @@ public class P2PExtraHelper {
 
 
 
-    public void investInFlexi(String amount, String expAmount, String expStatus) throws InterruptedException, IOException {
+    public void investInFlexi(String expTitle) throws InterruptedException, IOException {
 
         Log.info("----------- Arguments ---------------");
-        Log.info("amount : " + amount);
+        Log.info("amount : 1000");
 
         // Click on xtra icon on home page.
         p2PExtraPage.selectXtra();
@@ -147,16 +150,25 @@ public class P2PExtraHelper {
         // Click Flexi from slider
         p2PExtraPage.selectFlexiFromNavBar();
 
-        //USed to click Invest Now btn on Xtra FLEXI amount page
+        // Used to click Invest Now btn on Xtra FLEXI amount page
         p2PExtraPage.selectInvestMore();
 
-        //Select NetBanking from XTRA checkout screen
+        // Select NetBanking from XTRA checkout screen
         p2PExtraPage.selectNBOnCheckoutScreen();
 
-        //Select Axis Bank in NetBanking
-        p2PExtraPage.selectAxisBankInNB();
 
+        // Get bank page heading
+        String title = p2PExtraPage.getBankPageTitle();
+
+        Log.info("Title : " + title);
         Log.info("You  have invested in FLEXI via NB ");
+
+        // Select Axis Bank in NetBanking
+        //p2PExtraPage.selectAxisBankInNB();
+
+        // Add the assertions
+        mbReporter.verifyEqualsWithLogging(title, expTitle, "Verify Flexi Investment", false,false,true);
+
 
     }
 
@@ -165,10 +177,10 @@ public class P2PExtraHelper {
 
 
 
-    public void investInFixed(String amount, String expAmount, String expStatus) throws InterruptedException, IOException {
+    public void investInFixed(String expTitle) throws InterruptedException, IOException {
 
         Log.info("----------- Arguments ---------------");
-        Log.info("amount : " + amount);
+      //  Log.info("amount : " + amount);
 
         // Click on xtra icon on home page.
         p2PExtraPage.selectXtra();
@@ -212,10 +224,17 @@ public class P2PExtraHelper {
         //Select NetBanking from XTRA checkout screen
         p2PExtraPage.selectNBOnCheckoutScreen();
 
-        //Select Axis Bank in NetBanking
-        p2PExtraPage.selectAxisBankInNB();
+        // Get bank page heading
+        String title = p2PExtraPage.getBankPageTitle();
 
+        Log.info("Title : " + title);
         Log.info("You  have invested in FIXED via NB ");
+
+        // Select Axis Bank in NetBanking
+        //p2PExtraPage.selectAxisBankInNB();
+
+        // Add the assertions
+        mbReporter.verifyEqualsWithLogging(title, expTitle, "Verify Fixed Investment", false,false,true);
 
     }
 
@@ -224,10 +243,9 @@ public class P2PExtraHelper {
 
 
 
-    public void newUserFlow(String amount, String expAmount, String expStatus) throws InterruptedException, IOException {
+    public void newUserFlow(String expTitle) throws InterruptedException, IOException {
 
         Log.info("----------- Arguments ---------------");
-        Log.info("amount : " + amount);
 
         // Click on xtra icon on home page.
         p2PExtraPage.selectXtra();
@@ -243,24 +261,24 @@ public class P2PExtraHelper {
         // Click on screen to remove bottom sheet.
         // p2PExtraPage.tapOutsideBottomSheet();
 
-        // Printing portfolio values.
-        String portfolioValue = p2PExtraPage.getPortfolioValue();
-        String perDayEarning = p2PExtraPage.getPerDayEarning();
-        Log.info("Portfolio Value : " + portfolioValue);
-        Log.info("Per Day Earning : " + perDayEarning);
-
-
         //Click on Get Started button on XTRA Pitch Page
-        p2PExtraPage.selectInvestMore();
+        p2PExtraPage.selectGetStarted();
 
         //For NON-KYCED User Flow
         if (p2PExtraPage.isKYCBottomSheetPresent()) {
 
-            //Click Proceed button on Complete KYC bottomsheet
-            p2PExtraPage.selectInvestMore();
+            String Kyc_status_title = p2PExtraPage.getKycBottomsheetTitle();
+            Log.info("KYC STATUS : " + Kyc_status_title);
 
+            // Add the assertions
+            mbReporter.verifyEqualsWithLogging(Kyc_status_title, expTitle, "Verify New User Flow", false,false,true);
+
+            //Click Proceed button on Complete KYC bottomsheet
+            //p2PExtraPage.selectProceedKYC();
 
         }
+
+
 
     }
 
@@ -457,7 +475,7 @@ public class P2PExtraHelper {
 
 
 
-        public void reinvestFixed(String amount, String expAmount, String expStatus) throws InterruptedException, IOException {
+        public void reinvestFixed(String expStatus1, String expStatus2) throws InterruptedException, IOException {
 
         Log.info("----------- Arguments ---------------");
 
@@ -483,13 +501,15 @@ public class P2PExtraHelper {
         p2PExtraPage.selectViewAllBtn();
 
         //Click on first fixed investment
-        p2PExtraPage.click1stFixedInvestment();
+        //p2PExtraPage.click1stFixedInvestment();
 
         // Click on First Investment
-       // p2PExtraPage.selectFirstInvestment();
+        p2PExtraPage.selectFirstInvestment();
 
-        //Wait for 3 seconds
-        Thread.sleep(3000);
+        // Click on Re-invest button
+        p2PExtraPage.selectMaturityOptn();
+
+
 
         //Click on On-Maturity Option
         //If User already selected reinvest while investing
@@ -498,14 +518,20 @@ public class P2PExtraHelper {
             //Click on Re-invest Option
             p2PExtraPage.selectReinvestBtn();
 
-            //Wait for 2 seconds
-            Thread.sleep(2000);
+            //Wait for 1 second
+            Thread.sleep(1000);
 
             //Change to Transfer to Flexi Option
             p2PExtraPage.selectTransferToFlexioption();
 
             //Wait for 3 seconds
             Thread.sleep(3000);
+
+
+            String actualStatus1 = p2PExtraPage.getReinvestoption();
+
+            // Assertion
+            mbReporter.verifyEqualsWithLogging(actualStatus1, expStatus1, "Verify Re-invest Fixed", false,false,true);
 
 
         } else {
@@ -522,10 +548,16 @@ public class P2PExtraHelper {
             //Wait for 3 seconds
             Thread.sleep(3000);
 
-            }
+            String actualStatus2 = p2PExtraPage.getTransferToFlexiBtn();
+
+            // Assertion
+            mbReporter.verifyEqualsWithLogging(actualStatus2, expStatus2, "Verify Re-invest Fixed", false,false,true);
 
 
         }
+
+
+    }
 
 
 

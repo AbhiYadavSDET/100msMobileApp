@@ -1,7 +1,6 @@
 package PageObject;
 
 import Utils.Elements;
-import Utils.MobiKwikScreen;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -69,6 +68,12 @@ public class P2PExtraPage {
 
     @AndroidFindBy (xpath = "//*/android.widget.TextView[@text = 'Got it']")
     private AndroidElement bottom_sheet_ad;
+
+    @AndroidFindBy (id= "permission_allow_button")
+    private AndroidElement allow_SMS_permission;
+
+    @AndroidFindBy (id= "bottom_sheet_text")
+    private AndroidElement bank_page;
 
 
 
@@ -145,7 +150,7 @@ public class P2PExtraPage {
     @AndroidFindBy (xpath = "//*/android.widget.TextView[@text = 'Re-invest']")
     private AndroidElement reinvest_btn;
 
-    @AndroidFindBy (xpath = "//*/android.widget.TextView[@text = 'Transfer to Flexi']")
+    @AndroidFindBy (xpath = "//*/android.widget.TextView[@id = 'tvValue']")
     private AndroidElement transfer_flexi_btn;
 
     @AndroidFindBy (xpath = "//*/android.widget.RelativeLayout[@index = 0]")
@@ -156,6 +161,10 @@ public class P2PExtraPage {
 
     @AndroidFindBy (id = "tvSubHeading")
     private AndroidElement add_nominee_page_title;
+
+    @AndroidFindBy (id = "tvValue")
+    private AndroidElement click_onMaturity_option;
+
 
     @AndroidFindBy (id = "tvHeading")
     private AndroidElement dafault_bankAc_bottomsheet_title;
@@ -172,16 +181,27 @@ public class P2PExtraPage {
     @AndroidFindBy (xpath = "//*/android.widget.TextView[@text = 'Confirm']")
     private AndroidElement confirm_btn;
 
-    @AndroidFindBy (xpath = "//*/android.view.ViewGroup[]")
+    @AndroidFindBy (xpath = "//*/android.view.TextView[@text = 'Invested Amount']")
     private AndroidElement first_investment_widget;
-
-
 
     @AndroidFindBy (id="title")
     private AndroidElement reinvested_amount_flexi;
 
     @AndroidFindBy (id="tvViewMore")
     private AndroidElement view_all_btn;
+
+    @AndroidFindBy (id="clParent")
+    private AndroidElement notification_alert_widget;
+
+    @AndroidFindBy (xpath="/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/androidx.appcompat.widget.LinearLayoutCompat/androidx.viewpager.widget.ViewPager/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout/android.widget.FrameLayout/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup")
+    private AndroidElement investment_widget;
+
+    @AndroidFindBy (id="title")
+    private AndroidElement complete_kyc_bottomsheet;
+
+
+
+
 
     public P2PExtraPage(AndroidDriver driver) throws IOException {
 
@@ -234,6 +254,14 @@ public class P2PExtraPage {
 
     public void selectInvestMore() throws InterruptedException{
         Element.selectElement(driver, cta_invest,"Invest More Amount cta");
+    }
+
+    public void selectGetStarted() throws InterruptedException{
+        Element.selectElement(driver, cta_invest,"Get Started cta");
+    }
+
+    public void selectProceedKYC() throws InterruptedException{
+        Element.selectElement(driver, cta_invest,"Proceed KYC cta");
     }
 
     public void selectOkfromPlusPopUp() throws InterruptedException{
@@ -402,26 +430,52 @@ public class P2PExtraPage {
         return Elements.getText(driver, nominee_name,"Get Name of Nominee");
     }
 
-    public String selectTransferToPlusBtn() throws InterruptedException{
-        return Elements.getText(driver, transfer_to_plus_btn,"Click on Transfer to Plus Button");
+    public String getReinvestoption() throws InterruptedException{
+        return Elements.getText(driver, select_reinvest ,"Check option Re-invest");
     }
 
-    public String selectConfirmBtn() throws InterruptedException{
-        return Elements.getText(driver, confirm_btn,"Click on Confirm Button");
+    public String getTransferToFlexiBtn() throws InterruptedException{
+        return Element.getText(driver,transfer_flexi_btn ,"Get Transfer To Flexi Button");
+    }
+
+    public void selectTransferToPlusBtn() throws InterruptedException{
+         Elements.selectElement(driver, transfer_to_plus_btn,"Click on Transfer to Plus Button");
+    }
+
+    public void selectConfirmBtn() throws InterruptedException{
+         Elements.selectElement(driver, confirm_btn,"Click on Confirm Button");
     }
 
     public String getTransferAmount() throws InterruptedException{
         return Elements.getText(driver, reinvested_amount_flexi,"Get Amount on Txn Status Screen");
     }
 
-    public String selectViewAllBtn() throws InterruptedException{
-        return Elements.getText(driver, view_all_btn,"Click on View All Button");
+    public void selectViewAllBtn() throws InterruptedException{
+         Elements.selectElement(driver, view_all_btn,"Click on View All Button");
     }
 
-    public String selectFirstInvestment() throws InterruptedException{
-        return Elements.getText(driver, first_investment_widget,"Click on 1st Investment");
+    public void selectMaturityOptn() throws InterruptedException{
+       Elements.selectElement(driver, click_onMaturity_option,"Click on 1st Investment");
     }
 
+    public void selectFirstInvestment() throws InterruptedException{
+        Elements.selectElement(driver, investment_widget,"Click on 1st Investment");
+    }
+
+    public boolean checkNotificationAlert() throws InterruptedException{
+        return Elements.isElementPresent(driver, notification_alert_widget );
+    }
+    public String getKycBottomsheetTitle() throws InterruptedException{
+        return Elements.getText(driver, complete_kyc_bottomsheet,"Complete KYC bottomsheet");
+    }
+
+    public void selectAllowBtn() throws InterruptedException{
+        Elements.selectElement(driver, allow_SMS_permission,"Click on Allow");
+    }
+
+    public String getBankPageTitle() throws InterruptedException{
+        return Elements.getText(driver, bank_page,"Heading on Bank Page");
+    }
 
 }
 

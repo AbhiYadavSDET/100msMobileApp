@@ -20,7 +20,7 @@ public class P2PExtraTest extends TestBase {
 
         // Start the test
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.quickLoginViaOtp("8076595767", "547372");
+        loginHelp.quickLoginViaOtp("7795709569", "547372");
 
         P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getAndroidDriver());
         p2PExtraHelper.withdraw("1", "₹1", "Withdrawal request placed successfully");
@@ -43,7 +43,7 @@ public class P2PExtraTest extends TestBase {
         loginHelp.quickLoginViaOtp("8076595767", "547372");
 
         P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getAndroidDriver());
-        p2PExtraHelper.investInFlexi("1", "₹1", "Withdrawal request placed successfully");
+        p2PExtraHelper.investInFlexi("Select Your Bank");
 
         Log.info("======= END : p2p Xtra-FLEXI test =======");
 
@@ -62,7 +62,7 @@ public class P2PExtraTest extends TestBase {
         loginHelp.quickLoginViaOtp("8076595767", "547372");
 
         P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getAndroidDriver());
-        p2PExtraHelper.investInFixed("1", "₹1", "Withdrawal request placed successfully");
+        p2PExtraHelper.investInFixed("Select Your Bank");
 
         Log.info("======= END : p2p XTRA-FIXED Invest test =======");
 
@@ -82,7 +82,7 @@ public class P2PExtraTest extends TestBase {
         loginHelp.quickLoginViaOtp("9205299330", "547372");
 
         P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getAndroidDriver());
-        p2PExtraHelper.newUserFlow("1", "₹1", "Withdrawal request placed successfully");
+        p2PExtraHelper.newUserFlow("Complete your KYC");
 
         Log.info("======= END : XTRA - NEW USER flow test with no kYC=======");
 
@@ -150,7 +150,7 @@ public class P2PExtraTest extends TestBase {
 
         // Start the test
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.quickLoginViaOtp("8076595767", "547372");
+        loginHelp.quickLoginViaOtp("7795709569", "547372");
 
         P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getAndroidDriver());
         p2PExtraHelper.checkNomineeDetailsFlow("Check Nominee Details","NAME","In case you don't login for a period of at least 2 years, we will reach out to you and your nominee");
@@ -171,7 +171,7 @@ public class P2PExtraTest extends TestBase {
 
 
         P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getAndroidDriver());
-        p2PExtraHelper.reinvestFixed("1", "₹1", "Withdrawal request placed successfully");
+        p2PExtraHelper.reinvestFixed("Transfer to Flexi","Re-invest");
 
         Log.info("======= END : XTRA - Re-Invest in Fixed =======");
 
@@ -189,7 +189,7 @@ public class P2PExtraTest extends TestBase {
         loginHelp.quickLoginViaOtp("7795709569", "547372");
 
         P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getAndroidDriver());
-        p2PExtraHelper.reinvestFlexi( "1000","Re-Invest from Flexi to FIXED(Summary Page)");
+        p2PExtraHelper.reinvestFlexi( "1000","Re-Invest from Flexi to FIXED(From Summary Page)");
 
         Log.info("======= END : XTRA - Re-Invest in Fixed =======");
 
