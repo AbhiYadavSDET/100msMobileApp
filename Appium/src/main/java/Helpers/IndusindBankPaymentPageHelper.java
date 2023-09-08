@@ -123,7 +123,7 @@ public class IndusindBankPaymentPageHelper {
 
         switch (device) {
             case 0:
-                paymentPageAshishPhone();
+                paymentPageSamsungPhone();
                 break;
 
             case 1:
@@ -136,6 +136,10 @@ public class IndusindBankPaymentPageHelper {
 
             case 3:
                 paymentPagePixel3A();
+                break;
+
+            case 4:
+                paymentPageAshishPhone();
                 break;
 
         }
@@ -476,6 +480,92 @@ public class IndusindBankPaymentPageHelper {
 
         Log.info("TAP on Confirm and Pay");
         Elements.tapByCoordinates(width*2,height*12, driver);
+
+
+        Log.info("WAIT");
+        Thread.sleep(20000);
+    }
+
+    public void paymentPageSamsungPhone() throws InterruptedException {
+
+        Log.info("Running on Samsung Phone");
+
+        Dimension dimension = driver.manage().window().getSize();
+
+        int width = dimension.getWidth()/4;
+        int height = dimension.getHeight()/20;
+
+        Log.info("WAIT");
+        Thread.sleep(20000);
+
+
+        Log.info("TAP on text box");
+        Elements.tapByCoordinates(width*2,height*8, driver);
+
+        Log.info("WAIT");
+        Thread.sleep(3000);
+
+        Log.info("Enter OTP Details");
+
+        String otp = getOtpDetailsByJsonFile();
+        //String otp = getOtpDetails();
+
+//         String otp = "258016";
+
+
+        for(int i = 0 ; i < otp.length() ; i++){
+            char c = otp.charAt(i);
+
+            Log.info("TAP " + c);
+
+            switch (c) {
+                case '2':
+                    Elements.tapByCoordinates(width*2,height*14, driver);
+                    break;
+
+                case '5':
+                    Elements.tapByCoordinates(width*2,height*16, driver);
+                    break;
+
+                case '8':
+                    Elements.tapByCoordinates(width*2,height*18, driver);
+                    break;
+
+                case '0':
+                    Elements.tapByCoordinates(width*2,height*20, driver);
+                    break;
+
+                case '1':
+                    Elements.tapByCoordinates(width,height*14, driver);
+                    break;
+
+                case '4':
+                    Elements.tapByCoordinates(width,height*16, driver);
+                    break;
+
+                case '7':
+                    Elements.tapByCoordinates(width,height*18, driver);
+                    break;
+
+                case '3':
+                    Elements.tapByCoordinates(width*3,height*14, driver);
+                    break;
+
+                case '6':
+                    Elements.tapByCoordinates(width*3,height*16, driver);
+                    break;
+
+                case '9':
+                    Elements.tapByCoordinates(width*3,height*18, driver);
+                    break;
+            }
+        }
+
+        Log.info("WAIT");
+        Thread.sleep(3000);
+
+        Log.info("TAP on Confirm and Pay");
+        Elements.tapByCoordinates(width*2,height*10, driver);
 
 
         Log.info("WAIT");
