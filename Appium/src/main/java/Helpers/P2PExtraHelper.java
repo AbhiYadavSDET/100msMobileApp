@@ -50,7 +50,7 @@ public class P2PExtraHelper {
         if(p2PExtraPage.isBottomSheetPresent()) p2PExtraPage.removeBottomSheet();
 
         // Click on screen to remove bottom sheet.
-         p2PExtraPage.tapOutsideBottomSheet();
+//         p2PExtraPage.tapOutsideBottomSheet();
 
         // Printing portfolio values.
         String portfolioValue = p2PExtraPage.getPortfolioValue();
