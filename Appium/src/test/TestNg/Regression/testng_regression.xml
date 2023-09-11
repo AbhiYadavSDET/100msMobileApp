@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Sanity">
+
+    <parameter name="build" value="prod"/>
+    <parameter name="level" value="payments"/>
+    <parameter name="saucelabs" value="false"></parameter>
+    <parameter name="androidOSVersion" value="12.0"></parameter>
+
+    <listeners>
+        <listener class-name="Utils.Listeners.AnnotationTransformer"/>
+        <listener class-name="Utils.ExtentReportListener"/>
+    </listeners>
+
+    <test verbose="2" preserve-order="true" name="Regression Test">
+        <groups>
+            <run>
+                <include name="setUp"/>
+                <include name="instantiateHelpers"/>
+                <include name="regression"/>
+                <include name="tearDown"/>
+            </run>
+        </groups>
+
+
+        <classes>
+            <class name="Utils.TestBase"/>
+            <class name="AddMoney.Test_AddMoney"/>
+            <class name="P2M.P2MTest"/>
+            <class name="P2P.P2PTest"/>
+            <class name="P2PExtra.P2PExtraTest"/>
+            <class name="MutualFunds.MutualFundsTest"/>
+            <class name="Gold.GoldTest"/>
+            <class name="Loan.LoanTest"/>
+            <class name="Zip.ZipTest"/>
+            <class name="Offers.OfferTest"/>
+            <class name="Rewards.RewardsTest"/>
+            <class name="Recharge.RechargeTest"/>
+            <class name="SecurityPin.SecurityPinTest"/>
+            <class name="HelpAndSupport.Test_HelpAndSupport"/>
+            <class name="PayRent.PayRentTest"/>
+<!--            <class name="AccountAggregator.Test_AccountAggregator"/>-->
+        </classes>
+    </test>
+
+</suite>
