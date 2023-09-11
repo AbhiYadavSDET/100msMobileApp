@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class Test_HelpAndSupport  extends TestBase {
 
-    @Test(groups = {"sanity", "helpAndSupport"}, priority = 0, description = "Verify Help And Support")
+    @Test(groups = {"sanity", "helpAndSupport" , "regression"}, priority = 0, description = "Verify Help And Support")
     public void Test01_HelpAndSupport() throws IOException, InterruptedException {
 
 
