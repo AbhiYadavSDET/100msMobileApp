@@ -97,10 +97,10 @@ public class P2PExtraTest extends TestBase {
 
         // Start the test
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.quickLoginViaOtp("8076595767", "547372");
+        loginHelp.quickLoginViaOtp("7795709569", "547372");
 
         P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getAndroidDriver());
-        p2PExtraHelper.referAndEarnFlow();
+        p2PExtraHelper.referAndEarnFlow("Know More");
 
         Log.info("======= END : XTRA - Refer & Earn flow =======");
 
@@ -189,7 +189,7 @@ public class P2PExtraTest extends TestBase {
         loginHelp.quickLoginViaOtp("7795709569", "547372");
 
         P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getAndroidDriver());
-        p2PExtraHelper.reinvestFlexi( "1000","Re-Invest from Flexi to FIXED(From Summary Page)");
+        p2PExtraHelper.reinvestFlexi( "1000","Invest More","Re-Invest from Flexi to FIXED(From Summary Page)");
 
         Log.info("======= END : XTRA - Re-Invest in Fixed =======");
 

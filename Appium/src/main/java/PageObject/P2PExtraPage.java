@@ -1,6 +1,7 @@
 package PageObject;
 
 import Utils.Elements;
+import Utils.Screen;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -150,7 +151,7 @@ public class P2PExtraPage {
     @AndroidFindBy (xpath = "//*/android.widget.TextView[@text = 'Re-invest']")
     private AndroidElement reinvest_btn;
 
-    @AndroidFindBy (xpath = "//*/android.widget.TextView[@id = 'tvValue']")
+    @AndroidFindBy (xpath = "//*/android.widget.TextView[@text = 'Transfer to Flexi']")
     private AndroidElement transfer_flexi_btn;
 
     @AndroidFindBy (xpath = "//*/android.widget.RelativeLayout[@index = 0]")
@@ -199,6 +200,17 @@ public class P2PExtraPage {
     @AndroidFindBy (id="title")
     private AndroidElement complete_kyc_bottomsheet;
 
+    @AndroidFindBy (id="clContainer")
+    private AndroidElement invest_container;
+
+    @AndroidFindBy (id="btn_back")
+    private AndroidElement refer_page_back_btn;
+
+    @AndroidFindBy (xpath = "//*/android.view.TextView[@text = 'Refer & earn ₹250 + 10%']")
+    private AndroidElement refer_page_title;
+
+    @AndroidFindBy (id="tv_know_more")
+    private AndroidElement know_more_optn;
 
 
 
@@ -407,10 +419,13 @@ public class P2PExtraPage {
     }
 
     public void selectReinvestoption() throws InterruptedException{
+        Elements.tapByCoordinates(0,0, driver);
+        Elements.tapByCoordinates(0,0, driver);
         Element.selectElement(driver,select_reinvest ,"Change option to Re-invest");
     }
 
     public void selectTransferToFlexioption() throws InterruptedException{
+        Elements.tapByCoordinates(0,0, driver);
         Element.selectElement(driver,select_transfer_to_flexi ,"Change option to Transfer to Flexi");
     }
 
@@ -431,7 +446,8 @@ public class P2PExtraPage {
     }
 
     public String getReinvestoption() throws InterruptedException{
-        return Elements.getText(driver, select_reinvest ,"Check option Re-invest");
+        Elements.tapByCoordinates(0,0, driver);
+        return Elements.getText(driver, reinvest_btn ,"Check option Re-invest");
     }
 
     public String getTransferToFlexiBtn() throws InterruptedException{
@@ -455,11 +471,15 @@ public class P2PExtraPage {
     }
 
     public void selectMaturityOptn() throws InterruptedException{
-       Elements.selectElement(driver, click_onMaturity_option,"Click on 1st Investment");
+//        Elements.tapByCoordinates(723,1476, driver);
+//        Screen.swipeUp();
+          Elements.tapByCoordinates(0,0, driver);
+          Elements.selectElement(driver, click_onMaturity_option, "Click on Maturity Option");
+
     }
 
     public void selectFirstInvestment() throws InterruptedException{
-        Elements.selectElement(driver, investment_widget,"Click on 1st Investment");
+        Elements.selectElement(driver, investment_widget,"Click on 1st On Going Investment");
     }
 
     public boolean checkNotificationAlert() throws InterruptedException{
@@ -476,6 +496,28 @@ public class P2PExtraPage {
     public String getBankPageTitle() throws InterruptedException{
         return Elements.getText(driver, bank_page,"Heading on Bank Page");
     }
+
+    public String getConfirmCtaText() throws InterruptedException{
+        return Elements.getText(driver, cta_invest,"Get Confirm button text");
+    }
+
+    public boolean checkInvestContainer() throws InterruptedException{
+        return Elements.isElementPresent(driver, invest_container);
+    }
+
+    public void selectBackBtn() throws InterruptedException{
+        Elements.selectElement(driver, refer_page_back_btn,"Click on Back Button");
+    }
+
+    public String getTitleText() throws InterruptedException{
+        return Elements.getText(driver, refer_page_title,"Get Refer Page Title");
+    }
+
+    public String getKnowMoreOptn() throws InterruptedException{
+        return Elements.getText(driver, know_more_optn, "Get Know More Text");
+    }
+
+
 
 }
 

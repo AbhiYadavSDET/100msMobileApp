@@ -288,7 +288,7 @@ public class P2PExtraHelper {
 
 
 
-        public void referAndEarnFlow() throws InterruptedException, IOException {
+        public void referAndEarnFlow(String expTitle) throws InterruptedException, IOException {
 
             Log.info("----------- Arguments ---------------");
 
@@ -309,6 +309,8 @@ public class P2PExtraHelper {
             Log.info("Portfolio Value : " + portfolioValue);
             Log.info("Per Day Earning : " + perDayEarning);
 
+            // If notification alerts are present, then swipe up
+            if(p2PExtraPage.checkNotificationAlert() || p2PExtraPage.checkInvestContainer()) screen.swipeUpMedium(driver);
 
             //Swipe till Refer & Earn Widget
             screen.swipeUpMore(driver);
@@ -325,10 +327,20 @@ public class P2PExtraHelper {
             //Swipe up complete on Referrals Page
             screen.swipeUpMore(driver);
 
+            //Select Back button
+            p2PExtraPage.selectBackBtn();
+
+            String check_know_more_optn = p2PExtraPage.getKnowMoreOptn();
+
+            Log.info("Text Check :" + check_know_more_optn);
+
+            // Add the assertions
+            mbReporter.verifyEqualsWithLogging(check_know_more_optn, expTitle, "Verify Refer & Earn Flow", false,false,true);
 
 
 
-    }
+
+        }
 
 
 
@@ -475,7 +487,7 @@ public class P2PExtraHelper {
 
 
 
-        public void reinvestFixed(String expStatus1, String expStatus2) throws InterruptedException, IOException {
+    public void reinvestFixed(String expStatus1,String expStatus2) throws InterruptedException, IOException {
 
         Log.info("----------- Arguments ---------------");
 
@@ -491,10 +503,11 @@ public class P2PExtraHelper {
         // Click on screen to remove bottom sheet.
         // p2PExtraPage.tapOutsideBottomSheet();
 
-
-
+        // If notification alerts are present, then swipe up
+        // if(p2PExtraPage.checkNotificationAlert()) screen.swipeUp(driver);
 
         //Swipe till the bottom | Settings Option
+        screen.swipeUpMore(driver);
         screen.swipeUpMore(driver);
 
         //Click on View All button
@@ -506,12 +519,9 @@ public class P2PExtraHelper {
         // Click on First Investment
         p2PExtraPage.selectFirstInvestment();
 
-        // Click on Re-invest button
+        // Click on On-Maturity Option
         p2PExtraPage.selectMaturityOptn();
 
-
-
-        //Click on On-Maturity Option
         //If User already selected reinvest while investing
         if(p2PExtraPage.checkReinvestBtn()){
 
@@ -524,31 +534,33 @@ public class P2PExtraHelper {
             //Change to Transfer to Flexi Option
             p2PExtraPage.selectTransferToFlexioption();
 
-            //Wait for 3 seconds
-            Thread.sleep(3000);
+            //Wait for 1 second
+            Thread.sleep(1000);
 
-
-            String actualStatus1 = p2PExtraPage.getReinvestoption();
+            String actualStatus1 = p2PExtraPage.getTransferToFlexiBtn();
+            Log.info("Check text :" + actualStatus1);
 
             // Assertion
             mbReporter.verifyEqualsWithLogging(actualStatus1, expStatus1, "Verify Re-invest Fixed", false,false,true);
 
 
-        } else {
-            //If User already selected transfer to flexi  while investing
+      } else {
+            //If User already selected transfer to Flexi  while investing
             //Click on Transfer to Flexi Option
             p2PExtraPage.selectTransferToFlexiBtn();
 
-            //Wait for 2 seconds
-            Thread.sleep(2000);
+            //Wait for 1 second
+            Thread.sleep(1000);
 
             //Change to Reinvest option
             p2PExtraPage.selectReinvestoption();
 
-            //Wait for 3 seconds
-            Thread.sleep(3000);
+            //Wait for 1 second
+            Thread.sleep(1000);
 
-            String actualStatus2 = p2PExtraPage.getTransferToFlexiBtn();
+            String actualStatus2 = p2PExtraPage.getReinvestoption();
+            Log.info("Check text :");
+            Log.info("Check text :" + actualStatus2);
 
             // Assertion
             mbReporter.verifyEqualsWithLogging(actualStatus2, expStatus2, "Verify Re-invest Fixed", false,false,true);
@@ -557,13 +569,15 @@ public class P2PExtraHelper {
         }
 
 
+
+
     }
 
 
 
 
 
-        public void reinvestFlexi(String expAmount,String expStatus) throws InterruptedException, IOException {
+        public void reinvestFlexi(String Amount,String expText,String expStatus) throws InterruptedException, IOException {
 
                 Log.info("----------- Arguments ---------------");
 
@@ -576,6 +590,8 @@ public class P2PExtraHelper {
                 // Click on Got it to remove referral bottom sheet.
                 if(p2PExtraPage.isBottomSheetPresent()) p2PExtraPage.removeBottomSheet();
 
+                // If notification alerts are present, then swipe up
+                if(p2PExtraPage.checkNotificationAlert() || p2PExtraPage.checkInvestContainer()) screen.swipeUpMedium(driver);
 
                 // Click on withdraw on Xtra main page.
                 p2PExtraPage.selectWithdraw();
@@ -587,25 +603,18 @@ public class P2PExtraHelper {
                 if(p2PExtraPage.isBottomSheetPresent()) p2PExtraPage.removeBottomSheet();
 
                 // Enter amount on withdrawal amount page.
-                p2PExtraPage.enterAmount(expAmount);
+                p2PExtraPage.enterAmount(Amount);
 
-                // Click on Tranfer to Plus button if activates
+                // Click on Transfer to Plus button if activates
                 p2PExtraPage.selectTransferToPlusBtn();
 
-                // Click on Confirm button
-                p2PExtraPage.selectConfirmBtn();
-
-                // Wait for 1 sec
-                Thread.sleep(1000);
-
                 // Verification on the Success Screen
-                String actualAmount = p2PExtraPage.getTransferAmount();
+                String actualText = p2PExtraPage.getConfirmCtaText();
 
-                // Display the values
-                Log.info("Amount Reinvested to FIXED :" + actualAmount );
+                Log.info("actualText :" + actualText);
 
                 // Assertion
-                mbReporter.verifyEqualsWithLogging(actualAmount, expAmount, "Verify Re-invested amount", false,false,true);
+                mbReporter.verifyEqualsWithLogging(actualText, expText, "Verify Re-invested amount", false,false,true);
 
 
         }
