@@ -13,7 +13,7 @@ import java.io.IOException;
 public class LoanTest extends TestBase {
 
 
-    @Test(groups = {"sanity", "verifyLoanPage"}, priority = 0, description = "Wallet To Wallet transfer")
+    @Test(groups = {"sanity", "verifyLoanPage", "regression"}, priority = 0, description = "Wallet To Wallet transfer")
     public void Test01_verifyLoanPage() throws IOException, InterruptedException {
 
         Log.info("======= START : Loan Verify test =======");

@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public class P2PExtraTest extends TestBase {
 
-    @Test(groups = {"p2pXtraWithdraw", "sanity", "sanityPrime"}, priority = 0, description = "Verify Withdraw Money")
+    @Test(groups = {"p2pXtraWithdraw", "sanity", "sanityPrime", "regression"}, priority = 0, description = "Verify Withdraw Money")
     public void Test_Withdraw_Money() throws InterruptedException, IOException {
 
         Log.info("======= START : p2p Xtra Withdraw test =======");
@@ -32,7 +32,7 @@ public class P2PExtraTest extends TestBase {
 
 
 
-    @Test(groups = {"p2pXtraInvestInFlexi", "sanity", "sanityPrime"}, priority = 0, description = "Verify Invest in Flexi flow")
+    @Test(groups = {"p2pXtraInvestInFlexi", "sanity", "sanityPrime", "regression"}, priority = 0, description = "Verify Invest in Flexi flow")
     public void Test_Invest_In_Flexi() throws InterruptedException, IOException {
 
         Log.info("======= START : p2p XTRA-FLEXI Invest test =======");
@@ -51,7 +51,7 @@ public class P2PExtraTest extends TestBase {
 
 
 
-    @Test(groups = {"p2pXtraInvestInFixed", "sanity", "sanityPrime"}, priority = 0, description = "Verify Invest in Fixed flow")
+    @Test(groups = {"p2pXtraInvestInFixed", "sanity", "sanityPrime", "regression"}, priority = 0, description = "Verify Invest in Fixed flow")
     public void Test_Invest_In_Fixed() throws InterruptedException, IOException {
 
         Log.info("======= START : p2p XTRA-FIXED Invest test =======");
@@ -71,7 +71,7 @@ public class P2PExtraTest extends TestBase {
 
 
 
-    @Test(groups = {"p2pXtraNewUser", "sanity", "sanityPrime"}, priority = 0, description = "Verify Xtra :New User Flow Journey")
+    @Test(groups = {"p2pXtraNewUser", "sanity", "sanityPrime", "regression"}, priority = 0, description = "Verify Xtra :New User Flow Journey")
     public void Test_New_User_In_XTRA() throws InterruptedException, IOException {
 
         Log.info("======= START : XTRA - NEW USER flow test with no kYC=======");
@@ -90,7 +90,7 @@ public class P2PExtraTest extends TestBase {
 
 
 
-    @Test(groups = {"p2pXtraReferAndEarn", "sanity", "sanityPrime"}, priority = 0, description = "Verify Xtra : Refer & Earn Journey from Xtra Dashboard")
+    @Test(groups = {"p2pXtraReferAndEarn", "sanity", "sanityPrime", "regression"}, priority = 0, description = "Verify Xtra : Refer & Earn Journey from Xtra Dashboard")
     public void Test_Refer_Earn_In_XTRA() throws InterruptedException, IOException {
 
         Log.info("======= START : XTRA - Refer & Earn  flow =======");

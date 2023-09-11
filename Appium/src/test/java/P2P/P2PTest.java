@@ -13,7 +13,7 @@ import java.io.IOException;
 public class P2PTest extends TestBase {
 
 
-    @Test(groups = {"sanity", "p2pSend"}, priority = 0, description = "Wallet To Wallet transfer")
+    @Test(groups = {"sanity", "p2pSend", "regression"}, priority = 0, description = "Wallet To Wallet transfer")
     public void Test01_p2pSend() throws IOException, InterruptedException {
 
         Log.info("======= START : P2P Send test =======");

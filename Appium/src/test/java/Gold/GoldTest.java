@@ -13,7 +13,7 @@ import java.io.IOException;
 public class GoldTest extends TestBase {
 
 
-    @Test(groups = {"sanity", "goldBuy"}, priority = 1, description = "Verify Gold Buy")
+    @Test(groups = {"sanity", "goldBuy" , "regression"}, priority = 1, description = "Verify Gold Buy")
     public void Test01_buyGold() throws IOException, InterruptedException {
 
         Log.info("======= START : Gold Buy test =======");
@@ -32,7 +32,7 @@ public class GoldTest extends TestBase {
 
     }
 
-    @Test(groups = {"sanity", "goldSell"}, priority = 0, description = "Verify Gold Sell")
+    @Test(groups = {"sanity", "goldSell", "regression"}, priority = 0, description = "Verify Gold Sell")
     public void Test02_buySell() throws IOException, InterruptedException {
 
         Log.info("======= START : Gold Sell test =======");
