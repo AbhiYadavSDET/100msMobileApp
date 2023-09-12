@@ -506,11 +506,12 @@ public class P2PExtraHelper {
         // p2PExtraPage.tapOutsideBottomSheet();
 
         // If notification alerts are present, then swipe up
-        // if(p2PExtraPage.checkNotificationAlert()) screen.swipeUp(driver);
+         if(p2PExtraPage.checkNotificationAlert()) screen.swipeUpMore(driver);
 
         //Swipe till the bottom | Settings Option
         screen.swipeUpMore(driver);
-        screen.swipeUpMore(driver);
+      //  screen.swipeUpLess(driver);
+
 
         //Click on View All button
         p2PExtraPage.selectViewAllBtn();
