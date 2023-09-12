@@ -69,7 +69,7 @@ public class P2MTest extends TestBase {
 
     }
 
-    @Test(groups = { "p2m", "p2mSend", "p2mSendSonuQr", "regression"}, priority = 3, description = "P2M Send test")
+    @Test(groups = { "p2m", "p2mSend", "p2mSendSonuQr"}, priority = 3, description = "P2M Send test")
     public void Test01_p2mSendSonuQr() throws IOException, InterruptedException {
 
         Log.info("======= START : P2M Send test =======");

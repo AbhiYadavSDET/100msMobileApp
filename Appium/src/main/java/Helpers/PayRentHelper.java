@@ -79,6 +79,9 @@ public class PayRentHelper {
         //Press Back 3times to go to home screen
         mbkCommonControlsHelper.pressback(3);
 
+        // Click on the back button if the bottom sheet is present
+        mbkCommonControlsHelper.handleHomePageLanding();
+
         //Click on Pay Rent
         payRentPage.clickPayRent();
 
@@ -174,7 +177,7 @@ public class PayRentHelper {
         payRentPage.clickMorePaymentOptions();
 
         //Click on Add new debit card
-        payRentPage.clickAddNewDebitCard();
+//        payRentPage.clickAddNewDebitCard();
 
     }
     public void payRentViaUpi(String expRecipientName, String Amount) throws IOException, InterruptedException{
@@ -264,6 +267,22 @@ public class PayRentHelper {
         else{
             Log.info("Benefits of Pay rent through Mobikwik screen is not appearing.");
         }
+    }
+
+    public void deleteProperty() throws IOException, InterruptedException {
+
+        //Click on Pay Rent
+        payRentPage.clickPayRent();
+
+        //Click on menu button
+        payRentPage.clickMenuButton();
+
+        //Click on delete rent details
+        payRentPage.clickDeleteRentDetails();
+
+        Log.info("Rent details is deleted");
+
+
     }
 }
 

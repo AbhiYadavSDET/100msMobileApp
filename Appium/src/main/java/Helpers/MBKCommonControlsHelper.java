@@ -566,7 +566,9 @@ public class MBKCommonControlsHelper {
 
         Thread.sleep(2000);
 
-        pressback(1);
+        if(!historyPage.isHistoryDesciptionPresent()) {
+            pressback(1);
+        }
 
         // Get the details from the latest entry in history section
         String historyDescription = historyPage.getDescription();
