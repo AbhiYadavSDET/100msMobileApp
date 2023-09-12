@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class PayRentTest extends TestBase {
 
-    @Test(groups = {"regression", "Pay Rent"}, priority = 3, description = "Add New Property")
+    @Test(groups = {"regression", "Pay Rent"}, priority = 0, description = "Add New Property")
 
     public void addNewProperty() throws InterruptedException, IOException {
 
@@ -34,7 +34,7 @@ public class PayRentTest extends TestBase {
 
     }
 
-    @Test(groups = {"regression", "Pay Rent"}, priority = 2, description = "Add New Property")
+    @Test(groups = {"regression", "Pay Rent"}, priority = 0, description = "Add New Property")
 
     public void payRentviaZip() throws InterruptedException, IOException {
 
@@ -56,7 +56,7 @@ public class PayRentTest extends TestBase {
         Log.info("======= END : Pay Rent via ZIP =======");
 
     }
-    @Test(groups = {"regression", "Pay Rent"}, priority = 1, description = "Add New Property")
+    @Test(groups = {"regression", "Pay Rent"}, priority = 0, description = "Add New Property")
     public void payRentviaCard() throws InterruptedException, IOException {
 
 
@@ -98,7 +98,7 @@ public class PayRentTest extends TestBase {
         Log.info("======= END : Pay Rent via UPI =======");
 
     }
-    @Test(groups = {"regression", "Pay Rent"}, priority = 4, description = "Add New Property")
+    @Test(groups = {"regression", "Pay Rent"}, priority = 0, description = "Add New Property")
     public void verifyPayRentBenefitScreen() throws InterruptedException, IOException {
 
 
@@ -119,7 +119,7 @@ public class PayRentTest extends TestBase {
         Log.info("======= END : Verify PayRent Benefit Screen =======");
 
     }
-    @Test(groups = {"regression", "Pay Rent"}, priority = 5, description = "Add New Property")
+    @Test(groups = {"regression", "Pay Rent"}, priority = 0, description = "Add New Property")
     public void verifyFaqScreen() throws InterruptedException, IOException {
 
 
@@ -140,4 +140,26 @@ public class PayRentTest extends TestBase {
         Log.info("======= END : Verify FAQ =======");
 
     }
+    @Test(groups = {"regression", "Pay Rent"}, priority = 0, description = "Add New Property")
+    public void deleteRentDetails() throws InterruptedException, IOException {
+
+
+        Log.info("======= START : P2M Send test =======");
+        // Starting the test in the extentreport
+        ExtentReport.EXTENTREPORT.createTest("CCBP test");
+
+        // Login to the account
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaOtp("9205299330", "547372");
+
+        Log.info("======= START : Verify FAQ =======");
+
+        // Execute the test
+        PayRentHelper payRentHelper = new PayRentHelper(getAndroidDriver());
+        payRentHelper.deleteProperty();
+
+        Log.info("======= END : Verify FAQ =======");
+
+    }
+
 }

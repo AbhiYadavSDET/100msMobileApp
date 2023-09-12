@@ -89,6 +89,12 @@ public class PayRentPage {
     @AndroidFindBy(id = "tv_title")
     private AndroidElement faqScreen;
 
+    @AndroidFindBy(id = "menu_button")
+    private AndroidElement menuButton;
+
+    @AndroidFindBy(id = "delete")
+    private AndroidElement deleteRentDetails;
+
 
     public PayRentPage(AndroidDriver driver) throws IOException {
 
@@ -200,6 +206,11 @@ public class PayRentPage {
     public void clickFaqButton() { Elements.selectElement(driver, faqButton , "Click on FAQ Button"); }
 
     public String getFaqScreenTitle() throws InterruptedException { return Elements.getText(driver, faqScreen , "Get Title of FAQ Screen"); }
+
+    public void clickMenuButton() {Elements.selectElement(driver, menuButton, "Click on Menu button");}
+
+    public void clickDeleteRentDetails() {Elements.selectElement(driver, deleteRentDetails, "Click on delete rent details");}
+
 
 }
 

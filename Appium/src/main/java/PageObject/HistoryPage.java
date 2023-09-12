@@ -42,6 +42,10 @@ public class HistoryPage {
         Elements.selectElement(driver, homeTab, "Home Tab");
     }
 
+    public boolean isHistoryDesciptionPresent() throws InterruptedException {
+        return Elements.isElementPresent(driver, historyDescription);
+    }
+
     public String getDescription() throws InterruptedException {
         return Elements.getText(driver, historyDescription, "History Description");
     }
