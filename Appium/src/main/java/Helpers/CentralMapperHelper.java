@@ -83,4 +83,72 @@ public class CentralMapperHelper {
         mbReporter.verifyEqualsWithLogging(actualVpa, expVpa, "Verify Vpa", false, false,true);
 
     }
+
+    public void changeStateOfMappedNumber(String action) throws InterruptedException, IOException {
+
+        // Click on UPI Transfer
+        centralMapperPage.clickOnUpiTransfer();
+
+        // Click on Manage Upi
+        centralMapperPage.clickOnManage();
+
+        // Click on Three Dots
+        centralMapperPage.clickOnThreeDots();
+
+        // Click on Manage Upi Numbers
+        centralMapperPage.clickOnManageUpiNumbers();
+
+        if(action.equals("activate")){
+            // Check activate button
+            while(centralMapperPage.isActivateButtonPresent()) {
+                // Click on Activate
+                centralMapperPage.clickOnActivate();
+            }
+        }
+        else if(action.equals("deactivate")){
+            // Check deactivate button
+            if(centralMapperPage.isDeactivateButtonPresent()){
+                // Click on deactivate
+                centralMapperPage.clickOnDeactivate();
+
+                // Click Deactivate on Bottom Sheet
+                centralMapperPage.clickDeactivateOnBottomSheet();
+            }
+        }
+        else if(action.equals("deregister")){
+            // Check deregister button
+            if (centralMapperPage.isDeregisterButtonPresent()){
+                // Click on Deregister
+                centralMapperPage.clickOnDeregister();
+
+                // Click Deregister on Bottom Sheet
+                centralMapperPage.clickDeregisterOnBottomSheet();
+            }
+        }
+    }
+
+    public void addNewNumber(String number) throws InterruptedException, IOException {
+
+        // Click on UPI Transfer
+        centralMapperPage.clickOnUpiTransfer();
+
+        // Click on Manage Upi
+        centralMapperPage.clickOnManage();
+
+        // Click on Three Dots
+        centralMapperPage.clickOnThreeDots();
+
+        // Click on Manage Upi Numbers
+        centralMapperPage.clickOnManageUpiNumbers();
+
+        // Click on Add New Number
+        centralMapperPage.clickOnAddNewNumber();
+
+        // Enter Number In Text Box
+        centralMapperPage.enterNumberInTextBox(number);
+
+        // Click on Check Availablity
+        centralMapperPage.clickOnCheckAvailablity();
+
+    }
 }
