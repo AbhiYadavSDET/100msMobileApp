@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class Test_CentralMapper extends TestBase {
 
-    @Test(groups = {"sanity", "regression", "centralMapper"}, priority = 0, description = "Central Mapper test on UPI home screen")
+    @Test(groups = {"regression", "centralMapper"}, priority = 0, description = "Central Mapper test on UPI home screen")
     public void Test01_centralMapper() throws IOException, InterruptedException {
 
         Log.info("======= START : Central Mapper =======");
@@ -26,7 +26,7 @@ public class Test_CentralMapper extends TestBase {
 
     }
 
-    @Test(groups = {"sanity", "regression", "centralMapper"}, priority = 1, description = "Central Mapper test on scan qr screen")
+    @Test(groups = {"regression", "centralMapper"}, priority = 1, description = "Central Mapper test on scan qr screen")
     public void Test02_centralMapper() throws IOException, InterruptedException {
 
         Log.info("======= START : Central Mapper =======");
@@ -42,7 +42,7 @@ public class Test_CentralMapper extends TestBase {
 
     }
 
-    @Test(groups = {"sanity", "regression", "centralMapper"}, priority = 2, description = "Central Mapper deactivate number")
+    @Test(groups = {"regression", "centralMapper"}, priority = 2, description = "Central Mapper deactivate number")
     public void Test03_centralMapper() throws IOException, InterruptedException {
 
         Log.info("======= START : Central Mapper =======");
@@ -58,7 +58,7 @@ public class Test_CentralMapper extends TestBase {
 
     }
 
-    @Test(groups = {"sanity", "regression", "centralMapper"}, priority = 3, description = "Central Mapper deregister number")
+    @Test(groups = {"regression", "centralMapper"}, priority = 3, description = "Central Mapper deregister number")
     public void Test04_centralMapper() throws IOException, InterruptedException {
 
         Log.info("======= START : Central Mapper =======");
@@ -74,7 +74,7 @@ public class Test_CentralMapper extends TestBase {
 
     }
 
-    @Test(groups = {"sanity", "regression", "centralMapper"}, priority = 4, description = "Central Mapper activate number")
+    @Test(groups = {"regression", "centralMapper"}, priority = 4, description = "Central Mapper activate number")
     public void Test05_centralMapper() throws IOException, InterruptedException {
 
         Log.info("======= START : Central Mapper =======");
@@ -90,7 +90,7 @@ public class Test_CentralMapper extends TestBase {
 
     }
 
-    @Test(groups = {"sanity", "regression", "centralMapper"}, priority = 5, description = "Central Mapper activate number")
+    @Test(groups = {"regression", "centralMapper"}, priority = 5, description = "Central Mapper activate number")
     public void Test06_centralMapper() throws IOException, InterruptedException {
 
         Log.info("======= START : Central Mapper =======");
