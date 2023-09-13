@@ -362,6 +362,9 @@ public class P2PExtraPage {
         Element.selectElement(driver, referral_widget,"Click on Refer & Earn Widget");
     }
 
+    public boolean checkReferralWidget() throws InterruptedException{
+        return Elements.isElementPresent(driver, referral_widget );
+    }
     public void clickEarningsTable() throws InterruptedException{
         Element.selectElement(driver, total_earnings_table,"Click on Earnings Table");
     }
@@ -372,6 +375,10 @@ public class P2PExtraPage {
 
     public void clickSettings() throws InterruptedException{
         Element.selectElement(driver, settings_option,"Click on Settings Option ");
+    }
+
+    public boolean checkSettingsOptn() throws InterruptedException{
+        return Elements.isElementPresent(driver, settings_option );
     }
 
     public void clickDefaultBankAccount() throws InterruptedException{

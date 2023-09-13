@@ -321,6 +321,9 @@ public class P2PExtraHelper {
             //Swipe till Refer & Earn Widget
             screen.swipeUpMore(driver);
 
+            // Check for more swipe if not visible
+            if(!p2PExtraPage.checkReferralWidget()) screen.swipeUpLess(driver);
+
             // Click on Refer & earn Widget on XTRA dashboard
             p2PExtraPage.clickReferAndEarnWidget();
 
@@ -366,9 +369,11 @@ public class P2PExtraHelper {
         // Click on screen to remove bottom sheet.
         // p2PExtraPage.tapOutsideBottomSheet();
 
-        //Swipe till the bottom | Settings Option
-        screen.swipeUpMore(driver);
-        screen.swipeUpMore(driver);
+        if(!p2PExtraPage.checkSettingsOptn()){
+            //Swipe till the bottom | Settings Option
+            screen.swipeUpMore(driver);
+            screen.swipeUpMore(driver);
+        }
 
         //Click on Settings option on XTRA dashboard
         p2PExtraPage.clickSettings();
@@ -416,10 +421,11 @@ public class P2PExtraHelper {
         // Click on screen to remove bottom sheet.
         // p2PExtraPage.tapOutsideBottomSheet();
 
-
-        //Swipe till the bottom | Settings Option
-        screen.swipeUpMore(driver);
-        screen.swipeUpMore(driver);
+        if(!p2PExtraPage.checkSettingsOptn()){
+            //Swipe till the bottom | Settings Option
+            screen.swipeUpMore(driver);
+            screen.swipeUpMore(driver);
+        }
 
         //Click on Settings option on XTRA dashboard
         p2PExtraPage.clickSettings();
@@ -462,10 +468,12 @@ public class P2PExtraHelper {
         // Click on screen to remove bottom sheet.
         // p2PExtraPage.tapOutsideBottomSheet();
 
+        if(!p2PExtraPage.checkSettingsOptn()){
 
-        //Swipe till the bottom | Settings Option
-        screen.swipeUpMore(driver);
-        screen.swipeUpMore(driver);
+            //Swipe till the bottom | Settings Option
+            screen.swipeUpMore(driver);
+            screen.swipeUpMore(driver);
+        }
 
         //Click on Settings option on XTRA dashboard
         p2PExtraPage.clickSettings();
