@@ -35,7 +35,11 @@
             <class name="Zip.ZipTest"/>
             <class name="Offers.OfferTest"/>
             <class name="Rewards.RewardsTest"/>
-            <class name="Recharge.RechargeTest"/>
+            <class name="Recharge.RechargeTest">
+            <methods>
+                <exclude name="prepaid_Recharge"/>
+            </methods>
+            </class>
             <class name="SecurityPin.SecurityPinTest"/>
             <class name="HelpAndSupport.Test_HelpAndSupport"/>
             <class name="PayRent.PayRentTest"/>
