@@ -350,6 +350,10 @@ public class P2PExtraPage {
         return Elements.isElementPresent(driver, plus_ok_popup );
     }
 
+    public boolean checkWithdrawCta() throws InterruptedException{
+        return Elements.isElementPresent(driver, cta_withdraw );
+    }
+
     public void clickGotItCtaWeekendApproaching() throws InterruptedException{
         Element.selectElement(driver, withdraw_on_withdrawal_amount_page,"Click on Got It Cta");
     }
@@ -468,6 +472,10 @@ public class P2PExtraPage {
 
     public void selectViewAllBtn() throws InterruptedException{
          Elements.selectElement(driver, view_all_btn,"Click on View All Button");
+    }
+
+    public boolean checkViewAllBtn() throws InterruptedException{
+        return Elements.isElementPresent(driver, view_all_btn );
     }
 
     public void selectMaturityOptn() throws InterruptedException{
