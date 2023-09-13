@@ -40,6 +40,8 @@
             <class name="HelpAndSupport.Test_HelpAndSupport"/>
             <class name="PayRent.PayRentTest"/>
 <!--            <class name="AccountAggregator.Test_AccountAggregator"/>-->
+            <class name="CentralMapper.Test_CentralMapper"/>
+
         </classes>
     </test>
 
