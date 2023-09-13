@@ -31,7 +31,7 @@ public class TestBase {
 
     String androidOSVersion = "13.0";
     String portNo = "4723";
-    String udid = "172.18.31.239:5555";
+    String udid = "2C161FDH200GLN";
     String deviceName = "Google Pixel 7";
 
 
@@ -150,14 +150,14 @@ public class TestBase {
             File app = new File(buildPath);
             DesiredCapabilities cap = new DesiredCapabilities();
             cap.setCapability(MobileCapabilityType.PLATFORM_NAME, "ANDROID");
-            cap.setCapability(MobileCapabilityType.DEVICE_NAME, "172.18.31.239:5555");
+            cap.setCapability(MobileCapabilityType.DEVICE_NAME, "2C161FDH200GLN");
 //        cap.setCapability("avd","Pixel_3a");
             cap.setCapability("noSign", true);
-            cap.setCapability("appPackage", "com.mobikwik_new.debug");
-            cap.setCapability("appActivity", "com.mobikwik_new.MobikwikMain");
+            cap.setCapability("appPackage", "com.mobikwik_new");
+            cap.setCapability("appActivity", ".MobikwikMain");
             cap.setCapability("noReset", "false");
-//            cap.setCapability("app", app.getAbsolutePath());
-            cap.setCapability("app", "//Users//vikrantnagar//APK//ProdDebug.apk");
+            cap.setCapability("app", app.getAbsolutePath());
+//            cap.setCapability("app", "//Users//ashishkumarpradhan//app//mobikwik.apk");
             AndroidDriver driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), cap);
             androidDriverThread.set(driver);
             return androidDriverThread.get();
