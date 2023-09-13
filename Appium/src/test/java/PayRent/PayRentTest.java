@@ -140,7 +140,7 @@ public class PayRentTest extends TestBase {
         Log.info("======= END : Verify FAQ =======");
 
     }
-    @Test(groups = {"regression", "Pay Rent"}, priority = 0, description = "Add New Property")
+    @Test(groups = {"regression", "Pay Rent"}, priority = 1, description = "Add New Property")
     public void deleteRentDetails() throws InterruptedException, IOException {
 
 
