@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class ViewPipedGasBillTest extends TestBase {
 
-        @Test(groups = {"sanity", "View Piped Gas Bill"}, priority = 0, description = "View Piped Gas Bill")
+        @Test(groups = {"sanity", "rechargeSanity"}, priority = 0, description = "View Piped Gas Bill")
 
         public void viewPipedGasBill() throws InterruptedException, IOException {
 
