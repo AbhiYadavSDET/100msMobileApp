@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class RechargeTest extends TestBase {
 
-    @Test(groups = {"sanity", "mobileRecharge" , "regression"}, priority = 0, description = "mobile Recharge")
+    @Test(groups = {"sanity", "rechargeSanity" , "regression"}, priority = 0, description = "mobile Recharge")
     public void postpaid_Recharge() throws IOException, InterruptedException {
 
 
@@ -29,7 +29,7 @@ public class RechargeTest extends TestBase {
 
     }
 
-    @Test(groups = {"sanity", "mobileRecharge","prepaidRecharge", "regression"}, priority = 0, description = "mobile Recharge")
+    @Test(groups = {"sanity", "rechargeSanity", "regression"}, priority = 0, description = "mobile Recharge")
     public void prepaid_Recharge() throws IOException, InterruptedException {
 
         // Login to the account
