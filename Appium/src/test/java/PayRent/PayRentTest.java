@@ -34,7 +34,7 @@ public class PayRentTest extends TestBase {
 
     }
 
-    @Test(groups = {"regression", "Pay Rent"}, priority = 0, description = "Add New Property")
+    @Test(groups = {"regression", "Pay Rent"}, priority = 0, description = "Verify pay rent via ZIP")
 
     public void payRentviaZip() throws InterruptedException, IOException {
 
@@ -56,7 +56,7 @@ public class PayRentTest extends TestBase {
         Log.info("======= END : Pay Rent via ZIP =======");
 
     }
-    @Test(groups = {"regression", "Pay Rent"}, priority = 0, description = "Add New Property")
+    @Test(groups = {"regression", "Pay Rent"}, priority = 0, description = "Verify pay rent via Card")
     public void payRentviaCard() throws InterruptedException, IOException {
 
 
@@ -77,7 +77,7 @@ public class PayRentTest extends TestBase {
         Log.info("======= END : Pay Rent via Card =======");
 
     }
-    @Test(groups = {"regression", "Pay Rent"}, priority = 0, description = "Add New Property")
+    @Test(groups = {"regression", "Pay Rent"}, priority = 0, description = "Verify pay rent via UPI")
     public void payRentViaUPI() throws InterruptedException, IOException {
 
 
@@ -98,7 +98,7 @@ public class PayRentTest extends TestBase {
         Log.info("======= END : Pay Rent via UPI =======");
 
     }
-    @Test(groups = {"regression", "Pay Rent"}, priority = 0, description = "Add New Property")
+    @Test(groups = {"regression", "Pay Rent"}, priority = 0, description = "Verify Pay rent benefit screen")
     public void verifyPayRentBenefitScreen() throws InterruptedException, IOException {
 
 
@@ -119,7 +119,7 @@ public class PayRentTest extends TestBase {
         Log.info("======= END : Verify PayRent Benefit Screen =======");
 
     }
-    @Test(groups = {"regression", "Pay Rent"}, priority = 0, description = "Add New Property")
+    @Test(groups = {"regression", "Pay Rent"}, priority = 0, description = "Verify FAQ Screen")
     public void verifyFaqScreen() throws InterruptedException, IOException {
 
 
@@ -140,7 +140,7 @@ public class PayRentTest extends TestBase {
         Log.info("======= END : Verify FAQ =======");
 
     }
-    @Test(groups = {"regression", "Pay Rent"}, priority = 1, description = "Add New Property")
+    @Test(groups = {"regression", "Pay Rent"}, priority = 1, description = "Delete property")
     public void deleteRentDetails() throws InterruptedException, IOException {
 
 
