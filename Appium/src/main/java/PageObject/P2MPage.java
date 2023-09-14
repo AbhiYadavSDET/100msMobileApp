@@ -32,7 +32,7 @@ public class P2MPage {
 
 //    com.android.packageinstaller:id/permission_allow_button
 //    com.android.permissioncontroller:id/permission_allow_button
-    @AndroidFindBy(xpath = "//*/android.widget.Button[@text = 'ALLOW']")
+    @AndroidFindBy(id = "com.android.permissioncontroller:id/permission_allow_button")
     private AndroidElement permissionAllow;
 
     @AndroidFindBy(id = "search_edittext")
@@ -86,7 +86,7 @@ public class P2MPage {
     @AndroidFindBy(id = "name_initial_text_view")
     public AndroidElement recent_merchant;
 
-    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'MobikwikQr.jpg']")
+    @AndroidFindBy(id = "com.google.android.documentsui:id/icon_thumb")
     private AndroidElement mobikwik_qr;
 
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'SonuQr.jpg']")
