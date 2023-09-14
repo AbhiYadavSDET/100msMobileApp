@@ -63,10 +63,14 @@ public class P2PExtraHelper {
 //        Log.info("Earned Amount : " + earnedAmount);
         Log.info("Per Day Earning : " + perDayEarning);
 
-        screen.swipeUpLess(driver);
+        //screen.swipeUpLess(driver);
 
         // If notification alerts are present, then swipe up
-        if(p2PExtraPage.checkNotificationAlert()) screen.swipeUpMedium(driver);
+        //if(p2PExtraPage.checkNotificationAlert()) screen.swipeUpMedium(driver);
+
+        if(!p2PExtraPage.checkWithdrawCta()){
+            screen.swipeUpLess(driver);
+        }
 
         // Click on withdraw on Xtra main page.
         p2PExtraPage.selectWithdraw();
@@ -317,6 +321,9 @@ public class P2PExtraHelper {
             //Swipe till Refer & Earn Widget
             screen.swipeUpMore(driver);
 
+            // Check for more swipe if not visible
+            if(!p2PExtraPage.checkReferralWidget()) screen.swipeUpLess(driver);
+
             // Click on Refer & earn Widget on XTRA dashboard
             p2PExtraPage.clickReferAndEarnWidget();
 
@@ -362,12 +369,11 @@ public class P2PExtraHelper {
         // Click on screen to remove bottom sheet.
         // p2PExtraPage.tapOutsideBottomSheet();
 
-
-
-
-        //Swipe till the bottom | Settings Option
-        screen.swipeUpMore(driver);
-        screen.swipeUpMore(driver);
+        if(!p2PExtraPage.checkSettingsOptn()){
+            //Swipe till the bottom | Settings Option
+            screen.swipeUpMore(driver);
+            screen.swipeUpMore(driver);
+        }
 
         //Click on Settings option on XTRA dashboard
         p2PExtraPage.clickSettings();
@@ -415,10 +421,11 @@ public class P2PExtraHelper {
         // Click on screen to remove bottom sheet.
         // p2PExtraPage.tapOutsideBottomSheet();
 
-
-        //Swipe till the bottom | Settings Option
-        screen.swipeUpMore(driver);
-        screen.swipeUpMore(driver);
+        if(!p2PExtraPage.checkSettingsOptn()){
+            //Swipe till the bottom | Settings Option
+            screen.swipeUpMore(driver);
+            screen.swipeUpMore(driver);
+        }
 
         //Click on Settings option on XTRA dashboard
         p2PExtraPage.clickSettings();
@@ -461,10 +468,12 @@ public class P2PExtraHelper {
         // Click on screen to remove bottom sheet.
         // p2PExtraPage.tapOutsideBottomSheet();
 
+        if(!p2PExtraPage.checkSettingsOptn()){
 
-        //Swipe till the bottom | Settings Option
-        screen.swipeUpMore(driver);
-        screen.swipeUpMore(driver);
+            //Swipe till the bottom | Settings Option
+            screen.swipeUpMore(driver);
+            screen.swipeUpMore(driver);
+        }
 
         //Click on Settings option on XTRA dashboard
         p2PExtraPage.clickSettings();
@@ -497,21 +506,22 @@ public class P2PExtraHelper {
         // Click on xtra icon on home page.
         p2PExtraPage.selectXtra();
 
-        if(mbkCommonControlsPage.isWhitePopUpPresent()){ mbkCommonControlsPage.closeWhitePopUp(); }
-
-        // Click on Got it to remove referral bottom sheet.
-        if(p2PExtraPage.isBottomSheetPresent()) p2PExtraPage.removeBottomSheet();
-
         // Click on screen to remove bottom sheet.
         // p2PExtraPage.tapOutsideBottomSheet();
 
         // If notification alerts are present, then swipe up
-         if(p2PExtraPage.checkNotificationAlert()) screen.swipeUpMore(driver);
+        // if(p2PExtraPage.checkNotificationAlert()) screen.swipeUpMore(driver);
 
-        //Swipe till the bottom | Settings Option
-        screen.swipeUpMore(driver);
-      //  screen.swipeUpLess(driver);
+        // Check for View All Button on the XTRA dashboard
+        if(!p2PExtraPage.checkViewAllBtn())  {
 
+            if(mbkCommonControlsPage.isWhitePopUpPresent()){ mbkCommonControlsPage.closeWhitePopUp(); }
+
+            // Click on Got it to remove referral bottom sheet.
+            if(p2PExtraPage.isBottomSheetPresent()) p2PExtraPage.removeBottomSheet();
+
+            screen.swipeUpMore(driver);
+        }
 
         //Click on View All button
         p2PExtraPage.selectViewAllBtn();
@@ -579,11 +589,9 @@ public class P2PExtraHelper {
 
 
 
-
         public void reinvestFlexi(String Amount,String expText,String expStatus) throws InterruptedException, IOException {
 
                 Log.info("----------- Arguments ---------------");
-
 
                 // Click on xtra icon on home page.
                 p2PExtraPage.selectXtra();
@@ -594,7 +602,10 @@ public class P2PExtraHelper {
                 if(p2PExtraPage.isBottomSheetPresent()) p2PExtraPage.removeBottomSheet();
 
                 // If notification alerts are present, then swipe up
-                if(p2PExtraPage.checkNotificationAlert() || p2PExtraPage.checkInvestContainer()) screen.swipeUpMedium(driver);
+                //if(p2PExtraPage.checkNotificationAlert() || p2PExtraPage.checkInvestContainer()) screen.swipeUpMedium(driver);
+
+                // Check for Withdraw Cta on Flexi Card
+                if(!p2PExtraPage.checkWithdrawCta()) screen.swipeUpLess(driver);
 
                 // Click on withdraw on Xtra main page.
                 p2PExtraPage.selectWithdraw();
@@ -621,8 +632,6 @@ public class P2PExtraHelper {
 
 
         }
-
-
 
 
 

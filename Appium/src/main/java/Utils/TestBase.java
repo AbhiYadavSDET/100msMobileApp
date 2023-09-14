@@ -162,7 +162,7 @@ public class TestBase {
             androidDriverThread.set(driver);
             return androidDriverThread.get();
 
-        } else {
+        }  else {
             DesiredCapabilities caps = new DesiredCapabilities();
             // Set your access credentials
             caps.setCapability("browserstack.user", "parajjain_sbic3m");

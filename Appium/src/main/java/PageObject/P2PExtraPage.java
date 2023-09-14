@@ -350,6 +350,10 @@ public class P2PExtraPage {
         return Elements.isElementPresent(driver, plus_ok_popup );
     }
 
+    public boolean checkWithdrawCta() throws InterruptedException{
+        return Elements.isElementPresent(driver, cta_withdraw );
+    }
+
     public void clickGotItCtaWeekendApproaching() throws InterruptedException{
         Element.selectElement(driver, withdraw_on_withdrawal_amount_page,"Click on Got It Cta");
     }
@@ -358,6 +362,9 @@ public class P2PExtraPage {
         Element.selectElement(driver, referral_widget,"Click on Refer & Earn Widget");
     }
 
+    public boolean checkReferralWidget() throws InterruptedException{
+        return Elements.isElementPresent(driver, referral_widget );
+    }
     public void clickEarningsTable() throws InterruptedException{
         Element.selectElement(driver, total_earnings_table,"Click on Earnings Table");
     }
@@ -368,6 +375,10 @@ public class P2PExtraPage {
 
     public void clickSettings() throws InterruptedException{
         Element.selectElement(driver, settings_option,"Click on Settings Option ");
+    }
+
+    public boolean checkSettingsOptn() throws InterruptedException{
+        return Elements.isElementPresent(driver, settings_option );
     }
 
     public void clickDefaultBankAccount() throws InterruptedException{
@@ -470,6 +481,10 @@ public class P2PExtraPage {
          Elements.selectElement(driver, view_all_btn,"Click on View All Button");
     }
 
+    public boolean checkViewAllBtn() throws InterruptedException{
+        return Elements.isElementPresent(driver, view_all_btn );
+    }
+
     public void selectMaturityOptn() throws InterruptedException{
 //        Elements.tapByCoordinates(723,1476, driver);
 //        Screen.swipeUp();
@@ -516,6 +531,7 @@ public class P2PExtraPage {
     public String getKnowMoreOptn() throws InterruptedException{
         return Elements.getText(driver, know_more_optn, "Get Know More Text");
     }
+
 
 
 
