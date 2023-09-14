@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public class P2MTest extends TestBase {
 
-    @Test(groups = {"sanity", "p2mSend", "regression"}, priority = 2, description = "P2M Send test")
+    @Test(groups = {"sanity", "p2mSend", "regression"}, priority = 0, description = "P2M Send test")
     public void Test01_p2mSend() throws IOException, InterruptedException {
 
         Log.info("======= START : P2M Send test =======");
