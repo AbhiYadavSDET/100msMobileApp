@@ -21,7 +21,7 @@ public class HistoryPage {
     @AndroidFindBy(id = "txt_transaction_summary")
     private AndroidElement historyDescription;
 
-    @AndroidFindBy(id = "txt_amount")
+    @AndroidFindBy(xpath = "//*/android.widget.FrameLayout[1]/android.view.ViewGroup/android.widget.TextView[2]")
     private AndroidElement historyAmount;
 
     @AndroidFindBy(id = "txt_status")
