@@ -29,7 +29,7 @@ public class Test_AddMoney extends TestBase {
         loginHelp.quickLoginViaOtp("9205299330", "547372");
 
         AddMoneyHelper addMoneyHelper= new AddMoneyHelper(getAndroidDriver());
-       addMoneyHelper.addMoneyViaCard("15", "068","You Added","to your wallet","₹15","Add money","+ ₹15", "Success", deviceID );
+       addMoneyHelper.addMoneyViaCard("15", "068","You Added","to your wallet","₹15","Add money","+₹15", "Success", deviceID );
 
     }
 
