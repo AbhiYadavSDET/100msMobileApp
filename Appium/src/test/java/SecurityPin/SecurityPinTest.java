@@ -24,7 +24,7 @@ public class SecurityPinTest extends TestBase {
 
         // Execute the test
         SecurityPinHelper securityPinHelper = new SecurityPinHelper(getAndroidDriver());
-        securityPinHelper.securityPinTestCase("Security Settings","Security PIN");
+        securityPinHelper.securityPinTestCase("121212", "Security Settings","Security PIN");
 
         Log.info("======= END : Security Pin Test =======");
 
