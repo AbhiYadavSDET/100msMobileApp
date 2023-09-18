@@ -135,6 +135,23 @@ public class SecurityPinHelper {
         mbReporter.verifyEqualsWithLogging(securitySettingPageTitle, expSecuritySettingsTitle , "Verify Title", false, false,true);
         mbReporter.verifyEqualsWithLogging(currentStateText, "Security PIN: Enabled", "Verify Current Sate", false, false,true);
 
+        // Click on Change Pin
+        securityPinPage.clickOnChangePin();
+
+        // Enter Current Pin
+        securityPinPage.enterCurrentPin(pin);
+
+        // Enter New Pin
+        securityPinPage.enterNewPin(pin);
+
+        // Enter Confirm New Pin
+        securityPinPage.enterConfirmNewPin(pin);
+
+        // Click on Change Security Pin
+        securityPinPage.clickOnChangeSecurityPin();
+
+
+        Thread.sleep(2000);
 
     }
 }

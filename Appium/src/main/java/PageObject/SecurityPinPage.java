@@ -36,8 +36,17 @@ public class SecurityPinPage {
     @AndroidFindBy(id = "tv_change_update_pin")
     private AndroidElement change_pin;
 
-    @AndroidFindBy(id = "tv_change_update_pin")
+    @AndroidFindBy(id = "edit_text_mket")
     private AndroidElement current_pin_text_box;
+
+    @AndroidFindBy(xpath = "//*/android.widget.LinearLayout/android.widget.RelativeLayout[1]/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.AutoCompleteTextView")
+    private AndroidElement pin_text_box;
+
+    @AndroidFindBy(xpath = "//*/android.widget.LinearLayout/android.widget.RelativeLayout[2]/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.AutoCompleteTextView")
+    private AndroidElement confirm_pin_text_box;
+
+    @AndroidFindBy(id = "btn_change_pin_action")
+    private AndroidElement change_security_pin;
 
     @AndroidFindBy(xpath = "//*/android.widget.Button[@text = '0']")
     private AndroidElement zeroButton;
@@ -88,6 +97,13 @@ public class SecurityPinPage {
         Elements.selectElement(driver, securityPinEnable, "click on Security Pin Enable");
     }
 
+    public void clickOnChangePin() {
+        Elements.selectElement(driver, change_pin, "click on Change Pin");
+    }
+
+    public void clickOnChangeSecurityPin() {
+        Elements.selectElement(driver, change_security_pin, "click on Change Security Pin");
+    }
 
     public String getTitle() throws InterruptedException {
         return Elements.getText(driver, title, "Title");
@@ -95,6 +111,18 @@ public class SecurityPinPage {
 
     public String getCurrentState() throws InterruptedException {
         return Elements.getText(driver, securityPinState, "Security Pin Current State");
+    }
+
+    public void enterCurrentPin(String pin) {
+        Elements.enterToElement(driver, current_pin_text_box, pin, "Current Pin");
+    }
+
+    public void enterNewPin(String pin) {
+        Elements.enterToElement(driver, pin_text_box, pin, "New Pin");
+    }
+
+    public void enterConfirmNewPin(String pin) {
+        Elements.enterToElement(driver, confirm_pin_text_box, pin, "Confirm New Pin");
     }
 
     public void enterSecurityPin(){
