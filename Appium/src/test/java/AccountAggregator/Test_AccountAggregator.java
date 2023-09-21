@@ -2,7 +2,9 @@ package AccountAggregator;
 
 import Helpers.AAHelper;
 import Helpers.AddMoneyHelper;
+import Helpers.HelpAndSupportHelper;
 import Helpers.LoginHelper;
+import Logger.Log;
 import Utils.TestBase;
 import org.testng.annotations.Test;
 
@@ -18,7 +20,13 @@ public class Test_AccountAggregator extends TestBase {
 
 
         AAHelper aaHelper = new AAHelper(getAndroidDriver());
-        aaHelper.existingUser();
+        // Execute the test
+
+
+        aaHelper.existingUser("All Bank Balance","Your Monthly Summary","Analyser","HIGHLIGHTS","YOUR ACCOUNTS","OUTGOING","Money Trf & Others","Expenses","SIPs & EMIs","Bank charges","Settings","Download Statements","Help & Support");
+
+
+        Log.info("======= Account Aggregator test =======");
 
     }
 

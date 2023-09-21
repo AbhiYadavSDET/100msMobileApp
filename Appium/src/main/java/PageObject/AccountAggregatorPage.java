@@ -22,6 +22,9 @@ public class AccountAggregatorPage {
     @AndroidFindBy(xpath = "//*[@text = 'Money +']")
     private AndroidElement moneyPlusCTA;
 
+    @AndroidFindBy(xpath = "//*[@text = 'Track Bank Accounts']")
+    private AndroidElement TrackBankAccountsCTA;
+
     @AndroidFindBy(xpath = "//*[@text = 'Track investments']")
     private AndroidElement trackInvestmentCTA;
 
@@ -55,16 +58,65 @@ public class AccountAggregatorPage {
     @AndroidFindBy(id="arrow_button")
     private AndroidElement bankDetailsCTA;
 
+    @AndroidFindBy(xpath = "//android.widget.LinearLayout[2]/android.view.ViewGroup[1]/android.widget.TextView[2]")
+    private AndroidElement get_MoneyTrfPercentage;
+
+    @AndroidFindBy(xpath = "//android.widget.LinearLayout[2]/android.view.ViewGroup[2]/android.widget.TextView[2]")
+    private AndroidElement get_ExpensePercentage;
+
+    @AndroidFindBy(xpath = "//android.widget.LinearLayout[2]/android.view.ViewGroup[3]/android.widget.TextView[2]")
+    private AndroidElement get_SipPercentage;
+
+    @AndroidFindBy(xpath = "//android.widget.LinearLayout[2]/android.view.ViewGroup[3]/android.widget.TextView[2]")
+    private AndroidElement get_BankChargesPercentage;
+    
     @AndroidFindBy(xpath = "//*[@text='Account Holder Name']")
     private AndroidElement userDetails;
 
     @AndroidFindBy(id="left_icon_filter")
     private AndroidElement applyFilter;
 
+    @AndroidFindBy(id = "com.mobikwik_new:id/txt_heading")
+    private AndroidElement title;
 
+    @AndroidFindBy(xpath = "//*[@text='OUTGOING']")
+    private AndroidElement outgoingTitle;
 
+    @AndroidFindBy(xpath = "//*[@text='Money Trf & Others']")
+    private AndroidElement outgoingFirstSubTitle;
 
+    @AndroidFindBy(xpath = "//*[@text='Expenses']")
+    private AndroidElement outgoingSecondSubTitle;
 
+    @AndroidFindBy(xpath = "//*[@text='SIPs & EMIs']")
+    private AndroidElement outgoingThirdSubTitle;
+
+    @AndroidFindBy(xpath = "//*[@text='Bank charges']")
+    private AndroidElement outgoingFourthSubTitle;
+
+    @AndroidFindBy(xpath = "//*[@text='Your Monthly Summary']")
+    private AndroidElement yourMonthlySummery;
+
+    @AndroidFindBy(id = "com.mobikwik_new:id/cta_text")
+    private AndroidElement mainDashboardAnalyserCTA;
+
+    @AndroidFindBy(xpath = "//*[@text='HIGHLIGHTS']")
+    private AndroidElement dashboardHighlightTitle;
+
+    @AndroidFindBy(xpath = "//*[@text='YOUR ACCOUNTS']")
+    private AndroidElement accountTitle;
+
+    @AndroidFindBy(xpath = "//*[@text='Add Account']")
+    private AndroidElement addAccountTitle;
+
+    @AndroidFindBy(xpath = "//*[@text='Settings']")
+    private AndroidElement settingsTitle;
+
+    @AndroidFindBy(xpath = "//*[@text='Download Statements']")
+    private AndroidElement downloadStatementsTitle;
+
+    @AndroidFindBy(xpath = "//*[@text='Help & Support']")
+    private AndroidElement  helpSupportTitle;
 
     public AccountAggregatorPage(AndroidDriver driver) throws IOException {
         this.driver = driver;
@@ -81,13 +133,111 @@ public class AccountAggregatorPage {
     }
 
     //for Entry from Money Plus icon in all services ----
+
     public void moneyPlusCTA() throws InterruptedException{
         Elements.selectElement(driver, moneyPlusCTA, "Click on money plus icon");
+    }
+
+    public void trackBankAccountsCTA() throws InterruptedException{
+        Elements.selectElement(driver, TrackBankAccountsCTA, "Click on Track bank account lens icon");
     }
 
     //for Entry from track all investment cta ---
     public void trackInvestmentCTA() throws InterruptedException{
         Elements.selectElement(driver, trackInvestmentCTA, "Click on Track all your investment cta");
+    }
+
+    public String getTitle() throws InterruptedException {
+        return Elements.getText(driver, title, "Base Title");
+    }
+
+    public Boolean getMoneyTrf() throws InterruptedException {
+        int output= Integer.parseInt(Elements.getText(driver, get_MoneyTrfPercentage, "Money trf  percentge").replace("%",""));
+        if(output>=0){
+            Log.info(""+output+"");
+            return true;
+        }else {
+            Log.info(""+output+"");
+            return false;
+        }
+    }
+
+
+    public Boolean getExpensesPercentage() throws InterruptedException {
+        int output= Integer.parseInt(Elements.getText(driver, get_ExpensePercentage, "Expense pERCENTAGE").replace("%",""));
+        if(output>=0){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public Boolean getSipePercentage() throws InterruptedException {
+        int output= Integer.parseInt(Elements.getText(driver, get_SipPercentage, "Sip Percentage").replace("%",""));
+        if(output>=0){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public Boolean getBankChargesPercentage() throws InterruptedException {
+        int output= Integer.parseInt(Elements.getText(driver, get_BankChargesPercentage, "Sip Percentage").replace("%",""));
+        if(output>=0){
+            return true;
+        }else {
+
+            return false;
+        }
+    }
+
+    public String getOutgoingTitle() throws InterruptedException {
+        return Elements.getText(driver, outgoingTitle, "Outgoing Title");
+    }
+
+    public String getOutgoingFirstSubTitle() throws InterruptedException {
+        return Elements.getText(driver, outgoingFirstSubTitle, "Outgoing first Subtitle");
+    }
+
+    public String getOutgoingSecondSubTitle() throws InterruptedException {
+        return Elements.getText(driver, outgoingSecondSubTitle, "Outgoing Second Subtitle");
+    }
+
+    public String getOutgoingThirdSubTitle() throws InterruptedException {
+        return Elements.getText(driver, outgoingThirdSubTitle, "Outgoing Third Subtitle");
+    }
+    public String getOutgoingFourthSubTitle() throws InterruptedException {
+        return Elements.getText(driver, outgoingFourthSubTitle, "Outgoing Fourth Subtitle");
+    }
+
+    public String getMonthlySummeryCTA() throws InterruptedException {
+        return Elements.getText(driver, yourMonthlySummery, "Monthly Summery text");
+    }
+
+    public String mainDashboardAnalyserCTA() throws InterruptedException {
+        return Elements.getText(driver, mainDashboardAnalyserCTA, "Main Dashboard Analyser CTA");
+    }
+
+    public String dashboardHighlightTitle() throws InterruptedException {
+        return Elements.getText(driver, dashboardHighlightTitle, "Dashboard Highlight Title Title");
+    }
+    public String accountTitle() throws InterruptedException {
+        return Elements.getText(driver, accountTitle, "Dashboard Account Title");
+    }
+    public String settingsTitle() throws InterruptedException {
+        return Elements.getText(driver, settingsTitle, "Dashboard Setting Title");
+    }
+
+    public String downloadStatementsTitle() throws InterruptedException {
+        return Elements.getText(driver, downloadStatementsTitle, "Dashboard Download Title");
+    }
+
+    public String helpSupportTitle() throws InterruptedException {
+        return Elements.getText(driver, helpSupportTitle, "Dashboard help Support Title");
+    }
+
+    public String addAccountTitle() throws InterruptedException {
+        return Elements.getText(driver, addAccountTitle, "Dashboard  add Account Title");
     }
 
 
