@@ -37,6 +37,7 @@ public class AAHelper {
         aaPage = new AccountAggregatorPage(driver);
         screen = new Screen(driver);
         element = new Element(driver);
+        mbReporter = new MBReporter(driver);
         //     mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
         //     mbReporter = new MBReporter(driver, "testScreenshotDir");
         //   permissionPage = new PermissionPage(driver);
@@ -45,7 +46,7 @@ public class AAHelper {
     /**
      * This method is to Test standalone Account aggregator flow from Wealth dashboard
      */
-    public void existingUser() throws InterruptedException, IOException {
+    public void existingUser(String expTitleOnCategoryPage,String exptitleOfMonthlySummary,String expmainDashboardAnalyser,String expdashBoardHighlightTitle,String expaccountTitle,String expOutgoingTitleOnDashboard,String expOutgoingFirstSubTitleOnDashboard,String expOutgoingSecondSubTitleOnDashboard,String expOutgoingThirdSubTitleOnDashboard,String expoutgoingFourthSubTitleOnDashboard,String expsettingsTitle,String expdownloadStatementsTitle,String exphelpSupportTitle) throws InterruptedException, IOException {
 
         if (Element.isElementPresent(driver, By.id("tx_balance")))
         {
@@ -62,48 +63,88 @@ public class AAHelper {
             screen.swipeUpMore(driver);
 
             // click on money plus icon
-            aaPage.moneyPlusCTA();
+            aaPage.trackBankAccountsCTA();
 
-            Thread.sleep(20000);
-
-            //Swipe up till the AA card
-            screen.swipeUpMore(driver);
-
-            // Tap on AA card of exiting user
-            aaPage.accountAggregatorCard();
-
-            //  aaPage.AA_card();
-            //   aaPage.checkCTA();
-
-            //Click on bank account card for existing user
-            aaPage.bankCard();
-            Thread.sleep(10000);
-
-            //Click on download cta to check the bank statement
-            aaPage.downloadCTA();
+            Thread.sleep(2000);
+            // Verification on the Category Page
+            String titleOnCategoryPage = aaPage.getTitle();
+            Log.info("First Title On MainDashboard Page : " + expTitleOnCategoryPage);
+            // Add the assertions
+            mbReporter.verifyEqualsWithLogging(titleOnCategoryPage, expTitleOnCategoryPage, "Verify heading On Category Page", false, false , true );
             Thread.sleep(2000);
 
-            //     aaPage.refreshCTA();
-
-            //Tap on filter to check available filters
-            aaPage.filterCTA();
-
-            // Apply filter
-            aaPage.applyFilter();
-            Thread.sleep(1000);
+            // Verification on the Category Page
+            String outgoingTitleOnDashboard = aaPage.getOutgoingTitle();
+            Log.info("Outgoing title On MainDashboard Page : " + expOutgoingTitleOnDashboard);
+            // Add the assertions
+            mbReporter.verifyEqualsWithLogging(outgoingTitleOnDashboard, expOutgoingTitleOnDashboard, "Verify Outgoing Title on MainDashboard", false, false , true );
 
 
-            // Click on bank
-            aaPage.bankDetailsCTA();
+            // Verification on the Category Page
+            String outgoingFirstSubTitleOnDashboard = aaPage.getOutgoingFirstSubTitle();
+            Log.info("Outgoing First Subtitle On MainDashboard Page : " + expOutgoingFirstSubTitleOnDashboard);
+            // Add the assertions
+            mbReporter.verifyEqualsWithLogging(outgoingFirstSubTitleOnDashboard, expOutgoingFirstSubTitleOnDashboard, "Verify First Outgoing SubTitle on MainDashboard", false, false , true );
 
-            //Toucxh outside if the bottom sheet
-            aaPage.touchOutsideCTA();
+            mbReporter.verifyTrueWithLogging(aaPage.getMoneyTrf(),"Is Value Available", false,false);
 
-            //   aaPage.userDetails();
+            // Verification on the Category Page
+            String outgoingSecondSubTitleOnDashboard = aaPage.getOutgoingSecondSubTitle();
+            Log.info("Outgoing Second Subtitle On MainDashboard Page : " + expOutgoingSecondSubTitleOnDashboard);
+            // Add the assertions
+            mbReporter.verifyEqualsWithLogging(outgoingSecondSubTitleOnDashboard, expOutgoingSecondSubTitleOnDashboard, "Verify Second Outgoing SubTitle on MainDashboard", false, false , true );
+
+            mbReporter.verifyTrueWithLogging(aaPage.getExpensesPercentage(),"Is Expense Value percentage Available", false,false);
+
+            mbReporter.verifyTrueWithLogging(aaPage.getSipePercentage(),"Is Expense Value percentage Available", false,false);
+
+            mbReporter.verifyTrueWithLogging(aaPage.getBankChargesPercentage(),"Is Expense Value percentage Available", false,false);
 
 
-            //Assertion------------------------------------------
-            // Get the user's details which is from bank end
+            // Verification on the Category Page
+            String outgoingThirdSubTitleOnDashboard = aaPage.getOutgoingThirdSubTitle();
+            Log.info("Outgoing Third Subtitle On MainDashboard Page : " + expOutgoingThirdSubTitleOnDashboard);
+            // Add the assertions
+            mbReporter.verifyEqualsWithLogging(outgoingThirdSubTitleOnDashboard, expOutgoingThirdSubTitleOnDashboard, "Verify Third Outgoing SubTitle on MainDashboard", false, false , true );
+
+
+            // Verification on the Category Page
+            String outgoingFourthSubTitleOnDashboard = aaPage.getOutgoingFourthSubTitle();
+            Log.info("Outgoing Fourth Subtitle On MainDashboard Page : " + expoutgoingFourthSubTitleOnDashboard);
+            // Add the assertions
+            String titleOfmainDashboardAnalyser = aaPage.mainDashboardAnalyserCTA();
+            mbReporter.verifyEqualsWithLogging(outgoingFourthSubTitleOnDashboard, expoutgoingFourthSubTitleOnDashboard, "Verify Fourth Outgoing SubTitle on MainDashboard", false, false , true );
+
+            screen.swipeUpMore(driver);
+
+            String titleOfMonthlySummary = aaPage.getMonthlySummeryCTA();
+            Log.info("Monthly summery text on MainDashboard : " + exptitleOfMonthlySummary);
+            mbReporter.verifyEqualsWithLogging(titleOfMonthlySummary, exptitleOfMonthlySummary, "Verify Monthly summery title on dashboard", false, false , true );
+
+            String dashBoardHighlightTitle = aaPage.dashboardHighlightTitle();
+            Log.info("Highlight Title on MainDashboard : " + expdashBoardHighlightTitle);
+            mbReporter.verifyEqualsWithLogging(dashBoardHighlightTitle, expdashBoardHighlightTitle, "Verify Highlight Title on Main Dashboardd", false, false , true );
+
+            screen.swipeUpMore(driver);
+            String accounTTitle = aaPage.accountTitle();
+            Log.info("Account Title on MainDashboard : " + expaccountTitle);
+            mbReporter.verifyEqualsWithLogging(accounTTitle, expaccountTitle, "Verify Account Title on MainDashboard", false, false , true );
+
+            String settingsTitle = aaPage.settingsTitle();
+            Log.info("Setting Title on MainDashboard : " + expsettingsTitle);
+            mbReporter.verifyEqualsWithLogging(settingsTitle, expsettingsTitle, "Verify Account settings Title on MainDashboard", false, false , true );
+
+            screen.swipeUpMore(driver);
+            String downloadStatementsTitle = aaPage.downloadStatementsTitle();
+            Log.info("Download Statements Title on MainDashboard : " + expdownloadStatementsTitle);
+            mbReporter.verifyEqualsWithLogging(downloadStatementsTitle, expdownloadStatementsTitle, "Verify Account Download Statements Title on MainDashboardd", false, false , true );
+
+
+
+            String helpSupportTitle = aaPage.helpSupportTitle();
+            Log.info("Help Support Title on MainDashboard : " + exphelpSupportTitle);
+            mbReporter.verifyEqualsWithLogging(helpSupportTitle, exphelpSupportTitle, "help Support Title on MainDashboard", false, false , true );
+
 
         }
         else {
