@@ -28,7 +28,7 @@ public class CCBPTest extends TestBase {
 
         // Execute the test
         CCBPHelper ccbpHelper  = new CCBPHelper(getAndroidDriver());
-        ccbpHelper.creditCardBillPayment("100", "₹100", "4375517199762008","Payment Successful", "for Credit Card XXXXXXXXXXXX2008", "₹100","Credit Card Bill Payment", "Success","₹101.18");
+        ccbpHelper.creditCardBillPayment("100", "₹100", "4375517199762008","Payment Successful", "for Credit Card XXXXXXXXXXXX2008", "₹100","Credit Card Bill Payment", "Success","-₹101.18");
 
         Log.info("======= END : Credit card bill Payment =======");
     }
@@ -50,7 +50,7 @@ public class CCBPTest extends TestBase {
 
         // Execute the test
         CCBPHelper ccbpHelper  = new CCBPHelper(getAndroidDriver());
-        ccbpHelper.existingUserCCBP("100", "₹100","CCPAY Applied!" ,"4375517199762008","Payment Successful", "for Credit Card XXXXXXXXXXXX2008", "₹100","Credit Card Bill Payment", "Success","₹101.18");
+        ccbpHelper.existingUserCCBP("100", "₹100","CCPAY Applied!" ,"4375517199762008","Payment Successful", "for Credit Card XXXXXXXXXXXX2008", "₹100","Credit Card Bill Payment", "Success","-₹101.18");
 
         Log.info("======= END : Existing User Credit card bill Payment Flow=======");
     }

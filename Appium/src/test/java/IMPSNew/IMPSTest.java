@@ -25,7 +25,7 @@ public class IMPSTest extends TestBase {
         loginHelp.quickLoginViaOtp("8076595767","547372");
 
         IMPSNewHelper impsHelper = new IMPSNewHelper(getAndroidDriver());
-        impsHelper.verifyIMPSNewAccount("Ashish Kumar Pradhan", "040801000080315", "IOBA0000408", "50","Transfer Successful" , "₹50","Bank transfer to  Ashish Kumar Pradhan (XXXXXXXXXXX0315)","₹51.18","Success");
+        impsHelper.verifyIMPSNewAccount("Ashish Kumar Pradhan", "040801000080315", "IOBA0000408", "50","Transfer Successful" , "₹50","Bank transfer to  Ashish Kumar Pradhan (XXXXXXXXXXX0315)","-₹51.18","Success");
 
         Log.info("======= END : IMPS to New Account Number Test =======");
 
@@ -40,7 +40,7 @@ public class IMPSTest extends TestBase {
         loginHelp.quickLoginViaOtp("8076595767","547372");
 
         IMPSNewHelper impsHelper = new IMPSNewHelper(getAndroidDriver());
-        impsHelper.verifyIMPSNewVPA("8882305453@paytm","50", "Transfer Successful" , "₹50","Bank transfer to  Ashish Kumar Pradhan (8882305453@paytm)","₹51.18","Success");
+        impsHelper.verifyIMPSNewVPA("8882305453@paytm","50", "Transfer Successful" , "₹50","Bank transfer to  Ashish Kumar Pradhan (8882305453@paytm)","-₹51.18","Success");
 
         Log.info("======= END : IMPS to New Account Number Test =======");
     }
@@ -56,7 +56,7 @@ public class IMPSTest extends TestBase {
 
 
         IMPSNewHelper impsHelper = new IMPSNewHelper(getAndroidDriver());
-        impsHelper.verifyIMPSSavedVPA("8882305453@paytm","50", "Transfer Successful" , "₹50","Bank transfer to  Ashish Kumar Pradhan (8882305453@paytm)","₹51.18","Success");
+        impsHelper.verifyIMPSSavedVPA("8882305453@paytm","50", "Transfer Successful" , "₹50","Bank transfer to  Ashish Kumar Pradhan (8882305453@paytm)","-₹51.18","Success");
 
 
         Log.info("======= END : IMPS to Saved VPA Test =======");

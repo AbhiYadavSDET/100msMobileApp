@@ -24,9 +24,28 @@ public class SecurityPinTest extends TestBase {
 
         // Execute the test
         SecurityPinHelper securityPinHelper = new SecurityPinHelper(getAndroidDriver());
-        securityPinHelper.securityPinTestCase("Security Settings","Security PIN");
+        securityPinHelper.securityPinTestCase("121212", "Security Settings","Security PIN");
 
         Log.info("======= END : Security Pin Test =======");
+
+
+    }
+
+    @Test(groups = {"sanity", "changeSecurityPin", "regression"}, priority = 1, description = "Verify Security Pin")
+    public void changeSecurityPinTest1() throws IOException, InterruptedException {
+
+        Log.info("======= START : Change Security Pin Test =======");
+
+
+        // Login to the account
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaOtp("9205299330", "547372");
+
+        // Execute the test
+        SecurityPinHelper securityPinHelper = new SecurityPinHelper(getAndroidDriver());
+        securityPinHelper.changeSecurityPinTest("121212", "Security Settings","Security PIN");
+
+        Log.info("======= END : Change Security Pin Test =======");
 
 
     }

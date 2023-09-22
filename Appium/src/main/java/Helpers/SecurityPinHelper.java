@@ -39,7 +39,7 @@ public class SecurityPinHelper {
     }
 
 
-    public void securityPinFlow(String currentState , String expSecuritySettingsTitle, String expSecurityPinTitle) throws InterruptedException, IOException {
+    public void securityPinFlow(String currentState, String pin, String expSecuritySettingsTitle, String expSecurityPinTitle) throws InterruptedException, IOException {
 
         // Click on profile icon
         securityPinPage.clickOnProfile();
@@ -63,9 +63,10 @@ public class SecurityPinHelper {
 
         // Add the assertions
         mbReporter.verifyEqualsWithLogging(securitySettingPageTitle, expSecuritySettingsTitle , "Verify Title", false, false,true);
-//        mbReporter.verifyEqualsWithLogging(currentStateText, "Security PIN: "+currentState, "Verify Current Sate", false, false,true);
 
         if(securityPinPage.getCurrentState().equals("Security PIN: "+currentState)){
+
+            mbReporter.verifyEqualsWithLogging(currentStateText, "Security PIN: "+currentState, "Verify Current Sate", false, false,true);
 
             // Click on Security Pin
             securityPinPage.clickOnSecurityPin();
@@ -73,10 +74,11 @@ public class SecurityPinHelper {
             // Verification on the Security Settings screen
             String securityPinPageTitle = securityPinPage.getTitle();
             Log.info("Title : " + securityPinPageTitle);
+
             mbReporter.verifyEqualsWithLogging(securityPinPageTitle, expSecurityPinTitle , "Verify Title", false, false,true);
 
             // Enter security pin
-            securityPinPage.enterSecurityPin();
+            securityPinPage.enterSecurityPin(pin);
 
         }
 
@@ -87,19 +89,69 @@ public class SecurityPinHelper {
 
 
 
-    public void securityPinTestCase(String expSecuritySettingsTitle, String expSecurityPinTitle) throws InterruptedException, IOException {
+    public void securityPinTestCase(String pin, String expSecuritySettingsTitle, String expSecurityPinTitle) throws InterruptedException, IOException {
 
         //Enable Security Pin
-        securityPinFlow("Disabled",expSecuritySettingsTitle,expSecurityPinTitle);
+        securityPinFlow("Disabled", pin, expSecuritySettingsTitle, expSecurityPinTitle);
 
-        goldHelper.goldSell("1", "Payment Successful", "Sell Gold", "0.0002", "₹1","Sold Gold", "+ ₹1", "Success");
-
-        goldHelper.goldBuy("1", "Payment Successful", "Gold Purchase", "0.0002", "₹1","Purchased Gold", "₹1", "Success");
+        // By Gold
+        goldHelper.goldBuy("1", "Payment Successful", "Gold Purchase", "0.0002", "₹1","Purchased Gold", "-₹1", "Success");
 
         mbkCommonControlsHelper.handleHomePageLanding();
 
         //Disable Security Pin
-        securityPinFlow("Enabled",expSecuritySettingsTitle,expSecurityPinTitle);
+        securityPinFlow("Enabled", pin, expSecuritySettingsTitle, expSecurityPinTitle);
+
+    }
+
+
+
+    public void changeSecurityPinTest(String pin, String expSecuritySettingsTitle, String expSecurityPinTitle) throws InterruptedException, IOException {
+
+        //Enable Security Pin
+        securityPinFlow("Disabled", pin, expSecuritySettingsTitle, expSecurityPinTitle);
+
+        // Click on profile icon
+        securityPinPage.clickOnProfile();
+
+        Thread.sleep(2000);
+
+        // Swipe till the bottom
+        screen.swipeUpMore(driver);
+        screen.swipeUpMore(driver);
+
+        // Click on Security Settings
+        securityPinPage.clickOnsSecuritySettings();
+
+        // Verification on the Security Settings screen
+        String securitySettingPageTitle = securityPinPage.getTitle();
+        String currentStateText = securityPinPage.getCurrentState();
+
+        // Display the values
+        Log.info("Title : " + securitySettingPageTitle);
+        Log.info("Current Security State : " + currentStateText);
+
+        // Add the assertions
+        mbReporter.verifyEqualsWithLogging(securitySettingPageTitle, expSecuritySettingsTitle , "Verify Title", false, false,true);
+        mbReporter.verifyEqualsWithLogging(currentStateText, "Security PIN: Enabled", "Verify Current Sate", false, false,true);
+
+        // Click on Change Pin
+        securityPinPage.clickOnChangePin();
+
+        // Enter Current Pin
+        securityPinPage.enterCurrentPin(pin);
+
+        // Enter New Pin
+        securityPinPage.enterNewPin(pin);
+
+        // Enter Confirm New Pin
+        securityPinPage.enterConfirmNewPin(pin);
+
+        // Click on Change Security Pin
+        securityPinPage.clickOnChangeSecurityPin();
+
+
+        Thread.sleep(2000);
 
     }
 }

@@ -25,7 +25,7 @@ public class GoldTest extends TestBase {
 
         // Execute the test
         GoldHelper goldHelper = new GoldHelper(getAndroidDriver());
-        goldHelper.goldBuy("1", "Payment Successful", "Gold Purchase", "0.0002", "₹1","Purchased Gold", "₹1", "Success");
+        goldHelper.goldBuy("1", "Payment Successful", "Gold Purchase", "0.0002", "₹1","Purchased Gold", "-₹1", "Success");
 
         Log.info("======= END : Gold Buy test =======");
 
@@ -44,7 +44,7 @@ public class GoldTest extends TestBase {
 
         // Execute the test
         GoldHelper goldHelper = new GoldHelper(getAndroidDriver());
-        goldHelper.goldSell("1", "Payment Successful", "Sell Gold", "0.0002", "₹1","Sold Gold", "+ ₹1", "Success");
+        goldHelper.goldSell("1", "Payment Successful", "Sell Gold", "0.0002", "₹1","Sold Gold", "+₹1", "Success");
 
         Log.info("======= END : Gold Sell test =======");
 
