@@ -31,7 +31,6 @@
             <class name="Zip.ZipTest"/>
             <class name="Offers.OfferTest"/>
             <class name="Rewards.RewardsTest"/>
-            <class name="SecurityPin.SecurityPinTest"/>
             <class name="HelpAndSupport.Test_HelpAndSupport"/>
             <class name="PayRent.PayRentTest"/>
             <class name="AccountAggregator.Test_AccountAggregator"/>

@@ -34,6 +34,7 @@
                     <exclude name="prepaid_Recharge"/>
                 </methods>
             </class>
+            <class name="SecurityPin.SecurityPinTest"/>
         </classes>
     </test>
 
