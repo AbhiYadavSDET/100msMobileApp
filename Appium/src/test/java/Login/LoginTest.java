@@ -16,7 +16,7 @@ public class LoginTest extends TestBase {
         Log.info("======= START : Login test =======");
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.quickLoginViaOtp("9205299330", "547372");
+        loginHelp.loginViaOtp("9205299330", "547372");
 
         Log.info("======= END : Login test =======");
 
