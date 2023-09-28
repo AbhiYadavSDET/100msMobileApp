@@ -605,10 +605,14 @@ public class P2PExtraHelper {
                 //if(p2PExtraPage.checkNotificationAlert() || p2PExtraPage.checkInvestContainer()) screen.swipeUpMedium(driver);
 
                 // Check for Withdraw Cta on Flexi Card
-                //if(!p2PExtraPage.checkWithdrawCta()) screen.swipeUpLess(driver);
+                if(!p2PExtraPage.checkWithdrawCta()) {
+                    screen.swipeUpMedium(driver);
+                }
+
+
 
                 // Check for Withdraw Cta on Flexi Card
-                if(!p2PExtraPage.checkWithdrawCta()) screen.swipeUpMedium(driver);
+                //if(!p2PExtraPage.checkWithdrawCta()) screen.swipeUpMedium(driver);
 
                 // Click on withdraw on Xtra main page.
                 p2PExtraPage.selectWithdraw();
