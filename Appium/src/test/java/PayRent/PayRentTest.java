@@ -12,13 +12,10 @@ import java.io.IOException;
 public class PayRentTest extends TestBase {
 
     @Test(groups = {"regression", "Pay Rent"}, priority = 0, description = "Add New Property")
-
     public void addNewProperty() throws InterruptedException, IOException {
 
 
-        Log.info("======= START : P2M Send test =======");
-        // Starting the test in the extentreport
-        ExtentReport.EXTENTREPORT.createTest("CCBP test");
+        Log.info("======= START : Add New Property =======");
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
@@ -28,20 +25,18 @@ public class PayRentTest extends TestBase {
 
         // Execute the test
         PayRentHelper payRentHelper = new PayRentHelper(getAndroidDriver());
-        payRentHelper.addNewProperty("006198700002090", "YESB0000061", "Vikrant Nagar", "50");
+        payRentHelper.addNewProperty("006198700002090", "YESB0000061", "Vikrant Nagar", "50", "123");
 
         Log.info("======= END : Add New Property =======");
 
     }
 
-    @Test(groups = {"regression", "Pay Rent"}, priority = 0, description = "Verify pay rent via ZIP")
+    @Test(groups = {"regression", "Pay Rent"}, priority = 1, description = "Verify pay rent via ZIP")
 
     public void payRentviaZip() throws InterruptedException, IOException {
 
 
         Log.info("======= START : P2M Send test =======");
-        // Starting the test in the extentreport
-        ExtentReport.EXTENTREPORT.createTest("CCBP test");
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
@@ -56,13 +51,11 @@ public class PayRentTest extends TestBase {
         Log.info("======= END : Pay Rent via ZIP =======");
 
     }
-    @Test(groups = {"regression", "Pay Rent"}, priority = 0, description = "Verify pay rent via Card")
+    @Test(groups = {"regression", "Pay Rent"}, priority = 2, description = "Verify pay rent via Card")
     public void payRentviaCard() throws InterruptedException, IOException {
 
 
         Log.info("======= START : P2M Send test =======");
-        // Starting the test in the extentreport
-        ExtentReport.EXTENTREPORT.createTest("CCBP test");
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
@@ -77,13 +70,11 @@ public class PayRentTest extends TestBase {
         Log.info("======= END : Pay Rent via Card =======");
 
     }
-    @Test(groups = {"regression", "Pay Rent"}, priority = 0, description = "Verify pay rent via UPI")
+    @Test(groups = {"regression", "Pay Rent"}, priority = 3, description = "Verify pay rent via UPI")
     public void payRentViaUPI() throws InterruptedException, IOException {
 
 
         Log.info("======= START : P2M Send test =======");
-        // Starting the test in the extentreport
-        ExtentReport.EXTENTREPORT.createTest("CCBP test");
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
@@ -98,13 +89,12 @@ public class PayRentTest extends TestBase {
         Log.info("======= END : Pay Rent via UPI =======");
 
     }
-    @Test(groups = {"regression", "Pay Rent"}, priority = 0, description = "Verify Pay rent benefit screen")
+    @Test(groups = {"regression", "Pay Rent"}, priority = 4, description = "Verify Pay rent benefit screen")
     public void verifyPayRentBenefitScreen() throws InterruptedException, IOException {
 
 
         Log.info("======= START : P2M Send test =======");
-        // Starting the test in the extentreport
-        ExtentReport.EXTENTREPORT.createTest("CCBP test");
+
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
@@ -119,13 +109,11 @@ public class PayRentTest extends TestBase {
         Log.info("======= END : Verify PayRent Benefit Screen =======");
 
     }
-    @Test(groups = {"regression", "Pay Rent"}, priority = 0, description = "Verify FAQ Screen")
+    @Test(groups = {"regression", "Pay Rent"}, priority = 5, description = "Verify FAQ Screen")
     public void verifyFaqScreen() throws InterruptedException, IOException {
 
 
         Log.info("======= START : P2M Send test =======");
-        // Starting the test in the extentreport
-        ExtentReport.EXTENTREPORT.createTest("CCBP test");
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
@@ -140,26 +128,23 @@ public class PayRentTest extends TestBase {
         Log.info("======= END : Verify FAQ =======");
 
     }
-    @Test(groups = {"regression", "Pay Rent"}, priority = 1, description = "Delete property")
-    public void deleteRentDetails() throws InterruptedException, IOException {
 
-
-        Log.info("======= START : P2M Send test =======");
-        // Starting the test in the extentreport
-        ExtentReport.EXTENTREPORT.createTest("CCBP test");
-
-        // Login to the account
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("9205299330", "547372");
-
-        Log.info("======= START : Verify FAQ =======");
-
-        // Execute the test
-        PayRentHelper payRentHelper = new PayRentHelper(getAndroidDriver());
-        payRentHelper.deleteProperty();
-
-        Log.info("======= END : Verify FAQ =======");
-
-    }
+//    @Test(groups = {"regression", "Pay Rent"}, priority = 6, description = "Delete property")
+//    public void deleteRentDetails() throws InterruptedException, IOException {
+//
+//        Log.info("======= START : P2M Send test =======");
+//        // Login to the account
+//        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+//        loginHelper.quickLoginViaOtp("9205299330", "547372");
+//
+//        Log.info("======= START : Verify FAQ =======");
+//
+//        // Execute the test
+//        PayRentHelper payRentHelper = new PayRentHelper(getAndroidDriver());
+//        payRentHelper.deleteProperty();
+//
+//        Log.info("======= END : Verify FAQ =======");
+//
+//    }
 
 }

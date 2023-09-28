@@ -144,7 +144,7 @@ public class MBReporter {
 
             if (logExtentReport) {
 
-                ExtentReport.extentReportDisplay(ExtentReport.Status.PASS, stepName);
+                ExtentReport.extentReportDisplay(ExtentReport.Status.PASS, stepName + " | Actual : " + actual + " | Expected : " + expected);
 
 
             }
@@ -157,7 +157,7 @@ public class MBReporter {
                 Reporter.log("<a href='" + s + "'> <Font Color=red> FAIL </Font> </a>" + stepName);
                 Log.info(Log.ANSI_RED + "LOG | FAIL | " + stepName + " | Actual : " + actual + " | Expected : " + expected + Log.ANSI_RESET);
                 if (logExtentReport) {
-                    ExtentReport.extentReportDisplay(ExtentReport.Status.FAIL, stepName, s);
+                    ExtentReport.extentReportDisplay(ExtentReport.Status.FAIL, stepName + " | Actual : " + actual + " | Expected : " + expected, s);
                 }
 
 
@@ -167,7 +167,7 @@ public class MBReporter {
                 Log.info(Log.ANSI_RED + "LOG | FAIL | " + stepName + " | Actual : " + actual + " | Expected : " + expected + Log.ANSI_RESET);
 
                 if (logExtentReport) {
-                    ExtentReport.extentReportDisplay(ExtentReport.Status.FAIL, stepName);
+                    ExtentReport.extentReportDisplay(ExtentReport.Status.FAIL, stepName + " | Actual : " + actual + " | Expected : " + expected);
                 }
 
             }

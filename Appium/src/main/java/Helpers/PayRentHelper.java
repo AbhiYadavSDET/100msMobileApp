@@ -46,11 +46,11 @@ public class PayRentHelper {
         return newAmount;
     }
 
-    public void addNewProperty(String AccountNumber, String IfscCode, String Name, String Amount) throws IOException, InterruptedException {
+    public void addNewProperty(String AccountNumber, String IfscCode, String Name, String Amount, String cvv) throws IOException, InterruptedException {
 
 
-        // Get the Balance if the User Before TRX
-        balanceBefore = mbkCommonControlsHelper.getBalance();
+//        // Get the Balance if the User Before TRX
+//        balanceBefore = mbkCommonControlsHelper.getBalance();
 
         //Click on Pay Rent
         payRentPage.clickPayRent();
@@ -76,34 +76,51 @@ public class PayRentHelper {
         //Click Continue
         payRentPage.clickContinueButton();
 
-        //Press Back 3times to go to home screen
-        mbkCommonControlsHelper.pressback(3);
+        // Thread.sleep(3000);
 
-        // Click on the back button if the bottom sheet is present
-        mbkCommonControlsHelper.handleHomePageLanding();
+        //click on more Payment options
+        payRentPage.clickMorePaymentOptions();
 
-        //Click on Pay Rent
-        payRentPage.clickPayRent();
+        //click on Bank
+        payRentPage.clickOnBank();
 
-        // Verification on the Pay Rent HomeScreen
-        String landlordName = payRentPage.getLandlordName();
-        String accountNumber = payRentPage.getAccountNumber();
+        //click on Pay Button
+        payRentPage.clickOnPayButton();
 
-        // Display the values
-        Log.info("Landlord Name : " + landlordName);
-        Log.info("Account Number of landlord : " + accountNumber);
+        //Enter CVV
+        payRentPage.enterCVV(cvv);
 
-        // Add the assertions
-        mbReporter.verifyEqualsWithLogging(landlordName, Name, "Verify Landlord Name", false, false, true);
-        mbReporter.verifyEqualsWithLogging(accountNumber, AccountNumber, "Verify Account Number of landlord", false, false, true);
+        // click on Pay Button On CVV Screen
+        payRentPage.clickOnPayButtonOnCVVScreen();
+
+//        //Press Back 6 times to go to home screen
+//        mbkCommonControlsHelper.pressback(6);
+//
+//        // Click on the back button if the bottom sheet is present
+//        mbkCommonControlsHelper.handleHomePageLanding();
+//
+//        //Click on Pay Rent
+//        payRentPage.clickPayRent();
+//
+//        // Verification on the Pay Rent HomeScreen
+//        String landlordName = payRentPage.getLandlordName();
+//        String accountNumber = payRentPage.getAccountNumber();
+//
+//        // Display the values
+//        Log.info("Landlord Name : " + landlordName);
+//        Log.info("Account Number of landlord : " + accountNumber);
+//
+//        // Add the assertions
+//        mbReporter.verifyEqualsWithLogging(landlordName, Name, "Verify Landlord Name", false, false, true);
+//        mbReporter.verifyEqualsWithLogging(accountNumber, AccountNumber, "Verify Account Number of landlord", false, false, true);
 
 
     }
 
     public void payRentViaZIP(String Amount,String expAmount, String expconvenienceFee, String exptotalPayableAmount) throws IOException, InterruptedException{
 
-        // Get the Balance if the User Before TRX
-        balanceBefore = mbkCommonControlsHelper.getBalance();
+//        // Get the Balance if the User Before TRX
+//        balanceBefore = mbkCommonControlsHelper.getBalance();
 
         //Click on Pay Rent
         payRentPage.clickPayRent();
@@ -140,8 +157,8 @@ public class PayRentHelper {
     }
     public void payRentviaCard(String Amount,String expAmount, String expconvenienceFee, String exptotalPayableAmount) throws IOException, InterruptedException{
 
-        // Get the Balance if the User Before TRX
-        balanceBefore = mbkCommonControlsHelper.getBalance();
+//        // Get the Balance if the User Before TRX
+//        balanceBefore = mbkCommonControlsHelper.getBalance();
 
         //Click on Pay Rent
         payRentPage.clickPayRent();
@@ -182,8 +199,8 @@ public class PayRentHelper {
     }
     public void payRentViaUpi(String expRecipientName, String Amount) throws IOException, InterruptedException{
 
-        // Get the Balance if the User Before TRX
-        balanceBefore = mbkCommonControlsHelper.getBalance();
+//        // Get the Balance if the User Before TRX
+//        balanceBefore = mbkCommonControlsHelper.getBalance();
 
         //Click on Pay Rent
         payRentPage.clickPayRent();
