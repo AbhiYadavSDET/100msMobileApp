@@ -35,6 +35,9 @@ public class PayRentPage {
     @AndroidFindBy(xpath = "//*/android.widget.EditText[@text = 'Enter Rent Amount']")
     private AndroidElement rentAmount;
 
+    @AndroidFindBy(xpath = "//*/android.widget.EditText[@text = 'CVV']")
+    private AndroidElement cvv_text_box;
+
     @AndroidFindBy(id = "landlord_name")
     private AndroidElement name;
 
@@ -95,6 +98,15 @@ public class PayRentPage {
     @AndroidFindBy(id = "delete")
     private AndroidElement deleteRentDetails;
 
+    @AndroidFindBy(id = "bank_name")
+    private AndroidElement bank_name;
+
+    @AndroidFindBy(id = "btn_check_out_pay")
+    private AndroidElement pay_button;
+
+    @AndroidFindBy(id = "btn_add_money")
+    private AndroidElement pay_button_bottomSheet;
+
 
     public PayRentPage(AndroidDriver driver) throws IOException {
 
@@ -133,6 +145,10 @@ public class PayRentPage {
 
     public void enterRentAmount(String Amount){
         Elements.enterToElement(driver, rentAmount,Amount, "Enter Rent Amount");
+    }
+
+    public void enterCVV(String cvv){
+        Elements.enterToElement(driver, cvv_text_box, cvv, "Enter CVV");
     }
 
     public String getLandlordName()throws InterruptedException{
@@ -211,6 +227,17 @@ public class PayRentPage {
 
     public void clickDeleteRentDetails() {Elements.selectElement(driver, deleteRentDetails, "Click on delete rent details");}
 
+    public void clickOnBank() throws InterruptedException{
+        Elements.selectElement(driver, bank_name, "Click Bank Name");
+    }
+
+    public void clickOnPayButton() throws InterruptedException{
+        Elements.selectElement(driver, pay_button, "Click Pay Button");
+    }
+
+    public void clickOnPayButtonOnCVVScreen() throws InterruptedException{
+        Elements.selectElement(driver, pay_button_bottomSheet, "Click Pay Button");
+    }
 
 }
 
