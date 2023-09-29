@@ -33,6 +33,7 @@ public class P2PExtraHelper {
         p2PExtraPage = new P2PExtraPage(driver);
         mbReporter = new MBReporter(driver);
         mbkCommonControlsPage = new MbkCommonControlsPage(driver);
+        mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
 
     }
 

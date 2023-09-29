@@ -14,6 +14,13 @@
                 <include name="instantiateHelpers"/>
                 <include name="p2pXtraWithdraw"/>
                 <include name="p2pXtraReInvestFromFlexi"/>
+                <include name="p2pXtraReInvestFromFixed"/>
+                <include name="p2pXtraReferAndEarn"/>
+                <include name="p2pXtraNewUser"/>
+                <include name="p2pXtraInvestInFixed"/>
+                <include name="p2pXtraInvestInFlexi"/>
+                <include name="p2pXtraDefaultBankAccount"/>
+                <include name="p2pXtraNomineeDetails"/>
                 <include name="tearDown"/>
             </run>
         </groups>
