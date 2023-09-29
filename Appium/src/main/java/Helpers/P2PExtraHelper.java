@@ -596,16 +596,22 @@ public class P2PExtraHelper {
                 if(mbkCommonControlsPage.isWhitePopUpPresent()){ mbkCommonControlsPage.closeWhitePopUp(); }
 
                 // Click on Got it to remove referral bottom sheet.
-                if(p2PExtraPage.isBottomSheetPresent()) p2PExtraPage.removeBottomSheet();
+                //if(p2PExtraPage.isBottomSheetPresent()) p2PExtraPage.removeBottomSheet();
 
                 // If notification alerts are present, then swipe up
                 //if(p2PExtraPage.checkNotificationAlert() || p2PExtraPage.checkInvestContainer()) screen.swipeUpMedium(driver);
+
+                if(!p2PExtraPage.checkInvestMoreCta()) mbkCommonControlsHelper.pressback();
 
                 // Check for Withdraw Cta on Flexi Card
                 if(!p2PExtraPage.checkWithdrawCta()) screen.swipeUpMedium(driver);
 
                 // Check for Withdraw Cta on Flexi Card
                 //if(!p2PExtraPage.checkWithdrawCta()) screen.swipeUpMedium(driver);
+
+                if(!p2PExtraPage.checkWithdrawCta() || p2PExtraPage.checkFixedInvestmentDesc()){
+                    screen.swipeUpLess(driver);
+                }
 
                 // Click on withdraw on Xtra main page.
                 p2PExtraPage.selectWithdraw();
