@@ -9,10 +9,10 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-public class Test_HelpAndSupport  extends TestBase {
+public class Test_HelpAndSupport extends TestBase {
 
-    @Test(groups = {"sanity", "helpAndSupport" , "regression"}, priority = 0, description = "Verify Help And Support")
-    public void Test01_HelpAndSupport() throws IOException, InterruptedException {
+    @Test(groups = {"sanity", "helpAndSupport", "regression"}, priority = 0, description = "Verify Help And Support")
+    public void Test_Help_Raise_Ticket() throws IOException, InterruptedException {
 
 
         // Login to the account

@@ -3,7 +3,6 @@ package Offers;
 import Helpers.LoginHelper;
 import Helpers.OfferHelper;
 import Logger.Log;
-import Utils.ExtentReport;
 import Utils.TestBase;
 import org.testng.annotations.Test;
 
@@ -14,7 +13,7 @@ public class OfferTest extends TestBase {
 
 
     @Test(groups = {"sanity", "offerSearch", "regression"}, priority = 0, description = "Offer Search")
-    public void Test01_offerSearch() throws IOException, InterruptedException {
+    public void Test_Offers_Search() throws IOException, InterruptedException {
 
         Log.info("======= START : Offer Search test =======");
 

@@ -3,17 +3,15 @@ package MutualFunds;
 import Helpers.LoginHelper;
 import Helpers.MutualFundsHelper;
 import Logger.Log;
-import Utils.ExtentReport;
-import org.testng.annotations.Test;
 import Utils.TestBase;
-
+import org.testng.annotations.Test;
 
 import java.io.IOException;
 
 public class MutualFundsTest extends TestBase {
 
     @Test(groups = {"MutualFunds", "sanity", "sanityPrime", "regression"}, priority = 0, description = "Explore Mutual Funds")
-    public void Explore_Mutual_Funds() throws InterruptedException, IOException {
+    public void Test_MF_Explore_Mutual_Funds() throws InterruptedException, IOException {
 
         Log.info("======= START : Mutual Funds Flow test =======");
 

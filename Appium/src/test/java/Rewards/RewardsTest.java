@@ -3,7 +3,6 @@ package Rewards;
 import Helpers.LoginHelper;
 import Helpers.RewardsHelper;
 import Logger.Log;
-import Utils.ExtentReport;
 import Utils.TestBase;
 import org.testng.annotations.Test;
 
@@ -14,7 +13,7 @@ public class RewardsTest extends TestBase {
 
 
     @Test(groups = {"sanity", "spinthewheel", "regression"}, priority = 0, description = "Spin the Wheel")
-    public void Test01_spinTheWheel() throws IOException, InterruptedException {
+    public void Test_Rewards_spinTheWheel() throws IOException, InterruptedException {
 
         Log.info("======= START : Spin the Wheel test =======");
 

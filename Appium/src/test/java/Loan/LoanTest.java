@@ -3,7 +3,6 @@ package Loan;
 import Helpers.LoanHelper;
 import Helpers.LoginHelper;
 import Logger.Log;
-import Utils.ExtentReport;
 import Utils.TestBase;
 import org.testng.annotations.Test;
 
@@ -14,7 +13,7 @@ public class LoanTest extends TestBase {
 
 
     @Test(groups = {"sanity", "verifyLoanPage", "regression"}, priority = 0, description = "Wallet To Wallet transfer")
-    public void Test01_verifyLoanPage() throws IOException, InterruptedException {
+    public void Test_EMI_verifyLoanPage() throws IOException, InterruptedException {
 
         Log.info("======= START : Loan Verify test =======");
 

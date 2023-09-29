@@ -3,7 +3,6 @@ package Zip;
 import Helpers.LoginHelper;
 import Helpers.ZipHelper;
 import Logger.Log;
-import Utils.ExtentReport;
 import Utils.TestBase;
 import org.testng.annotations.Test;
 
@@ -14,10 +13,9 @@ public class ZipTest extends TestBase {
 
 
     @Test(groups = {"sanity", "verifyZipPage", "regression"}, priority = 0, description = "Verify Zip Page")
-    public void Test01_verifyZipPage() throws IOException, InterruptedException {
+    public void Test_Zip_verifyZipPage() throws IOException, InterruptedException {
 
         Log.info("======= START : Zip Verify test =======");
-
 
 
         // Login to the account

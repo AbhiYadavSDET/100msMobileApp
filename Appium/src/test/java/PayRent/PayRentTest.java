@@ -3,7 +3,6 @@ package PayRent;
 import Helpers.LoginHelper;
 import Helpers.PayRentHelper;
 import Logger.Log;
-import Utils.ExtentReport;
 import Utils.TestBase;
 import org.testng.annotations.Test;
 
@@ -12,7 +11,7 @@ import java.io.IOException;
 public class PayRentTest extends TestBase {
 
     @Test(groups = {"regression", "Pay Rent"}, priority = 0, description = "Add New Property")
-    public void addNewProperty() throws InterruptedException, IOException {
+    public void Test_PayRent_addNewProperty() throws InterruptedException, IOException {
 
 
         Log.info("======= START : Add New Property =======");
@@ -33,7 +32,7 @@ public class PayRentTest extends TestBase {
 
     @Test(groups = {"regression", "Pay Rent"}, priority = 1, description = "Verify pay rent via ZIP")
 
-    public void payRentviaZip() throws InterruptedException, IOException {
+    public void Test_PayRent_payRentviaZip() throws InterruptedException, IOException {
 
 
         Log.info("======= START : P2M Send test =======");
@@ -46,13 +45,14 @@ public class PayRentTest extends TestBase {
 
         // Execute the test
         PayRentHelper payRentHelper = new PayRentHelper(getAndroidDriver());
-        payRentHelper.payRentViaZIP("50","₹50","₹1.18","₹51.18");
+        payRentHelper.payRentViaZIP("50", "₹50", "₹1.18", "₹51.18");
 
         Log.info("======= END : Pay Rent via ZIP =======");
 
     }
+
     @Test(groups = {"regression", "Pay Rent"}, priority = 2, description = "Verify pay rent via Card")
-    public void payRentviaCard() throws InterruptedException, IOException {
+    public void Test_PayRent_payRentviaCard() throws InterruptedException, IOException {
 
 
         Log.info("======= START : P2M Send test =======");
@@ -65,13 +65,14 @@ public class PayRentTest extends TestBase {
 
         // Execute the test
         PayRentHelper payRentHelper = new PayRentHelper(getAndroidDriver());
-        payRentHelper.payRentviaCard("50","₹50","₹1.18","₹51.18");
+        payRentHelper.payRentviaCard("50", "₹50", "₹1.18", "₹51.18");
 
         Log.info("======= END : Pay Rent via Card =======");
 
     }
+
     @Test(groups = {"regression", "Pay Rent"}, priority = 3, description = "Verify pay rent via UPI")
-    public void payRentViaUPI() throws InterruptedException, IOException {
+    public void Test_PayRent_payRentViaUPI() throws InterruptedException, IOException {
 
 
         Log.info("======= START : P2M Send test =======");
@@ -84,13 +85,14 @@ public class PayRentTest extends TestBase {
 
         // Execute the test
         PayRentHelper payRentHelper = new PayRentHelper(getAndroidDriver());
-        payRentHelper.payRentViaUpi("Vikrant Nagar","50");
+        payRentHelper.payRentViaUpi("Vikrant Nagar", "50");
 
         Log.info("======= END : Pay Rent via UPI =======");
 
     }
+
     @Test(groups = {"regression", "Pay Rent"}, priority = 4, description = "Verify Pay rent benefit screen")
-    public void verifyPayRentBenefitScreen() throws InterruptedException, IOException {
+    public void Test_PayRent_verifyPayRentBenefitScreen() throws InterruptedException, IOException {
 
 
         Log.info("======= START : P2M Send test =======");
@@ -109,8 +111,9 @@ public class PayRentTest extends TestBase {
         Log.info("======= END : Verify PayRent Benefit Screen =======");
 
     }
+
     @Test(groups = {"regression", "Pay Rent"}, priority = 5, description = "Verify FAQ Screen")
-    public void verifyFaqScreen() throws InterruptedException, IOException {
+    public void Test_PayRent_verifyFaqScreen() throws InterruptedException, IOException {
 
 
         Log.info("======= START : P2M Send test =======");
