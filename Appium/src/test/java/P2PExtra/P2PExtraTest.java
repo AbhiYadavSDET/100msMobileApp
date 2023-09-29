@@ -171,7 +171,7 @@ public class P2PExtraTest extends TestBase {
     @Test(groups = {"p2pXtraReInvestFromFlexi", "sanity", "sanityPrime", "regression"}, priority = 0, description = "Verify Xtra : Reinvest(in FXIED) From Flexi Investment")
     public void Test_Xtra_Reinvest_Flexi() throws InterruptedException, IOException {
 
-        Log.info("======= START : XTRA - Reinvest(in FXIED) From Flexi=======");
+        Log.info("======= START : XTRA - Reinvest(in FIXED) From Flexi=======");
 
         // Start the test
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());

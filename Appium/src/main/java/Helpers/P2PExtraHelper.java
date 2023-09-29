@@ -21,6 +21,7 @@ public class P2PExtraHelper {
     Element element;
     MBReporter mbReporter;
     MbkCommonControlsPage mbkCommonControlsPage;
+    MBKCommonControlsHelper mbkCommonControlsHelper;
 
 
     public P2PExtraHelper(AndroidDriver driver) throws IOException {
@@ -43,14 +44,15 @@ public class P2PExtraHelper {
         // Click on xtra icon on home page.
         p2PExtraPage.selectXtra();
 
-
-        if(mbkCommonControlsPage.isWhitePopUpPresent()){ mbkCommonControlsPage.closeWhitePopUp(); }
+        //if(mbkCommonControlsPage.isWhitePopUpPresent()){ mbkCommonControlsPage.closeWhitePopUp(); }
 
         // Click on Got it to remove referral bottom sheet.
-        if(p2PExtraPage.isBottomSheetPresent()) p2PExtraPage.removeBottomSheet();
+        //if(p2PExtraPage.isBottomSheetPresent()) p2PExtraPage.removeBottomSheet();
+
+        if(!p2PExtraPage.checkInvestMoreCta()) mbkCommonControlsHelper.pressback();
 
         // Click on screen to remove bottom sheet.
-//         p2PExtraPage.tapOutsideBottomSheet();
+        // p2PExtraPage.tapOutsideBottomSheet();
 
         // Printing portfolio values.
         String portfolioValue = p2PExtraPage.getPortfolioValue();
@@ -63,12 +65,10 @@ public class P2PExtraHelper {
 //        Log.info("Earned Amount : " + earnedAmount);
         Log.info("Per Day Earning : " + perDayEarning);
 
-        //screen.swipeUpLess(driver);
-
         // If notification alerts are present, then swipe up
         //if(p2PExtraPage.checkNotificationAlert()) screen.swipeUpMedium(driver);
 
-        if(!p2PExtraPage.checkWithdrawCta()){
+        if(!p2PExtraPage.checkWithdrawCta() || p2PExtraPage.checkFixedInvestmentDesc()){
             screen.swipeUpLess(driver);
         }
 
@@ -256,10 +256,7 @@ public class P2PExtraHelper {
         // Click on xtra icon on home page.
         p2PExtraPage.selectXtra();
 
-
-        if (mbkCommonControlsPage.isWhitePopUpPresent()) {
-            mbkCommonControlsPage.closeWhitePopUp();
-        }
+        if (mbkCommonControlsPage.isWhitePopUpPresent()) mbkCommonControlsPage.closeWhitePopUp();
 
         // Click on Got it to remove referral bottom sheet.
         if (p2PExtraPage.isBottomSheetPresent()) p2PExtraPage.removeBottomSheet();
@@ -599,16 +596,22 @@ public class P2PExtraHelper {
                 if(mbkCommonControlsPage.isWhitePopUpPresent()){ mbkCommonControlsPage.closeWhitePopUp(); }
 
                 // Click on Got it to remove referral bottom sheet.
-                if(p2PExtraPage.isBottomSheetPresent()) p2PExtraPage.removeBottomSheet();
+                //if(p2PExtraPage.isBottomSheetPresent()) p2PExtraPage.removeBottomSheet();
 
                 // If notification alerts are present, then swipe up
                 //if(p2PExtraPage.checkNotificationAlert() || p2PExtraPage.checkInvestContainer()) screen.swipeUpMedium(driver);
+
+                if(!p2PExtraPage.checkInvestMoreCta()) mbkCommonControlsHelper.pressback();
 
                 // Check for Withdraw Cta on Flexi Card
                 if(!p2PExtraPage.checkWithdrawCta()) screen.swipeUpMedium(driver);
 
                 // Check for Withdraw Cta on Flexi Card
                 //if(!p2PExtraPage.checkWithdrawCta()) screen.swipeUpMedium(driver);
+
+                if(!p2PExtraPage.checkWithdrawCta() || p2PExtraPage.checkFixedInvestmentDesc()){
+                    screen.swipeUpLess(driver);
+                }
 
                 // Click on withdraw on Xtra main page.
                 p2PExtraPage.selectWithdraw();

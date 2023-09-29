@@ -110,6 +110,9 @@ public class P2PExtraPage {
     @AndroidFindBy (id="cta")
     private AndroidElement weekend_approaching_got_it_cta;
 
+    @AndroidFindBy (id="cta")
+    private AndroidElement check_invest_more_cta;
+
 
     //Refer & Earn Widget
     @AndroidFindBy (id = "referral_widget_layout")
@@ -212,6 +215,8 @@ public class P2PExtraPage {
     @AndroidFindBy (id="tv_know_more")
     private AndroidElement know_more_optn;
 
+    @AndroidFindBy (id="tvAmountDesc")
+    private AndroidElement check_fixed_investment_amount;
 
 
 
@@ -530,6 +535,14 @@ public class P2PExtraPage {
 
     public String getKnowMoreOptn() throws InterruptedException{
         return Elements.getText(driver, know_more_optn, "Get Know More Text");
+    }
+
+    public boolean checkInvestMoreCta() throws InterruptedException{
+        return Elements.isElementPresent(driver, check_invest_more_cta);
+    }
+
+    public boolean checkFixedInvestmentDesc() throws InterruptedException{
+        return Elements.isElementPresent(driver, check_fixed_investment_amount);
     }
 
 
