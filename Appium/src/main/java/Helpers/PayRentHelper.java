@@ -48,15 +48,21 @@ public class PayRentHelper {
 
     public void addNewProperty(String AccountNumber, String IfscCode, String Name, String Amount, String cvv) throws IOException, InterruptedException {
 
-
-//        // Get the Balance if the User Before TRX
-//        balanceBefore = mbkCommonControlsHelper.getBalance();
-
         //Click on Pay Rent
         payRentPage.clickPayRent();
 
-        //Click on Add new Property
-        payRentPage.clickAddNewPropertyButton();
+        // check for saved Recipient Screen
+        if(payRentPage.checkSavedRecipientScreen()){
+
+            //Click on Add new Property
+            payRentPage.clickAddNewPropertyButton();
+        }
+        else {
+
+            //click on Continue with ZIP/Cards button
+            payRentPage.clickContinueWithZipAndCards();
+
+        }
 
         //Enter account Number
         payRentPage.enterAccountNumber(AccountNumber);
@@ -76,66 +82,83 @@ public class PayRentHelper {
         //Click Continue
         payRentPage.clickContinueButton();
 
-        // Thread.sleep(3000);
+        // check for Security Pin Page
+        if(securityPinPage.checkSecurityPinPage()) { securityPinPage.enterSecurityPin();}
 
-        //click on more Payment options
-        payRentPage.clickMorePaymentOptions();
+        //Press Back 6 times to go to home screen
+        mbkCommonControlsHelper.pressback(3);
 
-        //click on Bank
-        payRentPage.clickOnBank();
+        // check for pop up on back
+        if(payRentPage.checkPopUpOnBack()) { payRentPage.clickConitnueToRemovePopUp();}
 
-        //click on Pay Button
-        payRentPage.clickOnPayButton();
-
-        //Enter CVV
-        payRentPage.enterCVV(cvv);
-
-        // click on Pay Button On CVV Screen
-        payRentPage.clickOnPayButtonOnCVVScreen();
-
-//        //Press Back 6 times to go to home screen
-//        mbkCommonControlsHelper.pressback(6);
-//
-//        // Click on the back button if the bottom sheet is present
-//        mbkCommonControlsHelper.handleHomePageLanding();
-//
-//        //Click on Pay Rent
-//        payRentPage.clickPayRent();
-//
-//        // Verification on the Pay Rent HomeScreen
-//        String landlordName = payRentPage.getLandlordName();
-//        String accountNumber = payRentPage.getAccountNumber();
-//
-//        // Display the values
-//        Log.info("Landlord Name : " + landlordName);
-//        Log.info("Account Number of landlord : " + accountNumber);
-//
-//        // Add the assertions
-//        mbReporter.verifyEqualsWithLogging(landlordName, Name, "Verify Landlord Name", false, false, true);
-//        mbReporter.verifyEqualsWithLogging(accountNumber, AccountNumber, "Verify Account Number of landlord", false, false, true);
-
-
-    }
-
-    public void payRentViaZIP(String Amount,String expAmount, String expconvenienceFee, String exptotalPayableAmount) throws IOException, InterruptedException{
-
-//        // Get the Balance if the User Before TRX
-//        balanceBefore = mbkCommonControlsHelper.getBalance();
+        // Click on the back button if the bottom sheet is present
+        mbkCommonControlsHelper.handleHomePageLanding();
 
         //Click on Pay Rent
         payRentPage.clickPayRent();
 
-        //Click on saved recipient
-        payRentPage.clickRentRecipient();
+        // check for saved Recipient Screen
+        boolean isSavedRecipientPresent = payRentPage.checkSavedRecipientScreen();
 
-        //click on Continue with ZIP/Cards button
-        payRentPage.clickContinueWithZipAndCards();
+        if(isSavedRecipientPresent){
+
+            // Verification on the Pay Rent HomeScreen
+            String landlordName = payRentPage.getLandlordName();
+            String accountNumber = payRentPage.getAccountNumber();
+
+            // Display the values
+            Log.info("Landlord Name : " + landlordName);
+            Log.info("Account Number of landlord : " + accountNumber);
+
+            // Add the assertions
+            mbReporter.verifyEqualsWithLogging(landlordName, Name, "Verify Landlord Name", false, false, true);
+            mbReporter.verifyEqualsWithLogging(accountNumber, AccountNumber, "Verify Account Number of landlord", false, false, true);
+
+        }
+        else {
+            mbReporter.verifyTrueWithLogging(isSavedRecipientPresent, "Saved Recipient is not Present", false, false, true);
+        }
+
+    }
+
+    public void payRentViaZIP(String AccountNumber, String IfscCode, String Name, String Amount,String expAmount, String expconvenienceFee, String exptotalPayableAmount) throws IOException, InterruptedException{
+
+        //Click on Pay Rent
+        payRentPage.clickPayRent();
+
+        // check for saved Recipient Screen
+        if(payRentPage.checkSavedRecipientScreen()){
+
+            //Click on Add new Property
+            payRentPage.clickAddNewPropertyButton();
+        }
+        else {
+
+            //click on Continue with ZIP/Cards button
+            payRentPage.clickContinueWithZipAndCards();
+
+        }
+
+        //Enter account Number
+        payRentPage.enterAccountNumber(AccountNumber);
+
+        //Enter Ifsc code
+        payRentPage.enterIfscCode(IfscCode);
+
+        //Click Continue button
+        payRentPage.clickContinueButton();
+
+        //Enter Landlord Name
+        payRentPage.enterLandlordName(Name);
 
         //Enter Rent Amount
         payRentPage.enterRentAmount(Amount);
 
         //Click on Continue button
         payRentPage.clickContinueButton();
+
+        // check for Security Pin Page
+        if(securityPinPage.checkSecurityPinPage()) { securityPinPage.enterSecurityPin();}
 
         // Verification on the PayRent Payment bottom sheet
         String totalAmount = payRentPage.getTotalAmount();
@@ -155,25 +178,44 @@ public class PayRentHelper {
 
 
     }
-    public void payRentviaCard(String Amount,String expAmount, String expconvenienceFee, String exptotalPayableAmount) throws IOException, InterruptedException{
-
-//        // Get the Balance if the User Before TRX
-//        balanceBefore = mbkCommonControlsHelper.getBalance();
+    public void payRentviaCard(String AccountNumber, String IfscCode, String Name, String Amount, String expAmount, String expconvenienceFee, String exptotalPayableAmount) throws IOException, InterruptedException{
 
         //Click on Pay Rent
         payRentPage.clickPayRent();
 
-        //Click on saved recipient
-        payRentPage.clickRentRecipient();
+        // check for saved Recipient Screen
+        if(payRentPage.checkSavedRecipientScreen()){
 
-        //click on Continue with ZIP/Cards button
-        payRentPage.clickContinueWithZipAndCards();
+            //Click on Add new Property
+            payRentPage.clickAddNewPropertyButton();
+        }
+        else {
+
+            //click on Continue with ZIP/Cards button
+            payRentPage.clickContinueWithZipAndCards();
+
+        }
+
+        //Enter account Number
+        payRentPage.enterAccountNumber(AccountNumber);
+
+        //Enter Ifsc code
+        payRentPage.enterIfscCode(IfscCode);
+
+        //Click Continue button
+        payRentPage.clickContinueButton();
+
+        //Enter Landlord Name
+        payRentPage.enterLandlordName(Name);
 
         //Enter Rent Amount
         payRentPage.enterRentAmount(Amount);
 
         //Click on Continue button
         payRentPage.clickContinueButton();
+
+        // check for Security Pin Page
+        if(securityPinPage.checkSecurityPinPage()) { securityPinPage.enterSecurityPin();}
 
         // Verification on the PayRent Payment bottom sheet
         String totalAmount = payRentPage.getTotalAmount();
@@ -190,87 +232,70 @@ public class PayRentHelper {
         mbReporter.verifyEqualsWithLogging(convFee, expconvenienceFee, "Verify Convenience Fee", false, false, true);
         mbReporter.verifyEqualsWithLogging(payableAmount, exptotalPayableAmount, "Verify Payable Amount", false, false, true);
 
-        //click on more Payment options
-        payRentPage.clickMorePaymentOptions();
-
-        //Click on Add new debit card
-//        payRentPage.clickAddNewDebitCard();
 
     }
     public void payRentViaUpi(String expRecipientName, String Amount) throws IOException, InterruptedException{
 
-//        // Get the Balance if the User Before TRX
-//        balanceBefore = mbkCommonControlsHelper.getBalance();
-
         //Click on Pay Rent
         payRentPage.clickPayRent();
 
-        //Click on saved recipient
-        payRentPage.clickRentRecipient();
+        // check for saved Recipient Screen
+        boolean isSavedRecipientPresent = payRentPage.checkSavedRecipientScreen();
 
-        //click on Use Upi
-        payRentPage.clickUseUpi();
+        if(isSavedRecipientPresent){
 
-        //verify recipient name
-        String recipientName = payRentPage.getTransaferToName();
-        Log.info("Recipient Name : " + recipientName);
-        mbReporter.verifyEqualsWithLogging(recipientName, expRecipientName, "Verify Landlord Name", false, false, true);
+            //Click on saved recipient
+            payRentPage.clickRentRecipient();
 
-        //Enter Rent Amount
-        payRentPage.clickFive();
-        payRentPage.clickZero();
+            //click on Use Upi
+            payRentPage.clickUseUpi();
 
-        //Click on Continue button
-        payRentPage.clickCnButton();
+            //verify recipient name
+            String recipientName = payRentPage.getTransaferToName();
+            Log.info("Recipient Name : " + recipientName);
+            mbReporter.verifyEqualsWithLogging(recipientName, expRecipientName, "Verify Landlord Name", false, false, true);
 
-        //Click on Continue button
-        payRentPage.clickCtaButton();
+            //Enter Rent Amount
+            payRentPage.clickFive();
+            payRentPage.clickZero();
 
-        // Verification on the PayRent Payment bottom sheet
-//        String totalAmount = payRentPage.getTotalAmount();
-//        String convFee = payRentPage.getConvFee();
-//        String payableAmount = payRentPage.getPayableAmount();
+            //Click on Continue button
+            payRentPage.clickCnButton();
 
-//        // Display the values
-//        Log.info("Total Amount : " + totalAmount);
-//        Log.info("Convenience Fee : " + convFee);
-//        Log.info("Payable Amount :" + payableAmount);
+            //Click on Continue button
+            payRentPage.clickCtaButton();
 
-        // Add the assertions
-//        mbReporter.verifyEqualsWithLogging(totalAmount, expAmount, "Verify Landlord Name", false, false, true);
-//        mbReporter.verifyEqualsWithLogging(convFee, expconvenienceFee, "Verify Sub Title", false, false, true);
-//        mbReporter.verifyEqualsWithLogging(payableAmount, exptotalPayableAmount, "Verify Sub Title", false, false, true);
+        }
+
+        else {
+
+            mbReporter.verifyTrueWithLogging(isSavedRecipientPresent, "Saved Recipient is not Present", false, false, true);
+
+        }
 
     }
-    public void verifyText(String expTitle) throws IOException, InterruptedException {
+
+    public void verifyTittleAndFaq(String expTitle, String expFaqTitle) throws IOException, InterruptedException {
 
         //Click on Pay Rent
         payRentPage.clickPayRent();
 
-        //Click on saved recipient
-        payRentPage.clickRentRecipient();
+        // check for saved Recipient Screen
+        if(payRentPage.checkSavedRecipientScreen()){
 
-        if(payRentPage.checkBenefitScreen()) {
+            //Click on saved recipient
+            payRentPage.clickRentRecipient();
+
+        }
+
+        // check for Benefit Screen
+        boolean isBenefitScreenPresent = payRentPage.checkBenefitScreen();
+
+        if(isBenefitScreenPresent) {
             //Verify Pay rent description screen
             String title = payRentPage.getTitle();
             Log.info("Title of PayRent Benefits screen : " + title);
             mbReporter.verifyEqualsWithLogging(title, expTitle, "Verify title of PayRent Benefits screen", false, false, true);
-        }
-        else
-        {
-            Log.info("Benefits of Pay rent through Mobikwik screen is not appearing.");
-        }
-    }
-
-    public void verifyFAQ(String expFaqTitle) throws IOException, InterruptedException {
-
-        //Click on Pay Rent
-        payRentPage.clickPayRent();
-
-        //Click on saved recipient
-        payRentPage.clickRentRecipient();
-
-        if(payRentPage.checkBenefitScreen()) {
 
             //Click on FAQ Button
             payRentPage.clickFaqButton();
@@ -281,24 +306,38 @@ public class PayRentHelper {
             mbReporter.verifyEqualsWithLogging(faqTitle, expFaqTitle, "Verify title of FAQ Screen", false, false, true);
 
         }
-        else{
-            Log.info("Benefits of Pay rent through Mobikwik screen is not appearing.");
+        else
+        {
+            mbReporter.verifyTrueWithLogging(isBenefitScreenPresent, "Benefits of Pay rent through Mobikwik screen is not appearing.", false, false, true);
+
         }
     }
+
 
     public void deleteProperty() throws IOException, InterruptedException {
 
         //Click on Pay Rent
         payRentPage.clickPayRent();
 
-        //Click on menu button
-        payRentPage.clickMenuButton();
+        // check for saved Recipient Screen
+        boolean isSavedRecipientPresent = payRentPage.checkSavedRecipientScreen();
 
-        //Click on delete rent details
-        payRentPage.clickDeleteRentDetails();
+        if(isSavedRecipientPresent){
 
-        Log.info("Rent details is deleted");
+            //Click on menu button
+            payRentPage.clickMenuButton();
 
+            //Click on delete rent details
+            payRentPage.clickDeleteRentDetails();
+
+            mbReporter.verifyTrueWithLogging(isSavedRecipientPresent, "Rent details is deleted", false, false, true);
+
+        }
+        else {
+
+            mbReporter.verifyTrueWithLogging(isSavedRecipientPresent, "Saved Recipient is not Present", false, false, true);
+
+        }
 
     }
 }

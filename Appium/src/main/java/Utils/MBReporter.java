@@ -93,7 +93,7 @@ public class MBReporter {
 
         try {
             Assert.assertEquals(actual, expected, stepName);
-            Reporter.log("<Font Color=#008000> PASS </Font>" + stepName);
+            Reporter.log("<Font Color=#008000> PASS </Font>" + stepName + " | Actual : " + actual + " | Expected : " + expected);
             Log.info(Log.ANSI_GREEN + "LOG | PASS | " + stepName + " | Actual : " + actual + " | Expected : " + expected + Log.ANSI_RESET);
 
 
@@ -102,13 +102,13 @@ public class MBReporter {
             if (screenshotOnFailure) {
 
                 String s = screenShot();
-                Reporter.log("<a href='" + s + "'> <Font Color=red> FAIL </Font> </a>" + stepName);
+                Reporter.log("<a href='" + s + "'> <Font Color=red> FAIL </Font> </a>" + stepName + " | Actual : " + actual + " | Expected : " + expected);
                 Log.info(Log.ANSI_RED + "LOG | FAIL | " + stepName + " | Actual : " + actual + " | Expected : " + expected + Log.ANSI_RESET);
 
 
             } else {
 
-                Reporter.log("<Font Color=red> FAIL </Font> " + stepName);
+                Reporter.log("<Font Color=red> FAIL </Font> " + stepName + " | Actual : " + actual + " | Expected : " + expected);
                 Log.info(Log.ANSI_RED + "LOG | FAIL | " + stepName + " | Actual : " + actual + " | Expected : " + expected + Log.ANSI_RESET);
 
 
@@ -139,7 +139,7 @@ public class MBReporter {
 
         try {
             Assert.assertEquals(actual, expected, stepName);
-            Reporter.log("<Font Color=#008000> PASS </Font>" + stepName);
+            Reporter.log("<Font Color=#008000> PASS </Font>" + stepName + " | Actual : " + actual + " | Expected : " + expected);
             Log.info(Log.ANSI_GREEN + "LOG | PASS | " + stepName + " | Actual : " + actual + " | Expected : " + expected + Log.ANSI_RESET);
 
             if (logExtentReport) {
@@ -154,7 +154,7 @@ public class MBReporter {
             if (screenshotOnFailure) {
 
                 String s = screenShot();
-                Reporter.log("<a href='" + s + "'> <Font Color=red> FAIL </Font> </a>" + stepName);
+                Reporter.log("<a href='" + s + "'> <Font Color=red> FAIL </Font> </a>" + stepName + " | Actual : " + actual + " | Expected : " + expected);
                 Log.info(Log.ANSI_RED + "LOG | FAIL | " + stepName + " | Actual : " + actual + " | Expected : " + expected + Log.ANSI_RESET);
                 if (logExtentReport) {
                     ExtentReport.extentReportDisplay(ExtentReport.Status.FAIL, stepName + " | Actual : " + actual + " | Expected : " + expected, s);
@@ -163,7 +163,7 @@ public class MBReporter {
 
             } else {
 
-                Reporter.log("<Font Color=red> FAIL </Font> " + stepName);
+                Reporter.log("<Font Color=red> FAIL </Font> " + stepName + " | Actual : " + actual + " | Expected : " + expected);
                 Log.info(Log.ANSI_RED + "LOG | FAIL | " + stepName + " | Actual : " + actual + " | Expected : " + expected + Log.ANSI_RESET);
 
                 if (logExtentReport) {
@@ -201,9 +201,8 @@ public class MBReporter {
             Log.info(Log.ANSI_GREEN + "LOG | PASS | " + stepName + Log.ANSI_RESET);
 
             if (logExtentReport) {
-                ExtentReport.extentReportDisplay(ExtentReport.Status.PASS, stepName, "");
+                ExtentReport.extentReportDisplay(ExtentReport.Status.PASS, stepName);
             }
-
 
         } catch (AssertionError | IOException e) {
             this.testCaseStatus = false;
@@ -214,7 +213,7 @@ public class MBReporter {
                 Log.info(Log.ANSI_RED + "LOG | FAIL | " + stepName + Log.ANSI_RESET);
 
                 if (logExtentReport) {
-                    ExtentReport.extentReportDisplay(ExtentReport.Status.FAIL, stepName, s);
+                    ExtentReport.extentReportDisplay(ExtentReport.Status.FAIL, stepName);
                 }
 
 
@@ -224,7 +223,7 @@ public class MBReporter {
                 Log.info(Log.ANSI_RED + "LOG | FAIL | " + stepName + Log.ANSI_RESET);
 
                 if (logExtentReport) {
-                    ExtentReport.extentReportDisplay(ExtentReport.Status.FAIL, stepName, "");
+                    ExtentReport.extentReportDisplay(ExtentReport.Status.FAIL, stepName);
                 }
 
 
@@ -241,6 +240,8 @@ public class MBReporter {
 
         }
     }
+
+
 
 //    public String screenCaptureExtentReport(String directoryName, String screenname) {
 //        String screenshotPath = new SimpleDateFormat("MM-dd-yyyy-HH-mm-ss").format(new GregorianCalendar().getTime())
