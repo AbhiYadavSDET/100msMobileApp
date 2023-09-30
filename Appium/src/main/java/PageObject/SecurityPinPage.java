@@ -39,10 +39,10 @@ public class SecurityPinPage {
     @AndroidFindBy(id = "edit_text_mket")
     private AndroidElement current_pin_text_box;
 
-    @AndroidFindBy(xpath = "//*/android.widget.LinearLayout/android.widget.RelativeLayout[1]/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.AutoCompleteTextView")
+    @AndroidFindBy(xpath = "//*/android.widget.RelativeLayout[1]/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.AutoCompleteTextView")
     private AndroidElement pin_text_box;
 
-    @AndroidFindBy(xpath = "//*/android.widget.LinearLayout/android.widget.RelativeLayout[2]/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.AutoCompleteTextView")
+    @AndroidFindBy(xpath = "//*/android.widget.RelativeLayout[2]/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.AutoCompleteTextView")
     private AndroidElement confirm_pin_text_box;
 
     @AndroidFindBy(id = "btn_change_pin_action")

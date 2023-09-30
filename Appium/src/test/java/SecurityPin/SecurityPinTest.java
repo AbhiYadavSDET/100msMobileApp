@@ -12,8 +12,8 @@ import java.io.IOException;
 public class SecurityPinTest extends TestBase {
 
 
-    @Test(groups = {"sanity", "securityPin", "regression"}, priority = 0, description = "Verify Security Pin")
-    public void SecurityPinTest1() throws IOException, InterruptedException {
+    @Test(groups = {"sanity", "enableDisablePin()", "regression"}, priority = 0, description = "Verify Security Pin")
+    public void securitySettings_EnableDisablePin() throws IOException, InterruptedException {
 
         Log.info("======= START : Security Pin Test =======");
 
@@ -31,8 +31,8 @@ public class SecurityPinTest extends TestBase {
 
     }
 
-    @Test(groups = {"sanity", "changeSecurityPin", "regression"}, priority = 1, description = "Verify Security Pin")
-    public void changeSecurityPinTest1() throws IOException, InterruptedException {
+    @Test(groups = {"sanity", "changeSecurityPin", "regression"}, priority = 0, description = "Verify Security Pin")
+    public void securitySettings_ChangeSecurityPin() throws IOException, InterruptedException {
 
         Log.info("======= START : Change Security Pin Test =======");
 
