@@ -107,6 +107,9 @@ public class PayRentPage {
     @AndroidFindBy(id = "btn_add_money")
     private AndroidElement pay_button_bottomSheet;
 
+    @AndroidFindBy(id = "horizontal_button_2")
+    private AndroidElement popup_continue;
+
 
     public PayRentPage(AndroidDriver driver) throws IOException {
 
@@ -239,5 +242,16 @@ public class PayRentPage {
         Elements.selectElement(driver, pay_button_bottomSheet, "Click Pay Button");
     }
 
+    public boolean checkSavedRecipientScreen() throws InterruptedException {
+        return Elements.isElementPresent(driver, addNewPropertyButton);
+    }
+
+    public boolean checkPopUpOnBack() throws InterruptedException {
+        return Elements.isElementPresent(driver, popup_continue);
+    }
+
+    public void clickConitnueToRemovePopUp() {
+        Elements.selectElement(driver, popup_continue, "Click on Conitnue to remove pop up");
+    }
 }
 
