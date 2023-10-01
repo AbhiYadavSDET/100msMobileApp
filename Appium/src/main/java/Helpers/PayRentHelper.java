@@ -52,7 +52,9 @@ public class PayRentHelper {
         payRentPage.clickPayRent();
 
         // check for saved Recipient Screen
-        if(payRentPage.checkSavedRecipientScreen()){
+        boolean isSavedRecipientPresent = payRentPage.checkSavedRecipientScreen();
+
+        if(isSavedRecipientPresent){
 
             //Click on Add new Property
             payRentPage.clickAddNewPropertyButton();
@@ -89,7 +91,20 @@ public class PayRentHelper {
         mbkCommonControlsHelper.pressback(3);
 
         // check for pop up on back
-        if(payRentPage.checkPopUpOnBack()) { payRentPage.clickConitnueToRemovePopUp();}
+        if(!isSavedRecipientPresent){
+            if(payRentPage.checkPopUpOnBack()) {
+                payRentPage.clickConitnueToRemovePopUp();
+            }
+            else {
+                mbkCommonControlsHelper.pressback();
+                if(payRentPage.checkPopUpOnBack()) {
+                    payRentPage.clickConitnueToRemovePopUp();
+                }
+            }
+        }
+        else {
+            mbkCommonControlsHelper.pressback();
+        }
 
         // Click on the back button if the bottom sheet is present
         mbkCommonControlsHelper.handleHomePageLanding();
@@ -98,7 +113,7 @@ public class PayRentHelper {
         payRentPage.clickPayRent();
 
         // check for saved Recipient Screen
-        boolean isSavedRecipientPresent = payRentPage.checkSavedRecipientScreen();
+        isSavedRecipientPresent = payRentPage.checkSavedRecipientScreen();
 
         if(isSavedRecipientPresent){
 
