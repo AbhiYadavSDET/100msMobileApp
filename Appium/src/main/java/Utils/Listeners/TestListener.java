@@ -24,6 +24,7 @@ public class TestListener implements ITestListener, ISuiteListener {
     public void onTestSuccess(ITestResult iTestResult) {
         Log.info(Log.ANSI_GREEN + "***************[Test SUCCESS] [Test Class: " + iTestResult.getInstanceName() + "] [Test Method: " + iTestResult.getMethod().getMethodName() + "] [Test Description: " + iTestResult.getMethod().getDescription() + "]***************" + Log.ANSI_RESET);
         try {
+            Reporter.log("<br>");
             Reporter.log("<Font Color=#008000> PASS </Font>" + "Test Case Passed");
             ExtentReport.extentReportDisplay(ExtentReport.Status.PASS, "Test Case Passed");
         } catch (IOException e) {
@@ -36,6 +37,7 @@ public class TestListener implements ITestListener, ISuiteListener {
         Log.info(Log.ANSI_RED + "***************[Test FAILED] [Test Class: " + iTestResult.getInstanceName() + "] [Test Method: " + iTestResult.getMethod().getMethodName() + "] [Test Description: " + iTestResult.getMethod().getDescription() + "]***************" + Log.ANSI_RESET);
 
         try {
+            Reporter.log("<br>");
             Reporter.log("<Font Color=red> FAIL </Font> " + "Test Case Failed");
             ExtentReport.extentReportDisplay(ExtentReport.Status.FAIL, "Test Case Failed");
         } catch (IOException e) {
@@ -47,6 +49,7 @@ public class TestListener implements ITestListener, ISuiteListener {
     public void onTestSkipped(ITestResult iTestResult) {
         Log.info(Log.ANSI_YELLOW + "***************[Test SKIPPED] [Test Class: " + iTestResult.getInstanceName() + "] [Test Method: " + iTestResult.getMethod().getMethodName() + "] [Test Description: " + iTestResult.getMethod().getDescription() + "]***************" + Log.ANSI_RESET);
         try {
+            Reporter.log("<br>");
             Reporter.log("<Font Color=yellow> SKIPPED </Font>" + "Test Case Skiped");
             ExtentReport.extentReportDisplay(ExtentReport.Status.SKIP, "Test Case Skiped");
         } catch (IOException e) {
