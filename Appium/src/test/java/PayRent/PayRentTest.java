@@ -24,7 +24,7 @@ public class PayRentTest extends TestBase {
 
         // Execute the test
         PayRentHelper payRentHelper = new PayRentHelper(getAndroidDriver());
-        payRentHelper.addNewProperty("040801000080315", "IOBA0000408", "Ashish Kumar Pradhan", "50", "123");
+        payRentHelper.addNewProperty("040801000080315", "IOBA0000408", "Ashish Kumar Pradhan ", "50", "123");
 
         Log.info("======= END : Add New Property =======");
 
@@ -85,7 +85,7 @@ public class PayRentTest extends TestBase {
 
         // Execute the test
         PayRentHelper payRentHelper = new PayRentHelper(getAndroidDriver());
-        payRentHelper.payRentViaUpi("Ashish Kumar Pradhan", "50");
+        payRentHelper.payRentViaUpi("Ashish Kumar Pradhan ", "50");
 
         Log.info("======= END : Pay Rent via UPI =======");
 
