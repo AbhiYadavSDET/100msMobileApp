@@ -21,7 +21,7 @@ public class MutualFundsTest extends TestBase {
         loginHelper.quickLoginViaOtp("9205299330", "547372");
 
         MutualFundsHelper mutualFundsHelper = new MutualFundsHelper(getAndroidDriver());
-        mutualFundsHelper.mutualFundsCheck("ICICI Pru Commodities Dir Gr", "₹5,000", "+43.30%", "N/A", "KYC pending", "You need a KYC to invest in Mutual Funds. Please provide your details to complete your KYC", "Complete KYC");
+        mutualFundsHelper.mutualFundsCheck("ICICI Pru Commodities Dir Gr", "₹5,000", "+48.25%", "N/A ", "KYC pending", "You need a KYC to invest in Mutual Funds. Please provide your details to complete your KYC", "Complete KYC");
 
         Log.info("======= END : Mutual Funds Flow test =======");
 

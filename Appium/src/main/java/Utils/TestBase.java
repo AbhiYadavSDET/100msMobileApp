@@ -150,15 +150,16 @@ public class TestBase {
             File app = new File(buildPath);
             DesiredCapabilities cap = new DesiredCapabilities();
             cap.setCapability(MobileCapabilityType.PLATFORM_NAME, "ANDROID");
-            cap.setCapability(MobileCapabilityType.DEVICE_NAME, "172.18.31.239:5555");
+            cap.setCapability(MobileCapabilityType.DEVICE_NAME, deviceName);
+            cap.setCapability(MobileCapabilityType.UDID, deviceName);
 //        cap.setCapability("avd","Pixel_3a");
             cap.setCapability("noSign", true);
-            cap.setCapability("appPackage", "com.mobikwik_new.debug");
+            cap.setCapability("appPackage", "com.mobikwik_new");
             cap.setCapability("appActivity", "com.mobikwik_new.MobikwikMain");
             cap.setCapability("noReset", "false");
 //            cap.setCapability("app", app.getAbsolutePath());
-            cap.setCapability("app", "//Users//vikrantnagar//APK//ProdDebug.apk");
-            AndroidDriver driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), cap);
+            cap.setCapability("app", "//Users//ashishkumarpradhan//app//mobikwik.apk");
+            AndroidDriver driver = new AndroidDriver(new URL("http://0.0.0.0:" + portNo + "/wd/hub"), cap);
             androidDriverThread.set(driver);
             return androidDriverThread.get();
 
