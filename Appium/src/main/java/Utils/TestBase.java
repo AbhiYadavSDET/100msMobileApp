@@ -151,7 +151,7 @@ public class TestBase {
             DesiredCapabilities cap = new DesiredCapabilities();
             cap.setCapability(MobileCapabilityType.PLATFORM_NAME, "ANDROID");
             cap.setCapability(MobileCapabilityType.DEVICE_NAME, deviceName);
-            cap.setCapability(MobileCapabilityType.UDID, deviceName);
+            // cap.setCapability(MobileCapabilityType.UDID, deviceName);
 //        cap.setCapability("avd","Pixel_3a");
             cap.setCapability("noSign", true);
             cap.setCapability("appPackage", "com.mobikwik_new");
