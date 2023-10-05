@@ -39,7 +39,9 @@ public class LoginHelper {
 
     public void loginViaOtp(String mobileNumber) throws InterruptedException, IOException {
 
-        if(permissionPage.isPermissionNotificationsPresent()) { permissionPage.allowPermissionNotifications();}
+        if (permissionPage.isPermissionNotificationsPresent()) {
+            permissionPage.allowPermissionNotifications();
+        }
         Thread.sleep(3000);
         if (element.isElementPresent(driver, By.xpath("//*[@text='Get Started']"))) {
             loginPage.clickGetstarted();
@@ -69,7 +71,9 @@ public class LoginHelper {
 
     public void loginViaOtp(String mobileNumber, String otp) throws InterruptedException, IOException {
 
-        if(permissionPage.isPermissionNotificationsPresent()) { permissionPage.allowPermissionNotifications();}
+        if (permissionPage.isPermissionNotificationsPresent()) {
+            permissionPage.allowPermissionNotifications();
+        }
 
         Thread.sleep(3000);
         if (element.isElementPresent(driver, By.xpath("//*[@text='Get Started']"))) {
@@ -88,20 +92,23 @@ public class LoginHelper {
         loginPage.enterOtp(otp);
         loginPage.clickSubmitOtpCta();
 
+        // Wait for 5000 ms for all the banners to load
         Thread.sleep(5000);
 
         mbkCommonControlsHelper.handleHomePage();
 
         element.waitForVisibility(driver, By.xpath("//*[@text='History']"));
 
-        mbReporter.verifyTrueWithLogging(element.isElementPresent(driver, By.id("tx_balance")), "Is User is Logged In", true, true);
+        mbReporter.verifyTrueWithLogging(element.isElementPresent(driver, By.id("tx_balance")), "Is User is Logged In", true, false);
 
 
     }
 
     public void quickLoginViaOtp(String mobileNumber, String otp) throws InterruptedException {
 
-        if(permissionPage.isPermissionNotificationsPresent()) { permissionPage.allowPermissionNotifications();}
+        if (permissionPage.isPermissionNotificationsPresent()) {
+            permissionPage.allowPermissionNotifications();
+        }
 
         Thread.sleep(1000);
         if (element.isElementPresent(driver, By.xpath("//*[@text='Get Started']"))) {
@@ -120,6 +127,7 @@ public class LoginHelper {
         loginPage.enterOtp(otp);
         loginPage.clickSubmitOtpCta();
 
+        // Wait for 5000 ms for all the banners to load
         Thread.sleep(5000);
 
         mbkCommonControlsHelper.handleHomePageLanding();

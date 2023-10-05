@@ -102,3 +102,6 @@ target/
 .project
 **/reports/
 **/logs
+
+Appium/test-output/emailable-report.html
+Appium/test-output/testng-failed.xml
