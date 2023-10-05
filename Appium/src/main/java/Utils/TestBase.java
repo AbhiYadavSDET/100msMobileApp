@@ -2,6 +2,7 @@ package Utils;
 
 import Logger.Log;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.apache.log4j.*;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -23,15 +24,14 @@ import java.sql.Timestamp;
 import java.util.Properties;
 
 
-
 @Listeners(Utils.Listeners.TestListener.class)
 public class TestBase {
 
-    AndroidDriver driver;
+    public AndroidDriver<AndroidElement> driver = null;
 
     String androidOSVersion = "13.0";
     String portNo = "4723";
-    String udid = "172.18.31.239:5555";
+    String udId = "172.18.31.239:5555";
     String deviceName = "RZ8W60BB9HB";
 
 
@@ -83,9 +83,9 @@ public class TestBase {
      * @param androidOSVersion - for specifying the OS version of te device
      * @throws Exception issue while loading properties files or creation of driver.
      */
-    @Parameters({"build", "methodName", "portNo", "androidOSVersion", "deviceName", "udid", "cloudRun"})
+    @Parameters({"build", "methodName", "portNo", "androidOSVersion", "deviceName", "udId", "cloudRun"})
     @BeforeMethod(groups = "setUp", alwaysRun = true)
-    public void createDriver(@Optional String build, @Optional String methodName, @Optional String portNo, @Optional String androidOSVersion, @Optional String deviceName, @Optional String udid, @Optional Boolean cloudRun) throws Exception {
+    public void createDriver(@Optional String build, @Optional String methodName, @Optional String portNo, @Optional String androidOSVersion, @Optional String deviceName, @Optional String udId, @Optional Boolean cloudRun) throws Exception {
 
         // Initializing the test and load the config files
         intialization();
@@ -102,8 +102,8 @@ public class TestBase {
             deviceName = this.deviceName;
         }
 
-        if (udid == null) {
-            udid = this.udid;
+        if (udId == null) {
+            udId = this.udId;
         }
 
         if (cloudRun == null) {
@@ -117,7 +117,7 @@ public class TestBase {
             Log.info(methodName);
             Log.info(portNo);
             Log.info(deviceName);
-            Log.info(udid);
+            Log.info(udId);
             Log.info(androidOSVersion);
             Log.info("--------------------------------");
         } else {
@@ -132,7 +132,7 @@ public class TestBase {
         }
 
         String buildPath = choosebuild(build);
-        initiateTest(buildPath, methodName, portNo, androidOSVersion, deviceName, udid, cloudRun);
+        initiateTest(buildPath, methodName, portNo, androidOSVersion, deviceName, udId, cloudRun);
 
     }
 
@@ -143,7 +143,7 @@ public class TestBase {
      * @return instance of iOS driver
      * @throws MalformedURLException Thrown to indicate that a malformed URL has occurred.
      */
-    protected AndroidDriver initiateTest(String buildPath, String methodName, String portNo, String androidOSVersion, String deviceName, String udid, Boolean cloudRun) throws MalformedURLException {
+    protected AndroidDriver initiateTest(String buildPath, String methodName, String portNo, String androidOSVersion, String deviceName, String udId, Boolean cloudRun) throws MalformedURLException {
 
 
         if (!cloudRun) {
@@ -151,19 +151,19 @@ public class TestBase {
             DesiredCapabilities cap = new DesiredCapabilities();
             cap.setCapability(MobileCapabilityType.PLATFORM_NAME, "ANDROID");
             cap.setCapability(MobileCapabilityType.DEVICE_NAME, deviceName);
-            cap.setCapability(MobileCapabilityType.UDID, deviceName);
+            cap.setCapability(MobileCapabilityType.UDID, udId);
 //        cap.setCapability("avd","Pixel_3a");
             cap.setCapability("noSign", true);
-            cap.setCapability("appPackage", "com.mobikwik_new");
+            cap.setCapability("appPackage", "com.mobikwik_new.debug");
             cap.setCapability("appActivity", "com.mobikwik_new.MobikwikMain");
             cap.setCapability("noReset", "false");
 //            cap.setCapability("app", app.getAbsolutePath());
-            cap.setCapability("app", "//Users//ashishkumarpradhan//app//mobikwik.apk");
+            cap.setCapability("app", "//Users//mayanksuneja//app//mobikwik.apk");
             AndroidDriver driver = new AndroidDriver(new URL("http://0.0.0.0:" + portNo + "/wd/hub"), cap);
             androidDriverThread.set(driver);
             return androidDriverThread.get();
 
-        }  else {
+        } else {
             DesiredCapabilities caps = new DesiredCapabilities();
             // Set your access credentials
             caps.setCapability("browserstack.user", "parajjain_sbic3m");
