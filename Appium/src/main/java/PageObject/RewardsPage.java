@@ -12,26 +12,32 @@ public class RewardsPage {
 
     AndroidDriver driver;
 
-    @AndroidFindBy(id = "lottie_trophy")
+    @AndroidFindBy(id = "trophy")
     private AndroidElement trophyIcon;
 
-    @AndroidFindBy(id = "cta")
+    @AndroidFindBy(id = "game_intro_cta")
     private AndroidElement ctaGetStarted;
 
-    @AndroidFindBy(id = "cta")
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Spin Wheel']")
     private AndroidElement ctaSpinTheWheel;
 
-    @AndroidFindBy(id = "tv_title")
-    private AndroidElement claimNowBottomSheetTitle;
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Check Rewards']")
+    private AndroidElement ctaCheckRewards;
 
     @AndroidFindBy(id = "tv_sub_title")
-    private AndroidElement claimNowBottomSheetSubTitle;
+    private AndroidElement prizeTitle;
+
+    @AndroidFindBy(id = "tv_sub_title_2")
+    private AndroidElement prizeSubTitle;
 
     @AndroidFindBy(id = "cta")
     private AndroidElement ctaClaimNow;
 
     @AndroidFindBy(id = "iv_cross")
     private AndroidElement crossButton;
+
+    @AndroidFindBy(id = "tv_cta")
+    private AndroidElement ctaNotifyMe;
 
 
     // ---------------------------------
@@ -58,12 +64,16 @@ public class RewardsPage {
         Elements.selectElement(driver, ctaSpinTheWheel, "Spin the Wheel");
     }
 
-    public String getClaimNowScreenTitle() throws InterruptedException {
-        return Elements.getText(driver, claimNowBottomSheetTitle, "Claim now bottom sheet title");
+    public void clickCheckRewards() {
+        Elements.selectElement(driver, ctaCheckRewards, "Check Rewards");
     }
 
-    public String getClaimNowScreenSubTitle() throws InterruptedException {
-        return Elements.getText(driver, claimNowBottomSheetSubTitle, "Claim now bottom sheet sub title");
+    public String getPrizeTitle() throws InterruptedException {
+        return Elements.getText(driver, prizeTitle, "title");
+    }
+
+    public String getPrizeSubTitle() throws InterruptedException {
+        return Elements.getText(driver, prizeSubTitle, "sub title");
     }
 
     public String getCtaText() throws InterruptedException {
@@ -72,6 +82,10 @@ public class RewardsPage {
 
     public void clickCrossButton() {
         Elements.selectElement(driver, crossButton, "Cross Button");
+    }
+
+    public void clickNotifyMe() {
+        Elements.selectElement(driver, ctaNotifyMe, "Cross Button");
     }
 
 
