@@ -5,13 +5,15 @@
     <parameter name="build" value="prod"/>
     <parameter name="level" value="payments"/>
     <parameter name="saucelabs" value="false"></parameter>
-    <parameter name="androidOSVersion" value="7.0"></parameter>
+    <parameter name="androidOSVersion" value="13.0"></parameter>
+    <parameter name="deviceName" value="deviceName"></parameter>
+    <parameter name="udId" value="17228df2"></parameter>
+    <parameter name="portNo" value="4823"></parameter>
 
     <test verbose="2" preserve-order="true" name="Login flow Test">
         <groups>
             <run>
                 <include name="setUp"/>
-                <include name="instantiateHelpers"/>
                 <include name="loginFlow"/>
                 <include name="tearDown"/>
             </run>
@@ -19,9 +21,7 @@
 
 
         <classes>
-            <class name="Utils.TestBase"/>
             <class name="Login.LoginTest"/>
-            <class name="Utils.ExtentReport"></class>
         </classes>
     </test>
 
