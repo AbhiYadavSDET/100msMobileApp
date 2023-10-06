@@ -21,7 +21,7 @@ public class P2PExtraTest extends TestBase {
         loginHelp.quickLoginViaOtp("7795709569", "547372");
 
         P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getAndroidDriver());
-        p2PExtraHelper.withdraw("1", "₹1", "Withdrawal request placed successfully");
+        p2PExtraHelper.withdraw("1", "₹1", "Withdrawal request placed successfully", "Please wait for the below request to be processed", "Withdrawal in progress", "₹1");
 
         Log.info("======= END : p2p Xtra Withdraw test =======");
 
