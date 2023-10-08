@@ -231,17 +231,14 @@ public class P2PExtraHelper {
     public void newUserFlow(String expTitle) throws InterruptedException, IOException {
 
         Log.info("----------- Arguments ---------------");
+        Log.info("expTitle : " + expTitle);
 
         // Click on xtra icon on home page.
         p2PExtraPage.selectXtra();
 
-        if (mbkCommonControlsPage.isWhitePopUpPresent()) mbkCommonControlsPage.closeWhitePopUp();
-
         // Click on Got it to remove referral bottom sheet.
+        Thread.sleep(1000);
         if (p2PExtraPage.isBottomSheetPresent()) p2PExtraPage.removeBottomSheet();
-
-        // Click on screen to remove bottom sheet.
-        // p2PExtraPage.tapOutsideBottomSheet();
 
         //Click on Get Started button on XTRA Pitch Page
         p2PExtraPage.selectGetStarted();
