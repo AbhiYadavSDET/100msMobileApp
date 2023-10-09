@@ -6,12 +6,14 @@
     <parameter name="level" value="payments"/>
     <parameter name="saucelabs" value="false"></parameter>
     <parameter name="androidOSVersion" value="12.0"></parameter>
+    <parameter name="deviceName" value="deviceName"></parameter>
+    <parameter name="udId" value="17228df2"></parameter>
+    <parameter name="portNo" value="4723"></parameter>
 
     <test verbose="2" preserve-order="true" name="P2P Extra flow Test">
         <groups>
             <run>
                 <include name="setUp"/>
-                <include name="instantiateHelpers"/>
                 <include name="p2pXtraWithdraw"/>
                 <include name="tearDown"/>
             </run>
@@ -19,7 +21,6 @@
 
 
         <classes>
-            <class name="Utils.TestBase"/>
             <class name="P2PExtra.P2PExtraTest"/>
         </classes>
     </test>

@@ -1,14 +1,13 @@
 package PageObject;
 
+import Logger.Log;
+import Utils.Element;
 import Utils.Elements;
-import Utils.Screen;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import Logger.Log;
 import org.openqa.selenium.support.PageFactory;
-import Utils.Element;
 
 import java.io.IOException;
 
@@ -19,205 +18,210 @@ public class P2PExtraPage {
 
     // Xtra Main Page.
 
-    @AndroidFindBy (xpath = "//*/android.widget.TextView[@text = 'Xtra']")
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Xtra']")
     private AndroidElement xtra_icon;
 
-    @AndroidFindBy (id="non_focusing_scroll")
+    @AndroidFindBy(id = "non_focusing_scroll")
     private AndroidElement bottom_sheet_xtra_main_page;
 
-    @AndroidFindBy (id="non_focusing_scroll")
+    @AndroidFindBy(id = "non_focusing_scroll")
     private AndroidElement bottom_sheet_xtra_main;
 
-    @AndroidFindBy (id="touch_outside")
+    @AndroidFindBy(id = "touch_outside")
     private AndroidElement bottom_sheet_xtra_main_page_remove;
 
-    @AndroidFindBy (id="tvAmount")
+    @AndroidFindBy(id = "tvAmount")
     private AndroidElement portfolio_value;
 
-    @AndroidFindBy (id="tvAmountDesc")
+    @AndroidFindBy(id = "tvAmountDesc")
     private AndroidElement invested_amount;
 
-    @AndroidFindBy (id="tvAmountEarning")
+    @AndroidFindBy(id = "tvAmountEarning")
     private AndroidElement earned_amount;
 
-    @AndroidFindBy (id="tvYourInterest")
+    @AndroidFindBy(id = "tvYourInterest")
     private AndroidElement perday_earning;
 
-    @AndroidFindBy ( id= "ctaWithdraw")
+    @AndroidFindBy(id = "ctaWithdraw")
     private AndroidElement cta_withdraw;
 
-    @AndroidFindBy ( id= "cta")
+    @AndroidFindBy(id = "cta")
     private AndroidElement cta_invest;
 
-    @AndroidFindBy ( id= "tvOk")
+    @AndroidFindBy(id = "tvOk")
     private AndroidElement plus_ok_popup;
 
-    @AndroidFindBy ( id= "rbFlexi")
+    @AndroidFindBy(id = "rbFlexi")
     private AndroidElement sliderBtnFlexi;
 
-    @AndroidFindBy ( id= "ivFixed")
+    @AndroidFindBy(id = "ivFixed")
     private AndroidElement sliderBtnFixed;
 
-    @AndroidFindBy (xpath = "//*/android.widget.TextView[@text = 'Net Banking']")
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Net Banking']")
     private AndroidElement selectNBOnCheckoutScreen;
 
-    @AndroidFindBy (xpath = "//*/android.widget.TextView[@text = 'Axis Bank']")
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Axis Bank']")
     private AndroidElement selectAxisBankFromBankList;
 
-    @AndroidFindBy (xpath = "//*/android.widget.TextView[@text = 'Complete your KYC']")
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Complete your KYC']")
     private AndroidElement completeKycBottomsheet;
 
-    @AndroidFindBy (xpath = "//*/android.widget.TextView[@text = 'Got it']")
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Got it']")
     private AndroidElement bottom_sheet_ad;
 
-    @AndroidFindBy (id= "permission_allow_button")
+    @AndroidFindBy(id = "permission_allow_button")
     private AndroidElement allow_SMS_permission;
 
-    @AndroidFindBy (id= "bottom_sheet_text")
+    @AndroidFindBy(id = "bottom_sheet_text")
     private AndroidElement bank_page;
 
+    @AndroidFindBy(id = "tv_title")
+    private AndroidElement errorMainTitle;
 
+    @AndroidFindBy(id = "tvTitleAmount")
+    private AndroidElement errorTitle;
+
+    @AndroidFindBy(id = "tvAmount")
+    private AndroidElement errorAmount;
 
     // Withdrawal Amount Main Page.
 
-    @AndroidFindBy (id= "edit_text")
+    @AndroidFindBy(id = "edit_text")
     private AndroidElement withdrawal_amount_textBox;
 
-    @AndroidFindBy (id="tvAvailableBal")
+    @AndroidFindBy(id = "tvAvailableBal")
     private AndroidElement available_balance_to_withdraw;
 
-    @AndroidFindBy (xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.widget.TextView[3]")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Withdraw' and @index = '4']")
     private AndroidElement withdraw_on_withdrawal_amount_page;
 
-    @AndroidFindBy (id ="bank_name")
+    @AndroidFindBy(id = "bank_name")
     private AndroidElement select_bank_to_withdraw;
 
-    @AndroidFindBy (id = "cta_escape")
+    @AndroidFindBy(id = "cta_escape")
     private AndroidElement withdraw_on_bottom_sheet;
-
 
     // Withdrawal amount success screen.
 
-    @AndroidFindBy (id="title")
+    @AndroidFindBy(id = "title")
     private AndroidElement withdrawal_amount;
 
-    @AndroidFindBy (id="subtitle")
+    @AndroidFindBy(id = "subtitle")
     private AndroidElement withdrawal_status;
 
-    @AndroidFindBy (id="tvHeading")
+    @AndroidFindBy(id = "tvHeading")
     private AndroidElement weekend_approaching;
 
-    @AndroidFindBy (id="cta")
+    @AndroidFindBy(id = "cta")
     private AndroidElement weekend_approaching_got_it_cta;
 
-    @AndroidFindBy (id="cta")
+    @AndroidFindBy(id = "cta")
     private AndroidElement check_invest_more_cta;
 
 
     //Refer & Earn Widget
-    @AndroidFindBy (id = "referral_widget_layout")
+    @AndroidFindBy(id = "referral_widget_layout")
     private AndroidElement referral_widget;
 
-    @AndroidFindBy (id = "cl_total_earnings")
+    @AndroidFindBy(id = "cl_total_earnings")
     private AndroidElement total_earnings_table;
 
-    @AndroidFindBy (xpath = "//*/android.widget.TextView[@text = 'Referrals']")
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Referrals']")
     private AndroidElement referrals_tab;
 
 
     //Default Bank Account
-    @AndroidFindBy (xpath = "//*/android.widget.TextView[@text = 'Settings']")
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Settings']")
     private AndroidElement settings_option;
 
-    @AndroidFindBy (xpath = "//*/android.widget.TextView[@text = 'Default Bank Account']")
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Default Bank Account']")
     private AndroidElement default_bank_account_option;
 
-    @AndroidFindBy (id = "ctaEscape")
+    @AndroidFindBy(id = "ctaEscape")
     private AndroidElement cancel_btn;
 
 
-    @AndroidFindBy (xpath = "//*/android.widget.TextView[@text = 'Nominee']")
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Nominee']")
     private AndroidElement nominee_option;
 
-    @AndroidFindBy (xpath = "//*/android.widget.TextView[@text = 'Add Nominee']")
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Add Nominee']")
     private AndroidElement add_nominee;
 
-    @AndroidFindBy (xpath = "//*/android.widget.TextView[@text = 'Add Bank']")
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Add Bank']")
     private AndroidElement add_bank;
 
-    @AndroidFindBy (id = "mkab_left_icon")
+    @AndroidFindBy(id = "mkab_left_icon")
     private AndroidElement back_btn;
 
-    @AndroidFindBy (xpath = "//*/android.view.ViewGroup[@index = 0]")
+    @AndroidFindBy(xpath = "//*/android.view.ViewGroup[@index = 0]")
     private AndroidElement first_fixed_investment;
 
-    @AndroidFindBy (xpath = "//*/android.widget.TextView[@text = 'Re-invest']")
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Re-invest']")
     private AndroidElement reinvest_btn;
 
-    @AndroidFindBy (xpath = "//*/android.widget.TextView[@text = 'Transfer to Flexi']")
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Transfer to Flexi']")
     private AndroidElement transfer_flexi_btn;
 
-    @AndroidFindBy (xpath = "//*/android.widget.RelativeLayout[@index = 0]")
+    @AndroidFindBy(xpath = "//*/android.widget.RelativeLayout[@index = 0]")
     private AndroidElement select_reinvest;
 
-    @AndroidFindBy (xpath = "//*/android.widget.RelativeLayout[@index = 1]")
+    @AndroidFindBy(xpath = "//*/android.widget.RelativeLayout[@index = 1]")
     private AndroidElement select_transfer_to_flexi;
 
-    @AndroidFindBy (id = "tvSubHeading")
+    @AndroidFindBy(id = "tvSubHeading")
     private AndroidElement add_nominee_page_title;
 
-    @AndroidFindBy (id = "tvValue")
+    @AndroidFindBy(id = "tvValue")
     private AndroidElement click_onMaturity_option;
 
 
-    @AndroidFindBy (id = "tvHeading")
+    @AndroidFindBy(id = "tvHeading")
     private AndroidElement dafault_bankAc_bottomsheet_title;
 
-    @AndroidFindBy (id = "tvHeading")
+    @AndroidFindBy(id = "tvHeading")
     private AndroidElement nominee_details_page_heading;
 
-    @AndroidFindBy (xpath = "//*/android.widget.TextView[@text = 'NAME']")
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'NAME']")
     private AndroidElement nominee_name;
 
-    @AndroidFindBy (id = "ctaTransfer")
+    @AndroidFindBy(id = "ctaTransfer")
     private AndroidElement transfer_to_plus_btn;
 
-    @AndroidFindBy (xpath = "//*/android.widget.TextView[@text = 'Confirm']")
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Confirm']")
     private AndroidElement confirm_btn;
 
-    @AndroidFindBy (xpath = "//*/android.view.TextView[@text = 'Invested Amount']")
+    @AndroidFindBy(xpath = "//*/android.view.TextView[@text = 'Invested Amount']")
     private AndroidElement first_investment_widget;
 
-    @AndroidFindBy (id="title")
+    @AndroidFindBy(id = "title")
     private AndroidElement reinvested_amount_flexi;
 
-    @AndroidFindBy (id="tvViewMore")
+    @AndroidFindBy(id = "tvViewMore")
     private AndroidElement view_all_btn;
 
-    @AndroidFindBy (id="clParent")
+    @AndroidFindBy(id = "clParent")
     private AndroidElement notification_alert_widget;
 
-    @AndroidFindBy (xpath="/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/androidx.appcompat.widget.LinearLayoutCompat/androidx.viewpager.widget.ViewPager/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout/android.widget.FrameLayout/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup")
+    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/androidx.appcompat.widget.LinearLayoutCompat/androidx.viewpager.widget.ViewPager/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout/android.widget.FrameLayout/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup")
     private AndroidElement investment_widget;
 
-    @AndroidFindBy (id="title")
+    @AndroidFindBy(id = "title")
     private AndroidElement complete_kyc_bottomsheet;
 
-    @AndroidFindBy (id="clContainer")
+    @AndroidFindBy(id = "clContainer")
     private AndroidElement invest_container;
 
-    @AndroidFindBy (id="btn_back")
+    @AndroidFindBy(id = "btn_back")
     private AndroidElement refer_page_back_btn;
 
-    @AndroidFindBy (xpath = "//*/android.view.TextView[@text = 'Refer & earn ₹250 + 10%']")
+    @AndroidFindBy(xpath = "//*/android.view.TextView[@text = 'Refer & earn ₹250 + 10%']")
     private AndroidElement refer_page_title;
 
-    @AndroidFindBy (id="tv_know_more")
+    @AndroidFindBy(id = "tv_know_more")
     private AndroidElement know_more_optn;
 
-    @AndroidFindBy (id="tvAmountDesc")
+    @AndroidFindBy(id = "tvAmountDesc")
     private AndroidElement check_fixed_investment_amount;
-
 
 
     public P2PExtraPage(AndroidDriver driver) throws IOException {
@@ -234,318 +238,330 @@ public class P2PExtraPage {
         Log.info("*****All Services Page*****");
     }
 
-    public void selectXtra() throws InterruptedException{
-        Element.selectElement(driver,xtra_icon ,"Tap on xtra icon");
+    public void selectXtra() throws InterruptedException {
+        Element.selectElement(driver, xtra_icon, "Tap on xtra icon");
     }
 
-    public String getPortfolioValue() throws InterruptedException{
-        return Element.getText(driver, portfolio_value,"Get User Portfolio Value");
-    }
-    public String getInvestedAmount() throws InterruptedException{
-        return Element.getText(driver, invested_amount,"Get User Invested Amount");
+    public String getPortfolioValue() throws InterruptedException {
+        return Element.getText(driver, portfolio_value, "Get User Portfolio Value");
     }
 
-    public String getEarnedAmount() throws InterruptedException{
-        return Element.getText(driver, earned_amount,"Get User Earned Amount");
+    public String getInvestedAmount() throws InterruptedException {
+        return Element.getText(driver, invested_amount, "Get User Invested Amount");
     }
 
-    public String getPerDayEarning() throws InterruptedException{
-        return Element.getText(driver, perday_earning,"Get User per day Earning");
+    public String getEarnedAmount() throws InterruptedException {
+        return Element.getText(driver, earned_amount, "Get User Earned Amount");
     }
 
-    public void selectWithdraw() throws InterruptedException{
-        Element.selectElement(driver, cta_withdraw,"Withdraw Amount cta");
+    public String getPerDayEarning() throws InterruptedException {
+        return Element.getText(driver, perday_earning, "Get User per day Earning");
     }
 
-    public void selectWithdrawOnWithdrawAmount() throws InterruptedException{
-        Element.selectElement(driver, withdraw_on_withdrawal_amount_page,"Withdraw Amount");
+    public void selectWithdraw() throws InterruptedException {
+        Element.selectElement(driver, cta_withdraw, "Withdraw Amount cta");
     }
 
-    public void selectWithdrawOnBottomSheet() throws InterruptedException{
-        Element.selectElement(driver, withdraw_on_bottom_sheet,"Withdraw Amount on bottom sheet");
+    public void selectWithdrawOnWithdrawAmount() throws InterruptedException {
+        Element.selectElement(driver, withdraw_on_withdrawal_amount_page, "Withdraw Amount");
     }
 
-    public void selectBankOnBottomSheet() throws InterruptedException{
-        Element.selectElement(driver, select_bank_to_withdraw,"Select bank on bottom sheet");
+    public void selectWithdrawOnBottomSheet() throws InterruptedException {
+        Element.selectElement(driver, withdraw_on_bottom_sheet, "Withdraw Amount on bottom sheet");
     }
 
-    public void selectInvestMore() throws InterruptedException{
-        Element.selectElement(driver, cta_invest,"Invest More Amount cta");
+    public void selectBankOnBottomSheet() throws InterruptedException {
+        Element.selectElement(driver, select_bank_to_withdraw, "Select bank on bottom sheet");
     }
 
-    public void selectGetStarted() throws InterruptedException{
-        Element.selectElement(driver, cta_invest,"Get Started cta");
+    public void selectInvestMore() throws InterruptedException {
+        Element.selectElement(driver, cta_invest, "Invest More Amount cta");
     }
 
-    public void selectProceedKYC() throws InterruptedException{
-        Element.selectElement(driver, cta_invest,"Proceed KYC cta");
+    public void selectGetStarted() throws InterruptedException {
+        Element.selectElement(driver, cta_invest, "Get Started cta");
     }
 
-    public void selectOkfromPlusPopUp() throws InterruptedException{
-        Element.selectElement(driver, plus_ok_popup,"Click OK on Tool tip of Xtra Plus Pop Up ");
+    public void selectProceedKYC() throws InterruptedException {
+        Element.selectElement(driver, cta_invest, "Proceed KYC cta");
     }
 
-    public void selectFlexiFromNavBar() throws InterruptedException{
-        Element.selectElement(driver, sliderBtnFlexi,"Select Flexi From Navbar");
+    public void selectOkfromPlusPopUp() throws InterruptedException {
+        Element.selectElement(driver, plus_ok_popup, "Click OK on Tool tip of Xtra Plus Pop Up ");
     }
 
-    public void selectFixedFromNavBar() throws InterruptedException{
-        Element.selectElement(driver, sliderBtnFixed,"Select Fixed From Navbar");
+    public void selectFlexiFromNavBar() throws InterruptedException {
+        Element.selectElement(driver, sliderBtnFlexi, "Select Flexi From Navbar");
     }
 
-    public void selectNBOnCheckoutScreen() throws InterruptedException{
-        Element.selectElement(driver, selectNBOnCheckoutScreen,"Select NetBanking From Checkout Screen");
+    public void selectFixedFromNavBar() throws InterruptedException {
+        Element.selectElement(driver, sliderBtnFixed, "Select Fixed From Navbar");
     }
 
-    public void selectAxisBankInNB() throws InterruptedException{
-        Element.selectElement(driver, selectAxisBankFromBankList,"Select Axis Bank NetBanking option");
+    public void selectNBOnCheckoutScreen() throws InterruptedException {
+        Element.selectElement(driver, selectNBOnCheckoutScreen, "Select NetBanking From Checkout Screen");
     }
 
-    public void tapOutsideBottomSheet() throws InterruptedException{
-        Element.selectElement(driver, bottom_sheet_xtra_main_page_remove,"Tap outside bottom sheet");
+    public void selectAxisBankInNB() throws InterruptedException {
+        Element.selectElement(driver, selectAxisBankFromBankList, "Select Axis Bank NetBanking option");
+    }
+
+    public void tapOutsideBottomSheet() throws InterruptedException {
+        Element.selectElement(driver, bottom_sheet_xtra_main_page_remove, "Tap outside bottom sheet");
     }
 
     public void enterAmount(String amount) {
-        Elements.enterToElement(driver,withdrawal_amount_textBox, amount, "Amount");
+        Elements.enterToElement(driver, withdrawal_amount_textBox, amount, "Amount");
     }
 
-    public String getWithdrawalAmount() throws InterruptedException{
-        return Element.getText(driver, withdrawal_amount,"Get User Earned Amount");
+    public String getWithdrawalAmount() throws InterruptedException {
+        return Element.getText(driver, withdrawal_amount, "Get User Earned Amount");
     }
 
-    public String getWithdrawalStatus() throws InterruptedException{
-        return Element.getText(driver, withdrawal_status,"Get User Earned Amount");
+    public String getErrorMainTitle() throws InterruptedException {
+        return Element.getText(driver, errorMainTitle, "Get Error Main Title");
     }
 
-    public boolean isBottomSheetPresent() throws InterruptedException{
+    public String getErrorTitle() throws InterruptedException {
+        return Element.getText(driver, errorTitle, "Get Error Title");
+    }
+
+    public String getErrorAmount() throws InterruptedException {
+        return Element.getText(driver, errorAmount, "Get Error Amount");
+    }
+
+    public String getWithdrawalStatus() throws InterruptedException {
+        return Element.getText(driver, withdrawal_status, "Get User Earned Amount");
+    }
+
+    public boolean isBottomSheetPresent() throws InterruptedException {
         return Elements.isElementPresent(driver, bottom_sheet_ad);
 
     }
 
-    public void removeBottomSheet() throws InterruptedException{
-        Element.selectElement(driver, bottom_sheet_ad,"remove bottom sheet");
+    public void removeBottomSheet() throws InterruptedException {
+        Element.selectElement(driver, bottom_sheet_ad, "remove bottom sheet");
     }
 
-    public boolean isKYCBottomSheetPresent() throws InterruptedException{
+    public boolean isKYCBottomSheetPresent() throws InterruptedException {
         return Elements.isElementPresent(driver, completeKycBottomsheet);
 
     }
 
 
-    public int getIntegerPortfolioValue() throws InterruptedException{
-        String portfolioValue = Element.getText(driver, portfolio_value,"Get User Portfolio Value");
+    public int getIntegerPortfolioValue() throws InterruptedException {
+        String portfolioValue = Element.getText(driver, portfolio_value, "Get User Portfolio Value");
         int lengthOfPV = portfolioValue.length();
-        if(lengthOfPV >= 3){
-            if(portfolioValue.charAt(lengthOfPV - 3) == '.'){
-                portfolioValue = portfolioValue.substring(0,lengthOfPV-3);
-            }
-            else if(portfolioValue.charAt(lengthOfPV - 2) == '.'){
-                portfolioValue = portfolioValue.substring(0,lengthOfPV-2);
+        if (lengthOfPV >= 3) {
+            if (portfolioValue.charAt(lengthOfPV - 3) == '.') {
+                portfolioValue = portfolioValue.substring(0, lengthOfPV - 3);
+            } else if (portfolioValue.charAt(lengthOfPV - 2) == '.') {
+                portfolioValue = portfolioValue.substring(0, lengthOfPV - 2);
             }
         }
         int value = Integer.parseInt(portfolioValue);
         return value;
     }
 
-    public boolean checkWeekendApproachingBottomsheet() throws InterruptedException{
-       return Elements.isElementPresent(driver, weekend_approaching);
+    public boolean checkWeekendApproachingBottomsheet() throws InterruptedException {
+        return Elements.isElementPresent(driver, weekend_approaching);
     }
 
-    public boolean checkOkfromPlusPopUp() throws InterruptedException{
-        return Elements.isElementPresent(driver, plus_ok_popup );
+    public boolean checkOkfromPlusPopUp() throws InterruptedException {
+        return Elements.isElementPresent(driver, plus_ok_popup);
     }
 
-    public boolean checkWithdrawCta() throws InterruptedException{
-        return Elements.isElementPresent(driver, cta_withdraw );
+    public boolean checkWithdrawCta() throws InterruptedException {
+        return Elements.isElementPresent(driver, cta_withdraw);
     }
 
-    public void clickGotItCtaWeekendApproaching() throws InterruptedException{
-        Element.selectElement(driver, withdraw_on_withdrawal_amount_page,"Click on Got It Cta");
+    public void clickGotItCtaWeekendApproaching() throws InterruptedException {
+        Element.selectElement(driver, withdraw_on_withdrawal_amount_page, "Click on Got It Cta");
     }
 
-    public void clickReferAndEarnWidget() throws InterruptedException{
-        Element.selectElement(driver, referral_widget,"Click on Refer & Earn Widget");
+    public void clickReferAndEarnWidget() throws InterruptedException {
+        Element.selectElement(driver, referral_widget, "Click on Refer & Earn Widget");
     }
 
-    public boolean checkReferralWidget() throws InterruptedException{
-        return Elements.isElementPresent(driver, referral_widget );
-    }
-    public void clickEarningsTable() throws InterruptedException{
-        Element.selectElement(driver, total_earnings_table,"Click on Earnings Table");
+    public boolean checkReferralWidget() throws InterruptedException {
+        return Elements.isElementPresent(driver, referral_widget);
     }
 
-    public void clickReferrals() throws InterruptedException{
-        Element.selectElement(driver, referrals_tab,"Click on Referrals on Earning Page");
+    public void clickEarningsTable() throws InterruptedException {
+        Element.selectElement(driver, total_earnings_table, "Click on Earnings Table");
     }
 
-    public void clickSettings() throws InterruptedException{
-        Element.selectElement(driver, settings_option,"Click on Settings Option ");
+    public void clickReferrals() throws InterruptedException {
+        Element.selectElement(driver, referrals_tab, "Click on Referrals on Earning Page");
     }
 
-    public boolean checkSettingsOptn() throws InterruptedException{
-        return Elements.isElementPresent(driver, settings_option );
+    public void clickSettings() throws InterruptedException {
+        Element.selectElement(driver, settings_option, "Click on Settings Option ");
     }
 
-    public void clickDefaultBankAccount() throws InterruptedException{
-        Element.selectElement(driver, default_bank_account_option,"Click on Default Bank Account option");
+    public boolean checkSettingsOptn() throws InterruptedException {
+        return Elements.isElementPresent(driver, settings_option);
     }
 
-    public void clickNominee() throws InterruptedException{
-        Element.selectElement(driver, nominee_option,"Click on Nominee Option");
+    public void clickDefaultBankAccount() throws InterruptedException {
+        Element.selectElement(driver, default_bank_account_option, "Click on Default Bank Account option");
     }
 
-    public void clickCancelBtn() throws InterruptedException{
-        Element.selectElement(driver, cancel_btn,"Click on Cancel Button");
+    public void clickNominee() throws InterruptedException {
+        Element.selectElement(driver, nominee_option, "Click on Nominee Option");
     }
 
-    public boolean checkAddNomineeOptn() throws InterruptedException{
-        return Elements.isElementPresent(driver, add_nominee );
+    public void clickCancelBtn() throws InterruptedException {
+        Element.selectElement(driver, cancel_btn, "Click on Cancel Button");
     }
 
-    public boolean checkAddBankOptn() throws InterruptedException{
-        return Elements.isElementPresent(driver, add_bank );
+    public boolean checkAddNomineeOptn() throws InterruptedException {
+        return Elements.isElementPresent(driver, add_nominee);
     }
 
-    public void clickAddNominee() throws InterruptedException{
-        Element.selectElement(driver, add_nominee,"Click on Add Nominee Option");
+    public boolean checkAddBankOptn() throws InterruptedException {
+        return Elements.isElementPresent(driver, add_bank);
     }
 
-    public void clickBackBtn() throws InterruptedException{
-        Element.selectElement(driver, back_btn,"Click on Top Left Back Button");
+    public void clickAddNominee() throws InterruptedException {
+        Element.selectElement(driver, add_nominee, "Click on Add Nominee Option");
     }
 
-    public void clickAddBankBtn() throws InterruptedException{
-        Element.selectElement(driver, add_bank,"Click on Add Bank Option");
+    public void clickBackBtn() throws InterruptedException {
+        Element.selectElement(driver, back_btn, "Click on Top Left Back Button");
     }
 
-    public void click1stFixedInvestment() throws InterruptedException{
-        Element.selectElement(driver, first_fixed_investment,"Click on First Fixed Investment");
+    public void clickAddBankBtn() throws InterruptedException {
+        Element.selectElement(driver, add_bank, "Click on Add Bank Option");
     }
 
-    public boolean checkReinvestBtn() throws InterruptedException{
-        return Elements.isElementPresent(driver, reinvest_btn );
+    public void click1stFixedInvestment() throws InterruptedException {
+        Element.selectElement(driver, first_fixed_investment, "Click on First Fixed Investment");
     }
 
-    public void selectReinvestBtn() throws InterruptedException{
-        Element.selectElement(driver,reinvest_btn ,"Tap on Reinvest Button");
+    public boolean checkReinvestBtn() throws InterruptedException {
+        return Elements.isElementPresent(driver, reinvest_btn);
     }
 
-    public void selectTransferToFlexiBtn() throws InterruptedException{
-        Element.selectElement(driver,transfer_flexi_btn ,"Tap on Transfer To Flexi Button");
+    public void selectReinvestBtn() throws InterruptedException {
+        Element.selectElement(driver, reinvest_btn, "Tap on Reinvest Button");
     }
 
-    public void selectReinvestoption() throws InterruptedException{
-        Elements.tapByCoordinates(0,0, driver);
-        Elements.tapByCoordinates(0,0, driver);
-        Element.selectElement(driver,select_reinvest ,"Change option to Re-invest");
+    public void selectTransferToFlexiBtn() throws InterruptedException {
+        Element.selectElement(driver, transfer_flexi_btn, "Tap on Transfer To Flexi Button");
     }
 
-    public void selectTransferToFlexioption() throws InterruptedException{
-        Elements.tapByCoordinates(0,0, driver);
-        Element.selectElement(driver,select_transfer_to_flexi ,"Change option to Transfer to Flexi");
+    public void selectReinvestoption() throws InterruptedException {
+        Elements.tapByCoordinates(0, 0, driver);
+        Elements.tapByCoordinates(0, 0, driver);
+        Element.selectElement(driver, select_reinvest, "Change option to Re-invest");
     }
 
-    public String getNomineeTitle() throws InterruptedException{
-        return Elements.getText(driver, add_nominee_page_title,"Get Sub-Heading on Add Nominee Page");
+    public void selectTransferToFlexioption() throws InterruptedException {
+        Elements.tapByCoordinates(0, 0, driver);
+        Element.selectElement(driver, select_transfer_to_flexi, "Change option to Transfer to Flexi");
     }
 
-    public String getDefaultBankAccTitle() throws InterruptedException{
-        return Elements.getText(driver, dafault_bankAc_bottomsheet_title,"Get Heading on Default Bank Account Bottomsheet");
+    public String getNomineeTitle() throws InterruptedException {
+        return Elements.getText(driver, add_nominee_page_title, "Get Sub-Heading on Add Nominee Page");
     }
 
-    public String getNomineeDetails() throws InterruptedException{
-        return Elements.getText(driver, nominee_details_page_heading,"Get Heading on Nominee Details Page");
+    public String getDefaultBankAccTitle() throws InterruptedException {
+        return Elements.getText(driver, dafault_bankAc_bottomsheet_title, "Get Heading on Default Bank Account Bottomsheet");
     }
 
-    public String getNomineeName() throws InterruptedException{
-        return Elements.getText(driver, nominee_name,"Get Name of Nominee");
+    public String getNomineeDetails() throws InterruptedException {
+        return Elements.getText(driver, nominee_details_page_heading, "Get Heading on Nominee Details Page");
     }
 
-    public String getReinvestoption() throws InterruptedException{
-        Elements.tapByCoordinates(0,0, driver);
-        return Elements.getText(driver, reinvest_btn ,"Check option Re-invest");
+    public String getNomineeName() throws InterruptedException {
+        return Elements.getText(driver, nominee_name, "Get Name of Nominee");
     }
 
-    public String getTransferToFlexiBtn() throws InterruptedException{
-        return Element.getText(driver,transfer_flexi_btn ,"Get Transfer To Flexi Button");
+    public String getReinvestoption() throws InterruptedException {
+        Elements.tapByCoordinates(0, 0, driver);
+        return Elements.getText(driver, reinvest_btn, "Check option Re-invest");
     }
 
-    public void selectTransferToPlusBtn() throws InterruptedException{
-         Elements.selectElement(driver, transfer_to_plus_btn,"Click on Transfer to Plus Button");
+    public String getTransferToFlexiBtn() throws InterruptedException {
+        return Element.getText(driver, transfer_flexi_btn, "Get Transfer To Flexi Button");
     }
 
-    public void selectConfirmBtn() throws InterruptedException{
-         Elements.selectElement(driver, confirm_btn,"Click on Confirm Button");
+    public void selectTransferToPlusBtn() throws InterruptedException {
+        Elements.selectElement(driver, transfer_to_plus_btn, "Click on Transfer to Plus Button");
     }
 
-    public String getTransferAmount() throws InterruptedException{
-        return Elements.getText(driver, reinvested_amount_flexi,"Get Amount on Txn Status Screen");
+    public void selectConfirmBtn() throws InterruptedException {
+        Elements.selectElement(driver, confirm_btn, "Click on Confirm Button");
     }
 
-    public void selectViewAllBtn() throws InterruptedException{
-         Elements.selectElement(driver, view_all_btn,"Click on View All Button");
+    public String getTransferAmount() throws InterruptedException {
+        return Elements.getText(driver, reinvested_amount_flexi, "Get Amount on Txn Status Screen");
     }
 
-    public boolean checkViewAllBtn() throws InterruptedException{
-        return Elements.isElementPresent(driver, view_all_btn );
+    public void selectViewAllBtn() throws InterruptedException {
+        Elements.selectElement(driver, view_all_btn, "Click on View All Button");
     }
 
-    public void selectMaturityOptn() throws InterruptedException{
+    public boolean checkViewAllBtn() throws InterruptedException {
+        return Elements.isElementPresent(driver, view_all_btn);
+    }
+
+    public void selectMaturityOptn() throws InterruptedException {
 //        Elements.tapByCoordinates(723,1476, driver);
 //        Screen.swipeUp();
-          Elements.tapByCoordinates(0,0, driver);
-          Elements.selectElement(driver, click_onMaturity_option, "Click on Maturity Option");
+        Elements.tapByCoordinates(0, 0, driver);
+        Elements.selectElement(driver, click_onMaturity_option, "Click on Maturity Option");
 
     }
 
-    public void selectFirstInvestment() throws InterruptedException{
-        Elements.selectElement(driver, investment_widget,"Click on 1st On Going Investment");
+    public void selectFirstInvestment() throws InterruptedException {
+        Elements.selectElement(driver, investment_widget, "Click on 1st On Going Investment");
     }
 
-    public boolean checkNotificationAlert() throws InterruptedException{
-        return Elements.isElementPresent(driver, notification_alert_widget );
-    }
-    public String getKycBottomsheetTitle() throws InterruptedException{
-        return Elements.getText(driver, complete_kyc_bottomsheet,"Complete KYC bottomsheet");
+    public boolean checkNotificationAlert() throws InterruptedException {
+        return Elements.isElementPresent(driver, notification_alert_widget);
     }
 
-    public void selectAllowBtn() throws InterruptedException{
-        Elements.selectElement(driver, allow_SMS_permission,"Click on Allow");
+    public String getKycBottomsheetTitle() throws InterruptedException {
+        return Elements.getText(driver, complete_kyc_bottomsheet, "Complete KYC bottomsheet");
     }
 
-    public String getBankPageTitle() throws InterruptedException{
-        return Elements.getText(driver, bank_page,"Heading on Bank Page");
+    public void selectAllowBtn() throws InterruptedException {
+        Elements.selectElement(driver, allow_SMS_permission, "Click on Allow");
     }
 
-    public String getConfirmCtaText() throws InterruptedException{
-        return Elements.getText(driver, cta_invest,"Get Confirm button text");
+    public String getBankPageTitle() throws InterruptedException {
+        return Elements.getText(driver, bank_page, "Heading on Bank Page");
     }
 
-    public boolean checkInvestContainer() throws InterruptedException{
+    public String getConfirmCtaText() throws InterruptedException {
+        return Elements.getText(driver, cta_invest, "Get Confirm button text");
+    }
+
+    public boolean checkInvestContainer() throws InterruptedException {
         return Elements.isElementPresent(driver, invest_container);
     }
 
-    public void selectBackBtn() throws InterruptedException{
-        Elements.selectElement(driver, refer_page_back_btn,"Click on Back Button");
+    public void selectBackBtn() throws InterruptedException {
+        Elements.selectElement(driver, refer_page_back_btn, "Click on Back Button");
     }
 
-    public String getTitleText() throws InterruptedException{
-        return Elements.getText(driver, refer_page_title,"Get Refer Page Title");
+    public String getTitleText() throws InterruptedException {
+        return Elements.getText(driver, refer_page_title, "Get Refer Page Title");
     }
 
-    public String getKnowMoreOptn() throws InterruptedException{
+    public String getKnowMoreOptn() throws InterruptedException {
         return Elements.getText(driver, know_more_optn, "Get Know More Text");
     }
 
-    public boolean checkInvestMoreCta() throws InterruptedException{
+    public boolean checkInvestMoreCta() throws InterruptedException {
         return Elements.isElementPresent(driver, check_invest_more_cta);
     }
 
-    public boolean checkFixedInvestmentDesc() throws InterruptedException{
+    public boolean checkFixedInvestmentDesc() throws InterruptedException {
         return Elements.isElementPresent(driver, check_fixed_investment_amount);
     }
-
-
 
 
 }
