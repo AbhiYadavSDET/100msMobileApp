@@ -32,8 +32,15 @@ public class RewardsHelper {
 
     public void spinTheWheel(String expTitle, String expSubTitle, String expCtaText) throws InterruptedException, IOException {
 
-        // Click on the Trophy Icon
-        rewardsPage.clickTrophyIcon();
+        // Check the Trophy Icon
+        if(rewardsPage.isTrophyIconPresent()){
+            // Click on the Trophy Icon
+            rewardsPage.clickTrophyIcon();
+        }
+        else {
+            // Click on the Trophy Icon2
+            rewardsPage.clickTrophyIcon2();
+        }
 
         Thread.sleep(2000);
 
