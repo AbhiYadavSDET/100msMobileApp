@@ -15,6 +15,9 @@ public class RewardsPage {
     @AndroidFindBy(id = "trophy")
     private AndroidElement trophyIcon;
 
+    @AndroidFindBy(id = "lottie_trophy")
+    private AndroidElement trophyIcon2;
+
     @AndroidFindBy(id = "game_intro_cta")
     private AndroidElement ctaGetStarted;
 
@@ -52,12 +55,20 @@ public class RewardsPage {
         Elements.selectElement(driver, trophyIcon, "Trophy Icon");
     }
 
+    public void clickTrophyIcon2() {
+        Elements.selectElement(driver, trophyIcon2, "Trophy Icon");
+    }
+
     public void clickGetStarted() {
         Elements.selectElement(driver, ctaGetStarted, "Get Started");
     }
 
     public boolean isSpinTheWheelPresent() throws InterruptedException {
         return Elements.isElementPresent(driver, ctaSpinTheWheel);
+    }
+
+    public boolean isTrophyIconPresent() throws InterruptedException {
+        return Elements.isElementPresent(driver, trophyIcon);
     }
 
     public void clickSpinTheWheel() {
