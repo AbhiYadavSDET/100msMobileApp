@@ -15,8 +15,7 @@
             <run>
                 <include name="setUp"/>
                 <include name="instantiateHelpers"/>
-                <include name="p2pXtraWithdraw"/>
-                <include name="p2pXtraReInvestFromFlexi"/>
+                <include name="offerSearch"/>
                 <include name="tearDown"/>
             </run>
         </groups>
@@ -25,6 +24,7 @@
         <classes>
             <class name="Utils.TestBase"/>
             <class name="P2PExtra.P2PExtraTest"/>
+            <class name="Offers.OfferTest"/>
         </classes>
     </test>
 
