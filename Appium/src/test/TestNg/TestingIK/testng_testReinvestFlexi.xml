@@ -6,6 +6,9 @@
     <parameter name="level" value="payments"/>
     <parameter name="saucelabs" value="false"></parameter>
     <parameter name="androidOSVersion" value="12.0"></parameter>
+    <parameter name="deviceName" value="deviceName"></parameter>
+    <parameter name="udId" value="17228df2"></parameter>
+    <parameter name="portNo" value="4723"></parameter>
 
     <test verbose="2" preserve-order="true" name="P2P XTRA Re-Invest ">
         <groups>
