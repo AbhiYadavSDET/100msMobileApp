@@ -48,7 +48,7 @@ public class P2PExtraHelper {
         //if(mbkCommonControlsPage.isWhitePopUpPresent()){ mbkCommonControlsPage.closeWhitePopUp(); }
 
         // Click on Got it to remove referral bottom sheet.
-        Thread.sleep(1000);
+        //Thread.sleep(1000);
         if (p2PExtraPage.isBottomSheetPresent()) p2PExtraPage.removeBottomSheet();
 
 //        if (!p2PExtraPage.checkInvestMoreCta())
@@ -73,7 +73,7 @@ public class P2PExtraHelper {
 //        //if(p2PExtraPage.checkNotificationAlert()) screen.swipeUpMedium(driver);
 //
 
-       if (!p2PExtraPage.checkWithdrawCta() || p2PExtraPage.checkFixedInvestmentDesc()) {
+       if ((!p2PExtraPage.checkWithdrawCta()) || p2PExtraPage.checkFixedInvestmentDesc()) {
             screen.swipeUpLess(driver);
         }
 
