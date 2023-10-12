@@ -72,9 +72,10 @@ public class P2PExtraHelper {
 //        // If notification alerts are present, then swipe up
 //        //if(p2PExtraPage.checkNotificationAlert()) screen.swipeUpMedium(driver);
 //
-//        if (!p2PExtraPage.checkWithdrawCta() || p2PExtraPage.checkFixedInvestmentDesc()) {
-//            screen.swipeUpLess(driver);
-//        }
+
+       if (!p2PExtraPage.checkWithdrawCta() || p2PExtraPage.checkFixedInvestmentDesc()) {
+            screen.swipeUpLess(driver);
+        }
 
         // Click on withdraw on Xtra main page.
         p2PExtraPage.selectWithdraw();
