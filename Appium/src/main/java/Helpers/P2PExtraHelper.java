@@ -570,14 +570,16 @@ public class P2PExtraHelper {
         if (!p2PExtraPage.checkInvestMoreCta()) mbkCommonControlsHelper.pressback();
 
         // Check for Withdraw Cta on Flexi Card
-        if (!p2PExtraPage.checkWithdrawCta()) screen.swipeUpMedium(driver);
+       // if (!p2PExtraPage.checkWithdrawCta()) screen.swipeUpMedium(driver);
 
         // Check for Withdraw Cta on Flexi Card
         //if(!p2PExtraPage.checkWithdrawCta()) screen.swipeUpMedium(driver);
 
-        if (!p2PExtraPage.checkWithdrawCta() || p2PExtraPage.checkFixedInvestmentDesc()) {
-            screen.swipeUpLess(driver);
-        }
+        //if (!p2PExtraPage.checkWithdrawCta() || p2PExtraPage.checkFixedInvestmentDesc()) {
+        //    screen.swipeUpLess(driver);
+        //}
+
+        screen.swipeUpLess(driver);
 
         // Click on withdraw on Xtra main page.
         p2PExtraPage.selectWithdraw();
