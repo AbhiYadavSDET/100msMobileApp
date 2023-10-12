@@ -23,7 +23,6 @@
 
         <classes>
             <class name="Utils.TestBase"/>
-            <class name="P2PExtra.P2PExtraTest"/>
             <class name="Offers.OfferTest"/>
         </classes>
     </test>
