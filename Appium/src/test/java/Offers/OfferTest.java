@@ -24,7 +24,7 @@ public class OfferTest extends TestBase {
 
         // Execute the test
         OfferHelper offerHelper = new OfferHelper(getAndroidDriver());
-        offerHelper.searchOffers("cleartrip", "Discount", "Get Flat 10% Instant Discount upto Rs.400 on Cleartrip!", "Travel", "Book Now");
+        offerHelper.searchOffers("MakeMyTrip", "Discount", "Get Flat 10% Instant Discount upto Rs.500 on MakeMyTrip!", "Travel", "Book Now");
 
         Log.info("======= END : Offer Search test =======");
 

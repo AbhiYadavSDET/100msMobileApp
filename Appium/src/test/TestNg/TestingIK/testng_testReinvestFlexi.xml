@@ -6,21 +6,16 @@
     <parameter name="level" value="payments"/>
     <parameter name="saucelabs" value="false"></parameter>
     <parameter name="androidOSVersion" value="12.0"></parameter>
+    <parameter name="deviceName" value="deviceName"></parameter>
+    <parameter name="udId" value="17228df2"></parameter>
+    <parameter name="portNo" value="4723"></parameter>
 
-    <test verbose="2" preserve-order="true" name="P2P XTRA Re-Invest ">
+    <test verbose="2" preserve-order="true" name="Testing For Failrue cases">
         <groups>
             <run>
                 <include name="setUp"/>
                 <include name="instantiateHelpers"/>
-                <include name="p2pXtraWithdraw"/>
-                <include name="p2pXtraReInvestFromFlexi"/>
-                <include name="p2pXtraReInvestFromFixed"/>
-                <include name="p2pXtraReferAndEarn"/>
-                <include name="p2pXtraNewUser"/>
-                <include name="p2pXtraInvestInFixed"/>
-                <include name="p2pXtraInvestInFlexi"/>
-                <include name="p2pXtraDefaultBankAccount"/>
-                <include name="p2pXtraNomineeDetails"/>
+                <include name="regression"/>
                 <include name="tearDown"/>
             </run>
         </groups>
@@ -28,6 +23,8 @@
 
         <classes>
             <class name="Utils.TestBase"/>
+            <class name="Rewards.RewardsTest"/>
+            <class name="Offers.OfferTest"/>
             <class name="P2PExtra.P2PExtraTest"/>
         </classes>
     </test>
