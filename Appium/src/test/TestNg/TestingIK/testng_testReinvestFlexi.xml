@@ -10,7 +10,7 @@
     <parameter name="udId" value="17228df2"></parameter>
     <parameter name="portNo" value="4723"></parameter>
 
-    <test verbose="2" preserve-order="true" name="P2P XTRA Re-Invest ">
+    <test verbose="2" preserve-order="true" name="Testing For Failrue cases">
         <groups>
             <run>
                 <include name="setUp"/>
@@ -24,6 +24,8 @@
         <classes>
             <class name="Utils.TestBase"/>
             <class name="Rewards.RewardsTest"/>
+            <class name="Offers.OfferTest"/>
+            <class name="P2PExtra.P2PExtraTest"/>
         </classes>
     </test>
 
