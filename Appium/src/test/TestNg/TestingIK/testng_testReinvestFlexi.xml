@@ -23,7 +23,7 @@
 
         <classes>
             <class name="Utils.TestBase"/>
-            <class name="Offers.OfferTest"/>
+            <class name="Rewards.RewardsTest"/>
         </classes>
     </test>
 
