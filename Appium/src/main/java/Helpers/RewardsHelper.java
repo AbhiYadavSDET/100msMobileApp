@@ -49,6 +49,7 @@ public class RewardsHelper {
 
         // Click the CTA - Swipe Up More
         screen.swipeUpMore(driver);
+        screen.swipeUpLess(driver);
 
         if(rewardsPage.isSpinTheWheelPresent()){
 
