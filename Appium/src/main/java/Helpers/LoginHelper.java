@@ -127,7 +127,9 @@ public class LoginHelper {
         loginPage.clickSendOtpbutton();
 
         loginPage.enterOtp(otp);
-        loginPage.clickSubmitOtpCta();
+
+        // Now it is auto submitted so click CTA not needed
+        //loginPage.clickSubmitOtpCta();
 
         // Wait for 5000 ms for all the banners to load
         Thread.sleep(5000);
