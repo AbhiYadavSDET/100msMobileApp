@@ -27,10 +27,10 @@ public class LoginPage {
     @AndroidFindBy(xpath = "//*[@text='NONE OF THE ABOVE']")
     private AndroidElement noneOfAboveButton;
 
-    @AndroidFindBy(xpath = "//*[@class='android.widget.EditText']")
+    @AndroidFindBy(id = "et_phone_number")
     private AndroidElement editTextField;
 
-    @AndroidFindBy(xpath = "//*[@text='Send OTP']")
+    @AndroidFindBy(id = "send_otp_button")
     private AndroidElement sendOtpButton;
 
     @AndroidFindBy(xpath = "//*[@text='History']")
@@ -42,7 +42,7 @@ public class LoginPage {
     @AndroidFindBy(xpath = "//*[@text='Login/Signup']")
     private AndroidElement loginSignupButton;
 
-    @AndroidFindBy(id = "edit_text_otp")
+    @AndroidFindBy(id = "et_otp")
     private AndroidElement textbox_enter_otp;
 
     @AndroidFindBy(id = "verify_otp_btn")
