@@ -7,6 +7,10 @@
     <parameter name="saucelabs" value="false"></parameter>
     <parameter name="androidOSVersion" value="12.0"></parameter>
 
+    <listeners>
+        <listener class-name="Utils.Listeners.AnnotationTransformer"/>
+    </listeners>
+
 
     <test verbose="2" preserve-order="true" name="Regression Test">
         <groups>
