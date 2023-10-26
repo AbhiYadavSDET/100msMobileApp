@@ -224,6 +224,7 @@ public class TestBase {
     /**
      * this method quit the driver after the execution of test(s)
      */
+    @Parameters({"udId"})
     @AfterMethod(groups = "tearDown", alwaysRun = true)
     public void teardown(ITestResult result) {
         String testname = result.getMethod().getMethodName();
@@ -234,7 +235,7 @@ public class TestBase {
         args.clear();
         args.put("command", "run-as com.mobikwik_new.debug mv /data/data/com.mobikwik_new.debug/coverage.ec /data/data/com.mobikwik_new.debug/coverage_"+testname+".ec");
         getAndroidDriver().executeScript("mobile: shell", args);
-        pullData(this.udId, "/data/data/com.mobikwik_new.debug/coverage_"+testname+".ec", testname);
+        pullData(udId, "/data/data/com.mobikwik_new.debug/coverage_"+testname+".ec", testname);
         Log.info("Shutting down driver");
         getAndroidDriver().quit();
 
