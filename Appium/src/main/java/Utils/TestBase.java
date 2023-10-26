@@ -226,7 +226,7 @@ public class TestBase {
      */
     @Parameters({"udId"})
     @AfterMethod(groups = "tearDown", alwaysRun = true)
-    public void teardown(ITestResult result) {
+    public void teardown(ITestResult result, @Optional String udId) {
         String testname = result.getMethod().getMethodName();
         Log.info("Dumping coverage data");
         Map<String, Object> args = new HashMap<>();
