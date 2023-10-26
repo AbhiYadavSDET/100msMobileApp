@@ -226,12 +226,16 @@ public class TestBase {
      */
     @AfterMethod(groups = "tearDown", alwaysRun = true)
     public void teardown(ITestResult result) {
+        String testname = result.getMethod().getMethodName();
         Log.info("Dumping coverage data");
         Map<String, Object> args = new HashMap<>();
         args.put("command", "am broadcast -a com.mobikwik_new.debug.END_EMMA com.mobikwik_new.debug");
         getAndroidDriver().executeScript("mobile: shell", args);
         args.clear();
-        args.put("command", "run-as com.mobikwik_new.debug mv /data/data/com.mobikwik_new.debug/coverage.ec /data/data/com.mobikwik_new.debug/coverage_"+result.getMethod().getMethodName()+".ec");
+        args.put("command", "run-as com.mobikwik_new.debug mv /data/data/com.mobikwik_new.debug/coverage.ec /data/data/com.mobikwik_new.debug/coverage_"+testname+".ec");
+        getAndroidDriver().executeScript("mobile: shell", args);
+        args.clear();
+        args.put("command", "run-as com.mobikwik_new.debug cp /data/data/com.mobikwik_new.debug/coverage_"+testname+".ec /sdcard/Download/" );
         getAndroidDriver().executeScript("mobile: shell", args);
         Log.info("Shutting down driver");
         getAndroidDriver().quit();
