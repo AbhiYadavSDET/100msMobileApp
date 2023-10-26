@@ -241,6 +241,7 @@ public class TestBase {
     }
     public static void pullData(String udId, String sourcePath, String testname){
         try {
+            Log.info("adb -s "+udId+" exec-out run-as com.mobikwik_new.debug cat "+sourcePath+" > coverage_"+testname+".ec");
             Process p = Runtime.getRuntime().exec(new String[]{"bash","-c","adb -s "+udId+" exec-out run-as com.mobikwik_new.debug cat "+sourcePath+" > coverage_"+testname+".ec"});
         } catch (IOException e) {
             Log.info("Coverage file pull failed.");
