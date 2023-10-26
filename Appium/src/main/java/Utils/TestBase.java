@@ -234,17 +234,14 @@ public class TestBase {
         args.clear();
         args.put("command", "run-as com.mobikwik_new.debug mv /data/data/com.mobikwik_new.debug/coverage.ec /data/data/com.mobikwik_new.debug/coverage_"+testname+".ec");
         getAndroidDriver().executeScript("mobile: shell", args);
-        args.clear();
-        args.put("command", "run-as com.mobikwik_new.debug cp /data/data/com.mobikwik_new.debug/coverage_"+testname+".ec /sdcard/Documents" );
-        getAndroidDriver().executeScript("mobile: shell", args);
-        pullData(this.udId, "/sdcard/Documents/coverage_"+testname+".ec");
+        pullData(this.udId, "/data/data/com.mobikwik_new.debug/coverage_"+testname+".ec", testname);
         Log.info("Shutting down driver");
         getAndroidDriver().quit();
 
     }
-    public static void pullData(String udId, String sourcePath){
+    public static void pullData(String udId, String sourcePath, String testname){
         try {
-            Process p = Runtime.getRuntime().exec(new String[]{"bash","-c","adb -s "+udId+" pull "+sourcePath+" ./"});
+            Process p = Runtime.getRuntime().exec(new String[]{"bash","-c","adb -s "+udId+" exec-out run-as com.mobikwik_new.debug cat "+sourcePath+" > coverage_"+testname+".ec"});
         } catch (IOException e) {
             Log.info("Coverage file pull failed.");
         }
