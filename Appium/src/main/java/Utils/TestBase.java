@@ -235,9 +235,9 @@ public class TestBase {
         args.put("command", "run-as com.mobikwik_new.debug mv /data/data/com.mobikwik_new.debug/coverage.ec /data/data/com.mobikwik_new.debug/coverage_"+testname+".ec");
         getAndroidDriver().executeScript("mobile: shell", args);
         args.clear();
-        args.put("command", "run-as com.mobikwik_new.debug cp /data/data/com.mobikwik_new.debug/coverage_"+testname+".ec /sdcard/Download" );
+        args.put("command", "run-as com.mobikwik_new.debug cp /data/data/com.mobikwik_new.debug/coverage_"+testname+".ec /sdcard/Documents" );
         getAndroidDriver().executeScript("mobile: shell", args);
-        pullData(this.udId, "/sdcard/Download/coverage_"+testname+".ec");
+        pullData(this.udId, "/sdcard/Documents/coverage_"+testname+".ec");
         Log.info("Shutting down driver");
         getAndroidDriver().quit();
 
