@@ -6,6 +6,7 @@ import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.apache.log4j.*;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 
 import javax.activation.DataHandler;
@@ -21,6 +22,8 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Timestamp;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 
@@ -157,6 +160,7 @@ public class TestBase {
             cap.setCapability("appPackage", "com.mobikwik_new.debug");
             cap.setCapability("appActivity", "com.mobikwik_new.MobikwikMain");
             cap.setCapability("noReset", "false");
+            cap.setCapability("androidCoverage", "com.mobikwik_new.debug/com.mobikwik_new.instrumentation.CodeCoverageInstrumentation");
 //            cap.setCapability("app", app.getAbsolutePath());
             cap.setCapability("app", "//Users//mayanksuneja//app//mobikwik.apk");
             AndroidDriver driver = new AndroidDriver(new URL("http://0.0.0.0:" + portNo + "/wd/hub"), cap);
@@ -221,7 +225,14 @@ public class TestBase {
      * this method quit the driver after the execution of test(s)
      */
     @AfterMethod(groups = "tearDown", alwaysRun = true)
-    public void teardown() {
+    public void teardown(ITestResult result) {
+        Log.info("Dumping coverage data");
+        Map<String, Object> args = new HashMap<>();
+        args.put("command", "am broadcast -a com.mobikwik_new.debug.END_EMMA com.mobikwik_new.debug");
+        getAndroidDriver().executeScript("mobile: shell", args);
+        args.clear();
+        args.put("command", "run-as com.mobikwik_new.debug mv /data/data/com.mobikwik_new.debug/coverage.ec /data/data/com.mobikwik_new.debug/coverage_"+result.getMethod().getMethodName()+".ec");
+        getAndroidDriver().executeScript("mobile: shell", args);
         Log.info("Shutting down driver");
         getAndroidDriver().quit();
 
