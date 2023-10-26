@@ -243,7 +243,11 @@ public class TestBase {
 
     }
     public static void pullData(String udId, String sourcePath){
-        Process p = Runtime.getRuntime().exec(new String[]{"bash","-c","adb -s "+udId+" pull "+sourcePath+" ./"});
+        try {
+            Process p = Runtime.getRuntime().exec(new String[]{"bash","-c","adb -s "+udId+" pull "+sourcePath+" ./"});
+        } catch (IOException e) {
+            Log.info("Coverage file pull failed.");
+        }
     }
     public static void info(String message) {
         LOGGER.addAppender(consoleAppender);
