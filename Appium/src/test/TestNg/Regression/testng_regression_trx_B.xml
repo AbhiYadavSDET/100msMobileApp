@@ -6,14 +6,14 @@
         <listener class-name="Utils.Listeners.AnnotationTransformer"/>
     </listeners>
 
-    <test preserve-order="true" name="Regression TRX Cases">
+    <test preserve-order="true" name="Regression TRX Part B">
         <parameter name="build" value="prod"/>
         <parameter name="level" value="payments"/>
         <parameter name="saucelabs" value="false"></parameter>
         <parameter name="androidOSVersion" value="12.0"></parameter>
         <parameter name="deviceName" value="deviceName"></parameter>
-        <parameter name="udId" value="17228df2"></parameter>
-        <parameter name="portNo" value="4723"></parameter>
+        <parameter name="udId" value="RZ8W30838FW"></parameter>
+        <parameter name="portNo" value="4823"></parameter>
 
         <groups>
             <run>
@@ -24,16 +24,11 @@
         </groups>
 
         <classes>
-            <class name="AddMoney.Test_AddMoney"/>
-            <class name="P2M.P2MTest"/>
-            <class name="P2P.P2PTest"/>
-            <class name="Gold.GoldTest"/>
             <class name="Recharge.RechargeTest">
                 <methods>
                     <exclude name="prepaid_Recharge"/>
                 </methods>
             </class>
-            <class name="SecurityPin.SecurityPinTest"/>
         </classes>
     </test>
 

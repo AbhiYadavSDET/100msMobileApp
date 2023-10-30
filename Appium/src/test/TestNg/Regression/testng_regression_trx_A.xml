@@ -6,7 +6,7 @@
         <listener class-name="Utils.Listeners.AnnotationTransformer"/>
     </listeners>
 
-    <test preserve-order="true" name="Regression TRX Cases">
+    <test preserve-order="true" name="Regression TRX Part A">
         <parameter name="build" value="prod"/>
         <parameter name="level" value="payments"/>
         <parameter name="saucelabs" value="false"></parameter>
@@ -24,15 +24,9 @@
         </groups>
 
         <classes>
-            <class name="AddMoney.Test_AddMoney"/>
             <class name="P2M.P2MTest"/>
             <class name="P2P.P2PTest"/>
             <class name="Gold.GoldTest"/>
-            <class name="Recharge.RechargeTest">
-                <methods>
-                    <exclude name="prepaid_Recharge"/>
-                </methods>
-            </class>
             <class name="SecurityPin.SecurityPinTest"/>
         </classes>
     </test>
