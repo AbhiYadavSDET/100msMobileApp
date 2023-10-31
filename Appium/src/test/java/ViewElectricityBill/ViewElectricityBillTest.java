@@ -1,10 +1,8 @@
 package ViewElectricityBill;
 
-import Helpers.CCBPHelper;
 import Helpers.ElectricityHelper;
 import Helpers.LoginHelper;
 import Logger.Log;
-import Utils.ExtentReport;
 import Utils.TestBase;
 import org.testng.annotations.Test;
 
@@ -12,14 +10,9 @@ import java.io.IOException;
 
 public class ViewElectricityBillTest extends TestBase {
 
-    @Test(groups = {"sanity", "rechargeSanity"}, priority = 0, description = "view electricity bill")
+    @Test(groups = {"sanity", "rechargeSanity", "regression"}, priority = 0, description = "view electricity bill")
 
     public void viewElectricityBill() throws InterruptedException, IOException {
-
-
-        Log.info("======= START : P2M Send test =======");
-        // Starting the test in the extentreport
-        ExtentReport.EXTENTREPORT.createTest("CCBP test");
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
@@ -28,8 +21,8 @@ public class ViewElectricityBillTest extends TestBase {
         Log.info("======= START : View Electricity Bill =======");
 
         // Execute the test
-        ElectricityHelper electricityHelper  = new ElectricityHelper(getAndroidDriver());
-        electricityHelper.viewElectricityBill("KULDIP","04 Mar 2023","60003686668","Tata Power Delhi Distribution Ltd - TTPDDL","1,320","Tata Power", "60003686668");
+        ElectricityHelper electricityHelper = new ElectricityHelper(getAndroidDriver());
+        electricityHelper.viewElectricityBill("KULDIP", "04 Mar 2023", "60003686668", "Tata Power Delhi Distribution Ltd - TTPDDL", "1,320", "Tata Power", "60003686668");
 
         Log.info("======= END : View Electricity Bill =======");
     }
