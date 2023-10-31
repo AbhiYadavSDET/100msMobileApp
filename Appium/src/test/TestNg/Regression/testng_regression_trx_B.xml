@@ -2,9 +2,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Test Suite">
 
-<!--    <listeners>-->
-<!--        <listener class-name="Utils.Listeners.AnnotationTransformer"/>-->
-<!--    </listeners>-->
+    <!--    <listeners>-->
+    <!--        <listener class-name="Utils.Listeners.AnnotationTransformer"/>-->
+    <!--    </listeners>-->
 
     <test preserve-order="true" name="Regression TRX Part B">
         <parameter name="build" value="prod"/>
@@ -29,6 +29,8 @@
                     <exclude name="prepaid_Recharge"/>
                 </methods>
             </class>
+            <class name="Gold.GoldTest"/>
+            <class name="SecurityPin.SecurityPinTest"/>
         </classes>
     </test>
 
