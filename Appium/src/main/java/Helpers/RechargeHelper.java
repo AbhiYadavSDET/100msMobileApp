@@ -1,19 +1,15 @@
 package Helpers;
 
+import Logger.Log;
 import PageObject.*;
 import Utils.MBReporter;
-import Utils.*;
+import Utils.Screen;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
-import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import Logger.Log;
-import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 public class RechargeHelper {
@@ -32,7 +28,6 @@ public class RechargeHelper {
     LinkedHashMap<String, String> balanceAfter;
 
 
-
     public RechargeHelper(AndroidDriver<AndroidElement> driver) throws IOException {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -46,7 +41,7 @@ public class RechargeHelper {
     }
 
 
-    public void postpaidRecharge(String amount, String expAmountOnPaymentScreen, String expTitle, String expSubTitle, String expAmountOnSuccessScreen,String expectedHistoryDescription, String expectedHistoryAmount, String expectedHistoryStatus) throws InterruptedException, IOException {
+    public void postpaidRecharge(String amount, String expAmountOnPaymentScreen, String expTitle, String expSubTitle, String expAmountOnSuccessScreen, String expectedHistoryDescription, String expectedHistoryAmount, String expectedHistoryStatus) throws InterruptedException, IOException {
 
         // Get the Balance if the User Before TRX
         balanceBefore = mbkCommonControlsHelper.getBalance();
@@ -55,10 +50,10 @@ public class RechargeHelper {
         rechargePage.clickRechargeAndPayBills();
 
         //
-       // rechargePage.clickEnableSecureLoginBottomSheet();
+        // rechargePage.clickEnableSecureLoginBottomSheet();
 
         //
-        if(rechargePage.clickMobileRechargeAlert()){
+        if (rechargePage.clickMobileRechargeAlert()) {
             rechargePage.clickToCloseMobileRechargeAlert();
         }
 
@@ -92,7 +87,7 @@ public class RechargeHelper {
         rechargePage.clickOnPay();
 
         // checking for security pin
-        if(securityPinPage.checkSecurityPinPage()){
+        if (securityPinPage.checkSecurityPinPage()) {
             securityPinPage.enterSecurityPin();
         }
 
@@ -112,7 +107,7 @@ public class RechargeHelper {
         mbReporter.verifyEquals(subTitle, expSubTitle, "Verify Sub Title", false, false);
         mbReporter.verifyEquals(amountOnSuccesScreen, expAmountOnSuccessScreen, "Verify Gold Amount", false, false);
 
-        mbkCommonControlsHelper.pressback(3);
+        mbkCommonControlsHelper.pressback(2);
 
         // Click on the back button if the bottom sheet is present
         mbkCommonControlsHelper.handleHomePageLanding();
@@ -125,13 +120,13 @@ public class RechargeHelper {
         mbkCommonControlsHelper.verifyWalletBalanceAfterTransaction(driver, balanceBefore, balanceAfter, amount, "Sub");
 
         // Verify the History details
-        mbkCommonControlsHelper.verifyHistoryDetails(driver ,expectedHistoryDescription,expectedHistoryAmount,expectedHistoryStatus);
+        mbkCommonControlsHelper.verifyHistoryDetails(driver, expectedHistoryDescription, expectedHistoryAmount, expectedHistoryStatus);
 
 
     }
 
 
-    public void prepaidRecharge(String amount, String expAmountOnPaymentScreen, String expTitle, String expSubTitle, String expAmountOnSuccessScreen,String expectedHistoryDescription, String expectedHistoryAmount, String expectedHistoryStatus) throws InterruptedException, IOException {
+    public void prepaidRecharge(String amount, String expAmountOnPaymentScreen, String expTitle, String expSubTitle, String expAmountOnSuccessScreen, String expectedHistoryDescription, String expectedHistoryAmount, String expectedHistoryStatus) throws InterruptedException, IOException {
 
         // Get the Balance if the User Before TRX
         balanceBefore = mbkCommonControlsHelper.getBalance();
@@ -165,7 +160,7 @@ public class RechargeHelper {
 
         rechargePage.clickOnPay();
 
-        if(securityPinPage.checkSecurityPinPage()){
+        if (securityPinPage.checkSecurityPinPage()) {
             securityPinPage.enterSecurityPin();
         }
 
@@ -185,7 +180,7 @@ public class RechargeHelper {
         mbReporter.verifyEquals(subTitle, expSubTitle, "Verify Sub Title", false, false);
         mbReporter.verifyEquals(amountOnSuccesScreen, expAmountOnSuccessScreen, "Verify Gold Amount", false, false);
 
-        mbkCommonControlsHelper.pressback(3);
+        mbkCommonControlsHelper.pressback(2);
 
         // Click on the back button if the bottom sheet is present
         mbkCommonControlsHelper.handleHomePageLanding();
@@ -198,7 +193,7 @@ public class RechargeHelper {
         mbkCommonControlsHelper.verifyWalletBalanceAfterTransaction(driver, balanceBefore, balanceAfter, amount, "Sub");
 
         // Verify the History details
-        mbkCommonControlsHelper.verifyHistoryDetails(driver ,expectedHistoryDescription,expectedHistoryAmount,expectedHistoryStatus);
+        mbkCommonControlsHelper.verifyHistoryDetails(driver, expectedHistoryDescription, expectedHistoryAmount, expectedHistoryStatus);
 
     }
 
