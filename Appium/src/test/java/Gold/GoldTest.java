@@ -3,7 +3,6 @@ package Gold;
 import Helpers.GoldHelper;
 import Helpers.LoginHelper;
 import Logger.Log;
-import Utils.ExtentReport;
 import Utils.TestBase;
 import org.testng.annotations.Test;
 
@@ -13,7 +12,7 @@ import java.io.IOException;
 public class GoldTest extends TestBase {
 
 
-    @Test(groups = {"sanity", "goldBuy" , "regression"}, priority = 1, description = "Verify Gold Buy")
+    @Test(groups = {"sanity", "goldBuy", "regression"}, priority = 0, description = "Verify Gold Buy")
     public void Test01_buyGold() throws IOException, InterruptedException {
 
         Log.info("======= START : Gold Buy test =======");
@@ -25,7 +24,7 @@ public class GoldTest extends TestBase {
 
         // Execute the test
         GoldHelper goldHelper = new GoldHelper(getAndroidDriver());
-        goldHelper.goldBuy("1", "Payment Successful", "Gold Purchase", "0.0002", "₹1","Purchased Gold", "-₹1", "Success");
+        goldHelper.goldBuy("1", "Payment Successful", "Gold Purchase", "0.0002", "₹1", "Purchased Gold", "-₹1", "Success");
 
         Log.info("======= END : Gold Buy test =======");
 
@@ -44,7 +43,7 @@ public class GoldTest extends TestBase {
 
         // Execute the test
         GoldHelper goldHelper = new GoldHelper(getAndroidDriver());
-        goldHelper.goldSell("1", "Payment Successful", "Sell Gold", "0.0002", "₹1","Sold Gold", "+₹1", "Success");
+        goldHelper.goldSell("1", "Payment Successful", "Sell Gold", "0.0002", "₹1", "Sold Gold", "+₹1", "Success");
 
         Log.info("======= END : Gold Sell test =======");
 

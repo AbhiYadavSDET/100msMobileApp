@@ -48,6 +48,9 @@ public class LoginPage {
     @AndroidFindBy(id = "verify_otp_btn")
     private AndroidElement cta_submit_otp;
 
+    @AndroidFindBy(id = "retry_btn")
+    private AndroidElement cta_resend_otp;
+
 
     public LoginPage(AndroidDriver driver) {
         this.driver = driver;
@@ -84,6 +87,10 @@ public class LoginPage {
 
     public void clickHomeTab() {
         Elements.selectElement(driver, homeTab, "Click on home tab");
+    }
+
+    public void clickResendOtp() {
+        Elements.selectElement(driver, cta_resend_otp, "Click on Resend Otp Button");
     }
 
     public void clickLoginSignup() {
