@@ -61,6 +61,22 @@ public class IMPSNewPage {
     private AndroidElement upi_continue_cta ;
 
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Refer & Earn']")
+    private AndroidElement refer_Earn ;
+
+    //
+    @AndroidFindBy(id = "search_ifsc")
+    private AndroidElement find_ifsc ;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Icici Bank Limited']")
+    private AndroidElement icici_bank ;
+
+    //
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='We've pre-filled global IFSC code for ICICI BANK LIMITED. This can be used for transfers to any account']")
+    private AndroidElement globalIfscMessage ;
+
+
     public IMPSNewPage(AndroidDriver driver) throws IOException {
 
         this.driver = driver;
@@ -134,5 +150,22 @@ public class IMPSNewPage {
         String comment= "Tapped on Saved VPA "+saved_vpa;
         Elements.selectElement(driver,saved_vpa,comment);
     }
+
+    public void clickOnReferAndEarn() throws InterruptedException{
+        Elements.selectElement(driver,refer_Earn,"Tapped on Refer & Earn");
+    }
+    public void clickOnFindIfsc() throws InterruptedException{
+        Elements.selectElement(driver,find_ifsc,"Tapped on find ifsc");
+    }
+
+    public void clickOnIciciBank() throws InterruptedException{
+        clickOnFindIfsc();
+        Elements.selectElement(driver,icici_bank,"Tapped on icici bank");
+    }
+
+    public String  getGlobalMessage() throws InterruptedException{
+        return Elements.getText(driver, globalIfscMessage, "Global Message for IFSC code");
+    }
+
 }
 

@@ -218,4 +218,53 @@ public class IMPSNewHelper {
         mbkCommonControlsHelper.verifyHistoryDetails(driver ,expectedHistoryDescription,expectedHistoryAmount,expectedHistoryStatus);
 
     }
+
+    public void verifyIMPSNewAccountWithAutoIfscCode(String accountName, String accountNo, String amount, String expectedMessage, String expectedAmount, String expectedHistoryDescription, String expectedHistoryAmount, String expectedHistoryStatus) throws InterruptedException, IOException {
+
+        //Going to IMPS Option
+        impsPage.clickOnWalletToBank();
+
+        Thread.sleep(3000);
+
+        impsPage.clickOnTransferToNewAccount();
+
+        // Enter the bank details
+        impsPage.setBeneficiaryName(accountName);
+        impsPage.setAccountNumber(accountNo);
+        impsPage.clickOnIciciBank();
+        Log.info("Global Message for Ifsc code "+impsPage.getGlobalMessage());
+
+        //
+        impsPage.clickOnContinueCTA();
+
+        //Entering Amount Page
+        impsPage.setAmount(amount);
+        impsPage.clickOnSetAmount();
+        impsPage.clickOnContinueToPinCTA();
+
+    }
+
+
+    public void verifyReferAndEarnOnImps() throws InterruptedException, IOException {
+
+        // Get the Balance if the User Before TRX
+        balanceBefore = mbkCommonControlsHelper.getBalance();
+
+        // Click on Imps on home page
+
+        impsPage.clickOnWalletToBank();
+
+       // Click on refer & earn on imps landing page
+        impsPage.clickOnReferAndEarn();
+
+        // Add the assertions
+        mbReporter.verifyEqualsWithLogging("actualMessage", "expectedMessage", " Imps | Refer & Earn", false, false);
+
+        // back to home
+        mbkCommonControlsHelper.handleHomePageLanding();
+
+    }
+
+
+
 }
