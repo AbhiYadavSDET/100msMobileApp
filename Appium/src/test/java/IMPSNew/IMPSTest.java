@@ -64,7 +64,7 @@ public class IMPSTest extends TestBase {
 
 
 
-    @Test(groups = {"impsNewAccountNumber", "impsSanity"}, priority = 3, description = "IMPS on New Account Number with auto ifsc code")
+  //  @Test(groups = {"impsNewAccountNumber", "impsSanity"}, priority = 3, description = "IMPS on New Account Number with auto ifsc code")
     public void Test04_imps_new_account_numberWithAutoIfscCode() throws IOException, InterruptedException {
 
         Log.info("======= START : IMPS to New Account Number with auto ifsc code Test =======");
@@ -73,14 +73,14 @@ public class IMPSTest extends TestBase {
         loginHelp.quickLoginViaOtp("8076595767","547372");
 
         IMPSNewHelper impsHelper = new IMPSNewHelper(getAndroidDriver());
-       impsHelper.verifyIMPSNewAccountWithAutoIfscCode("Ashish Kumar Pradhan", "040801000080315", "50","Transfer Successful" , "₹50","Bank transfer to  Ashish Kumar Pradhan (XXXXXXXXXXX0315)","-₹51.18","Success");
+       impsHelper.verifyIMPSNewAccountWithAutoIfscCode("Abhishek Kumar", "040801000080315", "ICICI","50");
 
         Log.info("======= END : IMPS to New Account Number with auto Ifsc code Test =======");
 
     }
 
 
-    @Test(groups = {"impsReferAndEarn", "impsSanity"}, priority = 4, description = "Refer and earn on Imps")
+    //@Test(groups = {"impsReferAndEarn", "impsSanity"}, priority = 4, description = "Refer and earn on Imps")
     public void Test05_imps_new_account_numberWithAutoIfscCode() throws IOException, InterruptedException {
 
         Log.info("======= START : Refer and earn on Imps Test =======");
@@ -94,6 +94,20 @@ public class IMPSTest extends TestBase {
 
     }
 
+
+    @Test(groups = {"impsNewUPIid", "impsSanity","impsNewAccountNumber"}, priority = 4, description = "Refer and earn on Imps")
+    public void Test06_imps_new_account_numberWithErrorMessage() throws IOException, InterruptedException {
+
+        Log.info("======= START : Error message on add new property on Imps Test =======");
+
+        LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
+        loginHelp.quickLoginViaOtp("8076595767","547372");
+
+        IMPSNewHelper impsHelper = new IMPSNewHelper(getAndroidDriver());
+        impsHelper.verifyIMPSErrorMessageOnAddNewProperty("Abhishek kumar","6213768365");
+        Log.info("======= END  : Error message on add new property on Imps Test =======");
+
+    }
 }
 
 

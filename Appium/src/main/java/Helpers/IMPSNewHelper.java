@@ -219,7 +219,7 @@ public class IMPSNewHelper {
 
     }
 
-    public void verifyIMPSNewAccountWithAutoIfscCode(String accountName, String accountNo, String amount, String expectedMessage, String expectedAmount, String expectedHistoryDescription, String expectedHistoryAmount, String expectedHistoryStatus) throws InterruptedException, IOException {
+    public void verifyIMPSNewAccountWithAutoIfscCode(String accountName, String accountNo, String bankName,String amount) throws InterruptedException, IOException {
 
         //Going to IMPS Option
         impsPage.clickOnWalletToBank();
@@ -231,8 +231,7 @@ public class IMPSNewHelper {
         // Enter the bank details
         impsPage.setBeneficiaryName(accountName);
         impsPage.setAccountNumber(accountNo);
-        impsPage.clickOnIciciBank();
-        Log.info("Global Message for Ifsc code "+impsPage.getGlobalMessage());
+        impsPage.searchBankOnImps(bankName);
 
         //
         impsPage.clickOnContinueCTA();
@@ -243,12 +242,7 @@ public class IMPSNewHelper {
         impsPage.clickOnContinueToPinCTA();
 
     }
-
-
     public void verifyReferAndEarnOnImps() throws InterruptedException, IOException {
-
-        // Get the Balance if the User Before TRX
-        balanceBefore = mbkCommonControlsHelper.getBalance();
 
         // Click on Imps on home page
 
@@ -265,6 +259,46 @@ public class IMPSNewHelper {
 
     }
 
+    public void verifyIMPSErrorMessageOnAddNewProperty(String accountName, String accountNo) throws InterruptedException, IOException {
+
+        //Going to IMPS Option
+        impsPage.clickOnWalletToBank();
+
+        Thread.sleep(3000);
+
+        //Click on transfer new account
+        impsPage.clickOnTransferToNewAccount();
+
+        //click on continue without adding beneficiary details
+        impsPage.clickOnContinueCTA();
+
+        mbReporter.verifyEqualsWithLogging(impsPage.getBeneficiaryMessage(), "Beneficiary Name cannot be empty", "Add new property  Page | continue without beneficiary", false, false);
+
+        // Enter the beneficiary details
+        impsPage.setBeneficiaryName(accountName);
+
+        //click on continue without adding account number details
+        impsPage.clickOnContinueCTA();
+        mbReporter.verifyEqualsWithLogging(impsPage.getAccountNumberMessage(), "Account Number cannot be empty", "Add new property  Page | continue without account number", false, false);
+
+
+        // Enter the account number details
+        impsPage.setAccountNumber(accountNo);
+
+
+        //click on continue without adding ifsc code  details
+        impsPage.clickOnContinueCTA();
+        mbReporter.verifyEqualsWithLogging(impsPage.getIfscCodeMessage(), "IFSC Code cannot be empty", "Add new property  Page | continue without ifsc code", false, false);
+
+
+        //click on upi id button
+        impsPage.clickOnUPIRadioBtn();
+
+        //click on continue without adding upi id details
+        impsPage.clickOnContinueToAmtCTA();
+        mbReporter.verifyEqualsWithLogging(impsPage.getUPIMessage(), "Please enter valid UPI Id", "Add new property  Page | continue without upi id", false, false);
+
+    }
 
 
 }

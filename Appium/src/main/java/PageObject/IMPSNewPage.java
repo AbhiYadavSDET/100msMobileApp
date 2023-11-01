@@ -64,17 +64,31 @@ public class IMPSNewPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Refer & Earn']")
     private AndroidElement refer_Earn ;
 
-    //
+
     @AndroidFindBy(id = "search_ifsc")
     private AndroidElement find_ifsc ;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Icici Bank Limited']")
-    private AndroidElement icici_bank ;
+    @AndroidFindBy(xpath = "//android.widget.EditText[@text='Search bank name']")
+    private AndroidElement searchBox ;
 
-    //
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Beneficiary Name cannot be empty']")
+    private AndroidElement beneficiaryMessage ;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Account Number cannot be empty']")
+    private AndroidElement accountNumberMessage ;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='IFSC Code cannot be empty']")
+    private AndroidElement ifscCodeMessage ;
+
+    @AndroidFindBy(xpath = "////android.widget.TextView[@text='Please enter valid UPI Id']")
+    private AndroidElement upiIdMessage ;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='We've pre-filled global IFSC code for ICICI BANK LIMITED. This can be used for transfers to any account']")
     private AndroidElement globalIfscMessage ;
+
+
+
+
 
 
     public IMPSNewPage(AndroidDriver driver) throws IOException {
@@ -154,18 +168,39 @@ public class IMPSNewPage {
     public void clickOnReferAndEarn() throws InterruptedException{
         Elements.selectElement(driver,refer_Earn,"Tapped on Refer & Earn");
     }
-    public void clickOnFindIfsc() throws InterruptedException{
+
+    public void clickOnFindiFSC() throws InterruptedException{
         Elements.selectElement(driver,find_ifsc,"Tapped on find ifsc");
     }
 
-    public void clickOnIciciBank() throws InterruptedException{
-        clickOnFindIfsc();
-        Elements.selectElement(driver,icici_bank,"Tapped on icici bank");
+    public void searchBankOnImps(String bankName) throws InterruptedException{
+
+       Elements.selectElement(driver,searchBox,"Tapped on search box");
+        Elements.enterToElement(driver,searchBox,bankName,"Searching bank name :"+bankName);
     }
 
     public String  getGlobalMessage() throws InterruptedException{
         return Elements.getText(driver, globalIfscMessage, "Global Message for IFSC code");
     }
+
+    public String getBeneficiaryMessage() throws InterruptedException{
+        return Elements.getText(driver, beneficiaryMessage, "Success Message");
+    }
+
+    public String getAccountNumberMessage() throws InterruptedException{
+        return Elements.getText(driver, accountNumberMessage, "Success Message");
+    }
+
+    public String getIfscCodeMessage() throws InterruptedException{
+        return Elements.getText(driver, ifscCodeMessage, "Success Message");
+    }
+
+    public String getUPIMessage() throws InterruptedException{
+        return Elements.getText(driver, upiIdMessage, "Success Message");
+    }
+
+
+
 
 }
 
