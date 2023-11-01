@@ -95,7 +95,7 @@ public class IMPSTest extends TestBase {
     }
 
 
-    @Test(groups = {"impsNewUPIid", "impsSanity","impsNewAccountNumber"}, priority = 4, description = "Refer and earn on Imps")
+    @Test(groups = {"impsNewUPIid", "impsSanity","impsNewAccountNumber"}, priority = 5, description = "Refer and earn on Imps")
     public void Test06_imps_new_account_numberWithErrorMessage() throws IOException, InterruptedException {
 
         Log.info("======= START : Error message on add new property on Imps Test =======");
@@ -109,7 +109,7 @@ public class IMPSTest extends TestBase {
 
     }
 
-    @Test(groups = {"impsNewUPIid", "impsSanity","impsNewAccountNumber"}, priority = 4, description = "Refer and earn on Imps")
+    @Test(groups = {"impsNewUPIid", "impsSanity","impsNewAccountNumber"}, priority = 6, description = "Refer and earn on Imps")
     public void Test07_imps_checkLimits() throws IOException, InterruptedException {
 
         Log.info("======= START : check limits on Imps Test =======");
