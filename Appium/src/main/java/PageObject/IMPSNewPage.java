@@ -80,13 +80,20 @@ public class IMPSNewPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='IFSC Code cannot be empty']")
     private AndroidElement ifscCodeMessage ;
 
-    @AndroidFindBy(xpath = "////android.widget.TextView[@text='Please enter valid UPI Id']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Please enter valid UPI Id']")
     private AndroidElement upiIdMessage ;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='We've pre-filled global IFSC code for ICICI BANK LIMITED. This can be used for transfers to any account']")
     private AndroidElement globalIfscMessage ;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Check Limits']")
+    private AndroidElement checkLimits ;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='TRANSFER LIMITS']")
+    private AndroidElement transferLimits ;
+
+    @AndroidFindBy(id = "close_button")
+    private AndroidElement closeCheckLimit ;
 
 
 
@@ -138,7 +145,6 @@ public class IMPSNewPage {
     public void setSecurityPIN(String pin) throws InterruptedException{
         Elements.enterToElement(driver,security_pin_field,pin,"Pin set....");
     }
-
 
     public String getSuccessMessage() throws InterruptedException{
         return Elements.getText(driver, label_success_message, "Success Message");
@@ -197,6 +203,18 @@ public class IMPSNewPage {
 
     public String getUPIMessage() throws InterruptedException{
         return Elements.getText(driver, upiIdMessage, "Success Message");
+    }
+    public void clickOnCheckLimits() throws InterruptedException{
+        Elements.selectElement(driver,checkLimits,"Tapped on check limits");
+    }
+
+    public String getTransferLimitsMessage() throws InterruptedException{
+        return Elements.getText(driver, transferLimits, "transfer limit text");
+    }
+
+
+    public void clickOnCloseCheckLimits() throws InterruptedException{
+        Elements.selectElement(driver,closeCheckLimit,"Tapped on close check limits ");
     }
 
 

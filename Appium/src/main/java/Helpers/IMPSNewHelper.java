@@ -251,9 +251,6 @@ public class IMPSNewHelper {
        // Click on refer & earn on imps landing page
         impsPage.clickOnReferAndEarn();
 
-        // Add the assertions
-        mbReporter.verifyEqualsWithLogging("actualMessage", "expectedMessage", " Imps | Refer & Earn", false, false);
-
         // back to home
         mbkCommonControlsHelper.handleHomePageLanding();
 
@@ -299,6 +296,22 @@ public class IMPSNewHelper {
         mbReporter.verifyEqualsWithLogging(impsPage.getUPIMessage(), "Please enter valid UPI Id", "Add new property  Page | continue without upi id", false, false);
 
     }
+
+    public void verifyCheckLimitsOnImps() throws InterruptedException, IOException {
+
+        // Click on Imps on home page
+
+        impsPage.clickOnWalletToBank();
+
+        // Click on check limit on imps landing page
+        impsPage.clickOnCheckLimits();
+        mbReporter.verifyEqualsWithLogging(impsPage.getTransferLimitsMessage(), "TRANSFER LIMITS", "Check limit on Imps Page", false, false);
+
+        //close the check limit popup
+        impsPage.clickOnCloseCheckLimits();
+
+    }
+
 
 
 }
