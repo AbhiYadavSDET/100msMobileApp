@@ -119,6 +119,9 @@ public class P2MPage {
     @AndroidFindBy(xpath = "(//android.widget.ImageView[@resource-id=\"com.google.android.providers.media.module:id/icon_thumbnail\"])[2]")
     public AndroidElement galleryMbkQrCode;
 
+    @AndroidFindBy(id = "close_button")
+    private AndroidElement back_btn;
+
 
     public P2MPage(AndroidDriver driver) {
         this.driver = driver;
@@ -259,6 +262,12 @@ public class P2MPage {
     public boolean checkAllowPermissionForGallery() throws InterruptedException {
         return Elements.isElementPresent(driver, permissionAllow);
     }
+
+    public boolean checkBackButton() throws InterruptedException {
+        return Elements.isElementPresent(driver, back_btn);
+    }
+
+
 
 
 }

@@ -119,10 +119,11 @@ public class P2MHelper {
         p2mPage.clickUpButton();
 
         // Click Cross Buttonm
-        p2mPage.clickBackButton();
+        if (p2mPage.checkBackButton()) p2mPage.clickBackButton();
 
         // Click on the up Icon
-        p2mPage.clickUpButton();
+        // p2mPage.clickUpButton();
+        //if (p2mPage.checkBackButton()) p2mPage.clickBackButton();
 
         // Click on the back button if the bottom sheet is present
         Thread.sleep(3000);
@@ -130,7 +131,7 @@ public class P2MHelper {
             Elements.back(driver, "Navigate Back");
         }
 
-        // Handel home page pop-up after transaction
+        // Handle home page pop-up after transaction
         mbkCommonControlsHelper.handleHomePageLanding();
 
         // Get the Balance if the User Before TRX
