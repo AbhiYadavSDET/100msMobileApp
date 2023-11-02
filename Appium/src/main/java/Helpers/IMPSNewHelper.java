@@ -231,15 +231,14 @@ public class IMPSNewHelper {
         // Enter the bank details
         impsPage.setBeneficiaryName(accountName);
         impsPage.setAccountNumber(accountNo);
-        impsPage.searchBankOnImps(bankName);
+        impsPage.clickOnFindiFSC();
+        impsPage.clickOnSearchBox();
+        impsPage.enterBankNameOnImps(bankName);
+        Thread.sleep(10000);
+        impsPage.selectBankOnImps();
 
         //
         impsPage.clickOnContinueCTA();
-
-        //Entering Amount Page
-        impsPage.setAmount(amount);
-        impsPage.clickOnSetAmount();
-        impsPage.clickOnContinueToPinCTA();
 
     }
     public void verifyReferAndEarnOnImps() throws InterruptedException, IOException {

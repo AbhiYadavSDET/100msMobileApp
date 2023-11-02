@@ -68,8 +68,12 @@ public class IMPSNewPage {
     @AndroidFindBy(id = "search_ifsc")
     private AndroidElement find_ifsc ;
 
-    @AndroidFindBy(xpath = "//android.widget.EditText[@text='Search bank name']")
+    @AndroidFindBy(id ="et_search")
     private AndroidElement searchBox ;
+
+
+    @AndroidFindBy(id ="cell_container")
+    private AndroidElement selectBank ;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Beneficiary Name cannot be empty']")
     private AndroidElement beneficiaryMessage ;
@@ -159,11 +163,11 @@ public class IMPSNewPage {
     }
 
     public void setUPIID(String upi) throws InterruptedException{
-        Elements.enterToElement(driver,upi_field,upi,"UPI Field set");
+        Elements.enterToElement(driver, upi_field,upi,"UPI Field set");
     }
 
     public void clickOnContinueToAmtCTA() throws InterruptedException{
-        Elements.selectElement(driver,upi_continue_cta,"Tapped on Continue to Amt Page CTA");
+        Elements.selectElement(driver, upi_continue_cta,"Tapped on Continue to Amt Page CTA");
     }
 
     public void clickOnSavedVPA(AndroidElement saved_vpa) throws InterruptedException{
@@ -178,11 +182,16 @@ public class IMPSNewPage {
     public void clickOnFindiFSC() throws InterruptedException{
         Elements.selectElement(driver,find_ifsc,"Tapped on find ifsc");
     }
+    public void clickOnSearchBox() throws InterruptedException{
+        Elements.selectElement(driver,searchBox,"Tapped on search box");
+    }
 
-    public void searchBankOnImps(String bankName) throws InterruptedException{
-
-       Elements.selectElement(driver,searchBox,"Tapped on search box");
+    public void enterBankNameOnImps(String bankName) throws InterruptedException{
         Elements.enterToElement(driver,searchBox,bankName,"Searching bank name :"+bankName);
+    }
+
+    public void selectBankOnImps() throws InterruptedException{
+        Elements.selectElement(driver,selectBank,"Selecting bank name :");
     }
 
     public String  getGlobalMessage() throws InterruptedException{
