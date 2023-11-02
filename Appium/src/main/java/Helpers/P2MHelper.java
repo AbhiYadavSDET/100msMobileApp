@@ -65,13 +65,13 @@ public class P2MHelper {
             p2mPage.clickOnGallery();
 
             // Allow the Permission
-            p2mPage.allowPermissionAllow();
+            if(p2mPage.checkAllowPermissionForGallery()) p2mPage.allowPermissionAllow();
 
             if(merchant.equals("MobikwikQr")){
-                p2mPage.clickOnMobikwikQRCode();
+                p2mPage.clickOnMBKQrCodeGallery();
             }
             else if(merchant.equals("SonuQr")){
-                p2mPage.clickOnSonuQRCode();
+                p2mPage.clickOnSonuQrCodeGallery();
             }
         }
 
