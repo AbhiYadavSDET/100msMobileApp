@@ -187,6 +187,8 @@ public class IMPSNewPage {
     }
 
     public void enterBankNameOnImps(String bankName) throws InterruptedException{
+        Elements.selectElement(driver, searchBox, "Click on Search box Field");
+        Elements.clearText(driver, searchBox, "Clear before pasting");
         Elements.enterToElement(driver,searchBox,bankName,"Searching bank name :"+bankName);
     }
 
