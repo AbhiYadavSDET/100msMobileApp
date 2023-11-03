@@ -294,22 +294,22 @@ public class AAHelper {
         Log.info("Help Text on Setting screen" + exphelpText);
         mbReporter.verifyEqualsWithLogging(helpText, exphelpText, "Help Text on Setting screen", false, false , true );
         aaPage.selectAutoRefreshext();
-        Thread.sleep(2000);
+
         aaPage.selectOutsideOfAutoRefresh();
-        Thread.sleep(1000);
+
         //mbReporter.verifyTrueWithLogging(aaPage.getsnackbarAfterupdatingAutoupdatey(), "Verify snackbar is present", false,false);
         aaPage.clickManageConsent();
-        Thread.sleep(1000);
+
         aaPage.clickBackButtonOnManageConsentInside();
-        Thread.sleep(1000);
+
         aaPage.clickBackButtonOnManageConsentInside();
-        Thread.sleep(1000);
+
         aaPage.helpSupportTitleClick();
-        Thread.sleep(1000);
+
         aaPage.clickBackButtonOnManageConsentInside();
-        Thread.sleep(1000);
+
         aaPage.selectDownloadStatement();
-        Thread.sleep(1000);
+
         aaPage.clickDownload();
 
     }
