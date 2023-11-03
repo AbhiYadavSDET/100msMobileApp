@@ -294,22 +294,14 @@ public class AAHelper {
         Log.info("Help Text on Setting screen" + exphelpText);
         mbReporter.verifyEqualsWithLogging(helpText, exphelpText, "Help Text on Setting screen", false, false , true );
         aaPage.selectAutoRefreshext();
-
         aaPage.selectOutsideOfAutoRefresh();
-
         //mbReporter.verifyTrueWithLogging(aaPage.getsnackbarAfterupdatingAutoupdatey(), "Verify snackbar is present", false,false);
         aaPage.clickManageConsent();
-
         aaPage.clickBackButtonOnManageConsentInside();
-
         aaPage.clickBackButtonOnManageConsentInside();
-
         aaPage.helpSupportTitleClick();
-
         aaPage.clickBackButtonOnManageConsentInside();
-
         aaPage.selectDownloadStatement();
-
         aaPage.clickDownload();
 
     }
@@ -328,7 +320,6 @@ public class AAHelper {
         int noOftransaction = elements.size();
         Log.info("no Of Transaction - " + noOftransaction);
         mbReporter.verifyTrueWithLogging(noOftransaction>=0, "Verify No of transaction should be greater than or equalto 0", false,false);
-
         for (int i = 1; i <noOftransaction; i++) {
            //String leftDetails = element.findElement(driver, By.id("ts_cta")).getText();;
            // Log.info(leftDetails);

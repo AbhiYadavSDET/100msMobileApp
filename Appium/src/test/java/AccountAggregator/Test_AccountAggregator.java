@@ -17,14 +17,9 @@ public class Test_AccountAggregator extends TestBase {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
         loginHelp.quickLoginViaOtp("7795709569", "547372");
-
-
         AAHelper aaHelper = new AAHelper(getAndroidDriver());
         // Execute the test
-
         aaHelper.existingUser("All Bank Balance", "Your Monthly Summary", "Analyser", "HIGHLIGHTS", "YOUR ACCOUNTS", "OUTGOING", "Others", "Expenses", "SIPs & EMIs", "Bank charges", "Settings", "Download Statements", "Help & Support");
-
-
         Log.info("======= Account Aggregator test =======");
 
     }
@@ -34,13 +29,9 @@ public class Test_AccountAggregator extends TestBase {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
         loginHelp.quickLoginViaOtp("7795709569" , "547372");
-
-
         AAHelper aaHelper = new AAHelper(getAndroidDriver());
         // Execute the test
-
         aaHelper.existingUserMonthlySummary("Incoming","Outgoing","Invested","Remaining","Outgoing","Expenses","SIPs & EMIs","Bank charges","Others","Highest Spend","Top Category","Spends by Date","Money Received");
-
         Log.info("======= Account Aggregator test =======");
 
     }
@@ -50,10 +41,8 @@ public class Test_AccountAggregator extends TestBase {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
         loginHelp.quickLoginViaOtp("7795709569" , "547372");
-
         AAHelper aaHelper = new AAHelper(getAndroidDriver());
         // Execute the test
-
         aaHelper.existingUserAnalyser("DEBITS","Credits","Week","Month","Year","Debited this week");
         Log.info("======= Account Aggregator test =======");
 
@@ -64,10 +53,8 @@ public class Test_AccountAggregator extends TestBase {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
         loginHelp.quickLoginViaOtp("7795709569" , "547372");
-
         AAHelper aaHelper = new AAHelper(getAndroidDriver());
         // Execute the test
-
         aaHelper.existingUserManage("Auto Refresh Frequency","Manage Consent","Help");
         Log.info("======= Account Aggregator test =======");
 
@@ -78,10 +65,8 @@ public class Test_AccountAggregator extends TestBase {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
         loginHelp.quickLoginViaOtp("7795709569" , "547372");
-
         AAHelper aaHelper = new AAHelper(getAndroidDriver());
         // Execute the test
-
         aaHelper.existingUserBankAccountDetails();
         Log.info("======= Account Aggregator test =======");
 

@@ -77,13 +77,13 @@ public class AccountAggregatorPage {
     @AndroidFindBy(id="left_icon_filter")
     private AndroidElement applyFilter;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/txt_heading")
+    @AndroidFindBy(id = "txt_heading")
     private AndroidElement title;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/tv_month_filter")
+    @AndroidFindBy(id = "tv_month_filter")
     private AndroidElement calender;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/incoming_amount")
+    @AndroidFindBy(id = "incoming_amount")
     private AndroidElement incoming;
 
     @AndroidFindBy(xpath = "//*[@text='OUTGOING']")
@@ -104,7 +104,7 @@ public class AccountAggregatorPage {
     @AndroidFindBy(xpath = "//*[@text='Your Monthly Summary']")
     private AndroidElement yourMonthlySummery;
 
-    @AndroidFindBy(id = "com.mobikwik_new:id/cta_text")
+    @AndroidFindBy(id = "cta_text")
     private AndroidElement mainDashboardAnalyserCTA;
 
     @AndroidFindBy(xpath = "//*[@text='HIGHLIGHTS']")
@@ -144,13 +144,10 @@ public class AccountAggregatorPage {
     @AndroidFindBy(xpath = "//*[@text='Invested']")
     private AndroidElement  investedonmonthlysummery;
 
-    //@AndroidFindBy(xpath = "//*[@text='Invested']")
-   // private AndroidElement  investedbooonmonthlysummery;
-
     @AndroidFindBy(xpath = "//*[@text='Remaining']")
     private AndroidElement  remainingonmonthlysummery;
 
-    @AndroidFindBy(id="com.mobikwik_new:id/transaction_title")
+    @AndroidFindBy(id="transaction_title")
     private AndroidElement  outgoingonSpendBycategory;
 
     @AndroidFindBy(xpath = "//*[@text='Expenses']")
@@ -186,7 +183,7 @@ public class AccountAggregatorPage {
     @AndroidFindBy(xpath = "//*[@text='Credits']")
     private AndroidElement  creditTextOnAnlyser;
 
-    @AndroidFindBy(id="com.mobikwik_new:id/txt_update_at")
+    @AndroidFindBy(id="txt_update_at")
     private AndroidElement  debitedthisweekTextOnAnlyser;
 
     @AndroidFindBy(xpath = "//*[@text='Week']")
@@ -207,16 +204,16 @@ public class AccountAggregatorPage {
     @AndroidFindBy(xpath = "//*[@text='Help']")
     private AndroidElement  helpText;
 
-    @AndroidFindBy(id="com.mobikwik_new:id/touch_outside")
+    @AndroidFindBy(id="touch_outside")
     private AndroidElement  every15days;
 
-    @AndroidFindBy(id="com.mobikwik_new:id/snackbar_text")
+    @AndroidFindBy(id="snackbar_text")
     private AndroidElement  snackbarAfterupdatingAutoupdate;
 
-    @AndroidFindBy(id="com.mobikwik_new:id/mkab_left_icon")
+    @AndroidFindBy(id="mkab_left_icon")
     private AndroidElement  backbuttonOnManageConsentInside;
 
-    @AndroidFindBy(id="com.mobikwik_new:id/ll_root")
+    @AndroidFindBy(id="ll_root")
     private AndroidElement  yourBankAccountonHomePage;
 
 
