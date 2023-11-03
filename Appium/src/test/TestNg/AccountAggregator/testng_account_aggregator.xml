@@ -6,6 +6,9 @@
     <parameter name="level" value="wealth"/>
     <parameter name="saucelabs" value="false"></parameter>
     <parameter name="androidOSVersion" value="11.0"></parameter>
+    <parameter name="deviceName" value="deviceName"></parameter>
+    <parameter name="udId" value="RZ8W30838FW"></parameter>
+    <parameter name="portNo" value="4723"></parameter>
 
 
     <test verbose="2" preserve-order="true" name="Account Aggregator">
