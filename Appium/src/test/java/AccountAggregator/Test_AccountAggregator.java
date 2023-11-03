@@ -24,7 +24,7 @@ public class Test_AccountAggregator extends TestBase {
 
     }
 
-    @Test(groups = {"AccountAggregator", "sanity"}, priority = 1, description = "Verify Monthly summary")
+    @Test(groups = {"AccountAggregator", "sanity"}, priority = 0, description = "Verify Monthly summary")
     public void Test02_existing_User_MonthlySummery() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
@@ -36,7 +36,7 @@ public class Test_AccountAggregator extends TestBase {
 
     }
 
-    @Test(groups = {"AccountAggregator", "sanity"}, priority = 2, description = "Verify Analyser")
+    @Test(groups = {"AccountAggregator", "sanity"}, priority = 0, description = "Verify Analyser")
     public void Test03_existing_User_Analyser() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
@@ -48,7 +48,7 @@ public class Test_AccountAggregator extends TestBase {
 
     }
 
-    @Test(groups = {"AccountAggregator", "sanity"}, priority = 3, description = "Verify Manage Section")
+    @Test(groups = {"AccountAggregator", "sanity"}, priority = 0, description = "Verify Manage Section")
     public void Test04_existing_User_Manage() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
@@ -60,7 +60,7 @@ public class Test_AccountAggregator extends TestBase {
 
     }
 
-    @Test(groups = {"AccountAggregator", "sanity"}, priority = 4, description = "Verify Added Existing Users bank account")
+    @Test(groups = {"AccountAggregator", "sanity"}, priority = 0, description = "Verify Added Existing Users bank account")
     public void Test05_existing_User_Added_BankAccount() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
