@@ -207,7 +207,7 @@ public class AccountAggregatorPage {
     @AndroidFindBy(xpath = "//*[@text='Help']")
     private AndroidElement  helpText;
 
-    @AndroidFindBy(xpath = "//*[@text='Every 15 days']")
+    @AndroidFindBy(id="com.mobikwik_new:id/touch_outside")
     private AndroidElement  every15days;
 
     @AndroidFindBy(id="com.mobikwik_new:id/snackbar_text")
@@ -299,10 +299,15 @@ public class AccountAggregatorPage {
             return false;
         }
     }
+    public Boolean isOutgoingTitlePresent() throws InterruptedException {
+        return Elements.isElementPresent(driver, outgoingTitle);
+    }
+
 
     public String getOutgoingTitle() throws InterruptedException {
         return Elements.getText(driver, outgoingTitle, "Outgoing Title");
     }
+
 
     public String getOutgoingFirstSubTitle() throws InterruptedException {
         return Elements.getText(driver, outgoingFirstSubTitle, "Outgoing first Subtitle");
@@ -495,7 +500,7 @@ public class AccountAggregatorPage {
         Elements.selectElement(driver,autoRefreshFrequently,"Click on Auto refresh frequency");
     }
 
-    public void selectEvery15days() throws InterruptedException{
+    public void selectOutsideOfAutoRefresh() throws InterruptedException{
         Elements.selectElement(driver,every15days,"Click on Every 15 days");
     }
 

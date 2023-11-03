@@ -11,7 +11,7 @@ import java.io.IOException;
 public class Test_AccountAggregator extends TestBase {
 
 
-    @Test(groups = {"AccountAggregator", "sanity"}, priority = 8, description = "Verify Existing User flow in AA")
+    @Test(groups = {"AccountAggregator", "sanity"}, priority = 1, description = "Verify Existing User flow in AA")
     public void Test01_existing_User_Dashboard() throws IOException, InterruptedException {
 
 
@@ -29,7 +29,7 @@ public class Test_AccountAggregator extends TestBase {
 
     }
 
-    @Test(groups = {"AccountAggregator", "sanity"}, priority = 1, description = "Verify Monthly summary")
+    @Test(groups = {"AccountAggregator", "sanity"}, priority = 0, description = "Verify Monthly summary")
     public void Test02_existing_User_MonthlySummery() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
@@ -73,9 +73,7 @@ public class Test_AccountAggregator extends TestBase {
 
     }
 
-
-
-    @Test(groups = {"AccountAggregator", "sanity"}, priority = 0, description = "Verify Added Existing Users bank account")
+    @Test(groups = {"AccountAggregator", "sanity"}, priority = 4, description = "Verify Added Existing Users bank account")
     public void Test05_existing_User_Added_BankAccount() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
