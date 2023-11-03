@@ -36,9 +36,7 @@ public class AccountAggregatorPage {
     @AndroidFindBy(id="touch_outside")
     private AndroidElement touchOutsideCTA;
 
-
-
-    @AndroidFindBy(id="com.mobikwik_new.debug:id/icon_chevron")
+    @AndroidFindBy(id="icon_chevron")
     private AndroidElement AA_card;
 
     @AndroidFindBy(id="view_icon_bg")
@@ -528,8 +526,6 @@ public class AccountAggregatorPage {
     public void clickOnYourSavedBankAccount() throws InterruptedException{
         Elements.selectElement(driver,yourBankAccountonHomePage,"Click on Your Account");
     }
-
-
 
     public void userDetails() throws InterruptedException{Elements.selectElement(driver, userDetails, "Check the user details");}
 
