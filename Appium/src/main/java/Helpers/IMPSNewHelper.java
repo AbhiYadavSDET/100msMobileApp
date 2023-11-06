@@ -69,6 +69,8 @@ public class IMPSNewHelper {
         impsPage.setAmount(amount);
         impsPage.clickOnSetAmount();
         impsPage.clickOnContinueToPinCTA();
+        impsPage.clickOnContinueToCheckoutCTA();
+
 
         //Check Security PIN Page
         if(securityPinPage.checkSecurityPinPage()) securityPinPage.enterSecurityPin();
@@ -241,7 +243,36 @@ public class IMPSNewHelper {
         impsPage.clickOnContinueCTA();
 
     }
-    public void verifyReferAndEarnOnImps() throws InterruptedException, IOException {
+
+    public void verifyIMPSWithInsuranceOption(String accountName, String accountNo,String ifsc,String amount) throws InterruptedException, IOException {
+
+        //Going to IMPS Option
+        impsPage.clickOnWalletToBank();
+
+        Thread.sleep(3000);
+
+        impsPage.clickOnTransferToNewAccount();
+
+
+        // Enter the bank details
+        impsPage.setBeneficiaryName(accountName);
+        impsPage.setAccountNumber(accountNo);
+        impsPage.setIFSC_Code(ifsc);
+        impsPage.clickOnContinueCTA();
+
+        impsPage.setAmount(amount);
+       // impsPage.clickOnSetAmount();
+        impsPage.clickOnContinueToPinCTA();
+
+        impsPage.clickOnAdvertisementCheckBox();
+        Log.info(impsPage.getInsuranceMessage());
+
+        String inusuranceAmount = impsPage.getInsuranceMessage().split("₹")[1];
+        double totalAmount= Double.parseDouble(inusuranceAmount)+ Integer.parseInt(amount);
+
+Log.info("Total amount ="+amount +" +"+inusuranceAmount+ " ="+totalAmount);
+    }
+/*    public void verifyReferAndEarnOnImps() throws InterruptedException, IOException {
 
         // Click on Imps on home page
 
@@ -253,7 +284,7 @@ public class IMPSNewHelper {
         // back to home
         mbkCommonControlsHelper.handleHomePageLanding();
 
-    }
+    }*/
 
     public void verifyIMPSErrorMessageOnAddNewProperty(String accountName, String accountNo) throws InterruptedException, IOException {
 

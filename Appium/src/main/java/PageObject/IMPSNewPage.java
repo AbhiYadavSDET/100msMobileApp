@@ -60,6 +60,23 @@ public class IMPSNewPage {
     @AndroidFindBy(id = "btn_continue")
     private AndroidElement upi_continue_cta ;
 
+    @AndroidFindBy(id = "i_agree")
+    private AndroidElement advertisementCheckBox ;
+
+
+
+    @AndroidFindBy(id = "txInsuranceTitle")
+    private AndroidElement advertisementText ;
+
+
+
+
+
+    @AndroidFindBy(id = "btn_pin_submit")
+    private AndroidElement pin_continue_cta ;
+
+    @AndroidFindBy(id = "cta")
+    private AndroidElement checkoutContinueButton ;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Refer & Earn']")
     private AndroidElement refer_Earn ;
@@ -99,9 +116,6 @@ public class IMPSNewPage {
     @AndroidFindBy(id = "close_button")
     private AndroidElement closeCheckLimit ;
 
-
-
-
     public IMPSNewPage(AndroidDriver driver) throws IOException {
 
         this.driver = driver;
@@ -139,10 +153,34 @@ public class IMPSNewPage {
         Elements.selectElement(driver,btn_set_amount,"Amount is correct. Go !!!");
     }
 
+
+
+
     public void clickOnContinueToPinCTA() throws  InterruptedException{
-        Elements.selectElement(driver,continue_pin_cta,"Now switching to Security PIN Windows");
+        Elements.selectElement(driver,pin_continue_cta,"Click on continue now to pay amount");
     }
 
+    public void clickOnAdvertisementCheckBox() throws  InterruptedException{
+        Elements.selectElement(driver,advertisementCheckBox,"Click on insurance checkbox");
+    }
+
+
+    public String getInsuranceMessage() throws InterruptedException{
+        return Elements.getText(driver, advertisementText, "Get insurance text message on checkout page ");
+    }
+
+
+
+
+
+    public void clickOnContinueToCheckoutCTA() throws  InterruptedException{
+        Elements.selectElement(driver,checkoutContinueButton,"Now switching to Security PIN Windows");
+    }
+
+   /* public void clickOnContinueToPinCTA() throws  InterruptedException{
+        Elements.selectElement(driver,continue_pin_cta,"Now switching to Security PIN Windows");
+    }
+*/
     public boolean checkSecurityPINPage() throws  InterruptedException{
         return Elements.isElementPresent(driver,security_pin_field);
     }

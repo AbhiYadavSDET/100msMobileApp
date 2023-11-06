@@ -16,7 +16,7 @@ import java.io.IOException;
 
 public class IMPSTest extends TestBase {
 
-   //@Test(groups = {"impsNewAccountNumber", "impsSanity"}, priority = 0, description = "IMPS on New Account Number")
+  // @Test(groups = {"impsNewAccountNumber", "impsSanity"}, priority = 0, description = "IMPS on New Account Number")
     public void Test01_imps_new_account_number() throws IOException, InterruptedException {
 
         Log.info("======= START : IMPS to New Account Number Test =======");
@@ -25,7 +25,7 @@ public class IMPSTest extends TestBase {
         loginHelp.quickLoginViaOtp("8076595767","547372");
 
         IMPSNewHelper impsHelper = new IMPSNewHelper(getAndroidDriver());
-        impsHelper.verifyIMPSNewAccount("Ashish Kumar Pradhan", "040801000080315", "IOBA0000408", "50","Transfer Successful" , "₹50","Bank transfer to  Ashish Kumar Pradhan (XXXXXXXXXXX0315)","-₹51.18","Success");
+        impsHelper.verifyIMPSNewAccount("Ashish Kumar Pradhan", "040801000080315", "IOBA0000408", "200","Transfer Successful" , "₹50","Bank transfer to  Ashish Kumar Pradhan (XXXXXXXXXXX0315)","-₹51.18","Success");
 
         Log.info("======= END : IMPS to New Account Number Test =======");
 
@@ -40,13 +40,13 @@ public class IMPSTest extends TestBase {
         loginHelp.quickLoginViaOtp("8076595767","547372");
 
         IMPSNewHelper impsHelper = new IMPSNewHelper(getAndroidDriver());
-        impsHelper.verifyIMPSNewVPA("8882305453@paytm","50", "Transfer Successful" , "₹50","Bank transfer to  Ashish Kumar Pradhan (8882305453@paytm)","-₹51.18","Success");
+        impsHelper.verifyIMPSNewVPA("8882305453@paytm","50", "Transfer Successful" , "₹200","Bank transfer to  Ashish Kumar Pradhan (8882305453@paytm)","-₹51.18","Success");
 
         Log.info("======= END : IMPS to New Account Number Test =======");
     }
 
 
-   //@Test(groups = {"impsSavedVPA", "impsSanity"}, priority = 2, description = "IMPS on Saved VPA")
+ //  @Test(groups = {"impsSavedVPA", "impsSanity"}, priority = 2, description = "IMPS on Saved VPA")
     public void Test03_imps_to_saved_vpa() throws  IOException,InterruptedException{
 
         Log.info("======= START : IMPS to Saved VPA Test =======");
@@ -56,7 +56,7 @@ public class IMPSTest extends TestBase {
 
 
         IMPSNewHelper impsHelper = new IMPSNewHelper(getAndroidDriver());
-        impsHelper.verifyIMPSSavedVPA("8882305453@paytm","50", "Transfer Successful" , "₹50","Bank transfer to  Ashish Kumar Pradhan (8882305453@paytm)","-₹51.18","Success");
+        impsHelper.verifyIMPSSavedVPA("8882305453@paytm","50", "Transfer Successful" , "₹200","Bank transfer to  Ashish Kumar Pradhan (8882305453@paytm)","-₹51.18","Success");
 
 
         Log.info("======= END : IMPS to Saved VPA Test =======");
@@ -64,7 +64,7 @@ public class IMPSTest extends TestBase {
 
 
 
-   @Test(groups = {"impsNewAccountNumber", "impsSanity"}, priority = 3, description = "IMPS on New Account Number with auto ifsc code")
+   //@Test(groups = {"impsNewAccountNumber", "impsSanity"}, priority = 3, description = "IMPS on New Account Number with auto ifsc code")
     public void Test04_imps_new_account_numberWithAutoIfscCode() throws IOException, InterruptedException {
 
         Log.info("======= START : IMPS to New Account Number with auto ifsc code Test =======");
@@ -73,15 +73,30 @@ public class IMPSTest extends TestBase {
         loginHelp.quickLoginViaOtp("8076595767","547372");
 
         IMPSNewHelper impsHelper = new IMPSNewHelper(getAndroidDriver());
-       impsHelper.verifyIMPSNewAccountWithAutoIfscCode("Abhishek Kumar", "040801000080315", "ICICI","50");
+       impsHelper.verifyIMPSNewAccountWithAutoIfscCode("Abhishek Kumar", "040801000080315", "ICICI","200");
 
         Log.info("======= END : IMPS to New Account Number with auto Ifsc code Test =======");
 
     }
+    @Test(groups = {"impsNewAccountNumber", "impsSanity"}, priority = 3, description = "IMPS on New Account Number with auto ifsc code")
+    public void Test08_imps_with_insurance_option_selected() throws IOException, InterruptedException {
+
+        Log.info("======= START : IMPS to add new insurance at checkout page Test =======");
+
+        LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
+        loginHelp.quickLoginViaOtp("8076595767","547372");
+
+        IMPSNewHelper impsHelper = new IMPSNewHelper(getAndroidDriver());
+        impsHelper.verifyIMPSWithInsuranceOption("Abhishek Kumar", "040801000080315", "ICIC0001401","200");
+
+        Log.info("======= END : IMPS to add new insurance at checkout page Test =======");
+
+    }
+
 
 
     //@Test(groups = {"impsReferAndEarn", "impsSanity"}, priority = 4, description = "Refer and earn on Imps")
-    public void Test05_imps_new_account_numberWithAutoIfscCode() throws IOException, InterruptedException {
+   /* public void Test05_imps_new_account_numberWithAutoIfscCode() throws IOException, InterruptedException {
 
         Log.info("======= START : Refer and earn on Imps Test =======");
 
@@ -93,7 +108,7 @@ public class IMPSTest extends TestBase {
         Log.info("======= END  : Refer and earn on Imps Test =======");
 
     }
-
+*/
 
     //@Test(groups = {"impsNewUPIid", "impsSanity","impsNewAccountNumber"}, priority = 5, description = "Refer and earn on Imps")
     public void Test06_imps_new_account_numberWithErrorMessage() throws IOException, InterruptedException {
