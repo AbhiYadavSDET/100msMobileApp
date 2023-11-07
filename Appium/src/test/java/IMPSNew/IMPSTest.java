@@ -16,7 +16,7 @@ import java.io.IOException;
 
 public class IMPSTest extends TestBase {
 
-  // @Test(groups = {"impsNewAccountNumber", "impsSanity"}, priority = 0, description = "IMPS on New Account Number")
+  @Test(groups = {"impsNewAccountNumber", "impsSanity"}, priority = 0, description = "IMPS on New Account Number")
     public void Test01_imps_new_account_number() throws IOException, InterruptedException {
 
         Log.info("======= START : IMPS to New Account Number Test =======");
@@ -31,7 +31,7 @@ public class IMPSTest extends TestBase {
 
     }
 
-  //@Test(groups = {"impsNewUPIid", "impsSanity"}, priority = 1, description = "IMPS on New UPI ID")
+  @Test(groups = {"impsNewUPIid", "impsSanity"}, priority = 1, description = "IMPS on New UPI ID")
     public void Test02_imps_new_upi_id() throws IOException,InterruptedException{
 
         Log.info("======= START : IMPS to New UPI ID Test =======");
@@ -46,7 +46,7 @@ public class IMPSTest extends TestBase {
     }
 
 
- //  @Test(groups = {"impsSavedVPA", "impsSanity"}, priority = 2, description = "IMPS on Saved VPA")
+  @Test(groups = {"impsSavedVPA", "impsSanity"}, priority = 2, description = "IMPS on Saved VPA")
     public void Test03_imps_to_saved_vpa() throws  IOException,InterruptedException{
 
         Log.info("======= START : IMPS to Saved VPA Test =======");
@@ -64,7 +64,7 @@ public class IMPSTest extends TestBase {
 
 
 
-   //@Test(groups = {"impsNewAccountNumber", "impsSanity"}, priority = 3, description = "IMPS on New Account Number with auto ifsc code")
+ @Test(groups = {"impsNewAccountNumber", "impsSanity"}, priority = 3, description = "IMPS on New Account Number with auto ifsc code")
     public void Test04_imps_new_account_numberWithAutoIfscCode() throws IOException, InterruptedException {
 
         Log.info("======= START : IMPS to New Account Number with auto ifsc code Test =======");
@@ -78,20 +78,7 @@ public class IMPSTest extends TestBase {
         Log.info("======= END : IMPS to New Account Number with auto Ifsc code Test =======");
 
     }
-    @Test(groups = {"impsNewAccountNumber", "impsSanity"}, priority = 3, description = "IMPS on New Account Number with auto ifsc code")
-    public void Test08_imps_with_insurance_option_selected() throws IOException, InterruptedException {
 
-        Log.info("======= START : IMPS to add new insurance at checkout page Test =======");
-
-        LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.quickLoginViaOtp("8076595767","547372");
-
-        IMPSNewHelper impsHelper = new IMPSNewHelper(getAndroidDriver());
-        impsHelper.verifyIMPSWithInsuranceOption("Abhishek Kumar", "040801000080315", "ICIC0001401","200");
-
-        Log.info("======= END : IMPS to add new insurance at checkout page Test =======");
-
-    }
 
 
 
@@ -110,7 +97,7 @@ public class IMPSTest extends TestBase {
     }
 */
 
-    //@Test(groups = {"impsNewUPIid", "impsSanity","impsNewAccountNumber"}, priority = 5, description = "Refer and earn on Imps")
+    @Test(groups = {"impsNewUPIid", "impsSanity","impsNewAccountNumber"}, priority = 5, description = "Refer and earn on Imps")
     public void Test06_imps_new_account_numberWithErrorMessage() throws IOException, InterruptedException {
 
         Log.info("======= START : Error message on add new property on Imps Test =======");
@@ -124,7 +111,7 @@ public class IMPSTest extends TestBase {
 
     }
 
-   // @Test(groups = {"impsNewUPIid", "impsSanity","impsNewAccountNumber"}, priority = 6, description = "Refer and earn on Imps")
+    @Test(groups = {"impsNewUPIid", "impsSanity","impsNewAccountNumber"}, priority = 6, description = "Refer and earn on Imps")
     public void Test07_imps_checkLimits() throws IOException, InterruptedException {
 
         Log.info("======= START : check limits on Imps Test =======");
@@ -135,6 +122,21 @@ public class IMPSTest extends TestBase {
         IMPSNewHelper impsHelper = new IMPSNewHelper(getAndroidDriver());
         impsHelper.verifyCheckLimitsOnImps();
         Log.info("======= END  : check limits on Imps Test =======");
+
+    }
+
+    @Test(groups = {"impsNewAccountNumber", "impsSanity"}, priority = 3, description = "IMPS on New Account Number with auto ifsc code")
+    public void Test08_imps_with_insurance_option_selected() throws IOException, InterruptedException {
+
+        Log.info("======= START : IMPS to add new insurance at checkout page Test =======");
+
+        LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
+        loginHelp.quickLoginViaOtp("8076595767","547372");
+
+        IMPSNewHelper impsHelper = new IMPSNewHelper(getAndroidDriver());
+        impsHelper.verifyIMPSWithInsuranceOption("Abhishek Kumar", "040801000080315", "ICIC0001401","200");
+
+        Log.info("======= END : IMPS to add new insurance at checkout page Test =======");
 
     }
 }
