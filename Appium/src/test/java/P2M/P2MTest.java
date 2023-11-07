@@ -44,7 +44,7 @@ public class P2MTest extends TestBase {
 
         // Execute the test
         P2MHelper p2mHelper = new P2MHelper(getAndroidDriver());
-        p2mHelper.p2mSend("MobikwikQr", "1", "You Paid", "₹1", "to Rizwan Cafe FF", "Rizwan Cafe FF", "AABR50750", "Activate Now", "Paid to Rizwan Cafe FF", "-₹1", "Success");
+        p2mHelper.p2mSend("MobikwikQr", "1", "You Paid", "₹1", "to manoj", "manoj", "AACH41414", "Activate Now", "Paid to Rizwan Cafe FF", "-₹1", "Success");
         Log.info("======= END : P2M Send test =======");
 
 

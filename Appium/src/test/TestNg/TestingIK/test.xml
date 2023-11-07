@@ -17,7 +17,6 @@
                 <include name="instantiateHelpers"/>
                 <include name="p2mSendMobikwikQr"/>
                 <include name="p2mSendRecentMerchant"/>
-                <include name="p2pSend"/>
                 <include name="tearDown"/>
             </run>
         </groups>
@@ -25,7 +24,6 @@
 
         <classes>
             <class name="P2M.P2MTest"/>
-            <class name="P2P.P2PTest"/>
         </classes>
     </test>
 

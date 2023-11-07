@@ -104,10 +104,12 @@ public class P2PHelper {
         p2MPage.clickUpButton();
 
         // Click Cross Buttonm
-        p2MPage.clickBackButton();
+        if (p2MPage.checkBackButton()) p2MPage.clickBackButton();
 
         // Click on the up Icon
-        p2MPage.clickUpButton();
+        //p2MPage.clickUpButton();
+
+        //p2MPage.tapOuside();
 
         // Click on the back button if the bottom sheet is present
         Thread.sleep(3000);

@@ -113,7 +113,14 @@ public class P2MPage {
     @AndroidFindBy(id = "instructionText")
     public AndroidElement instruction_text;
 
+    @AndroidFindBy(xpath = "(//android.widget.ImageView[@resource-id=\"com.google.android.providers.media.module:id/icon_thumbnail\"])[1]")
+    public AndroidElement galleryQrCode;
 
+    @AndroidFindBy(xpath = "(//android.widget.ImageView[@resource-id=\"com.google.android.providers.media.module:id/icon_thumbnail\"])[2]")
+    public AndroidElement galleryMbkQrCode;
+
+    @AndroidFindBy(id = "close_button")
+    private AndroidElement back_btn;
 
 
     public P2MPage(AndroidDriver driver) {
@@ -243,5 +250,24 @@ public class P2MPage {
     public boolean checkAllowPermission() throws InterruptedException {
         return Elements.isElementPresent(driver, permissionAllow);
     }
+
+    public void clickOnSonuQrCodeGallery() {
+        Elements.selectElement(driver, galleryQrCode, "click on Sonu QR code from Gallery");
+    }
+
+    public void clickOnMBKQrCodeGallery() {
+        Elements.selectElement(driver, galleryMbkQrCode, "click on Mbk QR code from Gallery");
+    }
+
+    public boolean checkAllowPermissionForGallery() throws InterruptedException {
+        return Elements.isElementPresent(driver, permissionAllow);
+    }
+
+    public boolean checkBackButton() throws InterruptedException {
+        return Elements.isElementPresent(driver, back_btn);
+    }
+
+
+
 
 }
