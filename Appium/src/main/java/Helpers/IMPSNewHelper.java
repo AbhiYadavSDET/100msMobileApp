@@ -35,7 +35,7 @@ public class IMPSNewHelper {
     LinkedHashMap<String, String> balanceAfter;
 
 
-    public IMPSNewHelper(AndroidDriver driver) throws  IOException{
+    public IMPSNewHelper(AndroidDriver driver) throws IOException {
         this.driver = driver;
         homePage = new HomePage(driver);
         screen = new Screen(driver);
@@ -73,7 +73,7 @@ public class IMPSNewHelper {
 
 
         //Check Security PIN Page
-        if(securityPinPage.checkSecurityPinPage()) securityPinPage.enterSecurityPin();
+        if (securityPinPage.checkSecurityPinPage()) securityPinPage.enterSecurityPin();
 
         //Assertion Check on Confirmation Page
         Thread.sleep(3000);
@@ -101,11 +101,11 @@ public class IMPSNewHelper {
         mbkCommonControlsHelper.verifyWalletBalanceAfterTransactionWithConvenienceFee(driver, balanceBefore, balanceAfter, amount, 2);
 
         // Verify the History details
-        mbkCommonControlsHelper.verifyHistoryDetails(driver ,expectedHistoryDescription,expectedHistoryAmount,expectedHistoryStatus);
+        mbkCommonControlsHelper.verifyHistoryDetails(driver, expectedHistoryDescription, expectedHistoryAmount, expectedHistoryStatus);
 
     }
 
-    public void verifyIMPSNewVPA(String upiID, String amount, String expectedMessage, String expectedAmount, String expectedHistoryDescription, String expectedHistoryAmount, String expectedHistoryStatus) throws InterruptedException, IOException{
+    public void verifyIMPSNewVPA(String upiID, String amount, String expectedMessage, String expectedAmount, String expectedHistoryDescription, String expectedHistoryAmount, String expectedHistoryStatus) throws InterruptedException, IOException {
 
         // Get the Balance if the User Before TRX
         balanceBefore = mbkCommonControlsHelper.getBalance();
@@ -129,7 +129,7 @@ public class IMPSNewHelper {
         impsPage.clickOnContinueToPinCTA();
 
         //Check Security PIN Page
-        if(securityPinPage.checkSecurityPinPage()) securityPinPage.enterSecurityPin();
+        if (securityPinPage.checkSecurityPinPage()) securityPinPage.enterSecurityPin();
 
         //Assertion Check on Confirmation Page
         Thread.sleep(3000);
@@ -158,11 +158,7 @@ public class IMPSNewHelper {
         mbkCommonControlsHelper.verifyWalletBalanceAfterTransactionWithConvenienceFee(driver, balanceBefore, balanceAfter, amount, 2);
 
         // Verify the History details
-        mbkCommonControlsHelper.verifyHistoryDetails(driver ,expectedHistoryDescription,expectedHistoryAmount,expectedHistoryStatus);
-
-
-
-
+        mbkCommonControlsHelper.verifyHistoryDetails(driver, expectedHistoryDescription, expectedHistoryAmount, expectedHistoryStatus);
 
     }
 
@@ -177,10 +173,10 @@ public class IMPSNewHelper {
         Thread.sleep(3000);
 
         //Computing Dynamic Xpath upiID entered as parameter
-        String xpathSavedUPI="//android.widget.TextView[@text = '" +upiID+"']";
+        String xpathSavedUPI = "//android.widget.TextView[@text = '" + upiID + "']";
 
         //Select already saved VPA using XPath calculated above
-        AndroidElement savedVPA= (AndroidElement) driver.findElementByXPath(xpathSavedUPI);
+        AndroidElement savedVPA = (AndroidElement) driver.findElementByXPath(xpathSavedUPI);
         impsPage.clickOnSavedVPA(savedVPA);
 
         //Entering Amount and Continue to PIN
@@ -189,7 +185,7 @@ public class IMPSNewHelper {
         impsPage.clickOnContinueToPinCTA();
 
         //Check Security PIN Page
-        if(securityPinPage.checkSecurityPinPage()) securityPinPage.enterSecurityPin();
+        if (securityPinPage.checkSecurityPinPage()) securityPinPage.enterSecurityPin();
 
         //Assertion Check on Confirmation Page
         Thread.sleep(3000);
@@ -217,11 +213,11 @@ public class IMPSNewHelper {
         mbkCommonControlsHelper.verifyWalletBalanceAfterTransactionWithConvenienceFee(driver, balanceBefore, balanceAfter, amount, 2);
 
         // Verify the History details
-        mbkCommonControlsHelper.verifyHistoryDetails(driver ,expectedHistoryDescription,expectedHistoryAmount,expectedHistoryStatus);
+        mbkCommonControlsHelper.verifyHistoryDetails(driver, expectedHistoryDescription, expectedHistoryAmount, expectedHistoryStatus);
 
     }
 
-    public void verifyIMPSNewAccountWithAutoIfscCode(String accountName, String accountNo, String bankName,String amount) throws InterruptedException, IOException {
+    public void verifyIMPSNewAccountWithAutoIfscCode(String accountName, String accountNo, String bankName, String amount) throws InterruptedException, IOException {
 
         //Going to IMPS Option
         impsPage.clickOnWalletToBank();
@@ -244,7 +240,7 @@ public class IMPSNewHelper {
 
     }
 
-    public void verifyIMPSWithInsuranceOption(String accountName, String accountNo,String ifsc,String amount) throws InterruptedException, IOException {
+    public void verifyIMPSWithInsuranceOption(String accountName, String accountNo, String ifsc, String amount) throws InterruptedException, IOException {
 
         //Going to IMPS Option
         impsPage.clickOnWalletToBank();
@@ -253,7 +249,6 @@ public class IMPSNewHelper {
 
         impsPage.clickOnTransferToNewAccount();
 
-
         // Enter the bank details
         impsPage.setBeneficiaryName(accountName);
         impsPage.setAccountNumber(accountNo);
@@ -261,16 +256,16 @@ public class IMPSNewHelper {
         impsPage.clickOnContinueCTA();
 
         impsPage.setAmount(amount);
-       // impsPage.clickOnSetAmount();
+        // impsPage.clickOnSetAmount();
         impsPage.clickOnContinueToPinCTA();
 
         impsPage.clickOnAdvertisementCheckBox();
         Log.info(impsPage.getInsuranceMessage());
 
         String inusuranceAmount = impsPage.getInsuranceMessage().split("₹")[1];
-        double totalAmount= Double.parseDouble(inusuranceAmount)+ Integer.parseInt(amount);
+        double totalAmount = Double.parseDouble(inusuranceAmount) + Integer.parseInt(amount);
 
-Log.info("Total amount ="+amount +" +"+inusuranceAmount+ " ="+totalAmount);
+        Log.info("Total amount =" + amount + " +" + inusuranceAmount + " =" + totalAmount);
     }
 /*    public void verifyReferAndEarnOnImps() throws InterruptedException, IOException {
 
@@ -339,9 +334,6 @@ Log.info("Total amount ="+amount +" +"+inusuranceAmount+ " ="+totalAmount);
 
         //close the check limit popup
         impsPage.clickOnCloseCheckLimits();
-
     }
-
-
 
 }
