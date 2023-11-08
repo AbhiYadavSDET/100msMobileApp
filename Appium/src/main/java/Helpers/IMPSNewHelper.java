@@ -230,10 +230,7 @@ public class IMPSNewHelper {
         impsPage.setBeneficiaryName(accountName);
         impsPage.setAccountNumber(accountNo);
         impsPage.clickOnFindiFSC();
-        impsPage.clickOnSearchBox();
-        impsPage.enterBankNameOnImps(bankName);
-        Thread.sleep(10000);
-        impsPage.selectBankOnImps();
+       impsPage.selectIciciBankOnImps();
 
         //
         impsPage.clickOnContinueCTA();

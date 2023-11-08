@@ -88,6 +88,9 @@ public class IMPSNewPage {
     @AndroidFindBy(id ="et_search")
     private AndroidElement searchBox ;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Icici Bank Limited']")
+    private AndroidElement selectIciciBank;
+
 
     @AndroidFindBy(id ="cell_container")
     private AndroidElement selectBank ;
@@ -228,6 +231,9 @@ public class IMPSNewPage {
         Elements.selectElement(driver, searchBox, "Click on Search box Field");
         Elements.clearText(driver, searchBox, "Clear before pasting");
         Elements.enterToElement(driver,searchBox,bankName,"Searching bank name :"+bankName);
+    }
+    public void selectIciciBankOnImps() throws InterruptedException{
+        Elements.selectElement(driver,selectIciciBank,"Selecting ICICI  bank name :");
     }
 
     public void selectBankOnImps() throws InterruptedException{
