@@ -1,0 +1,30 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Appium-Framework">
+    <listeners>
+        <listener class-name="UITestFramework.retryLogic.RetryListener"/>
+        <listener class-name="Utils.Listeners.TestListener"/>
+    </listeners>
+    <parameter name="build" value="prod"/>
+    <parameter name="level" value="payments"/>
+    <parameter name="saucelabs" value="false"></parameter>
+    <parameter name="methodName" value="onboardingLogin"></parameter>
+
+
+    <test name="Mobikwik Automation Tests">
+        <groups>
+            <run>
+                <include name="setUp"/>
+                <include name="instantiateHelpers"/>
+                <include name="addSavedConnection"/>
+                <include name="tearDown"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="UITestFramework.CreateSession"/>
+            <class name="UITestFramework.ExtentReport.Reporter"/>
+            <class name="SavedConnection.Test_SavedConnection"/>
+        </classes>
+
+    </test>
+</suite>

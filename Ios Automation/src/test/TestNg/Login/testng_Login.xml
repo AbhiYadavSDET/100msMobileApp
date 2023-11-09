@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Login Flow">
+
+    <parameter name="build" value="prod"/>
+    <parameter name="level" value="payments"/>
+    <parameter name="saucelabs" value="false"></parameter>
+    <parameter name="androidOSVersion" value="13.0"></parameter>
+    <parameter name="deviceName" value="deviceName"></parameter>
+    <parameter name="udId" value="adb-RZ8W30838FW-k5BETK._adb-tls-connect._tcp."></parameter>
+    <parameter name="portNo" value="4723"></parameter>
+
+    <test verbose="2" preserve-order="true" name="Login flow Test">
+        <groups>
+            <run>
+                <include name="setUp"/>
+                <include name="loginFlow"/>
+                <include name="tearDown"/>
+            </run>
+        </groups>
+
+
+        <classes>
+            <class name="Login.LoginTest"/>
+        </classes>
+    </test>
+
+</suite>
