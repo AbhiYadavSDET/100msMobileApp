@@ -19,8 +19,8 @@
 
 
         <classes>
-            <class name="Utils.TestBaseIos"/>
-            <class name="Login.LoginTestIos"/>
+            <class name="Utils.TestBase"/>
+            <class name="Login.LoginTest"/>
         </classes>
     </test>
 

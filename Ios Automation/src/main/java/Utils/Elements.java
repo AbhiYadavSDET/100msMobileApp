@@ -19,7 +19,7 @@ import static io.appium.java_client.touch.offset.PointOption.point;
 import static java.time.Duration.ofMillis;
 import static java.time.Duration.ofSeconds;
 
-public class Elements extends TestBaseIos {
+public class Elements extends TestBase {
 
     IOSDriver driver;
 

@@ -1,6 +1,6 @@
 package Helpers;
 
-import PageObject.LoginPageIos;
+import PageObject.LoginPage;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.IOSElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -8,21 +8,21 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
 
-public class LoginHelperIos {
+public class LoginHelper {
 
     IOSDriver<IOSElement> driver;
-    LoginPageIos loginPageIos;
+    LoginPage loginPage;
 
-    public LoginHelperIos(IOSDriver driver) throws IOException {
+    public LoginHelper(IOSDriver driver) throws IOException {
         this.driver = driver;
-        loginPageIos = new LoginPageIos(driver);
+        loginPage = new LoginPage(driver);
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
     public void loginViaOtp(String mobileNumber, String otp) throws InterruptedException, IOException {
-        loginPageIos.enterMobileNumber(mobileNumber);
-        loginPageIos.clickContinue();
-        loginPageIos.enterOtp(otp);
+        loginPage.enterMobileNumber(mobileNumber);
+        loginPage.clickContinue();
+        loginPage.enterOtp(otp);
         Thread.sleep(3000);
     }
 }

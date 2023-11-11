@@ -7,7 +7,7 @@ import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.support.PageFactory;
 
-public class LoginPageIos {
+public class LoginPage {
 
     IOSDriver driver;
 
@@ -21,7 +21,7 @@ public class LoginPageIos {
     private IOSElement otp;
 
 
-    public LoginPageIos(IOSDriver driver) {
+    public LoginPage(IOSDriver driver) {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }

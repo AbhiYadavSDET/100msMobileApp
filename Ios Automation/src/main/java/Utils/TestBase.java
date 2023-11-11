@@ -2,35 +2,21 @@ package Utils;
 
 import Logger.Log;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.IOSElement;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.apache.log4j.*;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.testng.ITestResult;
 import org.testng.annotations.*;
 
-import javax.activation.DataHandler;
-import javax.activation.DataSource;
-import javax.activation.FileDataSource;
 import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
-import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.sql.Timestamp;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
 
 
 @Listeners(Utils.Listeners.TestListener.class)
-public class TestBaseIos {
+public class TestBase {
 
     public IOSDriver<IOSElement> driver = null;
 
@@ -45,7 +31,7 @@ public class TestBaseIos {
     private static FileAppender appender;
     private static PatternLayout layout = new PatternLayout("%d{dd MMM yyyy HH:mm:ss} [%M] [%C{1}:%L] - %m%n ");
     private static ConsoleAppender consoleAppender;
-    protected static Logger LOGGER = Logger.getLogger(TestBaseIos.class);
+    protected static Logger LOGGER = Logger.getLogger(TestBase.class);
 
     static {
         try {
