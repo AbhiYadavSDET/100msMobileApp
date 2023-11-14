@@ -35,7 +35,7 @@ public class LoginPage {
     }
 
     public void enterOtp(String otpNum) {
-        Elements.enterToElement(driver, otp, otpNum, "Enter mobile number");
+        Elements.enterToElement(driver, otp, otpNum, "Enter Otp");
     }
 
 }
