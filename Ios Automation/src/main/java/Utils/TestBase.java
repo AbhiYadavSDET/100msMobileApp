@@ -20,11 +20,10 @@ public class TestBase {
 
     public IOSDriver<IOSElement> driver = null;
 
-    String androidOSVersion = "13.0";
+    String IOSVersion = "13.0";
     String portNo = "4723";
-    String udId = "172.18.31.239:5555";
+    String udId = "56ee4ce1e6808c5a1ee3314dc296a7d3f1b38308";
     String deviceName = "RZ8W60BB9HB";
-
 
     Boolean cloudRun = false;
 
@@ -86,7 +85,7 @@ public class TestBase {
         }
 
         if (androidOSVersion == null) {
-            androidOSVersion = this.androidOSVersion;
+            androidOSVersion = this.IOSVersion;
         }
 
         if (deviceName == null) {
