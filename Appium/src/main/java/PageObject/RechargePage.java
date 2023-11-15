@@ -180,8 +180,8 @@ public class RechargePage {
         return Elements.getText(driver, amountOnSuccessScreen, "Amount on success screen");
     }
 
-    public String clickSkipbtn() throws InterruptedException {
-        return Elements.getText(driver, skipAutoPayBottomsheet, "Click On SKIP Autopay Bottomsheet");
+    public void clickSkipbtn() throws InterruptedException {
+         Elements.selectElement(driver, skipAutoPayBottomsheet, "Click On SKIP Autopay Bottomsheet");
     }
 
     public Boolean checkAutoPayBottomsheet() throws InterruptedException {
