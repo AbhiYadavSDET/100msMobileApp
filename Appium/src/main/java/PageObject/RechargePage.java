@@ -188,4 +188,9 @@ public class RechargePage {
         return Elements.isElementPresent(driver, checkAutoPayBottomsheet);
     }
 
+    public Boolean checkSwipeLeftBottom() throws InterruptedException {
+        return Elements.isElementPresent(driver, swipeLeftBottomRemove);
+    }
+
+
 }
