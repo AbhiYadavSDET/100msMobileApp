@@ -57,11 +57,17 @@ public class RechargeHelper {
             rechargePage.clickToCloseMobileRechargeAlert();
         }
 
+        if(rechargePage.checkAutoPayBottomsheet()) {
+            rechargePage.clickSkipbtn();
+        }
+
         //Press back to close Third Time Lucky Popup
         //rechargePage.clickThirdTimeLuckyPopupRemove();
 
         // Click on outside Swipe Left Bottom Popup
-        rechargePage.clickSwipeLeftBottomRemove();
+       if(rechargePage.checkSwipeLeftBottom()) {
+           rechargePage.clickSwipeLeftBottomRemove();
+       }
 
         // Click on Mobile
         rechargePage.clickOnMobile();

@@ -15,8 +15,7 @@
             <run>
                 <include name="setUp"/>
                 <include name="instantiateHelpers"/>
-                <include name="p2mSendMobikwikQr"/>
-                <include name="p2mSendRecentMerchant"/>
+                <include name="test"/>
                 <include name="p2pSend"/>
                 <include name="tearDown"/>
             </run>
@@ -24,7 +23,7 @@
 
 
         <classes>
-            <class name="P2M.P2MTest"/>
+            <class name="Recharge.RechargeTest"/>
             <class name="P2P.P2PTest"/>
         </classes>
     </test>

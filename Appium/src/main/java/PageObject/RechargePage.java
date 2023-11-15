@@ -74,6 +74,13 @@ public class RechargePage {
     @AndroidFindBy(id = "right")
     private AndroidElement amountOnSuccessScreen;
 
+    @AndroidFindBy(id = "tv_skip")
+    private AndroidElement skipAutoPayBottomsheet;
+
+    @AndroidFindBy(id = "btn_explore")
+    private AndroidElement checkAutoPayBottomsheet;
+
+
 
 
 
@@ -172,5 +179,18 @@ public class RechargePage {
     public String getAmountOnSuccessScreen() throws InterruptedException {
         return Elements.getText(driver, amountOnSuccessScreen, "Amount on success screen");
     }
+
+    public void clickSkipbtn() throws InterruptedException {
+         Elements.selectElement(driver, skipAutoPayBottomsheet, "Click On SKIP Autopay Bottomsheet");
+    }
+
+    public Boolean checkAutoPayBottomsheet() throws InterruptedException {
+        return Elements.isElementPresent(driver, checkAutoPayBottomsheet);
+    }
+
+    public Boolean checkSwipeLeftBottom() throws InterruptedException {
+        return Elements.isElementPresent(driver, swipeLeftBottomRemove);
+    }
+
 
 }
