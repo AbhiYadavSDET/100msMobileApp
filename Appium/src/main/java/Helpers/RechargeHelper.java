@@ -65,7 +65,7 @@ public class RechargeHelper {
         //rechargePage.clickThirdTimeLuckyPopupRemove();
 
         // Click on outside Swipe Left Bottom Popup
-        rechargePage.clickSwipeLeftBottomRemove();
+       // rechargePage.clickSwipeLeftBottomRemove();
 
         // Click on Mobile
         rechargePage.clickOnMobile();
