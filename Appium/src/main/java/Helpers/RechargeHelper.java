@@ -57,6 +57,10 @@ public class RechargeHelper {
             rechargePage.clickToCloseMobileRechargeAlert();
         }
 
+        if(rechargePage.checkAutoPayBottomsheet()){
+            rechargePage.clickSkip();
+        }
+
         //Press back to close Third Time Lucky Popup
         //rechargePage.clickThirdTimeLuckyPopupRemove();
 
