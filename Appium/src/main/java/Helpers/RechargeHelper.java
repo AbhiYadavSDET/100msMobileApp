@@ -58,7 +58,7 @@ public class RechargeHelper {
         }
 
         if(rechargePage.checkAutoPayBottomsheet()){
-            rechargePage.clickSkip();
+            rechargePage.clickSkipbtn();
         }
 
         //Press back to close Third Time Lucky Popup

@@ -77,6 +77,9 @@ public class RechargePage {
     @AndroidFindBy(id = "tv_skip")
     private AndroidElement skipAutoPayBottomsheet;
 
+    @AndroidFindBy(id = "btn_explore")
+    private AndroidElement checkAutoPayBottomsheet;
+
 
 
 
@@ -177,12 +180,12 @@ public class RechargePage {
         return Elements.getText(driver, amountOnSuccessScreen, "Amount on success screen");
     }
 
-    public String clickSkip() throws InterruptedException {
+    public String clickSkipbtn() throws InterruptedException {
         return Elements.getText(driver, skipAutoPayBottomsheet, "Click On SKIP Autopay Bottomsheet");
     }
 
     public Boolean checkAutoPayBottomsheet() throws InterruptedException {
-        return Elements.isElementPresent(driver, skipAutoPayBottomsheet);
+        return Elements.isElementPresent(driver, checkAutoPayBottomsheet);
     }
 
 }
