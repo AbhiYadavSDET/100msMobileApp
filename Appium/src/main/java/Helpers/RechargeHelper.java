@@ -57,7 +57,7 @@ public class RechargeHelper {
             rechargePage.clickToCloseMobileRechargeAlert();
         }
 
-        if(rechargePage.checkAutoPayBottomsheet()){
+        if(rechargePage.checkAutoPayBottomsheet()) {
             rechargePage.clickSkipbtn();
         }
 
