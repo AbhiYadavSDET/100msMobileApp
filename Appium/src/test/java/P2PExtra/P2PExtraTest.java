@@ -47,7 +47,7 @@ public class P2PExtraTest extends TestBase {
     }
 
 
-    @Test(groups = {"p2pXtraInvestInFixed", "sanity", "sanityPrime", "regression"}, priority = 0, description = "Verify Invest in Fixed flow")
+    @Test(groups = {"p2pXtraInvestInFixed", "sanity", "sanityPrime", "regression" ,"test"}, priority = 0, description = "Verify Invest in Fixed flow")
     public void Test_Xtra_Invest_In_Fixed() throws InterruptedException, IOException {
 
         Log.info("======= START : p2p XTRA-FIXED Invest test =======");
