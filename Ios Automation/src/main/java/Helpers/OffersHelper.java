@@ -1,6 +1,8 @@
 package Helpers;
 
+import PageObject.HomePage;
 import PageObject.LoginPage;
+import PageObject.OffersPage;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.IOSElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -8,31 +10,30 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
 
-public class LoginHelper{
+public class OffersHelper {
 
     IOSDriver<IOSElement> driver;
-    LoginPage loginPage;
+    HomePage homePage;
+    OffersPage offersPage;
     MbkCommonControlHelper mbkCommonControlHelper;
 
-    public LoginHelper(IOSDriver driver) throws IOException {
+    public OffersHelper(IOSDriver driver) throws IOException {
         this.driver = driver;
-        loginPage = new LoginPage(driver);
+        homePage = new HomePage(driver);
+        offersPage = new OffersPage(driver);
         mbkCommonControlHelper = new MbkCommonControlHelper(driver);
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
-    public void loginViaOtp(String mobileNumber, String otp) throws InterruptedException, IOException {
+    public void offersVerify(String offersName) throws InterruptedException, IOException {
 
-        // Enter Mobile Number
-        loginPage.enterMobileNumber(mobileNumber);
+        homePage.clickOnOffers();
 
-        // Click On Continue
-        loginPage.clickContinue();
+        offersPage.clickOnSearchOffers();
 
-        // Enter Otp
-        loginPage.enterOtp(otp);
+        offersPage.enterOffersName(offersName);
 
-        // Remove popup on home page
-        mbkCommonControlHelper.handleHomePageLanding();
+        offersPage.clickOnSearchedOffer();
+
     }
 }

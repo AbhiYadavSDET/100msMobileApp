@@ -1,6 +1,7 @@
 package Helpers;
 
 import Logger.Log;
+import PageObject.HomePage;
 import PageObject.LoginPage;
 import PageObject.PermissionPage;
 import io.appium.java_client.ios.IOSDriver;
@@ -15,10 +16,12 @@ public class MbkCommonControlHelper {
 
     IOSDriver<IOSElement> driver;
     PermissionPage permissionPage;
+    HomePage homePage;
 
     public MbkCommonControlHelper(IOSDriver driver) throws IOException {
         this.driver = driver;
         permissionPage = new PermissionPage(driver);
+        homePage = new HomePage(driver);
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
@@ -32,6 +35,11 @@ public class MbkCommonControlHelper {
         if(permissionPage.isEnablePasscodePopUpPresent()){
             // Click Later on Permission Pop Up
             permissionPage.clickOnLater();
+        }
+
+        if(homePage.isFlowtingWidgitPresent()){
+            // Close Flowting Widgit
+            homePage.closeFlowtingWidgit();
         }
     }
 }

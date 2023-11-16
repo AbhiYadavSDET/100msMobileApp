@@ -17,7 +17,7 @@ public class LoginPage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Continue\"]")
     private IOSElement continue_button;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name='MobiKwik']//XCUIElementTypeOther[2]//XCUIElementTypeOther[2]//XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther")
     private IOSElement otp;
 
 
@@ -35,7 +35,7 @@ public class LoginPage {
     }
 
     public void enterOtp(String otpNum) {
-        Elements.enterToElement(driver, otp, otpNum, "Enter mobile number");
+        Elements.enterToElement(driver, otp, otpNum, "Enter Otp");
     }
 
 }
