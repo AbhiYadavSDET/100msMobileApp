@@ -38,13 +38,22 @@ public class PipedGasHelper {
     public void viewPipedGasBill(String expUserName, String expTitle, String expSubTitle, String brandName, String CA_number) throws IOException, InterruptedException {
 
         // Get the Balance if the User Before TRX
-        balanceBefore = mbkCommonControlsHelper.getBalance();
+        //balanceBefore = mbkCommonControlsHelper.getBalance();
 
         //Click on Recharge and Pay Bill option
         ccPage.clickRechargeAndPayBills();
 
+        if(ccPage.checkAutoPayBottomsheet()) {
+            ccPage.clickSkipbtn();
+        }
+
+        //Press back to close Third Time Lucky Popup
+        //rechargePage.clickThirdTimeLuckyPopupRemove();
+
         // Click on outside Swipe Left Bottom Popup
-        ccPage.clickSwipeLeftBottomRemove();
+        if(ccPage.checkSwipeLeftBottom()) {
+            ccPage.clickSwipeLeftBottomRemove();
+        }
 
         //Click on Home services
         pipedGasPage.clickHomeServices();

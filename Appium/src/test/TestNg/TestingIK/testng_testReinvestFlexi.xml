@@ -16,15 +16,14 @@
                 <include name="setUp"/>
                 <include name="instantiateHelpers"/>
                 <include name="test"/>
-                <include name="p2pSend"/>
                 <include name="tearDown"/>
             </run>
         </groups>
 
 
         <classes>
-            <class name="Recharge.RechargeTest"/>
-            <class name="P2P.P2PTest"/>
+            <class name="ViewPipedGasBill.ViewPipedGasBillTest"/>
+            <class name="P2PExtra.P2PExtraTest"/>
         </classes>
     </test>
 
