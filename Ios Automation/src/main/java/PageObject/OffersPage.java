@@ -11,7 +11,7 @@ public class OffersPage {
 
     IOSDriver driver;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name='MobiKwik']//XCUIElementTypeScrollView//XCUIElementTypeButton[1]")
     private IOSElement search_offers;
 
     @iOSXCUITFindBy(id = "Search")

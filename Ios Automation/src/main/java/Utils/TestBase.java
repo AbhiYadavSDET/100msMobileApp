@@ -22,7 +22,7 @@ public class TestBase {
 
     String IOSVersion = "13.0";
     String portNo = "4723";
-    String udId = "56ee4ce1e6808c5a1ee3314dc296a7d3f1b38308";
+    String udId = "auto";
     String deviceName = "Iphone 7";
     String buildPath = "/Users/ashishkumarpradhan/Downloads/mobi.ipa";
 
@@ -170,7 +170,6 @@ public class TestBase {
     @AfterSuite(alwaysRun = true)
     public void cleanUpActions() throws MessagingException, IOException, InterruptedException {
         Log.info("TestBase : cleanUpActions");
-
         Log.info("Flush the Report");
         ExtentReport extentReport = new ExtentReport();
         extentReport.extentReportTearDown();
