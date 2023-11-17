@@ -17,6 +17,10 @@ public class HomePage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"M\"]")
     private IOSElement flowting_widgit;
 
+    @iOSXCUITFindBy(id = "Recharge & Pay Bills")
+    private IOSElement rechargeAndPayBills;
+
+
 
     public HomePage(IOSDriver driver) {
         this.driver = driver;
@@ -34,4 +38,6 @@ public class HomePage {
     public void clickOnOffers() {
         Elements.click(driver, offers,"Offers");
     }
+
+    public void clickRechargeAndPayBills() { Elements.selectElement(driver, rechargeAndPayBills, "Click on Recharge & Pay Bills"); }
 }
