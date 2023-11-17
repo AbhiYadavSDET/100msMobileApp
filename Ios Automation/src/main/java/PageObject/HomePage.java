@@ -15,20 +15,19 @@ public class HomePage {
     private IOSElement offers;
 
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"M\"]")
-    private IOSElement flowting_widgit;
-
+    private IOSElement floating_widgit;
 
     public HomePage(IOSDriver driver) {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
-    public boolean isFlowtingWidgitPresent() throws InterruptedException {
-        return Elements.isElementPresent(driver, flowting_widgit);
+    public boolean isFloatingWidgitPresent() throws InterruptedException {
+        return Elements.isElementPresent(driver, floating_widgit);
     }
 
-    public void closeFlowtingWidgit() {
-        Elements.click(driver, flowting_widgit ,"Flowting Widgit");
+    public void closeFloatingWidgit() {
+        Elements.click(driver, floating_widgit ,"Flowting Widgit");
     }
 
     public void clickOnOffers() {

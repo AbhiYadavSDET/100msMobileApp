@@ -45,16 +45,6 @@ public class Elements extends TestBase {
         enterData(driver, element, comments, data);
     }
 
-//    public static void enterToElement(IOSElement element, String data, String comments) {
-//        Config.logComment("Click on '" + comments + "'");
-//        element.sendKeys(data);
-//    }
-//
-//    public static void click(IOSElement element, String comments) {
-//        Config.logComment("Click on '" + comments + "'");
-//        element.click();
-//    }
-
     public static void clearText(IOSDriver driver, IOSElement element, String comments) {
 
         Config.logComment("Clear '" + comments + "'");
