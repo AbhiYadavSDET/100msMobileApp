@@ -51,7 +51,6 @@ public class GoldHelper {
         // Click on 99% Buy Gold
         goldPage.clickBuyGold();
 
-
         // Close what's new in gold bottom sheet
         if(!goldPage.isBuyGoldPresent()){
             mbkCommonControlsHelper.pressback();
