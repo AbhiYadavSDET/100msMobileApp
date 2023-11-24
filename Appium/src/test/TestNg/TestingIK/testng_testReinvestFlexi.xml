@@ -15,14 +15,14 @@
             <run>
                 <include name="setUp"/>
                 <include name="instantiateHelpers"/>
-                <include name="goldBuy"/>
+                <include name="test"/>
                 <include name="tearDown"/>
             </run>
         </groups>
 
 
         <classes>
-            <class name="Gold.GoldTest"/>
+            <class name="AccountAggregator.Test_AccountAggregator"/>
         </classes>
     </test>
 
