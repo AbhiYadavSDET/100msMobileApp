@@ -15,14 +15,14 @@
             <run>
                 <include name="setUp"/>
                 <include name="instantiateHelpers"/>
-                <include name="test"/>
+                <include name="p2pSend"/>
                 <include name="tearDown"/>
             </run>
         </groups>
 
 
         <classes>
-            <class name="AccountAggregator.Test_AccountAggregator"/>
+            <class name="P2P.P2PTest"/>
         </classes>
     </test>
 
