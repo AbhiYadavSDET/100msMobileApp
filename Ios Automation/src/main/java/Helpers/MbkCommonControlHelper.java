@@ -37,9 +37,9 @@ public class MbkCommonControlHelper {
             permissionPage.clickOnLater();
         }
 
-        if(homePage.isFlowtingWidgitPresent()){
-            // Close Flowting Widgit
-            homePage.closeFlowtingWidgit();
+        if(homePage.isFloatingWidgitPresent()){
+            // Close Floating Widgit
+            homePage.closeFloatingWidgit();
         }
     }
 }
