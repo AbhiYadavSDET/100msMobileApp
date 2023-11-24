@@ -96,7 +96,7 @@ public class AAHelper {
 
             }
             else {
-                Log.info("Out Going Data is bot present");
+                Log.info("Outgoing Data is not present");
             }
 
             // Add the assertions

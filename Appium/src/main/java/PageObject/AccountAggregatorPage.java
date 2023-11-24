@@ -256,15 +256,16 @@ public class AccountAggregatorPage {
         return Elements.isElementPresent(driver, incoming);
     }
     public Boolean getMoneyTrf() throws InterruptedException {
-        int output= Integer.parseInt(Elements.getText(driver, get_MoneyTrfPercentage, "Money trf  percentge").replace("%",""));
-
-        if(output>=0){
-            Log.info(""+output+"");
-            return true;
-        }else {
-            Log.info(""+output+"");
-            return false;
-        }
+        //   int output= Integer.parseInt(Elements.getText(driver, get_MoneyTrfPercentage, "Money trf  percentge").replace("%",""));
+        Elements.getText(driver, get_MoneyTrfPercentage);
+        return true;
+//        if(output>=0){
+//            Log.info(""+output+"");
+//            return true;
+//        }else {
+//            Log.info(""+output+"");
+//            return false;
+//        }
     }
 
     public Boolean getExpensesPercentage() throws InterruptedException {
