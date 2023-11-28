@@ -333,6 +333,11 @@ public class AccountAggregatorPage {
     public String dashboardHighlightTitletext() throws InterruptedException {
         return Elements.getText(driver, dashboardHighlightTitle, "Dashboard Highlight Title Title");
     }
+
+    public boolean checkDashboardHighlightTitle() throws InterruptedException {
+        return Elements.isElementPresent(driver, dashboardHighlightTitle);
+    }
+
     public String accountTitle() throws InterruptedException {
         return Elements.getText(driver, accountTitle, "Dashboard Account Title");
     }

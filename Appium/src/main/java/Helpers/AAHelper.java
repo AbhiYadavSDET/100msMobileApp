@@ -112,7 +112,9 @@ public class AAHelper {
             mbReporter.verifyEqualsWithLogging(titleOfMonthlySummary, exptitleOfMonthlySummary, "Verify Monthly summery title on dashboard", false, false, true);
 
             screen.swipeUpLess(driver);
-
+            if(!aaPage.checkDashboardHighlightTitle()) {
+                screen.swipeUpLess(driver);
+            }
             String dashBoardHighlightTitle = aaPage.dashboardHighlightTitletext();
             Log.info("Highlight Title on MainDashboard : " + expdashBoardHighlightTitle);
             mbReporter.verifyEqualsWithLogging(dashBoardHighlightTitle, expdashBoardHighlightTitle, "Verify Highlight Title on Main Dashboardd", false, false, true);
