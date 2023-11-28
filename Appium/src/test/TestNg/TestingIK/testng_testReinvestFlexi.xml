@@ -22,7 +22,7 @@
 
 
         <classes>
-            <class name="AccountAggregator.Test_AccountAggregator"/>
+            <class name="Rewards.RewardsTest"/>
         </classes>
     </test>
 
