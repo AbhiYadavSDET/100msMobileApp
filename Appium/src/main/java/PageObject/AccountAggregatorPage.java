@@ -315,6 +315,10 @@ public class AccountAggregatorPage {
         return Elements.getText(driver, outgoingFourthSubTitle, "Outgoing Fourth Subtitle");
     }
 
+    public Boolean checkMonthlySummeryCTA() throws InterruptedException {
+       return  Elements.isElementPresent(driver, yourMonthlySummery);
+    }
+
     public String getMonthlySummeryCTA() throws InterruptedException {
         return Elements.getText(driver, yourMonthlySummery, "Monthly Summery text");
     }
