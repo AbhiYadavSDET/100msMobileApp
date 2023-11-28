@@ -119,10 +119,10 @@ public class AAHelper {
 
             screen.swipeUpMore(driver);
 
-            // screen.swipeUpMore(driver);
-            if (aaPage.dashboardHighlightTitle() != null) {
-                screen.swipeUpMore(driver);
-            }
+            screen.swipeUpMore(driver);
+//            if (aaPage.dashboardHighlightTitle() != null) {
+//                screen.swipeUpMore(driver);
+//            }
 
             String accounTTitle = aaPage.accountTitle();
             String settingsTitle = aaPage.settingsTitle();
