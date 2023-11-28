@@ -12,7 +12,7 @@ import java.io.IOException;
 public class RewardsTest extends TestBase {
 
 
-    @Test(groups = {"sanity", "spinthewheel", "regression"}, priority = 0, description = "Spin the Wheel")
+    @Test(groups = {"sanity", "spinthewheel", "regression", "test"}, priority = 0, description = "Spin the Wheel")
     public void Test_Rewards_spinTheWheel() throws IOException, InterruptedException {
 
         Log.info("======= START : Spin the Wheel test =======");
