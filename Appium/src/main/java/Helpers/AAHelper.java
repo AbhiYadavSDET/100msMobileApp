@@ -305,7 +305,7 @@ public class AAHelper {
         aaPage.clickBackButtonOnManageConsentInside();
         aaPage.clickBackButtonOnManageConsentInside();
         aaPage.selectDownloadStatement();
-        aaPage.clickDownload();
+        //aaPage.clickDownload();
 
     }
 
