@@ -475,8 +475,12 @@ public class AccountAggregatorPage {
         return Elements.getText(driver, yearTextOnAnlyser);
     }
 
-    public void selectSetting() throws InterruptedException{
+    public void selectSetting() throws InterruptedException {
         Elements.selectElement(driver,settingsTitle,"Click on Setting");
+    }
+
+    public Boolean checkSettingCta() throws InterruptedException{
+        return Elements.isElementPresent(driver, settingsTitle);
     }
 
     public String autoRefreshext() throws InterruptedException {

@@ -279,6 +279,10 @@ public class AAHelper {
         aaPage.trackBankAccountsCTA();
        // Thread.sleep(2000);
         screen.swipeUpMore(driver);
+
+        if(!aaPage.checkSettingCta()) {
+            screen.swipeUpMore(driver);
+        }
         aaPage.selectSetting();
        // Thread.sleep(2000);
         String autoRefreshext = aaPage.autoRefreshext();
