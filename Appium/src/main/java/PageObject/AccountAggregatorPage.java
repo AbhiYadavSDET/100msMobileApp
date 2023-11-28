@@ -534,6 +534,10 @@ public class AccountAggregatorPage {
         Elements.selectElement(driver,yourBankAccountonHomePage,"Click on Your Account");
     }
 
+    public Boolean savedBankAccount() throws InterruptedException {
+        return Elements.isElementPresent(driver, yourBankAccountonHomePage);
+    }
+
     public void userDetails() throws InterruptedException{Elements.selectElement(driver, userDetails, "Check the user details");}
 
     public void applyFilter() throws InterruptedException{Elements.selectElement(driver,applyFilter, "Apply filter");}

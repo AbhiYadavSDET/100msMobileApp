@@ -317,6 +317,10 @@ public class AAHelper {
         screen.swipeUpMore(driver);
         aaPage.trackBankAccountsCTA();
         screen.swipeUpMore(driver);
+
+        if(!aaPage.savedBankAccount()){
+            screen.swipeUpMore(driver);
+        }
         aaPage.clickOnYourSavedBankAccount();
         Log.info("Click On Your saved Bank account ");
 //        Thread.sleep(2500);
