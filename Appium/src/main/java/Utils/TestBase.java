@@ -34,8 +34,8 @@ public class TestBase {
 
     String androidOSVersion = "13.0";
     String portNo = "4723";
-    String udId = "172.18.1.255:42295";
-    String deviceName = "93JAY0BLRH";
+    String udId = "172.18.31.239:5555";
+    String deviceName = "RZ8W60BB9HB";
 
 
     Boolean cloudRun = false;
@@ -168,7 +168,7 @@ public class TestBase {
                 cap.setCapability("androidCoverage", "com.mobikwik_new.debug/com.mobikwik_new.instrumentation.CodeCoverageInstrumentation");
             }
 //            cap.setCapability("app", app.getAbsolutePath());
-            cap.setCapability("app", "//Users//inderkantpippal//Downloads//ProdDebug.apk");
+            cap.setCapability("app", "//Users//mayanksuneja//app//mobikwik.apk");
             AndroidDriver driver = new AndroidDriver(new URL("http://0.0.0.0:" + portNo + "/wd/hub"), cap);
             androidDriverThread.set(driver);
             return androidDriverThread.get();
