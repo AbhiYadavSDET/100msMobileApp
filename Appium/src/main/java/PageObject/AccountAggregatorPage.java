@@ -330,7 +330,7 @@ public class AccountAggregatorPage {
         return Elements.getText(driver, mainDashboardAnalyserCTA, "Main Dashboard Analyser CTA");
     }
 
-    public String dashboardHighlightTitle() throws InterruptedException {
+    public String dashboardHighlightTitletext() throws InterruptedException {
         return Elements.getText(driver, dashboardHighlightTitle, "Dashboard Highlight Title Title");
     }
     public String accountTitle() throws InterruptedException {
