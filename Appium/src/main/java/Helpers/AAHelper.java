@@ -91,7 +91,7 @@ public class AAHelper {
 
                 mbReporter.verifyTrueWithLogging(aaPage.getMoneyTrf(), "Is Value Available", false, false);
                 mbReporter.verifyTrueWithLogging(aaPage.getExpensesPercentage(), "Is Expense Value percentage Available", false, false);
-                mbReporter.verifyTrueWithLogging(aaPage.getSipePercentage(), "Is Expense Value percentage Available", false, false);
+                mbReporter.verifyTrueWithLogging(aaPage.getSipPercentage(), "Is Expense Value percentage Available", false, false);
                 mbReporter.verifyTrueWithLogging(aaPage.getBankChargesPercentage(), "Is Expense Value percentage Available", false, false);
 
             }

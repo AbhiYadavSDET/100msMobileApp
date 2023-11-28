@@ -256,16 +256,12 @@ public class AccountAggregatorPage {
         return Elements.isElementPresent(driver, incoming);
     }
     public Boolean getMoneyTrf() throws InterruptedException {
-        //   int output= Integer.parseInt(Elements.getText(driver, get_MoneyTrfPercentage, "Money trf  percentge").replace("%",""));
-        Elements.getText(driver, get_MoneyTrfPercentage);
-        return true;
-//        if(output>=0){
-//            Log.info(""+output+"");
-//            return true;
-//        }else {
-//            Log.info(""+output+"");
-//            return false;
-//        }
+        String moneyPercentage = Elements.getText(driver, get_MoneyTrfPercentage);
+        if(moneyPercentage != null) {
+            return true;
+        }else {
+            return false;
+        }
     }
 
     public Boolean getExpensesPercentage() throws InterruptedException {
@@ -277,7 +273,7 @@ public class AccountAggregatorPage {
         }
     }
 
-    public Boolean getSipePercentage() throws InterruptedException {
+    public Boolean getSipPercentage() throws InterruptedException {
         int output= Integer.parseInt(Elements.getText(driver, get_SipPercentage, "Sip Percentage").replace("%",""));
         if(output>=0){
             return true;
