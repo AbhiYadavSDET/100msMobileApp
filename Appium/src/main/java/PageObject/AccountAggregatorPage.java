@@ -126,7 +126,7 @@ public class AccountAggregatorPage {
     @AndroidFindBy(id = "cta")
     private AndroidElement downloadTitle;
 
-    @AndroidFindBy(xpath = "//*[@text='Help']")
+    @AndroidFindBy(xpath = "//*[@text='Help & Support']")
     private AndroidElement  helpSupportTitle;
 
     @AndroidFindBy(xpath = "//*[@text='Show All Highlights']")
