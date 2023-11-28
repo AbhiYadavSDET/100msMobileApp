@@ -107,7 +107,7 @@ public class AAHelper {
             }
             String titleOfMonthlySummary = aaPage.getMonthlySummeryCTA();
 
-            String titleOfmainDashboardAnalyser = aaPage.mainDashboardAnalyserCTA();
+           // String titleOfmainDashboardAnalyser = aaPage.mainDashboardAnalyserCTA();
             Log.info("Monthly summery text on MainDashboard : " + exptitleOfMonthlySummary);
             mbReporter.verifyEqualsWithLogging(titleOfMonthlySummary, exptitleOfMonthlySummary, "Verify Monthly summery title on dashboard", false, false, true);
 
