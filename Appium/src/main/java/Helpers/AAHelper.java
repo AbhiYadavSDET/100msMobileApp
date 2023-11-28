@@ -135,7 +135,6 @@ public class AAHelper {
 
             screen.swipeUpMore(driver);
 
-
             String downloadStatementsTitle = aaPage.downloadStatementsTitle();
             String helpSupportTitle = aaPage.helpSupportTitle();
 

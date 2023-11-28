@@ -11,7 +11,7 @@ import java.io.IOException;
 public class Test_AccountAggregator extends TestBase {
 
 
-    @Test(groups = {"AccountAggregator", "sanity", "regression"}, priority = 0, description = "Verify Existing User flow in AA")
+    @Test(groups = {"AccountAggregator", "sanity", "regression","test"}, priority = 0, description = "Verify Existing User flow in AA")
     public void Test01_existing_User_Dashboard() throws IOException, InterruptedException {
 
 
