@@ -123,7 +123,7 @@ public class AccountAggregatorPage {
     @AndroidFindBy(xpath = "//*[@text='Download']")
     private AndroidElement downloadTitle;
 
-    @AndroidFindBy(xpath = "//*[@text='Help & Support']")
+    @AndroidFindBy(xpath = "//*[@text='Help']")
     private AndroidElement  helpSupportTitle;
 
     @AndroidFindBy(xpath = "//*[@text='Show All Highlights']")
