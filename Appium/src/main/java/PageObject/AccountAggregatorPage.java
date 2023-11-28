@@ -214,7 +214,7 @@ public class AccountAggregatorPage {
     @AndroidFindBy(id="mkab_left_icon")
     private AndroidElement  backbuttonOnManageConsentInside;
 
-    @AndroidFindBy(id="ll_root")
+    @AndroidFindBy(id="cl_root")
     private AndroidElement  yourBankAccountonHomePage;
 
 

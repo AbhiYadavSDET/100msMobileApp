@@ -316,21 +316,20 @@ public class AAHelper {
         aaPage.allServicesCTA();
         screen.swipeUpMore(driver);
         aaPage.trackBankAccountsCTA();
-       // Thread.sleep(2500);
         screen.swipeUpMore(driver);
         aaPage.clickOnYourSavedBankAccount();
         Log.info("Click On Your saved Bank account ");
-        Thread.sleep(2500);
+//        Thread.sleep(2500);
         List<AndroidElement> elements = Element.findElements(driver, By.id("txt_transaction_type"));
         int noOftransaction = elements.size();
         Log.info("no Of Transaction - " + noOftransaction);
         mbReporter.verifyTrueWithLogging(noOftransaction >= 0, "Verify No of transaction should be greater than or equal to 0", false, false);
 
-        for (int i = 1; i < noOftransaction; i++) {
-            //String leftDetails = element.findElement(driver, By.id("ts_cta")).getText();;
-            // Log.info(leftDetails);
-            Log.info(elements.get(i).getText());
-        }
+//        for (int i = 1; i < noOftransaction; i++) {
+//            //String leftDetails = element.findElement(driver, By.id("ts_cta")).getText();;
+//            // Log.info(leftDetails);
+//            Log.info(elements.get(i).getText());
+//        }
 
     }
 
