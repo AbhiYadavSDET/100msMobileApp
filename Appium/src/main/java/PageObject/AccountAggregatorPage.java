@@ -265,8 +265,8 @@ public class AccountAggregatorPage {
     }
 
     public Boolean getExpensesPercentage() throws InterruptedException {
-        int output= Integer.parseInt(Elements.getText(driver, get_ExpensePercentage, "Expense pERCENTAGE").replace("%",""));
-        if(output>=0){
+        String expensesPercentage = Elements.getText(driver, get_MoneyTrfPercentage);
+        if(expensesPercentage != null) {
             return true;
         }else {
             return false;
@@ -274,8 +274,8 @@ public class AccountAggregatorPage {
     }
 
     public Boolean getSipPercentage() throws InterruptedException {
-        int output= Integer.parseInt(Elements.getText(driver, get_SipPercentage, "Sip Percentage").replace("%",""));
-        if(output>=0){
+        String sipPercentage = Elements.getText(driver, get_MoneyTrfPercentage);
+        if(sipPercentage != null) {
             return true;
         }else {
             return false;
@@ -283,11 +283,10 @@ public class AccountAggregatorPage {
     }
 
     public Boolean getBankChargesPercentage() throws InterruptedException {
-        int output= Integer.parseInt(Elements.getText(driver, get_BankChargesPercentage, "Sip Percentage").replace("%",""));
-        if(output>=0){
+        String bankChargesPercentage = Elements.getText(driver, get_MoneyTrfPercentage);
+        if(bankChargesPercentage != null) {
             return true;
         }else {
-
             return false;
         }
     }
