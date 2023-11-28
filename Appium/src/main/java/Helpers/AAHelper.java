@@ -91,32 +91,40 @@ public class AAHelper {
 
                 mbReporter.verifyTrueWithLogging(aaPage.getMoneyTrf(), "Is Value Available", false, false);
                 mbReporter.verifyTrueWithLogging(aaPage.getExpensesPercentage(), "Is Expense Value percentage Available", false, false);
-                mbReporter.verifyTrueWithLogging(aaPage.getSipePercentage(), "Is Expense Value percentage Available", false, false);
+                mbReporter.verifyTrueWithLogging(aaPage.getSipPercentage(), "Is Expense Value percentage Available", false, false);
                 mbReporter.verifyTrueWithLogging(aaPage.getBankChargesPercentage(), "Is Expense Value percentage Available", false, false);
 
             }
             else {
-                Log.info("Out Going Data is bot present");
+                Log.info("Outgoing Data is not present");
             }
 
             // Add the assertions
+
+            //If element is not present
+            if(!aaPage.checkMonthlySummeryCTA()){
+                screen.swipeUpMedium(driver);
+            }
             String titleOfMonthlySummary = aaPage.getMonthlySummeryCTA();
-            String titleOfmainDashboardAnalyser = aaPage.mainDashboardAnalyserCTA();
+
+           // String titleOfmainDashboardAnalyser = aaPage.mainDashboardAnalyserCTA();
             Log.info("Monthly summery text on MainDashboard : " + exptitleOfMonthlySummary);
             mbReporter.verifyEqualsWithLogging(titleOfMonthlySummary, exptitleOfMonthlySummary, "Verify Monthly summery title on dashboard", false, false, true);
 
-            screen.swipeUpMore(driver);
-
-            String dashBoardHighlightTitle = aaPage.dashboardHighlightTitle();
+            screen.swipeUpLess(driver);
+            if(!aaPage.checkDashboardHighlightTitle()) {
+                screen.swipeUpLess(driver);
+            }
+            String dashBoardHighlightTitle = aaPage.dashboardHighlightTitletext();
             Log.info("Highlight Title on MainDashboard : " + expdashBoardHighlightTitle);
             mbReporter.verifyEqualsWithLogging(dashBoardHighlightTitle, expdashBoardHighlightTitle, "Verify Highlight Title on Main Dashboardd", false, false, true);
 
             screen.swipeUpMore(driver);
 
-            // screen.swipeUpMore(driver);
-            if (aaPage.dashboardHighlightTitle() != null) {
-                screen.swipeUpMore(driver);
-            }
+            screen.swipeUpMore(driver);
+//            if (aaPage.dashboardHighlightTitle() != null) {
+//                screen.swipeUpMore(driver);
+//            }
 
             String accounTTitle = aaPage.accountTitle();
             String settingsTitle = aaPage.settingsTitle();
@@ -128,7 +136,6 @@ public class AAHelper {
             mbReporter.verifyEqualsWithLogging(settingsTitle, expsettingsTitle, "Verify Account settings Title on MainDashboard", false, false, true);
 
             screen.swipeUpMore(driver);
-
 
             String downloadStatementsTitle = aaPage.downloadStatementsTitle();
             String helpSupportTitle = aaPage.helpSupportTitle();
@@ -273,6 +280,10 @@ public class AAHelper {
         aaPage.trackBankAccountsCTA();
        // Thread.sleep(2000);
         screen.swipeUpMore(driver);
+
+        if(!aaPage.checkSettingCta()) {
+            screen.swipeUpMore(driver);
+        }
         aaPage.selectSetting();
        // Thread.sleep(2000);
         String autoRefreshext = aaPage.autoRefreshext();
@@ -291,11 +302,11 @@ public class AAHelper {
         aaPage.selectOutsideOfAutoRefresh();
         aaPage.clickManageConsent();
         aaPage.clickBackButtonOnManageConsentInside();
-        aaPage.clickBackButtonOnManageConsentInside();
         aaPage.helpSupportTitleClick();
         aaPage.clickBackButtonOnManageConsentInside();
+        aaPage.clickBackButtonOnManageConsentInside();
         aaPage.selectDownloadStatement();
-        aaPage.clickDownload();
+        //aaPage.clickDownload();
 
     }
 
@@ -306,21 +317,24 @@ public class AAHelper {
         aaPage.allServicesCTA();
         screen.swipeUpMore(driver);
         aaPage.trackBankAccountsCTA();
-       // Thread.sleep(2500);
         screen.swipeUpMore(driver);
+
+        if(!aaPage.savedBankAccount()){
+            screen.swipeUpMore(driver);
+        }
         aaPage.clickOnYourSavedBankAccount();
         Log.info("Click On Your saved Bank account ");
-        Thread.sleep(2500);
+//        Thread.sleep(2500);
         List<AndroidElement> elements = Element.findElements(driver, By.id("txt_transaction_type"));
         int noOftransaction = elements.size();
         Log.info("no Of Transaction - " + noOftransaction);
         mbReporter.verifyTrueWithLogging(noOftransaction >= 0, "Verify No of transaction should be greater than or equal to 0", false, false);
 
-        for (int i = 1; i < noOftransaction; i++) {
-            //String leftDetails = element.findElement(driver, By.id("ts_cta")).getText();;
-            // Log.info(leftDetails);
-            Log.info(elements.get(i).getText());
-        }
+//        for (int i = 1; i < noOftransaction; i++) {
+//            //String leftDetails = element.findElement(driver, By.id("ts_cta")).getText();;
+//            // Log.info(leftDetails);
+//            Log.info(elements.get(i).getText());
+//        }
 
     }
 

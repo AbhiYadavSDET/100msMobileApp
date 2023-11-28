@@ -22,8 +22,7 @@
 
 
         <classes>
-            <class name="ViewPipedGasBill.ViewPipedGasBillTest"/>
-            <class name="P2PExtra.P2PExtraTest"/>
+            <class name="AccountAggregator.Test_AccountAggregator"/>
         </classes>
     </test>
 
