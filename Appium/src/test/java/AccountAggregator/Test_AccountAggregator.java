@@ -60,7 +60,7 @@ public class Test_AccountAggregator extends TestBase {
 
     }
 
-    @Test(groups = {"AccountAggregator", "sanity", "regression","test"}, priority = 0, description = "Verify Added Existing Users bank account")
+    @Test(groups = {"AccountAggregator", "sanity", "regression"}, priority = 0, description = "Verify Added Existing Users bank account")
     public void Test05_existing_User_Added_BankAccount() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
