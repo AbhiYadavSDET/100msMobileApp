@@ -526,7 +526,7 @@ public class AccountAggregatorPage {
         Elements.selectElement(driver,downloadStatementsTitle,"Click on Download Statements");
     }
 
-    public void clickDownload() throws InterruptedException{
+    public void clickDownload() throws InterruptedException {
         Elements.selectElement(driver,downloadTitle,"Click on Download Statements");
     }
 
