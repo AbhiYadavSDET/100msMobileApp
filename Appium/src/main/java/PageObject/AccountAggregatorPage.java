@@ -120,7 +120,10 @@ public class AccountAggregatorPage {
     @AndroidFindBy(xpath = "//*[@text='Download Statements']")
     private AndroidElement downloadStatementsTitle;
 
-    @AndroidFindBy(xpath = "//*[@text='Download']")
+//    @AndroidFindBy(xpath = "//*[@text='Download']")
+//    private AndroidElement downloadTitle;
+
+    @AndroidFindBy(id = "cta")
     private AndroidElement downloadTitle;
 
     @AndroidFindBy(xpath = "//*[@text='Help']")
