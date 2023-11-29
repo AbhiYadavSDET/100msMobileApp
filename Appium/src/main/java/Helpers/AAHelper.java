@@ -302,7 +302,7 @@ public class AAHelper {
         aaPage.selectOutsideOfAutoRefresh();
         aaPage.clickManageConsent();
         aaPage.clickBackButtonOnManageConsentInside();
-        aaPage.helpSupportTitleClick();
+        aaPage.selectHelpOptn();
         aaPage.clickBackButtonOnManageConsentInside();
         aaPage.clickBackButtonOnManageConsentInside();
         aaPage.selectDownloadStatement();

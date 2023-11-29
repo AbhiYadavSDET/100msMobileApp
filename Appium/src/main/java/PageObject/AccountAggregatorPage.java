@@ -500,7 +500,11 @@ public class AccountAggregatorPage {
     }
 
     public String helpText() throws InterruptedException {
-        return Elements.getText(driver, helpText);
+       return Elements.getText(driver, helpText,"Click on Help option");
+    }
+
+    public void selectHelpOptn() throws InterruptedException {
+         Elements.selectElement(driver, helpText,"Click on Help option");
     }
 
     public void selectAutoRefreshext() throws InterruptedException{
