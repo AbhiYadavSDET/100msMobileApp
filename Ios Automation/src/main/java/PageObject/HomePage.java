@@ -17,6 +17,9 @@ public class HomePage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"M\"]")
     private IOSElement floating_widgit;
 
+    @iOSXCUITFindBy(id = "Recharge & Pay Bills")
+    private IOSElement rechargeAndPayBills;
+
     public HomePage(IOSDriver driver) {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -32,5 +35,9 @@ public class HomePage {
 
     public void clickOnOffers() {
         Elements.click(driver, offers,"Offers");
+    }
+
+    public void clickRechargeAndPayBills() {
+        Elements.click(driver, rechargeAndPayBills,"Click on Recharge & Pay Bills");
     }
 }

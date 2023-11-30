@@ -4,6 +4,8 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import Logger.Log;
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSElement;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -16,12 +18,12 @@ import java.util.List;
 
 public class MobiKwikScreen extends MBReporter {
 
-    AndroidDriver<AndroidElement> driver = null;
+    IOSDriver<IOSElement> driver = null;
     public final int timeOut = 70;
     // Configure the Action
     Actions action;
 
-    public MobiKwikScreen(AndroidDriver driver) {
+    public MobiKwikScreen(IOSDriver driver) {
         super(driver, "testScreenshotDir");
         this.driver = driver;
         //action = new Actions(driver);
@@ -150,9 +152,9 @@ public class MobiKwikScreen extends MBReporter {
      * @param locator element to be found
      * @return WebElement if found else throws NoSuchElementException
      */
-    public AndroidElement findElement(By locator) {
+    public IOSElement findElement(By locator) {
         try {
-            AndroidElement element = driver.findElement(locator);
+            IOSElement element = driver.findElement(locator);
             return element;
         } catch (NoSuchElementException e) {
             Log.logError(this.getClass().getName(), "findElement", "Element not found" + locator);
@@ -167,9 +169,9 @@ public class MobiKwikScreen extends MBReporter {
      * @return return the list of elements if found else throws
      * NoSuchElementException
      */
-    public List<AndroidElement> findElements(By locator) {
+    public List<IOSElement> findElements(By locator) {
         try {
-            List<AndroidElement> element = driver.findElements(locator);
+            List<IOSElement> element = driver.findElements(locator);
             return element;
         } catch (NoSuchElementException e) {
             Log.logError(this.getClass().getName(), "findElements", "element not found" + locator);
@@ -439,8 +441,8 @@ public class MobiKwikScreen extends MBReporter {
      * Added by MS @22nd Jan,2018 for select an element from the non <Select> list
      */
 
-    public AndroidElement getElementByIndex(By locator, int index) {
-        List<AndroidElement> myList = new ArrayList<>();
+    public IOSElement getElementByIndex(By locator, int index) {
+        List<IOSElement> myList = new ArrayList<>();
         myList = driver.findElements(locator);
 
         Log.info(myList.get(index).getText());
