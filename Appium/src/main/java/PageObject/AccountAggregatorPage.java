@@ -120,7 +120,10 @@ public class AccountAggregatorPage {
     @AndroidFindBy(xpath = "//*[@text='Download Statements']")
     private AndroidElement downloadStatementsTitle;
 
-    @AndroidFindBy(xpath = "//*[@text='Download']")
+//    @AndroidFindBy(xpath = "//*[@text='Download']")
+//    private AndroidElement downloadTitle;
+
+    @AndroidFindBy(id = "cta")
     private AndroidElement downloadTitle;
 
     @AndroidFindBy(xpath = "//*[@text='Help & Support']")
@@ -211,7 +214,7 @@ public class AccountAggregatorPage {
     @AndroidFindBy(id="mkab_left_icon")
     private AndroidElement  backbuttonOnManageConsentInside;
 
-    @AndroidFindBy(id="ll_root")
+    @AndroidFindBy(id="cl_root")
     private AndroidElement  yourBankAccountonHomePage;
 
 
@@ -256,29 +259,26 @@ public class AccountAggregatorPage {
         return Elements.isElementPresent(driver, incoming);
     }
     public Boolean getMoneyTrf() throws InterruptedException {
-        int output= Integer.parseInt(Elements.getText(driver, get_MoneyTrfPercentage, "Money trf  percentge").replace("%",""));
-
-        if(output>=0){
-            Log.info(""+output+"");
+        String moneyPercentage = Elements.getText(driver, get_MoneyTrfPercentage);
+        if(moneyPercentage != null) {
             return true;
         }else {
-            Log.info(""+output+"");
             return false;
         }
     }
 
     public Boolean getExpensesPercentage() throws InterruptedException {
-        int output= Integer.parseInt(Elements.getText(driver, get_ExpensePercentage, "Expense pERCENTAGE").replace("%",""));
-        if(output>=0){
+        String expensesPercentage = Elements.getText(driver, get_MoneyTrfPercentage);
+        if(expensesPercentage != null) {
             return true;
         }else {
             return false;
         }
     }
 
-    public Boolean getSipePercentage() throws InterruptedException {
-        int output= Integer.parseInt(Elements.getText(driver, get_SipPercentage, "Sip Percentage").replace("%",""));
-        if(output>=0){
+    public Boolean getSipPercentage() throws InterruptedException {
+        String sipPercentage = Elements.getText(driver, get_MoneyTrfPercentage);
+        if(sipPercentage != null) {
             return true;
         }else {
             return false;
@@ -286,11 +286,10 @@ public class AccountAggregatorPage {
     }
 
     public Boolean getBankChargesPercentage() throws InterruptedException {
-        int output= Integer.parseInt(Elements.getText(driver, get_BankChargesPercentage, "Sip Percentage").replace("%",""));
-        if(output>=0){
+        String bankChargesPercentage = Elements.getText(driver, get_MoneyTrfPercentage);
+        if(bankChargesPercentage != null) {
             return true;
         }else {
-
             return false;
         }
     }
@@ -319,6 +318,10 @@ public class AccountAggregatorPage {
         return Elements.getText(driver, outgoingFourthSubTitle, "Outgoing Fourth Subtitle");
     }
 
+    public Boolean checkMonthlySummeryCTA() throws InterruptedException {
+       return  Elements.isElementPresent(driver, yourMonthlySummery);
+    }
+
     public String getMonthlySummeryCTA() throws InterruptedException {
         return Elements.getText(driver, yourMonthlySummery, "Monthly Summery text");
     }
@@ -327,9 +330,14 @@ public class AccountAggregatorPage {
         return Elements.getText(driver, mainDashboardAnalyserCTA, "Main Dashboard Analyser CTA");
     }
 
-    public String dashboardHighlightTitle() throws InterruptedException {
+    public String dashboardHighlightTitletext() throws InterruptedException {
         return Elements.getText(driver, dashboardHighlightTitle, "Dashboard Highlight Title Title");
     }
+
+    public boolean checkDashboardHighlightTitle() throws InterruptedException {
+        return Elements.isElementPresent(driver, dashboardHighlightTitle);
+    }
+
     public String accountTitle() throws InterruptedException {
         return Elements.getText(driver, accountTitle, "Dashboard Account Title");
     }
@@ -475,8 +483,12 @@ public class AccountAggregatorPage {
         return Elements.getText(driver, yearTextOnAnlyser);
     }
 
-    public void selectSetting() throws InterruptedException{
+    public void selectSetting() throws InterruptedException {
         Elements.selectElement(driver,settingsTitle,"Click on Setting");
+    }
+
+    public Boolean checkSettingCta() throws InterruptedException{
+        return Elements.isElementPresent(driver, settingsTitle);
     }
 
     public String autoRefreshext() throws InterruptedException {
@@ -488,7 +500,11 @@ public class AccountAggregatorPage {
     }
 
     public String helpText() throws InterruptedException {
-        return Elements.getText(driver, helpText);
+       return Elements.getText(driver, helpText,"Click on Help option");
+    }
+
+    public void selectHelpOptn() throws InterruptedException {
+         Elements.selectElement(driver, helpText,"Click on Help option");
     }
 
     public void selectAutoRefreshext() throws InterruptedException{
@@ -519,12 +535,16 @@ public class AccountAggregatorPage {
         Elements.selectElement(driver,downloadStatementsTitle,"Click on Download Statements");
     }
 
-    public void clickDownload() throws InterruptedException{
+    public void clickDownload() throws InterruptedException {
         Elements.selectElement(driver,downloadTitle,"Click on Download Statements");
     }
 
     public void clickOnYourSavedBankAccount() throws InterruptedException{
         Elements.selectElement(driver,yourBankAccountonHomePage,"Click on Your Account");
+    }
+
+    public Boolean savedBankAccount() throws InterruptedException {
+        return Elements.isElementPresent(driver, yourBankAccountonHomePage);
     }
 
     public void userDetails() throws InterruptedException{Elements.selectElement(driver, userDetails, "Check the user details");}

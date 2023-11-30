@@ -27,12 +27,16 @@ public class OffersHelper {
 
     public void offersVerify(String offersName) throws InterruptedException, IOException {
 
+        // click to offers from homescreen
         homePage.clickOnOffers();
 
+        // click On Search Offers
         offersPage.clickOnSearchOffers();
 
+        // Enter Offers Name
         offersPage.enterOffersName(offersName);
 
+        // Click on Searched Offer
         offersPage.clickOnSearchedOffer();
 
     }

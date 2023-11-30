@@ -24,10 +24,11 @@ public class Elements extends TestBase {
         this.driver = driver;
     }
 
-    public static void selectElement(AndroidDriver driver, AndroidElement element, String comments) {
+    public static String selectElement(AndroidDriver driver, AndroidElement element, String comments) {
 
         waitForElementToVisibleOnPage(driver, element, 10);
         click(driver, element, comments);
+        return comments;
     }
 
     public static void selectElement(AndroidDriver driver, String element, String comments) {
