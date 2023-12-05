@@ -52,7 +52,7 @@ public class GoldHelper {
         goldPage.clickBuyGold();
 
         // Close what's new in gold bottom sheet
-        if(!goldPage.isBuyGoldPresent()){
+        while(!goldPage.isBuyGoldPresent()){
             mbkCommonControlsHelper.pressback();
         }
 
