@@ -12,7 +12,7 @@ import io.appium.java_client.android.AndroidDriver;
 import java.io.IOException;
 
 
-public class P2PExtraHelper {
+public class P2PExtraHelper {I
 
     AndroidDriver driver;
     HomePage homePage;
