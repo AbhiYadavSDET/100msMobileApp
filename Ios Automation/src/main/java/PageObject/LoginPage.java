@@ -11,7 +11,7 @@ public class LoginPage {
 
     IOSDriver driver;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeTextField[@value='Enter mobile number']")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeTextField[@value='Enter Mobile Number']")
     private IOSElement mobile_number;
 
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Continue\"]")
