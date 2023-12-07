@@ -82,6 +82,7 @@ public class P2PExtraHelper {
         String portfolioValue = p2PExtraPage.getPortfolioValue();
         Log.info("Portfolio Value : " + portfolioValue);
 
+
 //        // If notification alerts are present, then swipe up
 //        if (p2PExtraPage.checkNotificationAlert() || p2PExtraPage.checkInvestContainer()) screen.swipeUpMedium(driver);
 //
