@@ -17,6 +17,9 @@ public class PermissionPage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Later\"]")
     private IOSElement later;
 
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Allow While Using App\"]")
+    private IOSElement allowWhileUsingApp;
+
 
     public PermissionPage(IOSDriver driver) {
         this.driver = driver;
@@ -38,4 +41,6 @@ public class PermissionPage {
     public void clickOnLater() {
         Elements.click(driver, later ,"Later Button");
     }
+
+    public void clickAllowWhileUsingApp() { Elements.selectElement(driver, allowWhileUsingApp, "Click Allow while using app Button");}
 }

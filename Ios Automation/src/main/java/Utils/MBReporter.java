@@ -2,6 +2,7 @@ package Utils;
 
 import io.appium.java_client.android.AndroidDriver;
 import Logger.Log;
+import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.testng.Assert;
@@ -19,20 +20,20 @@ import java.util.GregorianCalendar;
  */
 public class MBReporter {
     public boolean testCaseStatus = true;
-    private AndroidDriver driver;
+    private IOSDriver driver;
     private File file;
     private String testScreenshotDir;
     private InetAddress ownIP;
     //ExtentReport reporter = new ExtentReport();
 
-    public MBReporter(AndroidDriver driver, String testScreenshotDir) {
+    public MBReporter(IOSDriver driver, String testScreenshotDir) {
         this.driver = driver;
         this.testScreenshotDir = testScreenshotDir;
         file = new File("");
 
     }
 
-    public MBReporter(AndroidDriver driver) {
+    public MBReporter(IOSDriver driver) {
         this.driver = driver;
     }
 
