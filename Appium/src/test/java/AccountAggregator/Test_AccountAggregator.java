@@ -48,7 +48,7 @@ public class Test_AccountAggregator extends TestBase {
 
     }
 
-    @Test(groups = {"AccountAggregator", "sanity", "regression"}, priority = 0, description = "Verify Manage Section")
+    @Test(groups = {"AccountAggregator", "sanity", "regression", "test"}, priority = 0, description = "Verify Manage Section")
     public void Test04_existing_User_Manage() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
