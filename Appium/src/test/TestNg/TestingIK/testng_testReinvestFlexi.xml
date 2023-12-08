@@ -22,6 +22,7 @@
 
 
         <classes>
+            <class name="Utils.TestBase"/>
             <class name="AccountAggregator.Test_AccountAggregator"/>
         </classes>
     </test>
