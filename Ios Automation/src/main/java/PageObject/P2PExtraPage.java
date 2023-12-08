@@ -31,11 +31,18 @@ public class P2PExtraPage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Got it\"]")
     private IOSElement gotIt_cta;
 
-    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name=\"0\"])[1]")
-    private IOSElement amountField;
+   // @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeButton")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"1\"]")
+    private IOSElement amount_from_keyboard;
 
     @iOSXCUITFindBy(id = "Withdraw")
     private IOSElement withdraw_btn;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Confirm\"]")
+    private IOSElement confirm_btn;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Bank holiday approaching!\"]")
+    private IOSElement bank_holiday_bottomsheet;
 
 
 
@@ -72,13 +79,19 @@ public class P2PExtraPage {
         Elements.click(driver, gotIt_cta, "Click on Got It Cta");
     }
 
-    public void enterAmount(String amount) { Elements.enterToElement(driver, amountField, amount , "Enter amount : 1");   }
+    public void enterAmount(String amount) { Elements.enterToElement(driver, amount_from_keyboard, amount , "Enter amount : 1");   }
 
     public void clickWithdrawBtn() throws InterruptedException {
         Elements.click(driver, withdraw_btn, "Click on Withdraw Button");
     }
 
+    public void clickConfirmBtn() throws InterruptedException {
+        Elements.click(driver, confirm_btn, "Click on Confirm Button");
+    }
 
+    public boolean checkBankHolidayBottomsheet() throws InterruptedException {
+        return Elements.isElementPresent(driver, bank_holiday_bottomsheet);
+    }
 
 
 }

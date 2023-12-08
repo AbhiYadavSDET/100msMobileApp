@@ -4,6 +4,7 @@ import Logger.Log;
 import PageObject.HomePage;
 import PageObject.P2PExtraPage;
 import Utils.MBReporter;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.IOSElement;
 import org.testng.annotations.Test;
@@ -134,15 +135,22 @@ public class P2PExtraHelper {
         p2PExtraPage.clickWithdrawCta();
 
         //Check One time Withdrawl Bottomsheet
-        if(p2PExtraPage.checkOneTimeWithdrawBottomsheet()) p2PExtraPage.clickGotItCta();
+        if(p2PExtraPage.checkOneTimeWithdrawBottomsheet()) {
+            p2PExtraPage.clickGotItCta();
+            if(p2PExtraPage.checkBankHolidayBottomsheet()) p2PExtraPage.clickGotItCta();
+        }
 
         //Enter Amount
         p2PExtraPage.enterAmount(amount);
 
+        Thread.sleep(2000);
+
         // Click on Withdraw button
         p2PExtraPage.clickWithdrawBtn();
 
-       // mbReporter.verifyEqualsWithLogging();
+        // Click on Confirm button
+        p2PExtraPage.clickConfirmBtn();
+
 
 
     }
