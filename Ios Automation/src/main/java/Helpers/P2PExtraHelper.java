@@ -76,11 +76,15 @@ public class P2PExtraHelper {
 
         // Skip the daily SIP Reminder on XTRA Dashboard
         Thread.sleep(2000);
-        p2PExtraPage.selectSkipReminder();
+        if(p2PExtraPage.checkSkipReminder()) p2PExtraPage.selectSkipReminder();
+
+
 
         // Printing portfolio values.
         String portfolioValue = p2PExtraPage.getPortfolioValue();
         Log.info("Portfolio Value : " + portfolioValue);
+
+
 
 
 //        // If notification alerts are present, then swipe up
@@ -116,6 +120,34 @@ public class P2PExtraHelper {
 
 
     }
+
+
+    public void withdraw(String amount, String expAmount, String expStatus, String expErrorMainTitle, String expErrorTitle, String expErrorAmount) throws InterruptedException, IOException {
+
+        Log.info("----------- Arguments ---------------");
+        Log.info("amount : " + amount);
+
+        // Click on xtra icon on home page.
+        homePage.clicktXtra();
+
+        // Click on Withdraw button of Flexi
+        p2PExtraPage.clickWithdrawCta();
+
+        //Check One time Withdrawl Bottomsheet
+        if(p2PExtraPage.checkOneTimeWithdrawBottomsheet()) p2PExtraPage.clickGotItCta();
+
+        //Enter Amount
+        p2PExtraPage.enterAmount(amount);
+
+        // Click on Withdraw button
+        p2PExtraPage.clickWithdrawBtn();
+
+       // mbReporter.verifyEqualsWithLogging();
+
+
+    }
+
+
 
 
 
