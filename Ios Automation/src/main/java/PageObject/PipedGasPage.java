@@ -99,24 +99,4 @@ public class PipedGasPage {
         Elements.enterToElement(driver, searchElectricityBrand, brandName,"Enter Brand Name");
     }
 
-   /* public void clickSelectBrand(){
-        Elements.selectElement(driver, selectBrand, "Click on Brand");
-    }
-
-    public void clickCaNumber(){
-        Elements.selectElement(driver, caNumber, "Click on CA Number text field");
-    }
-
-    public void enterCaNumber(String CA_Number) throws InterruptedException {
-        //Elements.isElementPresent(driver, caNumber);
-        Elements.enterToElement(driver, caNumber, CA_Number, "Enter CA number");
-    }
-
-    public void clickContinueButton(){
-        Elements.selectElement(driver, continueButton,"Click on Continue button");
-    }
-
-    */
-
-
 }

@@ -16,7 +16,6 @@ public class PipedGasHelper {
     IOSDriver<IOSElement> driver;
     HomePage homePage;
     PermissionPage permissionPage;
-    RechargePage rechargePage;
     MBReporter mbReporter;
     ElectricityPage electricityPage;
     PipedGasPage pipedGasPage;
@@ -24,7 +23,6 @@ public class PipedGasHelper {
     public PipedGasHelper(IOSDriver driver) throws IOException {
         this.driver = driver;
         homePage = new HomePage(driver);
-        rechargePage = new RechargePage(driver);
         permissionPage = new PermissionPage(driver);
         mbReporter = new MBReporter(driver);
         electricityPage = new ElectricityPage(driver);
@@ -43,7 +41,7 @@ public class PipedGasHelper {
         //Click on Home services tab
         pipedGasPage.clickHomeServices();
 
-        //Click on Electricity option
+        //Click on PipedGas option
         pipedGasPage.clickPipedGas();
 
         Thread.sleep(3000);
@@ -59,29 +57,6 @@ public class PipedGasHelper {
         }
 
         Thread.sleep(5000);
-
-/*
-        //Click Search Electricity Brand field
-        electricityPage.clickSearchElectricityBrand();
-
-        //Enter Brand name in search text box
-        electricityPage.enterSearchElectricityBrand(brandName);
-
-        Thread.sleep(2000);
-
-        //Select brand from list
-        electricityPage.clickSelectBrand();
-
-        //Click on CA number text box
-        electricityPage.clickCaNumber();
-
-        //Enter CA number in text field
-        electricityPage.enterCaNumber(CA_number);
-
-        //Click Continue CTA
-        electricityPage.clickContinueButton();
-
- */
 
         //Check Bill is fetched or not
         if(electricityPage.isBillFetched()) {
