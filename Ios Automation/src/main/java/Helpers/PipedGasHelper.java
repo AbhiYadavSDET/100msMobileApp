@@ -10,7 +10,8 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
 
-public class ElectricityHelper {
+public class PipedGasHelper {
+
 
     IOSDriver<IOSElement> driver;
     HomePage homePage;
@@ -18,18 +19,20 @@ public class ElectricityHelper {
     RechargePage rechargePage;
     MBReporter mbReporter;
     ElectricityPage electricityPage;
+    PipedGasPage pipedGasPage;
 
-    public ElectricityHelper(IOSDriver driver) throws IOException {
+    public PipedGasHelper(IOSDriver driver) throws IOException {
         this.driver = driver;
         homePage = new HomePage(driver);
         rechargePage = new RechargePage(driver);
         permissionPage = new PermissionPage(driver);
         mbReporter = new MBReporter(driver);
         electricityPage = new ElectricityPage(driver);
+        pipedGasPage = new PipedGasPage(driver);
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
-    public void viewElectricityBill(String brandName, String CA_number, String expTitle, String expUserName,String expSubTitle) throws InterruptedException, IOException {
+    public void viewPipedGasBill(String brandName, String CA_number, String expTitle, String expUserName,String expSubTitle) throws InterruptedException, IOException {
 
         //Click Recharge and Pay Bills option
         homePage.clickRechargeAndPayBills();
@@ -37,8 +40,11 @@ public class ElectricityHelper {
         //Click Allow using app for location action popup
         permissionPage.clickAllowWhileUsingApp();
 
+        //Click on Home services tab
+        pipedGasPage.clickHomeServices();
+
         //Click on Electricity option
-        electricityPage.clickElectricity();
+        pipedGasPage.clickPipedGas();
 
         Thread.sleep(3000);
 
@@ -47,9 +53,9 @@ public class ElectricityHelper {
             electricityPage.clickSeeMore();
         }
 
-        if(electricityPage.isSavedConnectionPresent()){
+        if(pipedGasPage.isSavedPipedGasConnectionPresent()){
             //Click on saved connection
-            electricityPage.clickSavedElectricityConnection();
+            pipedGasPage.clickSavedPipedGasConnection();
         }
 
         Thread.sleep(5000);
@@ -82,7 +88,7 @@ public class ElectricityHelper {
 
             // Verification on Enter amount screen
             String userName = electricityPage.getUserName();
-            Log.info("User name electricity bill : " + userName);
+            Log.info("User name Piped Gas bill : " + userName);
             mbReporter.verifyEqualsWithLogging(userName, expUserName, "Verify username on Bill", false, false, true);
 
             //Click on Pay button
@@ -103,7 +109,7 @@ public class ElectricityHelper {
 
 
         }else{
-            Log.info("Bill not present for given CA number");
+            Log.info("Bill not present for given Connection number");
         }
 
 
