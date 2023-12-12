@@ -104,7 +104,7 @@ public class P2MPage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Current location']")
     public AndroidElement current_location_title;
 
-    @AndroidFindBy(id = "tv_store_address")
+    @AndroidFindBy(id = "currentLocation")
     public AndroidElement store_by_address;
 
     @AndroidFindBy(id = "mkab_title")

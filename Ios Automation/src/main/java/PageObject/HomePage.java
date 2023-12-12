@@ -20,6 +20,9 @@ public class HomePage {
     @iOSXCUITFindBy(id = "Recharge & Pay Bills")
     private IOSElement rechargeAndPayBills;
 
+    @iOSXCUITFindBy(id = "Xtra")
+    private IOSElement xtra_icon;
+
     public HomePage(IOSDriver driver) {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -35,6 +38,10 @@ public class HomePage {
 
     public void clickOnOffers() {
         Elements.click(driver, offers,"Offers");
+    }
+
+    public void clicktXtra() throws InterruptedException {
+        Elements.click(driver, xtra_icon, "Tap on xtra icon");
     }
 
     public void clickRechargeAndPayBills() {

@@ -16,13 +16,18 @@
                 <include name="setUp"/>
                 <include name="instantiateHelpers"/>
                 <include name="test"/>
+                <include name="p2mNearbyStores"/>
+                <include name="changeSecurityPin"/>
                 <include name="tearDown"/>
             </run>
         </groups>
 
 
         <classes>
+            <class name="Utils.TestBase"/>
             <class name="AccountAggregator.Test_AccountAggregator"/>
+            <class name="P2M.P2MTest"/>
+            <class name="SecurityPin.SecurityPinTest"/>
         </classes>
     </test>
 
