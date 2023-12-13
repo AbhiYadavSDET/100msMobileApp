@@ -1,9 +1,11 @@
 package Helpers;
 
 import Logger.Log;
+import PageObject.CCBPPage;
 import PageObject.HomePage;
 import PageObject.LoginPage;
 import PageObject.PermissionPage;
+import Utils.Screen;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.IOSElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -17,11 +19,13 @@ public class MbkCommonControlHelper {
     IOSDriver<IOSElement> driver;
     PermissionPage permissionPage;
     HomePage homePage;
+    CCBPPage ccbpPage;
 
     public MbkCommonControlHelper(IOSDriver driver) throws IOException {
         this.driver = driver;
         permissionPage = new PermissionPage(driver);
         homePage = new HomePage(driver);
+        ccbpPage = new CCBPPage(driver);
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
@@ -30,6 +34,11 @@ public class MbkCommonControlHelper {
         while(permissionPage.isPermissionPopUpPresent()){
             // Click Allow on Permission Pop Up
             permissionPage.clickOnAllow();
+        }
+
+        if(ccbpPage.isCCBPHomeBottomSheetShown()){
+            // Click outside CCBP bottom sheet
+            Screen.tapOutsideBottomSheetByCoordinates(driver);
         }
 
         if(permissionPage.isEnablePasscodePopUpPresent()){
