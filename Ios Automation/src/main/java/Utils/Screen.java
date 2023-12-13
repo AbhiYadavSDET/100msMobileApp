@@ -2,6 +2,7 @@ package Utils;
 
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import Logger.Log;
@@ -12,16 +13,17 @@ import Logger.Log;
 import org.openqa.selenium.Dimension;
 
 import java.time.Duration;
+import java.util.HashMap;
 
 public class Screen {
 
 
     static TouchAction touchAction;
-    AndroidDriver driver;
+    IOSDriver driver;
 
 
-    public Screen(AndroidDriver androidDriver) {
-        this.driver = androidDriver;
+    public Screen(IOSDriver driver) {
+        this.driver = driver;
         touchAction = new TouchAction(driver);
     }
 
@@ -29,13 +31,16 @@ public class Screen {
     /**
      * swipes the screen-up
      */
-    public static void swipeUp() {
-        Log.info("SWIPE", "Up");
-        touchAction.press(PointOption.point(400, 900)).moveTo(PointOption.point(400, 300)).release().perform();
+    public static void swipeUp(IOSDriver driver) {
+//        Log.info("SWIPE", "Up");
+//        touchAction.press(PointOption.point(400, 900)).moveTo(PointOption.point(400, 300)).release().perform();
+        HashMap args = new HashMap<>();
+        args.put("direction", "up");
+        driver.executeScript("mobile: swipe", args);
 
     }
 
-    public static void swipeUpMore(AndroidDriver driver) {
+    public static void swipeUpMore(IOSDriver driver) {
         try {
             Thread.sleep(3000);
             Dimension dimension = driver.manage().window().getSize();
@@ -55,7 +60,7 @@ public class Screen {
         }
     }
 
-    public static void swipeUpMoreFromRightSide(AndroidDriver driver) {
+    public static void swipeUpMoreFromRightSide(IOSDriver driver) {
         try {
             Dimension dimension = driver.manage().window().getSize();
             Double screenHeightStart = dimension.getHeight() * 0.8; //50
@@ -77,7 +82,7 @@ public class Screen {
         }
     }
 
-    public static void swipeUpMedium(AndroidDriver driver) {
+    public static void swipeUpMedium(IOSDriver driver) {
         try {
             Dimension dimension = driver.manage().window().getSize();
             Double screenHeightStart = dimension.getHeight() * 0.6; //50
@@ -96,7 +101,7 @@ public class Screen {
         }
     }
 
-    public static void swipeUpLess(AndroidDriver driver) {
+    public static void swipeUpLess(IOSDriver driver) {
         try {
 
             Dimension dimension = driver.manage().window().getSize();
@@ -117,7 +122,7 @@ public class Screen {
     }
 
 
-    public static void swipeDownMore(AndroidDriver driver) {
+    public static void swipeDownMore(IOSDriver driver) {
         try {
             Dimension dimension = driver.manage().window().getSize();
             Double screenHeightStart = dimension.getHeight() * 0.2; //50
@@ -136,7 +141,7 @@ public class Screen {
         }
     }
 
-    public static void swipeDownMedium(AndroidDriver driver) {
+    public static void swipeDownMedium(IOSDriver driver) {
         try {
             Dimension dimension = driver.manage().window().getSize();
             Double screenHeightStart = dimension.getHeight() * 0.2; //50
@@ -155,7 +160,7 @@ public class Screen {
         }
     }
 
-    public static void swipeDownLess(AndroidDriver driver) {
+    public static void swipeDownLess(IOSDriver driver) {
         try {
 
             Dimension dimension = driver.manage().window().getSize();
@@ -195,14 +200,14 @@ public class Screen {
         touchAction.press(PointOption.point(400, yStart)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(duration))).moveTo(PointOption.point(400, yEnd)).release().perform();
     }
 
-    public static boolean isKeyboardShown(AndroidDriver androidDriver) throws InterruptedException {
+    public static boolean isKeyboardShown(IOSDriver androidDriver) throws InterruptedException {
         Thread.sleep(2000);
         return androidDriver.isKeyboardShown();
     }
 
-    public static void hideKeyboard(AndroidDriver androidDriver) throws InterruptedException {
-        if (isKeyboardShown(androidDriver)) {
-            androidDriver.hideKeyboard();
+    public static void hideKeyboard(IOSDriver driver) throws InterruptedException {
+        if (isKeyboardShown(driver)) {
+            driver.hideKeyboard();
         }
     }
 
@@ -212,6 +217,21 @@ public class Screen {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void swipeDownLess(IOSDriver driver, String s) {
+    }
+
+    public static void tapOutsideBottomSheetByCoordinates(IOSDriver driver){
+        Dimension dimension = driver.manage().window().getSize();
+
+        int width = dimension.getWidth();
+        int height = dimension.getHeight();
+
+        Log.info("Tap outside Bottom sheet");
+
+        Elements.tapByCoordinates(width/2,height/4,driver);
+
     }
 /*
     public String readToastMessage(String screenShotDir, String screenShotName) throws TesseractException {
