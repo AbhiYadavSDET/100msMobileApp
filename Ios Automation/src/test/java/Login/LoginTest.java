@@ -15,7 +15,7 @@ public class LoginTest extends TestBase {
         Log.info("======= START : Login test =======");
 
         LoginHelper loginHelper = new LoginHelper(getIosDriver());
-        loginHelper.loginViaOtp("7042338867", "547372");
+        loginHelper.loginViaOtp("8076595767", "547372");
 
         Log.info("======= END : Login test =======");
 
