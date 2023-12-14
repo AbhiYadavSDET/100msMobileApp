@@ -53,12 +53,14 @@ public class CCBPHelper {
             ccbpPage.closeEmailAccessBottomSheet();
         }
 
-        Thread.sleep(4000);
+//        Thread.sleep(2000);
 
         if(ccbpPage.isAddNewCreditCardShown()){
             //Click on Add new Credit card
             ccbpPage.clickAddNewCreditCard();
         }
+
+//        Thread.sleep(3000);
 
         //Click on Enter credit card number text field
         ccbpPage.clickEnterCreditCardNumber();
