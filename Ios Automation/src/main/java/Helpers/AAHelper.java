@@ -42,8 +42,7 @@ public class AAHelper {
         //Click Recharge and Pay Bills option
         homePage.clickAllServices();
 
-        Screen.swipeUpMoreios(driver);
-
+        Screen.swipeUp(driver);
         Thread.sleep(2800);
         // click on money plus icon
         aaPage.trackBankAccountsCTA();
@@ -77,7 +76,7 @@ public class AAHelper {
             mbReporter.verifyEqualsWithLogging(outgoingSecondSubTitleOnDashboard, expOutgoingSecondSubTitleOnDashboard, "Verify Second Outgoing SubTitle on MainDashboard", false, false, true);
             mbReporter.verifyEqualsWithLogging(outgoingThirdSubTitleOnDashboard, expOutgoingThirdSubTitleOnDashboard, "Verify Third Outgoing SubTitle on MainDashboard", false, false, true);
             mbReporter.verifyEqualsWithLogging(outgoingFourthSubTitleOnDashboard, expoutgoingFourthSubTitleOnDashboard, "Verify Fourth Outgoing SubTitle on MainDashboard", false, false, true);
-
+            Screen.swipeUp(driver);
             //mbReporter.verifyTrueWithLogging(aaPage.getMoneyTrf(), "Is Value Available", false, false);
             //mbReporter.verifyTrueWithLogging(aaPage.getExpensesPercentage(), "Is Expense Value percentage Available", false, false);
             //mbReporter.verifyTrueWithLogging(aaPage.getSipPercentage(), "Is Expense Value percentage Available", false, false);
@@ -89,9 +88,7 @@ public class AAHelper {
 
 
         //If element is not present
-        if (!aaPage.checkMonthlySummeryCTA()) {
-            screen.swipeUpMoreios(driver);
-        }
+
         String titleOfMonthlySummary = aaPage.getMonthlySummeryCTA();
 
         // String titleOfmainDashboardAnalyser = aaPage.mainDashboardAnalyserCTA();
@@ -99,14 +96,14 @@ public class AAHelper {
         mbReporter.verifyEqualsWithLogging(titleOfMonthlySummary, exptitleOfMonthlySummary, "Verify Monthly summery title on dashboard", false, false, true);
 
         //  screen.swipeUpMoreios(driver);
-        if (!aaPage.checkDashboardHighlightTitle()) {
-            screen.swipeUpMoreios(driver);
-        }
+        //if (!aaPage.checkDashboardHighlightTitle()) {
+           // Screen.swipeUp(driver);
+       // }
         String dashBoardHighlightTitle = aaPage.dashboardHighlightTitletext();
         Log.info("Highlight Title on MainDashboard : " + expdashBoardHighlightTitle);
         mbReporter.verifyEqualsWithLogging(dashBoardHighlightTitle, expdashBoardHighlightTitle, "Verify Highlight Title on Main Dashboardd", false, false, true);
 
-        //Screen.swipeUpMoreios(driver);
+        Screen.swipeUp(driver);
 
         //Screen.swipeUpMoreios(driver);
 //            if (aaPage.dashboardHighlightTitle() != null) {
@@ -122,7 +119,7 @@ public class AAHelper {
         mbReporter.verifyEqualsWithLogging(accounTTitle, expaccountTitle, "Verify Account Title on MainDashboard", false, false, true);
         mbReporter.verifyEqualsWithLogging(settingsTitle, expsettingsTitle, "Verify Account settings Title on MainDashboard", false, false, true);
 
-        // Screen.swipeUpMoreios(driver);
+        Screen.swipeUp(driver);
 
         String downloadStatementsTitle = aaPage.downloadStatementsTitle();
         String helpSupportTitle = aaPage.helpSupportTitle();
@@ -137,16 +134,14 @@ public class AAHelper {
 
     public void existingUserMonthlySummary(String expTitleLastmonthIncoming, String expTitleLastmonthOutgoing, String expTitleLastmonthinvested, String expTitleLastmonthRemaining, String expTitleLastmonthSpendbycayegoryOutgoing, String expExpensesSpendbycategory, String expSipEmiSpendbycategory, String expBankChargesSpendbycategory, String expOthersSpendbycategory, String expHighestSpendonMontlysummary, String expgetTopCategoryMontlysummary, String expSpenbyDatedonMontlysummary, String expMoneyReceived) throws InterruptedException, IOException {
 
-        homePage.clickAllServices();
+             homePage.clickAllServices();
+             Screen.swipeUp(driver);
+             Thread.sleep(2800);
+             // click on money plus icon
+             aaPage.trackBankAccountsCTA();
+             Thread.sleep(2000);
 
-        Screen.swipeUpMoreios(driver);
-
-        Thread.sleep(2800);
-        // click on money plus icon
-        aaPage.trackBankAccountsCTA();
-        Thread.sleep(2000);
-
-
+            Screen.swipeUp(driver);
             aaPage.clickMonthlySummaryOnHomePage();
             Log.info("Click On Monthly Summary bar on Home Page : ");
             Thread.sleep(2000);
@@ -173,7 +168,17 @@ public class AAHelper {
                 mbReporter.verifyEqualsWithLogging(investedtextOnMonthlySummary, expTitleLastmonthinvested, "Invested Title on monthly summary page:", false, true, true);
             }
 
+
+        if (aaPage.remaingtextOnMonthlySummary())
+        {
             String remaingtextOnMonthlySummary = aaPage.getRemaingtextOnMonthlySummary();
+
+            Log.info("Remaining title on monthly summary page: " + expTitleLastmonthinvested);
+
+            mbReporter.verifyEqualsWithLogging(remaingtextOnMonthlySummary, expTitleLastmonthRemaining, "Remaining Title on monthly summary page:", false, false, true);
+
+        }
+
             String outgoingtextOnMonthlySummarySpendbycategory = aaPage.getOutgoingtextOnMonthlySummarySpendbycategory();
             String expensesSpendbycategory = aaPage.getExpensesSpendbycategory();
             String sipEmiSpendbycategory = aaPage.getSipEmiSpendbycategory();
@@ -187,15 +192,13 @@ public class AAHelper {
             Log.info("Spend By category third title: " + expBankChargesSpendbycategory);
             Log.info("Spend By category fourth title: " + expOthersSpendbycategory);
 
-            mbReporter.verifyEqualsWithLogging(remaingtextOnMonthlySummary, expTitleLastmonthRemaining, "Remaining Title on monthly summary page:", false, false, true);
             mbReporter.verifyEqualsWithLogging(outgoingtextOnMonthlySummarySpendbycategory, expTitleLastmonthSpendbycayegoryOutgoing, "Remaining Title on monthly summary page:", false, false, true);
             mbReporter.verifyEqualsWithLogging(expensesSpendbycategory, expExpensesSpendbycategory, "Spend By category First title", false, false, true);
             mbReporter.verifyEqualsWithLogging(sipEmiSpendbycategory, expSipEmiSpendbycategory, "Spend By category Second title:", false, false, true);
             mbReporter.verifyEqualsWithLogging(bankChargesSpendbycategory, expBankChargesSpendbycategory, "Spend By category third title:", false, false, true);
             mbReporter.verifyEqualsWithLogging(otherssSpendbycategory, expOthersSpendbycategory, "Spend By category fourth title:", false, false, true);
 
-           // screen.swipeUpMore(driver);
-
+            Screen.swipeUp(driver);
             String spendbyDatedonMontlysummary = aaPage.getSpenbyDatedonMontlysummary();
             String highestSpendonMontlysummary = aaPage.getHighestSpendonMontlysummary();
             String topCategoryMontlysummary = aaPage.getTopCategoryMontlysummary();
@@ -217,6 +220,43 @@ public class AAHelper {
             mbReporter.verifyEqualsWithLogging(moneyReceivedMontlysummary, expMoneyReceived, "Monthly summary mONEY received ", false, false, true);
 
         }
+
+    public void existingUserAnalyser(String expDebitText, String expCreditText, String expWeekText, String expMonthText, String expYearText, String expdebitedThisWeekText) throws InterruptedException, IOException {
+
+        homePage.clickAllServices();
+        Screen.swipeUp(driver);
+        Thread.sleep(2800);
+        // click on money plus icon
+        aaPage.trackBankAccountsCTA();
+        Thread.sleep(2000);
+        aaPage.clickonAnalyserOnAAHomePage();
+        Log.info("Click On Analyser HomePage ");
+        Thread.sleep(2000);
+
+        Screen.swipeUp(driver);
+
+        String debitText = aaPage.getDebitText();
+        String creditText = aaPage.getCreditText();
+        String weekText = aaPage.getweekText();
+        String monthText = aaPage.getMonthText();
+        String yearText = aaPage.getYearText();
+        String debitedThisWeekrText = aaPage.getdebitedthisweekText();
+
+        Log.info("Debit text on Analyser screen " + expDebitText);
+        Log.info("Credit text on Analyser screen " + expCreditText);
+        Log.info("Week text on Analyser screen " + expWeekText);
+        Log.info("Month text on Analyser screen " + expMonthText);
+        Log.info("Year text on Analyser screen " + expYearText);
+        Log.info("debited this week text on Analyser screen " + debitedThisWeekrText);
+
+        mbReporter.verifyEqualsWithLogging(debitText, expDebitText, "Debit text on Analyser screen", false, false, true);
+        mbReporter.verifyEqualsWithLogging(creditText, expCreditText, "Credit text on Analyser screen", false, false, true);
+        mbReporter.verifyEqualsWithLogging(weekText, expWeekText, "Week text on Analyser screen", false, false, true);
+        mbReporter.verifyEqualsWithLogging(monthText, expMonthText, "Month text on Analyser screen", false, false, true);
+        mbReporter.verifyEqualsWithLogging(yearText, expYearText, "Year text on Analyser screen", false, false, true);
+        mbReporter.verifyEqualsWithLogging(debitedThisWeekrText, expdebitedThisWeekText, "debited this week text on Analyser screen", false, false, true);
+
+    }
     }
 
 

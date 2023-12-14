@@ -297,7 +297,6 @@ public class AAHelper {
         mbReporter.verifyEqualsWithLogging(autoRefreshext, expautoRefreshext, "Auto refresh Text on setting screen", false, false, true);
         mbReporter.verifyEqualsWithLogging(manageConsentText, expmanageConsentText, "ManageConsent on Setting screen", false, false, true);
         mbReporter.verifyEqualsWithLogging(helpText, exphelpText, "Help Text on Setting screen", false, false, true);
-
         aaPage.selectAutoRefreshext();
         aaPage.selectOutsideOfAutoRefresh();
         aaPage.clickManageConsent();

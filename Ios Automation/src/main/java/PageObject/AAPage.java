@@ -56,7 +56,7 @@ public class AAPage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeImage")
     private IOSElement calender;
 
-    @iOSXCUITFindBy(xpath =  "//XCUIElementTypeStaticText[@name=\"Your Monthly Summaryt\"]")
+    @iOSXCUITFindBy(xpath =  "//XCUIElementTypeStaticText[@name=\"Incoming\"]")
     private IOSElement incoming;
 
     @iOSXCUITFindBy(xpath =  "//XCUIElementTypeStaticText[@name=\"Incoming\"]")
@@ -71,7 +71,7 @@ public class AAPage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Remaining\"]")
     private IOSElement remainingonmonthlysummery;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"OUTGOING\"]")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Outgoing\"]")
     private IOSElement outgoingonSpendBycategory;
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Others\"]")
     private IOSElement othersgonmonthlysummery;
@@ -87,6 +87,22 @@ public class AAPage {
     private IOSElement highestSpend;
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Top Category\"]")
     private IOSElement topCategory;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Analyser\"]")
+    private IOSElement anayseronAAhomepage;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"DEBITS\"]")
+    private IOSElement debitTextOnAnlyser;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Credits\"]")
+    private IOSElement creditTextOnAnlyser;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Debited this week\"]")
+    private IOSElement debitedthisweekTextOnAnlyser;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Week\"]")
+    private IOSElement weekTextOnAnlyser;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Month\"]")
+    private IOSElement monthTextOnAnlyser;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Year\"]")
+    private IOSElement yearTextOnAnlyser;
 
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Money Received\"]")
     private IOSElement moneyReceived;
@@ -181,6 +197,10 @@ public class AAPage {
         return Elements.isElementPresent(driver, investedonmonthlysummery);
     }
 
+    public Boolean remaingtextOnMonthlySummary() throws InterruptedException {
+        return Elements.isElementPresent(driver, remainingonmonthlysummery);
+    }
+
     public String getInvestedtextOnMonthlySummary() throws InterruptedException {
         return Elements.getText(driver, investedonmonthlysummery);
     }
@@ -224,4 +244,33 @@ public class AAPage {
     public String getMoneyReceivedMontlysummary() throws InterruptedException {
         return Elements.getText(driver, moneyReceived);
     }
+
+    public void clickonAnalyserOnAAHomePage() throws InterruptedException{
+        Elements.selectElement(driver,anayseronAAhomepage,"Click on Analyser");
+    }
+
+    public String getDebitText() throws InterruptedException {
+        return Elements.getText(driver, debitTextOnAnlyser);
+    }
+
+    public String getCreditText() throws InterruptedException {
+        return Elements.getText(driver, creditTextOnAnlyser);
+    }
+
+    public String getdebitedthisweekText() throws InterruptedException {
+        return Elements.getText(driver, debitedthisweekTextOnAnlyser);
+    }
+
+    public String getweekText() throws InterruptedException {
+        return Elements.getText(driver, weekTextOnAnlyser);
+    }
+
+    public String getMonthText() throws InterruptedException {
+        return Elements.getText(driver, monthTextOnAnlyser);
+    }
+
+    public String getYearText() throws InterruptedException {
+        return Elements.getText(driver, yearTextOnAnlyser);
+    }
+
 }
