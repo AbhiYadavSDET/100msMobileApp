@@ -2,6 +2,7 @@ package Utils;
 
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import Logger.Log;
@@ -55,6 +56,27 @@ public class Screen {
         }
     }
 
+
+
+    public static void swipeUpMoreios(IOSDriver driver) {
+        try {
+            Thread.sleep(3000);
+            Dimension dimension = driver.manage().window().getSize();
+            Double screenHeightStart = dimension.getHeight() * 0.4; //50
+            int heightStart = screenHeightStart.intValue();
+            Log.info("start : " + heightStart);
+            Double screenHeightEnd = dimension.getHeight() * 0.2; //20
+            int heightEnd = screenHeightEnd.intValue();
+            Log.info("End : " + heightEnd);
+            Log.info("SWIPE", "Up More");
+            touchAction.press(PointOption.point(0, heightStart)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1500))).moveTo(PointOption.point(0, heightEnd)).release().perform();
+
+        } catch (NullPointerException | InterruptedException e) {
+            Log.info("Screen is not Swipable");
+        }
+    }
+
+
     public static void swipeUpMoreFromRightSide(AndroidDriver driver) {
         try {
             Dimension dimension = driver.manage().window().getSize();
@@ -77,7 +99,7 @@ public class Screen {
         }
     }
 
-    public static void swipeUpMedium(AndroidDriver driver) {
+    public static void swipeUpMedium(IOSDriver driver) {
         try {
             Dimension dimension = driver.manage().window().getSize();
             Double screenHeightStart = dimension.getHeight() * 0.6; //50
@@ -96,7 +118,7 @@ public class Screen {
         }
     }
 
-    public static void swipeUpLess(AndroidDriver driver) {
+    public static void swipeUpLess(IOSDriver driver) {
         try {
 
             Dimension dimension = driver.manage().window().getSize();
