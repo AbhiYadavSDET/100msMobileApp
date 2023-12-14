@@ -23,6 +23,9 @@ public class HomePage {
     @iOSXCUITFindBy(id = "Xtra")
     private IOSElement xtra_icon;
 
+    @iOSXCUITFindBy(id = "Credit Card Payment")
+    private IOSElement creditCardPayment;
+
     public HomePage(IOSDriver driver) {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -46,5 +49,9 @@ public class HomePage {
 
     public void clickRechargeAndPayBills() {
         Elements.click(driver, rechargeAndPayBills,"Click on Recharge & Pay Bills");
+    }
+
+    public void clickCreditCardPayment() {
+        Elements.click(driver, creditCardPayment,"Click on Credit card payment");
     }
 }

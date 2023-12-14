@@ -65,6 +65,9 @@ public class RechargePage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"M\"]")
     private IOSElement feedbackPopup;
 
+    @iOSXCUITFindBy(id = "Credit Card Payment")
+    private IOSElement creditCardPayment;
+
 
     public RechargePage(IOSDriver driver) {
         this.driver = driver;
@@ -124,6 +127,8 @@ public class RechargePage {
     public void clickBackButton() { Elements.click(driver, backButton,"Click on back button"); }
 
     public void closeFeedbackPopup() { Elements.click(driver, feedbackPopup, "Click to close feedback popup");}
+
+    public void clickCreditCardPayment() { Elements.click(driver, creditCardPayment,"Click on Credit Card payment");}
 
 
 
