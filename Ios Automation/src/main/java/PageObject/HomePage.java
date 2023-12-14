@@ -14,6 +14,9 @@ public class HomePage {
     @iOSXCUITFindBy(id = "Offers")
     private IOSElement offers;
 
+    @iOSXCUITFindBy(id = "All Services")
+    private IOSElement allServices;
+
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"M\"]")
     private IOSElement floating_widgit;
 
@@ -47,4 +50,9 @@ public class HomePage {
     public void clickRechargeAndPayBills() {
         Elements.click(driver, rechargeAndPayBills,"Click on Recharge & Pay Bills");
     }
+
+    public void clickAllServices() {
+        Elements.click(driver, allServices,"Click on All Services");
+    }
+
 }
