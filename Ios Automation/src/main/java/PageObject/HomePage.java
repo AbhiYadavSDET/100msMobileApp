@@ -14,6 +14,9 @@ public class HomePage {
     @iOSXCUITFindBy(id = "Offers")
     private IOSElement offers;
 
+    @iOSXCUITFindBy(id = "All Services")
+    private IOSElement allServices;
+
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"M\"]")
     private IOSElement floating_widgit;
 
@@ -22,9 +25,6 @@ public class HomePage {
 
     @iOSXCUITFindBy(id = "Xtra")
     private IOSElement xtra_icon;
-
-    @iOSXCUITFindBy(id = "Credit Card Payment")
-    private IOSElement creditCardPayment;
 
     public HomePage(IOSDriver driver) {
         this.driver = driver;
@@ -51,7 +51,8 @@ public class HomePage {
         Elements.click(driver, rechargeAndPayBills,"Click on Recharge & Pay Bills");
     }
 
-    public void clickCreditCardPayment() {
-        Elements.click(driver, creditCardPayment,"Click on Credit card payment");
+    public void clickAllServices() {
+        Elements.click(driver, allServices,"Click on All Services");
     }
+
 }
