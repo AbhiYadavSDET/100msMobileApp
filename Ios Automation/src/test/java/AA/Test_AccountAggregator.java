@@ -17,7 +17,7 @@ public class Test_AccountAggregator extends TestBase {
         Log.info("======= START : Login test =======");
 
         LoginHelper loginHelper = new LoginHelper(getIosDriver());
-        loginHelper.loginViaOtp("7042338867", "547372");
+        loginHelper.loginViaOtp("7795709569", "547372");
 
         Log.info("======= END : Login test =======");
 
@@ -56,7 +56,7 @@ public class Test_AccountAggregator extends TestBase {
     @Test(groups = {"AADashboard"}, priority = 1, description = "VVerify Manage Section")
     public void Test04_existing_User_Manage() throws IOException, InterruptedException {
         LoginHelper loginHelp = new LoginHelper(getIosDriver());
-        loginHelp.loginViaOtp("7042338867", "547372");
+        loginHelp.loginViaOtp("7795709569", "547372");
         AAHelper aaHelper = new AAHelper(getIosDriver());
         // Execute the test
         aaHelper.existingUserManage("Auto Refresh Frequency", "Manage Consent", "Help");
@@ -67,7 +67,7 @@ public class Test_AccountAggregator extends TestBase {
     @Test(groups = {"AADashboard"}, priority = 0, description = "Verify Added Bank account on home Page")
     public void Test05_existing_User_Added_BankAccount() throws IOException, InterruptedException {
         LoginHelper loginHelp = new LoginHelper(getIosDriver());
-        loginHelp.loginViaOtp("7042338867", "547372");
+        loginHelp.loginViaOtp("7795709569", "547372");
         AAHelper aaHelper = new AAHelper(getIosDriver());
         // Execute the test
         aaHelper.existingUserBankAccountDetails();

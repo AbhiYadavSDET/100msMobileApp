@@ -79,10 +79,6 @@ public class AAHelper {
             mbReporter.verifyEqualsWithLogging(outgoingThirdSubTitleOnDashboard, expOutgoingThirdSubTitleOnDashboard, "Verify Third Outgoing SubTitle on MainDashboard", false, false, true);
             mbReporter.verifyEqualsWithLogging(outgoingFourthSubTitleOnDashboard, expoutgoingFourthSubTitleOnDashboard, "Verify Fourth Outgoing SubTitle on MainDashboard", false, false, true);
             Screen.swipeUp(driver);
-            //mbReporter.verifyTrueWithLogging(aaPage.getMoneyTrf(), "Is Value Available", false, false);
-            //mbReporter.verifyTrueWithLogging(aaPage.getExpensesPercentage(), "Is Expense Value percentage Available", false, false);
-            //mbReporter.verifyTrueWithLogging(aaPage.getSipPercentage(), "Is Expense Value percentage Available", false, false);
-            // mbReporter.verifyTrueWithLogging(aaPage.getBankChargesPercentage(), "Is Expense Value percentage Available", false, false);
 
         } else {
             Log.info("Outgoing Data is not present");
@@ -97,20 +93,11 @@ public class AAHelper {
         Log.info("Monthly summery text on MainDashboard : " + exptitleOfMonthlySummary);
         mbReporter.verifyEqualsWithLogging(titleOfMonthlySummary, exptitleOfMonthlySummary, "Verify Monthly summery title on dashboard", false, false, true);
 
-        //  screen.swipeUpMoreios(driver);
-        //if (!aaPage.checkDashboardHighlightTitle()) {
-           // Screen.swipeUp(driver);
-       // }
         String dashBoardHighlightTitle = aaPage.dashboardHighlightTitletext();
         Log.info("Highlight Title on MainDashboard : " + expdashBoardHighlightTitle);
         mbReporter.verifyEqualsWithLogging(dashBoardHighlightTitle, expdashBoardHighlightTitle, "Verify Highlight Title on Main Dashboardd", false, false, true);
 
         Screen.swipeUp(driver);
-
-        //Screen.swipeUpMoreios(driver);
-//            if (aaPage.dashboardHighlightTitle() != null) {
-//                screen.swipeUpMore(driver);
-//            }
 
         String accounTTitle = aaPage.accountTitle();
         String settingsTitle = aaPage.settingsTitle();
