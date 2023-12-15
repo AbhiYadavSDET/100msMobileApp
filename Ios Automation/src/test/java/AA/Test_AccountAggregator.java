@@ -10,14 +10,14 @@ import java.io.IOException;
 
 public class Test_AccountAggregator extends TestBase {
 
-    @Test(groups = {"AADashboard"}, priority = 0, description = "Verify Account aggregator Dashboard")
+    @Test(groups = {"AADashboard"}, priority = 1, description = "Verify Account aggregator Dashboard")
 
     public void Test01_existing_User_Dashboard() throws InterruptedException, IOException {
 
         Log.info("======= START : Login test =======");
 
         LoginHelper loginHelper = new LoginHelper(getIosDriver());
-        loginHelper.loginViaOtp("7795709569", "547372");
+        loginHelper.loginViaOtp("7042338867", "547372");
 
         Log.info("======= END : Login test =======");
 
@@ -29,7 +29,7 @@ public class Test_AccountAggregator extends TestBase {
 
     }
 
-    @Test(groups = {"AADashboard"}, priority = 0, description = "Verify Monthly summary")
+    @Test(groups = {"AADashboard"}, priority = 1, description = "Verify Monthly summary")
     public void Test02_existing_User_MonthlySummery() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getIosDriver());
@@ -41,7 +41,7 @@ public class Test_AccountAggregator extends TestBase {
 
     }
 
-    @Test(groups = {"AADashboard"}, priority = 0, description = "Verify Analyser")
+    @Test(groups = {"AADashboard"}, priority = 1, description = "Verify Analyser")
     public void Test03_existing_User_Analyser() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getIosDriver());
@@ -49,6 +49,28 @@ public class Test_AccountAggregator extends TestBase {
         AAHelper aaHelper = new AAHelper(getIosDriver());
         // Execute the test
         aaHelper.existingUserAnalyser("DEBITS", "Credits", "Week", "Month", "Year", "Debited this week");
+        Log.info("======= Account Aggregator test =======");
+
+    }
+
+    @Test(groups = {"AADashboard"}, priority = 1, description = "VVerify Manage Section")
+    public void Test04_existing_User_Manage() throws IOException, InterruptedException {
+        LoginHelper loginHelp = new LoginHelper(getIosDriver());
+        loginHelp.loginViaOtp("7042338867", "547372");
+        AAHelper aaHelper = new AAHelper(getIosDriver());
+        // Execute the test
+        aaHelper.existingUserManage("Auto Refresh Frequency", "Manage Consent", "Help");
+        Log.info("======= Account Aggregator test =======");
+
+    }
+
+    @Test(groups = {"AADashboard"}, priority = 0, description = "Verify Added Bank account on home Page")
+    public void Test05_existing_User_Added_BankAccount() throws IOException, InterruptedException {
+        LoginHelper loginHelp = new LoginHelper(getIosDriver());
+        loginHelp.loginViaOtp("7042338867", "547372");
+        AAHelper aaHelper = new AAHelper(getIosDriver());
+        // Execute the test
+        aaHelper.existingUserBankAccountDetails();
         Log.info("======= Account Aggregator test =======");
 
     }

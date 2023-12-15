@@ -106,6 +106,22 @@ public class AAPage {
 
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Money Received\"]")
     private IOSElement moneyReceived;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Auto Refresh Frequency\"]")
+    private IOSElement autoRefreshFrequently;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Manage Consent\"]")
+    private IOSElement manageConsent;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Help\"]")
+    private IOSElement helpText;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Every 15 days\"]")
+    private IOSElement every15days;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"\uE904\"]")
+    private IOSElement backbuttonOnManageConsentInside;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@name,\"X\")]")
+    private IOSElement saveAccountCTA;
+
     public AAPage(IOSDriver driver) {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -273,4 +289,56 @@ public class AAPage {
         return Elements.getText(driver, yearTextOnAnlyser);
     }
 
+
+    public void selectSetting() throws InterruptedException {
+        Elements.selectElement(driver,settingsTitle,"Click on Setting");
+    }
+
+    public Boolean checkSettingCta() throws InterruptedException{
+        return Elements.isElementPresent(driver, settingsTitle);
+    }
+
+    public String autoRefreshext() throws InterruptedException {
+        return Elements.getText(driver, autoRefreshFrequently);
+    }
+
+    public String manageConsentText() throws InterruptedException {
+        return Elements.getText(driver, manageConsent);
+    }
+
+    public void clickManageConsent() throws InterruptedException{
+        Elements.selectElement(driver,manageConsent,"Select Manage Consent");
+    }
+
+    public String helpText() throws InterruptedException {
+        return Elements.getText(driver, helpText,"Click on Help option");
+    }
+
+    public void selectHelpOptn() throws InterruptedException {
+        Elements.selectElement(driver, helpText,"Click on Help option");
+    }
+    public void selectAutoRefreshext() throws InterruptedException{
+        Elements.selectElement(driver,autoRefreshFrequently,"Click on Auto refresh frequency");
+    }
+
+    public void selectOutsideOfAutoRefresh() throws InterruptedException{
+        Elements.selectElement(driver,every15days,"Click on Every 15 days");
+    }
+
+    public void clickBackButtonOnManageConsentInside() throws InterruptedException{
+        Elements.selectElement(driver,backbuttonOnManageConsentInside,"Click on back button on ManageConsent Inside");
+    }
+
+    public void helpSupportTitleClick() throws InterruptedException{
+        Elements.selectElement(driver,helpSupportTitle,"Click on Help and support");
+    }
+
+    public void selectDownloadStatement() throws InterruptedException{
+        Elements.selectElement(driver,downloadStatementsTitle,"Click on Download Statements");
+    }
+
+
+    public void clickOnYourSavedBankAccount() throws InterruptedException{
+        Elements.selectElement(driver,saveAccountCTA,"Click on Your Bank account");
+    }
 }
