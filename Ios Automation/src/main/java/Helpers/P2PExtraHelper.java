@@ -4,6 +4,7 @@ import Logger.Log;
 import PageObject.HomePage;
 import PageObject.P2PExtraPage;
 import Utils.MBReporter;
+import Utils.Screen;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.IOSElement;
@@ -66,14 +67,6 @@ public class P2PExtraHelper {
 
         // Click on xtra icon on home page.
         homePage.clicktXtra();
-//        if (mbkCommonControlsPage.isWhitePopUpPresent()) {
-//            mbkCommonControlsPage.closeWhitePopUp();
-//        }
-        // Click on Got it to remove referral bottom sheet.
-        // if (p2PExtraPage.isBottomSheetPresent()) p2PExtraPage.removeBottomSheet();
-
-        // Click on screen to remove bottom sheet.
-        // p2PExtraPage.tapOutsideBottomSheet();
 
         // Skip the daily SIP Reminder on XTRA Dashboard
         Thread.sleep(2000);
@@ -85,51 +78,44 @@ public class P2PExtraHelper {
         String portfolioValue = p2PExtraPage.getPortfolioValue();
         Log.info("Portfolio Value : " + portfolioValue);
 
+        //Swipe Up the screen
+        Screen.swipeUp(driver);
 
+        //Click on the Refer widget
+        p2PExtraPage.clickReferWidget();
 
+        Thread.sleep(1000);
+        if(p2PExtraPage.checkPopup()){
+            p2PExtraPage.clickOKFromPopup();
+        }
 
-//        // If notification alerts are present, then swipe up
-//        if (p2PExtraPage.checkNotificationAlert() || p2PExtraPage.checkInvestContainer()) screen.swipeUpMedium(driver);
-//
-//        //Swipe till Refer & Earn Widget
-//        screen.swipeUpMore(driver);
-//
-//        // Check for more swipe if not visible
-//        if (!p2PExtraPage.checkReferralWidget()) screen.swipeUpLess(driver);
-//
-//        // Click on Refer & earn Widget on XTRA dashboard
-//        p2PExtraPage.clickReferAndEarnWidget();
-//
-//        //Swipe up complete on Total Earnings Page
-//        screen.swipeUpMore(driver);
-//
-//        // Click on Earnings table
+//        //Click on Earnings Table
 //        p2PExtraPage.clickEarningsTable();
 //
-//        //Swipe up complete on Referrals Page
-//        screen.swipeUpMore(driver);
-//
-//        //Select Back button
-//        p2PExtraPage.selectBackBtn();
-//
-//        String check_know_more_optn = p2PExtraPage.getKnowMoreOptn();
-//
-//        Log.info("Text Check :" + check_know_more_optn);
-//
-//        // Add the assertions
-//        mbReporter.verifyEqualsWithLogging(check_know_more_optn, expTitle, "Verify Refer & Earn Flow", false, false, true);
+//        //Click on back button
+//        p2PExtraPage.clickBackBtn();
+
+        String actualTitle = p2PExtraPage.getReferPageTitle();
+        Log.info(actualTitle);
+
+        // Add the assertions
+        mbReporter.verifyEqualsWithLogging(actualTitle, expTitle, "Verify Refer & Earn Flow", false, false, true);
 
 
     }
 
 
-    public void withdraw(String amount, String expAmount, String expStatus, String expErrorMainTitle, String expErrorTitle, String expErrorAmount) throws InterruptedException, IOException {
+    public void withdraw(String amount, String expAmount, String expTitle, String expErrorMainTitle, String expErrorTitle, String expErrorAmount) throws InterruptedException, IOException {
 
         Log.info("----------- Arguments ---------------");
         Log.info("amount : " + amount);
 
         // Click on xtra icon on home page.
         homePage.clicktXtra();
+
+        Thread.sleep(2000);
+        if(p2PExtraPage.checkSkipReminder()) p2PExtraPage.selectSkipReminder();
+
 
         // Click on Withdraw button of Flexi
         p2PExtraPage.clickWithdrawCta();
@@ -151,7 +137,27 @@ public class P2PExtraHelper {
         // Click on Confirm button
         p2PExtraPage.clickConfirmBtn();
 
+        //Checking pending withdrawal request bottom sheet
+        if (p2PExtraPage.checkWithdrawlInProgressBottomsheet()) {
 
+            String actualErrorMainTitle = p2PExtraPage.getErrorTitleText();
+
+            Log.info("You have already one pending withdrawal request");
+            Log.info("ERROR_TITLE : " + actualErrorMainTitle);
+
+            p2PExtraPage.clickGotItOnInprogressCta();
+
+            mbReporter.verifyEqualsWithLogging(actualErrorMainTitle,expErrorMainTitle,"Withdrawl in Progress Bottomsheet ", false,true);
+
+        } else {
+
+            Log.info("You have successfully placed withdrawal request");
+
+            String actualTitle = p2PExtraPage.getSuccessTitle();
+
+            mbReporter.verifyEqualsWithLogging(actualTitle, expTitle, "Verify Title On Success Page", false, false,true);
+
+        }
 
     }
 

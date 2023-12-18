@@ -44,6 +44,30 @@ public class P2PExtraPage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Bank holiday approaching!\"]")
     private IOSElement bank_holiday_bottomsheet;
 
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Please wait for the below request to be processed\"]")
+    private IOSElement withdrawl_in_Progress_bottomsheet;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Withdrawal request placed successfully\"]")
+    private IOSElement success_heading;
+
+    @iOSXCUITFindBy(xpath ="//XCUIElementTypeStaticText[@name=\"Withdrawal in progress\"]")
+    private IOSElement error_title;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[5]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton")
+    private IOSElement refer_and_earn_widget;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"OK\"]")
+    private IOSElement ok_btn;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Earnings\"]")
+    private IOSElement earnings_table;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"backBtn\"]")
+    private IOSElement back_btn;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Know more\"]")
+    private IOSElement know_more_btn;
+
 
 
     public P2PExtraPage(IOSDriver driver) {
@@ -79,6 +103,10 @@ public class P2PExtraPage {
         Elements.click(driver, gotIt_cta, "Click on Got It Cta");
     }
 
+    public void clickGotItOnInprogressCta() throws InterruptedException {
+        Elements.click(driver, gotIt_cta, "Click on Got It Cta");
+    }
+
     public void enterAmount(String amount) { Elements.enterToElement(driver, amount_from_keyboard, amount , "Enter amount : 1");   }
 
     public void clickWithdrawBtn() throws InterruptedException {
@@ -91,6 +119,42 @@ public class P2PExtraPage {
 
     public boolean checkBankHolidayBottomsheet() throws InterruptedException {
         return Elements.isElementPresent(driver, bank_holiday_bottomsheet);
+    }
+
+    public boolean checkWithdrawlInProgressBottomsheet() throws InterruptedException {
+        return Elements.isElementPresent(driver, withdrawl_in_Progress_bottomsheet);
+    }
+
+    public String getErrorTitleText() throws InterruptedException {
+        return Elements.getText(driver, error_title);
+    }
+
+    public String getSuccessTitle() throws InterruptedException {
+        return Elements.getText(driver, success_heading);
+    }
+
+    public void clickReferWidget() throws InterruptedException {
+        Elements.click(driver, refer_and_earn_widget, "Click on Refer and Earn Widget");
+    }
+
+    public void clickOKFromPopup() throws InterruptedException {
+        Elements.click(driver, ok_btn, "Click OK on Contacts Pop-up");
+    }
+
+    public boolean checkPopup() throws InterruptedException {
+        return Elements.isElementPresent(driver, ok_btn);
+    }
+
+    public void clickEarningsTable() throws InterruptedException {
+        Elements.click(driver, earnings_table, "Click on Earnings Table");
+    }
+
+    public void clickBackBtn() throws InterruptedException {
+        Elements.click(driver, back_btn, "Click on back btn");
+    }
+
+    public String getReferPageTitle() throws InterruptedException {
+        return Elements.getText(driver, know_more_btn);
     }
 
 
