@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class P2PExtraTest extends TestBase {
 
-    @Test(groups = {"p2pXtraNewUser"}, priority = 0, description = "Verify Xtra :New User Flow Journey")
+    @Test(groups = {"p2pXtraNewUser", "regression"}, priority = 0, description = "Verify Xtra :New User Flow Journey")
     public void Test_Xtra_New_User_In_XTRA() throws InterruptedException, IOException {
 
         Log.info("======= START : XTRA - NEW USER flow test with no kYC=======");
