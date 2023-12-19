@@ -51,7 +51,7 @@ public class PayRentTest extends TestBase {
 
     }
 
-    @Test(groups = {"regression", "PayRent", "payRentviaCard()"}, priority = 0, description = "Verify pay rent via Card")
+    @Test(groups = {"regression", "PayRent", "payRentviaCard"}, priority = 0, description = "Verify pay rent via Card")
     public void PayRent_payRentviaCard() throws InterruptedException, IOException {
 
 

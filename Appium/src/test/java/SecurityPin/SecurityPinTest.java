@@ -12,7 +12,7 @@ import java.io.IOException;
 public class SecurityPinTest extends TestBase {
 
 
-    @Test(groups = {"sanity", "enableDisablePin()", "regression"}, priority = 0, description = "Verify Security Pin")
+    @Test(groups = {"sanity", "enableDisablePin", "regression"}, priority = 0, description = "Verify Security Pin")
     public void securitySettings_EnableDisablePin() throws IOException, InterruptedException {
 
         Log.info("======= START : Security Pin Test =======");
