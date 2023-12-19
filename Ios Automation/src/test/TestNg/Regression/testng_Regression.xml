@@ -24,6 +24,8 @@
             <class name="PipedGas.PipedGasTest"/>
             <class name="Recharge.RechargeTest"/>
             <class name="Offers.OffersTest"/>
+            <class name="Electricity.ElectricityTest"/>
+            <class name="AA.Test_AccountAggregator"/>
         </classes>
     </test>
 
