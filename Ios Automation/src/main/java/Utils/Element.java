@@ -18,11 +18,14 @@ import java.util.List;
 public class Element {
     public final static int timeOut = 70;
     AndroidDriver androidDriver;
+    IOSDriver iosDriver;
 
     public Element(AndroidDriver androidDriver) {
         this.androidDriver = androidDriver;
     }
-
+    public Element(IOSDriver iosDriver) {
+        this.iosDriver = iosDriver;
+    }
     /**
      * method to wait for an element to be visible
      *
