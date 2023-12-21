@@ -4,6 +4,7 @@ import Helpers.LoginHelper;
 import Helpers.P2PExtraHelper;
 import Logger.Log;
 import Utils.TestBase;
+import io.appium.java_client.ios.IOSDriver;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -70,6 +71,24 @@ public class P2PExtraTest extends TestBase {
 
         Log.info("======= END : p2p Xtra Withdraw Flexi =======");
 
+
+    }
+
+
+
+    @Test(groups = {"p2pXtraDefaultBankAccount", "sanity", "sanityPrime", "regression"}, priority = 0, description = "Verify Xtra  f  : Check Default Bank Account from settings option")
+    public void Test_Xtra_Default_bank_account() throws InterruptedException, IOException {
+
+        Log.info("======= START : XTRA - Default Account flow from Settings Option=======");
+
+        // Start the test
+        LoginHelper loginHelp = new LoginHelper(getIosDriver());
+        loginHelp.loginViaOtp("7795709569", "547372");
+
+        P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getIosDriver());
+        p2PExtraHelper.setDefaultBankAccountFlow("Default Bank Account");
+
+        Log.info("======= END : XTRA - Default Account flow  =======");
 
     }
 

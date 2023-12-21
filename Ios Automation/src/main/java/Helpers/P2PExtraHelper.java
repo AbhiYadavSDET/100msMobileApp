@@ -27,6 +27,7 @@ public class P2PExtraHelper {
 
     }
 
+
     public void newUserFlow(String expTitle) throws InterruptedException, IOException {
 
         Log.info("----------- Arguments ---------------");
@@ -72,17 +73,19 @@ public class P2PExtraHelper {
         Thread.sleep(2000);
         if(p2PExtraPage.checkSkipReminder()) p2PExtraPage.selectSkipReminder();
 
-
-
         // Printing portfolio values.
         String portfolioValue = p2PExtraPage.getPortfolioValue();
         Log.info("Portfolio Value : " + portfolioValue);
 
         //Swipe Up the screen
         Screen.swipeUp(driver);
+        Screen.swipeUp(driver);
 
         //Click on the Refer widget
         p2PExtraPage.clickReferWidget();
+
+        //Click OK on Access your contacts popup
+        p2PExtraPage.clickAllowContactPermission();
 
         Thread.sleep(1000);
         if(p2PExtraPage.checkPopup()){
@@ -103,6 +106,8 @@ public class P2PExtraHelper {
 
 
     }
+
+
 
 
     public void withdraw(String amount, String expAmount, String expTitle, String expErrorMainTitle, String expErrorTitle, String expErrorAmount) throws InterruptedException, IOException {
@@ -158,6 +163,30 @@ public class P2PExtraHelper {
             mbReporter.verifyEqualsWithLogging(actualTitle, expTitle, "Verify Title On Success Page", false, false,true);
 
         }
+
+    }
+
+
+
+
+    public void setDefaultBankAccountFlow(String expSubTitle) throws InterruptedException, IOException {
+
+        // Click on xtra icon on home page.
+        homePage.clicktXtra();
+
+        Thread.sleep(2000);
+        if(p2PExtraPage.checkSkipReminder()) p2PExtraPage.selectSkipReminder();
+
+        Screen.swipeUp(driver);
+
+        if(p2PExtraPage.checkSettingOptn())
+        {
+            Screen.swipeUp(driver);
+        }
+
+        p2PExtraPage.clickSettingOptn();
+
+
 
     }
 

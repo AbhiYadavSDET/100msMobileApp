@@ -68,6 +68,12 @@ public class P2PExtraPage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Know more\"]")
     private IOSElement know_more_btn;
 
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Settings\"]")
+    private IOSElement settings_optn;
+
+    @iOSXCUITFindBy(id = "OK")
+    private IOSElement contactsPermission;
+
 
 
     public P2PExtraPage(IOSDriver driver) {
@@ -156,6 +162,19 @@ public class P2PExtraPage {
     public String getReferPageTitle() throws InterruptedException {
         return Elements.getText(driver, know_more_btn);
     }
+
+    public boolean checkSettingOptn() throws InterruptedException {
+        return Elements.isElementPresent(driver, settings_optn);
+    }
+
+    public void clickSettingOptn() throws InterruptedException {
+         Elements.click(driver, settings_optn, "Click on Setting");
+    }
+
+    public void clickAllowContactPermission() throws InterruptedException {
+        Elements.click(driver, contactsPermission,"Click OK on contact permission popup");
+
+}
 
 
 }
