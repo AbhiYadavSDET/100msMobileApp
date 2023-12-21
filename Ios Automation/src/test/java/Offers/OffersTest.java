@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class OffersTest extends TestBase {
 
-    @Test(groups = {"offersFlow"}, priority = 0, description = "Verify Login Flow on Ios app")
+    @Test(groups = {"offersFlow", "regression"}, priority = 0, description = "Verify Login Flow on Ios app")
     public void Test_Login_Flow_Ios() throws InterruptedException, IOException {
 
         Log.info("======= START : Offers test =======");

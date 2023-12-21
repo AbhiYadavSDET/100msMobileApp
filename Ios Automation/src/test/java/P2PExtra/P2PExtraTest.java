@@ -4,19 +4,24 @@ import Helpers.LoginHelper;
 import Helpers.P2PExtraHelper;
 import Logger.Log;
 import Utils.TestBase;
+import io.appium.java_client.ios.IOSDriver;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 
 public class P2PExtraTest extends TestBase {
 
-    @Test(groups = {"p2pXtraNewUser"}, priority = 0, description = "Verify Xtra :New User Flow Journey")
+    @Test(groups = {"p2pXtraNewUser", "regression"}, priority = 0, description = "Verify Xtra :New User Flow Journey")
     public void Test_Xtra_New_User_In_XTRA() throws InterruptedException, IOException {
 
         Log.info("======= START : XTRA - NEW USER flow test with no kYC=======");
-        // Start the test
+
+        Log.info("======= START : Login test =======");
+
         LoginHelper loginHelp = new LoginHelper(getIosDriver());
         loginHelp.loginViaOtp("9205299330", "547372");
+
+        Log.info("======= END : Login test =======");
 
         P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getIosDriver());
         p2PExtraHelper.newUserFlow("Complete your KYC");
@@ -33,13 +38,57 @@ public class P2PExtraTest extends TestBase {
         Log.info("======= START : XTRA - Refer & Earn  flow =======");
 
         // Start the test
+        Log.info("======= START : Login test =======");
+
         LoginHelper loginHelp = new LoginHelper(getIosDriver());
         loginHelp.loginViaOtp("7795709569", "547372");
+
+        Log.info("======= END : Login test =======");
 
         P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getIosDriver());
         p2PExtraHelper.referAndEarnFlow("Know More");
 
         Log.info("======= END : XTRA - Refer & Earn flow =======");
+
+    }
+
+
+
+    @Test(groups = {"p2pXtraWithdraw", "sanity", "sanityPrime", "regression"}, priority = 0, description = "Verify Withdraw Money")
+    public void Test_Xtra_Withdraw_Money() throws InterruptedException, IOException {
+
+        Log.info("======= START : p2p Xtra Withdraw Flexi =======");
+
+        Log.info("======= START : Login test =======");
+
+        LoginHelper loginHelp = new LoginHelper(getIosDriver());
+        loginHelp.loginViaOtp("7795709569", "547372");
+
+        Log.info("======= END : Login test =======");
+
+        P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getIosDriver());
+        p2PExtraHelper.withdraw("1", "₹1", "Withdrawal request placed successfully", "Please wait for the below request to be processed", "Withdrawal in progress", "₹1");
+
+        Log.info("======= END : p2p Xtra Withdraw Flexi =======");
+
+
+    }
+
+
+
+    @Test(groups = {"p2pXtraDefaultBankAccount", "sanity", "sanityPrime", "regression"}, priority = 0, description = "Verify Xtra  f  : Check Default Bank Account from settings option")
+    public void Test_Xtra_Default_bank_account() throws InterruptedException, IOException {
+
+        Log.info("======= START : XTRA - Default Account flow from Settings Option=======");
+
+        // Start the test
+        LoginHelper loginHelp = new LoginHelper(getIosDriver());
+        loginHelp.loginViaOtp("7795709569", "547372");
+
+        P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getIosDriver());
+        p2PExtraHelper.setDefaultBankAccountFlow("Default Bank Account");
+
+        Log.info("======= END : XTRA - Default Account flow  =======");
 
     }
 

@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class Test_AccountAggregator extends TestBase {
 
-    @Test(groups = {"AADashboard"}, priority = 1, description = "Verify Account aggregator Dashboard")
+    @Test(groups = {"AADashboard", "regression"}, priority = 1, description = "Verify Account aggregator Dashboard")
 
     public void Test01_existing_User_Dashboard() throws InterruptedException, IOException {
 
@@ -29,7 +29,7 @@ public class Test_AccountAggregator extends TestBase {
 
     }
 
-    @Test(groups = {"AADashboard"}, priority = 1, description = "Verify Monthly summary")
+    @Test(groups = {"AADashboard", "regression"}, priority = 1, description = "Verify Monthly summary")
     public void Test02_existing_User_MonthlySummery() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getIosDriver());
@@ -41,7 +41,7 @@ public class Test_AccountAggregator extends TestBase {
 
     }
 
-    @Test(groups = {"AADashboard"}, priority = 1, description = "Verify Analyser")
+    @Test(groups = {"AADashboard", "regression"}, priority = 1, description = "Verify Analyser")
     public void Test03_existing_User_Analyser() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getIosDriver());

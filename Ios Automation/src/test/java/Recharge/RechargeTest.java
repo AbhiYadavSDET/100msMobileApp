@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class RechargeTest extends TestBase {
 
-    @Test(groups = {"RechargeFlow"}, priority = 0, description = "Verify Prepaid recharge Flow on Ios app")
+    @Test(groups = {"RechargeFlow", "regression"}, priority = 0, description = "Verify Prepaid recharge Flow on Ios app")
 
     public void Test_Prepaid_Recharge_Flow() throws InterruptedException, IOException {
 
@@ -30,7 +30,7 @@ public class RechargeTest extends TestBase {
 
     }
 
-    @Test(groups = {"RechargeFlow"}, priority = 1, description = "Verify postpaid recharge Flow on Ios app")
+    @Test(groups = {"RechargeFlow", "regression"}, priority = 1, description = "Verify postpaid recharge Flow on Ios app")
 
     public void Test_Postpaid_Recharge_Flow() throws InterruptedException, IOException {
 
