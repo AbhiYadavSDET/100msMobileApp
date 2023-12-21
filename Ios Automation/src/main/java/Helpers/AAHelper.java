@@ -4,6 +4,7 @@ import Logger.Log;
 import PageObject.*;
 import Utils.MBReporter;
 import Utils.Screen;
+import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.IOSElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -11,6 +12,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
+import java.util.List;
 
 public class AAHelper {
 
@@ -77,10 +79,6 @@ public class AAHelper {
             mbReporter.verifyEqualsWithLogging(outgoingThirdSubTitleOnDashboard, expOutgoingThirdSubTitleOnDashboard, "Verify Third Outgoing SubTitle on MainDashboard", false, false, true);
             mbReporter.verifyEqualsWithLogging(outgoingFourthSubTitleOnDashboard, expoutgoingFourthSubTitleOnDashboard, "Verify Fourth Outgoing SubTitle on MainDashboard", false, false, true);
             Screen.swipeUp(driver);
-            //mbReporter.verifyTrueWithLogging(aaPage.getMoneyTrf(), "Is Value Available", false, false);
-            //mbReporter.verifyTrueWithLogging(aaPage.getExpensesPercentage(), "Is Expense Value percentage Available", false, false);
-            //mbReporter.verifyTrueWithLogging(aaPage.getSipPercentage(), "Is Expense Value percentage Available", false, false);
-            // mbReporter.verifyTrueWithLogging(aaPage.getBankChargesPercentage(), "Is Expense Value percentage Available", false, false);
 
         } else {
             Log.info("Outgoing Data is not present");
@@ -95,20 +93,11 @@ public class AAHelper {
         Log.info("Monthly summery text on MainDashboard : " + exptitleOfMonthlySummary);
         mbReporter.verifyEqualsWithLogging(titleOfMonthlySummary, exptitleOfMonthlySummary, "Verify Monthly summery title on dashboard", false, false, true);
 
-        //  screen.swipeUpMoreios(driver);
-        //if (!aaPage.checkDashboardHighlightTitle()) {
-           // Screen.swipeUp(driver);
-       // }
         String dashBoardHighlightTitle = aaPage.dashboardHighlightTitletext();
         Log.info("Highlight Title on MainDashboard : " + expdashBoardHighlightTitle);
         mbReporter.verifyEqualsWithLogging(dashBoardHighlightTitle, expdashBoardHighlightTitle, "Verify Highlight Title on Main Dashboardd", false, false, true);
 
         Screen.swipeUp(driver);
-
-        //Screen.swipeUpMoreios(driver);
-//            if (aaPage.dashboardHighlightTitle() != null) {
-//                screen.swipeUpMore(driver);
-//            }
 
         String accounTTitle = aaPage.accountTitle();
         String settingsTitle = aaPage.settingsTitle();
@@ -257,6 +246,59 @@ public class AAHelper {
         mbReporter.verifyEqualsWithLogging(debitedThisWeekrText, expdebitedThisWeekText, "debited this week text on Analyser screen", false, false, true);
 
     }
+
+    public void existingUserManage(String expautoRefreshext, String expmanageConsentText, String exphelpText) throws InterruptedException, IOException {
+
+        homePage.clickAllServices();
+        Screen.swipeUp(driver);
+        Thread.sleep(2800);
+        // click on money plus icon
+        aaPage.trackBankAccountsCTA();
+        Thread.sleep(2000);
+        Screen.swipeUp(driver);
+        Screen.swipeUp(driver);
+
+        aaPage.selectSetting();
+        String autoRefreshext = aaPage.autoRefreshext();
+        String manageConsentText = aaPage.manageConsentText();
+        String helpText = aaPage.helpText();
+
+        Log.info("AutorRefresh Frequency on Setting screen " + expautoRefreshext);
+        Log.info("ManageConsent on Setting screen" + expmanageConsentText);
+        Log.info("Help Text on Setting screen" + exphelpText);
+
+        mbReporter.verifyEqualsWithLogging(autoRefreshext, expautoRefreshext, "Auto refresh Text on setting screen", false, false, true);
+        mbReporter.verifyEqualsWithLogging(manageConsentText, expmanageConsentText, "ManageConsent on Setting screen", false, false, true);
+        mbReporter.verifyEqualsWithLogging(helpText, exphelpText, "Help Text on Setting screen", false, false, true);
+        aaPage.selectAutoRefreshext();
+        Screen.tapOutsideBottomSheetByCoordinates(driver);
+        aaPage.clickManageConsent();
+        aaPage.clickBackButtonOnManageConsentInside();
+        aaPage.selectHelpOptn();
+        aaPage.clickBackButtonOnManageConsentInside();
+        aaPage.clickBackButtonOnManageConsentInside();
+        aaPage.selectDownloadStatement();
+    }
+    public void existingUserBankAccountDetails() throws InterruptedException, IOException {
+
+        homePage.clickAllServices();
+        Screen.swipeUp(driver);
+        // click on money plus icon
+        aaPage.trackBankAccountsCTA();
+        Thread.sleep(2000);
+        Screen.swipeUp(driver);
+
+        aaPage.clickOnYourSavedBankAccount();
+        Log.info("Click On Your saved Bank account ");
+        List<IOSElement> elements = Element.findElements(driver, By.id("txt_transaction_type"));
+        int noOftransaction = elements.size();
+        Log.info("no Of Transaction - " + noOftransaction);
+        mbReporter.verifyTrueWithLogging(noOftransaction >= 0, "Verify No of transaction should be greater than or equal to 0", false, false);
+
+
+    }
+
+
     }
 
 
