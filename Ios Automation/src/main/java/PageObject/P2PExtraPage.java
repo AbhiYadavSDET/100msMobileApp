@@ -1,11 +1,16 @@
 package PageObject;
 
 import Utils.Elements;
+import groovy.transform.ImmutableOptions;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.IOSElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
+import org.apache.groovy.json.internal.IO;
 import org.openqa.selenium.support.PageFactory;
+
+import javax.imageio.spi.IIOServiceProvider;
+
 public class P2PExtraPage {
 
     IOSDriver driver;
@@ -68,12 +73,47 @@ public class P2PExtraPage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Know more\"]")
     private IOSElement know_more_btn;
 
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Refer & earn ₹250 + 10%\"]")
+    private IOSElement refer_page_title;
+
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Settings\"]")
     private IOSElement settings_optn;
 
     @iOSXCUITFindBy(id = "OK")
     private IOSElement contactsPermission;
 
+    @iOSXCUITFindBy(id = "Nominee")
+    private IOSElement nominee_optn;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"NOMINEE DETAILS\"]")
+    private IOSElement nominee_details;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Invest More\"]")
+    private IOSElement invest_more_btn;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Invest Now\"]")
+    private IOSElement invest_now_btn;
+
+    @iOSXCUITFindBy(id = "Net Banking")
+    private IOSElement net_banking_optn;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[4]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeButton[6]")
+    private IOSElement axis_bank_optn;
+
+    @iOSXCUITFindBy(id = "Allow While Using App")
+    private IOSElement loc_popup;
+
+    @iOSXCUITFindBy(id = "OK")
+    private IOSElement ok_optn;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Payment Gateway\"]")
+    private IOSElement payments_page;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton\n")
+    private IOSElement plus_tab;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Proceed to pay\"]")
+    private IOSElement proceed_to_pay_btn;
 
 
     public P2PExtraPage(IOSDriver driver) {
@@ -160,7 +200,11 @@ public class P2PExtraPage {
     }
 
     public String getReferPageTitle() throws InterruptedException {
-        return Elements.getText(driver, know_more_btn);
+        return Elements.getText(driver, refer_page_title);
+    }
+
+    public void clickKnowMoreOptn() throws InterruptedException {
+        Elements.click(driver, know_more_btn, "Click on Know More");
     }
 
     public boolean checkSettingOptn() throws InterruptedException {
@@ -173,8 +217,58 @@ public class P2PExtraPage {
 
     public void clickAllowContactPermission() throws InterruptedException {
         Elements.click(driver, contactsPermission,"Click OK on contact permission popup");
+    }
 
-}
+    public void clickNomineeOptn()  {
+        Elements.click(driver, nominee_optn, "Click on Nominee Option");
+    }
 
+    public String getNomineeName() throws InterruptedException {
+       return Elements.getText(driver, nominee_details);
+    }
+
+    public void clickInvestMoreBtn() {
+        Elements.click(driver, invest_more_btn, "Click on Invest More Button");
+    }
+
+    public void clickInvestNowBtn() {
+        Elements.click(driver, invest_now_btn, "Click on Invest Now Button");
+    }
+
+    public void clickNetBanking() {
+        Elements.click(driver, net_banking_optn, "Click on Net Banking");
+    }
+
+    public boolean checkNetBankingOptn() throws InterruptedException {
+        return Elements.isElementPresent(driver, net_banking_optn);
+    }
+
+    public void clickAxisBankOptn() {
+        Elements.click(driver, axis_bank_optn, "Click on Axis Bank");
+    }
+
+    public boolean checkLocationpopup() throws InterruptedException {
+        return Elements.isElementPresent(driver, loc_popup);
+    }
+
+    public void clickAllow() {
+        Elements.click(driver, loc_popup, "Click on Allow while Using App");
+    }
+
+    public void clickOK() {
+        Elements.click(driver, ok_optn, "Click on Ok");
+    }
+
+    public String getTitle() throws InterruptedException {
+        return Elements.getText(driver, payments_page,"Get Title on Payments Page");
+    }
+
+    public void clickPlus() {
+        Elements.click(driver, plus_tab, "Click on Plus");
+    }
+
+    public void clickProceedToPayBtn() {
+        Elements.click(driver, proceed_to_pay_btn, "Click on Proceed to Pay");
+    }
 
 }

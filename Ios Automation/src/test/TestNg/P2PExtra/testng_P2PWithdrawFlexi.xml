@@ -11,7 +11,7 @@
         <groups>
             <run>
                 <include name="setUp"/>
-                <include name="p2pXtraWithdraw"/>
+                <include name="p2pXtraInvestInFixed"/>
                 <include name="tearDown"/>
 
             </run>
