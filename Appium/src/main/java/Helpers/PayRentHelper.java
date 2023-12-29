@@ -265,20 +265,20 @@ public class PayRentHelper {
             //click on Use Upi
             payRentPage.clickUseUpi();
 
+            //Enter Rent Amount
+            payRentPage.clickFive();
+            payRentPage.clickZero();
+
             //verify recipient name
             String recipientName = payRentPage.getTransaferToName();
             Log.info("Recipient Name : " + recipientName);
             mbReporter.verifyEqualsWithLogging(recipientName, expRecipientName, "Verify Landlord Name", false, false, true);
 
-            //Enter Rent Amount
-            payRentPage.clickFive();
-            payRentPage.clickZero();
-
-            //Click on Continue button
-            payRentPage.clickCnButton();
-
-            //Click on Continue button
-            payRentPage.clickCtaButton();
+//            //Click on Continue button
+//            payRentPage.clickCnButton();
+//
+//            //Click on Continue button
+//            payRentPage.clickCtaButton();
 
         }
 
