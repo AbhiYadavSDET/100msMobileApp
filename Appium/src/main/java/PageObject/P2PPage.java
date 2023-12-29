@@ -66,6 +66,10 @@ public class P2PPage {
         Elements.selectElement(driver, p2pButton, "P2P Button");
     }
 
+    public boolean checkP2PButton() throws InterruptedException {
+        Elements.isElementPresent(driver, p2pButton);
+    }
+
     public void enterMobileNo(String mobileNo) {
         Elements.enterToElement(driver, mobileNoTextBox, mobileNo, "Mobile No.");
     }

@@ -58,6 +58,10 @@ public class P2PHelper {
         //screen.swipeUpMore(driver);
 
         // Click on Wallet to Wallet Transfer
+        if(!p2PPage.checkP2PButton()) {
+            screen.swipeUpMore(driver);
+        }
+
         p2PPage.clickP2PButton();
 
         // Enter Mobile No
