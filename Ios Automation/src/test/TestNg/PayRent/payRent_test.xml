@@ -13,9 +13,8 @@
                 <include name="setUp"/>
                 <include name="instantiateHelpers"/>
                 <include name="payRentWithPanCardFlow"/>
-
-             <!--   <include name="payRentOldUserFlow"/>
-                <include name="payRentNewUserFlow"/>-->
+                <include name="payRentOldUserFlow"/>
+                <include name="payRentNewUserFlow"/>
 
                 <include name="tearDown"/>
             </run>

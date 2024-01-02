@@ -19,7 +19,7 @@ public class PayRentTest extends TestBase {
         Log.info("======= START : Login test =======");
 
         LoginHelper loginHelp = new LoginHelper(getIosDriver());
-        loginHelp.loginViaOtp("7795709569", "547372");
+        loginHelp.loginViaOtp("8076595767", "547372");
 
         Log.info("======= END : Login test =======");
 
@@ -38,7 +38,7 @@ public class PayRentTest extends TestBase {
         Log.info("======= START : Login test =======");
 
         LoginHelper loginHelp = new LoginHelper(getIosDriver());
-        loginHelp.loginViaOtp("7795709569", "547372");
+        loginHelp.loginViaOtp("8076595767", "547372");
 
         Log.info("======= END : Login test =======");
 
@@ -56,7 +56,7 @@ public class PayRentTest extends TestBase {
         Log.info("======= START : Login test =======");
 
         LoginHelper loginHelp = new LoginHelper(getIosDriver());
-        loginHelp.loginViaOtp("7795709569", "547372");
+        loginHelp.loginViaOtp("8076595767", "547372");
 
         Log.info("======= END : Login test =======");
 
