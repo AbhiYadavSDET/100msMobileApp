@@ -50,6 +50,16 @@ public class PayRentPage {
     private IOSElement landLordPanNumber;
 
 
+    public IOSElement getRentDetails() {
+        return rentDetails;
+    }
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Rent Details\"]")
+    private IOSElement rentDetails;
+
+
+
+
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Apply coupon\"]")
     private IOSElement applyCouponbutton;
 
@@ -98,6 +108,9 @@ public class PayRentPage {
     }
 
     public void clickOnLandLordPanNumber() { Elements.click(driver, landLordPanNumber, "Click on landlord pan ");   }
+
+    public void clickOnRentDetails() { Elements.click(driver, landLordPanNumber, "Click on landlord pan ");   }
+
 
     public void enterLandLordPanNumber(String panNumber) {
         Elements.enterToElement(driver, landLordPanNumber, panNumber,"Entered landlord pan number amount = "+panNumber);

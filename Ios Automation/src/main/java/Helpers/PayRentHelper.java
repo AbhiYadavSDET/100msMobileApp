@@ -48,6 +48,7 @@ public class PayRentHelper {
             payRentPage.enterLandLordName(name);
             payRentPage.clickOnRentAmount();
             payRentPage.enterRentAmount(amount);
+            payRentPage.clickOnRentDetails();
             payRentPage.clickOnContinueBUttonOnLandlordPage();
         } else {
 
@@ -73,6 +74,7 @@ public class PayRentHelper {
                 payRentPage.enterLandLordName(name);
                 payRentPage.clickOnRentAmount();
                 payRentPage.enterRentAmount(amount);
+                payRentPage.clickOnRentDetails();
                 payRentPage.clickOnContinueBUttonOnLandlordPage();
             } else {
                 Log.info("This is an old user, so skipping this test case");
@@ -111,6 +113,7 @@ public class PayRentHelper {
         }else{
             Log.info("Pan card option is not available for this user or rent amount is less than 50000 Rs.");
         }
+        payRentPage.clickOnRentDetails();
         payRentPage.clickOnContinueBUttonOnLandlordPage();
     }
 
