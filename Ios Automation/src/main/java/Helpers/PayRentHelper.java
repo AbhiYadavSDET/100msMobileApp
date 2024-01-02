@@ -2,7 +2,6 @@ package Helpers;
 
 import Logger.Log;
 import PageObject.HomePage;
-import PageObject.P2PExtraPage;
 import PageObject.PayRentPage;
 import Utils.Element;
 import Utils.MBReporter;
@@ -40,6 +39,7 @@ public class PayRentHelper {
 
             payRentPage.enterBankAccountNumber(accountNumber);
             payRentPage.clickOnIfscCode();
+            Thread.sleep(2000);
             payRentPage.enterIfscCode(ifscCode);
 
             payRentPage.clickOnContinuebuttonOnAccountpage();
@@ -94,6 +94,7 @@ public class PayRentHelper {
 
         payRentPage.enterBankAccountNumber(accountNumber);
         payRentPage.clickOnIfscCode();
+
         payRentPage.enterIfscCode(ifscCode);
 
         payRentPage.clickOnContinuebuttonOnAccountpage();

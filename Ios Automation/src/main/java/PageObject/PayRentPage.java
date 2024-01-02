@@ -70,8 +70,8 @@ public class PayRentPage {
 
     public void clickOnIfscCode() { Elements.click(driver, ifscCode, "Click on Ifsc Code");   }
 
-    public void enterIfscCode(String ifscCode) {
-        Elements.enterToElement(driver, bankAccountNumber, ifscCode,"Entered IFDC code number = "+ifscCode);
+    public void enterIfscCode(String code) {
+        Elements.enterToElement(driver, ifscCode, code,"Entered IFDC code number = "+code);
     }
 
     public void clickOnContinuebuttonOnAccountpage() { Elements.click(driver, continueButtonOnAccountPage, "Click on continue button");   }
