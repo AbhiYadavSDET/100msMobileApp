@@ -67,7 +67,7 @@ public class P2PPage {
     }
 
     public boolean checkP2PButton() throws InterruptedException {
-        Elements.isElementPresent(driver, p2pButton);
+       return Elements.isElementPresent(driver, p2pButton);
     }
 
     public void enterMobileNo(String mobileNo) {
