@@ -30,6 +30,12 @@ public class PayRentPage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeTextField[@name=\"IFSC Code\"]")
     private IOSElement findIfscCode;
 
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Account Details\"]")
+    private IOSElement accountDetailsText;
+
+
+
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Continue\"]")
     private IOSElement continueButtonOnAccountPage;
 
@@ -71,12 +77,15 @@ public class PayRentPage {
     public void clickOnIfscCode() { Elements.click(driver, ifscCode, "Click on Ifsc Code");   }
 
     public void enterIfscCode(String code) {
-        Elements.enterToElement(driver, ifscCode, code,"Entered IFDC code number = "+code);
+        Elements.enterToElement(driver, ifscCode, code,"Entered IFSC code number = "+code);
     }
+
+    public void clickOnAcccountDetails() { Elements.click(driver, accountDetailsText, "Click on Account details");   }
+
 
     public void clickOnContinuebuttonOnAccountpage() { Elements.click(driver, continueButtonOnAccountPage, "Click on continue button");   }
 
-    public void clickOnLandlordName() { Elements.click(driver, landlordName, "Click on landlord name option");   }
+  //  public void clickOnLandlordName() { Elements.click(driver, landlordName, "Click on landlord name option");   }
 
     public void enterLandLordName(String landLord) {
         Elements.enterToElement(driver, landlordName, landLord,"Entered landLord name = "+landlordName);
@@ -141,6 +150,14 @@ public class PayRentPage {
 
     public IOSElement getContinueButtonOnLandlordPage() {
         return continueButtonOnLandlordPage;
+    }
+
+    public IOSElement getAccountDetailsText() {
+        return accountDetailsText;
+    }
+
+    public IOSElement getLandLordPanNumber() {
+        return landLordPanNumber;
     }
 
 }

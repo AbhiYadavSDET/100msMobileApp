@@ -41,6 +41,7 @@ public class PayRentHelper {
             payRentPage.clickOnIfscCode();
             Thread.sleep(2000);
             payRentPage.enterIfscCode(ifscCode);
+            payRentPage.clickOnAcccountDetails();
 
             payRentPage.clickOnContinuebuttonOnAccountpage();
 
@@ -65,6 +66,7 @@ public class PayRentHelper {
                 payRentPage.enterBankAccountNumber(accountNumber);
                 payRentPage.clickOnIfscCode();
                 payRentPage.enterIfscCode(ifscCode);
+                payRentPage.clickOnAcccountDetails();
 
                 payRentPage.clickOnContinuebuttonOnAccountpage();
 
@@ -93,9 +95,9 @@ public class PayRentHelper {
         }
 
         payRentPage.enterBankAccountNumber(accountNumber);
-        payRentPage.clickOnIfscCode();
 
         payRentPage.enterIfscCode(ifscCode);
+        payRentPage.clickOnAcccountDetails();
 
         payRentPage.clickOnContinuebuttonOnAccountpage();
 
@@ -120,3 +122,5 @@ public class PayRentHelper {
         }
 
     }
+
+
