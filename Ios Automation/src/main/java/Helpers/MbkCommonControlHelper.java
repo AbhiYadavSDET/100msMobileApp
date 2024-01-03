@@ -41,6 +41,11 @@ public class MbkCommonControlHelper {
             Screen.tapOutsideBottomSheetByCoordinates(driver);
         }
 
+        if(permissionPage.isZipBottomSheetShown()){
+            // Click outside zip bottom sheet
+            Screen.tapOutsideBottomSheetByCoordinates(driver);
+        }
+
         if(permissionPage.isEnablePasscodePopUpPresent()){
             // Click Later on Permission Pop Up
             permissionPage.clickOnLater();

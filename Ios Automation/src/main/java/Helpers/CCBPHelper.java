@@ -59,6 +59,10 @@ public class CCBPHelper {
             //Click on Add new Credit card
             ccbpPage.clickAddNewCreditCard();
         }
+        else{
+            //Click on Add card
+            ccbpPage.clickAddCard();
+        }
 
 //        Thread.sleep(3000);
 
