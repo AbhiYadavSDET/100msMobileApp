@@ -24,7 +24,7 @@ public class PipedGasTest extends TestBase {
         Log.info("======= START : View Electricity Bill test =======");
 
         PipedGasHelper pipedGasHelper = new PipedGasHelper(getIosDriver());
-        pipedGasHelper.viewPipedGasBill("Aavantika","21234", "PD01RNV1208","Mrs. Ratna  Sharma","Aavantika Gas Ltd.");
+        pipedGasHelper.viewPipedGasBill("Aavantika","21234", "PD01RNV1208","Mrs. Ratna  Sharma","Aavantika Gas Ltd.", "Payment Received for bill, no bills due");
         Log.info("======= END : Electricity Bill test =======");
 
     }
