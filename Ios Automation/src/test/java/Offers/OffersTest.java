@@ -16,7 +16,7 @@ public class OffersTest extends TestBase {
         Log.info("======= START : Offers test =======");
 
         LoginHelper loginHelper = new LoginHelper(getIosDriver());
-        loginHelper.loginViaOtp("8076595767", "547372");
+        loginHelper.loginViaOtp("9205299330", "547372");
 
         OffersHelper offersHelper = new OffersHelper(getIosDriver());
         offersHelper.offersVerify("Cleartrip");

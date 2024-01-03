@@ -3,11 +3,13 @@ package Helpers;
 import Logger.Log;
 import PageObject.HomePage;
 import PageObject.P2PExtraPage;
+import Utils.Elements;
 import Utils.MBReporter;
 import Utils.Screen;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.IOSElement;
+import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -24,6 +26,7 @@ public class P2PExtraHelper {
         this.driver = driver;
         homePage = new HomePage(driver);
         p2PExtraPage = new P2PExtraPage(driver);
+        mbReporter = new MBReporter(driver);
 
     }
 
@@ -41,21 +44,8 @@ public class P2PExtraHelper {
         // if (p2PExtraPage.isBottomSheetPresent()) p2PExtraPage.removeBottomSheet();
 
         //Click on Get Started button on XTRA Pitch Page
+        Thread.sleep(1000);
         p2PExtraPage.selectGetStarted();
-//
-//        //For NON-KYCED User Flow
-//        if (p2PExtraPage.isKYCBottomSheetPresent()) {
-//
-//            String Kyc_status_title = p2PExtraPage.getKycBottomsheetTitle();
-//            Log.info("KYC STATUS : " + Kyc_status_title);
-//
-//            // Add the assertions
-//            mbReporter.verifyEqualsWithLogging(Kyc_status_title, expTitle, "Verify New User Flow", false, false, true);
-//
-//            //Click Proceed button on Complete KYC bottomsheet
-//            //p2PExtraPage.selectProceedKYC();
-//
-//        }
 
     }
 
@@ -92,18 +82,12 @@ public class P2PExtraHelper {
             p2PExtraPage.clickOKFromPopup();
         }
 
-//        //Click on Earnings Table
-//        p2PExtraPage.clickEarningsTable();
-//
-//        //Click on back button
-//        p2PExtraPage.clickBackBtn();
-
+        p2PExtraPage.clickKnowMoreOptn();
         String actualTitle = p2PExtraPage.getReferPageTitle();
-        Log.info(actualTitle);
+        Log.info("TITLE : "+ actualTitle);
 
         // Add the assertions
         mbReporter.verifyEqualsWithLogging(actualTitle, expTitle, "Verify Refer & Earn Flow", false, false, true);
-
 
     }
 
@@ -152,7 +136,7 @@ public class P2PExtraHelper {
 
             p2PExtraPage.clickGotItOnInprogressCta();
 
-            mbReporter.verifyEqualsWithLogging(actualErrorMainTitle,expErrorMainTitle,"Withdrawl in Progress Bottomsheet ", false,true);
+            mbReporter.verifyEqualsWithLogging(actualErrorMainTitle,expErrorTitle,"Withdrawl in Progress Bottomsheet ", false,true);
 
         } else {
 
@@ -169,7 +153,7 @@ public class P2PExtraHelper {
 
 
 
-    public void setDefaultBankAccountFlow(String expSubTitle) throws InterruptedException, IOException {
+    public void setDefaultBankAccountFlow(String expSubTitle, String expectedNomineeName) throws InterruptedException, IOException {
 
         // Click on xtra icon on home page.
         homePage.clicktXtra();
@@ -186,9 +170,111 @@ public class P2PExtraHelper {
 
         p2PExtraPage.clickSettingOptn();
 
+        p2PExtraPage.clickNomineeOptn();
+
+        String actualNomineeName = p2PExtraPage.getNomineeName();
+        Log.info(actualNomineeName);
+
+        mbReporter.verifyEqualsWithLogging(actualNomineeName, expectedNomineeName, "Verify Title On Success Page", false, false,true);
+
 
 
     }
+
+
+
+
+    public void investInFlexi(String expTitle) throws InterruptedException, IOException {
+
+        // Click on xtra icon on home page.
+        homePage.clicktXtra();
+
+        // Click on Skip button
+        Thread.sleep(2000);
+        if(p2PExtraPage.checkSkipReminder()) p2PExtraPage.selectSkipReminder();
+
+        // Click on Invest More Button
+        p2PExtraPage.clickInvestMoreBtn();
+
+        // Click on Invest Now
+        p2PExtraPage.clickInvestNowBtn();
+
+        // Click on NetBanking
+        while(!p2PExtraPage.checkNetBankingOptn()){
+            Thread.sleep(1000);
+        }
+
+        p2PExtraPage.clickNetBanking();
+
+        // Click on Axis Bank
+        p2PExtraPage.clickAxisBankOptn();
+
+        // Click on Allow While Using App option if present
+        Thread.sleep(2000);
+
+//        while(!p2PExtraPage.checkLocationpopup()){
+//            Thread.sleep(1000);
+//
+//            if(p2PExtraPage.checkLocationpopup()){
+//
+//                p2PExtraPage.clickAllow();
+//
+//                Thread.sleep(1000);
+//
+//                p2PExtraPage.clickOK();
+//            }
+//        }
+        String actualTitle = p2PExtraPage.getTitle();
+        Log.info("TITLE : "+actualTitle);
+
+        mbReporter.verifyEqualsWithLogging(actualTitle, expTitle, "Verify Title On Payments Page", false, false,true);
+
+    }
+
+
+
+
+
+    public void investInFixed(String expTitle) throws InterruptedException, IOException {
+
+        // Click on xtra icon on home page.
+        homePage.clicktXtra();
+
+        // Click on Skip button
+        Thread.sleep(2000);
+        if(p2PExtraPage.checkSkipReminder()) p2PExtraPage.selectSkipReminder();
+
+        // Click on Plus Option
+        p2PExtraPage.clickPlus();
+
+        // Click on Invest More Button
+        p2PExtraPage.clickInvestMoreBtn();
+
+        // Click on Invest Now
+        p2PExtraPage.clickProceedToPayBtn();
+
+        // Click on NetBanking
+        while(!p2PExtraPage.checkNetBankingOptn()){
+            Thread.sleep(1000);
+        }
+
+        // Click on Netbanking
+        p2PExtraPage.clickNetBanking();
+
+        // Click on Axis Bank
+        p2PExtraPage.clickAxisBankOptn();
+
+        Thread.sleep(2000);
+
+        String actualTitle = p2PExtraPage.getTitle();
+        Log.info("TITLE : "+actualTitle);
+
+        mbReporter.verifyEqualsWithLogging(actualTitle, expTitle, "Verify Title On Payments Page", false, false,true);
+
+
+    }
+
+
 
 
 
