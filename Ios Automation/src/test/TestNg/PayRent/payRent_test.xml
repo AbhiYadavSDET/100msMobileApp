@@ -14,9 +14,10 @@
                 <include name="instantiateHelpers"/>
 
                 <include name="payRentFlow"/>
-              <!--  <include name="payRentWithPanCardFlow"/>
+         <!--       <include name="payRentWithPanCardFlow"/>
                 <include name="payRentOldUserFlow"/>
-                <include name="payRentNewUserFlow"/>-->
+                <include name="payRentNewUserFlow"/>
+                <include name="payRentFlow"/>-->
 
                 <include name="tearDown"/>
             </run>
@@ -30,3 +31,8 @@
     </test>
 
 </suite>
+
+
+
+
+
