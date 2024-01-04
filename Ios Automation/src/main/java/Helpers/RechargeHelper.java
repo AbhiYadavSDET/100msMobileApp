@@ -3,6 +3,7 @@ package Helpers;
 import Logger.Log;
 import PageObject.*;
 import Utils.MBReporter;
+import freemarker.template.utility.SecurityUtilities;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.IOSElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -20,6 +21,7 @@ public class RechargeHelper {
     RechargePage rechargePage;
     MBReporter mbReporter;
     HistoryPage historyPage;
+    SecurityPinPage securityPinPage;
 
     public RechargeHelper(IOSDriver driver) throws IOException {
         this.driver = driver;
@@ -30,6 +32,7 @@ public class RechargeHelper {
         mbkCommonControlHelper = new MbkCommonControlHelper(driver);
         mbReporter = new MBReporter(driver);
         historyPage = new HistoryPage(driver);
+        securityPinPage = new SecurityPinPage(driver);
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
@@ -137,6 +140,11 @@ public class RechargeHelper {
 
         //Click on Pay button
         rechargePage.clickOnPayButton();
+
+        if(securityPinPage.isSecurityPinPageShown())
+        {
+            securityPinPage.enterSecurityPin();
+        }
 
         Thread.sleep(2000);
 

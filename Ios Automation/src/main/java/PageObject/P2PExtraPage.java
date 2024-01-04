@@ -18,6 +18,9 @@ public class P2PExtraPage {
     @iOSXCUITFindBy(id = "Xtra")
     private IOSElement xtra_icon;
 
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[starts-with(@name,'Xtra')]")
+    private IOSElement xtraIconOnAllServices;
+
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Get started\"]")
     private IOSElement cta_invest;
 
@@ -270,5 +273,7 @@ public class P2PExtraPage {
     public void clickProceedToPayBtn() {
         Elements.click(driver, proceed_to_pay_btn, "Click on Proceed to Pay");
     }
+
+    public void clickOnXtraIcon() { Elements.click(driver, xtraIconOnAllServices, "Click on Xtra icon");}
 
 }
