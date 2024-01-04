@@ -12,7 +12,7 @@ public class P2MPage {
 
     AndroidDriver driver;
 
-    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Scan any QR']")
+    @AndroidFindBy(xpath = "//android.widget.FrameLayout[@resource-id=\"com.mobikwik_new.debug:id/navigation_zip\"]/android.widget.FrameLayout/android.widget.ImageView")
     private AndroidElement scanQrButton;
 
     @AndroidFindBy(id = "com.android.permissioncontroller:id/permission_allow_foreground_only_button")
