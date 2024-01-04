@@ -237,20 +237,28 @@ public class P2PExtraHelper {
 
     public void investInFixed(String expTitle) throws InterruptedException, IOException {
 
-        // Click on xtra icon on home page.
-        homePage.clicktXtra();
+
+        homePage.clickAllServices();
+
+        Screen.swipeUp(driver);
+
+        // Click on xtra icon under All services
+        p2PExtraPage.clickOnXtraIcon();
 
         // Click on Skip button
         Thread.sleep(2000);
         if(p2PExtraPage.checkSkipReminder()) p2PExtraPage.selectSkipReminder();
 
-        // Click on Plus Option
-        p2PExtraPage.clickPlus();
-
         // Click on Invest More Button
         p2PExtraPage.clickInvestMoreBtn();
 
-        // Click on Invest Now
+        // Click on Plus Option
+        p2PExtraPage.clickPlus();
+
+        //Click on Invest Now button
+        p2PExtraPage.clickInvestNowBtn();
+
+        // Click on Proceed to Pay button
         p2PExtraPage.clickProceedToPayBtn();
 
         // Click on NetBanking
