@@ -26,6 +26,12 @@ public class PayRentPage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Continue with Zip/Cards\"]")
     private IOSElement continueOnZip;
 
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeButton[1]")
+    private IOSElement deleteButton;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Delete Rent Details\"]")
+    private IOSElement delete;
+
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Add New Property\"]")
     private IOSElement addNewProperty;
 
@@ -77,6 +83,11 @@ public class PayRentPage {
     public void clickOnFaq() { Elements.click(driver, faq, "Click on FAQ option");   }
 
     public void clickOnContinueOnZip() { Elements.click(driver, continueOnZip, "Click on Continue on Zip");   }
+
+    public void clickOnDeleteButton() { Elements.click(driver, deleteButton, "Click on Delete button");   }
+
+    public void clickOnDelete() { Elements.click(driver, delete, "Click on Delete ");   }
+
 
     public void clickOnAddNewProperty() { Elements.click(driver, addNewProperty, "Click on add new property button");   }
 
@@ -142,6 +153,15 @@ public class PayRentPage {
 
     public IOSElement getContinueOnZip() {
         return continueOnZip;
+    }
+
+
+    public IOSElement getDeleteButton() {
+        return deleteButton;
+    }
+
+    public IOSElement getDelete() {
+        return delete;
     }
 
     public IOSElement getAddNewProperty() {

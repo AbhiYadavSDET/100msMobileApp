@@ -105,5 +105,24 @@ public class PayRentTest extends TestBase {
 
     }
 
+    @Test(groups = {"payRentFlow","deletOnPayRent","regression"}, priority = 4, description = "Verify Delete button on rent pay")
+    public void Test_PayRent_Delete_Recipient () throws InterruptedException, IOException {
+
+        Log.info("======= START : Pay rent - Verify Delete option on rent pay =======");
+
+        Log.info("======= START : Login test =======");
+
+        LoginHelper loginHelp = new LoginHelper(getIosDriver());
+        loginHelp.loginViaOtp("9205299330", "547372");
+
+        Log.info("======= END : Login test =======");
+
+        PayRentHelper payRentHelper = new PayRentHelper(getIosDriver());
+        payRentHelper.deleteRecipientOnRentPay();
+
+        Log.info("======= END : Pay rent - Verify Delete option on rent pay =======");
+
+    }
+
 
 }

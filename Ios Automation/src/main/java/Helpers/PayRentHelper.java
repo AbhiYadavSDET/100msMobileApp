@@ -156,6 +156,25 @@ public class PayRentHelper {
         }
              }
 
+
+
+    public void deleteRecipientOnRentPay() throws IOException, InterruptedException {
+
+        payRentPage.clickOnpayRent();
+        Thread.sleep(2000);
+
+        if (isNewUser()) {
+            payRentPage.clickOnContinueOnZip();
+            addNewPropertyNewUser("135701525113","ICIC0001431","Abhishek yadav","5000");
+
+        } else {
+            payRentPage.clickOnDeleteButton();
+            Thread.sleep(2000);
+            payRentPage.clickOnDelete();
+
+        }
+    }
+
     //Common method to check if user is new or old on pay rent module
     public  boolean isNewUser() throws InterruptedException, IOException{
 
