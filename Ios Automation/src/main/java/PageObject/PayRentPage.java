@@ -11,7 +11,6 @@ public class PayRentPage {
 
     IOSDriver driver;
 
-
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Pay Rent\"]")
     private IOSElement payRent;
 
@@ -30,11 +29,8 @@ public class PayRentPage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeTextField[@name=\"IFSC Code\"]")
     private IOSElement findIfscCode;
 
-
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Account Details\"]")
     private IOSElement accountDetailsText;
-
-
 
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Continue\"]")
     private IOSElement continueButtonOnAccountPage;
@@ -45,23 +41,21 @@ public class PayRentPage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeTextField[@name=\"Enter Rent Amount\"]")
     private IOSElement rentAmount;
 
-
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeTextField[@name=\"Landlord PAN\"]")
     private IOSElement landLordPanNumber;
-
-
-    public IOSElement getRentDetails() {
-        return rentDetails;
-    }
 
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Rent Details\"]")
     private IOSElement rentDetails;
 
-
-
-
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Apply coupon\"]")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton")
     private IOSElement applyCouponbutton;
+
+
+    //XCUIElementTypeApplication[@name="MobiKwik"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[3]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther
+
+    //XCUIElementTypeStaticText[@name="Apply"])[1]
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[3]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton")
+    private IOSElement couponCode;
 
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Continue\"]")
     private IOSElement continueButtonOnLandlordPage;
@@ -70,7 +64,6 @@ public class PayRentPage {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
-
     public void clickOnpayRent() { Elements.click(driver, payRent, "Click on Pay rent option");   }
 
     public void clickOnContinueOnZip() { Elements.click(driver, continueOnZip, "Click on Continue on Zip");   }
@@ -78,7 +71,6 @@ public class PayRentPage {
     public void clickOnAddNewProperty() { Elements.click(driver, addNewProperty, "Click on add new property button");   }
 
     public void clickOnBankAccountNumber() { Elements.click(driver, bankAccountNumber, "Click on Bank Account Number");   }
-
 
     public void enterBankAccountNumber(String accountNumber) {
         Elements.enterToElement(driver, bankAccountNumber, accountNumber,"Entered Bank account number = "+accountNumber);
@@ -92,25 +84,23 @@ public class PayRentPage {
 
     public void clickOnAcccountDetails() { Elements.click(driver, accountDetailsText, "Click on Account details");   }
 
-
     public void clickOnContinuebuttonOnAccountpage() { Elements.click(driver, continueButtonOnAccountPage, "Click on continue button");   }
 
   //  public void clickOnLandlordName() { Elements.click(driver, landlordName, "Click on landlord name option");   }
 
     public void enterLandLordName(String landLord) {
-        Elements.enterToElement(driver, landlordName, landLord,"Entered landLord name = "+landlordName);
+        Elements.enterToElement(driver, landlordName, landLord,"Entered landLord name = "+landLord);
     }
 
     public void clickOnRentAmount() { Elements.click(driver, rentAmount, "Click on Rent amount");   }
 
     public void enterRentAmount(String amount) {
-        Elements.enterToElement(driver, rentAmount, amount,"Entered rent amount = "+rentAmount);
+        Elements.enterToElement(driver, rentAmount, amount,"Entered rent amount = "+amount);
     }
 
     public void clickOnLandLordPanNumber() { Elements.click(driver, landLordPanNumber, "Click on landlord pan ");   }
 
-    public void clickOnRentDetails() { Elements.click(driver, landLordPanNumber, "Click on landlord pan ");   }
-
+    public void clickOnRentDetails() { Elements.click(driver, rentDetails, "Click on rent details ");   }
 
     public void enterLandLordPanNumber(String panNumber) {
         Elements.enterToElement(driver, landLordPanNumber, panNumber,"Entered landlord pan number amount = "+panNumber);
@@ -118,8 +108,9 @@ public class PayRentPage {
 
     public void clickOnApplyCouponbutton() { Elements.click(driver, applyCouponbutton, "Click on apply coupon button");   }
 
-    public void clickOnContinueBUttonOnLandlordPage() { Elements.click(driver, landlordName, "Click on continue button");   }
+    public void clickOnFirstCoupon() { Elements.click(driver, couponCode, "Click on first coupon code available");   }
 
+    public void clickOnContinueBUttonOnLandlordPage() { Elements.click(driver, continueButtonOnLandlordPage, "Click on continue button");   }
 
     public IOSElement getPayRent() {
         return payRent;
@@ -161,12 +152,22 @@ public class PayRentPage {
         return applyCouponbutton;
     }
 
+
+    public IOSElement getCouponCode() {
+        return couponCode;
+    }
+
+
     public IOSElement getContinueButtonOnLandlordPage() {
         return continueButtonOnLandlordPage;
     }
 
     public IOSElement getAccountDetailsText() {
         return accountDetailsText;
+    }
+
+    public IOSElement getRentDetails() {
+        return rentDetails;
     }
 
     public IOSElement getLandLordPanNumber() {

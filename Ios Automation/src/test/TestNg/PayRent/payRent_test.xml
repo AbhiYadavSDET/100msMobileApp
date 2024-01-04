@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Recharge Test">
+<suite name="Pay Rent Test">
 
     <parameter name="build" value="prod"/>
     <parameter name="level" value="payments"/>
     <parameter name="saucelabs" value="false"></parameter>
     <parameter name="androidOSVersion" value="12.0"></parameter>
 
-    <test verbose="2" preserve-order="true" name="Recharge Test">
+    <test verbose="2" preserve-order="true" name="Pay Rent Test">
         <groups>
             <run>
                 <include name="setUp"/>
                 <include name="instantiateHelpers"/>
-                <include name="payRentWithPanCardFlow"/>
+
+                <include name="payRentFlow"/>
+              <!--  <include name="payRentWithPanCardFlow"/>
                 <include name="payRentOldUserFlow"/>
-                <include name="payRentNewUserFlow"/>
+                <include name="payRentNewUserFlow"/>-->
 
                 <include name="tearDown"/>
             </run>
