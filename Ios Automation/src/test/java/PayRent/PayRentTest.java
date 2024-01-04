@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class PayRentTest extends TestBase {
 
- //  @Test(groups = {"payRentFlow","payRentOldUserFlow", "regression"}, priority = 0, description = "Verify Add new property on pay rent for Existing user")
+   @Test(groups = {"payRentFlow","payRentOldUserFlow", "regression"}, priority = 0, description = "Verify Add new property on pay rent for Existing user")
     public void Test_PayRent_Add_New_Property_Old_User() throws InterruptedException, IOException {
 
         Log.info("======= START : Pay rent - Add new property flow for old User =======");
@@ -30,7 +30,7 @@ public class PayRentTest extends TestBase {
 
     }
 
-  //  @Test(groups = {"payRentFlow","payRentNewUserFlow", "regression"}, priority = 1, description = "Verify Add new property on pay rent for new user")
+  @Test(groups = {"payRentFlow","payRentNewUserFlow", "regression"}, priority = 1, description = "Verify Add new property on pay rent for new user")
     public void Test_PayRent_Add_New_Property_New_User() throws InterruptedException, IOException {
 
         Log.info("======= START : Pay rent - Add new property flow for new User =======");
@@ -48,7 +48,7 @@ public class PayRentTest extends TestBase {
         Log.info("======= END : Pay rent - Add new property flow for new User =======");
 
     }
-  //  @Test(groups = {"payRentFlow","payRentWithPanCardFlow","regression"}, priority = 2, description = "Verify Add new property on pay rent with pan card entered")
+   @Test(groups = {"payRentFlow","payRentWithPanCardFlow","regression"}, priority = 2, description = "Verify Add new property on pay rent with pan card entered")
     public void Test_PayRent_Add_New_Property_WithPanCard() throws InterruptedException, IOException {
 
         Log.info("======= START : Pay rent - Verify Pan card option on rent pay =======");
