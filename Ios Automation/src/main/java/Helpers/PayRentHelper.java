@@ -49,7 +49,6 @@ public class PayRentHelper {
             Log.info("This is a new user, so skipping this test case");
         }
     }
-
     public void addNewPropertyNewUser(String accountNumber, String ifscCode, String name, String amount) throws IOException, InterruptedException
         {
             payRentPage.clickOnpayRent();
@@ -144,13 +143,25 @@ public class PayRentHelper {
         payRentPage.clickOnContinueBUttonOnLandlordPage();
     }
 
+    public void faqOnRentPay() throws IOException, InterruptedException {
+
+        payRentPage.clickOnpayRent();
+        Thread.sleep(2000);
+
+        if (isNewUser()) {
+            payRentPage.clickOnFaq();
+        } else {
+            payRentPage.clickOnSavedRecipient();
+            payRentPage.clickOnFaq();
+        }
+             }
+
     //Common method to check if user is new or old on pay rent module
     public  boolean isNewUser() throws InterruptedException, IOException{
 
-       return Element.isElementPresent(driver, By.xpath("//XCUIElementTypeStaticText[@name=\"Continue with Zip/Cards\"]")) ;
+        return Element.isElementPresent(driver, By.xpath("//XCUIElementTypeStaticText[@name=\"Continue with Zip/Cards\"]")) ;
 
-        }
-
+    }
     }
 
 

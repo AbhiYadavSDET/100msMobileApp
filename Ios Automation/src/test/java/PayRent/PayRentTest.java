@@ -86,5 +86,24 @@ public class PayRentTest extends TestBase {
 
     }
 
+    @Test(groups = {"payRentFlow","faqButtonOnPayRent","regression"}, priority = 4, description = "Verify faq button on rent pay")
+    public void Test_PayRent_FAQ () throws InterruptedException, IOException {
+
+        Log.info("======= START : Pay rent - Verify FAQ option on rent pay =======");
+
+        Log.info("======= START : Login test =======");
+
+        LoginHelper loginHelp = new LoginHelper(getIosDriver());
+        loginHelp.loginViaOtp("9205299330", "547372");
+
+        Log.info("======= END : Login test =======");
+
+        PayRentHelper payRentHelper = new PayRentHelper(getIosDriver());
+        payRentHelper.faqOnRentPay();
+
+        Log.info("======= END : Pay rent - Verify FAQ option on rent pay =======");
+
+    }
+
 
 }

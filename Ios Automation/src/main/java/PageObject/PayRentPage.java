@@ -14,6 +14,15 @@ public class PayRentPage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Pay Rent\"]")
     private IOSElement payRent;
 
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeButton[3]")
+    private IOSElement savedRecipient;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"FAQ\"]")
+    private IOSElement faq;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Rent Payment\"]")
+    private IOSElement rentPaymentText;
+
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Continue with Zip/Cards\"]")
     private IOSElement continueOnZip;
 
@@ -50,9 +59,6 @@ public class PayRentPage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton")
     private IOSElement applyCouponbutton;
 
-
-    //XCUIElementTypeApplication[@name="MobiKwik"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[3]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther
-
     //XCUIElementTypeStaticText[@name="Apply"])[1]
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[3]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton")
     private IOSElement couponCode;
@@ -65,6 +71,10 @@ public class PayRentPage {
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
     public void clickOnpayRent() { Elements.click(driver, payRent, "Click on Pay rent option");   }
+
+    public void clickOnSavedRecipient() { Elements.click(driver, savedRecipient, "Click on first saved recipient option");   }
+
+    public void clickOnFaq() { Elements.click(driver, faq, "Click on FAQ option");   }
 
     public void clickOnContinueOnZip() { Elements.click(driver, continueOnZip, "Click on Continue on Zip");   }
 
@@ -114,6 +124,20 @@ public class PayRentPage {
 
     public IOSElement getPayRent() {
         return payRent;
+    }
+
+
+
+    public IOSElement getFaq() {
+        return faq;
+    }
+
+    public IOSElement getRentPaymentText() {
+        return rentPaymentText;
+    }
+
+    public IOSElement getSavedRecipient() {
+        return savedRecipient;
     }
 
     public IOSElement getContinueOnZip() {
