@@ -15,10 +15,8 @@
             <run>
                 <include name="setUp"/>
                 <include name="instantiateHelpers"/>
-                <include name="test"/>
-                <include name="payRentviaCard"/>
-                <include name="payRentviaZip"/>
-                <include name="enableDisablePin"/>
+                <include name="p2mSendRecentMerchant"/>
+                <include name="p2pSend"/>
                 <include name="tearDown"/>
             </run>
         </groups>
@@ -26,8 +24,8 @@
 
         <classes>
             <class name="Utils.TestBase"/>
-            <class name="PayRent.PayRentTest"/>
-            <class name="SecurityPin.SecurityPinTest"/>
+            <class name="P2M.P2MTest"/>
+            <class name="P2P.P2PTest"/>
         </classes>
     </test>
 
