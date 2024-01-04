@@ -13,18 +13,15 @@ import java.io.IOException;
 
 public class PayRentHelper {
 
-
     IOSDriver<IOSElement> driver;
     HomePage homePage;
     PayRentPage payRentPage;
     MBReporter mbReporter;
 
-
     public PayRentHelper(IOSDriver driver) throws IOException {
         this.driver = driver;
         homePage = new HomePage(driver);
         payRentPage = new PayRentPage(driver);
-
     }
 
     public void addNewPropertyOldUser(String accountNumber, String ifscCode, String name, String amount) throws IOException, InterruptedException {
@@ -55,7 +52,6 @@ public class PayRentHelper {
 
     public void addNewPropertyNewUser(String accountNumber, String ifscCode, String name, String amount) throws IOException, InterruptedException
         {
-
             payRentPage.clickOnpayRent();
 
             if (isNewUser()) {
@@ -75,12 +71,9 @@ public class PayRentHelper {
                 payRentPage.clickOnContinueBUttonOnLandlordPage();
             } else {
                 Log.info("This is an old user, so skipping this test case");
-
-
         }
     }
     public void addNewPropertyNewUserWithPan(String accountNumber, String ifscCode, String name, String amount,String panNumber) throws IOException, InterruptedException {
-
 
         payRentPage.clickOnpayRent();
         Thread.sleep(2000);
@@ -101,7 +94,6 @@ public class PayRentHelper {
    //     payRentPage.clickOnRentAmount();
         payRentPage.enterRentAmount(amount);
 
-
         if (Element.isElementPresent(driver, By.xpath("//XCUIElementTypeTextField[@name=\"Landlord PAN\"]"))){
             payRentPage.clickOnLandLordPanNumber();
             payRentPage.enterLandLordPanNumber(panNumber);
@@ -115,9 +107,7 @@ public class PayRentHelper {
         payRentPage.clickOnContinueBUttonOnLandlordPage();
     }
 
-
     public void addNewPropertyNewUserWithCouponCode(String accountNumber, String ifscCode, String name, String amount,String panNumber) throws IOException, InterruptedException {
-
 
         payRentPage.clickOnpayRent();
         Thread.sleep(2000);
@@ -137,7 +127,6 @@ public class PayRentHelper {
         payRentPage.enterLandLordName(name);
         //     payRentPage.clickOnRentAmount();
         payRentPage.enterRentAmount(amount);
-
 
         if (Element.isElementPresent(driver, By.xpath("//XCUIElementTypeTextField[@name=\"Landlord PAN\"]"))){
             payRentPage.clickOnLandLordPanNumber();
