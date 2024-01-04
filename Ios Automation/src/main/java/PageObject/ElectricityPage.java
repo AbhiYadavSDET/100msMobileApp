@@ -1,5 +1,6 @@
 package PageObject;
 
+import Utils.Element;
 import Utils.Elements;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.IOSElement;
@@ -23,11 +24,15 @@ public class ElectricityPage {
     @iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[starts-with(@name, 'Kota Electricity')])[1]")
     private IOSElement savedElectricityConnection;
 
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"OK\"]")
+    private IOSElement billFetched;
+
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[starts-with(@name,'Pay')]")
     private IOSElement payButton;
 
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeStaticText[2]")
     private IOSElement userName;
+
 
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeStaticText[1]")
     private IOSElement title;
@@ -38,6 +43,8 @@ public class ElectricityPage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeStaticText[2]")
     private IOSElement totalBillPayment;
 
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText[1]")
+    private IOSElement message;
 
     public ElectricityPage(IOSDriver driver) {
         this.driver = driver;
@@ -61,7 +68,7 @@ public class ElectricityPage {
     public void clickSavedElectricityConnection() { Elements.click(driver, savedElectricityConnection, "Click on saved connection"); }
 
     public boolean isBillFetched() throws InterruptedException {
-        return Elements.isElementPresent(driver, payButton);
+        return Elements.isElementPresent(driver, billFetched);
     }
 
     public String getUserName() throws InterruptedException {
@@ -69,7 +76,7 @@ public class ElectricityPage {
     }
 
     public void clickPay(){
-        Elements.selectElement(driver, payButton,"Click on Pay button");
+        Elements.selectElement(driver, payButton,"Pay button");
     }
 
     public String getTitle() throws InterruptedException {
@@ -91,6 +98,10 @@ public class ElectricityPage {
     public void enterSearchElectricityBrand(String brandName) throws InterruptedException {
         //Elements.isElementPresent(driver, searchElectricityBrand);
         Elements.enterToElement(driver, searchElectricityBrand, brandName,"Enter Brand Name");
+    }
+
+    public String getMessage() throws InterruptedException {
+        return Elements.getText(driver, message);
     }
 
    /* public void clickSelectBrand(){

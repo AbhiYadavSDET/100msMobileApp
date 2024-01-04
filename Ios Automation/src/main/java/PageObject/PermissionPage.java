@@ -20,6 +20,9 @@ public class PermissionPage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Allow While Using App\"]")
     private IOSElement allowWhileUsingApp;
 
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[4]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]")
+    private IOSElement zipBottomSheet;
+
 
     public PermissionPage(IOSDriver driver) {
         this.driver = driver;
@@ -43,4 +46,8 @@ public class PermissionPage {
     }
 
     public void clickAllowWhileUsingApp() { Elements.selectElement(driver, allowWhileUsingApp, "Click Allow while using app Button");}
+
+    public boolean isZipBottomSheetShown() throws InterruptedException {
+        return Elements.isElementPresent(driver, zipBottomSheet);
+    }
 }

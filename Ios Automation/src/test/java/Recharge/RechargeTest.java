@@ -17,7 +17,7 @@ public class RechargeTest extends TestBase {
         Log.info("======= START : Login test =======");
 
         LoginHelper loginHelper = new LoginHelper(getIosDriver());
-        loginHelper.loginViaOtp("8076595767", "547372");
+        loginHelper.loginViaOtp("9205299330", "547372");
 
         Log.info("======= END : Login test =======");
 
@@ -37,7 +37,7 @@ public class RechargeTest extends TestBase {
         Log.info("======= START : Login test =======");
 
         LoginHelper loginHelper = new LoginHelper(getIosDriver());
-        loginHelper.loginViaOtp("8076595767", "547372");
+        loginHelper.loginViaOtp("9205299330", "547372");
 
         Log.info("======= END : Login test =======");
 

@@ -27,6 +27,9 @@ public class CCBPPage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther")
     private IOSElement addNewCreditCard;
 
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[starts-with(@name,'Add Card')]")
+    private IOSElement addCard;
+
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeButton")
     private IOSElement enterCreditCardNumber;
 
@@ -87,11 +90,18 @@ public class CCBPPage {
 
     public void closeEmailAccessBottomSheet() { Elements.click(driver, cross,"Click cross to close email access bottom sheet"); }
 
+    public void clickAddNewCreditCard() { Elements.click(driver, addNewCreditCard, "Click on Add new Credit card"); }
+
     public boolean isAddNewCreditCardShown() throws InterruptedException {
         return Elements.isElementPresent(driver, addNewCreditCard);
     }
 
-    public void clickAddNewCreditCard() { Elements.click(driver, addNewCreditCard, "Click on Add new Credit card"); }
+
+    public boolean isAddCardButtonShown() throws InterruptedException {
+        return Elements.isElementPresent(driver, addCard);
+    }
+
+    public void clickAddCard() { Elements.click(driver,addCard,"add card");}
 
     public void clickEnterCreditCardNumber() { Elements.click(driver, enterCreditCardNumber, "Click on Enter credit card number"); }
 

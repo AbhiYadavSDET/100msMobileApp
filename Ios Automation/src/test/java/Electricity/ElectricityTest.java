@@ -24,7 +24,7 @@ public class ElectricityTest extends TestBase {
             Log.info("======= START : View Electricity Bill test =======");
 
             ElectricityHelper electricityHelper = new ElectricityHelper(getIosDriver());
-            electricityHelper.viewElectricityBill("KOTA","21234", "210736016179","ANJANA  JAIN","Kota Electricity Distribution Limited (KEDL)");
+            electricityHelper.viewElectricityBill("KOTA","21234", "210736016179","ANJANA  JAIN","Kota Electricity Distribution Limited (KEDL)", "Payment received for the billing period, no bill due");
             Log.info("======= END : Electricity Bill test =======");
 
         }

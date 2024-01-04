@@ -46,7 +46,7 @@ public class P2PExtraTest extends TestBase {
         Log.info("======= END : Login test =======");
 
         P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getIosDriver());
-        p2PExtraHelper.referAndEarnFlow("Know More");
+        p2PExtraHelper.referAndEarnFlow("Refer & earn ₹250 + 10%");
 
         Log.info("======= END : XTRA - Refer & Earn flow =======");
 
@@ -86,9 +86,49 @@ public class P2PExtraTest extends TestBase {
         loginHelp.loginViaOtp("7795709569", "547372");
 
         P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getIosDriver());
-        p2PExtraHelper.setDefaultBankAccountFlow("Default Bank Account");
+        p2PExtraHelper.setDefaultBankAccountFlow("Default Bank Account","NOMINEE DETAILS");
 
         Log.info("======= END : XTRA - Default Account flow  =======");
+
+    }
+
+
+
+
+    @Test(groups = {"p2pXtraInvestInFlexi", "sanity", "sanityPrime", "regression"}, priority = 0, description = "Verify Invest in Flexi flow")
+    public void Test_Xtra_Invest_In_Flexi() throws InterruptedException, IOException {
+
+        Log.info("======= START : p2p XTRA-FLEXI Invest test =======");
+
+
+        // Start the test
+        LoginHelper loginHelp = new LoginHelper(getIosDriver());
+        loginHelp.loginViaOtp("7795709569", "547372");
+
+        P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getIosDriver());
+        p2PExtraHelper.investInFlexi("Payment Gateway");
+
+        Log.info("======= END : p2p Xtra-FLEXI test =======");
+
+    }
+
+
+
+
+    @Test(groups = {"p2pXtraInvestInFixed", "sanity", "sanityPrime", "regression"}, priority = 0, description = "Verify Invest in Fixed flow")
+    public void Test_Xtra_Invest_In_Fixed() throws InterruptedException, IOException {
+
+        Log.info("======= START : p2p XTRA-FIXED Invest test =======");
+
+
+        // Start the test
+        LoginHelper loginHelp = new LoginHelper(getIosDriver());
+        loginHelp.loginViaOtp("7795709569", "547372");
+
+        P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getIosDriver());
+        p2PExtraHelper.investInFixed("Payment Gateway");
+
+        Log.info("======= END : p2p XTRA-FIXED Invest test =======");
 
     }
 

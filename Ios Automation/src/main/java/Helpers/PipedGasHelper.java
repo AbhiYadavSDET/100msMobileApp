@@ -30,7 +30,7 @@ public class PipedGasHelper {
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
-    public void viewPipedGasBill(String brandName, String CA_number, String expTitle, String expUserName,String expSubTitle) throws InterruptedException, IOException {
+    public void viewPipedGasBill(String brandName, String CA_number, String expTitle, String expUserName,String expSubTitle, String expMessage) throws InterruptedException, IOException {
 
         //Click Recharge and Pay Bills option
         homePage.clickRechargeAndPayBills();
@@ -41,10 +41,12 @@ public class PipedGasHelper {
         //Click on Home services tab
         pipedGasPage.clickHomeServices();
 
+        Thread.sleep(2000);
+
         //Click on PipedGas option
         pipedGasPage.clickPipedGas();
 
-        Thread.sleep(3000);
+        Thread.sleep(2000);
 
         //Click on See More if present
         if(electricityPage.isSeeMorePresent()){
@@ -56,10 +58,10 @@ public class PipedGasHelper {
             pipedGasPage.clickSavedPipedGasConnection();
         }
 
-        Thread.sleep(5000);
+        Thread.sleep(3000);
 
         //Check Bill is fetched or not
-        if(electricityPage.isBillFetched()) {
+        if(!electricityPage.isBillFetched()) {
 
             // Verification on Enter amount screen
             String userName = electricityPage.getUserName();
@@ -84,6 +86,12 @@ public class PipedGasHelper {
 
 
         }else{
+
+            // Verification on Bill not fetched screen
+            String message = electricityPage.getMessage();
+            Log.info("Message on no bill due screen: " + message);
+            mbReporter.verifyEqualsWithLogging(message, expMessage, "Verify message on no bill due screen", false, false, true);
+
             Log.info("Bill not present for given Connection number");
         }
 
