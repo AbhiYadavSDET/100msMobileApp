@@ -50,6 +50,10 @@ public class HomePage {
         Elements.click(driver, xtra_icon, "Tap on xtra icon");
     }
 
+    public boolean isXtraIconPresent() throws InterruptedException {
+       return Elements.isElementPresent(driver, xtra_icon);
+    }
+
     public void clickRechargeAndPayBills() {
         Elements.click(driver, rechargeAndPayBills,"Click on Recharge & Pay Bills");
     }

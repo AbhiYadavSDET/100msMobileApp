@@ -56,8 +56,17 @@ public class P2PExtraHelper {
         Log.info("----------- Arguments ---------------");
         Log.info("Refer & Earn Flow");
 
-        // Click on xtra icon on home page.
-        homePage.clicktXtra();
+        if(homePage.isXtraIconPresent()) {
+            // Click on xtra icon on home page.
+            homePage.clicktXtra();
+        }
+        else {
+            homePage.clickAllServices();
+
+            Screen.swipeUp(driver);
+            // Click on xtra icon under All services
+            p2PExtraPage.clickOnXtraIcon();
+        }
 
         // Skip the daily SIP Reminder on XTRA Dashboard
         Thread.sleep(2000);
@@ -99,9 +108,17 @@ public class P2PExtraHelper {
         Log.info("----------- Arguments ---------------");
         Log.info("amount : " + amount);
 
-        // Click on xtra icon on home page.
-        homePage.clicktXtra();
+        if(homePage.isXtraIconPresent()) {
+            // Click on xtra icon on home page.
+            homePage.clicktXtra();
+        }
+        else {
+            homePage.clickAllServices();
 
+            Screen.swipeUp(driver);
+            // Click on xtra icon under All services
+            p2PExtraPage.clickOnXtraIcon();
+        }
         Thread.sleep(2000);
         if(p2PExtraPage.checkSkipReminder()) p2PExtraPage.selectSkipReminder();
 
@@ -155,8 +172,17 @@ public class P2PExtraHelper {
 
     public void setDefaultBankAccountFlow(String expSubTitle, String expectedNomineeName) throws InterruptedException, IOException {
 
-        // Click on xtra icon on home page.
-        homePage.clicktXtra();
+        if(homePage.isXtraIconPresent()) {
+            // Click on xtra icon on home page.
+            homePage.clicktXtra();
+        }
+        else {
+            homePage.clickAllServices();
+
+            Screen.swipeUp(driver);
+            // Click on xtra icon under All services
+            p2PExtraPage.clickOnXtraIcon();
+        }
 
         Thread.sleep(2000);
         if(p2PExtraPage.checkSkipReminder()) p2PExtraPage.selectSkipReminder();
@@ -186,9 +212,18 @@ public class P2PExtraHelper {
 
     public void investInFlexi(String expTitle) throws InterruptedException, IOException {
 
-        // Click on xtra icon on home page.
-        homePage.clicktXtra();
 
+        if(homePage.isXtraIconPresent()) {
+            // Click on xtra icon on home page.
+            homePage.clicktXtra();
+        }
+        else {
+            homePage.clickAllServices();
+
+            Screen.swipeUp(driver);
+            // Click on xtra icon under All services
+            p2PExtraPage.clickOnXtraIcon();
+        }
         // Click on Skip button
         Thread.sleep(2000);
         if(p2PExtraPage.checkSkipReminder()) p2PExtraPage.selectSkipReminder();
@@ -238,12 +273,17 @@ public class P2PExtraHelper {
     public void investInFixed(String expTitle) throws InterruptedException, IOException {
 
 
-        homePage.clickAllServices();
+        if(homePage.isXtraIconPresent()) {
+            // Click on xtra icon on home page.
+            homePage.clicktXtra();
+        }
+        else {
+            homePage.clickAllServices();
 
-        Screen.swipeUp(driver);
-
-        // Click on xtra icon under All services
-        p2PExtraPage.clickOnXtraIcon();
+            Screen.swipeUp(driver);
+            // Click on xtra icon under All services
+            p2PExtraPage.clickOnXtraIcon();
+        }
 
         // Click on Skip button
         Thread.sleep(2000);
