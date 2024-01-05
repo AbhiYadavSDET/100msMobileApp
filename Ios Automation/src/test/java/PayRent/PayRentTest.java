@@ -120,13 +120,12 @@ public class PayRentTest extends TestBase {
         payRentHelper.deleteRecipientOnRentPay();
 
         Log.info("======= END : Pay rent - Verify Delete option on rent pay =======");
-
     }
 
     @Test(groups = {"payRentFlow","payRentConvFeeVerify","regression"}, priority = 0, description = "Verify Conv fee calculation  on rent pay")
     public void Test_PayRent_ConvFee () throws InterruptedException, IOException {
 
-        Log.info("======= START : Pay rent - Verify Conv fee calculation  on rent pay =======");
+        Log.info("======= START : Pay rent - Verify Conv fee calculation on rent pay =======");
 
         Log.info("======= START : Login test =======");
 
@@ -138,7 +137,7 @@ public class PayRentTest extends TestBase {
         PayRentHelper payRentHelper = new PayRentHelper(getIosDriver());
         payRentHelper.verifyConvFeeOnPayRent("135701525113","ICIC0001437","Abhishek Yadav","5000");
 
-        Log.info("======= END : Verify Conv fee calculation  on rent pay=======");
+        Log.info("======= END : Verify Conv fee calculation on rent pay=======");
 
     }
 

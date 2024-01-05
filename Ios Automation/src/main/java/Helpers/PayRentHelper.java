@@ -23,6 +23,7 @@ public class PayRentHelper {
     Screen screen;
     String excpectedAmount = null;
     String actualAmount = null;
+    boolean isNewUserTestStarted;
 
 
     public PayRentHelper(IOSDriver driver) throws IOException {
@@ -39,6 +40,7 @@ public class PayRentHelper {
 
         if (payRentPage.isNewUser()) {
             Log.info("This is a new user flow on rent pay");
+            isNewUserTestStarted= true;
             payRentPage.clickOnContinueOnZip();
         }else{
             Log.info("This is a old user flow on rent pay");
@@ -52,19 +54,23 @@ public class PayRentHelper {
     }
     public void addNewPropertyNewUser(String accountNumber, String ifscCode, String name, String amount) throws IOException, InterruptedException
         {
-            clickOnPayRentOption();
+            if(!isNewUserTestStarted) {
+                clickOnPayRentOption();
 
-            if (payRentPage.isNewUser()) {
+                if (payRentPage.isNewUser()) {
 
-                Log.info("This is an new user flow on rent pay .. ");
+                    Log.info("This is an new user flow on rent pay .. ");
 
-                payRentPage.clickOnContinueOnZip();
-                addNewProperties(accountNumber,ifscCode,name,amount);
-        }else{
-                deleteAllRecipient();
+                    payRentPage.clickOnContinueOnZip();
+                    addNewProperties(accountNumber, ifscCode, name, amount);
+                } else {
+                    deleteAllRecipient();
 
-                payRentPage.clickOnContinueOnZip();
-                addNewProperties(accountNumber,ifscCode,name,amount);
+                    payRentPage.clickOnContinueOnZip();
+                    addNewProperties(accountNumber, ifscCode, name, amount);
+                }
+            }else{
+                Log.info("New user flow has been already tested for adding new property .. ");
             }
     }
 
