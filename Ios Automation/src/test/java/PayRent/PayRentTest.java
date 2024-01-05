@@ -123,7 +123,7 @@ public class PayRentTest extends TestBase {
 
     }
 
-    @Test(groups = {"payRentFlow","deletOnPayRent","regression"}, priority = 0, description = "Verify Conv fee calculation  on rent pay")
+    @Test(groups = {"payRentFlow","payRentConvFeeVerify","regression"}, priority = 0, description = "Verify Conv fee calculation  on rent pay")
     public void Test_PayRent_ConvFee () throws InterruptedException, IOException {
 
         Log.info("======= START : Pay rent - Verify Conv fee calculation  on rent pay =======");
