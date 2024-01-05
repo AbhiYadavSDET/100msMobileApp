@@ -123,4 +123,25 @@ public class PayRentTest extends TestBase {
 
     }
 
+    @Test(groups = {"payRentFlow","deletOnPayRent","regression"}, priority = 0, description = "Verify Conv fee calculation  on rent pay")
+    public void Test_PayRent_ConvFee () throws InterruptedException, IOException {
+
+        Log.info("======= START : Pay rent - Verify Conv fee calculation  on rent pay =======");
+
+        Log.info("======= START : Login test =======");
+
+        LoginHelper loginHelp = new LoginHelper(getIosDriver());
+        loginHelp.loginViaOtp("9205299330", "547372");
+
+        Log.info("======= END : Login test =======");
+
+        PayRentHelper payRentHelper = new PayRentHelper(getIosDriver());
+        payRentHelper.verifyConvFeeOnPayRent("135701525113","ICIC0001437","Abhishek Yadav","5000");
+
+        Log.info("======= END : Verify Conv fee calculation  on rent pay=======");
+
+    }
+
+
+
 }

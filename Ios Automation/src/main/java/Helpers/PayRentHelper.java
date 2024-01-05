@@ -67,6 +67,26 @@ public class PayRentHelper {
                 addNewProperties(accountNumber,ifscCode,name,amount);
             }
     }
+
+    public void verifyConvFeeOnPayRent(String accountNumber, String ifscCode, String name, String amount) throws IOException, InterruptedException {
+
+        clickOnPayRentOption();
+
+        if (payRentPage.isNewUser()) {
+            Log.info("This is a new user flow on rent pay");
+            payRentPage.clickOnContinueOnZip();
+        }else{
+            Log.info("This is a old user flow on rent pay");
+            payRentPage.clickOnAddNewProperty();
+        }
+
+        addNewProperties(accountNumber,ifscCode,name,amount);
+        mbReporter.verifyEqualsWithLogging(actualAmount, excpectedAmount, "Verify Conv fee  on Pay Rent", false, false, false);
+
+
+    }
+
+
     public void addNewPropertyNewUserWithPan(String accountNumber, String ifscCode, String name, String amount,String panNumber) throws IOException, InterruptedException {
 
         clickOnPayRentOption();
