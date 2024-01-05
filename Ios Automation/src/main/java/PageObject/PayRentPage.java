@@ -1,18 +1,21 @@
 package PageObject;
 
+import Utils.Element;
 import Utils.Elements;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.IOSElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
+
+import java.io.IOException;
 
 public class PayRentPage {
 
     IOSDriver driver;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Pay Rent\"]")
-    private IOSElement payRent;
+
 
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeButton[3]")
     private IOSElement savedRecipient;
@@ -72,11 +75,29 @@ public class PayRentPage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Continue\"]")
     private IOSElement continueButtonOnLandlordPage;
 
+   // @iOSXCUITFindBy(xpath = "(//XCUIElementTypeButton[starts-with(@name,'See More')])[1]")
+
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeButton[starts-with(@name,'Pay')])")
+    private IOSElement finalAmount;
+    //XCUIElementTypeButton[@name="Pay ₹5,118"])[2]
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther")
+    private IOSElement clickAnywhere;
+
+    @iOSXCUITFindBy(xpath = "/XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]")
+    private IOSElement backButtonFromTransaction;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]")
+    private IOSElement backButtonFromPitchScreen;
+
+
+
+//XCUIElementTypeApplication[@name="MobiKwik"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther
+
     public PayRentPage(IOSDriver driver) {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
-    public void clickOnpayRent() { Elements.click(driver, payRent, "Click on Pay rent option");   }
 
     public void clickOnSavedRecipient() { Elements.click(driver, savedRecipient, "Click on first saved recipient option");   }
 
@@ -131,13 +152,31 @@ public class PayRentPage {
 
     public void clickOnFirstCoupon() { Elements.click(driver, couponCode, "Click on first coupon code available");   }
 
-    public void clickOnContinueBUttonOnLandlordPage() { Elements.click(driver, continueButtonOnLandlordPage, "Click on continue button");   }
+    public void clickOnContinueButtonOnLandlordPage() { Elements.click(driver, continueButtonOnLandlordPage, "Click on continue button");   }
 
-    public IOSElement getPayRent() {
-        return payRent;
+    public String getFinalAmountOnCheckout() throws InterruptedException {
+        return Elements.getText(driver, finalAmount, "Final amount on checkout screen");
     }
 
+    public void pressBackFromTransaction() { Elements.click(driver, backButtonFromTransaction, "Click on back option on transaction page ");   }
 
+    public void pressBackFromPitchScreen() { Elements.click(driver, backButtonFromPitchScreen, "Click on back option on pitch screen");   }
+
+    public  boolean isNewUser() throws InterruptedException, IOException {
+
+        return Element.isElementPresent(driver, By.xpath("//XCUIElementTypeStaticText[@name=\"Continue with Zip/Cards\"]")) ;
+    }
+    public boolean isSavedRecipientAvailable() throws InterruptedException {
+        return Element.isElementPresent(driver, By.xpath("//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeButton[3]"));
+    }
+
+    public boolean isPayRentVisibleOnHomeScreen() throws InterruptedException {
+        return Element.isElementPresent(driver, By.xpath("//XCUIElementTypeStaticText[@name=\"Pay Rent\"]")) ;
+    }
+
+    public boolean isBckButtonAvailableOnPitchScreen() throws InterruptedException {
+        return Element.isElementPresent(driver, By.xpath("//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]")) ;
+    }
 
     public IOSElement getFaq() {
         return faq;
@@ -154,7 +193,6 @@ public class PayRentPage {
     public IOSElement getContinueOnZip() {
         return continueOnZip;
     }
-
 
     public IOSElement getDeleteButton() {
         return deleteButton;
@@ -206,6 +244,10 @@ public class PayRentPage {
         return continueButtonOnLandlordPage;
     }
 
+    public IOSElement getFinalAmount() {
+        return finalAmount;
+    }
+
     public IOSElement getAccountDetailsText() {
         return accountDetailsText;
     }
@@ -217,5 +259,18 @@ public class PayRentPage {
     public IOSElement getLandLordPanNumber() {
         return landLordPanNumber;
     }
+
+    public IOSElement getClickAnywhere() {
+        return clickAnywhere;
+    }
+    public IOSElement getBackButtonFromTransaction() {
+        return backButtonFromTransaction;
+    }
+
+    public IOSElement getBackButtonFromPitchScreen() {
+        return backButtonFromPitchScreen;
+    }
+
+
 
 }

@@ -12,7 +12,7 @@ import java.io.IOException;
 public class PayRentTest extends TestBase {
 
    @Test(groups = {"payRentFlow","payRentOldUserFlow", "regression"}, priority = 0, description = "Verify Add new property on pay rent for Existing user")
-    public void Test_PayRent_Add_New_Property_Old_User() throws InterruptedException, IOException {
+    public void Test_PayRent_Add_New_Property() throws InterruptedException, IOException {
 
         Log.info("======= START : Pay rent - Add new property flow for old User =======");
 
@@ -24,13 +24,12 @@ public class PayRentTest extends TestBase {
         Log.info("======= END : Login test =======");
 
         PayRentHelper payRentHelper = new PayRentHelper(getIosDriver());
-        payRentHelper.addNewPropertyOldUser("135701525113","ICIC0001437","Abhishek Yadav","5500");
+        payRentHelper.addNewPropertyOnPayRent("135701525110","ICIC0001437","Abhishek Yadav","5500");
 
         Log.info("======= END : Pay rent - Add new property flow for old User =======");
-
     }
 
-  @Test(groups = {"payRentFlow","payRentNewUserFlow", "regression"}, priority = 0, description = "Verify Add new property on pay rent for new user")
+ @Test(groups = {"payRentFlow","payRentNewUserFlow", "regression"}, priority = 0, description = "Verify Add new property on pay rent for new user")
     public void Test_PayRent_Add_New_Property_New_User() throws InterruptedException, IOException {
 
         Log.info("======= START : Pay rent - Add new property flow for new User =======");
@@ -48,7 +47,7 @@ public class PayRentTest extends TestBase {
         Log.info("======= END : Pay rent - Add new property flow for new User =======");
 
     }
-   @Test(groups = {"payRentFlow","payRentWithPanCardFlow","regression"}, priority = 0, description = "Verify Add new property on pay rent with pan card entered")
+  @Test(groups = {"payRentFlow","payRentWithPanCardFlow","regression"}, priority = 0, description = "Verify Add new property on pay rent with pan card entered")
     public void Test_PayRent_Add_New_Property_WithPanCard() throws InterruptedException, IOException {
 
         Log.info("======= START : Pay rent - Verify Pan card option on rent pay =======");
@@ -61,7 +60,7 @@ public class PayRentTest extends TestBase {
         Log.info("======= END : Login test =======");
 
         PayRentHelper payRentHelper = new PayRentHelper(getIosDriver());
-        payRentHelper.addNewPropertyNewUserWithPan("135701525113","ICIC0001437","Abhishek Yadav","55000","HTIPK1234M");
+        payRentHelper.addNewPropertyNewUserWithPan("135701525113","ICIC0001437","Abhishek Yadav","55000","FSMPP7878E");
 
         Log.info("======= END : Pay rent - Verify Pan card option on rent pay =======");
 
@@ -86,7 +85,7 @@ public class PayRentTest extends TestBase {
 
     }
 
-    @Test(groups = {"payRentFlow","faqButtonOnPayRent","regression"}, priority = 0, description = "Verify faq button on rent pay")
+   @Test(groups = {"payRentFlow","faqButtonOnPayRent","regression"}, priority = 0, description = "Verify faq button on rent pay")
     public void Test_PayRent_FAQ () throws InterruptedException, IOException {
 
         Log.info("======= START : Pay rent - Verify FAQ option on rent pay =======");
@@ -105,7 +104,7 @@ public class PayRentTest extends TestBase {
 
     }
 
-    @Test(groups = {"payRentFlow","deletOnPayRent","regression"}, priority = 0, description = "Verify Delete button on rent pay")
+   @Test(groups = {"payRentFlow","deletOnPayRent","regression"}, priority = 0, description = "Verify Delete button on rent pay")
     public void Test_PayRent_Delete_Recipient () throws InterruptedException, IOException {
 
         Log.info("======= START : Pay rent - Verify Delete option on rent pay =======");
