@@ -172,13 +172,21 @@ public class PayRentHelper {
 
         if (payRentPage.isNewUser()) {
             payRentPage.clickOnContinueOnZip();
-            addNewPropertyNewUser("135701525113","ICIC0001431","Abhishek yadav","5000");
+            addNewProperties("135701525113","ICIC0001431","Abhishek yadav","5000");
+            if(payRentPage.isSavedRecipientAvailable()) {
+                clickOnPayRentOption();
+                payRentPage.clickOnDeleteButton();
+                Thread.sleep(2000);
+                payRentPage.clickOnDelete();
+            }else{
+                Log.info("No Saved Recipient available so skipping this test case.. ");
+            }
+
 
         } else {
             payRentPage.clickOnDeleteButton();
             Thread.sleep(2000);
             payRentPage.clickOnDelete();
-
         }
     }
 
