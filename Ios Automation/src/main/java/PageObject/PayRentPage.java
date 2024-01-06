@@ -87,7 +87,7 @@ public class PayRentPage {
     @iOSXCUITFindBy(xpath = "/XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]")
     private IOSElement backButtonFromTransaction;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]")
+    @iOSXCUITFindBy(id = "6B010000-0000-0000-CD03-000000000000")
     private IOSElement backButtonFromPitchScreen;
 
 
@@ -177,6 +177,8 @@ public class PayRentPage {
     public boolean isBckButtonAvailableOnPitchScreen() throws InterruptedException {
         return Element.isElementPresent(driver, By.xpath("//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]")) ;
     }
+
+
 
     public IOSElement getFaq() {
         return faq;

@@ -32,6 +32,7 @@ public class PayRentHelper {
         payRentPage = new PayRentPage(driver);
         securityPinPage = new SecurityPinPage(driver);
         screen = new Screen(driver);
+        mbReporter = new MBReporter(driver);
     }
 
     public void addNewPropertyOnPayRent(String accountNumber, String ifscCode, String name, String amount) throws IOException, InterruptedException {
@@ -244,13 +245,14 @@ public class PayRentHelper {
         screen.tapOutsideBottomSheetByCoordinates(driver);
         Thread.sleep(3000);
 
-        while (!payRentPage.isPayRentVisibleOnHomeScreen() ){
+
+            payRentPage.pressBackFromTransaction();
             payRentPage.pressBackFromTransaction();
 
-            if(payRentPage.isBckButtonAvailableOnPitchScreen()){
+      /*      if(payRentPage.isBckButtonAvailableOnPitchScreen()){
                 payRentPage.pressBackFromPitchScreen();
-            }
-        }
+            }*/
+
     }
 
     public void clickOnPayRentOption() throws InterruptedException {
