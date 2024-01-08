@@ -88,11 +88,27 @@ public class PayRentHelper {
 
     public void addNewPropertyWithPan(String accountNumber, String ifscCode, String name, String amount) throws IOException, InterruptedException {
 
+        if (payRentPage.isNewUser()) {
+            Log.info("This is a new user flow on rent pay");
+            payRentPage.clickOnContinueOnZip();
+        }else{
+            Log.info("This is a old user flow on rent pay");
+            payRentPage.clickOnAddNewProperty();
+        }
+
         addNewProperties(accountNumber,ifscCode,name,amount,false);
 
     }
 
     public void addNewPropertyWithCouponCode(String accountNumber, String ifscCode, String name, String amount) throws IOException, InterruptedException {
+
+        if (payRentPage.isNewUser()) {
+            Log.info("This is a new user flow on rent pay");
+            payRentPage.clickOnContinueOnZip();
+        }else{
+            Log.info("This is a old user flow on rent pay");
+            payRentPage.clickOnAddNewProperty();
+        }
 
         addNewProperties(accountNumber,ifscCode,name,amount,true);
          }
@@ -112,7 +128,9 @@ public class PayRentHelper {
              }
     public void deleteRecipientOnRentPay() throws IOException, InterruptedException {
 
+        clickOnPayRentOption();
         Thread.sleep(2000);
+
 
         if (payRentPage.isNewUser()) {
             payRentPage.clickOnContinueOnZip();
