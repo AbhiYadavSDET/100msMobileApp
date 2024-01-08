@@ -26,6 +26,9 @@ public class HomePage {
     @iOSXCUITFindBy(id = "Xtra")
     private IOSElement xtra_icon;
 
+    @iOSXCUITFindBy(id = "Pay Rent")
+    private IOSElement payRent;
+
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]")
     private IOSElement profile;
 
@@ -72,6 +75,7 @@ public class HomePage {
         Elements.click(driver, profile,"Click on Profile");
     }
 
+    public void clickOnpayRent() { Elements.click(driver, payRent, "Click on Pay rent option");   }
     public void clickUpiTransfer() {
         Elements.click(driver, upiTransfer,"Click on UPI Transfer");
     }
@@ -81,5 +85,8 @@ public class HomePage {
     }
 
 
+    public IOSElement getPayRent() {
+        return payRent;
+    }
 
 }
