@@ -29,6 +29,12 @@ public class HomePage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]")
     private IOSElement profile;
 
+    @iOSXCUITFindBy(id = "UPI Transfer")
+    private IOSElement upiTransfer;
+
+    @iOSXCUITFindBy(id = "Scan any QR")
+    private IOSElement scanQR;
+
     public HomePage(IOSDriver driver) {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -64,6 +70,14 @@ public class HomePage {
 
     public void clickProfile() {
         Elements.click(driver, profile,"Click on Profile");
+    }
+
+    public void clickUpiTransfer() {
+        Elements.click(driver, upiTransfer,"Click on UPI Transfer");
+    }
+
+    public void clickOnScanQR() {
+        Elements.click(driver, scanQR,"Click on Scan QR");
     }
 
 
