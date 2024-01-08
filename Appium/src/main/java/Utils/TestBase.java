@@ -32,10 +32,10 @@ public class TestBase {
 
     public AndroidDriver<AndroidElement> driver = null;
 
-    String androidOSVersion = "13.0";
+    String androidOSVersion = "12.0";
     String portNo = "4723";
-    String udId = "172.18.31.239:5555";
-    String deviceName = "RZ8W60BB9HB";
+    String udId = "10BDAM38100008B";
+    String deviceName = "10BDAM38100008B";
 
 
     Boolean cloudRun = false;
@@ -168,7 +168,7 @@ public class TestBase {
                 cap.setCapability("androidCoverage", "com.mobikwik_new.debug/com.mobikwik_new.instrumentation.CodeCoverageInstrumentation");
             }
 //            cap.setCapability("app", app.getAbsolutePath());
-            cap.setCapability("app", "//Users//mayanksuneja//app//mobikwik.apk");
+            cap.setCapability("app", "//Users//abhishekkumar//APK//mobikwik.apk");
             AndroidDriver driver = new AndroidDriver(new URL("http://0.0.0.0:" + portNo + "/wd/hub"), cap);
             androidDriverThread.set(driver);
             return androidDriverThread.get();

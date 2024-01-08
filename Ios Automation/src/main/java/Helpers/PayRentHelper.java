@@ -64,10 +64,12 @@ public class PayRentHelper {
 
                     payRentPage.clickOnContinueOnZip();
                     addNewProperties(accountNumber, ifscCode, name, amount);
-                } else {
-                    deleteAllRecipient();
 
-                    payRentPage.clickOnContinueOnZip();
+                } else {
+
+                    deleteAllRecipient();
+                    clickOnPayRentOption();
+
                     addNewProperties(accountNumber, ifscCode, name, amount);
                 }
             }else{
@@ -200,23 +202,22 @@ public class PayRentHelper {
         if (payRentPage.isNewUser()) {
             payRentPage.clickOnContinueOnZip();
             addNewProperties("135701525113","ICIC0001431","Abhishek yadav","5000");
-            if(payRentPage.isSavedRecipientAvailable()) {
-                clickOnPayRentOption();
+
+            clickOnPayRentOption();
+            if(payRentPage.isSavedRecipientAvailable()){
                 payRentPage.clickOnDeleteButton();
                 Thread.sleep(2000);
                 payRentPage.clickOnDelete();
+
             }else{
                 Log.info("No Saved Recipient available so skipping this test case.. ");
             }
-
-
         } else {
             payRentPage.clickOnDeleteButton();
             Thread.sleep(2000);
             payRentPage.clickOnDelete();
         }
     }
-
     //Common method to  add new property on rent pay
     public void addNewProperties(String accountNumber,String ifscCode,String name,String amount) throws InterruptedException, IOException {
 
@@ -248,6 +249,7 @@ public class PayRentHelper {
 
             payRentPage.pressBackFromTransaction();
             payRentPage.pressBackFromTransaction();
+            payRentPage.pressBackFromPitchScreen();
 
       /*      if(payRentPage.isBckButtonAvailableOnPitchScreen()){
                 payRentPage.pressBackFromPitchScreen();
