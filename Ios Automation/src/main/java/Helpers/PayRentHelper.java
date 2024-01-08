@@ -91,10 +91,7 @@ public class PayRentHelper {
 
         addNewProperties(accountNumber,ifscCode,name,amount);
         mbReporter.verifyEqualsWithLogging(actualAmount, excpectedAmount, "Verify Conv fee  on Pay Rent", false, false, false);
-
-
     }
-
 
     public void addNewPropertyNewUserWithPan(String accountNumber, String ifscCode, String name, String amount,String panNumber) throws IOException, InterruptedException {
 
@@ -118,7 +115,7 @@ public class PayRentHelper {
    //     payRentPage.clickOnRentAmount();
         payRentPage.enterRentAmount(amount);
 
-        if (Element.isElementPresent(driver, By.xpath("//XCUIElementTypeTextField[@name=\"Landlord PAN\"]"))){
+        if (payRentPage.isLandlordButtonAvailableOnScreen()){
             payRentPage.clickOnLandLordPanNumber();
             payRentPage.enterLandLordPanNumber(panNumber);
             payRentPage.clickOnRentDetails();

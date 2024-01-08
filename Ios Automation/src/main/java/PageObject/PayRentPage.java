@@ -179,6 +179,9 @@ public class PayRentPage {
     }
 
 
+    public boolean isLandlordButtonAvailableOnScreen() throws InterruptedException {
+        return Element.isElementPresent(driver, By.xpath("//XCUIElementTypeTextField[@name=\"Landlord PAN\"]")) ;
+    }
 
     public IOSElement getFaq() {
         return faq;
