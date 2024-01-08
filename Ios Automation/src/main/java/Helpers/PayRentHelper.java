@@ -74,6 +74,8 @@ public class PayRentHelper {
 
     public void verifyConvFeeOnPayRent(String accountNumber, String ifscCode, String name, String amount) throws IOException, InterruptedException {
 
+        clickOnPayRentOption();
+
         if (payRentPage.isNewUser()) {
             Log.info("This is a new user flow on rent pay");
             payRentPage.clickOnContinueOnZip();
@@ -87,6 +89,8 @@ public class PayRentHelper {
     }
 
     public void addNewPropertyWithPan(String accountNumber, String ifscCode, String name, String amount) throws IOException, InterruptedException {
+
+        clickOnPayRentOption();
 
         if (payRentPage.isNewUser()) {
             Log.info("This is a new user flow on rent pay");
@@ -102,6 +106,7 @@ public class PayRentHelper {
 
     public void addNewPropertyWithCouponCode(String accountNumber, String ifscCode, String name, String amount) throws IOException, InterruptedException {
 
+        clickOnPayRentOption();
         if (payRentPage.isNewUser()) {
             Log.info("This is a new user flow on rent pay");
             payRentPage.clickOnContinueOnZip();
