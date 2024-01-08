@@ -60,7 +60,7 @@ public class PayRentTest extends TestBase {
         Log.info("======= END : Login test =======");
 
         PayRentHelper payRentHelper = new PayRentHelper(getIosDriver());
-        payRentHelper.addNewPropertyNewUserWithPan("135701525113","ICIC0001437","Abhishek Yadav","55000","FSMPP7878E");
+        payRentHelper.addNewPropertyWithPan("135701525113","ICIC0001437","Abhishek Yadav","55000");
 
         Log.info("======= END : Pay rent - Verify Pan card option on rent pay =======");
 
@@ -79,7 +79,7 @@ public class PayRentTest extends TestBase {
         Log.info("======= END : Login test =======");
 
         PayRentHelper payRentHelper = new PayRentHelper(getIosDriver());
-        payRentHelper.addNewPropertyNewUserWithCouponCode("135701525113","ICIC0001437","Abhishek Yadav","5000","HTIPK1234M");
+        payRentHelper.addNewPropertyWithCouponCode("135701525113","ICIC0001437","Abhishek Yadav","5000");
 
         Log.info("======= END : Pay rent - Verify Coupon code option on rent pay =======");
 

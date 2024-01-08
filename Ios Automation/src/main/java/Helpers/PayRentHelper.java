@@ -9,7 +9,6 @@ import Utils.MBReporter;
 import Utils.Screen;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.IOSElement;
-import org.openqa.selenium.By;
 
 import java.io.IOException;
 
@@ -37,12 +36,15 @@ public class PayRentHelper {
 
     public void addNewPropertyOnPayRent(String accountNumber, String ifscCode, String name, String amount) throws IOException, InterruptedException {
 
+        clickOnPayRentOption();
+
+        Thread.sleep(2000);
 
         if (payRentPage.isNewUser()) {
             Log.info("This is a new user flow on rent pay");
-            isNewUserTestStarted= true;
+            isNewUserTestStarted = true;
             payRentPage.clickOnContinueOnZip();
-        }else{
+        } else {
             Log.info("This is a old user flow on rent pay");
             payRentPage.clickOnAddNewProperty();
         }
@@ -56,17 +58,13 @@ public class PayRentHelper {
                 clickOnPayRentOption();
 
                 if (payRentPage.isNewUser()) {
-
-                    Log.info("This is an new user flow on rent pay .. ");
-
+                    Log.info("This is a new user flow on rent pay");
                     payRentPage.clickOnContinueOnZip();
-                    addNewProperties(accountNumber, ifscCode, name, amount,false);
-
+                    addNewProperties(accountNumber,ifscCode,name,amount,false);
                 } else {
-
                     deleteAllRecipient();
-                    clickOnPayRentOption();
-
+                    payRentPage.clickOnContinueOnZip();
+                   // clickOnPayRentOption();
                     addNewProperties(accountNumber, ifscCode, name, amount,false);
                 }
             }else{
@@ -88,13 +86,13 @@ public class PayRentHelper {
         mbReporter.verifyEqualsWithLogging(actualAmount, excpectedAmount, "Verify Conv fee  on Pay Rent", false, false, false);
     }
 
-    public void addNewPropertyNewUserWithPan(String accountNumber, String ifscCode, String name, String amount) throws IOException, InterruptedException {
+    public void addNewPropertyWithPan(String accountNumber, String ifscCode, String name, String amount) throws IOException, InterruptedException {
 
         addNewProperties(accountNumber,ifscCode,name,amount,false);
 
     }
 
-    public void addNewPropertyNewUserWithCouponCode(String accountNumber, String ifscCode, String name, String amount) throws IOException, InterruptedException {
+    public void addNewPropertyWithCouponCode(String accountNumber, String ifscCode, String name, String amount) throws IOException, InterruptedException {
 
         addNewProperties(accountNumber,ifscCode,name,amount,true);
          }
@@ -193,17 +191,7 @@ Integer amounts = Integer.parseInt(amount);
 
     public void addNewProperties(String accountNumber,String ifscCode,String name,String amount, boolean isCouponCodeRequired) throws InterruptedException, IOException {
 
-        clickOnPayRentOption();
-
-        Thread.sleep(2000);
-
-        if (payRentPage.isNewUser()) {
-            payRentPage.clickOnContinueOnZip();
-        } else {
-            payRentPage.clickOnAddNewProperty();
-        }
         payRentPage.enterBankAccountNumber(accountNumber);
-
         payRentPage.enterIfscCode(ifscCode);
         payRentPage.clickOnAcccountDetails();
 
