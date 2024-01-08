@@ -36,9 +36,6 @@ public class TestBase {
     String portNo = "4723";
     String udId = "172.18.31.239:5555";
     String deviceName = "RZ8W60BB9HB";
-
-
-
     Boolean cloudRun = false;
 
     private static FileAppender appender;
