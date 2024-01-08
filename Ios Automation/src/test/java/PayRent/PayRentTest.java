@@ -28,7 +28,6 @@ public class PayRentTest extends TestBase {
 
         Log.info("======= END : Pay rent - Add new property flow for old User =======");
     }
-
  @Test(groups = {"payRentFlow","payRentNewUserFlow", "regression"}, priority = 0, description = "Verify Add new property on pay rent for new user")
     public void Test_PayRent_Add_New_Property_New_User() throws InterruptedException, IOException {
 
@@ -38,7 +37,6 @@ public class PayRentTest extends TestBase {
 
         LoginHelper loginHelp = new LoginHelper(getIosDriver());
         loginHelp.loginViaOtp("9205299330", "547372");
-
         Log.info("======= END : Login test =======");
 
         PayRentHelper payRentHelper = new PayRentHelper(getIosDriver());
