@@ -15,8 +15,9 @@
             <run>
                 <include name="setUp"/>
                 <include name="instantiateHelpers"/>
+                <include name="p2mNearbyStores"/>
+                <include name="p2mOfflinePaymentCode"/>
                 <include name="p2mSendRecentMerchant"/>
-                <include name="p2pSend"/>
                 <include name="tearDown"/>
             </run>
         </groups>
@@ -25,7 +26,6 @@
         <classes>
             <class name="Utils.TestBase"/>
             <class name="P2M.P2MTest"/>
-            <class name="P2P.P2PTest"/>
         </classes>
     </test>
 

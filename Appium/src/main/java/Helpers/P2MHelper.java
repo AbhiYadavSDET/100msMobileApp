@@ -154,7 +154,13 @@ public class P2MHelper {
     public void p2mVerify(String flow, String expTitle, String expText) throws InterruptedException, IOException {
 
         // Tap the QR code Icon on Homepage
-        p2mPage.clickScanQR();
+        //p2mPage.clickScanQR();
+
+        // Tap on See All Services
+        p2PPage.clickAllServices();
+
+        // Click on Scan Any Qr
+        p2PPage.clickScanQrOptn();
 
         // Allow the Permission
         if(p2mPage.checkWhileUsingAppPermission()){ p2mPage.allowPermissionWhileUsingApp();}
@@ -179,6 +185,9 @@ public class P2MHelper {
 
             // Click on the up Nearby Stores
             p2mPage.clickOnOfflinePaymentCode();
+
+            // Allow the Permission
+            if(p2mPage.checkWhileUsingAppPermission()){ p2mPage.allowPermissionWhileUsingApp();}
 
             // Verification on the Success Screen
             actualTitle = p2mPage.getPayAtStoreTitle();
