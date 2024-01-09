@@ -3,6 +3,7 @@ package Helpers;
 import Logger.Log;
 import PageObject.HomePage;
 import PageObject.PayRentPage;
+import PageObject.PermissionPage;
 import PageObject.SecurityPinPage;
 import Utils.Element;
 import Utils.MBReporter;
@@ -19,6 +20,8 @@ public class PayRentHelper {
     PayRentPage payRentPage;
     MBReporter mbReporter;
     SecurityPinPage securityPinPage;
+    PermissionPage permissionPage;
+
     Screen screen;
     String excpectedAmount = null;
     String actualAmount = null;
@@ -32,6 +35,7 @@ public class PayRentHelper {
         securityPinPage = new SecurityPinPage(driver);
         screen = new Screen(driver);
         mbReporter = new MBReporter(driver);
+        permissionPage = new PermissionPage(driver);
     }
 
     public void addNewPropertyOnPayRent(String accountNumber, String ifscCode, String name, String amount) throws IOException, InterruptedException {
@@ -170,6 +174,37 @@ public class PayRentHelper {
         }
     }
 
+    public void upiOptionOnRentPay() throws InterruptedException, IOException {
+        clickOnPayRentOption();
+        Thread.sleep(2000);
+
+        if (payRentPage.isNewUser()) {
+            Log.info("This is a new user flow on rent pay");
+            Thread.sleep(2000);
+            payRentPage.clickOnUPI();
+
+            if(permissionPage.isContactsPermissionPopupPresent()){
+                permissionPage.clickAllowContactPermission();
+            }
+
+            String actualTitle = payRentPage.getTtileOnUPIPage();
+            mbReporter.verifyEqualsWithLogging(actualTitle, "Send Money via UPI", "Verify upi page is opening via pay rent module .. ", false, false, false);
+
+        }else{
+            Log.info("This is a old user flow on rent pay");
+            payRentPage.clickOnSavedRecipient();
+            payRentPage.clickOnUPI();
+
+            if(permissionPage.isContactsPermissionPopupPresent()){
+                permissionPage.clickAllowContactPermission();
+            }
+
+            String rupeesText = payRentPage.getRupeesTextOnUPIPage();
+            mbReporter.verifyEqualsWithLogging(rupeesText,"Continue","Continue button on UPI page",false,false,false);
+        }
+
+        mbReporter.verifyEqualsWithLogging("", "₹", "Verify Conv fee  on Pay Rent", false, false, false);
+    }
     public void deleteAllRecipient() throws InterruptedException {
         while (payRentPage.isSavedRecipientAvailable()){
             Log.info("Saved recipient is available on rent pay .. ");
@@ -193,9 +228,9 @@ Integer amounts = Integer.parseInt(amount);
     public String actualConv() throws InterruptedException {
     Log.info("Actual total amount calculation start");
        String finalAmount = payRentPage.getFinalAmountOnCheckout();
-        Log.info("Final Amount = "+finalAmount);
+        Log.info("Final Amount text = "+finalAmount);
      String doubleAmount = finalAmount.split("₹")[1];
-     Log.info("Total Amount ="+doubleAmount);
+     Log.info("Double Amount ="+doubleAmount);
      StringBuilder sb = new StringBuilder();
 
      for(int i = 0; i< doubleAmount.length();i++){
@@ -255,9 +290,12 @@ Integer amounts = Integer.parseInt(amount);
         Thread.sleep(3000);
         payRentPage.pressBackFromTransaction();
         payRentPage.pressBackFromTransaction();
-        payRentPage.pressBackFromPitchScreen();
 
-            }
+        if(!payRentPage.isBckButtonAvailableOnPitchScreen()){
+            payRentPage.pressBackButtonFromRecipientPage();
+        }
+        payRentPage.pressBackFromPitchScreen();
+    }
     }
 
 

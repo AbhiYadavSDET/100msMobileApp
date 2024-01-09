@@ -29,6 +29,15 @@ public class PayRentPage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Continue with Zip/Cards\"]")
     private IOSElement continueOnZip;
 
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Use UPI\"]")
+    private IOSElement continueOnUpi;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"₹\"]")
+    private IOSElement rupeesSymbolOnUPI;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Send Money via UPI\"]")
+    private IOSElement sendMoneyToUPIText;
+
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeButton[1]")
     private IOSElement deleteButton;
 
@@ -75,11 +84,8 @@ public class PayRentPage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Continue\"]")
     private IOSElement continueButtonOnLandlordPage;
 
-   // @iOSXCUITFindBy(xpath = "(//XCUIElementTypeButton[starts-with(@name,'See More')])[1]")
-
     @iOSXCUITFindBy(xpath = "(//XCUIElementTypeButton[starts-with(@name,'Pay')])")
     private IOSElement finalAmount;
-    //XCUIElementTypeButton[@name="Pay ₹5,118"])[2]
 
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther")
     private IOSElement clickAnywhere;
@@ -90,9 +96,8 @@ public class PayRentPage {
     @iOSXCUITFindBy(xpath ="//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]")
     private IOSElement backButtonFromPitchScreen;
 
-
-
-//XCUIElementTypeApplication[@name="MobiKwik"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]")
+    private IOSElement backButtonOnRecipientPage;
 
     public PayRentPage(IOSDriver driver) {
         this.driver = driver;
@@ -105,10 +110,15 @@ public class PayRentPage {
 
     public void clickOnContinueOnZip() { Elements.click(driver, continueOnZip, "Click on Continue on Zip");   }
 
+    public void clickOnUPI() { Elements.click(driver, continueOnUpi, "Click on UPI ");   }
+
+    public  String getRupeesTextOnUPIPage() throws InterruptedException {
+         return Elements.getText(driver, rupeesSymbolOnUPI, "Rupees symbol  on UPI screen");
+    }
+
     public void clickOnDeleteButton() { Elements.click(driver, deleteButton, "Click on Delete button");   }
 
     public void clickOnDelete() { Elements.click(driver, delete, "Click on Delete ");   }
-
 
     public void clickOnAddNewProperty() { Elements.click(driver, addNewProperty, "Click on add new property button");   }
 
@@ -127,8 +137,6 @@ public class PayRentPage {
     public void clickOnAcccountDetails() { Elements.click(driver, accountDetailsText, "Click on Account details");   }
 
     public void clickOnContinuebuttonOnAccountpage() { Elements.click(driver, continueButtonOnAccountPage, "Click on continue button");   }
-
-  //  public void clickOnLandlordName() { Elements.click(driver, landlordName, "Click on landlord name option");   }
 
     public void enterLandLordName(String landLord) {
         Elements.enterToElement(driver, landlordName, landLord,"Entered landLord name = "+landLord);
@@ -157,10 +165,13 @@ public class PayRentPage {
     public String getFinalAmountOnCheckout() throws InterruptedException {
         return Elements.getText(driver, finalAmount, "Final amount on checkout screen");
     }
-
     public void pressBackFromTransaction() { Elements.click(driver, backButtonFromTransaction, "Click on back option on transaction page ");   }
 
     public void pressBackFromPitchScreen() { Elements.click(driver, backButtonFromPitchScreen, "Click on back option on pitch screen");   }
+
+    public  void pressBackButtonFromRecipientPage(){
+        Elements.click(driver,backButtonOnRecipientPage,"Click on back button from recipient page");
+    }
 
     public  boolean isNewUser() throws InterruptedException, IOException {
 
@@ -178,6 +189,9 @@ public class PayRentPage {
         return Element.isElementPresent(driver, By.xpath("//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]")) ;
     }
 
+    public boolean UPIScreenOpened() throws InterruptedException {
+        return Element.isElementPresent(driver, By.xpath("//XCUIElementTypeStaticText[@name=\"Send Money via UPI\"]")) ;
+    }
 
     public boolean isLandlordButtonAvailableOnScreen() throws InterruptedException {
         return Element.isElementPresent(driver, By.xpath("//XCUIElementTypeTextField[@name=\"Landlord PAN\"]")) ;
@@ -197,6 +211,21 @@ public class PayRentPage {
 
     public IOSElement getContinueOnZip() {
         return continueOnZip;
+    }
+
+    public IOSElement getContinueOnUpi() {
+        return continueOnUpi;
+    }
+    public IOSElement getSendMoneyToUPIText() {
+        return sendMoneyToUPIText;
+    }
+
+    public String getTtileOnUPIPage() throws InterruptedException {
+        return Elements.getText(driver, sendMoneyToUPIText, "Title on UPI page ");
+    }
+
+    public IOSElement getContinueButtonOnUPI() {
+        return rupeesSymbolOnUPI;
     }
 
     public IOSElement getDeleteButton() {
@@ -276,6 +305,7 @@ public class PayRentPage {
         return backButtonFromPitchScreen;
     }
 
-
-
+    public IOSElement getBackButtonOnRecipientPage() {
+        return backButtonOnRecipientPage;
+    }
 }
