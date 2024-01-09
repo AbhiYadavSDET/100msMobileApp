@@ -27,6 +27,7 @@
             <class name="Electricity.ElectricityTest"/>
             <class name="AA.Test_AccountAggregator"/>
             <class name="PayRent.PayRentTest"/>
+            <class name="CentralMapper.CentralMapperTest"></class>
         </classes>
     </test>
 
