@@ -68,6 +68,23 @@ public class RechargePage {
     @iOSXCUITFindBy(id = "Credit Card Payment")
     private IOSElement creditCardPayment;
 
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Change\"]")
+    private IOSElement changeOperator;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Reliance\"]")
+    private IOSElement selectOperator;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther")
+    private IOSElement searchCircle;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeOther[1]/XCUIElementTypeOther")
+    private IOSElement selectCircle;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeStaticText[2]")
+    private IOSElement operatorName;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeStaticText[3]")
+    private IOSElement circleName;
 
     public RechargePage(IOSDriver driver) {
         this.driver = driver;
@@ -128,7 +145,23 @@ public class RechargePage {
 
     public void closeFeedbackPopup() { Elements.click(driver, feedbackPopup, "Click to close feedback popup");}
 
-    public void clickCreditCardPayment() { Elements.click(driver, creditCardPayment,"Click on Credit Card payment");}
+    public void clickCreditCardPayment() { Elements.click(driver, creditCardPayment,"Click on Credit Card payment");    }
+
+    public void clickOnChangeOperator() { Elements.click(driver, changeOperator,"Click on change operator");    }
+
+    public void selectOperator() { Elements.click(driver, selectOperator,"Click on operator"); }
+
+    public void searchCircle() { Elements.click(driver, searchCircle,"Click on search circle"); }
+
+    public void enterCircle(String circleName) {
+        Elements.enterToElement(driver, searchCircle, circleName, "Enter circle");
+    }
+
+    public void selectCircle() { Elements.click(driver, selectCircle,"Select circle"); }
+
+    public String getOperatorName() throws InterruptedException { return Elements.getText(driver, operatorName); }
+
+    public String getCircleName() throws InterruptedException { return Elements.getText(driver, circleName); }
 
 
 
