@@ -46,7 +46,7 @@ public class PayRentTest extends TestBase {
 
     }
 @Test(groups = {"payRentFlow","payRentWithPanCardFlow","regression"}, priority = 0, description = "Verify Add new property on pay rent with pan card entered")
-    public void Test_PayRent_Add_New_Property_WithPanCard() throws InterruptedException, IOException {
+    public void Test_PayRent_WithPanCard() throws InterruptedException, IOException {
 
         Log.info("======= START : Pay rent - Verify Pan card option on rent pay =======");
 
@@ -65,7 +65,7 @@ public class PayRentTest extends TestBase {
     }
 
   @Test(groups = {"payRentFlow","payRentWithCouponCodeFlow","regression"}, priority = 0, description = "Verify Add new property on pay rent with coupon code")
-    public void Test_PayRent_Add_New_Property_With_Coupon_Code () throws InterruptedException, IOException {
+    public void Test_PayRent_With_Coupon_Code () throws InterruptedException, IOException {
 
         Log.info("======= START : Pay rent - Verify Coupon code option on rent pay =======");
 
@@ -137,7 +137,7 @@ public class PayRentTest extends TestBase {
 
         Log.info("======= END : Verify Conv fee calculation on rent pay=======");
     }
-   @Test(groups = {"payRentFlow","payRentUPI","regression"}, priority = 0, description = "Verify Conv fee calculation  on rent pay")
+   @Test(groups = {"payRentFlow","payRentUPI","regression"}, priority = 0, description = "Verify UPI page on rent pay")
     public void Test_PayRent_UPI_Option () throws InterruptedException, IOException {
 
         Log.info("======= START : Pay rent - Verify UPI page on rent pay =======");
