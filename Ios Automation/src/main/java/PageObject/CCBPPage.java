@@ -1,14 +1,10 @@
 package PageObject;
 
 import Utils.Elements;
-import Utils.Screen;
-import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.IOSElement;
-import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.support.PageFactory;
 
 public class CCBPPage {

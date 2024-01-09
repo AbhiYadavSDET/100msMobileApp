@@ -23,9 +23,6 @@ public class RechargePage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[5]/XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeOther[2]")
     private IOSElement selectPlan;
 
-//    @iOSXCUITFindBy(id = "₹739")
-//    private IOSElement amountOnPrepaidPaymentScreen;
-
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[2]")
     private IOSElement amountOnPaymentScreen;
 
@@ -38,8 +35,8 @@ public class RechargePage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton")
     private IOSElement enterNameOrMobileNo;
 
-    @iOSXCUITFindBy(id = "OK")
-    private IOSElement contactsPermission;
+//    @iOSXCUITFindBy(id = "OK")
+//    private IOSElement contactsPermission;
 
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther")
     private IOSElement searchContact;
@@ -114,8 +111,6 @@ public class RechargePage {
     public void clickPostpaid() { Elements.click(driver, postpaid,"Click on Postpaid"); }
 
     public void clickEnterNameOrMobileNo() { Elements.click(driver, enterNameOrMobileNo,"Click on Enter Name or Mobile no."); }
-
-    public void clickAllowContactPermission() { Elements.click(driver, contactsPermission,"Click OK on contact permission popup"); }
 
     public void enterPostpaidNumber(String number) {
          Elements.enterToElement(driver, searchContact, number,"Click on Enter Name or Mobile no.");

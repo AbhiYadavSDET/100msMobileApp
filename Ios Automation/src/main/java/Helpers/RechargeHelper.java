@@ -119,7 +119,7 @@ public class RechargeHelper {
         rechargePage.clickEnterNameOrMobileNo();
 
         //Click OK on Access your contacts popup
-        rechargePage.clickAllowContactPermission();
+        permissionPage.clickAllowContactPermission();
 
         //Enter Postpaid Number
         rechargePage.enterPostpaidNumber(number);
