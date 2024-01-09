@@ -1,10 +1,7 @@
 package Helpers;
 
 import Logger.Log;
-import PageObject.CustomKeyboardPage;
-import PageObject.GoldPage;
-import PageObject.P2MPage;
-import PageObject.SecurityPinPage;
+import PageObject.*;
 import Utils.Elements;
 import Utils.MBReporter;
 import Utils.Screen;
@@ -30,6 +27,7 @@ public class P2MHelper {
     LinkedHashMap<String, String> balanceBefore;
     LinkedHashMap<String, String> balanceAfter;
     MBKCommonControlsHelper mbkCommonControlsHelper;
+    P2PPage p2PPage;
 
 
     public P2MHelper(AndroidDriver driver) throws IOException {
@@ -42,6 +40,7 @@ public class P2MHelper {
         screen = new Screen(driver);
         mbReporter = new MBReporter(driver);
         mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
+        p2PPage = new P2PPage(driver);
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
@@ -51,7 +50,13 @@ public class P2MHelper {
         balanceBefore = mbkCommonControlsHelper.getBalance();
 
         // Tap the QR code Icon on Homepage
-        p2mPage.clickScanQR();
+       // p2mPage.clickScanQR();
+
+        // Tap on See All Services
+        p2PPage.clickAllServices();
+
+        // Click on Scan Any Qr
+        p2PPage.clickScanQrOptn();
 
         // Allow the Permission
         if(p2mPage.checkWhileUsingAppPermission()){ p2mPage.allowPermissionWhileUsingApp();}

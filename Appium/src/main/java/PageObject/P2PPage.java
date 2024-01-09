@@ -49,6 +49,9 @@ public class P2PPage {
     @AndroidFindBy(id = "mkab_icon_1")
     private AndroidElement successScreenUpButton;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id=\"com.mobikwik_new.debug:id/text\" and @text=\"Scan any QR\"]")
+    private AndroidElement scanAnyQrBtn;
+
     // --------------------------------------------------
 
 
@@ -105,6 +108,10 @@ public class P2PPage {
 
     public String getZipCtaText() throws InterruptedException {
         return Elements.getText(driver, successScreenZipCta, "Zip Cta Text");
+    }
+
+    public void clickScanQrOptn() {
+        Elements.selectElement(driver, scanAnyQrBtn, "Click on Scan Any QR");
     }
 
 
