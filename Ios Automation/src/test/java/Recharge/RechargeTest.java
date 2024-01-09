@@ -49,4 +49,24 @@ public class RechargeTest extends TestBase {
         Log.info("======= END : Postpaid Recharge Flow test =======");
 
     }
+
+    @Test(groups = {"RechargeFlow", "regression"}, priority = 0, description = "Verify change operator flow")
+
+    public void Test_Change_Operator_Flow() throws InterruptedException, IOException {
+
+        Log.info("======= START : Login test =======");
+
+        LoginHelper loginHelper = new LoginHelper(getIosDriver());
+        loginHelper.loginViaOtp("9205299330", "547372");
+
+        Log.info("======= END : Login test =======");
+
+        Log.info("======= START : Change Operator Flow test =======");
+
+        RechargeHelper rechargeHelper = new RechargeHelper(getIosDriver());
+        rechargeHelper.changeOperator("Delhi","Reliance Prepaid", "Delhi NCR");
+
+        Log.info("======= END : Change Operator Flow test =======");
+
+    }
 }
