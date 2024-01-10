@@ -122,6 +122,12 @@ public class P2MPage {
     @AndroidFindBy(id = "close_button")
     private AndroidElement back_btn;
 
+    @AndroidFindBy(id = "com.mobikwik_new.debug:id/title")
+    private AndroidElement detail_bottomsheet;
+
+    @AndroidFindBy(id = "com.mobikwik_new.debug:id/edit_text")
+    private AndroidElement number_entry_field;
+
 
     public P2MPage(AndroidDriver driver) {
         this.driver = driver;
@@ -267,7 +273,13 @@ public class P2MPage {
         return Elements.isElementPresent(driver, back_btn);
     }
 
+    public boolean checkEnterDetailsBottomsheet() throws InterruptedException {
+        return Elements.isElementPresent(driver, detail_bottomsheet);
+    }
 
+    public void enterPhoneNumber(String MobileNumber) {
+        Elements.enterToElement(driver, number_entry_field, MobileNumber, "Enter Mobile Number");
+    }
 
 
 }
