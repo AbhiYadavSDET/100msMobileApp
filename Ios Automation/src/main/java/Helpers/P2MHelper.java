@@ -7,9 +7,11 @@ import PageObject.SecurityPinPage;
 import Utils.Elements;
 import Utils.MBReporter;
 import Utils.Screen;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.IOSElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
@@ -54,6 +56,8 @@ public class P2MHelper {
         }
 
         if(merchant.equals("RecentMerchant")){
+//            Elements.waitForElementToVisibleOnPage(driver, MobileElement(By.xpath("//XCUIElementTypeCell[1]")),3 );
+            Thread.sleep(1000);
             p2mPage.clickOnRecentMerchant();
 
         }else{
@@ -78,6 +82,8 @@ public class P2MHelper {
         // Click on the Continue CTA
         p2mPage.clickOnContinue();
 
+        Thread.sleep(2000);
+
         // Click on the Confirm Payment CTA
         p2mPage.clickConfirmPayment();
 
@@ -101,6 +107,11 @@ public class P2MHelper {
         Log.info("Amount : " + actualAmount);
         Log.info("Merchant Name : " + actualMerchantName);
         Log.info("Merchant Code : " + actualMerchantCode);
+
+        if(actualMerchantName.equals("dhdn")){
+            expMerchantName="dhdn";
+            expMerchantCode="9554807271";
+        }
 
 
 

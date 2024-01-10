@@ -41,6 +41,10 @@ public class MbkCommonControlHelper {
             Screen.tapOutsideBottomSheetByCoordinates(driver);
         }
 
+        if(homePage.isBillReminderPresent()){
+            Screen.tapOutsideBottomSheetByCoordinates(driver);
+        }
+
         if(permissionPage.isZipBottomSheetShown()){
             // Click outside zip bottom sheet
             Screen.tapOutsideBottomSheetByCoordinates(driver);

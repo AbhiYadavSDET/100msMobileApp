@@ -1,10 +1,12 @@
 package PageObject;
 
 import Utils.Elements;
+import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.IOSElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 
 public class P2MPage {
@@ -43,7 +45,7 @@ public class P2MPage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name='SonuQr']")
     private IOSElement SonuQrAlbumSelect;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeImage")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeImage[contains(@name,'Photo')]")
     private IOSElement selectAvailableImageInAlbum;
 
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name='MobikwikQr']")
@@ -113,24 +115,35 @@ public class P2MPage {
         Elements.selectElement(driver, photosPermissionNativeAllowAllCta, "Permission : Allow");
     }
 
-    public void clickOnSonuQrCodeGallery() {
+    public void clickOnSonuQrCodeGallery() throws InterruptedException {
         Elements.selectElement(driver, albumTabSelector, "Selecting Album Tab");
+        Thread.sleep(1000);
         Elements.selectElement(driver,SonuQrAlbumSelect,"Selecting Sonu QR Album");
+        Thread.sleep(1000);
         Elements.selectElement(driver,selectAvailableImageInAlbum,"Selecting Photo in Album");
     }
 
-    public void clickOnMBKQrCodeGallery() {
+    public void clickOnMBKQrCodeGallery() throws InterruptedException {
         Elements.selectElement(driver, albumTabSelector, "Selecting Album Tab");
-        Elements.selectElement(driver,MobikwikQrAlbumSelect,"Selecting Sonu QR Album");
+        Thread.sleep(1000);
+        Elements.selectElement(driver,MobikwikQrAlbumSelect,"Selecting Mobikwik QR Album");
+        Thread.sleep(1000);
         Elements.selectElement(driver,selectAvailableImageInAlbum,"Selecting Photo in Album");
     }
 
     public void enterAmount(String amount) {
-        Elements.enterToElement(driver, amountField, amount, "Amount");
+        Elements.waitForElementToVisibleOnPage(driver, amountField, 4);
+        Elements.selectElement(driver, (IOSElement) driver.findElement(By.xpath("//XCUIElementTypeButton[@name='"+amount+"']")),"Select Amount from Keyboard");
     }
 
-    public void clickOnContinue() {
-        Elements.selectElement(driver, continueCtaAmountPage, "Continue");
+    public void clickOnContinue() throws InterruptedException {
+        if(Elements.isElementEnabled(driver, continueCtaAmountPage )){
+            Elements.selectElement(driver, continueCtaAmountPage, "Continue");
+        }else {
+            Thread.sleep(2000);
+            Elements.selectElement(driver, continueCtaAmountPage, "Continue");
+        }
+
     }
 
     public void clickConfirmPayment() {
