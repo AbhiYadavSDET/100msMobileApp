@@ -35,7 +35,7 @@ public class CCBPHelper {
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
-    public void creditCardPayment(String creditCardNumber, String amount, String expAmountOnPaymentScreen) throws InterruptedException, IOException {
+    public void creditCardPayment(String creditCardNumber, String amount, String expAmountOnPaymentScreen, String expBankNameOnPaymentScreen, String expCardNumberOnPaymentScreen) throws InterruptedException, IOException {
 
         //Click Recharge and Pay Bills option
         homePage.clickRechargeAndPayBills();
@@ -53,13 +53,13 @@ public class CCBPHelper {
             ccbpPage.closeEmailAccessBottomSheet();
         }
 
-//        Thread.sleep(2000);
+        Thread.sleep(2000);
 
         if(ccbpPage.isAddNewCreditCardShown()){
             //Click on Add new Credit card
             ccbpPage.clickAddNewCreditCard();
         }
-        else{
+        else {
             //Click on Add card
             ccbpPage.clickAddCard();
         }
@@ -75,8 +75,10 @@ public class CCBPHelper {
         //Click on Continue button
         ccbpPage.clickContinueCTA();
 
-        //Click on Enter amount manually option
-        ccbpPage.clickEnterAmountManually();
+        if(ccbpPage.isEmailOptionScreenPresent()) {
+            //Click on Enter amount manually option
+            ccbpPage.clickEnterAmountManually();
+        }
 
         //Enter amount manually
         ccbpPage.enterCreditCardNumber(amount);
@@ -86,15 +88,19 @@ public class CCBPHelper {
 
         // Verification on the Payment Screen
         String amountOnPaymentScreen = ccbpPage.getAmountOnPaymentScreen();
+        String bankNameOnPaymentScreen = ccbpPage.getBankNameOnPaymentScreen();
+        String cardNumberOnPaymentScreen = ccbpPage.getCardNumberOnPaymentScreen();
+
         Log.info("Amount on Payment Screen : " + amountOnPaymentScreen);
-        mbReporter.verifyEquals(amountOnPaymentScreen, expAmountOnPaymentScreen, "Verify Amount on Payment screen", false, false);
+        Log.info("Bank Name on Payment Screen : " + bankNameOnPaymentScreen);
+        Log.info("Card Number on Payment Screen : " + cardNumberOnPaymentScreen);
+
+        mbReporter.verifyEqualsWithLogging(amountOnPaymentScreen, expAmountOnPaymentScreen, "Verify Amount on Payment screen", false, false, true);
+        mbReporter.verifyEqualsWithLogging(bankNameOnPaymentScreen, expBankNameOnPaymentScreen, "Verify Bank Name on Payment screen", false, false, true);
+        mbReporter.verifyEqualsWithLogging(cardNumberOnPaymentScreen, expCardNumberOnPaymentScreen, "Verify Card Number on Payment screen", false, false, true);
 
         //Click on Pay button
-        ccbpPage.clickOnPayButton();
-
-
-
-
+//        ccbpPage.clickOnPayButton();
 
     }
 }

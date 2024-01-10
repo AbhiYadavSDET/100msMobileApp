@@ -25,7 +25,7 @@ public class CCBPTest extends TestBase {
         Log.info("======= START : Credit Card Payment Flow test =======");
 
         CCBPHelper ccbpHelper = new CCBPHelper(getIosDriver());
-        ccbpHelper.creditCardPayment("4375517199762008","100","₹100");
+        ccbpHelper.creditCardPayment("4375517199762008","100","₹100","ICICI BANK LTD","4375 5171 9976 2008");
 
         Log.info("======= END : Credit Card Payment Flow test =======");
 
