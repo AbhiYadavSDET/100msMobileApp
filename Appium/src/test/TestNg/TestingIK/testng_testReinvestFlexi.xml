@@ -15,8 +15,6 @@
             <run>
                 <include name="setUp"/>
                 <include name="instantiateHelpers"/>
-                <include name="p2mNearbyStores"/>
-                <include name="p2mOfflinePaymentCode"/>
                 <include name="p2mSendRecentMerchant"/>
                 <include name="tearDown"/>
             </run>
