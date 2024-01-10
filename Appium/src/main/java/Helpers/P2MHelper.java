@@ -92,7 +92,7 @@ public class P2MHelper {
         if(p2mPage.checkEnterDetailsBottomsheet()){
             p2mPage.enterPhoneNumber(Number);
             p2mPage.clickConfirmPaymentBtn();
-            p2mPage.clickConfirmPayment();
+
          //   p2mPage.clickBackButtonOnStatusScreen();
         }
 
@@ -128,7 +128,7 @@ public class P2MHelper {
 
 
         // Click on the up Icon
-        p2mPage.clickBackButtonOnStatusScreen();
+        p2mPage.clickUpButton();
 
         // Click Cross Buttonm
         if (p2mPage.checkBackButton()) p2mPage.clickBackButton();
