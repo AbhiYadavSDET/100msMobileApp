@@ -92,8 +92,7 @@ public class P2MHelper {
         if(p2mPage.checkEnterDetailsBottomsheet()){
             p2mPage.enterPhoneNumber(Number);
             p2mPage.clickConfirmPaymentBtn();
-
-         //   p2mPage.clickBackButtonOnStatusScreen();
+        //  p2mPage.clickBackButtonOnStatusScreen();
         }
 
         // checking for security pin
