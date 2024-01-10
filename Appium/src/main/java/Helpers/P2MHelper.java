@@ -93,6 +93,7 @@ public class P2MHelper {
             p2mPage.enterPhoneNumber(Number);
             p2mPage.clickConfirmPaymentBtn();
             p2mPage.clickConfirmPayment();
+         //   p2mPage.clickBackButtonOnStatusScreen();
         }
 
         // checking for security pin
@@ -127,7 +128,7 @@ public class P2MHelper {
 
 
         // Click on the up Icon
-        p2mPage.clickUpButton();
+        p2mPage.clickBackButtonOnStatusScreen();
 
         // Click Cross Buttonm
         if (p2mPage.checkBackButton()) p2mPage.clickBackButton();

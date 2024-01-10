@@ -74,6 +74,9 @@ public class P2MPage {
     @AndroidFindBy(id = "back_icon")
     private AndroidElement upButtom;
 
+    @AndroidFindBy(id = "com.mobikwik_new.debug:id/back_icon")
+    private AndroidElement back_btn_status_screen;
+
     @AndroidFindBy(id = "close_button")
     private AndroidElement backButton;
 
@@ -180,6 +183,10 @@ public class P2MPage {
 
     public void clickUpButton() {
         Elements.selectElement(driver, upButtom, "Up Button");
+    }
+
+    public void clickBackButtonOnStatusScreen() {
+        Elements.selectElement(driver, back_btn_status_screen, "Back Button");
     }
 
     public void clickBackButton() {
