@@ -23,6 +23,12 @@ public class P2MPage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='OK']")
     private IOSElement cameraPermissionNativeOkCta;
 
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@name,'location')][1]")
+    private IOSElement locationPermissionNativePresent;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='Allow While Using App']")
+    private IOSElement locationPermissionNativeAllowWhileUsingAppCta;
+
 
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='Enable']")
     private IOSElement enablePermission;
@@ -78,6 +84,26 @@ public class P2MPage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeCell[1]")
     private IOSElement recent_merchant;
 
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='Show nearby stores']")
+    private IOSElement nearby_stores;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='Offline payment code']")
+    private IOSElement offline_payment_code;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@name,'Current Location')]")
+    private IOSElement current_location_title;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeStaticText")
+    private IOSElement store_by_address;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeStaticText[1]")
+    private IOSElement pay_at_store_title;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[3]/XCUIElementTypeOther/XCUIElementTypeStaticText[1]")
+    private IOSElement instruction_text;
+
+
+
 
 
 
@@ -97,6 +123,13 @@ public class P2MPage {
 
     public void allowPermissionWhileUsingApp() {
         Elements.selectElement(driver, cameraPermissionNativeOkCta, "Permission : Enabled");
+    }
+
+    public boolean checkIfLocationPermissionNeeded() throws InterruptedException {
+        return Elements.isElementPresent(driver, locationPermissionNativePresent);
+    }
+    public void allowLocationPermissionWhileUsingApp() {
+        Elements.selectElement(driver, locationPermissionNativeAllowWhileUsingAppCta, "Allow While using app for Location Permission");
     }
 
     public void clickOnRecentMerchant() {
@@ -175,5 +208,32 @@ public class P2MPage {
     public void clickBackButton() {
         Elements.selectElement(driver, backButton, "Close Icon");
     }
+
+    public void clickOnNearbyStores() {
+        Elements.selectElement(driver, nearby_stores, "click on Nearby Stores");
+    }
+
+    public void clickOnOfflinePaymentCode() {
+        Elements.selectElement(driver, offline_payment_code, "click on Offline Payment Code");
+    }
+
+    public String getCurrentLocationTitle() throws InterruptedException {
+        return Elements.getText(driver, current_location_title, "Current Location Title");
+    }
+
+    public String getStoreByAddress() throws InterruptedException {
+        return Elements.getText(driver, store_by_address, "Store By Address");
+    }
+
+
+
+    public String getPayAtStoreTitle() throws InterruptedException {
+        return Elements.getText(driver, pay_at_store_title, "Pay At Store Title");
+    }
+
+    public String getInstructionText() throws InterruptedException {
+        return Elements.getText(driver, instruction_text, "Instruction Text");
+    }
+
 
 }

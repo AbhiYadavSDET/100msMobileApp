@@ -128,6 +128,63 @@ public class P2MHelper {
 
     }
 
+    public void p2mVerify(String flow, String expTitle, String expText) throws InterruptedException, IOException {
+
+        // Tap the QR code Icon on Homepage
+        p2mPage.clickScanQR();
+
+        // Allow the Permission
+        if(p2mPage.checkIfCameraPermissionNeeded()){
+            p2mPage.allowPermissionWhileUsingApp();
+        }
+
+        String actualTitle;
+        String actualText;
+
+        if(flow.equals("NearbyStores")){
+
+            // Click on the up Nearby Stores
+            p2mPage.clickOnNearbyStores();
+
+
+            // Allow the Permission
+            if(p2mPage.checkIfLocationPermissionNeeded()) {
+                p2mPage.allowLocationPermissionWhileUsingApp();
+            }
+
+            // Verification on the Success Screen
+            actualTitle = p2mPage.getCurrentLocationTitle();
+            actualText = p2mPage.getStoreByAddress();
+
+            if(actualTitle.contains("Current Location")){
+                actualTitle="Current Location";
+            }
+
+        }
+        else {
+
+            // Click on the up Nearby Stores
+            p2mPage.clickOnOfflinePaymentCode();
+
+            // Verification on the Success Screen
+            actualTitle = p2mPage.getPayAtStoreTitle();
+            actualText = p2mPage.getInstructionText();
+
+        }
+
+        // Display the values
+        Log.info("Title : " + actualTitle);
+        Log.info("Text : " + actualText);
+
+
+        // Add the assertions
+        mbReporter.verifyEqualsWithLogging(actualTitle, expTitle, "Verify Title", false, false, true);
+        mbReporter.verifyEqualsWithLogging(actualText, expText, "Verify Text", false, false, true);
+
+
+
+    }
+
 
 
 }
