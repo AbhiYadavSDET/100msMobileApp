@@ -80,6 +80,24 @@ public class CCBPPage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther")
     private IOSElement emailOptionScreen;
 
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"ic help\"]")
+    private IOSElement cardSettings;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeStaticText[2]")
+    private IOSElement emailLinkedMessage;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeButton")
+    private IOSElement backButton;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeButton")
+    private IOSElement referNow;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeStaticText")
+    private IOSElement referAndEarnScreen;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther")
+    private IOSElement referNowBannerAtTop;
+
     public CCBPPage(IOSDriver driver){
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -223,4 +241,20 @@ public class CCBPPage {
     public boolean isEmailOptionScreenPresent() throws InterruptedException {
         return Elements.isElementPresent(driver, emailOptionScreen);
     }
+
+    public void clickOnCardSetting() { Elements.click(driver, cardSettings,"Click on card settings");  }
+
+    public String getEmailLinkMessage() throws InterruptedException{
+        return Elements.getText(driver, emailLinkedMessage);
+    }
+
+    public void clickOnBackButton() { Elements.click(driver, backButton,"Click on back button");  }
+
+    public void clickOnReferNow() { Elements.click(driver, referNow, "Click on refer now");}
+
+    public String getReferScreenTitle() throws InterruptedException {
+       return Elements.getText(driver, referAndEarnScreen);
+    }
+
+    public void clickOnReferNowAtTop() { Elements.click(driver, referNowBannerAtTop, "Click on refer now"); }
 }
