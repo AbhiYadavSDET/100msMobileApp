@@ -128,6 +128,9 @@ public class P2MPage {
     @AndroidFindBy(id = "com.mobikwik_new.debug:id/edit_text")
     private AndroidElement number_entry_field;
 
+    @AndroidFindBy(id = "com.mobikwik_new.debug:id/pay_btn")
+    private AndroidElement confirm_pay_btn;
+
 
     public P2MPage(AndroidDriver driver) {
         this.driver = driver;
@@ -280,6 +283,11 @@ public class P2MPage {
     public void enterPhoneNumber(String MobileNumber) {
         Elements.enterToElement(driver, number_entry_field, MobileNumber, "Enter Mobile Number");
     }
+
+    public void clickConfirmPaymentBtn() {
+        Elements.selectElement(driver, confirm_pay_btn, "Click on Confirm Payment");
+    }
+
 
 
 }
