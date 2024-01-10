@@ -38,6 +38,10 @@ public class HomePage {
     @iOSXCUITFindBy(id = "Scan any QR")
     private IOSElement scanQR;
 
+
+    @iOSXCUITFindBy(id = "Wallet to Bank Transfer")
+    private IOSElement imps;
+
     public HomePage(IOSDriver driver) {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -84,6 +88,13 @@ public class HomePage {
         Elements.click(driver, scanQR,"Click on Scan QR");
     }
 
+    public void clickOnIMPS() throws InterruptedException {
+        Elements.click(driver, imps, "Click on IMPS");
+    }
+
+    public IOSElement getImps() {
+        return imps;
+    }
 
     public IOSElement getPayRent() {
         return payRent;
