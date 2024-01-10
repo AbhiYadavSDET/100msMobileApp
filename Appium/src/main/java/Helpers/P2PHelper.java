@@ -78,6 +78,11 @@ public class P2PHelper {
             securityPinPage.enterSecurityPin();
         }
 
+        if(p2PPage.checkKycPageOpened()){
+            p2PPage.clickBackBtnOnKycPage();
+            p2PPage.clickOnNoBtn();
+        }
+
         // Verification on the Success Screen
         String actualStatus = p2PPage.getStatus();
         String actualAmount = p2PPage.getAmount();
