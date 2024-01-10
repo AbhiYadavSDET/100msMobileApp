@@ -103,4 +103,60 @@ public class CCBPHelper {
 //        ccbpPage.clickOnPayButton();
 
     }
+
+    public void CCBP_ReferAndEarn(String expLinkedMessage, String expReferScreenTitle) throws InterruptedException, IOException {
+
+        //Click Recharge and Pay Bills option
+        homePage.clickRechargeAndPayBills();
+
+        //Allow loaction permission
+        permissionPage.clickAllowWhileUsingApp();
+
+        //Click on Credit card payment
+        rechargePage.clickCreditCardPayment();
+
+        Thread.sleep(2000);
+
+        if(ccbpPage.isEmailAccessBottomSheetShown()){
+            //Click to close Email Access Bottom sheet
+            ccbpPage.closeEmailAccessBottomSheet();
+        }
+
+        Thread.sleep(2000);
+
+        //Click on card settings
+        ccbpPage.clickOnCardSetting();
+
+        String actualLinkMessage = ccbpPage.getEmailLinkMessage();
+//        String expectedLinkMessage  = expLinkedMessage;
+        Log.info("Card Link Message : " + actualLinkMessage);
+
+        //If email is not linked
+        if(actualLinkMessage.equalsIgnoreCase(expLinkedMessage)){
+
+            ccbpPage.clickOnBackButton();
+
+            Thread.sleep(1000);
+
+            ccbpPage.clickOnReferNow();
+        }
+        else {
+
+            ccbpPage.clickOnBackButton();
+
+            Thread.sleep(1000);
+
+            ccbpPage.clickOnReferNowAtTop();
+
+        }
+
+        String actualReferScreenTitle = ccbpPage.getReferScreenTitle();
+
+        Log.info("Refer Screen title : " + actualReferScreenTitle);
+
+        mbReporter.verifyEqualsWithLogging(actualReferScreenTitle, expReferScreenTitle, "Verify Refer screen", false, false,true);
+
+    }
+
 }
+
