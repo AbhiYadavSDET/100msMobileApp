@@ -29,6 +29,9 @@
             <class name="AA.Test_AccountAggregator"/>
             <class name="PayRent.PayRentTest"/>
             <class name="CentralMapper.CentralMapperTest"/>
+            <class name="P2P.P2PTest"/>
+            <class name="P2M.P2MTest"/>
+
         </classes>
     </test>
 
