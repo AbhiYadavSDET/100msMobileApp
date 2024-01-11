@@ -25,7 +25,7 @@ public class P2MTest extends TestBase {
 
         // Execute the test
         P2MHelper p2mHelper = new P2MHelper(getAndroidDriver());
-        p2mHelper.p2mSend("RecentMerchant", "1", "You Paid", "₹1", "to dhdn", "dhdn", "9554807271", "Activate Now", "Paid to dhdn", "-₹1", "Success");
+        p2mHelper.p2mSend("RecentMerchant", "1", "9991015888","You Paid", "₹1", "to dhdn", "dhdn", "9554807271", "Activate Now", "Paid to dhdn", "-₹1", "Success");
         Log.info("======= END : P2M Send test =======");
 
     }
@@ -44,7 +44,7 @@ public class P2MTest extends TestBase {
 
         // Execute the test
         P2MHelper p2mHelper = new P2MHelper(getAndroidDriver());
-        p2mHelper.p2mSend("MobikwikQr", "1", "You Paid", "₹1", "to manoj", "manoj", "AACH41414", "Activate Now", "Paid to Rizwan Cafe FF", "-₹1", "Success");
+        p2mHelper.p2mSend("MobikwikQr", "1", "9991015888","You Paid", "₹1", "to manoj", "manoj", "AACH41414", "Activate Now", "Paid to Rizwan Cafe FF", "-₹1", "Success");
         Log.info("======= END : P2M Send test =======");
 
 
@@ -64,7 +64,7 @@ public class P2MTest extends TestBase {
 
         // Execute the test
         P2MHelper p2mHelper = new P2MHelper(getAndroidDriver());
-        p2mHelper.p2mSend("RecentMerchant", "1", "You Paid", "₹1", "to dhdn", "dhdn", "9554807271", "Activate Now", "Paid to dhdn", "-₹1", "Success");
+        p2mHelper.p2mSend("RecentMerchant", "1", "9991015888","You Paid", "₹1", "to dhdn", "dhdn", "9554807271", "Activate Now", "Paid to dhdn", "-₹1", "Success");
         Log.info("======= END : P2M Send test =======");
 
     }
@@ -82,7 +82,7 @@ public class P2MTest extends TestBase {
 
         // Execute the test
         P2MHelper p2mHelper = new P2MHelper(getAndroidDriver());
-        p2mHelper.p2mSend("SonuQr", "1", "You Paid", "₹1", "to Bayleaf @ MobiKwik", "Bayleaf @ MobiKwik", "BLF001", "Activate Now", "Paid to Bayleaf @ MobiKwik", "-₹1", "Success");
+        p2mHelper.p2mSend("SonuQr", "1", "9991015888","You Paid", "₹1", "to Bayleaf @ MobiKwik", "Bayleaf @ MobiKwik", "BLF001", "Activate Now", "Paid to Bayleaf @ MobiKwik", "-₹1", "Success");
         Log.info("======= END : P2M Send test =======");
 
 
