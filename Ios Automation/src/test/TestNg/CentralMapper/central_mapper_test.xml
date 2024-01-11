@@ -1,23 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="P2PExtra Flow">
+<suite name="Central Mapper test on UPI home screen">
 
     <parameter name="build" value="prod"/>
     <parameter name="level" value="payments"/>
     <parameter name="saucelabs" value="false"></parameter>
     <parameter name="androidOSVersion" value="12.0"></parameter>
-    <parameter name="deviceName" value="deviceName"></parameter>
-    <parameter name="udId" value="172.20.10.5:42363"></parameter>
-    <parameter name="portNo" value="4723"></parameter>
 
-    <test verbose="2" preserve-order="true" name="Testing For Failrue cases">
+    <test verbose="2" preserve-order="true" name="Central Mapper test on UPI home screen">
         <groups>
             <run>
                 <include name="setUp"/>
                 <include name="instantiateHelpers"/>
-                <include name="p2mNearbyStores"/>
-                <include name="p2mOfflinePaymentCode"/>
-                <include name="p2mSendRecentMerchant"/>
+                <include name="centralMapper"/>
                 <include name="tearDown"/>
             </run>
         </groups>
@@ -25,7 +20,7 @@
 
         <classes>
             <class name="Utils.TestBase"/>
-            <class name="P2M.P2MTest"/>
+            <class name="CentralMapper.CentralMapperTest"/>
         </classes>
     </test>
 

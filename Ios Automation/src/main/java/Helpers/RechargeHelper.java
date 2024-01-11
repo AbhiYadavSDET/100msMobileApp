@@ -119,7 +119,7 @@ public class RechargeHelper {
         rechargePage.clickEnterNameOrMobileNo();
 
         //Click OK on Access your contacts popup
-        rechargePage.clickAllowContactPermission();
+        permissionPage.clickAllowContactPermission();
 
         //Enter Postpaid Number
         rechargePage.enterPostpaidNumber(number);
@@ -171,6 +171,56 @@ public class RechargeHelper {
 
         //Click History
         historyPage.clickHistory();
+
+
+    }
+
+    public void changeOperator(String circleName, String expOperatorName, String expCircleName) throws InterruptedException, IOException{
+
+        //Click Recharge and Pay Bills option
+        homePage.clickRechargeAndPayBills();
+
+        //Provide loaction access while using app
+        permissionPage.clickAllowWhileUsingApp();
+
+        //Click on Mobile option
+        rechargePage.clickMobile();
+
+        Thread.sleep(2000);
+
+        //Tap to select my number
+        rechargePage.selectMyNumber();
+
+        Thread.sleep(2000);
+
+        //Click on Change operator
+        rechargePage.clickOnChangeOperator();
+
+        //Select reliance operator
+        rechargePage.selectOperator();
+
+        //Click on search circle
+        rechargePage.searchCircle();
+
+        //Enter circle
+        rechargePage.enterCircle(circleName);
+
+        //Select circle
+        rechargePage.selectCircle();
+
+        Thread.sleep(2000);
+
+        //Verification on Search Plan screen
+        String operatorName = rechargePage.getOperatorName();
+        String circle = rechargePage.getCircleName();
+
+        // Display the values
+        Log.info("Operator Name : " + operatorName);
+        Log.info("Circle Name : " + circle);
+
+        // Add the assertions
+        mbReporter.verifyEqualsWithLogging(operatorName, expOperatorName, "Verify Operator Name", false, false,true);
+        mbReporter.verifyEqualsWithLogging(circle, expCircleName, "Verify Circle Name", false, false, true);
 
 
     }

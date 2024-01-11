@@ -23,13 +23,10 @@ public class RechargePage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[5]/XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeOther[2]")
     private IOSElement selectPlan;
 
-//    @iOSXCUITFindBy(id = "₹739")
-//    private IOSElement amountOnPrepaidPaymentScreen;
-
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[2]")
     private IOSElement amountOnPaymentScreen;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[starts-with(@name,'Pay ₹')]")
     private IOSElement payButton;
 
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Postpaid\"]")
@@ -38,8 +35,8 @@ public class RechargePage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton")
     private IOSElement enterNameOrMobileNo;
 
-    @iOSXCUITFindBy(id = "OK")
-    private IOSElement contactsPermission;
+//    @iOSXCUITFindBy(id = "OK")
+//    private IOSElement contactsPermission;
 
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther")
     private IOSElement searchContact;
@@ -68,6 +65,23 @@ public class RechargePage {
     @iOSXCUITFindBy(id = "Credit Card Payment")
     private IOSElement creditCardPayment;
 
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Change\"]")
+    private IOSElement changeOperator;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Reliance\"]")
+    private IOSElement selectOperator;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther")
+    private IOSElement searchCircle;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeOther[1]/XCUIElementTypeOther")
+    private IOSElement selectCircle;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeStaticText[2]")
+    private IOSElement operatorName;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeStaticText[3]")
+    private IOSElement circleName;
 
     public RechargePage(IOSDriver driver) {
         this.driver = driver;
@@ -98,8 +112,6 @@ public class RechargePage {
 
     public void clickEnterNameOrMobileNo() { Elements.click(driver, enterNameOrMobileNo,"Click on Enter Name or Mobile no."); }
 
-    public void clickAllowContactPermission() { Elements.click(driver, contactsPermission,"Click OK on contact permission popup"); }
-
     public void enterPostpaidNumber(String number) {
          Elements.enterToElement(driver, searchContact, number,"Click on Enter Name or Mobile no.");
     }
@@ -128,7 +140,23 @@ public class RechargePage {
 
     public void closeFeedbackPopup() { Elements.click(driver, feedbackPopup, "Click to close feedback popup");}
 
-    public void clickCreditCardPayment() { Elements.click(driver, creditCardPayment,"Click on Credit Card payment");}
+    public void clickCreditCardPayment() { Elements.click(driver, creditCardPayment,"Click on Credit Card payment");    }
+
+    public void clickOnChangeOperator() { Elements.click(driver, changeOperator,"Click on change operator");    }
+
+    public void selectOperator() { Elements.click(driver, selectOperator,"Click on operator"); }
+
+    public void searchCircle() { Elements.click(driver, searchCircle,"Click on search circle"); }
+
+    public void enterCircle(String circleName) {
+        Elements.enterToElement(driver, searchCircle, circleName, "Enter circle");
+    }
+
+    public void selectCircle() { Elements.click(driver, selectCircle,"Select circle"); }
+
+    public String getOperatorName() throws InterruptedException { return Elements.getText(driver, operatorName); }
+
+    public String getCircleName() throws InterruptedException { return Elements.getText(driver, circleName); }
 
 
 
