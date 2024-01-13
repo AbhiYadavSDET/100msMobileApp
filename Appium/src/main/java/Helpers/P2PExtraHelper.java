@@ -175,6 +175,9 @@ public class P2PExtraHelper {
         // Click Flexi from slider
         p2PExtraPage.selectFlexiFromNavBar();
 
+        // CLick on Got it CTA on Borrower Mapping Report Bottomsheet
+        p2PExtraPage.clickGotItCtaBorrowerMappingReport();
+
         // Used to click Invest Now btn on Xtra FLEXI amount page
         p2PExtraPage.selectInvestMore();
 
