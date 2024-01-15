@@ -23,10 +23,15 @@
             <class name="P2PExtra.P2PExtraTest"/>
             <class name="PipedGas.PipedGasTest"/>
             <class name="Recharge.RechargeTest"/>
+            <class name="CCBP.CCBPTest"/>
             <class name="Offers.OffersTest"/>
             <class name="Electricity.ElectricityTest"/>
             <class name="AA.Test_AccountAggregator"/>
             <class name="PayRent.PayRentTest"/>
+            <class name="CentralMapper.CentralMapperTest"/>
+            <class name="P2P.P2PTest"/>
+            <class name="P2M.P2MTest"/>
+
         </classes>
     </test>
 

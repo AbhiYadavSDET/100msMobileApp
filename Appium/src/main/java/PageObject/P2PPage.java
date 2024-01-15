@@ -36,6 +36,15 @@ public class P2PPage {
     @AndroidFindBy(id = "name")
     private AndroidElement successScreenReceiverName;
 
+    @AndroidFindBy(id = "com.mobikwik_new.debug:id/advantages_text")
+    private AndroidElement kyc_page_title;
+
+    @AndroidFindBy(id = "Navigate up")
+    private AndroidElement kyc_page_back_btn;
+
+    @AndroidFindBy(id="com.mobikwik_new.debug:id/vertical_button_2")
+    private AndroidElement no_thanks_cta;
+
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Mobile Number']/following-sibling::android.widget.TextView")
 
     private AndroidElement successScreenReceiverMobileNo;
@@ -48,6 +57,9 @@ public class P2PPage {
 
     @AndroidFindBy(id = "mkab_icon_1")
     private AndroidElement successScreenUpButton;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id=\"com.mobikwik_new.debug:id/text\" and @text=\"Scan any QR\"]")
+    private AndroidElement scanAnyQrBtn;
 
     // --------------------------------------------------
 
@@ -87,6 +99,10 @@ public class P2PPage {
         return Elements.getText(driver, successScreenStatus, "Status");
     }
 
+    public Boolean checkStatus() throws InterruptedException {
+        return Elements.isElementPresent(driver, successScreenStatus);
+    }
+
     public String getAmount() throws InterruptedException {
         return Elements.getText(driver, successScreenAmount, "Amount");
     }
@@ -106,6 +122,23 @@ public class P2PPage {
     public String getZipCtaText() throws InterruptedException {
         return Elements.getText(driver, successScreenZipCta, "Zip Cta Text");
     }
+
+    public void clickScanQrOptn() {
+        Elements.selectElement(driver, scanAnyQrBtn, "Click on Scan Any QR");
+    }
+
+    public void clickBackBtnOnKycPage() {
+        Elements.selectElement(driver, kyc_page_back_btn, "Click on back button on Complete KYC Page");
+    }
+
+    public Boolean checkKycPageOpened() throws InterruptedException {
+        return Elements.isElementPresent(driver, kyc_page_title);
+    }
+
+    public void clickOnNoBtn() {
+        Elements.selectElement(driver, no_thanks_cta, "Click on No,Thanks Btn");
+    }
+
 
 
 }

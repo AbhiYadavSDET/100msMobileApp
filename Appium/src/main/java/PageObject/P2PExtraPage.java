@@ -224,6 +224,10 @@ public class P2PExtraPage {
     private AndroidElement check_fixed_investment_amount;
 
 
+    @AndroidFindBy(id = "com.mobikwik_new.debug:id/cta")
+    private AndroidElement got_it_btn_mapping_report;
+
+
     public P2PExtraPage(AndroidDriver driver) throws IOException {
 
         this.driver = driver;
@@ -561,6 +565,10 @@ public class P2PExtraPage {
 
     public boolean checkFixedInvestmentDesc() throws InterruptedException {
         return Elements.isElementPresent(driver, check_fixed_investment_amount);
+    }
+
+    public void clickGotItCtaBorrowerMappingReport() {
+        Elements.selectElement(driver, got_it_btn_mapping_report, "Click on Got It on Borrower Mapping Report");
     }
 
 

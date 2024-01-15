@@ -12,7 +12,7 @@ public class P2MPage {
 
     AndroidDriver driver;
 
-    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Scan any QR']")
+    @AndroidFindBy(xpath = "//android.widget.FrameLayout[@resource-id=\"com.mobikwik_new.debug:id/navigation_zip\"]/android.widget.FrameLayout/android.widget.ImageView")
     private AndroidElement scanQrButton;
 
     @AndroidFindBy(id = "com.android.permissioncontroller:id/permission_allow_foreground_only_button")
@@ -74,6 +74,9 @@ public class P2MPage {
     @AndroidFindBy(id = "back_icon")
     private AndroidElement upButtom;
 
+    @AndroidFindBy(id = "com.mobikwik_new.debug:id/back_icon")
+    private AndroidElement back_btn_status_screen;
+
     @AndroidFindBy(id = "close_button")
     private AndroidElement backButton;
 
@@ -121,6 +124,15 @@ public class P2MPage {
 
     @AndroidFindBy(id = "close_button")
     private AndroidElement back_btn;
+
+    @AndroidFindBy(id = "com.mobikwik_new.debug:id/title")
+    private AndroidElement detail_bottomsheet;
+
+    @AndroidFindBy(id = "com.mobikwik_new.debug:id/edit_text")
+    private AndroidElement number_entry_field;
+
+    @AndroidFindBy(id = "com.mobikwik_new.debug:id/pay_btn")
+    private AndroidElement confirm_pay_btn;
 
 
     public P2MPage(AndroidDriver driver) {
@@ -171,6 +183,10 @@ public class P2MPage {
 
     public void clickUpButton() {
         Elements.selectElement(driver, upButtom, "Up Button");
+    }
+
+    public void clickBackButtonOnStatusScreen() {
+        Elements.selectElement(driver, back_btn_status_screen, "Back Button");
     }
 
     public void clickBackButton() {
@@ -267,6 +283,17 @@ public class P2MPage {
         return Elements.isElementPresent(driver, back_btn);
     }
 
+    public boolean checkEnterDetailsBottomsheet() throws InterruptedException {
+        return Elements.isElementPresent(driver, detail_bottomsheet);
+    }
+
+    public void enterPhoneNumber(String MobileNumber) {
+        Elements.enterToElement(driver, number_entry_field, MobileNumber, "Enter Mobile Number");
+    }
+
+    public void clickConfirmPaymentBtn() {
+        Elements.selectElement(driver, confirm_pay_btn, "Click on Confirm Payment");
+    }
 
 
 
