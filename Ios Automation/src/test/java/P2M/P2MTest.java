@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class P2MTest extends TestBase {
 
-    @Test(groups = { "p2m", "p2mSend", "p2mSendMobikwikQr", "regression"}, priority = 1, description = "P2M Send test")
+    @Test(groups = { "p2m", "p2mSend", "p2mSendMobikwikQr", "regression"}, priority = 0, description = "P2M Send test")
     public void Test01_p2mSendMobikwikQr() throws IOException, InterruptedException {
 
         Log.info("======= START : P2M Send test : Mobikwik QR =======");
@@ -28,7 +28,7 @@ public class P2MTest extends TestBase {
     }
 
 
-    @Test(groups = { "p2m", "p2mSend", "p2mSendRecentMerchant", "regression"}, priority = 2, description = "P2M Send test")
+    @Test(groups = { "p2m", "p2mSend", "p2mSendRecentMerchant", "regression"}, priority = 0, description = "P2M Send test")
     public void Test02_p2mSendRecentMerchant() throws IOException, InterruptedException {
 
         Log.info("======= START : P2M Send test : Recent Merchants =======");
@@ -43,7 +43,7 @@ public class P2MTest extends TestBase {
 
     }
 
-    @Test(groups = {"p2mSendSonuQr"}, priority = 3, description = "P2M Send test")
+    @Test(groups = {"p2mSendSonuQr"}, priority = 0, description = "P2M Send test")
     public void Test03_p2mSendSonuQr() throws IOException, InterruptedException {
 
         Log.info("======= START : P2M Send test : Sonu QR =======");
@@ -59,7 +59,7 @@ public class P2MTest extends TestBase {
 
     }
 
-    @Test(groups = { "p2m", "p2mVerify", "p2mNearbyStores", "regression"}, priority = 4, description = "P2M Verify Nearby Stores")
+    @Test(groups = { "p2m", "p2mVerify", "p2mNearbyStores", "regression"}, priority = 0, description = "P2M Verify Nearby Stores")
     public void Test04_p2mNearbyStores() throws IOException, InterruptedException {
 
         Log.info("======= START : P2M Verify Nearby Stores test =======");
@@ -77,7 +77,7 @@ public class P2MTest extends TestBase {
 
     }
 
-    @Test(groups = { "p2m", "p2mVerify", "p2mOfflinePaymentCode", "regression"}, priority = 5, description = "P2M Verify Offline Payment Code")
+    @Test(groups = { "p2m", "p2mVerify", "p2mOfflinePaymentCode", "regression"}, priority = 0, description = "P2M Verify Offline Payment Code")
     public void Test05_p2mOfflinePaymentCode() throws IOException, InterruptedException {
 
         Log.info("======= START : P2M Verify Offline Payment Code test =======");
