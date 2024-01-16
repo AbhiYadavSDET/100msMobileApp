@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class CCBPTest extends TestBase {
 
-    @Test(groups = {"CreditCardPayment", "regression"}, priority = 1, description = "Verify credit card payment")
+    @Test(groups = {"CreditCardPayment", "regression"}, priority = 0, description = "Verify credit card payment")
 
     public void Test_CreditCardPayment_Flow() throws InterruptedException, IOException {
 
