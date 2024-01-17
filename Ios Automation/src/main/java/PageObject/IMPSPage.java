@@ -27,20 +27,20 @@ public class IMPSPage {
     private IOSElement accountNumber;
 
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeTextField[@name=\"Account Number, Account Number cannot be empty\"]")
-    private IOSElement accountNumberErrorMessage;
-
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeTextField[@name=\"Account Number, Account Number cannot be empty\"]")
     private IOSElement ifscCodeErrorMessage;
-
 
     @iOSXCUITFindBy(id = "IFSC Code")
     private IOSElement ifscCode;
 
     @iOSXCUITFindBy(xpath= "//XCUIElementTypeButton[@name=\"Continue\"]")
-    private IOSElement continueButtonOnBeneficiaryPage;
+    private IOSElement continueButtonOnImps;
 
     @iOSXCUITFindBy(xpath= "//XCUIElementTypeStaticText[@name=\"UPI ID\"]")
-    private IOSElement upiIdBox;
+    private IOSElement upiIdRadioButton;
+
+
+    // wrong xpath need to change for UPI radio button or upi id
+
 
     @iOSXCUITFindBy(xpath= "//XCUIElementTypeTextField[@name=\"UPI ID\"]")
     private IOSElement upiIdField;
@@ -59,6 +59,9 @@ public class IMPSPage {
 
     @iOSXCUITFindBy(xpath= "//XCUIElementTypeTextField[@name=\"Beneficiary Name, Beneficiary Name cannot be empty\"]")
     private IOSElement errorMessageOnBeneficiaryName;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeTextField[@name=\"Account Number, Account Number cannot be empty\"]")
+    private IOSElement errorAccountNumberMessage;
 
 
     public IMPSPage(IOSDriver driver) {
@@ -91,11 +94,11 @@ public class IMPSPage {
     }
 
     public IOSElement getContinueButtonOnBeneficiaryPage() {
-        return continueButtonOnBeneficiaryPage;
+        return continueButtonOnImps;
     }
 
     public IOSElement getUpiIdBox() {
-        return upiIdBox;
+        return upiIdRadioButton;
     }
 
     public IOSElement getUpiIdField() {
@@ -134,11 +137,29 @@ public class IMPSPage {
     }
 
     public void clickOnContinue(){
-        Elements.click(driver,continueButtonOnBeneficiaryPage,"Click on Continue button on beneficiary page");
+        Elements.click(driver,continueButtonOnImps,"Click on Continue button on beneficiary page");
     }
 
     public String getBeneficiaryErrorMessage() throws InterruptedException {
-       return Elements.getText(driver,errorMessageOnBeneficiaryName,"Error message on beneficiary message ");
+       return Elements.getText(driver,errorMessageOnBeneficiaryName,"Error message on beneficiary name ");
     }
+
+    public String getAccountNumberErrorMessage() throws InterruptedException {
+        return Elements.getText(driver,errorAccountNumberMessage,"Error message on Account number ");
+    }
+
+    public String getIfscCodeErrorMessage() throws InterruptedException {
+        return Elements.getText(driver,errorMessageOnIfscCode,"Error message on IFSC code ");
+    }
+
+    public void clickOnUPIOption(){
+        Elements.click(driver,upiIdRadioButton,"Click on upi radio button");
+    }
+
+    public void enterUPIId(String upi){
+        Elements.enterToElement(driver, upiIdField ,upi, "Entered UPI ID number : "+ upi);
+    }
+
+    
 
 }
