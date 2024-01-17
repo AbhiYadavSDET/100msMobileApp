@@ -98,9 +98,7 @@ public class HomePage {
         Elements.click(driver, scanQR,"Click on Scan QR");
     }
 
-    public void clickOnIMPS() throws InterruptedException {
-        Elements.click(driver, imps, "Click on IMPS");
-    }
+    public void clickOnIMPS() { Elements.click(driver, imps, "Click on IMPS"); }
 
     public IOSElement getImps() {
         return imps;

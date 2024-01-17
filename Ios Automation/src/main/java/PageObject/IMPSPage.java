@@ -11,10 +11,10 @@ public class IMPSPage {
 
     IOSDriver driver;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Check Limits\"]")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='Check Limits']")
     private IOSElement checkLimits;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Transfer to a new account\"]")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='Transfer to a new account']")
     private IOSElement transferToNewAccount;
 
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"M\"]")
@@ -23,33 +23,29 @@ public class IMPSPage {
     @iOSXCUITFindBy(id = "Beneficiary Name")
     private IOSElement beneficiaryName;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeTextField[@name=\"Account Number\"]")
-    private IOSElement accountNumber;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeTextField[@name='Account Number']")
+    private IOSElement accNumber;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeTextField[@name=\"Account Number, Account Number cannot be empty\"]")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeTextField[@name='Account Number, Account Number cannot be empty']")
     private IOSElement ifscCodeErrorMessage;
 
     @iOSXCUITFindBy(id = "IFSC Code")
     private IOSElement ifscCode;
 
-    @iOSXCUITFindBy(xpath= "//XCUIElementTypeButton[@name=\"Continue\"]")
+    @iOSXCUITFindBy(xpath= "//XCUIElementTypeButton[@name='Continue']")
     private IOSElement continueButtonOnImps;
 
-    @iOSXCUITFindBy(xpath= "//XCUIElementTypeStaticText[@name=\"UPI ID\"]")
+    @iOSXCUITFindBy(xpath= "//XCUIElementTypeStaticText[@name='UPI ID']")
     private IOSElement upiIdRadioButton;
 
 
     // wrong xpath need to change for UPI radio button or upi id
 
 
-    @iOSXCUITFindBy(xpath= "//XCUIElementTypeTextField[@name=\"UPI ID\"]")
+    @iOSXCUITFindBy(xpath= "//XCUIElementTypeTextField[@name='UPI ID']")
     private IOSElement upiIdField;
 
-    @iOSXCUITFindBy(xpath= "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTextField")
-    private IOSElement amountField;
-
-
-    @iOSXCUITFindBy(xpath= "//XCUIElementTypeTextField[@name=\"UPI ID, Please enter valid UPI Id\"]")
+    @iOSXCUITFindBy(xpath= "//XCUIElementTypeTextField[@name='UPI ID, Please enter valid UPI Id\"]")
     private IOSElement errorMessageOnUPINumber;
 
 
@@ -62,6 +58,24 @@ public class IMPSPage {
 
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeTextField[@name=\"Account Number, Account Number cannot be empty\"]")
     private IOSElement errorAccountNumberMessage;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeStaticText[1]")
+    private IOSElement nameOnEnterAmountScreen;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeStaticText[2]")
+    private IOSElement accountNumberOnEnterAmountScreen;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeTextField")
+    private IOSElement enterAmount;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name='MobiKwik']/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[2]")
+    private IOSElement amountOnCheckout;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='TRANSFER LIMITS']")
+    private IOSElement transferLimitBottomSheet;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='M']")
+    private IOSElement closeCheckLimitBottomSheet;
 
 
     public IMPSPage(IOSDriver driver) {
@@ -86,7 +100,7 @@ public class IMPSPage {
     }
 
     public IOSElement getAccountNumber() {
-        return accountNumber;
+        return accNumber;
     }
 
     public IOSElement getIfscCode() {
@@ -105,10 +119,6 @@ public class IMPSPage {
         return upiIdField;
     }
 
-    public IOSElement getAmountField() {
-        return amountField;
-    }
-
     public IOSElement getErrorMessageOnUPINumber() {
         return errorMessageOnUPINumber;
     }
@@ -121,19 +131,25 @@ public class IMPSPage {
         return errorMessageOnBeneficiaryName;
     }
 
+    public void clickBeneficiaryName() { Elements.click(driver, beneficiaryName,"Click on Beneficiary name");   }
+
     public void enterBeneficiaryName(String name)
     {
         Elements.enterToElement(driver, beneficiaryName, name , "Entered Beneficiary name : "+ name);
     }
 
-    public void enterAccountNumber(String account)
+    public void clickAccountNumber() { Elements.click(driver, accNumber,"Click on Account number");   }
+
+    public void enterAccountNumber(String accountNumber)
     {
-        Elements.enterToElement(driver, accountNumber, account , "Entered account numeber : "+ account);
+        Elements.enterToElement(driver, accNumber, accountNumber , "Entered account number : "+ accountNumber);
     }
+
+    public void clickIfsc() { Elements.click(driver, ifscCode,"Click on ifsc code");   }
 
     public void enterIfscCode(String ifsc)
     {
-        Elements.enterToElement(driver, ifscCode ,ifsc, "Entered IFSC Code numeber : "+ ifsc);
+        Elements.enterToElement(driver, ifscCode ,ifsc, "Entered IFSC Code number : "+ ifsc);
     }
 
     public void clickOnContinue(){
@@ -160,6 +176,30 @@ public class IMPSPage {
         Elements.enterToElement(driver, upiIdField ,upi, "Entered UPI ID number : "+ upi);
     }
 
-    
+    public void clickOnTransferToAccountButton() { Elements.click(driver,transferToNewAccount,"Click on Transfer to a new account");     }
+
+    public String getBeneficiaryNameOnEnterAmountScreen() throws InterruptedException{
+        return Elements.getText(driver, nameOnEnterAmountScreen);
+    }
+
+    public String getAccountNumberOnEnterAmountScreen() throws InterruptedException{
+        return Elements.getText(driver, accountNumberOnEnterAmountScreen);
+    }
+
+    public void enterAmount(String amount){
+        Elements.enterToElement(driver, enterAmount,amount,"Enter amount");
+    }
+
+    public String getAmountOnCheckout() throws InterruptedException{
+        return Elements.getText(driver, amountOnCheckout);
+    }
+
+    public void clickCheckLimits() { Elements.click(driver, checkLimits, "Click on check limits"); }
+
+    public String getTransferLimitPageTitle() throws InterruptedException{
+        return Elements.getText(driver, transferLimitBottomSheet);
+    }
+
+    public void clickCloseCheckLimitBottomSheet() { Elements.click(driver, closeCheckLimitBottomSheet,"Close Check limit sheet");    }
 
 }
