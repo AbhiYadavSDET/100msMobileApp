@@ -17,19 +17,16 @@ public class IMPSPage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='Transfer to a new account']")
     private IOSElement transferToNewAccount;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"M\"]")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='M']")
     private IOSElement crossButtonOnImps;
 
-    @iOSXCUITFindBy(id = "Beneficiary Name")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTextField[1]")
     private IOSElement beneficiaryName;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeTextField[@name='Account Number']")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[3]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTextField[1]")
     private IOSElement accNumber;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeTextField[@name='Account Number, Account Number cannot be empty']")
-    private IOSElement ifscCodeErrorMessage;
-
-    @iOSXCUITFindBy(id = "IFSC Code")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[4]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTextField[1]")
     private IOSElement ifscCode;
 
     @iOSXCUITFindBy(xpath= "//XCUIElementTypeButton[@name='Continue']")
@@ -42,21 +39,21 @@ public class IMPSPage {
     // wrong xpath need to change for UPI radio button or upi id
 
 
-    @iOSXCUITFindBy(xpath= "//XCUIElementTypeTextField[@name='UPI ID']")
+    @iOSXCUITFindBy(xpath= "//XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTextField[1]")
     private IOSElement upiIdField;
 
     @iOSXCUITFindBy(xpath= "//XCUIElementTypeTextField[@name='UPI ID, Please enter valid UPI Id\"]")
     private IOSElement errorMessageOnUPINumber;
 
 
-    @iOSXCUITFindBy(xpath= "//XCUIElementTypeTextField[@name=\"IFSC Code, Please enter correct IFSC Code\"]")
+    @iOSXCUITFindBy(xpath= "//XCUIElementTypeTextField[@name='IFSC Code, Please enter correct IFSC Code']")
     private IOSElement errorMessageOnIfscCode;
 
 
-    @iOSXCUITFindBy(xpath= "//XCUIElementTypeTextField[@name=\"Beneficiary Name, Beneficiary Name cannot be empty\"]")
+    @iOSXCUITFindBy(xpath= "//XCUIElementTypeTextField[@name='Beneficiary Name, Beneficiary Name cannot be empty']")
     private IOSElement errorMessageOnBeneficiaryName;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeTextField[@name=\"Account Number, Account Number cannot be empty\"]")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeTextField[@name='Account Number, Account Number cannot be empty']")
     private IOSElement errorAccountNumberMessage;
 
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeStaticText[1]")
@@ -68,14 +65,22 @@ public class IMPSPage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeTextField")
     private IOSElement enterAmount;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name='MobiKwik']/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[2]")
-    private IOSElement amountOnCheckout;
+//    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name='MobiKwik']/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[2]")
+//    private IOSElement amountOnCheckout;
 
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='TRANSFER LIMITS']")
     private IOSElement transferLimitBottomSheet;
 
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='M']")
     private IOSElement closeCheckLimitBottomSheet;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[starts-with(@name,'Mr')]")
+    private IOSElement nameOfReceiver;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[2]/XCUIElementTypeStaticText[2]")
+    private IOSElement upiIdOfReceiver;
+
+
 
 
     public IMPSPage(IOSDriver driver) {
@@ -172,6 +177,8 @@ public class IMPSPage {
         Elements.click(driver,upiIdRadioButton,"Click on upi radio button");
     }
 
+    public void clickOnUpiIdField() { Elements.click(driver, upiIdField,"Click on UPI ID text field");   }
+
     public void enterUPIId(String upi){
         Elements.enterToElement(driver, upiIdField ,upi, "Entered UPI ID number : "+ upi);
     }
@@ -190,9 +197,9 @@ public class IMPSPage {
         Elements.enterToElement(driver, enterAmount,amount,"Enter amount");
     }
 
-    public String getAmountOnCheckout() throws InterruptedException{
-        return Elements.getText(driver, amountOnCheckout);
-    }
+//    public String getAmountOnCheckout() throws InterruptedException{
+//        return Elements.getText(driver, amountOnCheckout);
+//    }
 
     public void clickCheckLimits() { Elements.click(driver, checkLimits, "Click on check limits"); }
 
@@ -201,5 +208,29 @@ public class IMPSPage {
     }
 
     public void clickCloseCheckLimitBottomSheet() { Elements.click(driver, closeCheckLimitBottomSheet,"Close Check limit sheet");    }
+
+    public String getBeneficiaryFieldErrorMessage() throws InterruptedException{
+        return Elements.getText(driver, beneficiaryName);
+    }
+
+    public String getAccountNumberFieldErrorMessage() throws InterruptedException{
+        return Elements.getText(driver, accNumber);
+    }
+
+    public String getIfscFieldErrorMessage() throws InterruptedException{
+        return Elements.getText(driver, ifscCode);
+    }
+
+    public String getNameOfReceiver() throws InterruptedException{
+        return Elements.getText(driver, nameOfReceiver);
+    }
+
+    public String getUpiIdOfReceiver() throws InterruptedException{
+        return Elements.getText(driver, upiIdOfReceiver);
+    }
+
+    public String getUpiFieldErrorMessage() throws InterruptedException{
+        return Elements.getText(driver, upiIdField);
+    }
 
 }

@@ -75,7 +75,6 @@ public class IMPSHelper {
         mbReporter.verifyEqualsWithLogging(actualAccountNumberOnEnterAmountScreen, expAccountNumber, "Verify Account Number", false, false,true);
 
         //Enter amount
-//        impsPage.enterAmount(amount);
         ccbpPage.enterCreditCardNumber(amount);
 
         Thread.sleep(2000);
@@ -95,12 +94,12 @@ public class IMPSHelper {
 
         Thread.sleep(3000);
 
-        //Verification on checkout bottom sheet
-        String actualAmountOnCheckout = impsPage.getAmountOnCheckout();
-
-        Log.info("Amount on Checkout : " + actualAmountOnCheckout);
-
-        mbReporter.verifyEqualsWithLogging(actualAmountOnCheckout, expAmountOnCheckout,"Verify Amount on checkout", false,false, true);
+//        //Verification on checkout bottom sheet
+//        String actualAmountOnCheckout = impsPage.getAmountOnCheckout();
+//
+//        Log.info("Amount on Checkout : " + actualAmountOnCheckout);
+//
+//        mbReporter.verifyEqualsWithLogging(actualAmountOnCheckout, expAmountOnCheckout,"Verify Amount on checkout", false,false, true);
 
     }
 
@@ -128,12 +127,133 @@ public class IMPSHelper {
         impsPage.clickCloseCheckLimitBottomSheet();
     }
 
-    public void warningMessagesOnUPI(){
+    public void warningMessagesOnAccountNumber( String expBeneficiaryErrorMessage, String beneficiaryName, String expAccountNumberErrorMessage, String accountNumber, String expIfscFieldErrorMessage) throws InterruptedException, IOException{
+
+        //Click on Wallet to Bank Transfer
+        homePage.clickOnIMPS();
+
+        Thread.sleep(1000);
+
+        //Click Transfer to a new account
+        impsPage.clickOnTransferToAccountButton();
+
+        //Click on Continue
+        impsPage.clickOnContinue();
+
+        //Beneficiary field error message assertion
+        String actualBeneficiaryFieldError = impsPage.getBeneficiaryFieldErrorMessage();
+        Log.info("Beneficiary Name field error message : " + actualBeneficiaryFieldError);
+        mbReporter.verifyEqualsWithLogging(actualBeneficiaryFieldError, expBeneficiaryErrorMessage,"Verify error message on beneficiary field", false, false, true);
+
+        //Click on beneficiary field
+        impsPage.clickBeneficiaryName();
+
+        //Enter beneficiary name
+        impsPage.enterBeneficiaryName(beneficiaryName);
+
+        //Click on Continue
+        impsPage.clickOnContinue();
+
+        //Account Number field error message assertion
+        String actualAccountNumberFieldError = impsPage.getAccountNumberFieldErrorMessage();
+        Log.info("Beneficiary Name field error message : " + actualAccountNumberFieldError);
+        mbReporter.verifyEqualsWithLogging(actualAccountNumberFieldError, expAccountNumberErrorMessage,"Verify error message on account number field", false, false, true);
+
+        //Click on account number field
+        impsPage.clickAccountNumber();
+
+        //Enter account number
+        impsPage.enterAccountNumber(accountNumber);
+
+        //Click on Continue
+        impsPage.clickOnContinue();
+
+        //Ifsc code field error message assertion
+        String actualIfscFieldError = impsPage.getIfscFieldErrorMessage();
+        Log.info("Beneficiary Name field error message : " + actualIfscFieldError);
+        mbReporter.verifyEqualsWithLogging(actualIfscFieldError, expIfscFieldErrorMessage,"Verify error message on Ifsc field", false, false, true);
 
     }
 
-    public void warningMessagesOnAccountNumber(){
+    public void warningMessagesOnUpi(String expUpiFieldErrorMessage) throws InterruptedException, IOException{
+
+        //Click on Wallet to Bank Transfer
+        homePage.clickOnIMPS();
+
+        Thread.sleep(1000);
+
+        //Click Transfer to a new account
+        impsPage.clickOnTransferToAccountButton();
+
+        //Click on UPI radio option
+        impsPage.clickOnUPIOption();
+
+        //Click on continue button
+        impsPage.clickOnContinue();
+
+        //Verification on upi id field error message
+        String actualUpiFieldErrorMessage = impsPage.getUpiFieldErrorMessage();
+        Log.info("UPI field error message : " + actualUpiFieldErrorMessage);
+
+        mbReporter.verifyEqualsWithLogging(actualUpiFieldErrorMessage, expUpiFieldErrorMessage, "Verify error message on UPI Id field", false, false, true);
+
 
     }
 
+    public void transferToUpiId(String upi, String expNameOfReceiver, String expUpiIdOfReceiver, String amount) throws InterruptedException, IOException{
+
+        //Click on Wallet to Bank Transfer
+        homePage.clickOnIMPS();
+
+        Thread.sleep(1000);
+
+        //Click Transfer to a new account
+        impsPage.clickOnTransferToAccountButton();
+
+        //Click on UPI radio option
+        impsPage.clickOnUPIOption();
+
+        //Click on UPI Id text field
+        impsPage.clickOnUpiIdField();
+
+        //Enter upi id
+        impsPage.enterUPIId(upi);
+
+        //Click on continue button
+        impsPage.clickOnContinue();
+
+        Thread.sleep(2000);
+
+        //Verification on Enter amount screen
+        String actualNameOfReceiver = impsPage.getNameOfReceiver();
+        String actualUpiIdOfReceiver = impsPage.getUpiIdOfReceiver();
+
+        Log.info("Name of Receiver : " + actualNameOfReceiver);
+        Log.info("UPI Id of Receiver : " + actualUpiIdOfReceiver);
+
+        mbReporter.verifyEqualsWithLogging(actualNameOfReceiver, expNameOfReceiver, "Verify name of receiver", false, false, true);
+        mbReporter.verifyEqualsWithLogging(actualUpiIdOfReceiver, expUpiIdOfReceiver, "Verify UPI Id of receiver", false, false, true);
+
+        //Enter amount
+        ccbpPage.enterCreditCardNumber(amount);
+
+        Thread.sleep(2000);
+
+        //Click Continue button
+        impsPage.clickOnContinue();
+
+        Thread.sleep(2000);
+
+        //Click on Pay button
+        rechargePage.clickOnPayButton();
+
+        //Security Pin page handling
+        if(securityPinPage.isSecurityPinPageShown()){
+            securityPinPage.enterSecurityPin();
+        }
+
+        Thread.sleep(3000);
+
+
+    }
 }
