@@ -46,6 +46,17 @@ public class PermissionHelper {
         }
     }
 
+    public boolean isPermissionPopUpPresentV3() throws InterruptedException {
+        //Thread.sleep(3000);
+
+        if (Element.isElementPresent(driver, By.id("grant_singleton"))) {
+            return true;
+        } else {
+            Log.info("Permission PopupV3 is not present");
+            return false;
+        }
+    }
+
 
 
     public String permissionPopOpTextV2() throws InterruptedException {
@@ -82,7 +93,7 @@ public class PermissionHelper {
         if (isPermissionPopUpPresent()) {
             permissionPage.clickOnPermissionAllow();
         }
-        if(isPermissionPopUpPresentV2())
+        if(isPermissionPopUpPresentV2() || isPermissionPopUpPresentV3())
         {
             if(isAllowOnlyOnceOptionAvailable()){
                 permissionPage.clickOnPermissionAlwaysAllowV3();
