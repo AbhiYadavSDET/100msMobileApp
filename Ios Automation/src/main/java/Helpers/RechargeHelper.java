@@ -118,8 +118,10 @@ public class RechargeHelper {
         //Click on Enter Name or Mobile No.
         rechargePage.clickEnterNameOrMobileNo();
 
-        //Click OK on Access your contacts popup
-        permissionPage.clickAllowContactPermission();
+        if(permissionPage.isPermissionPopUpPresent()) {
+            //Click OK on Access your contacts popup
+            permissionPage.clickOnAllow();
+        }
 
         //Enter Postpaid Number
         rechargePage.enterPostpaidNumber(number);

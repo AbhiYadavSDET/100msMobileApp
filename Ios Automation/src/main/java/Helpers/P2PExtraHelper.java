@@ -3,6 +3,7 @@ package Helpers;
 import Logger.Log;
 import PageObject.HomePage;
 import PageObject.P2PExtraPage;
+import PageObject.PermissionPage;
 import Utils.Elements;
 import Utils.MBReporter;
 import Utils.Screen;
@@ -20,6 +21,7 @@ public class P2PExtraHelper {
     HomePage homePage;
     P2PExtraPage p2PExtraPage;
     MBReporter mbReporter;
+    PermissionPage permissionPage;
 
 
     public P2PExtraHelper(IOSDriver driver) throws IOException {
@@ -27,7 +29,7 @@ public class P2PExtraHelper {
         homePage = new HomePage(driver);
         p2PExtraPage = new P2PExtraPage(driver);
         mbReporter = new MBReporter(driver);
-
+        permissionPage = new PermissionPage(driver);
     }
 
 
@@ -80,23 +82,30 @@ public class P2PExtraHelper {
         Screen.swipeUp(driver);
         Screen.swipeUp(driver);
 
+        Thread.sleep(1000);
+
         //Click on the Refer widget
         p2PExtraPage.clickReferWidget();
 
-        //Click OK on Access your contacts popup
-        p2PExtraPage.clickAllowContactPermission();
+        Thread.sleep(2000);
+
+        if(permissionPage.isPermissionPopUpPresent()) {
+            //Click OK on Access your contacts popup
+            permissionPage.clickOnAllow();
+        }
 
         Thread.sleep(1000);
         if(p2PExtraPage.checkPopup()){
             p2PExtraPage.clickOKFromPopup();
         }
 
-        p2PExtraPage.clickKnowMoreOptn();
         String actualTitle = p2PExtraPage.getReferPageTitle();
         Log.info("TITLE : "+ actualTitle);
 
         // Add the assertions
         mbReporter.verifyEqualsWithLogging(actualTitle, expTitle, "Verify Refer & Earn Flow", false, false, true);
+
+        p2PExtraPage.clickKnowMoreOptn();
 
     }
 

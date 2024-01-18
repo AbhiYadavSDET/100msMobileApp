@@ -38,9 +38,9 @@ public class CentralMapperHelper {
 
         Thread.sleep(1000);
 
-        if(permissionPage.isContactsPermissionPopupPresent()) {
+        if(permissionPage.isPermissionPopUpPresent()) {
             //Click OK to allow contact permission
-            permissionPage.clickAllowContactPermission();
+            permissionPage.clickOnAllow();
         }
 
         Thread.sleep(2000);
@@ -78,17 +78,17 @@ public class CentralMapperHelper {
         homePage.clickOnScanQR();
 
         // Allow Camera Permission While Using App
-        if(permissionPage.isCameraPermissionPopupPresent()){
+        if(permissionPage.isPermissionPopUpPresent()){
             // Allow Camera Permission While Using App
-            permissionPage.clickAllowCameraPermission();
+            permissionPage.clickOnAllow();
         }
 
         // Tap On Search Number field
         centralMapperPage.clickOnSearchNumberField();
 
-        if(permissionPage.isContactsPermissionPopupPresent()) {
+        if(permissionPage.isPermissionPopUpPresent()) {
             //Click OK to allow contact permission
-            permissionPage.clickAllowContactPermission();
+            permissionPage.clickOnAllow();
         }
 
         // Enter Mapped Number in text box

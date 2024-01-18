@@ -183,8 +183,8 @@ public class PayRentHelper {
             Thread.sleep(2000);
             payRentPage.clickOnUPI();
 
-            if(permissionPage.isContactsPermissionPopupPresent()){
-                permissionPage.clickAllowContactPermission();
+            if(permissionPage.isPermissionPopUpPresent()){
+                permissionPage.clickOnAllow();
             }
 
             String actualTitle = payRentPage.getTtileOnUPIPage();
@@ -195,8 +195,8 @@ public class PayRentHelper {
             payRentPage.clickOnSavedRecipient();
             payRentPage.clickOnUPI();
 
-            if(permissionPage.isContactsPermissionPopupPresent()){
-                permissionPage.clickAllowContactPermission();
+            if(permissionPage.isPermissionPopUpPresent()){
+                permissionPage.clickOnAllow();
             }
 
             String rupeesText = payRentPage.getRupeesTextOnUPIPage();
