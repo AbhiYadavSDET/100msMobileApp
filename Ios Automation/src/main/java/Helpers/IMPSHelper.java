@@ -225,8 +225,8 @@ public class IMPSHelper {
         Thread.sleep(2000);
 
         //Verification on Enter amount screen
-        String actualNameOfReceiver = impsPage.getNameOfReceiver();
-        String actualUpiIdOfReceiver = impsPage.getUpiIdOfReceiver();
+        String actualNameOfReceiver = impsPage.getBeneficiaryNameOnEnterAmountScreen();
+        String actualUpiIdOfReceiver = impsPage.getAccountNumberOnEnterAmountScreen();
 
         Log.info("Name of Receiver : " + actualNameOfReceiver);
         Log.info("UPI Id of Receiver : " + actualUpiIdOfReceiver);

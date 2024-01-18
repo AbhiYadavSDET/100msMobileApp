@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class IMPSTest extends TestBase {
 
-    @Test(groups = {"Imps", "regression"}, priority = 1, description = "Verify transfer to account")
+    @Test(groups = {"Imps", "regression"}, priority = 0, description = "Verify transfer to account")
 
     public void Test_TransferToAccount_Flow() throws InterruptedException, IOException {
 
@@ -30,7 +30,7 @@ public class IMPSTest extends TestBase {
         Log.info("======= END : Transfer to Account Flow test =======");
 
     }
-    @Test(groups = {"Imps", "regression"}, priority = 1, description = "Verify check limits bottom sheet")
+    @Test(groups = {"Imps", "regression"}, priority = 0, description = "Verify check limits bottom sheet")
 
     public void Test_CheckLimit_Screen() throws InterruptedException, IOException {
 
@@ -50,7 +50,7 @@ public class IMPSTest extends TestBase {
 
     }
 
-    @Test(groups = {"Imps", "regression"}, priority = 1, description = "Verify warning message on account number")
+    @Test(groups = {"Imps", "regression"}, priority = 0, description = "Verify warning message on account number")
 
     public void Test_WarningMessage_AccountNumber() throws InterruptedException, IOException {
 
@@ -70,7 +70,7 @@ public class IMPSTest extends TestBase {
 
     }
 
-    @Test(groups = {"Imps", "regression"}, priority = 1, description = "Verify transfer to UPI Id Flow")
+    @Test(groups = {"Imps", "regression"}, priority = 0, description = "Verify transfer to UPI Id Flow")
 
     public void Test_TransferToUpiId_Flow() throws InterruptedException, IOException {
 
@@ -84,7 +84,7 @@ public class IMPSTest extends TestBase {
         Log.info("======= START : Check Transfer to UPI Id Flow test =======");
 
         IMPSHelper impsHelper = new IMPSHelper(getIosDriver());
-        impsHelper.transferToUpiId("nagarvikrant671@oksbi","Mr Vikrant Nagar","nagarvikrant671@oksbi","4000");
+        impsHelper.transferToUpiId("parajlatestmbk@ikwik","Paraj Jain","parajlatestmbk@ikwik","4000");
 
         Log.info("======= END : Check Transfer to UPI Id Flow test =======");
 
