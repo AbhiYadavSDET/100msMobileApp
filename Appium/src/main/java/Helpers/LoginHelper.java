@@ -126,6 +126,11 @@ public class LoginHelper {
         loginPage.enterMobileNum(mobileNumber);
         loginPage.clickSendOtpbutton();
 
+        if (!element.isElementPresent(driver, By.id("et_otp"))) {
+            loginPage.clickSendOtpbutton();
+        }
+
+
         loginPage.enterOtp(otp);
 
         // Now it is auto submitted so click CTA not needed

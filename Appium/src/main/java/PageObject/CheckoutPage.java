@@ -21,6 +21,9 @@ public class CheckoutPage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'IMPS/NEFT/RTGS']")
     private AndroidElement selectIMPSOnCheckoutScreen;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Restore your UPI account']")
+    private AndroidElement checkoutUpiMode;
+
     @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'Kotak Bank']")
     private AndroidElement kotakBankCta;
 
@@ -75,12 +78,21 @@ public class CheckoutPage {
     }
 
     public void selectNBOnCheckoutScreen() throws InterruptedException {
+        Element.waitForVisibility(driver,selectNBOnCheckoutScreen);
         Element.selectElement(driver, selectNBOnCheckoutScreen, "Select NetBanking From Checkout Screen");
     }
 
     public void selectIMPSOnCheckoutScreen() throws InterruptedException {
+        Element.waitForVisibility(driver,selectIMPSOnCheckoutScreen);
         Element.selectElement(driver, selectIMPSOnCheckoutScreen, "Select IMPS From Checkout Screen");
     }
+
+    public Boolean isUpiModeVisible() throws InterruptedException {
+        Element.waitForVisibility(driver,selectIMPSOnCheckoutScreen);
+        return Elements.isElementPresent(driver, checkoutUpiMode);
+    }
+
+
 
     public void selectKotakBankFromBAnkList() throws InterruptedException {
         Element.selectElement(driver, kotakBankCta, "Select Kotak Bank From Netbanking Bank List");
@@ -91,6 +103,7 @@ public class CheckoutPage {
     }
 
     public String getBankPageTitleWeb() throws InterruptedException {
+        Element.waitForVisibility(driver, bank_Web_Page);
         return Elements.getText(driver, bank_Web_Page, "Heading on Bank Page");
     }
 
@@ -111,6 +124,7 @@ public class CheckoutPage {
     }
 
     public void clickViewBankAccountDetails() throws InterruptedException {
+        Element.waitForVisibility(driver,View_bank_ac_details_cta );
          Elements.selectElement(driver, View_bank_ac_details_cta, "Select View bank a/c details");
     }
 

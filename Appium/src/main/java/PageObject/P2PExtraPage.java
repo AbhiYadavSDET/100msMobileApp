@@ -57,6 +57,9 @@ public class P2PExtraPage {
     @AndroidFindBy(id = "ivFixed")
     private AndroidElement sliderBtnFixed;
 
+    @AndroidFindBy(id="amount_edit_text")
+    private AndroidElement investment_amount_box;
+
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Net Banking']")
     private AndroidElement selectNBOnCheckoutScreen;
 
@@ -296,6 +299,12 @@ public class P2PExtraPage {
 
     public void selectFixedFromNavBar() throws InterruptedException {
         Element.selectElement(driver, sliderBtnFixed, "Select Fixed From Navbar");
+    }
+
+    public void enterInvestmentAmount(String amount) throws InterruptedException {
+        Element.clearText(driver, investment_amount_box, "Clear Existing Text");
+        Thread.sleep(1000);
+        Elements.enterToElement(driver, investment_amount_box, amount, "Enter Investment Amount");
     }
 
     public void selectNBOnCheckoutScreen() throws InterruptedException {
