@@ -3,6 +3,7 @@ package Helpers;
 import Logger.Log;
 
 import PageObject.P2MPage;
+import PageObject.PermissionPage;
 import PageObject.SecurityPinPage;
 import Utils.Elements;
 import Utils.MBReporter;
@@ -25,6 +26,7 @@ public class P2MHelper {
     SecurityPinPage securityPinPage;
     Screen screen;
     MBReporter mbReporter;
+    PermissionPage permissionPage;
     LinkedHashMap<String, String> balanceBefore;
     LinkedHashMap<String, String> balanceAfter;
 
@@ -35,7 +37,7 @@ public class P2MHelper {
         elements = new Elements(driver);
 
         p2mPage = new P2MPage(driver);
-
+        permissionPage = new PermissionPage(driver);
         securityPinPage = new SecurityPinPage(driver);
         screen = new Screen(driver);
         mbReporter = new MBReporter(driver);
@@ -51,8 +53,8 @@ public class P2MHelper {
         p2mPage.clickScanQR();
 
         // Allow the Permission
-        if(p2mPage.checkIfCameraPermissionNeeded()){
-            p2mPage.allowPermissionWhileUsingApp();
+        if(permissionPage.isPermissionPopUpPresent()){
+            permissionPage.clickOnAllow();
         }
 
         if(merchant.equals("RecentMerchant")){
@@ -134,8 +136,8 @@ public class P2MHelper {
         p2mPage.clickScanQR();
 
         // Allow the Permission
-        if(p2mPage.checkIfCameraPermissionNeeded()){
-            p2mPage.allowPermissionWhileUsingApp();
+        if(permissionPage.isPermissionPopUpPresent()){
+            permissionPage.clickOnAllow();
         }
 
         String actualTitle;
