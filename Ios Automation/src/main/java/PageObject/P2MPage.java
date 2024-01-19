@@ -39,10 +39,10 @@ public class P2MPage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='Gallery']")
     private IOSElement galleryCta;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='“MobiKwik” Would Like to Access Your Photos']")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='Allow Full Access']")
     private IOSElement photosPermissionNative;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='Allow Access to All Photos']")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='Allow Full Access']")
     private IOSElement photosPermissionNativeAllowAllCta;
 
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='Albums']")

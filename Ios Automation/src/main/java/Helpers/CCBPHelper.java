@@ -64,7 +64,7 @@ public class CCBPHelper {
             ccbpPage.clickAddCard();
         }
 
-//        Thread.sleep(3000);
+        Thread.sleep(3000);
 
         //Click on Enter credit card number text field
         ccbpPage.clickEnterCreditCardNumber();

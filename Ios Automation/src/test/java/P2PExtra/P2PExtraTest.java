@@ -46,7 +46,7 @@ public class P2PExtraTest extends TestBase {
         Log.info("======= END : Login test =======");
 
         P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getIosDriver());
-        p2PExtraHelper.referAndEarnFlow("Refer & earn ₹250 + 10%");
+        p2PExtraHelper.referAndEarnFlow("Refer & earn ₹100 + 10%");
 
         Log.info("======= END : XTRA - Refer & Earn flow =======");
 

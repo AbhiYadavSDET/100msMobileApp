@@ -76,7 +76,7 @@ public class P2PExtraPage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Know more\"]")
     private IOSElement know_more_btn;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Refer & earn ₹250 + 10%\"]")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[1]")
     private IOSElement refer_page_title;
 
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Settings\"]")
