@@ -202,9 +202,8 @@ public class PayRentHelper {
             String rupeesText = payRentPage.getRupeesTextOnUPIPage();
             mbReporter.verifyEqualsWithLogging(rupeesText,"Continue","Continue button on UPI page",false,false,false);
         }
-
-        mbReporter.verifyEqualsWithLogging("", "₹", "Verify Conv fee  on Pay Rent", false, false, false);
     }
+
     public void deleteAllRecipient() throws InterruptedException {
         while (payRentPage.isSavedRecipientAvailable()){
             Log.info("Saved recipient is available on rent pay .. ");
@@ -217,8 +216,8 @@ public class PayRentHelper {
 
     public String  calculateConv(String amount){
 Integer amounts = Integer.parseInt(amount);
-        Log.info("Expected total amount = "+(int) (amounts + (amounts * 2.36/100)));
-        Integer amountCalculated = (int) (amounts + (amounts * 2.36/100));
+        Log.info("Expected total amount = "+(int) (amounts + (amounts * 1.76/100)));
+        Integer amountCalculated = (int) (amounts + (amounts * 1.76/100));
 
          excpectedAmount = String.valueOf(amountCalculated);;
 
