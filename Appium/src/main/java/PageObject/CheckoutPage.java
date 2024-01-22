@@ -130,23 +130,23 @@ public class CheckoutPage {
 
 
     public String getBankDetailsAccountNumber() throws InterruptedException{
-        return Elements.getText(driver, account_number, "Account Number");
+        return Elements.getText(driver, account_number, "Account Number").trim();
     }
 
     public String getBankDetailsIFSCNumber() throws InterruptedException{
-        return Elements.getText(driver, ifsc_number, "IFSC Number");
+        return Elements.getText(driver, ifsc_number, "IFSC Number").trim();
     }
 
     public String getBankDetailsAccountHolderName() throws InterruptedException{
-        return Elements.getText(driver, account_holder_name, "Account Holder Name");
+        return Elements.getText(driver, account_holder_name, "Account Holder Name").trim();
     }
 
     public String getBankDetailsBankName() throws InterruptedException{
-        return Elements.getText(driver, bank_name, "Bank Name");
+        return Elements.getText(driver, bank_name, "Bank Name").trim();
     }
 
     public String getBankDetailsAccountType() throws InterruptedException{
-        return Elements.getText(driver, account_type, "Account Type");
+        return Elements.getText(driver, account_type, "Account Type").trim();
     }
 
     public void goBackFromBankDetailsPage() throws InterruptedException{

@@ -230,6 +230,9 @@ public class P2PExtraPage {
     @AndroidFindBy(id = "com.mobikwik_new.debug:id/cta")
     private AndroidElement got_it_btn_mapping_report;
 
+    @AndroidFindBy(xpath = "//android.widget.Button[@text='Got it!']")
+    private AndroidElement borrower_preference_bottomsheet;
+
 
     public P2PExtraPage(AndroidDriver driver) throws IOException {
 
@@ -284,6 +287,15 @@ public class P2PExtraPage {
     public void selectInvestMore() throws InterruptedException {
         Element.selectElement(driver, cta_invest, "Invest More Amount cta");
     }
+
+    public Boolean isBorrowerPreferenceBottomsheetVisible() throws InterruptedException {
+        return Elements.isElementPresent(driver, borrower_preference_bottomsheet);
+    }
+
+    public void selectBorrowerPreferenceBottomsheet() throws InterruptedException {
+        Element.selectElement(driver, borrower_preference_bottomsheet, "Close Borrower bottomsheet");
+    }
+
 
     public void selectGetStarted() throws InterruptedException {
         Element.selectElement(driver, cta_invest, "Get Started cta");

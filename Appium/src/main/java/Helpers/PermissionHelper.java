@@ -46,17 +46,6 @@ public class PermissionHelper {
         }
     }
 
-    public boolean isPermissionPopUpPresentV3() throws InterruptedException {
-        //Thread.sleep(3000);
-
-        if (Element.isElementPresent(driver, By.id("grant_singleton"))) {
-            return true;
-        } else {
-            Log.info("Permission PopupV3 is not present");
-            return false;
-        }
-    }
-
 
 
     public String permissionPopOpTextV2() throws InterruptedException {
@@ -80,7 +69,7 @@ public class PermissionHelper {
 
     public boolean isAllowOnlyOnceOptionAvailable() throws InterruptedException {
 
-        if (Element.isElementPresent(driver, By.xpath("////android.widget.Button[@text= 'While using the app']"))) {
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.Button[@text= 'While using the app']"))) {
             return true;
         } else {
 
@@ -93,7 +82,7 @@ public class PermissionHelper {
         if (isPermissionPopUpPresent()) {
             permissionPage.clickOnPermissionAllow();
         }
-        if(isPermissionPopUpPresentV2() || isPermissionPopUpPresentV3())
+        if(isPermissionPopUpPresentV2())
         {
             if(isAllowOnlyOnceOptionAvailable()){
                 permissionPage.clickOnPermissionAlwaysAllowV3();

@@ -2,9 +2,12 @@ package Helpers;
 
 import Logger.Log;
 import PageObject.*;
+import Utils.Element;
+import Utils.Elements;
 import Utils.MBReporter;
 import Utils.Screen;
 import com.aventstack.extentreports.reporter.configuration.Theme;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -30,6 +33,7 @@ public class CheckoutHelper {
         p2PExtraPage=new P2PExtraPage(driver);
         mbReporter = new MBReporter(driver);
         checkoutPage=new CheckoutPage(driver);
+        permissionHelper= new PermissionHelper(driver);
 
     }
 
@@ -49,14 +53,22 @@ public class CheckoutHelper {
         //Click on Invest More button on XTRA dashboard
         p2PExtraPage.selectInvestMore();
 
+        if(p2PExtraPage.isBorrowerPreferenceBottomsheetVisible()){
+            p2PExtraPage.selectBorrowerPreferenceBottomsheet();
+        }
+
         // Click on the Tooltip
         p2PExtraPage.selectOkfromPlusPopUp();
 
         // Click Flexi from slider
         p2PExtraPage.selectFlexiFromNavBar();
 
-        //Click on Proceed to pay Btn on Amount Summary Page
-        p2PExtraPage.selectInvestMore();
+        if(p2PExtraPage.isBorrowerPreferenceBottomsheetVisible()){
+            p2PExtraPage.selectBorrowerPreferenceBottomsheet();
+        }
+
+//        //Click on Proceed to pay Btn on Amount Summary Page
+//        p2PExtraPage.selectInvestMore();
 
         Log.info("-----Checkout Flow Open-----");
 
@@ -79,6 +91,8 @@ public class CheckoutHelper {
         mbReporter.verifyEqualsWithLogging(actualTitle, expTitle, "Xtra Net Banking Flow Bank List Shown", false, false, true);
 
         checkoutPage.selectKotakBankFromBAnkList();
+
+        Thread.sleep(5000);
 
         permissionHelper.permissionAllow();
 
@@ -124,7 +138,7 @@ public class CheckoutHelper {
     }
 
 
-    public void validateXtraCheckoutUpiModeHandling(String amount) throws IOException, InterruptedException {
+    public void validateXtraCheckoutUpiModeHandling(String amount, String amount2) throws IOException, InterruptedException {
 
         Log.info("----------- Arguments ---------------");
 
@@ -138,12 +152,19 @@ public class CheckoutHelper {
         //Click on Invest More button on XTRA dashboard
         p2PExtraPage.selectInvestMore();
 
+        if(p2PExtraPage.isBorrowerPreferenceBottomsheetVisible()){
+            p2PExtraPage.selectBorrowerPreferenceBottomsheet();
+        }
+
         // Click on the Tooltip
         p2PExtraPage.selectOkfromPlusPopUp();
 
         // Click Flexi from slider
         p2PExtraPage.selectFlexiFromNavBar();
 
+        if(p2PExtraPage.isBorrowerPreferenceBottomsheetVisible()){
+            p2PExtraPage.selectBorrowerPreferenceBottomsheet();
+        }
 
         p2PExtraPage.enterInvestmentAmount(amount);
 
@@ -158,16 +179,14 @@ public class CheckoutHelper {
 
         driver.navigate().back();
 
-        amount = amount + 1;
-
-        p2PExtraPage.enterInvestmentAmount(amount);
+        p2PExtraPage.enterInvestmentAmount(amount2);
 
         //Click on Proceed to pay Btn on Amount Summary Page
         p2PExtraPage.selectInvestMore();
 
         Log.info("-----Checkout Flow Open-----");
 
-        Log.info("-----UPI Module Check----- Amount : " + amount);
+        Log.info("-----UPI Module Check----- Amount : " + amount2);
 
         mbReporter.verifyTrueWithLogging(!checkoutPage.isUpiModeVisible(), "Upi Mode should not be Visible when amount is > Rs. 100000", false, false);
 

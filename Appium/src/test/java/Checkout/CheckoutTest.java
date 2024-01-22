@@ -38,7 +38,7 @@ public class CheckoutTest extends TestBase {
 
         // Execute the test
         CheckoutHelper checkoutHelper = new CheckoutHelper(getAndroidDriver());
-        checkoutHelper.validateXtraCheckoutUpiModeHandling("100000");
+        checkoutHelper.validateXtraCheckoutUpiModeHandling("100000", "100001");
 
     }
 
