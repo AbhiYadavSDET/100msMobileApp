@@ -159,6 +159,13 @@ public class Element {
         androidElement.clear();
     }
 
+    public static void clearText(AndroidDriver driver, AndroidElement androidElement, String description) {
+        waitForVisibility(driver, androidElement);
+
+        Log.info("CLEAR", description);
+        androidElement.clear();
+    }
+
     /**
      * This Method is used to waitForVisibility + click
      *

@@ -33,6 +33,7 @@
             <class name="CentralMapper.Test_CentralMapper"/>
             <class name="ViewElectricityBill.ViewElectricityBillTest"/>
             <class name="ViewPipedGasBill.ViewPipedGasBillTest"/>
+            <class name="Checkout.CheckoutTest"/>
         </classes>
     </test>
 

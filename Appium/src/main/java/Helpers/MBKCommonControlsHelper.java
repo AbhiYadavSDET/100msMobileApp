@@ -503,6 +503,8 @@ public class MBKCommonControlsHelper {
 
 
     public void handleHomePageLanding() throws InterruptedException {
+
+
         Thread.sleep(2000);
         for (int i = 0; i < 10; i++) {
             if (!Element.isElementPresent(driver, By.id("view_icon_bg"))) {
