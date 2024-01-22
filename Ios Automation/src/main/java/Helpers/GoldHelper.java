@@ -40,7 +40,7 @@ public class GoldHelper {
         //Click on gold
         goldPage.clickGold();
 
-        Thread.sleep(2000);
+        Thread.sleep(3000);
 
         Screen.tapOutsideBottomSheetByCoordinates(driver);
 
@@ -81,7 +81,7 @@ public class GoldHelper {
 
     }
 
-    public void goldSell(String amount, String expSellQuantity, String expReceivableAmount, String expTitleOnSuccessScreen, String expSubTitleOnSuccessScreen) throws InterruptedException,IOException {
+    public void goldSell(String amount, String expSellQuantity, String expReceivableAmount, String expTitleOnSellGoldSuccessScreen, String expSubTitleOnSellGoldSuccessScreen, String expQuantityOnSellGoldSuccessScreen, String expAmountOnSellGoldSuccessScreen) throws InterruptedException,IOException {
 
         //Click All services
         homePage.clickAllServices();
@@ -91,7 +91,7 @@ public class GoldHelper {
         //Click on gold
         goldPage.clickGold();
 
-        Thread.sleep(2000);
+        Thread.sleep(3000);
 
         Screen.tapOutsideBottomSheetByCoordinates(driver);
 
@@ -121,21 +121,26 @@ public class GoldHelper {
         mbReporter.verifyEqualsWithLogging(actualSellQuantity, expSellQuantity,"Verify sell quantity on confirm payment screen", false, false, true);
         mbReporter.verifyEqualsWithLogging(actualReceivableAmount, expReceivableAmount,"Verify receivable amount on confirm payment screen", false, false, true);
 
+        //Click on sell gold button
+        goldPage.clickOnSellGoldButton();
 
-        if(securityPinPage.isSecurityPinPageShown()){
-            //Enter security pin
-            securityPinPage.enterSecurityPin();
-        }
+        Thread.sleep(2000);
 
         //Verification on success screen
-        String actualTitleOnSuccessScreen = goldPage.getTitleOnSuccessScreen();
-        String actualSubTitleOnSuccessScreen = goldPage.getSubTitleOnSuccessScreen();
+        String actualTitleOnSellGoldSuccessScreen = goldPage.getTitleOnSuccessScreen();
+        String actualSubTitleOnSellGoldSuccessScreen = goldPage.getSubTitleOnSuccessScreen();
+        String actualQuantityOnSellGoldSuccessScreen = goldPage.getQuantityOnSuccessScreen();
+        String actualAmountOnSellGoldSuccessScreen = goldPage.getAmountOnSuccessScreen();
 
-        Log.info("Title on Success screen : " + actualTitleOnSuccessScreen);
-        Log.info("Sub-title on Success screen : " + actualSubTitleOnSuccessScreen);
+        Log.info("Title on Success screen : " + actualTitleOnSellGoldSuccessScreen);
+        Log.info("Sub-title on Success screen : " + actualSubTitleOnSellGoldSuccessScreen);
+        Log.info("Quantity on sell gold success screen : " + actualQuantityOnSellGoldSuccessScreen);
+        Log.info("Title on Buy Success screen : " + actualAmountOnSellGoldSuccessScreen);
 
-        mbReporter.verifyEqualsWithLogging(actualTitleOnSuccessScreen, expTitleOnSuccessScreen, "Verify Title on sell success screen", false, false, true);
-        mbReporter.verifyEqualsWithLogging(actualSubTitleOnSuccessScreen, expSubTitleOnSuccessScreen, "Verify Sub-title on sell success screen", false, false, true);
+        mbReporter.verifyEqualsWithLogging(actualTitleOnSellGoldSuccessScreen, expTitleOnSellGoldSuccessScreen, "Verify Title on sell success screen", false, false, true);
+        mbReporter.verifyEqualsWithLogging(actualSubTitleOnSellGoldSuccessScreen, expSubTitleOnSellGoldSuccessScreen, "Verify Sub-title on sell success screen", false, false, true);
+        mbReporter.verifyEqualsWithLogging(actualQuantityOnSellGoldSuccessScreen, expQuantityOnSellGoldSuccessScreen, "Verify quantity on buy success screen", false, false, true);
+        mbReporter.verifyEqualsWithLogging(actualAmountOnSellGoldSuccessScreen, expAmountOnSellGoldSuccessScreen, "Verify amount on buy success screen", false, false, true);
 
 
     }

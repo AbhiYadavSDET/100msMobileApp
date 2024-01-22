@@ -17,7 +17,7 @@ import java.io.IOException;
             Log.info("======= START : Login test =======");
 
             LoginHelper loginHelper = new LoginHelper(getIosDriver());
-            loginHelper.loginViaOtp("8076595767", "547372");
+            loginHelper.loginViaOtp("9205299330", "547372");
 
             Log.info("======= END : Login test =======");
 
@@ -37,17 +37,16 @@ import java.io.IOException;
             Log.info("======= START : Login test =======");
 
             LoginHelper loginHelper = new LoginHelper(getIosDriver());
-            loginHelper.loginViaOtp("8076595767", "547372");
+            loginHelper.loginViaOtp("9205299330", "547372");
 
             Log.info("======= END : Login test =======");
 
             Log.info("======= START : Sell Gold Flow test =======");
 
             GoldHelper goldHelper = new GoldHelper(getIosDriver());
-            goldHelper.goldSell("100","0.0163 gm(s)","₹100","Payment Successful","Gold Sell");
+            goldHelper.goldSell("100","0.0163 gm(s)","₹100","Payment Successful","Sell Gold","0.0163 gm(s)","₹100");
 
             Log.info("======= END : Sell Gold Flow test =======");
 
         }
-
 }

@@ -32,7 +32,7 @@ public class GoldPage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[3]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeStaticText[2]")
     private IOSElement quantityOnSuccessScreen;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[starts-with(@name='₹')]")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[starts-with(@name,'₹')]")
     private IOSElement amountOnSuccessScreen;
 
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[starts-with(@name,'0.0')]")
@@ -40,6 +40,12 @@ public class GoldPage {
 
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[2]/XCUIElementTypeStaticText[2]")
     private IOSElement receivableAmount;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='Sell Gold']")
+    private IOSElement sellGoldButton;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='History']")
+    private IOSElement history;
 
 
 
@@ -83,5 +89,9 @@ public class GoldPage {
     public String getReceivableAmount() throws InterruptedException{
         return Elements.getText(driver, receivableAmount);
     }
+
+    public void clickOnSellGoldButton(){ Elements.click(driver, sellGoldButton,"Click on sell gold button");   }
+
+    public void clickHistory(){ Elements.click(driver, history,"Click on history");   }
 
 }
