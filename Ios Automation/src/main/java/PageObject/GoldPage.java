@@ -47,6 +47,8 @@ public class GoldPage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='History']")
     private IOSElement history;
 
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther/XCUIElementTypeStaticText[3]")
+    private IOSElement errorMessage;
 
 
     public GoldPage(IOSDriver driver) {
@@ -93,5 +95,13 @@ public class GoldPage {
     public void clickOnSellGoldButton(){ Elements.click(driver, sellGoldButton,"Click on sell gold button");   }
 
     public void clickHistory(){ Elements.click(driver, history,"Click on history");   }
+
+    public boolean isErrorMessageShown() throws InterruptedException{
+        return Elements.isElementPresent(driver, errorMessage);
+    }
+
+    public String getErrorMessage() throws InterruptedException{
+        return Elements.getText(driver, errorMessage);
+    }
 
 }

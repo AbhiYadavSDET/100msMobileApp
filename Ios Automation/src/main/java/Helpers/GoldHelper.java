@@ -81,7 +81,7 @@ public class GoldHelper {
 
     }
 
-    public void goldSell(String amount, String expSellQuantity, String expReceivableAmount, String expTitleOnSellGoldSuccessScreen, String expSubTitleOnSellGoldSuccessScreen, String expQuantityOnSellGoldSuccessScreen, String expAmountOnSellGoldSuccessScreen) throws InterruptedException,IOException {
+    public void goldSell(String amount, String expSellQuantity, String expReceivableAmount, String expTitleOnSellGoldSuccessScreen, String expSubTitleOnSellGoldSuccessScreen, String expQuantityOnSellGoldSuccessScreen, String expAmountOnSellGoldSuccessScreen, String expErrorMessage) throws InterruptedException,IOException {
 
         //Click All services
         homePage.clickAllServices();
@@ -106,42 +106,50 @@ public class GoldHelper {
         //Enter amount
         goldPage.enterAmount(amount);
 
-        //Click on Continue button
-        rechargePage.clickOnContinueButton();
+        if(goldPage.isErrorMessageShown()){
 
-        Thread.sleep(1000);
+            String actualErrorMessage = goldPage.getErrorMessage();
+            Log.info("Error message while selling gold : " + actualErrorMessage);
+            mbReporter.verifyEqualsWithLogging(actualErrorMessage, expErrorMessage,"Verify the error message while selling gold", false, false, true);
+        }
+        else {
 
-        //Verification on confirm payment screen
-        String actualSellQuantity = goldPage.getSellQuantity();
-        String actualReceivableAmount = goldPage.getReceivableAmount();
+            //Click on Continue button
+            rechargePage.clickOnContinueButton();
 
-        Log.info("Sell Quantity on confirm payment screen : " + actualSellQuantity);
-        Log.info("Receivable amount on confirm payment screen : " + actualReceivableAmount);
+            Thread.sleep(1000);
 
-        mbReporter.verifyEqualsWithLogging(actualSellQuantity, expSellQuantity,"Verify sell quantity on confirm payment screen", false, false, true);
-        mbReporter.verifyEqualsWithLogging(actualReceivableAmount, expReceivableAmount,"Verify receivable amount on confirm payment screen", false, false, true);
+            //Verification on confirm payment screen
+            String actualSellQuantity = goldPage.getSellQuantity();
+            String actualReceivableAmount = goldPage.getReceivableAmount();
 
-        //Click on sell gold button
-        goldPage.clickOnSellGoldButton();
+            Log.info("Sell Quantity on confirm payment screen : " + actualSellQuantity);
+            Log.info("Receivable amount on confirm payment screen : " + actualReceivableAmount);
 
-        Thread.sleep(2000);
+            mbReporter.verifyEqualsWithLogging(actualSellQuantity, expSellQuantity, "Verify sell quantity on confirm payment screen", false, false, true);
+            mbReporter.verifyEqualsWithLogging(actualReceivableAmount, expReceivableAmount, "Verify receivable amount on confirm payment screen", false, false, true);
 
-        //Verification on success screen
-        String actualTitleOnSellGoldSuccessScreen = goldPage.getTitleOnSuccessScreen();
-        String actualSubTitleOnSellGoldSuccessScreen = goldPage.getSubTitleOnSuccessScreen();
-        String actualQuantityOnSellGoldSuccessScreen = goldPage.getQuantityOnSuccessScreen();
-        String actualAmountOnSellGoldSuccessScreen = goldPage.getAmountOnSuccessScreen();
+            //Click on sell gold button
+            goldPage.clickOnSellGoldButton();
 
-        Log.info("Title on Success screen : " + actualTitleOnSellGoldSuccessScreen);
-        Log.info("Sub-title on Success screen : " + actualSubTitleOnSellGoldSuccessScreen);
-        Log.info("Quantity on sell gold success screen : " + actualQuantityOnSellGoldSuccessScreen);
-        Log.info("Title on Buy Success screen : " + actualAmountOnSellGoldSuccessScreen);
+            Thread.sleep(2000);
 
-        mbReporter.verifyEqualsWithLogging(actualTitleOnSellGoldSuccessScreen, expTitleOnSellGoldSuccessScreen, "Verify Title on sell success screen", false, false, true);
-        mbReporter.verifyEqualsWithLogging(actualSubTitleOnSellGoldSuccessScreen, expSubTitleOnSellGoldSuccessScreen, "Verify Sub-title on sell success screen", false, false, true);
-        mbReporter.verifyEqualsWithLogging(actualQuantityOnSellGoldSuccessScreen, expQuantityOnSellGoldSuccessScreen, "Verify quantity on buy success screen", false, false, true);
-        mbReporter.verifyEqualsWithLogging(actualAmountOnSellGoldSuccessScreen, expAmountOnSellGoldSuccessScreen, "Verify amount on buy success screen", false, false, true);
+            //Verification on success screen
+            String actualTitleOnSellGoldSuccessScreen = goldPage.getTitleOnSuccessScreen();
+            String actualSubTitleOnSellGoldSuccessScreen = goldPage.getSubTitleOnSuccessScreen();
+            String actualQuantityOnSellGoldSuccessScreen = goldPage.getQuantityOnSuccessScreen();
+            String actualAmountOnSellGoldSuccessScreen = goldPage.getAmountOnSuccessScreen();
 
+            Log.info("Title on Success screen : " + actualTitleOnSellGoldSuccessScreen);
+            Log.info("Sub-title on Success screen : " + actualSubTitleOnSellGoldSuccessScreen);
+            Log.info("Quantity on sell gold success screen : " + actualQuantityOnSellGoldSuccessScreen);
+            Log.info("Title on Buy Success screen : " + actualAmountOnSellGoldSuccessScreen);
+
+            mbReporter.verifyEqualsWithLogging(actualTitleOnSellGoldSuccessScreen, expTitleOnSellGoldSuccessScreen, "Verify Title on sell success screen", false, false, true);
+            mbReporter.verifyEqualsWithLogging(actualSubTitleOnSellGoldSuccessScreen, expSubTitleOnSellGoldSuccessScreen, "Verify Sub-title on sell success screen", false, false, true);
+            mbReporter.verifyEqualsWithLogging(actualQuantityOnSellGoldSuccessScreen, expQuantityOnSellGoldSuccessScreen, "Verify quantity on buy success screen", false, false, true);
+            mbReporter.verifyEqualsWithLogging(actualAmountOnSellGoldSuccessScreen, expAmountOnSellGoldSuccessScreen, "Verify amount on buy success screen", false, false, true);
+        }
 
     }
 }

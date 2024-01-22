@@ -44,7 +44,7 @@ import java.io.IOException;
             Log.info("======= START : Sell Gold Flow test =======");
 
             GoldHelper goldHelper = new GoldHelper(getIosDriver());
-            goldHelper.goldSell("100","0.0163 gm(s)","₹100","Payment Successful","Sell Gold","0.0163 gm(s)","₹100");
+            goldHelper.goldSell("100","0.0163 gm(s)","₹100","Payment Successful","Sell Gold","0.0163 gm(s)","₹100","You can sell gold only after 24 hours of buying it.");
 
             Log.info("======= END : Sell Gold Flow test =======");
 
