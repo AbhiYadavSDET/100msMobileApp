@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class CheckoutTest extends TestBase {
 
-    @Test(groups = {"sanity", "xtraCheckout",}, priority = 0, description = "Xtra Checkout test")
+    @Test(groups = {"sanity", "xtraCheckout","regression"}, priority = 0, description = "Xtra Checkout test")
     public void Test01_xtraCheckoutFlow() throws IOException, InterruptedException {
 
         Log.info("======= START : Xtra Checkout test =======");
@@ -27,7 +27,7 @@ public class CheckoutTest extends TestBase {
 
     }
 
-    @Test(groups = {"sanity", "xtraCheckout","xtraCheckoutUpiMode"}, priority = 1, description = "Xtra Checkout Upi Mode test")
+    @Test(groups = {"sanity", "xtraCheckout","xtraCheckoutUpiMode","regression"}, priority = 1, description = "Xtra Checkout Upi Mode test")
     public void Test02_xtraCheckoutUpiModeFlow() throws IOException, InterruptedException {
 
         Log.info("======= START : Xtra Checkout test =======");
