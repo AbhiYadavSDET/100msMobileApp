@@ -34,6 +34,8 @@ public class CheckoutHelper {
 
     Screen screen;
 
+    ElectricityPage electricityPage;
+
 
 
 
@@ -51,6 +53,7 @@ public class CheckoutHelper {
         securityPinPage = new SecurityPinPage(driver);
         syncEmailBottomSheet = new SyncEmailBottomSheet(driver);
         screen = new Screen(driver);
+        electricityPage = new ElectricityPage(driver);
 
     }
 
@@ -395,6 +398,141 @@ public class CheckoutHelper {
         }
 
 
+
+    }
+
+
+
+    public void zipAutoPayWidgetValidationBillPayments(String expUserName, String expTitle, String expSubTitle, String brandName, String CA_number, String zipAutoPayToggleTextExpected) throws IOException, InterruptedException {
+
+        // Click on All services
+        electricityPage.clickAllServices();
+
+        //Click on Electricity option
+        electricityPage.clickElectricity();
+
+        //Click Search Electricity Brand field
+        electricityPage.clickSearchElectricityBrand();
+
+        //Enter Brand name in search text box
+        electricityPage.enterSearchElectricityBrand(brandName);
+
+        Thread.sleep(2000);
+
+        //Select brand from list
+        electricityPage.clickSelectBrand();
+
+        //Click on CA number text box
+        electricityPage.clickCaNumber();
+
+        //Enter CA number in text field
+        electricityPage.enterCaNumber(CA_number);
+
+        //Click Continue CTA
+        electricityPage.clickContinueButton();
+
+        //Check Bill is fetched or not
+        if(electricityPage.isBillFetched()) {
+
+            // Verification on Enter amount screen
+            String userName = electricityPage.getUserName().trim();
+            Log.info("User name electricity bill : " + userName);
+            mbReporter.verifyEqualsWithLogging(userName, expUserName, "Verify username on Bill", false, false, true);
+
+            String dueDate = electricityPage.getDueDate();
+            Log.info("Due date on Electricity Bill : " + dueDate);
+            // mbReporter.verifyEqualsWithLogging(dueDate, expDueDate, "Verify Due date on Electricity Bill", false, false, true);
+
+            //Click on Pay button
+            electricityPage.clickPay();
+
+            //Verification on Payment confirmation screen
+            String title = electricityPage.getTitle();
+            Log.info("CN number on Bill : " + title);
+            mbReporter.verifyEqualsWithLogging(title, expTitle, "Verify CN number on Bill", false, false, true);
+
+            String subtitle = electricityPage.getSubTitle();
+            Log.info("Brand Name on the Bill: " + subtitle);
+            mbReporter.verifyEqualsWithLogging(subtitle, expSubTitle, "Verify Brand name on Bill", false, false, true);
+
+            String amount = electricityPage.getBillPayment();
+            Log.info("Amount on the Bill: " + amount);
+            mbReporter.verifyTrueWithLogging(!(amount ==null), "Verify amount on Bill", false, false, true);
+
+            electricityPage.clickOnPay();
+
+            // checking for security pin
+            if(securityPinPage.checkSecurityPinPage()){
+                securityPinPage.enterSecurityPin("324008");
+            }
+
+            Element.waitForVisibility(driver,By.id("header_layout"));
+
+            mbReporter.verifyTrueWithLogging(checkoutPage.isCheckoutPageOpened(), "Is checkout Page Opened", false, false);
+
+
+            Log.info("-------Checking for Zip Module Autopay------");
+
+
+
+            if(checkoutPage.isRecommendedSheetOpened()){
+
+                if(checkoutPage.isZipModuleAvailable()){
+
+                    Log.info("-------Checking for Zip AutoPay in Recommended Checkout bottomsheet------");
+                    checkoutPage.selectZipModule();
+                    mbReporter.verifyTrueWithLogging(checkoutPage.isZipModuleAvailable(), "Zip Module Visible in Recommended Bottom Sheet", false,false);
+
+                    if(checkoutPage.isZipAutopayToggleVisible()){
+
+                        mbReporter.verifyTrueWithLogging(checkoutPage.isZipAutopayToggleVisible(), "Zip Autopay Toggle is visible", false,false);
+                        mbReporter.verifyEqualsWithLogging(checkoutPage.getZipAutoPayToggleText(),zipAutoPayToggleTextExpected , "Matchjing Zip Autopay Toglle Text", false,false);
+
+                    }
+
+
+                    checkoutPage.clickMorePaymentOptionsCta();
+                }else {
+
+                    mbReporter.verifyTrueWithLogging(!checkoutPage.isZipModuleAvailable(), "Zip Module Not Visible in Recommended Bottom Sheet", false,false);
+
+                }
+            }else {
+
+                Log.info("-------Checking for Zip AutoPay in Main Checkout bottomsheet------");
+
+                if(checkoutPage.isZipModuleAvailable()) {
+                    checkoutPage.selectZipModule();
+                    mbReporter.verifyTrueWithLogging(checkoutPage.isZipModuleAvailable(), "Zip Module Visible in Main Bottom Sheet", false, false);
+                    if(checkoutPage.isZipAutopayToggleVisible()){
+
+                        mbReporter.verifyTrueWithLogging(checkoutPage.isZipAutopayToggleVisible(), "Zip Autopay Toggle is visible", false,false);
+                        mbReporter.verifyEqualsWithLogging(checkoutPage.getZipAutoPayToggleText(),zipAutoPayToggleTextExpected , "Matchjing Zip Autopay Toglle Text", false,false);
+
+                    }
+                }
+            }
+
+
+            Log.info("-------Checking for Zip AutoPay in Main Checkout bottomsheet------");
+
+            if(checkoutPage.isZipModuleAvailable()) {
+                checkoutPage.selectZipModule();
+                mbReporter.verifyTrueWithLogging(checkoutPage.isZipModuleAvailable(), "Zip Module Visible in Main Bottom Sheet", false, false);
+                if(checkoutPage.isZipAutopayToggleVisible()){
+
+                    mbReporter.verifyTrueWithLogging(checkoutPage.isZipAutopayToggleVisible(), "Zip Autopay Toggle is visible", false,false);
+                    mbReporter.verifyEqualsWithLogging(checkoutPage.getZipAutoPayToggleText(),zipAutoPayToggleTextExpected , "Matchjing Zip Autopay Toglle Text", false,false);
+
+                }
+            }
+
+
+
+
+        }else{
+            Log.info("Bill not present for given CA number");
+        }
 
     }
 

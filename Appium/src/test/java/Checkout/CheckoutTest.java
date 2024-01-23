@@ -57,6 +57,21 @@ public class CheckoutTest extends TestBase {
 
     }
 
+    @Test(groups = {"sanity", "wapgCheckoutFlowZipAutoPay","wapgCheckoutFlow","regression"}, priority = 3, description = "Wapg Checkout Flow Zip Auto Pay test")
+    public void Test04_zipAutoPayCheckoutElectricityBillPayment() throws IOException, InterruptedException {
+
+        Log.info("======= START : Wapg Checkout Flow Zip Auto Pay test =======");
+
+        // Login to the account
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaOtp("7795709569", "547372");
+
+        // Execute the test
+        CheckoutHelper checkoutHelper = new CheckoutHelper(getAndroidDriver());
+        checkoutHelper.zipAutoPayWidgetValidationBillPayments("ANJANA  JAIN","210736016179", "Kota Electricity Distribution Limited (KEDL)", "Kota Electricity Distribution Limited (KEDL)", "210736016179", "Enable ZIP autopay to pay bills automatically");
+
+    }
+
 
 
 

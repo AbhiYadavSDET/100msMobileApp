@@ -105,6 +105,12 @@ public class CheckoutPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Net Banking']")
     private AndroidElement netbanking_option;
 
+    @AndroidFindBy(id="switch_auto_pay")
+    private AndroidElement zip_autopay_toggle;
+
+    @AndroidFindBy(id="tv_title")
+    private AndroidElement zip_autopay_Text;
+
 
 
 
@@ -259,6 +265,14 @@ public class CheckoutPage {
 
     public Boolean isNetbankingOptionAvailable() throws InterruptedException{
         return Elements.isElementPresent(driver, netbanking_option);
+    }
+
+    public Boolean isZipAutopayToggleVisible() throws InterruptedException{
+        return Elements.isElementPresent(driver, zip_autopay_toggle);
+    }
+
+    public String getZipAutoPayToggleText() throws InterruptedException{
+        return Elements.getText(driver, zip_autopay_Text, "Zip AutoPay Toggle Text");
     }
 
 
