@@ -42,6 +42,21 @@ public class CheckoutTest extends TestBase {
 
     }
 
+    @Test(groups = {"sanity", "wapgCheckoutFlowCCBP","wapgCheckoutFlow","regression"}, priority = 2, description = "Wapg Checkout Flow CCBP test")
+    public void Test03_wapgCheckoutFlowCCBP() throws IOException, InterruptedException {
+
+        Log.info("======= START : WAPG CCBP Checkout test =======");
+
+        // Login to the account
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaOtp("7795709569", "547372");
+
+        // Execute the test
+        CheckoutHelper checkoutHelper = new CheckoutHelper(getAndroidDriver());
+        checkoutHelper.wapgCheckoutFlowCCBP("4000", "4375517199762008");
+
+    }
+
 
 
 

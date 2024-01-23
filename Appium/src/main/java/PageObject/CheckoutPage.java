@@ -2,6 +2,7 @@ package PageObject;
 
 import Utils.Element;
 import Utils.Elements;
+import com.aventstack.extentreports.gherkin.model.And;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -63,6 +64,53 @@ public class CheckoutPage {
 
     @AndroidFindBy(id = "mkab_left_icon")
     private AndroidElement back_button_Bank_details_page;
+
+    @AndroidFindBy(id="header_layout")
+    private AndroidElement checkout_Page_header;
+
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='RECOMMENDED METHODS']")
+    private AndroidElement recommanded_bottomsheet;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Pay Later']")
+    private AndroidElement zip_module;
+
+//    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Pay Later']/following-sibling::android.widget.ImageView")
+//    private AndroidElement zip_module_checkBox;
+
+    @AndroidFindBy(id="fee")
+    private AndroidElement conv_fee;
+
+    @AndroidFindBy(id="text_conv_fee")
+    private AndroidElement conv_fee_breakup;
+
+    @AndroidFindBy(id="text_payable_amount")
+    private AndroidElement payable_amount;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='More payment options']")
+    private AndroidElement more_payment_options_cta;
+
+    @AndroidFindBy(id="restore_widget")
+    private AndroidElement upi_restore_widget;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='DEBIT CARDS']")
+    private AndroidElement debit_cards;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='CREDIT CARDS']")
+    private AndroidElement credit_cards;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='UPI Apps']")
+    private AndroidElement upi_intent_option;
+
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Net Banking']")
+    private AndroidElement netbanking_option;
+
+
+
+
+
+
+
 
 
 
@@ -152,6 +200,67 @@ public class CheckoutPage {
     public void goBackFromBankDetailsPage() throws InterruptedException{
         Elements.selectElement(driver,back_button_Bank_details_page,"Go Back to checkout ");
     }
+
+    public Boolean isCheckoutPageOpened() throws InterruptedException {
+        return Elements.isElementPresent(driver, checkout_Page_header);
+    }
+
+    public Boolean isRecommendedSheetOpened() throws InterruptedException{
+        return Elements.isElementPresent(driver, recommanded_bottomsheet);
+    }
+
+    public Boolean isZipModuleAvailable() throws InterruptedException{
+        return Elements.isElementPresent(driver, zip_module);
+    }
+
+    public void selectZipModule() throws InterruptedException{
+         Elements.selectElement(driver, zip_module, "Selecting Zip Module");
+    }
+
+//    public Boolean isZIpModuleSelected() throws InterruptedException{
+//        return Elements.isElementEnabled(driver, zip_module_checkBox);
+//    }
+
+    public Integer getConvFee() throws InterruptedException{
+        String convFee= Elements.getText(driver, conv_fee, "Extracting Conv Fee").replace(" Conv. fees", "").replace("₹", "");
+        return Integer.parseInt(convFee);
+    }
+
+    public Integer getConvFeeInBreakup() throws InterruptedException{
+        String convFee= Elements.getText(driver, conv_fee_breakup, "Extracting Conv Fee in Breakup Module").replace(",", "").replace("₹", "");
+        return Integer.parseInt(convFee);
+    }
+
+    public Integer getPayableAmountBreakup() throws InterruptedException{
+        String payableAmount= Elements.getText(driver, payable_amount, "Extracting Payable Amount in Breakup Module").replace(",", "").replace("₹", "");
+        return Integer.parseInt(payableAmount);
+    }
+
+    public void clickMorePaymentOptionsCta() throws InterruptedException{
+        Elements.selectElement(driver,more_payment_options_cta,"Click on More Payment options Cta");
+    }
+
+    public Boolean isUPIRestoreModuleAvailable() throws InterruptedException{
+        return Elements.isElementPresent(driver, upi_restore_widget);
+    }
+
+    public Boolean areMultipleDebitCardsAvailable() throws InterruptedException{
+        return Elements.isElementPresent(driver, debit_cards);
+    }
+
+    public Boolean areMultipleCreditCardsAvailable() throws InterruptedException{
+        return Elements.isElementPresent(driver, credit_cards);
+    }
+
+
+    public Boolean isUpiIntentoptionAvailable() throws InterruptedException{
+        return Elements.isElementPresent(driver, upi_intent_option);
+    }
+
+    public Boolean isNetbankingOptionAvailable() throws InterruptedException{
+        return Elements.isElementPresent(driver, netbanking_option);
+    }
+
 
 
 
