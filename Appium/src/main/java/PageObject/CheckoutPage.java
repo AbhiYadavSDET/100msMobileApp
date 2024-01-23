@@ -1,5 +1,6 @@
 package PageObject;
 
+import Logger.Log;
 import Utils.Element;
 import Utils.Elements;
 import com.aventstack.extentreports.gherkin.model.And;
@@ -111,12 +112,59 @@ public class CheckoutPage {
     @AndroidFindBy(id="tv_title")
     private AndroidElement zip_autopay_Text;
 
+    @AndroidFindBy(id="btn_check_out_pay")
+    private AndroidElement checkout_pay_cta;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='XXXX XXXX XXXX 4255']")
+    private AndroidElement saved_debit_card;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='XXXX XXXX XXXX 6225']")
+    private AndroidElement saved_credit_card;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Add New Debit card']")
+    private AndroidElement add_new_debit_card_cta;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Add New Credit card']")
+    private AndroidElement add_new_credit_card_cta;
 
+    @AndroidFindBy(id="tv_dummy")
+    private AndroidElement card_details_bottomsheet;
 
+    @AndroidFindBy(xpath = "(//android.widget.EditText)[1]")
+    private AndroidElement card_details_edit_field;
+
+    @AndroidFindBy(id="textinput_error")
+    private AndroidElement error_message;
+
+    @AndroidFindBy(id="sub_title")
+    private AndroidElement broken_card_sub_title;
+
+    @AndroidFindBy(id = "tv_title")
+    private AndroidElement broken_card;
+
+    @AndroidFindBy(id="info_help")
+    private AndroidElement conv_fee_help_icon;
+
+    @AndroidFindBy(id="convenience_fee_info_layout")
+    private AndroidElement conv_fee_info_layout;
+
+    @AndroidFindBy(id = "key")
+    private AndroidElement details_key;
+
+    @AndroidFindBy(id = "value")
+    private AndroidElement details_value;
+
+    @AndroidFindBy(id="know_more_button")
+    private AndroidElement know_more_cta;
+
+    @AndroidFindBy(id="title")
+    private AndroidElement know_more_page_title;
+
+    @AndroidFindBy(id = "convenience_fee_desc")
+    private AndroidElement conv_fee_description_card_details_bottomsheet;
+
+    @AndroidFindBy(id = "txt_checkbox_savecard")
+    private AndroidElement save_card_consent;
 
 
 
@@ -274,6 +322,77 @@ public class CheckoutPage {
     public String getZipAutoPayToggleText() throws InterruptedException{
         return Elements.getText(driver, zip_autopay_Text, "Zip AutoPay Toggle Text");
     }
+
+    public void selectSavedDebitCard() throws InterruptedException{
+        Elements.selectElement(driver, saved_debit_card, "Select Debit Card from List");
+    }
+
+    public void selectSavedCreditCard() throws InterruptedException{
+        Elements.selectElement(driver, saved_credit_card, "Select Credit Card from List");
+    }
+
+    public void selectCheckoutPayCta() throws InterruptedException{
+        Elements.selectElement(driver, checkout_pay_cta, "Select Pay Cta");
+    }
+
+    public Boolean isCardDetailsBottomsheetDisplayed() throws InterruptedException{
+        return Elements.isElementPresent(driver, card_details_bottomsheet);
+    }
+
+    public void selectAddNewDebitCard() throws InterruptedException{
+        Elements.selectElement(driver, add_new_debit_card_cta, "Select Add New Debit card Cta");
+    }
+
+    public void selectAddNewCreditCard() throws InterruptedException{
+        Elements.selectElement(driver, add_new_credit_card_cta, "Select Add New Credit card Cta");
+    }
+
+    public void enterCardDetails(String cardDetails) throws InterruptedException{
+        Elements.enterToElement(driver, card_details_edit_field, cardDetails, "Enter Card Details");
+    }
+
+    public String getErrorMessage() throws InterruptedException{
+        return Elements.getText(driver,error_message, "Fetch Error Message");
+    }
+
+    public String getBrokenCardSubTitleMessage() throws InterruptedException{
+        return Elements.getText(driver,broken_card_sub_title, "Fetch Broken card Sub Title Message");
+    }
+
+    public Boolean isBrokenCardBottomSheetDisplayed() throws InterruptedException{
+        return Elements.isElementPresent(driver, broken_card);
+    }
+
+    public void selectConvFeeInfoIcon() throws InterruptedException {
+        Elements.selectElement(driver, conv_fee_help_icon, "Click on Conv Fee Info Icon");
+    }
+
+    public Boolean isConvFeeLayoutDisplayed() throws InterruptedException{
+        return Elements.isElementPresent(driver, conv_fee_info_layout);
+    }
+
+    public String getConvLayoutDetails() throws InterruptedException{
+        return Elements.getText(driver, details_key)+" : "+Elements.getText(driver,details_value);
+    }
+
+    public void clickOnKnowMoreCta() throws InterruptedException{
+        Elements.selectElement(driver, know_more_cta, "Click on Know More Cta");
+    }
+
+    public String getKnowMorePageTitle() throws InterruptedException{
+        return Elements.getText(driver, know_more_page_title, "Know More Page Title");
+    }
+
+    public Boolean isConvFeeDescriptionDisplayed() throws InterruptedException{
+        Log.info(Elements.getText(driver, conv_fee_description_card_details_bottomsheet));
+        return Elements.isElementPresent(driver, conv_fee_description_card_details_bottomsheet);
+    }
+
+    public Boolean isSaveCardConsentDisplayed() throws InterruptedException{
+        Log.info(Elements.getText(driver, save_card_consent));
+        return Elements.isElementPresent(driver, save_card_consent);
+    }
+
 
 
 

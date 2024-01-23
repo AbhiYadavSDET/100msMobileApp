@@ -36,6 +36,8 @@ public class CheckoutHelper {
 
     ElectricityPage electricityPage;
 
+    AddMoneyPage addMoneyPage;
+
 
 
 
@@ -54,6 +56,7 @@ public class CheckoutHelper {
         syncEmailBottomSheet = new SyncEmailBottomSheet(driver);
         screen = new Screen(driver);
         electricityPage = new ElectricityPage(driver);
+        addMoneyPage=new AddMoneyPage(driver);
 
     }
 
@@ -533,6 +536,178 @@ public class CheckoutHelper {
         }else{
             Log.info("Bill not present for given CA number");
         }
+
+    }
+
+
+    public void addMoneyCheckoutCardViewsValidation(String amount) throws InterruptedException, IOException {
+
+        Log.info("START", "Add Money");
+        Log.info("-------------------------------------");
+
+
+        // Click on the profile
+        securityPinPage.clickOnProfile();
+
+        // Click on add Money
+        addMoneyPage.clickOnAddMoney();
+
+        // Enter amount
+        addMoneyPage.enterAmount(amount);
+
+        // Click on Add
+        addMoneyPage.clickOnAdd();
+
+        Element.waitForVisibility(driver,By.id("header_layout"));
+
+        mbReporter.verifyTrueWithLogging(checkoutPage.isCheckoutPageOpened(), "Is checkout Page Opened", false, false);
+
+
+        if(checkoutPage.isRecommendedSheetOpened()){
+            mbReporter.verifyTrueWithLogging(checkoutPage.isRecommendedSheetOpened(), "Recommanded BottomSheet is Opened", false,false);
+            checkoutPage.clickMorePaymentOptionsCta();
+        }
+
+        Log.info("-------Checking for Saved Debit Cards Module------");
+
+        if(checkoutPage.areMultipleDebitCardsAvailable()){
+
+            mbReporter.verifyTrueWithLogging(checkoutPage.areMultipleDebitCardsAvailable(), "Multiple Debit Cards Available", false, false);
+            checkoutPage.selectSavedDebitCard();
+            checkoutPage.selectCheckoutPayCta();
+            mbReporter.verifyTrueWithLogging(checkoutPage.isCardDetailsBottomsheetDisplayed(), "Card Details Bottomsheet opened", false, false);
+            driver.navigate().back();
+            driver.navigate().back();
+        }
+
+        Log.info("-------Checking for New Debit Cards Module------");
+
+        checkoutPage.selectAddNewDebitCard();
+        mbReporter.verifyTrueWithLogging(checkoutPage.isCardDetailsBottomsheetDisplayed(), "New Card Details Bottomsheet opened", false, false);
+        checkoutPage.enterCardDetails("552260");
+        mbReporter.verifyEqualsWithLogging(checkoutPage.getErrorMessage(), "Please enter a valid debit card number", "Validating Valid Debit card error message", false, false);
+        driver.navigate().back();
+        driver.navigate().back();
+
+        // Swipe till the bottom
+        screen.swipeUpMore(driver);
+
+
+        Log.info("-------Checking for Saved Credit Cards Module : Broken------");
+
+        if(checkoutPage.areMultipleCreditCardsAvailable()){
+
+            mbReporter.verifyTrueWithLogging(checkoutPage.areMultipleCreditCardsAvailable(), "Multiple Credit Cards Available", false, false);
+            checkoutPage.selectSavedCreditCard();
+            checkoutPage.selectCheckoutPayCta();
+
+            if(checkoutPage.isBrokenCardBottomSheetDisplayed()){
+                mbReporter.verifyEqualsWithLogging(checkoutPage.getBrokenCardSubTitleMessage(),"Share complete card details for security purposes", "Validating Broken Card BottomSheet", false,false);
+            }
+
+            mbReporter.verifyTrueWithLogging(checkoutPage.isCardDetailsBottomsheetDisplayed(), "Card Details Bottomsheet opened", false, false);
+            driver.navigate().back();
+            driver.navigate().back();
+
+
+        }
+
+
+        // Swipe till the bottom
+        screen.swipeUpMore(driver);
+
+        Log.info("-------Checking for New Credit Cards Module------");
+
+        checkoutPage.selectAddNewCreditCard();
+        mbReporter.verifyTrueWithLogging(checkoutPage.isCardDetailsBottomsheetDisplayed(), "New Card Details Bottomsheet opened", false, false);
+        checkoutPage.enterCardDetails("436393");
+        mbReporter.verifyEqualsWithLogging(checkoutPage.getErrorMessage(), "Please enter a valid credit card number", "Validating Valid Credit card error message", false, false);
+        driver.navigate().back();
+        driver.navigate().back();
+
+    }
+
+    public void addMoneyCheckoutConvFeeValidation(String amount) throws InterruptedException, IOException {
+
+        Log.info("START", "Add Money");
+        Log.info("-------------------------------------");
+
+
+        // Click on the profile
+        securityPinPage.clickOnProfile();
+
+        // Click on add Money
+        addMoneyPage.clickOnAddMoney();
+
+        // Enter amount
+        addMoneyPage.enterAmount(amount);
+
+        // Click on Add
+        addMoneyPage.clickOnAdd();
+
+        Element.waitForVisibility(driver,By.id("header_layout"));
+
+        mbReporter.verifyTrueWithLogging(checkoutPage.isCheckoutPageOpened(), "Is checkout Page Opened", false, false);
+
+
+        if(checkoutPage.isRecommendedSheetOpened()){
+            mbReporter.verifyTrueWithLogging(checkoutPage.isRecommendedSheetOpened(), "Recommanded BottomSheet is Opened", false,false);
+            checkoutPage.clickMorePaymentOptionsCta();
+        }
+
+        screen.swipeUpMore(driver);
+
+        checkoutPage.selectConvFeeInfoIcon();
+
+        mbReporter.verifyTrueWithLogging(checkoutPage.isConvFeeLayoutDisplayed(), "Conv Fee Layout ", false,false);
+
+        String convFeeDetails= checkoutPage.getConvLayoutDetails();
+        Log.info(convFeeDetails);
+        mbReporter.verifyTrueWithLogging(!(convFeeDetails ==null), "Validating Deatils available in Conv Fee Layout :-- "+convFeeDetails,false,false );
+
+        checkoutPage.clickOnKnowMoreCta();
+
+        mbReporter.verifyEqualsWithLogging(checkoutPage.getKnowMorePageTitle(), "List of Charges", "Validating Know More Page opened", false,false);
+
+        driver.navigate().back();
+
+
+        Log.info("-------Checking for Saved Credit Cards Module : Broken------");
+
+        if(checkoutPage.areMultipleCreditCardsAvailable()){
+
+            mbReporter.verifyTrueWithLogging(checkoutPage.areMultipleCreditCardsAvailable(), "Multiple Credit Cards Available", false, false);
+            checkoutPage.selectSavedCreditCard();
+            checkoutPage.selectCheckoutPayCta();
+
+            if(checkoutPage.isBrokenCardBottomSheetDisplayed()){
+                mbReporter.verifyEqualsWithLogging(checkoutPage.getBrokenCardSubTitleMessage(),"Share complete card details for security purposes", "Validating Broken Card BottomSheet", false,false);
+            mbReporter.verifyTrueWithLogging(checkoutPage.isConvFeeDescriptionDisplayed(),"Validating Conv Fee description is Displayed", false,false);
+
+            }else {
+                mbReporter.verifyTrueWithLogging(checkoutPage.isConvFeeDescriptionDisplayed(),"Validating Conv Fee description is Displayed", false,false);
+            }
+            mbReporter.verifyTrueWithLogging(checkoutPage.isCardDetailsBottomsheetDisplayed(), "Card Details Bottomsheet opened", false, false);
+            driver.navigate().back();
+            driver.navigate().back();
+
+
+        }
+
+
+        // Swipe till the bottom
+        screen.swipeUpMore(driver);
+
+        Log.info("-------Checking for New Credit Cards Module------");
+
+        checkoutPage.selectAddNewCreditCard();
+        mbReporter.verifyTrueWithLogging(checkoutPage.isCardDetailsBottomsheetDisplayed(), "New Card Details Bottomsheet opened", false, false);
+        checkoutPage.enterCardDetails("552260");
+        Thread.sleep(1000);
+        mbReporter.verifyTrueWithLogging(checkoutPage.isConvFeeDescriptionDisplayed(),"Validating Conv Fee description is Displayed", false,false);
+        mbReporter.verifyTrueWithLogging(checkoutPage.isSaveCardConsentDisplayed(),"Validating Save Card Consent is Displayed", false,false);
+        driver.navigate().back();
+        driver.navigate().back();
 
     }
 
