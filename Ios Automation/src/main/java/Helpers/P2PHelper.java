@@ -73,7 +73,7 @@ public class P2PHelper {
             securityPinPage.enterSecurityPin();
         }
 
-        Thread.sleep(2000);
+        Thread.sleep(3000);
 
         // Verification on the Success Screen
         String actualStatus = p2PPage.getStatus();

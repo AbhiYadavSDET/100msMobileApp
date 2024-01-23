@@ -310,6 +310,8 @@ public class P2PExtraHelper {
         // Click on Proceed to Pay button
         p2PExtraPage.clickProceedToPayBtn();
 
+        Thread.sleep(1000);
+
         // Click on NetBanking
         while(!p2PExtraPage.checkNetBankingOptn()){
             Thread.sleep(1000);
