@@ -36,6 +36,8 @@ public class CheckoutHelper {
 
     ElectricityPage electricityPage;
 
+    AddMoneyPage addMoneyPage;
+
 
 
 
@@ -54,6 +56,7 @@ public class CheckoutHelper {
         syncEmailBottomSheet = new SyncEmailBottomSheet(driver);
         screen = new Screen(driver);
         electricityPage = new ElectricityPage(driver);
+        addMoneyPage=new AddMoneyPage(driver);
 
     }
 
@@ -537,7 +540,92 @@ public class CheckoutHelper {
     }
 
 
+    public void addMoneyCheckoutCardViewsValidation(String amount) throws InterruptedException, IOException {
 
+        Log.info("START", "Add Money");
+        Log.info("-------------------------------------");
+
+
+        // Click on the profile
+        securityPinPage.clickOnProfile();
+
+        // Click on add Money
+        addMoneyPage.clickOnAddMoney();
+
+        // Enter amount
+        addMoneyPage.enterAmount(amount);
+
+        // Click on Add
+        addMoneyPage.clickOnAdd();
+
+        Element.waitForVisibility(driver,By.id("header_layout"));
+
+        mbReporter.verifyTrueWithLogging(checkoutPage.isCheckoutPageOpened(), "Is checkout Page Opened", false, false);
+
+
+        if(checkoutPage.isRecommendedSheetOpened()){
+            mbReporter.verifyTrueWithLogging(checkoutPage.isRecommendedSheetOpened(), "Recommanded BottomSheet is Opened", false,false);
+            checkoutPage.clickMorePaymentOptionsCta();
+        }
+
+        Log.info("-------Checking for Saved Debit Cards Module------");
+
+        if(checkoutPage.areMultipleDebitCardsAvailable()){
+
+            mbReporter.verifyTrueWithLogging(checkoutPage.areMultipleDebitCardsAvailable(), "Multiple Debit Cards Available", false, false);
+            checkoutPage.selectSavedDebitCard();
+            checkoutPage.selectCheckoutPayCta();
+            mbReporter.verifyTrueWithLogging(checkoutPage.isCardDetailsBottomsheetDisplayed(), "Card Details Bottomsheet opened", false, false);
+            driver.navigate().back();
+            driver.navigate().back();
+        }
+
+        Log.info("-------Checking for New Debit Cards Module------");
+
+        checkoutPage.selectAddNewDebitCard();
+        mbReporter.verifyTrueWithLogging(checkoutPage.isCardDetailsBottomsheetDisplayed(), "New Card Details Bottomsheet opened", false, false);
+        checkoutPage.enterCardDetails("552260");
+        mbReporter.verifyEqualsWithLogging(checkoutPage.getErrorMessage(), "Please enter a valid debit card number", "Validating Valid Debit card error message", false, false);
+        driver.navigate().back();
+        driver.navigate().back();
+
+        // Swipe till the bottom
+        screen.swipeUpMore(driver);
+
+
+        Log.info("-------Checking for Saved Credit Cards Module : Broken------");
+
+        if(checkoutPage.areMultipleCreditCardsAvailable()){
+
+            mbReporter.verifyTrueWithLogging(checkoutPage.areMultipleCreditCardsAvailable(), "Multiple Credit Cards Available", false, false);
+            checkoutPage.selectSavedCreditCard();
+            checkoutPage.selectCheckoutPayCta();
+
+            if(checkoutPage.isBrokenCardBottomSheetDisplayed()){
+                mbReporter.verifyEqualsWithLogging(checkoutPage.getBrokenCardSubTitleMessage(),"Share complete card details for security purposes", "Validating Broken Card BottomSheet", false,false);
+            }
+
+            mbReporter.verifyTrueWithLogging(checkoutPage.isCardDetailsBottomsheetDisplayed(), "Card Details Bottomsheet opened", false, false);
+            driver.navigate().back();
+            driver.navigate().back();
+
+
+        }
+
+
+        // Swipe till the bottom
+        screen.swipeUpMore(driver);
+
+        Log.info("-------Checking for New Credit Cards Module------");
+
+        checkoutPage.selectAddNewCreditCard();
+        mbReporter.verifyTrueWithLogging(checkoutPage.isCardDetailsBottomsheetDisplayed(), "New Card Details Bottomsheet opened", false, false);
+        checkoutPage.enterCardDetails("436393");
+        mbReporter.verifyEqualsWithLogging(checkoutPage.getErrorMessage(), "Please enter a valid credit card number", "Validating Valid Credit card error message", false, false);
+        driver.navigate().back();
+        driver.navigate().back();
+
+    }
 
 
 }
