@@ -1,5 +1,6 @@
 package PageObject;
 
+import Logger.Log;
 import Utils.Element;
 import Utils.Elements;
 import com.aventstack.extentreports.gherkin.model.And;
@@ -140,6 +141,35 @@ public class CheckoutPage {
 
     @AndroidFindBy(id = "tv_title")
     private AndroidElement broken_card;
+
+    @AndroidFindBy(id="info_help")
+    private AndroidElement conv_fee_help_icon;
+
+    @AndroidFindBy(id="convenience_fee_info_layout")
+    private AndroidElement conv_fee_info_layout;
+
+    @AndroidFindBy(id = "key")
+    private AndroidElement details_key;
+
+    @AndroidFindBy(id = "value")
+    private AndroidElement details_value;
+
+    @AndroidFindBy(id="know_more_button")
+    private AndroidElement know_more_cta;
+
+    @AndroidFindBy(id="title")
+    private AndroidElement know_more_page_title;
+
+    @AndroidFindBy(id = "convenience_fee_desc")
+    private AndroidElement conv_fee_description_card_details_bottomsheet;
+
+    @AndroidFindBy(id = "txt_checkbox_savecard")
+    private AndroidElement save_card_consent;
+
+
+
+
+
 
 
 
@@ -331,6 +361,36 @@ public class CheckoutPage {
 
     public Boolean isBrokenCardBottomSheetDisplayed() throws InterruptedException{
         return Elements.isElementPresent(driver, broken_card);
+    }
+
+    public void selectConvFeeInfoIcon() throws InterruptedException {
+        Elements.selectElement(driver, conv_fee_help_icon, "Click on Conv Fee Info Icon");
+    }
+
+    public Boolean isConvFeeLayoutDisplayed() throws InterruptedException{
+        return Elements.isElementPresent(driver, conv_fee_info_layout);
+    }
+
+    public String getConvLayoutDetails() throws InterruptedException{
+        return Elements.getText(driver, details_key)+" : "+Elements.getText(driver,details_value);
+    }
+
+    public void clickOnKnowMoreCta() throws InterruptedException{
+        Elements.selectElement(driver, know_more_cta, "Click on Know More Cta");
+    }
+
+    public String getKnowMorePageTitle() throws InterruptedException{
+        return Elements.getText(driver, know_more_page_title, "Know More Page Title");
+    }
+
+    public Boolean isConvFeeDescriptionDisplayed() throws InterruptedException{
+        Log.info(Elements.getText(driver, conv_fee_description_card_details_bottomsheet));
+        return Elements.isElementPresent(driver, conv_fee_description_card_details_bottomsheet);
+    }
+
+    public Boolean isSaveCardConsentDisplayed() throws InterruptedException{
+        Log.info(Elements.getText(driver, save_card_consent));
+        return Elements.isElementPresent(driver, save_card_consent);
     }
 
 

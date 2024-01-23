@@ -86,6 +86,20 @@ public class CheckoutTest extends TestBase {
         checkoutHelper.addMoneyCheckoutCardViewsValidation("7000");
     }
 
+    @Test(groups = {"sanity", "addMoneyConvFeeDetails","regression"}, priority = 5, description = "Add Money Checkout Flow Conv Fee Details")
+    public void Test06_addMoneyConvFeeTest() throws IOException, InterruptedException {
+
+        Log.info("======= START : Add Money Checkout Flow Conv Fee test =======");
+
+        // Login to the account
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaOtp("9205299330", "547372");
+
+        // Execute the test
+        CheckoutHelper checkoutHelper = new CheckoutHelper(getAndroidDriver());
+        checkoutHelper.addMoneyCheckoutConvFeeValidation("7000");
+    }
+
 
 
 
