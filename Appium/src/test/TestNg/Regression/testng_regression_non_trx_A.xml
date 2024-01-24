@@ -30,6 +30,8 @@
             <class name="Loan.LoanTest"/>
             <class name="Zip.ZipTest"/>
             <class name="Offers.OfferTest"/>
+            <class name="MoneyPlus.MoneyPlusTest"/>
+
         </classes>
     </test>
 </suite>

@@ -25,8 +25,6 @@ public class ZipHelper {
     Screen screen;
     MBReporter mbReporter;
 
-    ElectricityPage electricityPage;
-
 
     public ZipHelper(AndroidDriver driver) throws IOException {
         this.driver = driver;
@@ -34,7 +32,6 @@ public class ZipHelper {
         zipPage = new ZipPage(driver);
         screen = new Screen(driver);
         mbReporter = new MBReporter(driver);
-        electricityPage = new ElectricityPage(driver);
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
@@ -134,7 +131,9 @@ public class ZipHelper {
 
         Screen.swipeUpMore(driver);
 
-//        Screen.swipeUpMore(driver);
+        if(!Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Manage now']"))){
+            Screen.swipeUpMore(driver);
+        }
 
         zipPage.clickOnManageNowCta();
 
@@ -170,10 +169,10 @@ public class ZipHelper {
         zipPage.clickSelectResult();
 
 
-        //Click on CA number text box
-        electricityPage.clickCaNumber();
+        //Click on Mobile number text box
+        zipPage.clickMobileNumber();
 
-        //Enter CA number in text field
+        //Enter Mobile number in text field
         zipPage.enterMobileNumber(mobileNumber);
 
         zipPage.clickOnAutopayToggle();

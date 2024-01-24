@@ -212,7 +212,6 @@ public class ZipPage {
     }
 
     public void enterSearchCriteria(String data) throws InterruptedException {
-        //Elements.isElementPresent(driver, searchElectricityBrand);
         Elements.enterToElement(driver, search, data,"Enter Search Criteria");
     }
 
@@ -220,8 +219,11 @@ public class ZipPage {
         Elements.selectElement(driver, selectAvailableResult, "Click on Available Result");
     }
 
+    public void clickMobileNumber(){
+        Elements.selectElement(driver, mobileNumberEditText, "Click on Mobile number Field");
+    }
+
     public void enterMobileNumber(String number) throws InterruptedException {
-        //Elements.isElementPresent(driver, caNumber);
         Elements.enterToElement(driver, mobileNumberEditText, number, "Enter Mobile number");
     }
 
