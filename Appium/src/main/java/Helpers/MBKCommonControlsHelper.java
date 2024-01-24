@@ -504,13 +504,12 @@ public class MBKCommonControlsHelper {
 
     public void handleHomePageLanding() throws InterruptedException {
 
-
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         for (int i = 0; i < 10; i++) {
-            if (!Element.isElementPresent(driver, By.id("view_icon_bg"))) {
+            if (!Element.isElementPresent(driver, By.id("layout_main"))) {
                 driver.navigate().back();
                 Log.info("Pressed Back : Due to Pop UP interruption");
-                Thread.sleep(3000);
+                Thread.sleep(2000);
                 if (Element.isElementPresent(driver, By.id("ic_close"))) {
                     driver.findElementById("ic_close").click();
                 }
