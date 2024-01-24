@@ -27,7 +27,7 @@ public class CheckoutTest extends TestBase {
 
     }
 
-    @Test(groups = {"sanity", "xtraCheckout","xtraCheckoutUpiMode","regression"}, priority = 1, description = "Xtra Checkout Upi Mode test")
+    @Test(groups = {"sanity", "xtraCheckout","xtraCheckoutUpiMode","regression"}, priority = 0, description = "Xtra Checkout Upi Mode test")
     public void Test02_xtraCheckoutUpiModeFlow() throws IOException, InterruptedException {
 
         Log.info("======= START : Xtra Checkout test =======");
@@ -42,7 +42,7 @@ public class CheckoutTest extends TestBase {
 
     }
 
-    @Test(groups = {"sanity", "wapgCheckoutFlowCCBP","wapgCheckoutFlow","regression"}, priority = 2, description = "Wapg Checkout Flow CCBP test")
+    @Test(groups = {"sanity", "wapgCheckoutFlowCCBP","wapgCheckoutFlow","regression"}, priority = 0, description = "Wapg Checkout Flow CCBP test")
     public void Test03_wapgCheckoutFlowCCBP() throws IOException, InterruptedException {
 
         Log.info("======= START : WAPG CCBP Checkout test =======");
@@ -57,7 +57,7 @@ public class CheckoutTest extends TestBase {
 
     }
 
-    @Test(groups = {"sanity", "wapgCheckoutFlowZipAutoPay","wapgCheckoutFlow","regression"}, priority = 3, description = "Wapg Checkout Flow Zip Auto Pay test")
+    @Test(groups = {"sanity", "wapgCheckoutFlowZipAutoPay","wapgCheckoutFlow","regression"}, priority = 0, description = "Wapg Checkout Flow Zip Auto Pay test")
     public void Test04_zipAutoPayCheckoutElectricityBillPayment() throws IOException, InterruptedException {
 
         Log.info("======= START : Wapg Checkout Flow Zip Auto Pay test =======");
@@ -72,7 +72,7 @@ public class CheckoutTest extends TestBase {
 
     }
 
-    @Test(groups = {"sanity", "addMoneyCardDetails","regression"}, priority = 4, description = "Add Money Checkout Flow Card Details")
+    @Test(groups = {"sanity", "addMoneyCardDetails","regression"}, priority = 0, description = "Add Money Checkout Flow Card Details")
     public void Test05_addMoneyCardDetailsViewTest() throws IOException, InterruptedException {
 
         Log.info("======= START : Add Money Checkout Flow Card Details test =======");
@@ -86,7 +86,7 @@ public class CheckoutTest extends TestBase {
         checkoutHelper.addMoneyCheckoutCardViewsValidation("7000");
     }
 
-    @Test(groups = {"sanity", "addMoneyConvFeeDetails","regression"}, priority = 5, description = "Add Money Checkout Flow Conv Fee Details")
+    @Test(groups = {"sanity", "addMoneyConvFeeDetails","regression"}, priority = 0, description = "Add Money Checkout Flow Conv Fee Details")
     public void Test06_addMoneyConvFeeTest() throws IOException, InterruptedException {
 
         Log.info("======= START : Add Money Checkout Flow Conv Fee test =======");
