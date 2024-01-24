@@ -3,11 +3,9 @@ package Helpers;
 import Logger.Log;
 import PageObject.*;
 import Utils.Element;
-import Utils.Elements;
 import Utils.MBReporter;
 import Utils.Screen;
-import com.aventstack.extentreports.reporter.configuration.Theme;
-import com.sun.org.apache.bcel.internal.generic.NEW;
+
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -15,7 +13,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
-import java.util.LinkedHashMap;
 
 public class CheckoutHelper {
 
