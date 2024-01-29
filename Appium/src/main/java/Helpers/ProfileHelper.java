@@ -91,6 +91,7 @@ public class ProfileHelper {
             mbReporter.verifyEqualsWithLogging(actualInteropID, expInteropID, "Verify Interop ID", false, false, true);
 
 
+            Thread.sleep(2000);
             if(profilePage.checkNetWorthWidget()) {
                 profilePage.clickNetWorthDashboard();
                 profilePage.clickBackBtn();
@@ -103,11 +104,11 @@ public class ProfileHelper {
                 profilePage.clickSupercashBackBtn();
             }
 
-            screen.swipeUpLess(driver);
-            screen.swipeUpLess(driver);
+            screen.swipeUpMore(driver);
 
             if(!profilePage.checkAppVersionText()){
-                screen.swipeUpLess(driver);
+                screen.swipeUpMore(driver);
+                screen.swipeUpMore(driver);
             }
 
             String AppVersion = profilePage.getAppversion();

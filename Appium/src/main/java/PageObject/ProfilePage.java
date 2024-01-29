@@ -82,7 +82,7 @@ public class ProfilePage {
     @AndroidFindBy(id = "introp_id")
     private AndroidElement interop_id;
 
-    @AndroidFindBy(xpath = "//*[@text='txt_balance_option_title']")
+    @AndroidFindBy(xpath = "//*[@text='Your Net Worth']")
     private AndroidElement net_worth_widget;
 
     @AndroidFindBy(xpath = "//*[@text='Dashboard']")
@@ -120,17 +120,6 @@ public class ProfilePage {
 //    public void clickProfile() {
 //        Elements.selectElement(driver,clickProfile,"Click Profile button");
 //    }
-
-    public void checkNumber(String number) throws InterruptedException {
-        Elements.waitForElementToVisibleOnPageUsingText(driver,number,5);
-        Assert.assertTrue(Elements.isElementPresent(driver,number));
-    }
-
-    public void checkNameAndEmail(String name, String emailId) throws InterruptedException {
-        if(Elements.isElementPresent(driver,name) || Elements.isElementPresent(driver,emailId)){
-            Config.info("Name or Email id is different");
-        }
-    }
 
     public void enterName(String name) {
         Elements.selectElement(driver,checkName,"Click name field");
@@ -232,7 +221,7 @@ public class ProfilePage {
     }
 
     public String getInteropID() throws InterruptedException {
-        return Elements.getText(driver,profile_mobile_number,"Get the Profile Mobile Number");
+        return Elements.getText(driver,interop_id,"Get the Profile Mobile Number");
     }
 
     public boolean checkNetWorthWidget() throws InterruptedException {

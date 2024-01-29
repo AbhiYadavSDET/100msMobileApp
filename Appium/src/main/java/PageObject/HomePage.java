@@ -245,6 +245,12 @@ public class HomePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Deals']")
     private AndroidElement button_deals;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Continue']")
+    private AndroidElement kyc_screen_subheading;
+
+    @AndroidFindBy(id = "btn_exit")
+    private AndroidElement exit_btn_kyc_screen;
+
     //############################ Old end ################################
 
     public HomePage(AndroidDriver driver) {
@@ -557,6 +563,15 @@ public class HomePage {
     public String getTotalBalance() throws InterruptedException {
         return Elements.getText(driver, totalBalance, "Total balance");
     }
+
+    public boolean checkKycScreen() throws InterruptedException {
+        return Elements.isElementPresent(driver, kyc_screen_subheading);
+    }
+
+    public void clickDonWantBenifitsBtn()  {
+        Element.selectElement(driver, exit_btn_kyc_screen, " Click on Don't Want Benifits");
+    }
+
 
     //############################ Old end ################################
 }
