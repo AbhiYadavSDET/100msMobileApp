@@ -31,7 +31,7 @@ public class IMPSTest extends TestBase {
 
     }
 
-  @Test(groups = {"impsNewUPIid", "impsSanity"}, priority = 1, description = "IMPS on New UPI ID")
+  @Test(groups = {"impsNewUPIid", "impsSanity"}, priority =0, description = "IMPS on New UPI ID")
     public void Test02_imps_new_upi_id() throws IOException,InterruptedException{
 
         Log.info("======= START : IMPS to New UPI ID Test =======");
@@ -46,7 +46,7 @@ public class IMPSTest extends TestBase {
     }
 
 
-  @Test(groups = {"impsSavedVPA", "impsSanity"}, priority = 2, description = "IMPS on Saved VPA")
+  @Test(groups = {"impsSavedVPA", "impsSanity"}, priority = 0, description = "IMPS on Saved VPA")
     public void Test03_imps_to_saved_vpa() throws  IOException,InterruptedException{
 
         Log.info("======= START : IMPS to Saved VPA Test =======");
@@ -65,7 +65,7 @@ public class IMPSTest extends TestBase {
 
 //Non transactions tests
 
- @Test(groups = {"impsNewAccountNumber", "impsSanity","ipmsAutoIfscCode"}, priority = 3, description = "IMPS on New Account Number with auto ifsc code")
+ @Test(groups = {"impsNewAccountNumber", "impsSanity","ipmsAutoIfscCode", "regression"}, priority = 0, description = "IMPS on New Account Number with auto ifsc code")
     public void Test04_imps_new_account_numberWithAutoIfscCode() throws IOException, InterruptedException {
 
         Log.info("======= START : IMPS to New Account Number with auto ifsc code Test =======");
@@ -95,7 +95,7 @@ public class IMPSTest extends TestBase {
     }
 */
 
-    @Test(groups = {"impsErrorMessage", "impsSanity","impsNewAccountNumber"}, priority = 5, description = "Refer and earn on Imps")
+    @Test(groups = {"impsErrorMessage", "impsSanity","impsNewAccountNumber", "regression"}, priority = 0, description = "Refer and earn on Imps")
     public void Test06_imps_new_account_numberWithErrorMessage() throws IOException, InterruptedException {
 
         Log.info("======= START : Error message on add new property on Imps Test =======");
@@ -109,7 +109,7 @@ public class IMPSTest extends TestBase {
 
     }
 
-    @Test(groups = {"impsCheckLimits", "impsSanity","impsNewAccountNumber"}, priority = 6, description = "Refer and earn on Imps")
+    @Test(groups = {"impsCheckLimits", "impsSanity","impsNewAccountNumber", "regression"}, priority = 0, description = "Refer and earn on Imps")
     public void Test07_imps_checkLimits() throws IOException, InterruptedException {
 
         Log.info("======= START : check limits on Imps Test =======");
