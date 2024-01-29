@@ -53,6 +53,10 @@ public class PermissionPage {
         Elements.click(driver, later ,"Later Button");
     }
 
+    public boolean isEnablePermissionPopupPresent() throws InterruptedException{
+        return Elements.isElementPresent(driver, allowWhileUsingApp);
+    }
+
     public void clickAllowWhileUsingApp() { Elements.selectElement(driver, allowWhileUsingApp, "Click Allow while using app Button");}
 
     public boolean isZipBottomSheetShown() throws InterruptedException {

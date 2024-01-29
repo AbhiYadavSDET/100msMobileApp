@@ -34,8 +34,10 @@ public class ElectricityHelper {
         //Click Recharge and Pay Bills option
         homePage.clickRechargeAndPayBills();
 
-        //Click Allow using app for location action popup
-        permissionPage.clickAllowWhileUsingApp();
+        if(permissionPage.isEnablePermissionPopupPresent()) {
+            //Allow loaction permission
+            permissionPage.clickAllowWhileUsingApp();
+        }
 
         //Click on Electricity option
         electricityPage.clickElectricity();
