@@ -102,6 +102,14 @@ public class P2MPage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[3]/XCUIElementTypeOther/XCUIElementTypeStaticText[1]")
     private IOSElement instruction_text;
 
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[starts-with(@name,'Enter details')]")
+    private IOSElement enterNumber;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeTextField[@name='Delivery Person Ph No']")
+    private IOSElement deliveryPersonPhNo;
+
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeButton[@name='Confirm Payment'])[2]")
+    private IOSElement confirmPayment;
 
 
 
@@ -235,5 +243,20 @@ public class P2MPage {
         return Elements.getText(driver, instruction_text, "Instruction Text");
     }
 
+    public boolean isEnterDetailsBottomSheetPresent() throws InterruptedException{
+        return Elements.isElementPresent(driver, enterNumber);
+    }
+
+    public void clickDeliveryPersonPhNoField(){
+        Elements.click(driver, deliveryPersonPhNo,"Click on delivery person ph no. field");
+    }
+
+    public void enterPhoneNo(String number){
+        Elements.enterToElement(driver, deliveryPersonPhNo, number, "Enter delivery person ph no.");
+    }
+
+    public void clickOnConfirmPaymentButton(){
+        Elements.click(driver, confirmPayment,"Click on confirm payment");
+    }
 
 }

@@ -21,7 +21,7 @@ public class P2MTest extends TestBase {
 
         // Execute the test
         P2MHelper p2mHelper = new P2MHelper(getIosDriver());
-        p2mHelper.p2mSend("MobikwikQr", "1", "You Paid", "₹1", "manoj", "AACH41414");
+        p2mHelper.p2mSend("MobikwikQr", "1", "You Paid", "₹1", "manoj", "AACH41414","9205299330");
         Log.info("======= END : P2M Send test =======");
 
 
@@ -38,7 +38,7 @@ public class P2MTest extends TestBase {
 
         // Execute the test
         P2MHelper p2mHelper = new P2MHelper(getIosDriver());
-        p2mHelper.p2mSend("RecentMerchant", "1", "You Paid", "₹1", "manoj", "AACH41414");
+        p2mHelper.p2mSend("RecentMerchant", "1", "You Paid", "₹1", "manoj", "AACH41414","9205299330");
         Log.info("======= END : P2M Send test =======");
 
     }
@@ -53,7 +53,7 @@ public class P2MTest extends TestBase {
 
         // Execute the test
         P2MHelper p2mHelper = new P2MHelper(getIosDriver());
-        p2mHelper.p2mSend("SonuQr", "1", "You Paid", "₹1", "Sonu Kumar", "Sonu");
+        p2mHelper.p2mSend("SonuQr", "1", "You Paid", "₹1", "Sonu Kumar", "Sonu","9205299330");
         Log.info("======= END : P2M Send test =======");
 
 

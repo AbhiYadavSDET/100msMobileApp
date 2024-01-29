@@ -45,7 +45,7 @@ public class P2MHelper {
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
-    public void p2mSend(String merchant, String amount, String expStatus, String expAmount, String expMerchantName, String expMerchantCode) throws InterruptedException, IOException {
+    public void p2mSend(String merchant, String amount, String expStatus, String expAmount, String expMerchantName, String expMerchantCode, String number) throws InterruptedException, IOException {
 
         // Get the Balance if the User Before TRX
 
@@ -89,13 +89,20 @@ public class P2MHelper {
         // Click on the Confirm Payment CTA
         p2mPage.clickConfirmPayment();
 
+        if(p2mPage.isEnterDetailsBottomSheetPresent()){
+
+            p2mPage.clickDeliveryPersonPhNoField();
+
+            p2mPage.enterPhoneNo(number);
+
+            p2mPage.clickOnConfirmPaymentButton();
+        }
+
         // checking for security pin
         if(securityPinPage.isSecurityPinPageShown())
         {
             securityPinPage.enterSecurityPin();
         }
-
-
 
         // Verification on the Success Screen
         String actualStatus = p2mPage.getStatus();

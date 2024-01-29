@@ -38,10 +38,18 @@ public class IMPSHelper {
         //Click on Wallet to Bank Transfer
         homePage.clickOnIMPS();
 
-        Thread.sleep(1000);
+        Thread.sleep(2000);
 
-        //Click Transfer to a new account
-        impsPage.clickOnTransferToAccountButton();
+        if(impsPage.isTransferNowPagePresent()){
+
+            //Click on Transfer now button
+            impsPage.clickOnTransferNowButton();
+        }
+        else {
+
+            //Click Transfer to a new account
+            impsPage.clickOnTransferToAccountButton();
+        }
 
         //Click on beneficiary name
         impsPage.clickBeneficiaryName();
@@ -108,10 +116,18 @@ public class IMPSHelper {
         //Click on Wallet to Bank Transfer
         homePage.clickOnIMPS();
 
-        Thread.sleep(1000);
+        Thread.sleep(2000);
 
-        //Click Transfer to a new account
-        impsPage.clickOnTransferToAccountButton();
+        if(impsPage.isTransferNowPagePresent()){
+
+            //Click on Transfer now button
+            impsPage.clickOnTransferNowButton();
+        }
+        else {
+
+            //Click Transfer to a new account
+            impsPage.clickOnTransferToAccountButton();
+        }
 
         //Click on check limits
         impsPage.clickCheckLimits();
@@ -132,10 +148,18 @@ public class IMPSHelper {
         //Click on Wallet to Bank Transfer
         homePage.clickOnIMPS();
 
-        Thread.sleep(1000);
+        Thread.sleep(2000);
 
-        //Click Transfer to a new account
-        impsPage.clickOnTransferToAccountButton();
+        if(impsPage.isTransferNowPagePresent()){
+
+            //Click on Transfer now button
+            impsPage.clickOnTransferNowButton();
+        }
+        else {
+
+            //Click Transfer to a new account
+            impsPage.clickOnTransferToAccountButton();
+        }
 
         //Click on Continue
         impsPage.clickOnContinue();
@@ -180,10 +204,18 @@ public class IMPSHelper {
         //Click on Wallet to Bank Transfer
         homePage.clickOnIMPS();
 
-        Thread.sleep(1000);
+        Thread.sleep(2000);
 
-        //Click Transfer to a new account
-        impsPage.clickOnTransferToAccountButton();
+        if(impsPage.isTransferNowPagePresent()){
+
+            //Click on Transfer now button
+            impsPage.clickOnTransferNowButton();
+        }
+        else {
+
+            //Click Transfer to a new account
+            impsPage.clickOnTransferToAccountButton();
+        }
 
         //Click on UPI radio option
         impsPage.clickOnUPIOption();
@@ -205,10 +237,18 @@ public class IMPSHelper {
         //Click on Wallet to Bank Transfer
         homePage.clickOnIMPS();
 
-        Thread.sleep(1000);
+        Thread.sleep(2000);
 
-        //Click Transfer to a new account
-        impsPage.clickOnTransferToAccountButton();
+        if(impsPage.isTransferNowPagePresent()){
+
+            //Click on Transfer now button
+            impsPage.clickOnTransferNowButton();
+        }
+        else {
+
+            //Click Transfer to a new account
+            impsPage.clickOnTransferToAccountButton();
+        }
 
         //Click on UPI radio option
         impsPage.clickOnUPIOption();
