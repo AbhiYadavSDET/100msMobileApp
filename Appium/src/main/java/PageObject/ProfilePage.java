@@ -82,6 +82,26 @@ public class ProfilePage {
     @AndroidFindBy(id = "introp_id")
     private AndroidElement interop_id;
 
+    @AndroidFindBy(xpath = "//*[@text='txt_balance_option_title']")
+    private AndroidElement net_worth_widget;
+
+    @AndroidFindBy(xpath = "//*[@text='Dashboard']")
+    private AndroidElement click_dashboard;
+
+    @AndroidFindBy(id = "tv_title")
+    private AndroidElement back_btn;
+
+    @AndroidFindBy(xpath = "//*[@text='SuperCash Balance']")
+    private AndroidElement super_cash_widget;
+
+    @AndroidFindBy(xpath = "//*[@text='Statement']")
+    private AndroidElement super_cash_statement_cta;
+
+    @AndroidFindBy(id = "com.mobikwik_new.debug:id/mkab_icon_1")
+    private AndroidElement supercash_back_btn;
+
+    @AndroidFindBy(id = "com.mobikwik_new.debug:id/txtAppVersion")
+    private AndroidElement app_version;
 
 
     public ProfilePage(AndroidDriver driver){
@@ -214,5 +234,38 @@ public class ProfilePage {
     public String getInteropID() throws InterruptedException {
         return Elements.getText(driver,profile_mobile_number,"Get the Profile Mobile Number");
     }
+
+    public boolean checkNetWorthWidget() throws InterruptedException {
+        return Elements.isElementPresent(driver, net_worth_widget);
+    }
+
+    public void clickNetWorthDashboard() throws InterruptedException {
+        Elements.selectElement(driver, click_dashboard, "Click on Dashboard");
+    }
+
+    public void clickBackBtn() throws InterruptedException {
+        Elements.selectElement(driver, back_btn, "Click on Back Button");
+    }
+
+    public boolean checkSuperCashWidget() throws InterruptedException {
+        return Elements.isElementPresent(driver, super_cash_widget);
+    }
+
+    public void clickSuperCashStatementCta() throws InterruptedException {
+        Elements.selectElement(driver, super_cash_statement_cta, "Click on Super Cash Statement CTA");
+    }
+
+    public void clickSupercashBackBtn() throws InterruptedException {
+        Elements.selectElement(driver, supercash_back_btn, "Click on Back Button");
+    }
+
+    public boolean checkAppVersionText() throws InterruptedException {
+        return Elements.isElementPresent(driver, app_version);
+    }
+
+    public String getAppversion() throws InterruptedException {
+        return Elements.getText(driver, app_version);
+    }
+
 
 }

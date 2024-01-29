@@ -14,6 +14,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import Logger.Log;
 
 import java.io.IOException;
 
@@ -26,17 +27,6 @@ public class ProfileHelper {
     HomePage homePage;
     Screen screen;
 
-    @AndroidFindBy(xpath="//*[@text='Login/Signup']")
-    private AndroidElement loginSignupButton;
-
-    @AndroidFindBy(xpath="//*[@text='View Details']")
-    private AndroidElement checkViewDetails;
-
-    @AndroidFindBy(xpath="//*[@text='Save Changes']")
-    private AndroidElement saveChangesText;
-
-    @AndroidFindBy(xpath="//*[@text='Allow']")
-    private AndroidElement allowText;
 
     public ProfileHelper(AndroidDriver driver) throws IOException {
         this.driver = driver;
@@ -100,9 +90,29 @@ public class ProfileHelper {
             mbReporter.verifyEqualsWithLogging(actualMobileNumber, expMobileNumber, "Verify Mobile Number", false, false, true);
             mbReporter.verifyEqualsWithLogging(actualInteropID, expInteropID, "Verify Interop ID", false, false, true);
 
+
+            if(profilePage.checkNetWorthWidget()) {
+                profilePage.clickNetWorthDashboard();
+                profilePage.clickBackBtn();
+            }
+
             screen.swipeUpLess(driver);
 
+            if(profilePage.checkSuperCashWidget()) {
+                profilePage.clickSuperCashStatementCta();
+                profilePage.clickSupercashBackBtn();
+            }
 
+            screen.swipeUpLess(driver);
+            screen.swipeUpLess(driver);
+
+            if(!profilePage.checkAppVersionText()){
+                screen.swipeUpLess(driver);
+            }
+
+            String AppVersion = profilePage.getAppversion();
+            Log.info("App Version is : " + AppVersion);
+            mbReporter.verifyTrueWithLogging(!(AppVersion ==null), "Verify App Version", false, false, true);
 
     }
 
