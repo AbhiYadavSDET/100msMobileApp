@@ -1,6 +1,7 @@
 package PageObject;
 
 import Utils.Config;
+import Utils.Element;
 import Utils.Elements;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
@@ -68,6 +69,41 @@ public class ProfilePage {
     @AndroidFindBy(xpath="//*[@text='Allow']")
     private AndroidElement allowText;
 
+
+    @AndroidFindBy(id = "txt_name")
+    private AndroidElement profile_name;
+
+    @AndroidFindBy(id = "txt_email")
+    private AndroidElement profile_email;
+
+    @AndroidFindBy(id = "primary_mobile_number")
+    private AndroidElement profile_mobile_number;
+
+    @AndroidFindBy(id = "introp_id")
+    private AndroidElement interop_id;
+
+    @AndroidFindBy(xpath = "//*[@text='Your Net Worth']")
+    private AndroidElement net_worth_widget;
+
+    @AndroidFindBy(xpath = "//*[@text='Dashboard']")
+    private AndroidElement click_dashboard;
+
+    @AndroidFindBy(id = "tv_title")
+    private AndroidElement back_btn;
+
+    @AndroidFindBy(xpath = "//*[@text='SuperCash Balance']")
+    private AndroidElement super_cash_widget;
+
+    @AndroidFindBy(xpath = "//*[@text='Statement']")
+    private AndroidElement super_cash_statement_cta;
+
+    @AndroidFindBy(id = "com.mobikwik_new.debug:id/mkab_icon_1")
+    private AndroidElement supercash_back_btn;
+
+    @AndroidFindBy(id = "com.mobikwik_new.debug:id/txtAppVersion")
+    private AndroidElement app_version;
+
+
     public ProfilePage(AndroidDriver driver){
         this.driver=driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -84,17 +120,6 @@ public class ProfilePage {
 //    public void clickProfile() {
 //        Elements.selectElement(driver,clickProfile,"Click Profile button");
 //    }
-
-    public void checkNumber(String number) throws InterruptedException {
-        Elements.waitForElementToVisibleOnPageUsingText(driver,number,5);
-        Assert.assertTrue(Elements.isElementPresent(driver,number));
-    }
-
-    public void checkNameAndEmail(String name, String emailId) throws InterruptedException {
-        if(Elements.isElementPresent(driver,name) || Elements.isElementPresent(driver,emailId)){
-            Config.info("Name or Email id is different");
-        }
-    }
 
     public void enterName(String name) {
         Elements.selectElement(driver,checkName,"Click name field");
@@ -181,4 +206,55 @@ public class ProfilePage {
     public void clickAllow() {
         Elements.selectElement(driver,allowText,"Click Allow");
     }
+
+
+    public String getName() throws InterruptedException {
+        return Element.getText(driver, profile_name, "Get the Profile Account : Name");
+    }
+
+    public String getEmailId() throws InterruptedException {
+        return Elements.getText(driver,profile_email,"Get the Profile Email ID ");
+    }
+
+    public String getMobileNumber() throws InterruptedException {
+        return Elements.getText(driver,profile_mobile_number,"Get the Profile Mobile Number");
+    }
+
+    public String getInteropID() throws InterruptedException {
+        return Elements.getText(driver,interop_id,"Get the Profile Mobile Number");
+    }
+
+    public boolean checkNetWorthWidget() throws InterruptedException {
+        return Elements.isElementPresent(driver, net_worth_widget);
+    }
+
+    public void clickNetWorthDashboard() throws InterruptedException {
+        Elements.selectElement(driver, click_dashboard, "Click on Dashboard");
+    }
+
+    public void clickBackBtn() throws InterruptedException {
+        Elements.selectElement(driver, back_btn, "Click on Back Button");
+    }
+
+    public boolean checkSuperCashWidget() throws InterruptedException {
+        return Elements.isElementPresent(driver, super_cash_widget);
+    }
+
+    public void clickSuperCashStatementCta() throws InterruptedException {
+        Elements.selectElement(driver, super_cash_statement_cta, "Click on Super Cash Statement CTA");
+    }
+
+    public void clickSupercashBackBtn() throws InterruptedException {
+        Elements.selectElement(driver, supercash_back_btn, "Click on Back Button");
+    }
+
+    public boolean checkAppVersionText() throws InterruptedException {
+        return Elements.isElementPresent(driver, app_version);
+    }
+
+    public String getAppversion() throws InterruptedException {
+        return Elements.getText(driver, app_version);
+    }
+
+
 }

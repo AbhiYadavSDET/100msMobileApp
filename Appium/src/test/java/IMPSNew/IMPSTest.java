@@ -22,10 +22,10 @@ public class IMPSTest extends TestBase {
         Log.info("======= START : IMPS to New Account Number Test =======");
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.quickLoginViaOtp("8076595767","547372");
+        loginHelp.quickLoginViaOtp("9205299330","547372");
 
         IMPSNewHelper impsHelper = new IMPSNewHelper(getAndroidDriver());
-        impsHelper.verifyIMPSNewAccount("Ashish Kumar Pradhan", "040801000080315", "IOBA0000408", "50","Transfer Successful" , "₹50","Bank transfer to  Ashish Kumar Pradhan (XXXXXXXXXXX0315)","-₹51.18","Success");
+        impsHelper.verifyIMPSNewAccount("Paraj Jain", "167795709569", "INDB0000724", "50","Transfer Successful" , "₹50","Bank transfer to  Paraj Jain (XXXXXXXXXXX0315)","-₹51.18","Success");
 
         Log.info("======= END : IMPS to New Account Number Test =======");
 

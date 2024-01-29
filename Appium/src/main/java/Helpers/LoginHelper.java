@@ -146,6 +146,13 @@ public class LoginHelper {
             loginPage.enterOtp(otp);
         }
 
+        if(homePage.checkKycScreen()) {
+            //  homePage.clickBackbtnOnKYCpage();
+            mbkCommonControlsHelper.pressback();
+            homePage.clickDonWantBenifitsBtn();
+            Thread.sleep(4000);
+        }
+
         // Wait for 5000 ms for all the banners to load
         Thread.sleep(5000);
 
