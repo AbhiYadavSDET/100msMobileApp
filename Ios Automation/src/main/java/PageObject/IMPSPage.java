@@ -56,6 +56,12 @@ public class IMPSPage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='M']")
     private IOSElement closeCheckLimitBottomSheet;
 
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='Transfer money from Credit Card to bank account']")
+    private IOSElement transferNowPage;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='Transfer now']")
+    private IOSElement transferNowButton;
+
 
     public IMPSPage(IOSDriver driver) {
         this.driver = driver;
@@ -135,6 +141,14 @@ public class IMPSPage {
 
     public String getUpiFieldErrorMessage() throws InterruptedException{
         return Elements.getText(driver, upiIdField);
+    }
+
+    public boolean isTransferNowPagePresent() throws InterruptedException{
+        return Elements.isElementPresent(driver, transferNowPage);
+    }
+
+    public void clickOnTransferNowButton() {
+        Elements.click(driver, transferNowButton,"Click on Transfer now");
     }
 
 }

@@ -45,7 +45,7 @@ public class CCBPTest extends TestBase {
         Log.info("======= START : CCBP Refer and Earn Flow test =======");
 
         CCBPHelper ccbpHelper = new CCBPHelper(getIosDriver());
-        ccbpHelper.CCBP_ReferAndEarn("Email ID is not linked","Refer & Earn ₹125 \uD83E\uDD11");
+        ccbpHelper.CCBP_ReferAndEarn("Email ID is not linked","Refer & Earn upto ₹1000 \uD83E\uDD11");
 
         Log.info("======= END : CCBP Refer and Earn Flow test =======");
 
