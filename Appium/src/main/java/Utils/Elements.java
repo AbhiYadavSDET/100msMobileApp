@@ -57,6 +57,7 @@ public class Elements extends TestBase {
 
     public static void click(AndroidDriver driver, String element, String comments) {
 
+
         Config.logComment("Click on '" + comments + "'");
         driver.findElement(By.xpath("//*[@text='" + element + "']")).click();
     }
