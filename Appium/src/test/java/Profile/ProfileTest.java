@@ -19,7 +19,7 @@ public class ProfileTest extends TestBase {
         loginHelp.quickLoginViaOtp("9205299330","547372");
 
         ProfileHelper profileHelp = new ProfileHelper(getAndroidDriver());
-        profileHelp.profileView("9818484290" ,"Udit Gupta", "uditgupta5j15@gmail.com");
+        profileHelp.profileView("9205299330" ,"mobile test number", "mkwik9330@gmail.com","9205299330@mbk");
 
     }
 

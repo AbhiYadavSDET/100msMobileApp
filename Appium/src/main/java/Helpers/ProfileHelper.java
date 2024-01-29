@@ -6,6 +6,8 @@ import PageObject.ProfilePage;
 import PageObject.SideDrawerPage;
 import Utils.Config;
 import Utils.Elements;
+import Utils.MBReporter;
+import Utils.Screen;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -13,12 +15,16 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
+import java.io.IOException;
+
 public class ProfileHelper {
 
     AndroidDriver<AndroidElement> driver;
     ProfilePage profilePage;
     SideDrawerPage sideDrawerPage;
+    MBReporter mbReporter;
     HomePage homePage;
+    Screen screen;
 
     @AndroidFindBy(xpath="//*[@text='Login/Signup']")
     private AndroidElement loginSignupButton;
@@ -32,29 +38,19 @@ public class ProfileHelper {
     @AndroidFindBy(xpath="//*[@text='Allow']")
     private AndroidElement allowText;
 
-    public ProfileHelper(AndroidDriver<AndroidElement> driver){
-        this.driver=driver;
-        PageFactory.initElements(new AppiumFieldDecorator(driver), this);
-        profilePage=new ProfilePage(driver);
-        sideDrawerPage=new SideDrawerPage(driver);
-        homePage=new HomePage(driver);
+    public ProfileHelper(AndroidDriver driver) throws IOException {
+        this.driver = driver;
+    //    PageFactory.initElements(new AppiumFieldDecorator(driver), this);
+        profilePage = new ProfilePage(driver);
+        screen = new Screen(driver);
+        sideDrawerPage = new SideDrawerPage(driver);
+        homePage = new HomePage(driver);
+        mbReporter = new MBReporter(driver);
     }
 
-    public void profileView(String mobileNumber, String name, String emailId) throws InterruptedException {
+    public void profileView(String expMobileNumber, String expName, String expEmailId, String expInteropID) throws InterruptedException, IOException {
 
-
-        Thread.sleep(8000);
-        if(Elements.isElementPresent(driver,checkViewDetails)){
-            homePage.openSideDrawr();
-            sideDrawerPage.clickProfile();
-            if(Elements.isElementPresent(driver,allowText)){
-                profilePage.clickAllow();
-            }
-            profilePage.checkNumber(mobileNumber);
-            profilePage.checkSaveChangesButton();
-            profilePage.checkNameAndEmail(name,emailId);
-            profilePage.enterName(name);
-            profilePage.enterEmailId(emailId);
+        /*
             profilePage.checkSaveChangesButton();
             profilePage.enterName("Test");
             profilePage.clickBackButton();
@@ -87,10 +83,25 @@ public class ProfileHelper {
             profilePage.clickNext();
             profilePage.waitForProfileSection();
 
-        }else{
-            Config.logComment("Please Login/Signup and than continue");
-            Assert.assertTrue(false);
-        }
+
+*/
+            HomePage homePage = new HomePage(driver);
+            homePage.clickWalletBalanceDropDown();
+
+            Thread.sleep(2000);
+
+            String actualName = profilePage.getName();
+            String actualEmailId = profilePage.getEmailId();
+            String actualMobileNumber = profilePage.getMobileNumber();
+            String actualInteropID = profilePage.getInteropID();
+
+            mbReporter.verifyEqualsWithLogging(actualName, expName, "Verify Profile Name", false, false, true);
+            mbReporter.verifyEqualsWithLogging(actualEmailId, expEmailId, "Verify Email ID", false, false, true);
+            mbReporter.verifyEqualsWithLogging(actualMobileNumber, expMobileNumber, "Verify Mobile Number", false, false, true);
+            mbReporter.verifyEqualsWithLogging(actualInteropID, expInteropID, "Verify Interop ID", false, false, true);
+
+            screen.swipeUpLess(driver);
+
 
 
     }

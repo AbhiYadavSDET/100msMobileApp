@@ -1,6 +1,7 @@
 package PageObject;
 
 import Utils.Config;
+import Utils.Element;
 import Utils.Elements;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
@@ -67,6 +68,21 @@ public class ProfilePage {
 
     @AndroidFindBy(xpath="//*[@text='Allow']")
     private AndroidElement allowText;
+
+
+    @AndroidFindBy(id = "txt_name")
+    private AndroidElement profile_name;
+
+    @AndroidFindBy(id = "txt_email")
+    private AndroidElement profile_email;
+
+    @AndroidFindBy(id = "primary_mobile_number")
+    private AndroidElement profile_mobile_number;
+
+    @AndroidFindBy(id = "introp_id")
+    private AndroidElement interop_id;
+
+
 
     public ProfilePage(AndroidDriver driver){
         this.driver=driver;
@@ -181,4 +197,22 @@ public class ProfilePage {
     public void clickAllow() {
         Elements.selectElement(driver,allowText,"Click Allow");
     }
+
+
+    public String getName() throws InterruptedException {
+        return Element.getText(driver, profile_name, "Get the Profile Account : Name");
+    }
+
+    public String getEmailId() throws InterruptedException {
+        return Elements.getText(driver,profile_email,"Get the Profile Email ID ");
+    }
+
+    public String getMobileNumber() throws InterruptedException {
+        return Elements.getText(driver,profile_mobile_number,"Get the Profile Mobile Number");
+    }
+
+    public String getInteropID() throws InterruptedException {
+        return Elements.getText(driver,profile_mobile_number,"Get the Profile Mobile Number");
+    }
+
 }
