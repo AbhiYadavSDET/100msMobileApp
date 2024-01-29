@@ -166,11 +166,17 @@ public class P2PExtraHelper {
 //        Thread.sleep(1000);
 //        if (p2PExtraPage.checkOkfromPlusPopUp()) p2PExtraPage.selectOkfromPlusPopUp();
 
+        // CLick on Got it CTA on Borrower Mapping Report Bottomsheet
+        p2PExtraPage.clickGotItCtaBorrowerMappingReport();
+
         // Click on the Tooltip
         p2PExtraPage.selectOkfromPlusPopUp();
 
         // Click Flexi from slider
         p2PExtraPage.selectFlexiFromNavBar();
+
+        // CLick on Got it CTA on Borrower Mapping Report Bottomsheet
+        p2PExtraPage.clickGotItCtaBorrowerMappingReport();
 
         // Used to click Invest Now btn on Xtra FLEXI amount page
         p2PExtraPage.selectInvestMore();
@@ -203,6 +209,9 @@ public class P2PExtraHelper {
 
         //Click on Invest More button on XTRA dashboard
         p2PExtraPage.selectInvestMore();
+
+        // CLick on Got it CTA on Borrower Mapping Report Bottomsheet
+        p2PExtraPage.clickGotItCtaBorrowerMappingReport();
 
         // Click on the Tooltip
         p2PExtraPage.selectOkfromPlusPopUp();

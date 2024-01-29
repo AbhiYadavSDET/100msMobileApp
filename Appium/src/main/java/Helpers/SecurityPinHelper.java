@@ -25,6 +25,8 @@ public class SecurityPinHelper {
     MBReporter mbReporter;
     GoldHelper goldHelper;
 
+    RechargeHelper rechargeHelper;
+
 
     public SecurityPinHelper(AndroidDriver driver) throws IOException {
         this.driver = driver;
@@ -35,6 +37,7 @@ public class SecurityPinHelper {
         screen = new Screen(driver);
         mbReporter = new MBReporter(driver);
         goldHelper = new GoldHelper(driver);
+        rechargeHelper = new RechargeHelper(driver);
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
@@ -94,8 +97,8 @@ public class SecurityPinHelper {
         //Enable Security Pin
         securityPinFlow("Disabled", pin, expSecuritySettingsTitle, expSecurityPinTitle);
 
-        // By Gold
-        goldHelper.goldBuy("1", "Payment Successful", "Gold Purchase", "0.0002", "₹1","Purchased Gold", "-₹1", "Success");
+        // Postpaid Recharge
+        rechargeHelper.postpaidRecharge("1","₹1","Payment Successful","for Jio 9311878235 ","₹1","Jio Bill Payment", "-₹1", "Success");
 
         mbkCommonControlsHelper.handleHomePageLanding();
 

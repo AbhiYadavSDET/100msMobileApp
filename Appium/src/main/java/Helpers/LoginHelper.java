@@ -126,10 +126,32 @@ public class LoginHelper {
         loginPage.enterMobileNum(mobileNumber);
         loginPage.clickSendOtpbutton();
 
+        if (!element.isElementPresent(driver, By.id("et_otp"))) {
+            loginPage.clickSendOtpbutton();
+        }
+
+
         loginPage.enterOtp(otp);
 
         // Now it is auto submitted so click CTA not needed
         //loginPage.clickSubmitOtpCta();
+
+        // Wait for 3 sec
+        Thread.sleep(3000);
+
+        // If the error message is present --> resend OTP
+        if (element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Please try again']"))) {
+
+            loginPage.clickResendOtp();
+            loginPage.enterOtp(otp);
+        }
+
+        if(homePage.checkKycScreen()) {
+            //  homePage.clickBackbtnOnKYCpage();
+            mbkCommonControlsHelper.pressback();
+            homePage.clickDonWantBenifitsBtn();
+            Thread.sleep(4000);
+        }
 
         // Wait for 5000 ms for all the banners to load
         Thread.sleep(5000);

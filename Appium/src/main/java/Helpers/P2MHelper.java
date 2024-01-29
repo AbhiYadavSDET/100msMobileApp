@@ -1,10 +1,7 @@
 package Helpers;
 
 import Logger.Log;
-import PageObject.CustomKeyboardPage;
-import PageObject.GoldPage;
-import PageObject.P2MPage;
-import PageObject.SecurityPinPage;
+import PageObject.*;
 import Utils.Elements;
 import Utils.MBReporter;
 import Utils.Screen;
@@ -30,6 +27,7 @@ public class P2MHelper {
     LinkedHashMap<String, String> balanceBefore;
     LinkedHashMap<String, String> balanceAfter;
     MBKCommonControlsHelper mbkCommonControlsHelper;
+    P2PPage p2PPage;
 
 
     public P2MHelper(AndroidDriver driver) throws IOException {
@@ -42,16 +40,23 @@ public class P2MHelper {
         screen = new Screen(driver);
         mbReporter = new MBReporter(driver);
         mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
+        p2PPage = new P2PPage(driver);
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
-    public void p2mSend(String merchant, String amount, String expStatus, String expAmount, String expReceiverName, String expMerchantName, String expMerchantCode, String expZipCtaText, String expectedHistoryDescription, String expectedHistoryAmount, String expectedHistoryStatus) throws InterruptedException, IOException {
+    public void p2mSend(String merchant, String amount, String Number, String expStatus, String expAmount, String expReceiverName, String expMerchantName, String expMerchantCode, String expZipCtaText, String expectedHistoryDescription, String expectedHistoryAmount, String expectedHistoryStatus) throws InterruptedException, IOException {
 
         // Get the Balance if the User Before TRX
         balanceBefore = mbkCommonControlsHelper.getBalance();
 
         // Tap the QR code Icon on Homepage
-        p2mPage.clickScanQR();
+       // p2mPage.clickScanQR();
+
+        // Tap on See All Services
+        p2PPage.clickAllServices();
+
+        // Click on Scan Any Qr
+        p2PPage.clickScanQrOptn();
 
         // Allow the Permission
         if(p2mPage.checkWhileUsingAppPermission()){ p2mPage.allowPermissionWhileUsingApp();}
@@ -65,13 +70,13 @@ public class P2MHelper {
             p2mPage.clickOnGallery();
 
             // Allow the Permission
-            p2mPage.allowPermissionAllow();
+            if(p2mPage.checkAllowPermissionForGallery()) p2mPage.allowPermissionAllow();
 
             if(merchant.equals("MobikwikQr")){
-                p2mPage.clickOnMobikwikQRCode();
+                p2mPage.clickOnMBKQrCodeGallery();
             }
             else if(merchant.equals("SonuQr")){
-                p2mPage.clickOnSonuQRCode();
+                p2mPage.clickOnSonuQrCodeGallery();
             }
         }
 
@@ -83,6 +88,12 @@ public class P2MHelper {
 
         // Click on the Confirm Payment CTA
         p2mPage.clickConfirmPayment();
+
+        if(p2mPage.checkEnterDetailsBottomsheet()){
+            p2mPage.enterPhoneNumber(Number);
+            p2mPage.clickConfirmPaymentBtn();
+        //  p2mPage.clickBackButtonOnStatusScreen();
+        }
 
         // checking for security pin
         if(securityPinPage.checkSecurityPinPage()){
@@ -119,10 +130,11 @@ public class P2MHelper {
         p2mPage.clickUpButton();
 
         // Click Cross Buttonm
-        p2mPage.clickBackButton();
+        if (p2mPage.checkBackButton()) p2mPage.clickBackButton();
 
         // Click on the up Icon
-        p2mPage.clickUpButton();
+        // p2mPage.clickUpButton();
+        //if (p2mPage.checkBackButton()) p2mPage.clickBackButton();
 
         // Click on the back button if the bottom sheet is present
         Thread.sleep(3000);
@@ -130,7 +142,7 @@ public class P2MHelper {
             Elements.back(driver, "Navigate Back");
         }
 
-        // Handel home page pop-up after transaction
+        // Handle home page pop-up after transaction
         mbkCommonControlsHelper.handleHomePageLanding();
 
         // Get the Balance if the User Before TRX
@@ -148,7 +160,13 @@ public class P2MHelper {
     public void p2mVerify(String flow, String expTitle, String expText) throws InterruptedException, IOException {
 
         // Tap the QR code Icon on Homepage
-        p2mPage.clickScanQR();
+        //p2mPage.clickScanQR();
+
+        // Tap on See All Services
+        p2PPage.clickAllServices();
+
+        // Click on Scan Any Qr
+        p2PPage.clickScanQrOptn();
 
         // Allow the Permission
         if(p2mPage.checkWhileUsingAppPermission()){ p2mPage.allowPermissionWhileUsingApp();}
@@ -173,6 +191,9 @@ public class P2MHelper {
 
             // Click on the up Nearby Stores
             p2mPage.clickOnOfflinePaymentCode();
+
+            // Allow the Permission
+            if(p2mPage.checkWhileUsingAppPermission()){ p2mPage.allowPermissionWhileUsingApp();}
 
             // Verification on the Success Screen
             actualTitle = p2mPage.getPayAtStoreTitle();

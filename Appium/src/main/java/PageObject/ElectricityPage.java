@@ -51,6 +51,9 @@ public class ElectricityPage {
     @AndroidFindBy(id = "amount_value")
     private AndroidElement billPayment;
 
+    @AndroidFindBy(id = "cta")
+    private AndroidElement pay_cta_confirmation_page;
+
 
 
     public ElectricityPage(AndroidDriver driver) {
@@ -120,6 +123,8 @@ public class ElectricityPage {
     public boolean isBillFetched() throws InterruptedException {
         return Elements.isElementPresent(driver, pay);
     }
+
+    public void clickOnPay() { Elements.selectElement(driver, pay_cta_confirmation_page, "click on Pay"); }
 
 }
 

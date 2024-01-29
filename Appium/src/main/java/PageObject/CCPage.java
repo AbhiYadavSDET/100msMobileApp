@@ -111,6 +111,12 @@ public class CCPage {
     @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[3]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.TextView[3]")
     private AndroidElement savedCardPayButton;
 
+    @AndroidFindBy(id = "btn_explore")
+    private AndroidElement checkAutoPayBottomsheet;
+
+    @AndroidFindBy(id = "tv_skip")
+    private AndroidElement skipAutoPayBottomsheet;
+
 
 
     public CCPage(AndroidDriver driver) {
@@ -304,7 +310,16 @@ public class CCPage {
         return Elements.getText(driver, amountOnSuccessScreen, "Amount on success screen");
     }
 
+    public Boolean checkSwipeLeftBottom() throws InterruptedException {
+        return Elements.isElementPresent(driver, swipeLeftBottomRemove);
+    }
 
+    public Boolean checkAutoPayBottomsheet() throws InterruptedException {
+        return Elements.isElementPresent(driver, checkAutoPayBottomsheet);
+    }
 
+    public void clickSkipbtn() throws InterruptedException {
+        Elements.selectElement(driver, skipAutoPayBottomsheet, "Click On SKIP Autopay Bottomsheet");
+    }
 
 }

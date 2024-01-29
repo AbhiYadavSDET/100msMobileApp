@@ -10,6 +10,7 @@
         <parameter name="build" value="prod"/>
         <parameter name="level" value="payments"/>
         <parameter name="saucelabs" value="false"></parameter>
+        <parameter name="codeCoverage" value="false"></parameter>
         <parameter name="androidOSVersion" value="12.0"></parameter>
         <parameter name="deviceName" value="deviceName"></parameter>
         <parameter name="udId" value="RZ8W30838FW"></parameter>
@@ -30,6 +31,9 @@
             <class name="PayRent.PayRentTest"/>
             <class name="AccountAggregator.Test_AccountAggregator"/>
             <class name="CentralMapper.Test_CentralMapper"/>
+            <class name="ViewElectricityBill.ViewElectricityBillTest"/>
+            <class name="ViewPipedGasBill.ViewPipedGasBillTest"/>
+            <class name="Checkout.CheckoutTest"/>
         </classes>
     </test>
 

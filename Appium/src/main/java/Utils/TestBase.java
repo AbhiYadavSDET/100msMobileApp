@@ -6,6 +6,7 @@ import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.apache.log4j.*;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 
 import javax.activation.DataHandler;
@@ -21,6 +22,8 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Timestamp;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 
@@ -83,9 +86,9 @@ public class TestBase {
      * @param androidOSVersion - for specifying the OS version of te device
      * @throws Exception issue while loading properties files or creation of driver.
      */
-    @Parameters({"build", "methodName", "portNo", "androidOSVersion", "deviceName", "udId", "cloudRun"})
+    @Parameters({"build", "methodName", "portNo", "androidOSVersion", "deviceName", "udId", "cloudRun", "codeCoverage"})
     @BeforeMethod(groups = "setUp", alwaysRun = true)
-    public void createDriver(@Optional String build, @Optional String methodName, @Optional String portNo, @Optional String androidOSVersion, @Optional String deviceName, @Optional String udId, @Optional Boolean cloudRun) throws Exception {
+    public void createDriver(@Optional String build, @Optional String methodName, @Optional String portNo, @Optional String androidOSVersion, @Optional String deviceName, @Optional String udId, @Optional Boolean cloudRun, @Optional Boolean codeCoverage) throws Exception {
 
         // Initializing the test and load the config files
         intialization();
@@ -110,6 +113,10 @@ public class TestBase {
             cloudRun = this.cloudRun;
         }
 
+        if (codeCoverage == null) {
+            codeCoverage = false;
+        }
+
 
         if (!cloudRun) {
             Log.info("------ Arguments -------------");
@@ -132,7 +139,7 @@ public class TestBase {
         }
 
         String buildPath = choosebuild(build);
-        initiateTest(buildPath, methodName, portNo, androidOSVersion, deviceName, udId, cloudRun);
+        initiateTest(buildPath, methodName, portNo, androidOSVersion, deviceName, udId, cloudRun, codeCoverage);
 
     }
 
@@ -143,7 +150,7 @@ public class TestBase {
      * @return instance of iOS driver
      * @throws MalformedURLException Thrown to indicate that a malformed URL has occurred.
      */
-    protected AndroidDriver initiateTest(String buildPath, String methodName, String portNo, String androidOSVersion, String deviceName, String udId, Boolean cloudRun) throws MalformedURLException {
+    protected AndroidDriver initiateTest(String buildPath, String methodName, String portNo, String androidOSVersion, String deviceName, String udId, Boolean cloudRun, Boolean codeCoverage) throws MalformedURLException {
 
 
         if (!cloudRun) {
@@ -157,6 +164,9 @@ public class TestBase {
             cap.setCapability("appPackage", "com.mobikwik_new.debug");
             cap.setCapability("appActivity", "com.mobikwik_new.MobikwikMain");
             cap.setCapability("noReset", "false");
+            if(codeCoverage){
+                cap.setCapability("androidCoverage", "com.mobikwik_new.debug/com.mobikwik_new.instrumentation.CodeCoverageInstrumentation");
+            }
 //            cap.setCapability("app", app.getAbsolutePath());
             cap.setCapability("app", "//Users//mayanksuneja//app//mobikwik.apk");
             AndroidDriver driver = new AndroidDriver(new URL("http://0.0.0.0:" + portNo + "/wd/hub"), cap);
@@ -220,13 +230,34 @@ public class TestBase {
     /**
      * this method quit the driver after the execution of test(s)
      */
+    @Parameters({"udId", "codeCoverage"})
     @AfterMethod(groups = "tearDown", alwaysRun = true)
-    public void teardown() {
+    public void teardown(ITestResult result, @Optional String udId, @Optional Boolean codeCoverage) {
+        String testname = result.getMethod().getMethodName();
+        if (codeCoverage == null){
+            codeCoverage = false;
+        }
+        if(codeCoverage){
+            Log.info("Dumping coverage data");
+            Map<String, Object> args = new HashMap<>();
+            args.put("command", "am broadcast -a com.mobikwik_new.debug.END_EMMA com.mobikwik_new.debug");
+            getAndroidDriver().executeScript("mobile: shell", args);
+            args.clear();
+            args.put("command", "run-as com.mobikwik_new.debug mv /data/data/com.mobikwik_new.debug/coverage.ec /data/data/com.mobikwik_new.debug/coverage_"+testname+".ec");
+            getAndroidDriver().executeScript("mobile: shell", args);
+            pullData(udId, "/data/data/com.mobikwik_new.debug/coverage_"+testname+".ec", testname);
+        }
         Log.info("Shutting down driver");
         getAndroidDriver().quit();
-
     }
-
+    public static void pullData(String udId, String sourcePath, String testname){
+        try {
+            Log.info("adb -s "+udId+" exec-out run-as com.mobikwik_new.debug cat "+sourcePath+" > coverage_"+testname+".ec");
+            Process p = Runtime.getRuntime().exec(new String[]{"bash","-c","adb -s "+udId+" exec-out run-as com.mobikwik_new.debug cat "+sourcePath+" > coverage_"+testname+".ec"});
+        } catch (IOException e) {
+            Log.info("Coverage file pull failed.");
+        }
+    }
     public static void info(String message) {
         LOGGER.addAppender(consoleAppender);
         LOGGER.addAppender(appender);

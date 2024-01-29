@@ -10,6 +10,7 @@
         <parameter name="build" value="prod"/>
         <parameter name="level" value="payments"/>
         <parameter name="saucelabs" value="false"></parameter>
+        <parameter name="codeCoverage" value="false"></parameter>
         <parameter name="androidOSVersion" value="12.0"></parameter>
         <parameter name="deviceName" value="deviceName"></parameter>
         <parameter name="udId" value="17228df2"></parameter>
@@ -29,6 +30,8 @@
             <class name="Loan.LoanTest"/>
             <class name="Zip.ZipTest"/>
             <class name="Offers.OfferTest"/>
+            <class name="MoneyPlus.MoneyPlusTest"/>
+
         </classes>
     </test>
 </suite>

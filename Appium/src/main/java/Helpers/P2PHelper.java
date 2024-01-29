@@ -58,6 +58,10 @@ public class P2PHelper {
         //screen.swipeUpMore(driver);
 
         // Click on Wallet to Wallet Transfer
+        if(!p2PPage.checkP2PButton()) {
+            screen.swipeUpMore(driver);
+        }
+
         p2PPage.clickP2PButton();
 
         // Enter Mobile No
@@ -72,6 +76,11 @@ public class P2PHelper {
         // checking for security pin
         if(securityPinPage.checkSecurityPinPage()){
             securityPinPage.enterSecurityPin();
+        }
+
+        if(p2PPage.checkKycPageOpened()){
+            p2PPage.clickBackBtnOnKycPage();
+            p2PPage.clickOnNoBtn();
         }
 
         // Verification on the Success Screen
@@ -104,10 +113,12 @@ public class P2PHelper {
         p2MPage.clickUpButton();
 
         // Click Cross Buttonm
-        p2MPage.clickBackButton();
+        if (p2MPage.checkBackButton()) p2MPage.clickBackButton();
 
         // Click on the up Icon
-        p2MPage.clickUpButton();
+        //p2MPage.clickUpButton();
+
+        //p2MPage.tapOuside();
 
         // Click on the back button if the bottom sheet is present
         Thread.sleep(3000);
