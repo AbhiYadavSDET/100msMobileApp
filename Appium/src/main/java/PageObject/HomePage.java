@@ -245,7 +245,7 @@ public class HomePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Deals']")
     private AndroidElement button_deals;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Continue']")
+    @AndroidFindBy(id = "rv_brands")
     private AndroidElement kyc_screen_subheading;
 
     @AndroidFindBy(id = "btn_exit")

@@ -150,7 +150,7 @@ public class LoginHelper {
             //  homePage.clickBackbtnOnKYCpage();
             mbkCommonControlsHelper.pressback();
             homePage.clickDonWantBenifitsBtn();
-            Thread.sleep(1000);
+            Thread.sleep(4000);
         }
 
         // Wait for 5000 ms for all the banners to load
