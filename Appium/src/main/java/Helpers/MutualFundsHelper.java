@@ -7,6 +7,7 @@ import Utils.Element;
 import Utils.MBReporter;
 import Utils.Screen;
 import io.appium.java_client.android.AndroidDriver;
+import org.openqa.selenium.By;
 
 import java.io.IOException;
 
@@ -39,8 +40,14 @@ public class MutualFundsHelper {
         // Tap on See All Services
         homePage.clickAllServices();
 
-        // Swipe till the bottom
-        screen.swipeUpMore(driver);
+        for(int i=0;i<5;i++){
+        if(!Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text= 'Direct Mutual Funds']"))){
+            // Swipe till the bottom
+            screen.swipeUpMore(driver);
+        }else {
+            break;
+        }
+        }
 
         // Click on direct mutual funds
         mutualFundPage.clickOnMutualFunds();
