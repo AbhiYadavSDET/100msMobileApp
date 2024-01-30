@@ -41,8 +41,10 @@ public class RechargeHelper {
         //Click Recharge and Pay Bills option
         homePage.clickRechargeAndPayBills();
 
-        //Provide loaction access while using app
-        permissionPage.clickAllowWhileUsingApp();
+        if(permissionPage.isEnablePermissionPopupPresent()) {
+            //Allow loaction permission
+            permissionPage.clickAllowWhileUsingApp();
+        }
 
         //Click on Mobile option
         rechargePage.clickMobile();
@@ -102,8 +104,10 @@ public class RechargeHelper {
         //Click Recharge and Pay Bills option
         homePage.clickRechargeAndPayBills();
 
-        //Provide loaction access while using app
-        permissionPage.clickAllowWhileUsingApp();
+        if(permissionPage.isEnablePermissionPopupPresent()) {
+            //Allow loaction permission
+            permissionPage.clickAllowWhileUsingApp();
+        }
 
         //Click on Mobile option
         rechargePage.clickMobile();
@@ -182,8 +186,10 @@ public class RechargeHelper {
         //Click Recharge and Pay Bills option
         homePage.clickRechargeAndPayBills();
 
-        //Provide loaction access while using app
-        permissionPage.clickAllowWhileUsingApp();
+        if(permissionPage.isEnablePermissionPopupPresent()) {
+            //Allow loaction permission
+            permissionPage.clickAllowWhileUsingApp();
+        }
 
         //Click on Mobile option
         rechargePage.clickMobile();

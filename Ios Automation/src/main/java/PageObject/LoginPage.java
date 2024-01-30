@@ -11,15 +11,24 @@ public class LoginPage {
 
     IOSDriver driver;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeTextField[@value='Enter Mobile Number']")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeTextField[@value='Enter mobile number']")
     private IOSElement mobile_number;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Continue\"]")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='Continue']")
     private IOSElement continue_button;
 
     //@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name='MobiKwik']//XCUIElementTypeOther[2]//XCUIElementTypeOther[2]//XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther")
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeTextField[@value=\"X\"]/..")
     private IOSElement otp;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='Complete your KYC']")
+    private IOSElement kycScreen;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='Skip']")
+    private IOSElement skip;
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='I don’t want benefits']")
+    private IOSElement closeKycScreen;
 
 
     public LoginPage(IOSDriver driver) {
@@ -38,6 +47,19 @@ public class LoginPage {
     public void enterOtp(String otpNum) {
 
         Elements.enterToElement(driver, otp, otpNum, "Enter Otp");
+    }
+
+    public boolean isKycScreenPresent() throws InterruptedException{
+        return Elements.isElementPresent(driver, kycScreen);
+    }
+
+    public void clickSkip(){
+        Elements.click(driver, skip,"Click on SKIP");
+    }
+
+    public void clickToCloseKycScreen()
+    {
+        Elements.click(driver, closeKycScreen,"Click I don't want benefits");
     }
 
 }

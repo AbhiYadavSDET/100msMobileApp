@@ -40,8 +40,10 @@ public class CCBPHelper {
         //Click Recharge and Pay Bills option
         homePage.clickRechargeAndPayBills();
 
-        //Allow loaction permission
-        permissionPage.clickAllowWhileUsingApp();
+        if(permissionPage.isEnablePermissionPopupPresent()) {
+            //Allow loaction permission
+            permissionPage.clickAllowWhileUsingApp();
+        }
 
         //Click on Credit card payment
         rechargePage.clickCreditCardPayment();
@@ -109,8 +111,10 @@ public class CCBPHelper {
         //Click Recharge and Pay Bills option
         homePage.clickRechargeAndPayBills();
 
-        //Allow loaction permission
-        permissionPage.clickAllowWhileUsingApp();
+        if(permissionPage.isEnablePermissionPopupPresent()) {
+            //Allow loaction permission
+            permissionPage.clickAllowWhileUsingApp();
+        }
 
         //Click on Credit card payment
         rechargePage.clickCreditCardPayment();

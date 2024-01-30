@@ -35,8 +35,10 @@ public class PipedGasHelper {
         //Click Recharge and Pay Bills option
         homePage.clickRechargeAndPayBills();
 
-        //Click Allow using app for location action popup
-        permissionPage.clickAllowWhileUsingApp();
+        if(permissionPage.isEnablePermissionPopupPresent()) {
+            //Allow loaction permission
+            permissionPage.clickAllowWhileUsingApp();
+        }
 
         //Click on Home services tab
         pipedGasPage.clickHomeServices();
