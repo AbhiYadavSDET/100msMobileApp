@@ -506,7 +506,7 @@ public class MBKCommonControlsHelper {
 
         Thread.sleep(3000);
         for (int i = 0; i < 10; i++) {
-            if (!Element.isElementPresent(driver, By.id("layout_main"))) {
+            if (!Element.isElementPresent(driver, By.id("cl_root"))) {
                 driver.navigate().back();
                 Log.info("Pressed Back : Due to Pop UP interruption");
                 Thread.sleep(2000);
