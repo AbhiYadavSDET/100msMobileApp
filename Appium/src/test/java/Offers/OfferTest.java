@@ -24,7 +24,7 @@ public class OfferTest extends TestBase {
 
         // Execute the test
         OfferHelper offerHelper = new OfferHelper(getAndroidDriver());
-        offerHelper.searchOffers("Myntra", "Cashback", "Get upto 10% cashback on Myntra!", "Shopping", "Shop Now");
+        offerHelper.searchOffers("Myntra", "Cashback", "Get upto 15% cashback on Myntra", "SHOPPING", "Shop Now");
         Log.info("======= END : Offer Search test =======");
 
 

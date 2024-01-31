@@ -104,10 +104,7 @@ public class ProfileHelper {
                 profilePage.clickSupercashBackBtn();
             }
 
-            screen.swipeUpMore(driver);
-
-            if(!profilePage.checkAppVersionText()){
-                screen.swipeUpMore(driver);
+            while(!profilePage.checkAppVersionText()){
                 screen.swipeUpMore(driver);
             }
 

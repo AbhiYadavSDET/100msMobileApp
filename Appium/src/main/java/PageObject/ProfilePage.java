@@ -88,7 +88,7 @@ public class ProfilePage {
     @AndroidFindBy(xpath = "//*[@text='Dashboard']")
     private AndroidElement click_dashboard;
 
-    @AndroidFindBy(id = "tv_title")
+    @AndroidFindBy(id = "mkab_left_icon")
     private AndroidElement back_btn;
 
     @AndroidFindBy(xpath = "//*[@text='SuperCash Balance']")

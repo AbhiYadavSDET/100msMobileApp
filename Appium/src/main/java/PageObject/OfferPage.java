@@ -15,7 +15,7 @@ public class OfferPage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Offers']")
     private AndroidElement offerButton;
 
-    @AndroidFindBy(id = "btn_search")
+    @AndroidFindBy(id = "cl_search_bar")
     private AndroidElement searchOffersButton;
 
     @AndroidFindBy(id = "offerSearchView")
@@ -30,10 +30,10 @@ public class OfferPage {
     @AndroidFindBy(id = "logo_image")
     private AndroidElement tileLogo;
 
-    @AndroidFindBy(id = "tv_title")
+    @AndroidFindBy(id = "tv_offer_type")
     private AndroidElement title;
 
-    @AndroidFindBy(id = "button_launch_mobile_site")
+    @AndroidFindBy(id = "tv_cta")
     private AndroidElement cta;
 
 
