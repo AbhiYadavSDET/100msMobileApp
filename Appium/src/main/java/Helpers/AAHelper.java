@@ -53,6 +53,8 @@ public class AAHelper {
 
             // Swipe up for wealth dashboard
             screen.swipeUpMore(driver);
+            screen.swipeUpMore(driver);
+
 
             // click on money plus icon
             aaPage.trackBankAccountsCTA();
@@ -158,6 +160,7 @@ public class AAHelper {
 
         aaPage.allServicesCTA();
         screen.swipeUpMore(driver);
+        screen.swipeUpMore(driver);
         aaPage.trackBankAccountsCTA();
         Thread.sleep(2000);
 
@@ -242,6 +245,7 @@ public class AAHelper {
 
         aaPage.allServicesCTA();
         screen.swipeUpMore(driver);
+        screen.swipeUpMore(driver);
         aaPage.trackBankAccountsCTA();
         Thread.sleep(2500);
         aaPage.clickonAnalyserOnAAHomePage();
@@ -276,6 +280,7 @@ public class AAHelper {
     public void existingUserManage(String expautoRefreshext, String expmanageConsentText, String exphelpText) throws InterruptedException, IOException {
 
         aaPage.allServicesCTA();
+        screen.swipeUpMore(driver);
         screen.swipeUpMore(driver);
         aaPage.trackBankAccountsCTA();
        // Thread.sleep(2000);
@@ -312,6 +317,7 @@ public class AAHelper {
     public void existingUserBankAccountDetails() throws InterruptedException, IOException {
 
         aaPage.allServicesCTA();
+        screen.swipeUpMore(driver);
         screen.swipeUpMore(driver);
         aaPage.trackBankAccountsCTA();
         screen.swipeUpMore(driver);

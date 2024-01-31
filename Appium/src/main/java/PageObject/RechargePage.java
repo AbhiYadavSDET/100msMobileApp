@@ -13,7 +13,7 @@ public class RechargePage {
 
     AndroidDriver driver;
 
-    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Recharge & Pay Bills']")
+    @AndroidFindBy(xpath = "//*/android.view.ViewGroup[2]/android.widget.TextView")
     private AndroidElement rechargeAndPayBills;
 
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Recharge & Bill Payments']")
