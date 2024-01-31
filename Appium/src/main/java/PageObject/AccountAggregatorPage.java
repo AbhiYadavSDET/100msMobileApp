@@ -23,7 +23,7 @@ public class AccountAggregatorPage {
     @AndroidFindBy(xpath = "//*[@text = 'Money +']")
     private AndroidElement moneyPlusCTA;
 
-    @AndroidFindBy(xpath = "//*[@text = 'Track Bank Accounts']")
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Track Bank Accounts']")
     private AndroidElement TrackBankAccountsCTA;
 
     @AndroidFindBy(xpath = "//*[@text = 'Track investments']")

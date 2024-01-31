@@ -45,7 +45,7 @@ public class PayRentTest extends TestBase {
 
         // Execute the test
         PayRentHelper payRentHelper = new PayRentHelper(getAndroidDriver());
-        payRentHelper.payRentViaZIP("040801000080315", "IOBA0000408", "Ashish Kumar Pradhan","5000", "₹5000", "₹118", "₹5,118");
+        payRentHelper.payRentViaZIP("040801000080315", "IOBA0000408", "Ashish Kumar Pradhan","5000", "₹5,000", "₹88", "₹5,088");
 
         Log.info("======= END : Pay Rent via ZIP =======");
 
@@ -65,7 +65,7 @@ public class PayRentTest extends TestBase {
 
         // Execute the test
         PayRentHelper payRentHelper = new PayRentHelper(getAndroidDriver());
-        payRentHelper.payRentviaCard("040801000080315", "IOBA0000408", "Ashish Kumar Pradhan", "5,000","₹5,000", "₹118", "₹5,118");
+        payRentHelper.payRentviaCard("040801000080315", "IOBA0000408", "Ashish Kumar Pradhan", "5,000","₹5,000", "₹88", "₹5,088");
 
         Log.info("======= END : Pay Rent via Card =======");
 
