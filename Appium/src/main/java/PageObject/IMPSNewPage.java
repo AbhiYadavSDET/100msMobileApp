@@ -26,10 +26,10 @@ public class IMPSNewPage {
     @AndroidFindBy(id = "title")
     private AndroidElement label_success_message;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Wallet to Bank Transfer']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[contains(@text, 'Wallet')]")
     private AndroidElement wallet_to_bank;
 
-    @AndroidFindBy(id = "btn_new_transfer")
+    @AndroidFindBy(id = "com.mobikwik_new.debug:id/btn_new_transfer")
     private AndroidElement transfer_to_new_account;
 
     @AndroidFindBy(xpath = "//android.widget.EditText[@text ='Beneficiary Name']")
@@ -128,11 +128,11 @@ public class IMPSNewPage {
     }
 
     public void clickOnWalletToBank() throws InterruptedException{
-        Elements.selectElement(driver,wallet_to_bank,"Tapped on Wallet To Bank Transfer Button");
-        if(!Elements.isElementPresent(driver,imps_page_title)){
-            driver.navigate().back();
-            Elements.selectElement(driver,wallet_to_bank,"Tapped on Wallet To Bank Transfer Button");
-        }
+        Elements.selectElement(driver,wallet_to_bank,"Tapped on Wallet To Bank Button From Homescreen");
+//        if(!Elements.isElementPresent(driver,imps_page_title)){
+//            driver.navigate().back();
+//            Elements.selectElement(driver,wallet_to_bank,"Tapped on Wallet To Bank Button2");
+//        }
 
     }
     public void clickOnTransferToNewAccount() throws InterruptedException{
