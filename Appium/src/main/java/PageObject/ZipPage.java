@@ -15,7 +15,7 @@ public class ZipPage {
 
     AndroidDriver driver;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='ZIP']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='PayLater']")
     private AndroidElement zipButton;
 
     @AndroidFindBy(id = "cta")
