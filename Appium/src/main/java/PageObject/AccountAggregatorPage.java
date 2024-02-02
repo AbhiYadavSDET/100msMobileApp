@@ -23,7 +23,7 @@ public class AccountAggregatorPage {
     @AndroidFindBy(xpath = "//*[@text = 'Money +']")
     private AndroidElement moneyPlusCTA;
 
-    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Track Bank Accounts']")
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[contains(@text, 'Track Bank Accounts')]")
     private AndroidElement TrackBankAccountsCTA;
 
     @AndroidFindBy(xpath = "//*[@text = 'Track investments']")
@@ -240,6 +240,10 @@ public class AccountAggregatorPage {
 
     public void trackBankAccountsCTA() throws InterruptedException{
         Elements.selectElement(driver,TrackBankAccountsCTA,"Click on Track bank account lens icon");
+    }
+
+    public boolean checkTrackbankAccountsCTA() throws InterruptedException {
+        return Elements.isElementPresent(driver, TrackBankAccountsCTA);
     }
 
     //for Entry from track all investment cta ---
