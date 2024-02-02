@@ -43,6 +43,9 @@ public class CouponsHelper {
         balanceBefore = mbkCommonControlsHelper.getBalance();
         String superCashBefore = balanceBefore.get("Supercash");
 
+        // scroll to Recharge And PayBills
+        rechargePage.scrollToRechargeAndPayBills();
+
         // Click on Recharge And PayBills
         rechargePage.clickRechargeAndPayBills();
 
@@ -118,6 +121,9 @@ public class CouponsHelper {
         balanceBefore = mbkCommonControlsHelper.getBalance();
 
         String superCashBefore = balanceBefore.get("Supercash");
+
+        // scroll to Recharge And PayBills
+        rechargePage.scrollToRechargeAndPayBills();
 
         // Click on Recharge And PayBills
         rechargePage.clickRechargeAndPayBills();

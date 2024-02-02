@@ -46,6 +46,9 @@ public class RechargeHelper {
         // Get the Balance if the User Before TRX
         balanceBefore = mbkCommonControlsHelper.getBalance();
 
+        // scroll to Recharge And PayBills
+        rechargePage.scrollToRechargeAndPayBills();
+
         // Click on Recharge And PayBills
         rechargePage.clickRechargeAndPayBills();
 
@@ -136,6 +139,9 @@ public class RechargeHelper {
 
         // Get the Balance if the User Before TRX
         balanceBefore = mbkCommonControlsHelper.getBalance();
+
+        // scroll to Recharge And PayBills
+        rechargePage.scrollToRechargeAndPayBills();
 
         // Click on Recharge And PayBills
         rechargePage.clickRechargeAndPayBills();

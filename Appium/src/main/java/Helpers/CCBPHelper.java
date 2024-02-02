@@ -61,6 +61,9 @@ public class CCBPHelper {
         // Get the Balance if the User Before TRX
         balanceBefore = mbkCommonControlsHelper.getBalance();
 
+        // scroll to Recharge And PayBills
+        ccPage.scrollToRechargeAndPayBills();
+
         // Click on Recharge And PayBills
         ccPage.clickRechargeAndPayBills();
 
@@ -159,6 +162,9 @@ public class CCBPHelper {
     public void existingUserCCBP(String amount, String expAmountOnPaymentScreen,String expCouponApplied, String cardNumber, String expTitle, String expSubTitle, String expAmountOnSuccessScreen, String expectedHistoryDescription, String expectedHistoryStatus, String expectedHistoryAmount) throws IOException, InterruptedException {
         // Get the Balance if the User Before TRX
         balanceBefore = mbkCommonControlsHelper.getBalance();
+
+        // scroll to Recharge And PayBills
+        ccPage.scrollToRechargeAndPayBills();
 
         // Click on Recharge And PayBills
         ccPage.clickRechargeAndPayBills();

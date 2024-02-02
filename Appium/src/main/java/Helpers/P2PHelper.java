@@ -52,17 +52,10 @@ public class P2PHelper {
         // Tap on See All Services
         p2PPage.clickAllServices();
 
-        // Swipe till the bottom
-        screen.swipeUpMore(driver);
-        screen.swipeUpMore(driver);
-        //screen.swipeUpMore(driver);
+        // Scroll to P2P Button
+        p2PPage.scrollToP2PButton();
 
         // Click on Wallet to Wallet Transfer
-        if(!p2PPage.checkP2PButton()) {
-            screen.swipeUpMore(driver);
-            screen.swipeUpMore(driver);
-        }
-
         p2PPage.clickP2PButton();
 
         // Enter Mobile No
