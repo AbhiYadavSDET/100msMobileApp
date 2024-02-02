@@ -18,10 +18,12 @@ import static java.time.Duration.ofSeconds;
 
 public class Elements extends TestBase {
 
+    private static Screen screen;
     AndroidDriver driver;
 
     public Elements(AndroidDriver driver) {
         this.driver = driver;
+        screen = new Screen(driver);
     }
 
     public static String selectElement(AndroidDriver driver, AndroidElement element, String comments) {
@@ -130,6 +132,18 @@ public class Elements extends TestBase {
             return false;
         }
 
+    }
+
+    public static boolean scrollToElement(AndroidDriver driver, AndroidElement element) throws InterruptedException {
+        int i = 0;
+        while(!isElementPresent(driver, element)){
+            screen.swipeUpMore(driver);
+            i++;
+            if(i > 4){
+                return false;
+            }
+        }
+        return true;
     }
 
     public static boolean isElementEnabled(AndroidDriver driver, AndroidElement element) throws InterruptedException {

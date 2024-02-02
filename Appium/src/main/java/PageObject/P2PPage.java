@@ -15,7 +15,7 @@ public class P2PPage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'All Services']")
     private AndroidElement allServicesButton;
 
-    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Wallet to Wallet transfer']")
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Wallet to Wallet']")
     private AndroidElement p2pButton;
 
     @AndroidFindBy(xpath = "//*/android.widget.EditText[@text = 'Enter 10 digit mobile number']")
@@ -58,7 +58,7 @@ public class P2PPage {
     @AndroidFindBy(id = "mkab_icon_1")
     private AndroidElement successScreenUpButton;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id=\"com.mobikwik_new.debug:id/text\" and @text=\"Scan any QR\"]")
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Scan Any QR Code']")
     private AndroidElement scanAnyQrBtn;
 
     // --------------------------------------------------
@@ -80,6 +80,10 @@ public class P2PPage {
 
     public boolean checkP2PButton() throws InterruptedException {
        return Elements.isElementPresent(driver, p2pButton);
+    }
+
+    public boolean scrollToP2PButton() throws InterruptedException {
+        return Elements.scrollToElement(driver, p2pButton);
     }
 
     public void enterMobileNo(String mobileNo) {
