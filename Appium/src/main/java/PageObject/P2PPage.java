@@ -58,7 +58,7 @@ public class P2PPage {
     @AndroidFindBy(id = "mkab_icon_1")
     private AndroidElement successScreenUpButton;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id=\"com.mobikwik_new.debug:id/text\" and @text=\"Scan any QR\"]")
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Scan Any QR Code']")
     private AndroidElement scanAnyQrBtn;
 
     // --------------------------------------------------

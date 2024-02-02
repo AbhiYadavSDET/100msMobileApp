@@ -139,7 +139,7 @@ public class Elements extends TestBase {
         while(!isElementPresent(driver, element)){
             screen.swipeUpMore(driver);
             i++;
-            if(i > 4){
+            if(i > 6){
                 return false;
             }
         }

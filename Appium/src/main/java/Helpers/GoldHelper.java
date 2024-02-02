@@ -46,7 +46,7 @@ public class GoldHelper {
         goldPage.clickAllServices();
 
         // Swipe till the bottom
-        screen.swipeUpMore(driver);
+        goldPage.scrollToBuyGold();
 
         // Click on 99% Buy Gold
         goldPage.clickBuyGold();
@@ -116,8 +116,8 @@ public class GoldHelper {
         // Tap on See All Services
         goldPage.clickAllServices();
 
-        //Swipe till the bottom
-        screen.swipeUpMore(driver);
+        // Swipe till the bottom
+        goldPage.scrollToBuyGold();
 
         // Click on 99% Buy Gold
         goldPage.clickBuyGold();
