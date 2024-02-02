@@ -40,6 +40,7 @@ public class PipedGasHelper {
         // Get the Balance if the User Before TRX
         //balanceBefore = mbkCommonControlsHelper.getBalance();
 
+        Screen.swipeUpMore(driver);
         //Click on Recharge and Pay Bill option
         ccPage.clickRechargeAndPayBills();
 
