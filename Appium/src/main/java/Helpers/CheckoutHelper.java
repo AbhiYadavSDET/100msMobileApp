@@ -112,9 +112,12 @@ public class CheckoutHelper {
 
         checkoutPage.selectKotakBankFromBAnkList();
 
-        Thread.sleep(5000);
+        Thread.sleep(2000);
 
         permissionHelper.permissionAllow();
+
+
+        Thread.sleep(3000);
 
         String bankPageTitleActual=checkoutPage.getBankPageTitleWeb();
 
