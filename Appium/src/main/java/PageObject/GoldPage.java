@@ -68,6 +68,10 @@ public class GoldPage {
         Elements.selectElement(driver, allServicesButton, "All Services");
     }
 
+    public boolean scrollToBuyGold() throws InterruptedException {
+        return Elements.scrollToElement(driver, goldButton);
+    }
+
     public void clickBuyGold() {
         Elements.selectElement(driver, goldButton, "Buy Gold");
     }
