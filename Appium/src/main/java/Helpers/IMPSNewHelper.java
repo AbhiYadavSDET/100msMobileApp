@@ -223,7 +223,7 @@ public class IMPSNewHelper {
         //Going to IMPS Option
         impsPage.clickOnWalletToBank();
 
-        Thread.sleep(3000);
+        Thread.sleep(4000);
 
         impsPage.clickOnTransferToNewAccount();
 

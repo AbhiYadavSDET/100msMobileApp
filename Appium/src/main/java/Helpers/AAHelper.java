@@ -55,6 +55,10 @@ public class AAHelper {
             screen.swipeUpMore(driver);
             screen.swipeUpMore(driver);
 
+            if(!aaPage.checkTrackbankAccountsCTA())
+            {
+                screen.swipeUpMedium(driver);
+            }
 
             // click on money plus icon
             aaPage.trackBankAccountsCTA();
@@ -159,8 +163,14 @@ public class AAHelper {
     public void existingUserMonthlySummary(String expTitleLastmonthIncoming, String expTitleLastmonthOutgoing, String expTitleLastmonthinvested, String expTitleLastmonthRemaining, String expTitleLastmonthSpendbycayegoryOutgoing, String expExpensesSpendbycategory, String expSipEmiSpendbycategory, String expBankChargesSpendbycategory, String expOthersSpendbycategory, String expHighestSpendonMontlysummary, String expgetTopCategoryMontlysummary, String expSpenbyDatedonMontlysummary, String expMoneyReceived) throws InterruptedException, IOException {
 
         aaPage.allServicesCTA();
-        screen.swipeUpMore(driver);
-        screen.swipeUpMore(driver);
+
+        int count = 0;
+
+        while(!aaPage.checkTrackbankAccountsCTA() && count < 3){
+            screen.swipeUpMore(driver);
+            count++;
+        }
+
         aaPage.trackBankAccountsCTA();
         Thread.sleep(2000);
 

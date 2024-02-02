@@ -52,6 +52,8 @@ public class ElectricityHelper {
        // Click on All services
         electricityPage.clickAllServices();
 
+        screen.swipeUpMore(driver);
+
         //Click on Electricity option
         electricityPage.clickElectricity();
 
