@@ -89,7 +89,7 @@ public class P2MHelper {
         // Click on the Confirm Payment CTA
         p2mPage.clickConfirmPayment();
 
-        if(p2mPage.checkEnterDetailsBottomsheet()){
+        if(merchant.equals("RecentMerchant") && p2mPage.checkEnterDetailsBottomsheet()){
             p2mPage.enterPhoneNumber(Number);
             p2mPage.clickConfirmPaymentBtn();
         //  p2mPage.clickBackButtonOnStatusScreen();
