@@ -65,7 +65,8 @@ public class ElectricityPage {
         Elements.selectElement(driver, allServices,"Click on All Services");
     }
 
-    public void clickElectricity(){
+    public void clickElectricity() throws InterruptedException {
+        Elements.scrollToElement(driver,electricity);
         Elements.selectElement(driver, electricity,"Click on Electricity");
     }
 

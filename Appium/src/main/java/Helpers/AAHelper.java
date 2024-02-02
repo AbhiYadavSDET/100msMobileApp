@@ -254,8 +254,8 @@ public class AAHelper {
     public void existingUserAnalyser(String expDebitText, String expCreditText, String expWeekText, String expMonthText, String expYearText, String expdebitedThisWeekText) throws InterruptedException, IOException {
 
         aaPage.allServicesCTA();
-        screen.swipeUpMore(driver);
-        screen.swipeUpMore(driver);
+//        screen.swipeUpMore(driver);
+//        screen.swipeUpMore(driver);
         aaPage.trackBankAccountsCTA();
         Thread.sleep(2500);
         aaPage.clickonAnalyserOnAAHomePage();
@@ -290,8 +290,8 @@ public class AAHelper {
     public void existingUserManage(String expautoRefreshext, String expmanageConsentText, String exphelpText) throws InterruptedException, IOException {
 
         aaPage.allServicesCTA();
-        screen.swipeUpMore(driver);
-        screen.swipeUpMore(driver);
+//        screen.swipeUpMore(driver);
+//        screen.swipeUpMore(driver);
         aaPage.trackBankAccountsCTA();
        // Thread.sleep(2000);
         screen.swipeUpMore(driver);
