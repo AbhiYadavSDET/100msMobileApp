@@ -228,6 +228,9 @@ public class CheckoutHelper {
         Boolean netBankingModule=false;
 
 
+        // scroll to Recharge And PayBills
+        ccPage.scrollToRechargeAndPayBills();
+
         // Click on Recharge And PayBills
         ccPage.clickRechargeAndPayBills();
 
@@ -605,7 +608,6 @@ public class CheckoutHelper {
             mbReporter.verifyTrueWithLogging(checkoutPage.isCardDetailsBottomsheetDisplayed(), "Card Details Bottomsheet opened", false, false);
             driver.navigate().back();
             driver.navigate().back();
-
 
         }
 

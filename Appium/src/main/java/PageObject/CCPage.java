@@ -12,7 +12,7 @@ public class CCPage {
 
     AndroidDriver driver;
 
-    @AndroidFindBy(xpath = "//*/android.view.ViewGroup[2]/android.widget.TextView")
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'All Categories']")
     private AndroidElement rechargeAndPayBills;
 
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Recharge & Bill Payments']")
@@ -122,6 +122,10 @@ public class CCPage {
     public CCPage(AndroidDriver driver) {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
+    }
+
+    public boolean scrollToRechargeAndPayBills() throws InterruptedException {
+        return Elements.scrollToElement(driver, rechargeAndPayBills);
     }
 
     public void clickRechargeAndPayBills() {
