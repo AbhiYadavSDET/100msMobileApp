@@ -80,6 +80,10 @@ public class MoneyPlusPage {
         Elements.selectElement(driver, moneyPlus,"Click on Money +");
     }
 
+    public boolean checkMoneyPlusOptn() throws InterruptedException {
+        return Elements.isElementPresent(driver, moneyPlus);
+    }
+
     public void clickOnAccountAggregatorCard(){
         Elements.selectElement(driver, account_agregator_card,"Click on Account Aggregator Card");
     }

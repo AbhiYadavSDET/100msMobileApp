@@ -44,6 +44,10 @@ public class MoneyPlusHelper {
 
         Screen.swipeUpMore(driver);
 
+        if(!moneyPlusPage.checkMoneyPlusOptn()){
+            Screen.swipeUpMedium(driver);
+        }
+
         moneyPlusPage.clickOnMoneyPlus();
 
         Element.waitForVisibility(driver,By.id("lineChart"));
