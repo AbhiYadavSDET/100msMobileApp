@@ -75,6 +75,9 @@ public class MoneyPlusPage {
         Elements.selectElement(driver, allServices,"Click on All Services");
     }
 
+    public boolean scrollToOnMoneyPlusOptn() throws InterruptedException {
+        return Elements.scrollToElement(driver, moneyPlus);
+    }
 
     public void clickOnMoneyPlus(){
         Elements.selectElement(driver, moneyPlus,"Click on Money +");
