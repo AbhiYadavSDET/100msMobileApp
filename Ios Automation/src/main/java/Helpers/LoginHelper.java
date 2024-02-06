@@ -40,25 +40,26 @@ public class LoginHelper{
         // Enter Otp
         loginPage.enterOtp(otp);
 
-        if(loginPage.isKycScreenPresent()){
-
-            // Click On Continue
-            loginPage.clickContinue();
-
-            //Allow location permission
-            if(permissionPage.isEnablePermissionPopupPresent()) { permissionPage.clickAllowWhileUsingApp();   }
-
-            //Allow contacts permission
-            if(permissionPage.isPermissionPopUpPresent())   { permissionPage.clickOnAllow();  }
-
-            //Click Skip
-            loginPage.clickSkip();
-
-            //Click i don't want benefits
-            loginPage.clickToCloseKycScreen();
-
-
-        }
+        //Handling of KYC Screen for NON-KYC User
+//        if(loginPage.isKycScreenPresent()){
+//
+//            // Click On Continue
+//            loginPage.clickContinue();
+//
+//            //Allow location permission
+//            if(permissionPage.isEnablePermissionPopupPresent()) { permissionPage.clickAllowWhileUsingApp();   }
+//
+//            //Allow contacts permission
+//            if(permissionPage.isPermissionPopUpPresent())   { permissionPage.clickOnAllow();  }
+//
+//            //Click Skip
+//            loginPage.clickSkip();
+//
+//            //Click i don't want benefits
+//            loginPage.clickToCloseKycScreen();
+//
+//
+//        }
 
         // Remove popup on home page
         mbkCommonControlHelper.handleHomePageLanding();
