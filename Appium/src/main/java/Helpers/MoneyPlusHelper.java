@@ -42,7 +42,7 @@ public class MoneyPlusHelper {
 
         moneyPlusPage.clickAllServices();
 
-        Screen.swipeUpMore(driver);
+        moneyPlusPage.scrollToOnMoneyPlusOptn();
 
         moneyPlusPage.clickOnMoneyPlus();
 

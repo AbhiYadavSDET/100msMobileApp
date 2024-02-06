@@ -73,8 +73,10 @@ public class CheckoutHelper {
         //Click on Invest More button on XTRA dashboard
         p2PExtraPage.selectInvestMore();
 
+        Thread.sleep(1000);
         if(p2PExtraPage.isBorrowerPreferenceBottomsheetVisible()){
-            p2PExtraPage.selectBorrowerPreferenceBottomsheet();
+            mbkCommonControlsHelper.pressback();
+            //p2PExtraPage.selectBorrowerPreferenceBottomsheet();
         }
 
         // Click on the Tooltip
@@ -84,7 +86,8 @@ public class CheckoutHelper {
         p2PExtraPage.selectFlexiFromNavBar();
 
         if(p2PExtraPage.isBorrowerPreferenceBottomsheetVisible()){
-            p2PExtraPage.selectBorrowerPreferenceBottomsheet();
+         //   p2PExtraPage.selectBorrowerPreferenceBottomsheet();
+            p2PExtraPage.clickGotItCtaBorrowerMappingReport();
         }
 
 //        //Click on Proceed to pay Btn on Amount Summary Page
@@ -175,8 +178,10 @@ public class CheckoutHelper {
         //Click on Invest More button on XTRA dashboard
         p2PExtraPage.selectInvestMore();
 
+        Thread.sleep(1000);
         if(p2PExtraPage.isBorrowerPreferenceBottomsheetVisible()){
-            p2PExtraPage.selectBorrowerPreferenceBottomsheet();
+            mbkCommonControlsHelper.pressback();
+        //    p2PExtraPage.selectBorrowerPreferenceBottomsheet();
         }
 
         // Click on the Tooltip
@@ -186,7 +191,7 @@ public class CheckoutHelper {
         p2PExtraPage.selectFlexiFromNavBar();
 
         if(p2PExtraPage.isBorrowerPreferenceBottomsheetVisible()){
-            p2PExtraPage.selectBorrowerPreferenceBottomsheet();
+            p2PExtraPage.clickGotItCtaBorrowerMappingReport();
         }
 
         p2PExtraPage.enterInvestmentAmount(amount);
