@@ -102,6 +102,8 @@ public class FixedDepositHelper {
         screen.swipeUpMore(driver);
         screen.swipeUpMore(driver);
 
+        Log.info("-----Fixed Deposit-----");
+
         fixedDepositPage.fixedDepositCTA();
         fixedDepositPage.bookCTA();
 
@@ -136,6 +138,8 @@ public class FixedDepositHelper {
         screen.swipeUpMore(driver);
         screen.swipeUpMore(driver);
         screen.swipeUpMore(driver);
+
+        Log.info("-----Fixed Deposit-----");
 
         //Click on Fixed deposit CTA
         fixedDepositPage.fixedDepositCTA();
@@ -190,6 +194,8 @@ public class FixedDepositHelper {
         screen.swipeUpMore(driver);
         screen.swipeUpMore(driver);
         screen.swipeUpMore(driver);
+
+        Log.info("-----Fixed Deposit-----");
 
         //Click on Fixed Deposit CTA
         fixedDepositPage.fixedDepositCTA();
