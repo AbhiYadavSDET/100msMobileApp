@@ -186,8 +186,6 @@ public class FixedDepositHelper {
 
     }
 
-
-
     public void nomineeEdit(String exptitleNomineeEditHeading,String exptitleNomineeNameonEditScreen,String exptitleRelationship,String exptitleDob,String exptitleAddress) throws InterruptedException, IOException {
 
         fixedDepositPage.allServicesCTA();
