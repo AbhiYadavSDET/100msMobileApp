@@ -40,6 +40,7 @@ public class FixedDepositHelper {
         fixedDepositPage.allServicesCTA();
         screen.swipeUpMore(driver);
         screen.swipeUpMore(driver);
+        screen.swipeUpMore(driver);
 
         fixedDepositPage.fixedDepositCTA();
 
@@ -75,23 +76,120 @@ public class FixedDepositHelper {
         mbReporter.verifyEqualsWithLogging(titleChooseCustomtenure, exptitleChooseCustomtenure, "Choose custom tenure title", false, false, true);
         mbReporter.verifyEqualsWithLogging(titleSeniorCitizen, exptitleSeniorCitizen, "Senior Citizen Title", false, false, true);
         mbReporter.verifyEqualsWithLogging(titleFemale, exptitleFemale, "Female Title", false, false, true);
-       // screen.swipeUpMore(driver);
+
 
         String titleMaximizeYourFDReturn = fixedDepositPage.getCTAMaximizeYourFD();
         Log.info("Choose maximize Your FD Return :" + titleMaximizeYourFDReturn);
         mbReporter.verifyEqualsWithLogging(titleMaximizeYourFDReturn, exptitleMaximizeYourFDReturn, "Choose maximize Your FD Return", false, false, true);
         screen.swipeUpMore(driver);
-
         String titleFAQ = fixedDepositPage.getCTAFAQ();
         Log.info("FAQ :" + titleFAQ);
         mbReporter.verifyEqualsWithLogging(titleFAQ, expttitleFAQ, "FAQ", false, false, true);
-        screen.swipeUpMore(driver);
 
         screen.swipeUpMore(driver);
         String ctaContactUs = fixedDepositPage.getCTAContactUs();
         Log.info("Contact us :" + ctaContactUs);
         mbReporter.verifyEqualsWithLogging(ctaContactUs, expctaContactUs, "Contact Us", false, false, true);
+        screen.swipeUpMore(driver);
 
+    }
+
+
+    public void fdBooking(String exptitleTenure,String exptitleAnnualYield,String exptitleInterestRate,String exptitleSelectDepositAmount) throws InterruptedException, IOException {
+
+        fixedDepositPage.allServicesCTA();
+        screen.swipeUpMore(driver);
+        screen.swipeUpMore(driver);
+        screen.swipeUpMore(driver);
+
+        fixedDepositPage.fixedDepositCTA();
+        fixedDepositPage.bookCTA();
+
+        String titleTenure = fixedDepositPage.getCTATenure();
+        String titleAnnualYield=fixedDepositPage.getCTAAnnualYield();
+        String titleInterestRate=fixedDepositPage.getCTAInterestRate();
+        String titleSelectDepositAmount=fixedDepositPage.GetCTADepositAmount();
+
+
+        Log.info("Title Interest :" + titleTenure);
+        Log.info("Title Annual Yield :" + titleAnnualYield);
+        Log.info("Title Interest Rate :" + titleInterestRate);
+        Log.info("Title Select Deposit Amount :" + titleSelectDepositAmount);
+
+        // Add assertions
+        mbReporter.verifyEqualsWithLogging(titleTenure, exptitleTenure, "Tenure", false, false, true);
+        mbReporter.verifyEqualsWithLogging(titleAnnualYield, exptitleAnnualYield, "Title Annual Yield", false, false, true);
+        mbReporter.verifyEqualsWithLogging(titleInterestRate, exptitleInterestRate, "Title Interest Rate ", false, false, true);
+        mbReporter.verifyEqualsWithLogging(titleSelectDepositAmount, exptitleSelectDepositAmount, "Title Select Deposit Amount", false, false, true);
+
+        fixedDepositPage.ctaNext();
+        fixedDepositPage.ctaProceedToPay();
+
+    }
+
+    public void personaldetailsEdit() throws InterruptedException, IOException {
+
+        fixedDepositPage.allServicesCTA();
+        screen.swipeUpMore(driver);
+        screen.swipeUpMore(driver);
+        screen.swipeUpMore(driver);
+        fixedDepositPage.fixedDepositCTA();
+        fixedDepositPage.bookCTA();
+        fixedDepositPage.ctaNext();
+        Thread.sleep(3000);
+        screen.swipeUpMore(driver);
+        fixedDepositPage.ctaEdit();
+        fixedDepositPage.ctaMarried();
+        fixedDepositPage.ctafathername();
+        fixedDepositPage.enterFatherName("RajKishore");
+        fixedDepositPage.ctaEducationQualification();
+        fixedDepositPage.dropdownPostGraduate();
+        fixedDepositPage.ctaMarried();
+        fixedDepositPage.ctaDropdownOccupationType();
+        fixedDepositPage.ctaDropdownOccupationTypeSelect();
+        fixedDepositPage.ctaProceed();
+
+
+    }
+
+
+
+    public void nomineeEdit(String exptitleNomineeEditHeading,String exptitleNomineeNameonEditScreen,String exptitleRelationship,String exptitleDob,String exptitleAddress) throws InterruptedException, IOException {
+
+        fixedDepositPage.allServicesCTA();
+        screen.swipeUpMore(driver);
+        screen.swipeUpMore(driver);
+        screen.swipeUpMore(driver);
+        fixedDepositPage.fixedDepositCTA();
+        fixedDepositPage.bookCTA();
+        fixedDepositPage.ctaNext();
+        Thread.sleep(3000);
+        screen.swipeUpMore(driver);
+        fixedDepositPage.ctaNomineeName();
+        fixedDepositPage.clickEditNomineeFirstField();
+
+        String titleNomineeEditHeading = fixedDepositPage.getctaNomineeDetailHeading();
+        String titleNomineeNameonEditScreen=fixedDepositPage.getNomineeNameOnViewEdit();
+        String titleRelationship=fixedDepositPage.getRelationship();
+        String titleMobile=fixedDepositPage.getMobile();
+        String titleDob=fixedDepositPage.getDob();
+        String titleAddress=fixedDepositPage.getAddress();
+
+
+        Log.info("Title Nominee Edit Heading :" + titleNomineeEditHeading);
+        Log.info("Title Nominee Name on Edit Screen :" + titleNomineeNameonEditScreen);
+        Log.info("Title Relationship :" + titleRelationship);
+        Log.info("Title Mobile :" + titleMobile);
+        Log.info("Title DOB :" + titleDob);
+        Log.info("Title Address :" + titleAddress);
+
+        // Add assertions
+        mbReporter.verifyEqualsWithLogging(titleNomineeEditHeading, exptitleNomineeEditHeading, "Title Nominee Edit Heading", false, false, true);
+        mbReporter.verifyEqualsWithLogging(titleNomineeNameonEditScreen, exptitleNomineeNameonEditScreen, "Title Nominee Name on Edit Screen ", false, false, true);
+        mbReporter.verifyEqualsWithLogging(titleRelationship, exptitleRelationship, "Title Relationship ", false, false, true);
+        mbReporter.verifyEqualsWithLogging(titleDob, exptitleDob, "Title DOB", false, false, true);
+        mbReporter.verifyEqualsWithLogging(titleAddress, exptitleAddress, "Title Address", false, false, true);
+        fixedDepositPage.getEditOnNomineeDetails();
 
     }
 
