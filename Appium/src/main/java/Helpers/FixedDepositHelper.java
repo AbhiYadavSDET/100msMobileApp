@@ -133,20 +133,47 @@ public class FixedDepositHelper {
         screen.swipeUpMore(driver);
         screen.swipeUpMore(driver);
         screen.swipeUpMore(driver);
+
+        //Click on Fixed deposit CTA
         fixedDepositPage.fixedDepositCTA();
+
+        //Click on Book button on Fd home screen
         fixedDepositPage.bookCTA();
+
+        //Click on Book next page on amount screen
         fixedDepositPage.ctaNext();
+
         Thread.sleep(3000);
         screen.swipeUpMore(driver);
+
+        //Click on Edit cta on summary screen
         fixedDepositPage.ctaEdit();
+
+        //Click on married field from form
         fixedDepositPage.ctaMarried();
+
+        //Click on father's name field on  profile form page
         fixedDepositPage.ctafathername();
+
+        //Enter fathers name field on  profile form page
         fixedDepositPage.enterFatherName("RajKishore");
+
+        //Click on Educational field on  profile form page
         fixedDepositPage.ctaEducationQualification();
+
+        //Select from dropdown  field on  profile form page for educationfield
         fixedDepositPage.dropdownPostGraduate();
+
+        // For outer click on form page after filling the form
         fixedDepositPage.ctaMarried();
+
+        //Click on Occupation field on  profile form page
         fixedDepositPage.ctaDropdownOccupationType();
+
+        //Select Occupation field on  profile form page
         fixedDepositPage.ctaDropdownOccupationTypeSelect();
+
+        // Click on  proceed page
         fixedDepositPage.ctaProceed();
 
 
@@ -160,12 +187,22 @@ public class FixedDepositHelper {
         screen.swipeUpMore(driver);
         screen.swipeUpMore(driver);
         screen.swipeUpMore(driver);
+
+        //Click on Fixed Deposit CTA
         fixedDepositPage.fixedDepositCTA();
+
+        //Click on Book button on Fd home screen
         fixedDepositPage.bookCTA();
+
+        //Click on Next button on Fd amount page
         fixedDepositPage.ctaNext();
         Thread.sleep(3000);
         screen.swipeUpMore(driver);
+
+        //Click on Nominee name button on summary page
         fixedDepositPage.ctaNomineeName();
+
+        //Click on first nominee page
         fixedDepositPage.clickEditNomineeFirstField();
 
         String titleNomineeEditHeading = fixedDepositPage.getctaNomineeDetailHeading();
