@@ -122,7 +122,10 @@ public class FixedDepositHelper {
         mbReporter.verifyEqualsWithLogging(titleInterestRate, exptitleInterestRate, "Title Interest Rate ", false, false, true);
         mbReporter.verifyEqualsWithLogging(titleSelectDepositAmount, exptitleSelectDepositAmount, "Title Select Deposit Amount", false, false, true);
 
+        //CTA click for next screen
         fixedDepositPage.ctaNext();
+
+        //CTA click for next screen where payment page will come
         fixedDepositPage.ctaProceedToPay();
 
     }
