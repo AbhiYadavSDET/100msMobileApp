@@ -38,10 +38,7 @@ public class FixedDepositHelper {
     public void existingUserHomePage(String exptitleViewInvestmentSummary,String exptitleTopPlans,String exptitleInterest,String exptitleTenure,String exptitleBook,String exptitleChooseCustomtenure,String exptitleFemale,String exptitleSeniorCitizen,String exptitleMaximizeYourFDReturn,String expttitleFAQ,String expctaContactUs) throws InterruptedException, IOException {
 
         fixedDepositPage.allServicesCTA();
-        screen.swipeUpMore(driver);
-        screen.swipeUpMore(driver);
-        screen.swipeUpMore(driver);
-
+        fixedDepositPage.scrollToFixedDeposit();
         fixedDepositPage.fixedDepositCTA();
 
         String titleViewInvestmentSummary = fixedDepositPage.getTitleViewInvestmetnSummary();
@@ -98,12 +95,7 @@ public class FixedDepositHelper {
     public void fdBooking(String exptitleTenure,String exptitleAnnualYield,String exptitleInterestRate,String exptitleSelectDepositAmount) throws InterruptedException, IOException {
 
         fixedDepositPage.allServicesCTA();
-        screen.swipeUpMore(driver);
-        screen.swipeUpMore(driver);
-        screen.swipeUpMore(driver);
-
-        Log.info("-----Fixed Deposit-----");
-
+        fixedDepositPage.scrollToFixedDeposit();
         fixedDepositPage.fixedDepositCTA();
         fixedDepositPage.bookCTA();
 
@@ -135,13 +127,7 @@ public class FixedDepositHelper {
     public void personaldetailsEdit() throws InterruptedException, IOException {
 
         fixedDepositPage.allServicesCTA();
-        screen.swipeUpMore(driver);
-        screen.swipeUpMore(driver);
-        screen.swipeUpMore(driver);
-
-        Log.info("-----Fixed Deposit-----");
-
-        //Click on Fixed deposit CTA
+        fixedDepositPage.scrollToFixedDeposit();
         fixedDepositPage.fixedDepositCTA();
 
         //Click on Book button on Fd home screen
@@ -150,7 +136,7 @@ public class FixedDepositHelper {
         //Click on Book next page on amount screen
         fixedDepositPage.ctaNext();
 
-        Thread.sleep(3000);
+        Element.waitForVisibility(driver, By.id("tv_deposit_amount"));
         screen.swipeUpMore(driver);
 
         //Click on Edit cta on summary screen
@@ -189,13 +175,7 @@ public class FixedDepositHelper {
     public void nomineeEdit(String exptitleNomineeEditHeading,String exptitleNomineeNameonEditScreen,String exptitleRelationship,String exptitleDob,String exptitleAddress) throws InterruptedException, IOException {
 
         fixedDepositPage.allServicesCTA();
-        screen.swipeUpMore(driver);
-        screen.swipeUpMore(driver);
-        screen.swipeUpMore(driver);
-
-        Log.info("-----Fixed Deposit-----");
-
-        //Click on Fixed Deposit CTA
+        fixedDepositPage.scrollToFixedDeposit();
         fixedDepositPage.fixedDepositCTA();
 
         //Click on Book button on Fd home screen
@@ -233,9 +213,62 @@ public class FixedDepositHelper {
         mbReporter.verifyEqualsWithLogging(titleRelationship, exptitleRelationship, "Title Relationship ", false, false, true);
         mbReporter.verifyEqualsWithLogging(titleDob, exptitleDob, "Title DOB", false, false, true);
         mbReporter.verifyEqualsWithLogging(titleAddress, exptitleAddress, "Title Address", false, false, true);
-        fixedDepositPage.getEditOnNomineeDetails();
 
     }
+
+    public void fixedDepositSummary(String exptitleTenure,String exptitlePartnerBank,String exptitleInterestPA,String exptitleAnnualYield,String exptitleInterestPayout,String exptitleMaturityAmount,String exptitleTotalGains,String exptitlePrematureWatdrawal,String expttitleBankAccount,String exptitleKnowMoreforBank) throws InterruptedException, IOException {
+
+        fixedDepositPage.allServicesCTA();
+
+        Log.info("-----Fixed Deposit-----");
+
+        //Click on Fixed deposit CTA
+        fixedDepositPage.scrollToFixedDeposit();
+        fixedDepositPage.fixedDepositCTA();
+
+        //Click on Book button on Fd home screen
+        fixedDepositPage.bookCTA();
+
+        //Click on Book next page on amount screen
+        fixedDepositPage.ctaNext();
+
+        String titleTenure = fixedDepositPage.getCTATenure();
+        String titlePartnerBank = fixedDepositPage.getPartnerBank();
+        String titleInterestPA = fixedDepositPage.getInterestPA();
+        String titleAnnualYield = fixedDepositPage.getCTAAnnualYield();
+        String titleInterestPayout = fixedDepositPage.getInterestPayout();
+        String titleMaturityAmount = fixedDepositPage.getMaturityAmount();
+        String titleTotalGains = fixedDepositPage.getPartnerBank();
+        String titlePrematureWatdrawal = fixedDepositPage.getPrematurewithdrawals();
+
+        screen.swipeUpMore(driver);
+        String titleBankAccount = fixedDepositPage.getBankAccount();
+        String titleKnowMoreforBank = fixedDepositPage.getKnowmoreforBankAccount();
+
+        Log.info("Tenure Title :" + titleTenure);
+        Log.info("Partner Bank Title :" + titlePartnerBank);
+        Log.info("Interest PA Title :" + titleInterestPA);
+        Log.info("Title Annual Yield :" + titleAnnualYield);
+        Log.info("Title InterestPayout :" + titleInterestPayout);
+        Log.info("Maturity Amount Title :" + titleMaturityAmount);
+        Log.info("Title Total Gains :" + titleTotalGains);
+        Log.info("Title PrematureWithdrawal :" + titlePrematureWatdrawal);
+        Log.info("Title Bank Account:" + titleBankAccount);
+        Log.info("Title Know More for Bank:" + titleKnowMoreforBank);
+
+        mbReporter.verifyEqualsWithLogging(titleTenure, exptitleTenure, "Tenure", false, false, true);
+        mbReporter.verifyEqualsWithLogging(titlePartnerBank, exptitlePartnerBank, "Title Partner Bank", false, false, true);
+        mbReporter.verifyEqualsWithLogging(titleInterestPA, exptitleInterestPA, "Title Interest PA", false, false, true);
+        mbReporter.verifyEqualsWithLogging(titleAnnualYield, exptitleAnnualYield, "Title Annual Yield", false, false, true);
+        mbReporter.verifyEqualsWithLogging(titleInterestPayout, exptitleInterestPayout, "Title InterestPayout", false, false, true);
+        mbReporter.verifyEqualsWithLogging(titleMaturityAmount, exptitleMaturityAmount, "titleMaturityAmount", false, false, true);
+        mbReporter.verifyEqualsWithLogging(titleTotalGains, exptitleTotalGains, "Title Total Gains", false, false, true);
+        mbReporter.verifyEqualsWithLogging(titlePrematureWatdrawal, exptitlePrematureWatdrawal, "Title PrematureWithdrawal", false, false, true);
+        mbReporter.verifyEqualsWithLogging(titleBankAccount, expttitleBankAccount, "Title Bank Accounts", false, false, true);
+        mbReporter.verifyEqualsWithLogging(titleKnowMoreforBank, exptitleKnowMoreforBank, "Title Total Gains", false, false, true);
+
+    }
+
 
 }
 

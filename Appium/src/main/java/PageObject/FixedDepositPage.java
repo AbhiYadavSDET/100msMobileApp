@@ -15,8 +15,13 @@ public class FixedDepositPage {
     AndroidDriver driver;
     @AndroidFindBy(xpath = "//*[@text = 'All Services']")
     private AndroidElement allServicesCTA;
-    @AndroidFindBy(xpath = "//*[@text = 'Fixed Deposits']")
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Fixed Deposits']")
     private AndroidElement fixedDepositCTA;
+
+
+    @AndroidFindBy(xpath = "//*[@text = 'Fixed Deposits']")
+    private AndroidElement fixedDepositCTA1;
     @AndroidFindBy(xpath = "//*[@text = 'View Investment Activity']")
     private AndroidElement titleViewInvestmentSummary;
 
@@ -79,10 +84,7 @@ public class FixedDepositPage {
     @AndroidFindBy(xpath = "//*[@text = 'Post Graduate']")
     private AndroidElement ctaPostGraduate;
 
-    @AndroidFindBy(xpath = "//*/android.widget.TextView[contains(@text, 'Father')]")
-    private AndroidElement select_fathername;
-
-    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup[4]/android.widget.ScrollView/android.view.ViewGroup/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.LinearLayout[5]/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.EditText")
+    @AndroidFindBy(xpath = "(//android.widget.LinearLayout/android.widget.FrameLayout/android.widget.EditText)[2]")
     private AndroidElement enter_fathername;
 
     @AndroidFindBy(xpath = "//*/android.widget.TextView[contains(@text, 'Occupation')]")
@@ -93,10 +95,10 @@ public class FixedDepositPage {
     @AndroidFindBy(xpath = "//*[@text = 'Proceed']")
     private AndroidElement ctaProceed;
 
-    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup[3]/android.widget.ScrollView/android.view.ViewGroup/androidx.appcompat.widget.LinearLayoutCompat/android.view.ViewGroup[1]/android.view.ViewGroup/android.view.ViewGroup/android.widget.TextView")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Nominee']/../android.view.ViewGroup/android.widget.TextView")
     private AndroidElement ctaNomineeName;
 
-    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup[4]/android.widget.ScrollView/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[1]")
+    @AndroidFindBy(id="tv_name")
     private AndroidElement clickEditNomineeFirstField;
 
     @AndroidFindBy(xpath = "//*[@text = 'Nominee Details']")
@@ -114,6 +116,30 @@ public class FixedDepositPage {
     @AndroidFindBy(xpath = "//*[@text = 'Edit']")
     private AndroidElement ctaEditonNomineeDetails;
 
+    @AndroidFindBy(xpath = "//*[@text = 'Partner Bank/NBFC']")
+    private AndroidElement ctaPartnerBank;
+
+    @AndroidFindBy(xpath = "//*[@text = 'Interest p.a.']")
+    private AndroidElement ctaInterestPA;
+
+    @AndroidFindBy(xpath = "//*[@text = 'Interest Payout']")
+    private AndroidElement ctaInterestPayout;
+    @AndroidFindBy(xpath = "//*[@text = 'Maturity Amount']")
+    private AndroidElement ctaMaturityAmount;
+
+    @AndroidFindBy(xpath = "//*[@text = 'Total Gains']")
+    private AndroidElement ctaTotalGains;
+
+    @AndroidFindBy(xpath = "//*[@text = 'Pre-mature withdrawals']")
+    private AndroidElement ctaPrematurewithdrawals;
+
+    @AndroidFindBy(xpath = "//*[@text = 'Bank Account']")
+    private AndroidElement ctaBankAccount;
+
+    @AndroidFindBy(id="tv_hint_know_more")
+    private AndroidElement ctaKnowmoreforBankAccount;
+
+
     public FixedDepositPage(AndroidDriver driver) throws IOException {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -122,6 +148,10 @@ public class FixedDepositPage {
 
     public void allServicesCTA() throws InterruptedException{
         Elements.selectElement(driver,allServicesCTA,"Click on all services");
+    }
+
+    public boolean scrollToFixedDeposit() throws InterruptedException {
+        return Elements.scrollToElement(driver, fixedDepositCTA);
     }
     public void fixedDepositCTA() throws InterruptedException{
         Elements.selectElement(driver,fixedDepositCTA,"Fixed Deposit CTA");
@@ -218,7 +248,7 @@ public class FixedDepositPage {
 
 
     public void ctafathername() throws InterruptedException{
-        Elements.selectElement(driver,select_fathername,"select father name ");
+        Elements.selectElement(driver,enter_fathername,"select father name ");
     }
     public void enterFatherName(String fathername) throws InterruptedException {
         Elements.enterToElement(driver, enter_fathername, fathername, "Enter Father Name");
@@ -273,8 +303,40 @@ public class FixedDepositPage {
 
     }
 
-    public void getEditOnNomineeDetails() throws InterruptedException{
-         Elements.getText(driver,ctaEditonNomineeDetails,"CTA Edit");
+
+    public String getPartnerBank() throws InterruptedException{
+        return   Elements.getText(driver,ctaPartnerBank,"Partner Bank");
+
+    }
+//fds
+    public String getInterestPA() throws InterruptedException{
+        return Elements.getText(driver,ctaInterestPA,"Interest PA");
+
+    }
+
+    public String getInterestPayout() throws InterruptedException{
+        return Elements.getText(driver,ctaInterestPayout,"Interest Payout");
+
+    }
+    public String getMaturityAmount() throws InterruptedException{
+        return Elements.getText(driver,ctaMaturityAmount,"Maturity Amount");
+
+    }
+    public String getTotalGains() throws InterruptedException{
+        return Elements.getText(driver,ctaTotalGains,"Total Gains");
+
+    }
+    public String getPrematurewithdrawals() throws InterruptedException{
+        return  Elements.getText(driver,ctaPrematurewithdrawals,"Premature withdrawals");
+
+    }
+    public String getBankAccount() throws InterruptedException{
+        return Elements.getText(driver,ctaBankAccount,"Bank Account");
+
+    }
+
+    public String getKnowmoreforBankAccount() throws InterruptedException{
+        return Elements.getText(driver,ctaKnowmoreforBankAccount,"Know more for bank on bottom sheet");
 
     }
 
