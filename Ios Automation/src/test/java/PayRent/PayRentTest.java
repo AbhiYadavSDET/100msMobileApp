@@ -24,7 +24,7 @@ public class PayRentTest extends TestBase {
         Log.info("======= END : Login test =======");
 
         PayRentHelper payRentHelper = new PayRentHelper(getIosDriver());
-        payRentHelper.addNewPropertyOnPayRent("135701525110","ICIC0001437","Abhishek Yadav","5500");
+        payRentHelper.addNewPropertyOnPayRentOldUser("135701525110","ICIC0001437","Abhishek Yadav","5500");
 
         Log.info("======= END : Pay rent - Add new property flow for old User =======");
     }

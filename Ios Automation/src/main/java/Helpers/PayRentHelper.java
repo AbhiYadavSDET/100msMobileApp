@@ -38,42 +38,88 @@ public class PayRentHelper {
         permissionPage = new PermissionPage(driver);
     }
 
-    public void addNewPropertyOnPayRent(String accountNumber, String ifscCode, String name, String amount) throws IOException, InterruptedException {
+    public void addNewPropertyOnPayRentOldUser(String accountNumber, String ifscCode, String name, String amount) throws IOException, InterruptedException {
 
         clickOnPayRentOption();
 
         Thread.sleep(2000);
 
         if (payRentPage.isNewUser()) {
-            Log.info("This is a new user flow on rent pay");
-            isNewUserTestStarted = true;
-            payRentPage.clickOnContinueOnZip();
+            Log.info("This is a new user flow on rent pay, so skipping this test case");
         } else {
             Log.info("This is a old user flow on rent pay");
             payRentPage.clickOnAddNewProperty();
         }
 
-        addNewProperties(accountNumber,ifscCode,name,amount,false);
+        payRentPage.enterBankAccountNumber(accountNumber);
+        payRentPage.enterIfscCode(ifscCode);
+        payRentPage.clickOnAcccountDetails();
 
+        payRentPage.clickOnContinuebuttonOnAccountpage();
+
+        payRentPage.enterLandLordName(name);
+
+        payRentPage.enterRentAmount(amount);
+
+        if (payRentPage.isLandlordButtonAvailableOnScreen()) {
+            payRentPage.clickOnLandLordPanNumber();
+            payRentPage.enterLandLordPanNumber("DSOPP3157C");
+        } else if (Integer.parseInt(amount) < 50000) {
+            Log.info("Pan card option is not available for this user because amount is less than 50000 Rs. ");
+        } else {
+            Log.info("Pan card option is not applicable for this user ");
+        }
+        payRentPage.clickOnRentDetails();
+        Thread.sleep(2000);
+
+        payRentPage.clickOnContinueButtonOnLandlordPage();
+
+        Thread.sleep(2000);
+
+        if (securityPinPage.isSecurityPinPageShown()) {
+            securityPinPage.enterSecurityPin();
+        }
     }
-    public void addNewPropertyNewUser(String accountNumber, String ifscCode, String name, String amount) throws IOException, InterruptedException
-        {
-            if(!isNewUserTestStarted) {
-                clickOnPayRentOption();
 
-                if (payRentPage.isNewUser()) {
-                    Log.info("This is a new user flow on rent pay");
-                    payRentPage.clickOnContinueOnZip();
-                    addNewProperties(accountNumber,ifscCode,name,amount,false);
-                } else {
-                    deleteAllRecipient();
-                    payRentPage.clickOnContinueOnZip();
-                   // clickOnPayRentOption();
-                    addNewProperties(accountNumber, ifscCode, name, amount,false);
-                }
-            }else{
-                Log.info("New user flow has been already tested for adding new property .. ");
+    public void addNewPropertyNewUser(String accountNumber, String ifscCode, String name, String amount) throws IOException, InterruptedException {
+        if (!isNewUserTestStarted) {
+            clickOnPayRentOption();
+
+            if (!payRentPage.isNewUser()) {
+                deleteAllRecipient();
             }
+                payRentPage.clickOnContinueOnZip();
+                payRentPage.enterBankAccountNumber(accountNumber);
+                payRentPage.enterIfscCode(ifscCode);
+                payRentPage.clickOnAcccountDetails();
+
+                payRentPage.clickOnContinuebuttonOnAccountpage();
+
+                payRentPage.enterLandLordName(name);
+
+                payRentPage.enterRentAmount(amount);
+
+                if (payRentPage.isLandlordButtonAvailableOnScreen()) {
+                    payRentPage.clickOnLandLordPanNumber();
+                    payRentPage.enterLandLordPanNumber("DSOPP3157C");
+                } else if (Integer.parseInt(amount) < 50000) {
+                    Log.info("Pan card option is not available for this user because amount is less than 50000 Rs. ");
+                } else {
+                    Log.info("Pan card option is not applicable for this user ");
+                }
+                payRentPage.clickOnRentDetails();
+                Thread.sleep(2000);
+
+                payRentPage.clickOnContinueButtonOnLandlordPage();
+
+                Thread.sleep(2000);
+
+                if(securityPinPage.isSecurityPinPageShown())
+                {
+                    securityPinPage.enterSecurityPin();
+                }
+
+        }
     }
 
     public void verifyConvFeeOnPayRent(String accountNumber, String ifscCode, String name, String amount) throws IOException, InterruptedException {
@@ -83,12 +129,43 @@ public class PayRentHelper {
         if (payRentPage.isNewUser()) {
             Log.info("This is a new user flow on rent pay");
             payRentPage.clickOnContinueOnZip();
-        }else{
+        } else {
             Log.info("This is a old user flow on rent pay");
             payRentPage.clickOnAddNewProperty();
         }
+        payRentPage.enterBankAccountNumber(accountNumber);
+        payRentPage.enterIfscCode(ifscCode);
+        payRentPage.clickOnAcccountDetails();
 
-        addNewProperties(accountNumber,ifscCode,name,amount,false);
+        payRentPage.clickOnContinuebuttonOnAccountpage();
+
+        payRentPage.enterLandLordName(name);
+
+        payRentPage.enterRentAmount(amount);
+
+        if (payRentPage.isLandlordButtonAvailableOnScreen()) {
+            payRentPage.clickOnLandLordPanNumber();
+            payRentPage.enterLandLordPanNumber("DSOPP3157C");
+        } else if (Integer.parseInt(amount) < 50000) {
+            Log.info("Pan card option is not available for this user because amount is less than 50000 Rs. ");
+        } else {
+            Log.info("Pan card option is not applicable for this user ");
+        }
+        payRentPage.clickOnRentDetails();
+        Thread.sleep(2000);
+        payRentPage.clickOnContinueButtonOnLandlordPage();
+
+        Thread.sleep(2000);
+
+        if(securityPinPage.isSecurityPinPageShown())
+        {
+            securityPinPage.enterSecurityPin();
+        }
+        Thread.sleep(4000);
+        calculateConv(amount);
+        actualConv();
+//
+
         mbReporter.verifyEqualsWithLogging(actualAmount, excpectedAmount, "Verify Conv fee  on Pay Rent", false, false, false);
     }
 
@@ -98,14 +175,40 @@ public class PayRentHelper {
 
         if (payRentPage.isNewUser()) {
             Log.info("This is a new user flow on rent pay");
+            isNewUserTestStarted = true;
             payRentPage.clickOnContinueOnZip();
-        }else{
+        } else {
             Log.info("This is a old user flow on rent pay");
             payRentPage.clickOnAddNewProperty();
         }
+        payRentPage.enterBankAccountNumber(accountNumber);
+        payRentPage.enterIfscCode(ifscCode);
+        payRentPage.clickOnAcccountDetails();
 
-        addNewProperties(accountNumber,ifscCode,name,amount,false);
+        payRentPage.clickOnContinuebuttonOnAccountpage();
 
+        payRentPage.enterLandLordName(name);
+
+        payRentPage.enterRentAmount(amount);
+
+        if (payRentPage.isLandlordButtonAvailableOnScreen()) {
+            payRentPage.clickOnLandLordPanNumber();
+            payRentPage.enterLandLordPanNumber("DSOPP3157C");
+        } else if (Integer.parseInt(amount) < 50000) {
+            Log.info("Pan card option is not available for this user because amount is less than 50000 Rs. ");
+        } else {
+            Log.info("Pan card option is not applicable for this user ");
+        }
+        payRentPage.clickOnRentDetails();
+        Thread.sleep(2000);
+
+        payRentPage.clickOnContinueButtonOnLandlordPage();
+
+        Thread.sleep(2000);
+
+        if (securityPinPage.isSecurityPinPageShown()) {
+            securityPinPage.enterSecurityPin();
+        }
     }
 
     public void addNewPropertyWithCouponCode(String accountNumber, String ifscCode, String name, String amount) throws IOException, InterruptedException {
@@ -114,13 +217,44 @@ public class PayRentHelper {
         if (payRentPage.isNewUser()) {
             Log.info("This is a new user flow on rent pay");
             payRentPage.clickOnContinueOnZip();
-        }else{
+        } else {
             Log.info("This is a old user flow on rent pay");
             payRentPage.clickOnAddNewProperty();
         }
 
-        addNewProperties(accountNumber,ifscCode,name,amount,true);
-         }
+        payRentPage.enterBankAccountNumber(accountNumber);
+        payRentPage.enterIfscCode(ifscCode);
+        payRentPage.clickOnAcccountDetails();
+
+        payRentPage.clickOnContinuebuttonOnAccountpage();
+
+        payRentPage.enterLandLordName(name);
+
+        payRentPage.enterRentAmount(amount);
+
+        if (payRentPage.isLandlordButtonAvailableOnScreen()) {
+            payRentPage.clickOnLandLordPanNumber();
+            payRentPage.enterLandLordPanNumber("DSOPP3157C");
+        } else if (Integer.parseInt(amount) < 50000) {
+            Log.info("Pan card option is not available for this user because amount is less than 50000 Rs. ");
+        } else {
+            Log.info("Pan card option is not applicable for this user ");
+        }
+        payRentPage.clickOnRentDetails();
+        Thread.sleep(2000);
+        payRentPage.clickOnApplyCouponbutton();
+        Thread.sleep(2000);
+        payRentPage.clickOnFirstCoupon();
+
+        payRentPage.clickOnContinueButtonOnLandlordPage();
+
+        Thread.sleep(2000);
+
+        if (securityPinPage.isSecurityPinPageShown()) {
+            securityPinPage.enterSecurityPin();
+        }
+
+    }
 
     public void faqOnRentPay() throws IOException, InterruptedException {
 
@@ -134,7 +268,8 @@ public class PayRentHelper {
             payRentPage.clickOnSavedRecipient();
             payRentPage.clickOnFaq();
         }
-             }
+    }
+
     public void deleteRecipientOnRentPay() throws IOException, InterruptedException {
 
         clickOnPayRentOption();
@@ -142,25 +277,17 @@ public class PayRentHelper {
 
 
         if (payRentPage.isNewUser()) {
-            payRentPage.clickOnContinueOnZip();
-            addNewProperties("135701525113","ICIC0001431","Abhishek yadav","5000",false);
-
-            clickOnPayRentOption();
-            if(payRentPage.isSavedRecipientAvailable()){
-                payRentPage.clickOnDeleteButton();
-                Thread.sleep(2000);
-                payRentPage.clickOnDelete();
-
-            }else{
-                Log.info("No Saved Recipient available so skipping this test case.. ");
-            }
-        } else {
+            Log.info("No Saved Recipient available so skipping this test case.. ");
+        }else{
             payRentPage.clickOnDeleteButton();
             Thread.sleep(2000);
             payRentPage.clickOnDelete();
         }
     }
 
+    {
+
+}
     public void clickOnPayRentOption() throws InterruptedException {
         if(payRentPage.isPayRentVisibleOnHomeScreen()){
             homePage.clickOnpayRent();

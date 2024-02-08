@@ -322,7 +322,6 @@ public class IMPSNewHelper {
         //click on continue without adding upi id details
         impsPage.clickOnContinueToAmtCTA();
         mbReporter.verifyEqualsWithLogging(impsPage.getUPIMessage(), "Please enter valid UPI Id", "Add new property  Page | continue without upi id", false, false);
-
     }
 
     public void verifyCheckLimitsOnImps() throws InterruptedException, IOException {
@@ -338,5 +337,21 @@ public class IMPSNewHelper {
         //close the check limit popup
         impsPage.clickOnCloseCheckLimits();
     }
+
+/*    public void verifyReferAndEarnOnImps() throws InterruptedException, IOException {
+
+        // Click on Imps on home page
+
+        impsPage.clickOnWalletToBank();
+
+       // Click on refer & earn on imps landing page
+        impsPage.clickOnReferAndEarn();
+
+        // back to home
+        mbkCommonControlsHelper.handleHomePageLanding();
+
+    }*/
+
+
 
 }
