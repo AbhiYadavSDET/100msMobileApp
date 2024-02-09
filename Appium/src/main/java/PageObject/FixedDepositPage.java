@@ -58,8 +58,6 @@ public class FixedDepositPage {
     @AndroidFindBy(xpath = "//*[@text = 'Annual Yield']")
     private AndroidElement ctaAnnualYield;
 
-
-
     @AndroidFindBy(id="tvYourInvestmentLabel")
     private AndroidElement ctaSelectDepositAmount;
 
@@ -139,6 +137,27 @@ public class FixedDepositPage {
     @AndroidFindBy(id="tv_hint_know_more")
     private AndroidElement ctaKnowmoreforBankAccount;
 
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'View Investment Activity']")
+    private AndroidElement CTAViewInvestmentActivity;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'On-going']")
+    private AndroidElement CTAOngoing;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Past']")
+    private AndroidElement CTAPast;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Payment History']")
+    private AndroidElement CTAPaymentHistory;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Invested Amount']")
+    private AndroidElement text_Investedamount;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Matures On']")
+    private AndroidElement text_matureon;
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Maturity Amount']")
+    private AndroidElement text_Maturity_amount;
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Gains']")
+    private AndroidElement text_Gains;
 
     public FixedDepositPage(AndroidDriver driver) throws IOException {
         this.driver = driver;
@@ -318,7 +337,7 @@ public class FixedDepositPage {
         return Elements.getText(driver,ctaInterestPayout,"Interest Payout");
 
     }
-    public String getMaturityAmount() throws InterruptedException{
+    public String getMaturityAmountOnHistory() throws InterruptedException{
         return Elements.getText(driver,ctaMaturityAmount,"Maturity Amount");
 
     }
@@ -340,6 +359,46 @@ public class FixedDepositPage {
 
     }
 
+    public void clickViewInvestmentActivity() throws InterruptedException{
+        Elements.selectElement(driver,CTAViewInvestmentActivity,"View Invested Activity ");
+    }
+
+
+
+    public void clickOngoing() throws InterruptedException{
+        Elements.selectElement(driver,CTAOngoing,"on going");
+    }
+
+    public String getPast() throws InterruptedException{
+        return Elements.getText(driver,CTAPast,"get Past");
+
+    }
+    public void clickOnPAST() throws InterruptedException{
+        Elements.selectElement(driver,CTAPast,"Past CLICK");
+    }
+
+    public void clickOnPaymentHistory() throws InterruptedException{
+        Elements.selectElement(driver,CTAPaymentHistory,"Payment History");
+    }
+
+
+    public String getInvestedamount() throws InterruptedException{
+        return Elements.getText(driver,text_Investedamount,"Invested amount");
+
+    }
+
+    public String getMaturesOn() throws InterruptedException{
+        return Elements.getText(driver,text_matureon,"Mature on");
+
+    }
+    public String getMaturityAmount() throws InterruptedException{
+        return Elements.getText(driver,text_Maturity_amount,"Maturity amount");
+
+    }
+    public String getGains() throws InterruptedException{
+        return Elements.getText(driver,text_Gains,"Gains");
+
+    }
 
 }
 

@@ -270,5 +270,41 @@ public class FixedDepositHelper {
     }
 
 
+    public void fixeddepositHistory(String exptitleInvestedAmount,String exptitleMaturesOn,String exptitlematurityAmount,String exptitleGains) throws InterruptedException, IOException {
+
+        fixedDepositPage.allServicesCTA();
+        fixedDepositPage.scrollToFixedDeposit();
+        fixedDepositPage.fixedDepositCTA();
+
+        //Click on ongoing history history
+        fixedDepositPage.clickViewInvestmentActivity();
+
+        String titleInvestedAmount = fixedDepositPage.getInvestedamount();
+        String titleMaturesOn = fixedDepositPage.getMaturesOn();
+        String titlematurityAmount = fixedDepositPage.getMaturityAmount();
+        String titleGains = fixedDepositPage.getGains();
+
+        Log.info("Title Invested Amount :" + titleInvestedAmount);
+        Log.info("Maturiton Title :" + titleMaturesOn);
+        Log.info("Maturity Amount Title :" + titlematurityAmount);
+        Log.info("Title Gains :" + titleGains);
+
+        mbReporter.verifyEqualsWithLogging(titleInvestedAmount, exptitleInvestedAmount, "Title Invested Amount ", false, false, true);
+        mbReporter.verifyEqualsWithLogging(titleMaturesOn, exptitleMaturesOn, "Maturiton Title", false, false, true);
+        mbReporter.verifyEqualsWithLogging(titlematurityAmount, exptitlematurityAmount, "Maturity Amount Title", false, false, true);
+        mbReporter.verifyEqualsWithLogging(titleGains, exptitleGains, "Title Gain", false, false, true);
+
+        //Click on past history
+        fixedDepositPage.clickOnPAST();
+        mbReporter.verifyEqualsWithLogging(titleInvestedAmount, exptitleInvestedAmount, "Title Invested Amount ", false, false, true);
+
+        //Click on payment history
+        fixedDepositPage.clickOnPaymentHistory();
+
+
+    }
+
+
+
 }
 
