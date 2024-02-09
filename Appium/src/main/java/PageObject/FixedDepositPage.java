@@ -223,6 +223,7 @@ public class FixedDepositPage {
         return Elements.getText(driver,ctaFAQ, "CTA FAQ");
     }
 
+
     public boolean scrollFrequentlyAskedQuestion() throws InterruptedException {
         return Elements.scrollToElement(driver, ctaFAQ);
     }

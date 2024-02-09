@@ -84,6 +84,7 @@ public class FixedDepositHelper {
         Log.info("FAQ :" + titleFAQ);
         mbReporter.verifyEqualsWithLogging(titleFAQ, expttitleFAQ, "FAQ", false, false, true);
 
+
         fixedDepositPage.scrolltoNeedHelp();
         String ctaContactUs = fixedDepositPage.getCTAContactUs();
         Log.info("Contact us :" + ctaContactUs);
