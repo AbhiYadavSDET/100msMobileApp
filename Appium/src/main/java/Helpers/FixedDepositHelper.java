@@ -78,12 +78,13 @@ public class FixedDepositHelper {
         String titleMaximizeYourFDReturn = fixedDepositPage.getCTAMaximizeYourFD();
         Log.info("Choose maximize Your FD Return :" + titleMaximizeYourFDReturn);
         mbReporter.verifyEqualsWithLogging(titleMaximizeYourFDReturn, exptitleMaximizeYourFDReturn, "Choose maximize Your FD Return", false, false, true);
-        screen.swipeUpMore(driver);
+
+        fixedDepositPage.scrollFrequentlyAskedQuestion();
         String titleFAQ = fixedDepositPage.getCTAFAQ();
         Log.info("FAQ :" + titleFAQ);
         mbReporter.verifyEqualsWithLogging(titleFAQ, expttitleFAQ, "FAQ", false, false, true);
 
-        screen.swipeUpMore(driver);
+        fixedDepositPage.scrolltoNeedHelp();
         String ctaContactUs = fixedDepositPage.getCTAContactUs();
         Log.info("Contact us :" + ctaContactUs);
         mbReporter.verifyEqualsWithLogging(ctaContactUs, expctaContactUs, "Contact Us", false, false, true);
@@ -213,6 +214,8 @@ public class FixedDepositHelper {
         mbReporter.verifyEqualsWithLogging(titleRelationship, exptitleRelationship, "Title Relationship ", false, false, true);
         mbReporter.verifyEqualsWithLogging(titleDob, exptitleDob, "Title DOB", false, false, true);
         mbReporter.verifyEqualsWithLogging(titleAddress, exptitleAddress, "Title Address", false, false, true);
+
+        fixedDepositPage.clickOnEditOnNomineePrefiledpage();
 
     }
 

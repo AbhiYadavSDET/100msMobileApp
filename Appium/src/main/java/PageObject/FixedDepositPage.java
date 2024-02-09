@@ -70,6 +70,8 @@ public class FixedDepositPage {
     @AndroidFindBy(id="tv_profile_edit")
     private AndroidElement ctaEdit;
 
+    @AndroidFindBy(id="ctaEdit")
+    private AndroidElement ctaEditNomineeprefilledPage;
     @AndroidFindBy(xpath = "//*[@text = 'Married']")
     private AndroidElement ctaMarried;
 
@@ -221,9 +223,18 @@ public class FixedDepositPage {
         return Elements.getText(driver,ctaFAQ, "CTA FAQ");
     }
 
+    public boolean scrollFrequentlyAskedQuestion() throws InterruptedException {
+        return Elements.scrollToElement(driver, ctaFAQ);
+    }
+
     public String getCTAContactUs() throws InterruptedException {
         return Elements.getText(driver,ctaContactUs, "CTA Contact Us");
     }
+
+    public boolean scrolltoNeedHelp() throws InterruptedException {
+        return Elements.scrollToElement(driver, ctaContactUs);
+    }
+
 
     public String getCTAInterestRate() throws InterruptedException {
         return Elements.getText(driver,ctaInterestRate, "CTA Interest Rate");
@@ -398,6 +409,10 @@ public class FixedDepositPage {
     public String getGains() throws InterruptedException{
         return Elements.getText(driver,text_Gains,"Gains");
 
+    }
+
+    public void clickOnEditOnNomineePrefiledpage() throws InterruptedException{
+        Elements.selectElement(driver,ctaEditNomineeprefilledPage,"Edit click");
     }
 
 }
