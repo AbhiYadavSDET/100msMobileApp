@@ -32,6 +32,7 @@
             <class name="Offers.OfferTest"/>
             <class name="MoneyPlus.MoneyPlusTest"/>
             <class name="Profile.ProfileTest"/>
+            <class name="FixedDeposit.Test_FixedDeposit"/>
 
         </classes>
     </test>
