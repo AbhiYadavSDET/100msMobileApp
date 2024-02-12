@@ -49,35 +49,37 @@ public class PayRentHelper {
         } else {
             Log.info("This is a old user flow on rent pay");
             payRentPage.clickOnAddNewProperty();
-        }
 
-        payRentPage.enterBankAccountNumber(accountNumber);
-        payRentPage.enterIfscCode(ifscCode);
-        payRentPage.clickOnAcccountDetails();
 
-        payRentPage.clickOnContinuebuttonOnAccountpage();
+            payRentPage.enterBankAccountNumber(accountNumber);
+            payRentPage.enterIfscCode(ifscCode);
+            payRentPage.clickOnAcccountDetails();
 
-        payRentPage.enterLandLordName(name);
+            payRentPage.clickOnContinuebuttonOnAccountpage();
 
-        payRentPage.enterRentAmount(amount);
+            payRentPage.enterLandLordName(name);
 
-        if (payRentPage.isLandlordButtonAvailableOnScreen()) {
-            payRentPage.clickOnLandLordPanNumber();
-            payRentPage.enterLandLordPanNumber("DSOPP3157C");
-        } else if (Integer.parseInt(amount) < 50000) {
-            Log.info("Pan card option is not available for this user because amount is less than 50000 Rs. ");
-        } else {
-            Log.info("Pan card option is not applicable for this user ");
-        }
-        payRentPage.clickOnRentDetails();
-        Thread.sleep(2000);
+            payRentPage.enterRentAmount(amount);
 
-        payRentPage.clickOnContinueButtonOnLandlordPage();
+            if (payRentPage.isLandlordButtonAvailableOnScreen()) {
+                payRentPage.clickOnLandLordPanNumber();
+                payRentPage.enterLandLordPanNumber("DSOPP3157C");
+            } else if (Integer.parseInt(amount) < 50000) {
+                Log.info("Pan card option is not available for this user because amount is less than 50000 Rs. ");
+            } else {
+                Log.info("Pan card option is not applicable for this user ");
+            }
 
-        Thread.sleep(2000);
+            payRentPage.clickOnRentDetails();
+            Thread.sleep(2000);
 
-        if (securityPinPage.isSecurityPinPageShown()) {
-            securityPinPage.enterSecurityPin();
+            payRentPage.clickOnContinueButtonOnLandlordPage();
+
+            Thread.sleep(2000);
+
+            if (securityPinPage.isSecurityPinPageShown()) {
+                securityPinPage.enterSecurityPin();
+            }
         }
     }
 
@@ -88,37 +90,35 @@ public class PayRentHelper {
             if (!payRentPage.isNewUser()) {
                 deleteAllRecipient();
             }
-                payRentPage.clickOnContinueOnZip();
-                payRentPage.enterBankAccountNumber(accountNumber);
-                payRentPage.enterIfscCode(ifscCode);
-                payRentPage.clickOnAcccountDetails();
+            payRentPage.clickOnContinueOnZip();
+            payRentPage.enterBankAccountNumber(accountNumber);
+            payRentPage.enterIfscCode(ifscCode);
+            payRentPage.clickOnAcccountDetails();
 
-                payRentPage.clickOnContinuebuttonOnAccountpage();
+            payRentPage.clickOnContinuebuttonOnAccountpage();
 
-                payRentPage.enterLandLordName(name);
+            payRentPage.enterLandLordName(name);
 
-                payRentPage.enterRentAmount(amount);
+            payRentPage.enterRentAmount(amount);
 
-                if (payRentPage.isLandlordButtonAvailableOnScreen()) {
-                    payRentPage.clickOnLandLordPanNumber();
-                    payRentPage.enterLandLordPanNumber("DSOPP3157C");
-                } else if (Integer.parseInt(amount) < 50000) {
-                    Log.info("Pan card option is not available for this user because amount is less than 50000 Rs. ");
-                } else {
-                    Log.info("Pan card option is not applicable for this user ");
-                }
-                payRentPage.clickOnRentDetails();
-                Thread.sleep(2000);
+            if (payRentPage.isLandlordButtonAvailableOnScreen()) {
+                payRentPage.clickOnLandLordPanNumber();
+                payRentPage.enterLandLordPanNumber("DSOPP3157C");
+            } else if (Integer.parseInt(amount) < 50000) {
+                Log.info("Pan card option is not available for this user because amount is less than 50000 Rs. ");
+            } else {
+                Log.info("Pan card option is not applicable for this user ");
+            }
+            payRentPage.clickOnRentDetails();
+            Thread.sleep(2000);
 
-                payRentPage.clickOnContinueButtonOnLandlordPage();
+            payRentPage.clickOnContinueButtonOnLandlordPage();
 
-                Thread.sleep(2000);
+            Thread.sleep(2000);
 
-                if(securityPinPage.isSecurityPinPageShown())
-                {
-                    securityPinPage.enterSecurityPin();
-                }
-
+            if (securityPinPage.isSecurityPinPageShown()) {
+                securityPinPage.enterSecurityPin();
+            }
         }
     }
 
@@ -157,14 +157,12 @@ public class PayRentHelper {
 
         Thread.sleep(2000);
 
-        if(securityPinPage.isSecurityPinPageShown())
-        {
+        if (securityPinPage.isSecurityPinPageShown()) {
             securityPinPage.enterSecurityPin();
         }
         Thread.sleep(4000);
         calculateConv(amount);
         actualConv();
-//
 
         mbReporter.verifyEqualsWithLogging(actualAmount, excpectedAmount, "Verify Conv fee  on Pay Rent", false, false, false);
     }
@@ -192,6 +190,11 @@ public class PayRentHelper {
         payRentPage.enterRentAmount(amount);
 
         if (payRentPage.isLandlordButtonAvailableOnScreen()) {
+            String expTitle = "Landlord PAN";
+
+            String actualTitle = payRentPage.landLordPanText().toString();
+            mbReporter.verifyEqualsWithLogging(actualTitle, expTitle, "Verify Title", false, false, true);
+
             payRentPage.clickOnLandLordPanNumber();
             payRentPage.enterLandLordPanNumber("DSOPP3157C");
         } else if (Integer.parseInt(amount) < 50000) {
@@ -199,6 +202,7 @@ public class PayRentHelper {
         } else {
             Log.info("Pan card option is not applicable for this user ");
         }
+
         payRentPage.clickOnRentDetails();
         Thread.sleep(2000);
 
@@ -246,6 +250,12 @@ public class PayRentHelper {
         Thread.sleep(2000);
         payRentPage.clickOnFirstCoupon();
 
+        String expTitle = "Remove";
+        String actualTitle = payRentPage.removeCouponText();
+
+        mbReporter.verifyEqualsWithLogging(actualTitle, expTitle, "Verify  coupon applied successfully", false, false, true);
+
+
         payRentPage.clickOnContinueButtonOnLandlordPage();
 
         Thread.sleep(2000);
@@ -268,6 +278,11 @@ public class PayRentHelper {
             payRentPage.clickOnSavedRecipient();
             payRentPage.clickOnFaq();
         }
+
+        String expTitle = "FAQ";
+        String actualTitle = payRentPage.faqText();
+        mbReporter.verifyEqualsWithLogging(actualTitle, expTitle, "Verify Title on FAQ page", false, false, true);
+
     }
 
     public void deleteRecipientOnRentPay() throws IOException, InterruptedException {
@@ -278,7 +293,7 @@ public class PayRentHelper {
 
         if (payRentPage.isNewUser()) {
             Log.info("No Saved Recipient available so skipping this test case.. ");
-        }else{
+        } else {
             payRentPage.clickOnDeleteButton();
             Thread.sleep(2000);
             payRentPage.clickOnDelete();
@@ -287,13 +302,14 @@ public class PayRentHelper {
 
     {
 
-}
+    }
+
     public void clickOnPayRentOption() throws InterruptedException {
-        if(payRentPage.isPayRentVisibleOnHomeScreen()){
+        if (payRentPage.isPayRentVisibleOnHomeScreen()) {
             homePage.clickOnpayRent();
-        }else{
+        } else {
             homePage.clickAllServices();
-            if(!payRentPage.isPayRentVisibleOnHomeScreen()) {
+            if (!payRentPage.isPayRentVisibleOnHomeScreen()) {
                 Log.info("Swipe up to get Pay rent option on all services");
                 Screen.swipeUp(driver);
             }
@@ -310,29 +326,29 @@ public class PayRentHelper {
             Thread.sleep(2000);
             payRentPage.clickOnUPI();
 
-            if(permissionPage.isPermissionPopUpPresent()){
+            if (permissionPage.isPermissionPopUpPresent()) {
                 permissionPage.clickOnAllow();
             }
 
             String actualTitle = payRentPage.getTtileOnUPIPage();
             mbReporter.verifyEqualsWithLogging(actualTitle, "Send Money via UPI", "Verify upi page is opening via pay rent module .. ", false, false, false);
 
-        }else{
+        } else {
             Log.info("This is a old user flow on rent pay");
             payRentPage.clickOnSavedRecipient();
             payRentPage.clickOnUPI();
 
-            if(permissionPage.isPermissionPopUpPresent()){
+            if (permissionPage.isPermissionPopUpPresent()) {
                 permissionPage.clickOnAllow();
             }
 
             String rupeesText = payRentPage.getRupeesTextOnUPIPage();
-            mbReporter.verifyEqualsWithLogging(rupeesText,"Continue","Continue button on UPI page",false,false,false);
+            mbReporter.verifyEqualsWithLogging(rupeesText, "Continue", "Continue button on UPI page", false, false, false);
         }
     }
 
     public void deleteAllRecipient() throws InterruptedException {
-        while (payRentPage.isSavedRecipientAvailable()){
+        while (payRentPage.isSavedRecipientAvailable()) {
             Log.info("Saved recipient is available on rent pay .. ");
             payRentPage.clickOnDeleteButton();
             Thread.sleep(2000);
@@ -341,39 +357,40 @@ public class PayRentHelper {
         }
     }
 
-    public String  calculateConv(String amount){
-Integer amounts = Integer.parseInt(amount);
-        Log.info("Expected total amount = "+(int) (amounts + (amounts * 1.76/100)));
-        Integer amountCalculated = (int) (amounts + (amounts * 1.76/100));
+    public String calculateConv(String amount) {
+        Integer amounts = Integer.parseInt(amount);
+        Log.info("Expected total amount = " + (int) (amounts + (amounts * 1.76 / 100)));
+        Integer amountCalculated = (int) (amounts + (amounts * 1.76 / 100));
 
-         excpectedAmount = String.valueOf(amountCalculated);;
+        excpectedAmount = String.valueOf(amountCalculated);
+        ;
 
         return excpectedAmount;
     }
 
     public String actualConv() throws InterruptedException {
-    Log.info("Actual total amount calculation start");
-       String finalAmount = payRentPage.getFinalAmountOnCheckout();
-        Log.info("Final Amount text = "+finalAmount);
-     String doubleAmount = finalAmount.split("₹")[1];
-     Log.info("Double Amount ="+doubleAmount);
-     StringBuilder sb = new StringBuilder();
+        Log.info("Actual total amount calculation start");
+        String finalAmount = payRentPage.getFinalAmountOnCheckout();
+        Log.info("Final Amount text = " + finalAmount);
+        String doubleAmount = finalAmount.split("₹")[1];
+        Log.info("Double Amount =" + doubleAmount);
+        StringBuilder sb = new StringBuilder();
 
-     for(int i = 0; i< doubleAmount.length();i++){
-         if(doubleAmount.charAt(i)=='.'){
-             break;
-         }
-         if(doubleAmount.charAt(i)!=',') {
-             sb.append(doubleAmount.charAt(i));
-         }
+        for (int i = 0; i < doubleAmount.length(); i++) {
+            if (doubleAmount.charAt(i) == '.') {
+                break;
+            }
+            if (doubleAmount.charAt(i) != ',') {
+                sb.append(doubleAmount.charAt(i));
+            }
 
         }
-     Log.info("Actual Aamount = "+ sb.toString());
-    actualAmount = sb.toString();
-     return  actualAmount;
+        Log.info("Actual Aamount = " + sb.toString());
+        actualAmount = sb.toString();
+        return actualAmount;
     }
 
-    public void addNewProperties(String accountNumber,String ifscCode,String name,String amount, boolean isCouponCodeRequired) throws InterruptedException, IOException {
+    public void addNewProperties(String accountNumber, String ifscCode, String name, String amount, boolean isCouponCodeRequired) throws InterruptedException, IOException {
 
         payRentPage.enterBankAccountNumber(accountNumber);
         payRentPage.enterIfscCode(ifscCode);
@@ -396,7 +413,7 @@ Integer amounts = Integer.parseInt(amount);
         payRentPage.clickOnRentDetails();
         Thread.sleep(2000);
 
-        if(isCouponCodeRequired){
+        if (isCouponCodeRequired) {
             payRentPage.clickOnApplyCouponbutton();
             Thread.sleep(2000);
             payRentPage.clickOnFirstCoupon();
@@ -405,8 +422,7 @@ Integer amounts = Integer.parseInt(amount);
 
         Thread.sleep(2000);
 
-        if(securityPinPage.isSecurityPinPageShown())
-        {
+        if (securityPinPage.isSecurityPinPageShown()) {
             securityPinPage.enterSecurityPin();
         }
         Thread.sleep(4000);
@@ -417,11 +433,11 @@ Integer amounts = Integer.parseInt(amount);
         payRentPage.pressBackFromTransaction();
         payRentPage.pressBackFromTransaction();
 
-        if(!payRentPage.isBckButtonAvailableOnPitchScreen()){
+        if (!payRentPage.isBckButtonAvailableOnPitchScreen()) {
             payRentPage.pressBackButtonFromRecipientPage();
         }
         payRentPage.pressBackFromPitchScreen();
     }
-    }
+}
 
 
