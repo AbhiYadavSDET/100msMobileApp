@@ -218,6 +218,12 @@ public class FixedDepositHelper {
 
         fixedDepositPage.clickOnEditOnNomineePrefiledpage();
 
+        fixedDepositPage.ctaphoneno();
+        fixedDepositPage.enterctaphoneno("7042338867777");
+        fixedDepositPage.setClickOutside();
+        fixedDepositPage.clickCtaConfirm();
+
+
     }
 
     public void fixedDepositSummary(String exptitleTenure,String exptitlePartnerBank,String exptitleInterestPA,String exptitleAnnualYield,String exptitleInterestPayout,String exptitleMaturityAmount,String exptitleTotalGains,String exptitlePrematureWatdrawal,String expttitleBankAccount,String exptitleKnowMoreforBank) throws InterruptedException, IOException {
@@ -307,6 +313,55 @@ public class FixedDepositHelper {
 
 
     }
+
+    public void personaldetailsEditErrorCase() throws InterruptedException, IOException {
+
+        fixedDepositPage.allServicesCTA();
+        fixedDepositPage.scrollToFixedDeposit();
+        fixedDepositPage.fixedDepositCTA();
+
+        //Click on Book button on Fd home screen
+        fixedDepositPage.bookCTA();
+
+        //Click on Book next page on amount screen
+        fixedDepositPage.ctaNext();
+
+        Element.waitForVisibility(driver, By.id("tv_deposit_amount"));
+        screen.swipeUpMore(driver);
+
+        //Click on Edit cta on summary screen
+        fixedDepositPage.ctaEdit();
+
+        //Click on married field from form
+        fixedDepositPage.ctaMarried();
+
+        //Click on father's name field on  profile form page
+        fixedDepositPage.ctafathername();
+
+        //Enter fathers name field on  profile form page
+        fixedDepositPage.enterFatherNameErrorCase("Ra");
+
+        //Click on Educational field on  profile form page
+        fixedDepositPage.ctaEducationQualification();
+
+        //Select from dropdown  field on  profile form page for educationfield
+        fixedDepositPage.dropdownPostGraduate();
+
+        // For outer click on form page after filling the form
+        fixedDepositPage.ctaMarried();
+
+        //Click on Occupation field on  profile form page
+        fixedDepositPage.ctaDropdownOccupationType();
+
+        //Select Occupation field on  profile form page
+        fixedDepositPage.ctaDropdownOccupationTypeSelect();
+
+        // Click on  proceed page
+        fixedDepositPage.ctaProceed();
+
+
+    }
+
 
 
 

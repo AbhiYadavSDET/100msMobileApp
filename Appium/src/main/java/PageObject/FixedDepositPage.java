@@ -161,6 +161,15 @@ public class FixedDepositPage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Gains']")
     private AndroidElement text_Gains;
 
+    @AndroidFindBy(xpath = "(//android.widget.LinearLayout/android.widget.FrameLayout/android.widget.EditText)[3]")
+    private AndroidElement enter_phone_no;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[contains(@text, 'Secure')]")
+    private AndroidElement clickOutside;
+
+    @AndroidFindBy(id="ctaConfirm")
+    private AndroidElement ctaConfirm;
+
     public FixedDepositPage(AndroidDriver driver) throws IOException {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -285,6 +294,9 @@ public class FixedDepositPage {
         Elements.enterToElement(driver, enter_fathername, fathername, "Enter Father Name");
     }
 
+    public void enterFatherNameErrorCase(String fathername) throws InterruptedException {
+        Elements.enterToElement(driver, enter_fathername, fathername, "Enter Father Name");
+    }
     public void ctaDropdownOccupationType() throws InterruptedException{
         Elements.selectElement(driver,ctaDropdownOccupationtype,"Occupation TYpe");
     }
@@ -416,6 +428,21 @@ public class FixedDepositPage {
         Elements.selectElement(driver,ctaEditNomineeprefilledPage,"Edit click");
     }
 
+
+    public void ctaphoneno() throws InterruptedException{
+        Elements.selectElement(driver,enter_phone_no,"select phone no");
+    }
+    public void enterctaphoneno(String phoneno) throws InterruptedException {
+        Elements.enterToElement(driver, enter_phone_no, phoneno, "Enter Phone no");
+    }
+
+    public void setClickOutside() throws InterruptedException{
+        Elements.selectElement(driver,clickOutside,"Click outside");
+    }
+
+    public void clickCtaConfirm() throws InterruptedException{
+        Elements.selectElement(driver,ctaConfirm,"Click Confirm cta");
+    }
 }
 
 
