@@ -12,7 +12,7 @@ import java.io.IOException;
 public class PayRentTest extends TestBase {
 
     @Test(groups = {"payRentFlow", "payRentOldUserFlow", "regression"}, priority = 0, description = "Verify Add new property on pay rent for Existing user")
-    public void Test_PayRent_Add_New_Property() throws InterruptedException, IOException {
+    public void Test_PayRent_Add_New_Property_Old_User() throws InterruptedException, IOException {
 
         Log.info("======= START : Pay rent - Add new property flow for old User =======");
 
