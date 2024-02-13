@@ -253,6 +253,8 @@ public class FixedDepositHelper {
 
         //Click on Book next page on amount screen
         fixedDepositPage.ctaNext();
+        fixedDepositPage.clickPartnerBank();
+        fixedDepositPage.clickontenuremonthfromList();
 
         String titleTenure = fixedDepositPage.getCTATenure();
         String titlePartnerBank = fixedDepositPage.getPartnerBank();
@@ -260,7 +262,7 @@ public class FixedDepositHelper {
         String titleAnnualYield = fixedDepositPage.getCTAAnnualYield();
         String titleInterestPayout = fixedDepositPage.getInterestPayout();
         String titleMaturityAmount = fixedDepositPage.getMaturityAmount();
-        String titleTotalGains = fixedDepositPage.getPartnerBank();
+        String titleTotalGains = fixedDepositPage.getTotalGains();
         String titlePrematureWatdrawal = fixedDepositPage.getPrematurewithdrawals();
 
         screen.swipeUpMore(driver);
@@ -298,7 +300,7 @@ public class FixedDepositHelper {
         fixedDepositPage.scrollToFixedDeposit();
         fixedDepositPage.fixedDepositCTA();
 
-        //Click on ongoing history history
+        //Click on ongoing history
         fixedDepositPage.clickViewInvestmentActivity();
 
         String titleInvestedAmount = fixedDepositPage.getInvestedamount();
@@ -316,12 +318,18 @@ public class FixedDepositHelper {
         mbReporter.verifyEqualsWithLogging(titlematurityAmount, exptitlematurityAmount, "Maturity Amount Title", false, false, true);
         mbReporter.verifyEqualsWithLogging(titleGains, exptitleGains, "Title Gain", false, false, true);
 
+        //Click on first history
+        fixedDepositPage.clickOnOngoingHistoryFirstValue();
+        fixedDepositPage.clickOnbackCTAOnmhistory();
+
         //Click on past history
         fixedDepositPage.clickOnPAST();
         mbReporter.verifyEqualsWithLogging(titleInvestedAmount, exptitleInvestedAmount, "Title Invested Amount ", false, false, true);
 
         //Click on payment history
         fixedDepositPage.clickOnPaymentHistory();
+        screen.swipeUpMore(driver);
+        fixedDepositPage.getInvestmenttextOnhistory();
 
 
     }
@@ -371,10 +379,34 @@ public class FixedDepositHelper {
         // Click on  proceed page
         fixedDepositPage.ctaProceed();
 
-
     }
 
+    public void customTenureFilter() throws InterruptedException, IOException {
 
+        fixedDepositPage.allServicesCTA();
+        fixedDepositPage.scrollToFixedDeposit();
+        fixedDepositPage.fixedDepositCTA();
+
+        // Click on  Choose Custom filter
+        fixedDepositPage.clickOnChooseCustomTenure();
+
+        // Click on  tenure from the filter
+        fixedDepositPage.clickotenureyearfromTop();
+
+        // Click on  radio button
+        fixedDepositPage.clickonRadiobutton();
+
+        // Click on  tenure filter from the list
+        fixedDepositPage.clickonTenureOnFilterPage();
+
+        // Click on  tenure filter from the list
+        fixedDepositPage.clickonInterestpa();
+
+        // Click on  month filter from the list
+        fixedDepositPage.clickontenuremonthfromList();
+
+
+    }
 
 
 }

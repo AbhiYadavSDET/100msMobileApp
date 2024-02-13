@@ -11,7 +11,7 @@ import java.io.IOException;
 public class Test_FixedDeposit extends TestBase {
 
 
-    @Test(groups = {"FixedDeposit", "sanity", "regression"}, priority = 1, description = "Verify Existing User Fixed deposit Home Page")
+    @Test(groups = {"FixedDeposit", "sanity", "regression"}, priority = 0, description = "Verify Existing User Fixed deposit Home Page")
     public void Test01_existing_User_Dashboard() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
@@ -38,7 +38,7 @@ public class Test_FixedDeposit extends TestBase {
 
     }
 
-    @Test(groups = {"FixedDeposit", "sanity", "regression"}, priority = 1, description = "Verify Edit profile")
+    @Test(groups = {"FixedDeposit", "sanity", "regression"}, priority = 0, description = "Verify Edit profile")
     public void Test03_edit_profile() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
@@ -76,7 +76,6 @@ public class Test_FixedDeposit extends TestBase {
 
     }
 
-
     @Test(groups = {"FixedDeposit", "sanity", "regression"}, priority = 0, description = "Verify History")
     public void Test06_fd_history() throws IOException, InterruptedException {
 
@@ -90,14 +89,26 @@ public class Test_FixedDeposit extends TestBase {
 
     }
 
-    @Test(groups = {"FixedDeposit", "sanity", "regression"}, priority = 1, description = "Verify Edit profile error case")
-    public void Test03_edit_profile_errorcase() throws IOException, InterruptedException {
+    @Test(groups = {"FixedDeposit", "sanity", "regression"}, priority = 0, description = "Verify Edit profile error case")
+    public void Test07_edit_profile_errorcase() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
         loginHelp.quickLoginViaOtp("7042338867", "547372");
         FixedDepositHelper fixedDepositHelper = new FixedDepositHelper(getAndroidDriver());
         // Execute the test
         fixedDepositHelper.personaldetailsEditErrorCase();
+        Log.info("======= Fixed Deposit test =======");
+
+    }
+
+    @Test(groups = {"FixedDeposit", "sanity", "regression"}, priority = 0, description = "Verify Custom filter")
+    public void Test08_custom_filter() throws IOException, InterruptedException {
+
+        LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
+        loginHelp.quickLoginViaOtp("7042338867", "547372");
+        FixedDepositHelper fixedDepositHelper = new FixedDepositHelper(getAndroidDriver());
+        // Execute the test
+        fixedDepositHelper.customTenureFilter();
         Log.info("======= Fixed Deposit test =======");
 
     }

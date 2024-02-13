@@ -101,6 +101,9 @@ public class FixedDepositPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Bank Account']/../android.view.ViewGroup/android.widget.TextView")
     private AndroidElement ctaBankAccountno;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Partner Bank/NBFC']/../android.view.ViewGroup/android.widget.TextView")
+    private AndroidElement text_partner;
+
     @AndroidFindBy(id="tv_name")
     private AndroidElement clickEditNomineeFirstField;
 
@@ -180,12 +183,30 @@ public class FixedDepositPage {
 
     @AndroidFindBy(id="ctaConfirm")
     private AndroidElement ctaConfirm;
+    //
+    @AndroidFindBy(id="tv_title")
+    private AndroidElement tenuremonth_top;
+
+    @AndroidFindBy(id="switch_auto_pay")
+    private AndroidElement radio_button_srcitizen;
+
+    @AndroidFindBy(id="tvInterest")
+    private AndroidElement click_interest_pa;
+
+    @AndroidFindBy(id="tv_key")
+    private AndroidElement tenure_filter_list;
 
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Help & Support']")
     private AndroidElement helpsupporttitle;
 
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'What are fixed deposits?']")
     private AndroidElement faqfirstitems;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Investment']")
+    private AndroidElement text_investment;
+
+    @AndroidFindBy(id="left_container")
+    private AndroidElement click_back_cta_history;
 
     public FixedDepositPage(AndroidDriver driver) throws IOException {
         this.driver = driver;
@@ -213,7 +234,7 @@ public class FixedDepositPage {
     }
 
     public String clickonfirstfaq() throws InterruptedException {
-        return Elements.getText(driver,faqfirstitems, "First FAQ");
+        return Elements.getText(driver,faqfirstitems, "FAQ first items");
     }
 
     public String getCTAInterest() throws InterruptedException {
@@ -234,6 +255,10 @@ public class FixedDepositPage {
 
     public String getCTAChooseCustomTenure() throws InterruptedException {
         return Elements.getText(driver,ctaChooseCustomTenure, "Choose Custom Tenure");
+    }
+
+    public void clickOnChooseCustomTenure() throws InterruptedException{
+        Elements.selectElement(driver,ctaChooseCustomTenure,"Click on Custom Tenure");
     }
 
     public String getCTASeniorCitizen() throws InterruptedException {
@@ -267,6 +292,26 @@ public class FixedDepositPage {
 
     public void clickonContactUs() throws InterruptedException{
         Elements.selectElement(driver,ctaContactUs,"Click on contact us ");
+    }
+
+    public void clickotenureyearfromTop() throws InterruptedException{
+        Elements.selectElement(driver,tenuremonth_top,"Click on tenure month from top ");
+    }
+
+    public void clickonRadiobutton() throws InterruptedException{
+        Elements.selectElement(driver,radio_button_srcitizen,"Click on radio button from senior citizen ");
+    }
+
+    public void clickonTenureOnFilterPage() throws InterruptedException{
+        Elements.selectElement(driver,titleTenure,"Click on Tenure ");
+    }
+
+    public void clickonInterestpa() throws InterruptedException{
+        Elements.selectElement(driver,click_interest_pa,"Click on interest pa ");
+    }
+
+    public void clickontenuremonthfromList() throws InterruptedException{
+        Elements.selectElement(driver,tenure_filter_list,"Click on first tenure from filter ");
     }
 
     public String getHeaderTextHelp() throws InterruptedException {
@@ -351,6 +396,10 @@ public class FixedDepositPage {
         Elements.selectElement(driver,clickOnHdfcBank,"Select Bank Account HDFC");
     }
 
+    public void clickPartnerBank() throws InterruptedException{
+        Elements.selectElement(driver,text_partner,"click partner from list");
+    }
+
     public void clickEditNomineeFirstField() throws InterruptedException{
         Elements.selectElement(driver,clickEditNomineeFirstField,"Click on the first Nominee from the nominee list");
     }
@@ -390,7 +439,7 @@ public class FixedDepositPage {
         return   Elements.getText(driver,ctaPartnerBank,"Partner Bank");
 
     }
-//fds
+
     public String getInterestPA() throws InterruptedException{
         return Elements.getText(driver,ctaInterestPA,"Interest PA");
 
@@ -426,8 +475,6 @@ public class FixedDepositPage {
         Elements.selectElement(driver,CTAViewInvestmentActivity,"View Invested Activity ");
     }
 
-
-
     public void clickOngoing() throws InterruptedException{
         Elements.selectElement(driver,CTAOngoing,"on going");
     }
@@ -448,6 +495,14 @@ public class FixedDepositPage {
     public String getInvestedamount() throws InterruptedException{
         return Elements.getText(driver,text_Investedamount,"Invested amount");
 
+    }
+
+    public void clickOnOngoingHistoryFirstValue() throws InterruptedException{
+        Elements.selectElement(driver,text_Investedamount,"click on first history from ongoing");
+    }
+
+    public void clickOnbackCTAOnmhistory() throws InterruptedException{
+        Elements.selectElement(driver,click_back_cta_history,"click on Back < CTA");
     }
 
     public String getMaturesOn() throws InterruptedException{
@@ -481,6 +536,11 @@ public class FixedDepositPage {
 
     public void clickCtaConfirm() throws InterruptedException{
         Elements.selectElement(driver,ctaConfirm,"Click Confirm cta");
+    }
+
+
+    public String getInvestmenttextOnhistory() throws InterruptedException {
+        return Elements.getText(driver,text_investment, "text Investment");
     }
 }
 
