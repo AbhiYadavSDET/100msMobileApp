@@ -318,6 +318,10 @@ public class FixedDepositHelper {
         mbReporter.verifyEqualsWithLogging(titlematurityAmount, exptitlematurityAmount, "Maturity Amount Title", false, false, true);
         mbReporter.verifyEqualsWithLogging(titleGains, exptitleGains, "Title Gain", false, false, true);
 
+        //Click on first history
+        fixedDepositPage.clickOnOngoingHistoryFirstValue();
+        fixedDepositPage.clickOnbackCTAOnmhistory();
+
         //Click on past history
         fixedDepositPage.clickOnPAST();
         mbReporter.verifyEqualsWithLogging(titleInvestedAmount, exptitleInvestedAmount, "Title Invested Amount ", false, false, true);
