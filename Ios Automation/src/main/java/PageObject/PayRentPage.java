@@ -16,7 +16,6 @@ public class PayRentPage {
     IOSDriver driver;
 
 
-
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeButton[3]")
     private IOSElement savedRecipient;
 
@@ -81,6 +80,9 @@ public class PayRentPage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[3]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton")
     private IOSElement couponCode;
 
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Remove\"]")
+    private IOSElement removeCoupon;
+
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Continue\"]")
     private IOSElement continueButtonOnLandlordPage;
 
@@ -93,7 +95,7 @@ public class PayRentPage {
     @iOSXCUITFindBy(xpath = "/XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]")
     private IOSElement backButtonFromTransaction;
 
-    @iOSXCUITFindBy(xpath ="//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]")
     private IOSElement backButtonFromPitchScreen;
 
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]")
@@ -104,97 +106,149 @@ public class PayRentPage {
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
-    public void clickOnSavedRecipient() { Elements.click(driver, savedRecipient, "Click on first saved recipient option");   }
-
-    public void clickOnFaq() { Elements.click(driver, faq, "Click on FAQ option");   }
-
-    public void clickOnContinueOnZip() { Elements.click(driver, continueOnZip, "Click on Continue on Zip");   }
-
-    public void clickOnUPI() { Elements.click(driver, continueOnUpi, "Click on UPI ");   }
-
-    public  String getRupeesTextOnUPIPage() throws InterruptedException {
-         return Elements.getText(driver, rupeesSymbolOnUPI, "Rupees symbol  on UPI screen");
+    public void clickOnSavedRecipient() {
+        Elements.click(driver, savedRecipient, "Click on first saved recipient option");
     }
 
-    public void clickOnDeleteButton() { Elements.click(driver, deleteButton, "Click on Delete button");   }
+    public void clickOnFaq() {
+        Elements.click(driver, faq, "Click on FAQ option");
+    }
 
-    public void clickOnDelete() { Elements.click(driver, delete, "Click on Delete ");   }
+    public void clickOnContinueOnZip() {
+        Elements.click(driver, continueOnZip, "Click on Continue on Zip");
+    }
 
-    public void clickOnAddNewProperty() { Elements.click(driver, addNewProperty, "Click on add new property button");   }
+    public void clickOnUPI() {
+        Elements.click(driver, continueOnUpi, "Click on UPI ");
+    }
 
-    public void clickOnBankAccountNumber() { Elements.click(driver, bankAccountNumber, "Click on Bank Account Number");   }
+    public String getRupeesTextOnUPIPage() throws InterruptedException {
+        return Elements.getText(driver, rupeesSymbolOnUPI, "Rupees symbol  on UPI screen");
+    }
+
+    public void clickOnDeleteButton() {
+        Elements.click(driver, deleteButton, "Click on Delete button");
+    }
+
+    public void clickOnDelete() {
+        Elements.click(driver, delete, "Click on Delete ");
+    }
+
+    public void clickOnAddNewProperty() {
+        Elements.click(driver, addNewProperty, "Click on add new property button");
+    }
+
+    public void clickOnBankAccountNumber() {
+        Elements.click(driver, bankAccountNumber, "Click on Bank Account Number");
+    }
 
     public void enterBankAccountNumber(String accountNumber) {
-        Elements.enterToElement(driver, bankAccountNumber, accountNumber,"Entered Bank account number = "+accountNumber);
+        Elements.enterToElement(driver, bankAccountNumber, accountNumber, "Entered Bank account number = " + accountNumber);
     }
 
-    public void clickOnIfscCode() { Elements.click(driver, ifscCode, "Click on Ifsc Code");   }
+    public void clickOnIfscCode() {
+        Elements.click(driver, ifscCode, "Click on Ifsc Code");
+    }
 
     public void enterIfscCode(String code) {
-        Elements.enterToElement(driver, ifscCode, code,"Entered IFSC code number = "+code);
+        Elements.enterToElement(driver, ifscCode, code, "Entered IFSC code number = " + code);
     }
 
-    public void clickOnAcccountDetails() { Elements.click(driver, accountDetailsText, "Click on Account details");   }
+    public void clickOnAcccountDetails() {
+        Elements.click(driver, accountDetailsText, "Click on Account details");
+    }
 
-    public void clickOnContinuebuttonOnAccountpage() { Elements.click(driver, continueButtonOnAccountPage, "Click on continue button");   }
+    public void clickOnContinuebuttonOnAccountpage() {
+        Elements.click(driver, continueButtonOnAccountPage, "Click on continue button");
+    }
 
     public void enterLandLordName(String landLord) {
-        Elements.enterToElement(driver, landlordName, landLord,"Entered landLord name = "+landLord);
+        Elements.enterToElement(driver, landlordName, landLord, "Entered landLord name = " + landLord);
     }
 
-    public void clickOnRentAmount() { Elements.click(driver, rentAmount, "Click on Rent amount");   }
+    public void clickOnRentAmount() {
+        Elements.click(driver, rentAmount, "Click on Rent amount");
+    }
 
     public void enterRentAmount(String amount) {
-        Elements.enterToElement(driver, rentAmount, amount,"Entered rent amount = "+amount);
+        Elements.enterToElement(driver, rentAmount, amount, "Entered rent amount = " + amount);
     }
 
-    public void clickOnLandLordPanNumber() { Elements.click(driver, landLordPanNumber, "Click on landlord pan ");   }
+    public void clickOnLandLordPanNumber() {
+        Elements.click(driver, landLordPanNumber, "Click on landlord pan ");
+    }
 
-    public void clickOnRentDetails() { Elements.click(driver, rentDetails, "Click on rent details ");   }
+    public void clickOnRentDetails() {
+        Elements.click(driver, rentDetails, "Click on rent details ");
+    }
 
     public void enterLandLordPanNumber(String panNumber) {
-        Elements.enterToElement(driver, landLordPanNumber, panNumber,"Entered landlord pan number amount = "+panNumber);
+        Elements.enterToElement(driver, landLordPanNumber, panNumber, "Entered landlord pan number amount = " + panNumber);
     }
 
-    public void clickOnApplyCouponbutton() { Elements.click(driver, applyCouponbutton, "Click on apply coupon button");   }
+    public void clickOnApplyCouponbutton() {
+        Elements.click(driver, applyCouponbutton, "Click on apply coupon button");
+    }
 
-    public void clickOnFirstCoupon() { Elements.click(driver, couponCode, "Click on first coupon code available");   }
+    public void clickOnFirstCoupon() {
+        Elements.click(driver, couponCode, "Click on first coupon code available");
+    }
 
-    public void clickOnContinueButtonOnLandlordPage() { Elements.click(driver, continueButtonOnLandlordPage, "Click on continue button");   }
+    public void clickOnContinueButtonOnLandlordPage() {
+        Elements.click(driver, continueButtonOnLandlordPage, "Click on continue button");
+    }
 
     public String getFinalAmountOnCheckout() throws InterruptedException {
         return Elements.getText(driver, finalAmount, "Final amount on checkout screen");
     }
-    public void pressBackFromTransaction() { Elements.click(driver, backButtonFromTransaction, "Click on back option on transaction page ");   }
 
-    public void pressBackFromPitchScreen() { Elements.click(driver, backButtonFromPitchScreen, "Click on back option on pitch screen");   }
-
-    public  void pressBackButtonFromRecipientPage(){
-        Elements.click(driver,backButtonOnRecipientPage,"Click on back button from recipient page");
+    public void pressBackFromTransaction() {
+        Elements.click(driver, backButtonFromTransaction, "Click on back option on transaction page ");
     }
 
-    public  boolean isNewUser() throws InterruptedException, IOException {
-
-        return Element.isElementPresent(driver, By.xpath("//XCUIElementTypeStaticText[@name=\"Continue with Zip/Cards\"]")) ;
+    public void pressBackFromPitchScreen() {
+        Elements.click(driver, backButtonFromPitchScreen, "Click on back option on pitch screen");
     }
+
+    public void pressBackButtonFromRecipientPage() {
+        Elements.click(driver, backButtonOnRecipientPage, "Click on back button from recipient page");
+    }
+
+    public boolean isNewUser() throws InterruptedException, IOException {
+
+        return Element.isElementPresent(driver, By.xpath("//XCUIElementTypeStaticText[@name=\"Continue with Zip/Cards\"]"));
+    }
+
     public boolean isSavedRecipientAvailable() throws InterruptedException {
         return Element.isElementPresent(driver, By.xpath("//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeButton[3]"));
     }
 
     public boolean isPayRentVisibleOnHomeScreen() throws InterruptedException {
-        return Element.isElementPresent(driver, By.xpath("//XCUIElementTypeStaticText[@name=\"Pay Rent\"]")) ;
+        return Element.isElementPresent(driver, By.xpath("//XCUIElementTypeStaticText[@name=\"Pay Rent\"]"));
     }
 
     public boolean isBckButtonAvailableOnPitchScreen() throws InterruptedException {
-        return Element.isElementPresent(driver, By.xpath("//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]")) ;
+        return Element.isElementPresent(driver, By.xpath("//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]"));
     }
 
     public boolean UPIScreenOpened() throws InterruptedException {
-        return Element.isElementPresent(driver, By.xpath("//XCUIElementTypeStaticText[@name=\"Send Money via UPI\"]")) ;
+        return Element.isElementPresent(driver, By.xpath("//XCUIElementTypeStaticText[@name=\"Send Money via UPI\"]"));
     }
 
     public boolean isLandlordButtonAvailableOnScreen() throws InterruptedException {
-        return Element.isElementPresent(driver, By.xpath("//XCUIElementTypeTextField[@name=\"Landlord PAN\"]")) ;
+        return Element.isElementPresent(driver, By.xpath("//XCUIElementTypeTextField[@name=\"Landlord PAN\"]"));
+    }
+
+    public String faqText() throws InterruptedException {
+        return Elements.getText(driver, faq, "FAQ text on Faq screen");
+    }
+
+    public String landLordPanText() throws InterruptedException {
+        return Elements.getText(driver, landLordPanNumber, "lanlord pan  text on amount screen");
+    }
+
+    public String removeCouponText() throws InterruptedException {
+        return Elements.getText(driver, removeCoupon, "remove coupon  amount screen");
     }
 
     public IOSElement getFaq() {
@@ -216,6 +270,7 @@ public class PayRentPage {
     public IOSElement getContinueOnUpi() {
         return continueOnUpi;
     }
+
     public IOSElement getSendMoneyToUPIText() {
         return sendMoneyToUPIText;
     }
@@ -297,6 +352,7 @@ public class PayRentPage {
     public IOSElement getClickAnywhere() {
         return clickAnywhere;
     }
+
     public IOSElement getBackButtonFromTransaction() {
         return backButtonFromTransaction;
     }
