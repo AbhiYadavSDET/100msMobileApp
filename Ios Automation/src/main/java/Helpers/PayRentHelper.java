@@ -192,7 +192,7 @@ public class PayRentHelper {
         if (payRentPage.isLandlordButtonAvailableOnScreen()) {
             String expTitle = "Landlord PAN";
 
-            String actualTitle = payRentPage.landLordPanText().toString();
+            String actualTitle = payRentPage.landLordPanText();
             mbReporter.verifyEqualsWithLogging(actualTitle, expTitle, "Verify Title", false, false, true);
 
             payRentPage.clickOnLandLordPanNumber();
@@ -300,10 +300,6 @@ public class PayRentHelper {
         }
     }
 
-    {
-
-    }
-
     public void clickOnPayRentOption() throws InterruptedException {
         if (payRentPage.isPayRentVisibleOnHomeScreen()) {
             homePage.clickOnpayRent();
@@ -363,7 +359,6 @@ public class PayRentHelper {
         Integer amountCalculated = (int) (amounts + (amounts * 1.76 / 100));
 
         excpectedAmount = String.valueOf(amountCalculated);
-        ;
 
         return excpectedAmount;
     }
@@ -390,54 +385,6 @@ public class PayRentHelper {
         return actualAmount;
     }
 
-    public void addNewProperties(String accountNumber, String ifscCode, String name, String amount, boolean isCouponCodeRequired) throws InterruptedException, IOException {
-
-        payRentPage.enterBankAccountNumber(accountNumber);
-        payRentPage.enterIfscCode(ifscCode);
-        payRentPage.clickOnAcccountDetails();
-
-        payRentPage.clickOnContinuebuttonOnAccountpage();
-
-        payRentPage.enterLandLordName(name);
-
-        payRentPage.enterRentAmount(amount);
-
-        if (payRentPage.isLandlordButtonAvailableOnScreen()) {
-            payRentPage.clickOnLandLordPanNumber();
-            payRentPage.enterLandLordPanNumber("DSOPP3157C");
-        } else if (Integer.parseInt(amount) < 50000) {
-            Log.info("Pan card option is not available for this user because amount is less than 50000 Rs. ");
-        } else {
-            Log.info("Pan card option is not applicable for this user ");
-        }
-        payRentPage.clickOnRentDetails();
-        Thread.sleep(2000);
-
-        if (isCouponCodeRequired) {
-            payRentPage.clickOnApplyCouponbutton();
-            Thread.sleep(2000);
-            payRentPage.clickOnFirstCoupon();
-        }
-        payRentPage.clickOnContinueButtonOnLandlordPage();
-
-        Thread.sleep(2000);
-
-        if (securityPinPage.isSecurityPinPageShown()) {
-            securityPinPage.enterSecurityPin();
-        }
-        Thread.sleep(4000);
-        calculateConv(amount);
-        actualConv();
-        screen.tapOutsideBottomSheetByCoordinates(driver);
-        Thread.sleep(3000);
-        payRentPage.pressBackFromTransaction();
-        payRentPage.pressBackFromTransaction();
-
-        if (!payRentPage.isBckButtonAvailableOnPitchScreen()) {
-            payRentPage.pressBackButtonFromRecipientPage();
-        }
-        payRentPage.pressBackFromPitchScreen();
-    }
 }
 
 
