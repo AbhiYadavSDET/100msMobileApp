@@ -35,7 +35,7 @@ public class FixedDepositHelper {
      * This method is to Test standalone Account aggregator flow from Wealth dashboard
      */
 
-    public void existingUserHomePage(String exptitleViewInvestmentSummary,String exptitleTopPlans,String exptitleInterest,String exptitleTenure,String exptitleBook,String exptitleChooseCustomtenure,String exptitleFemale,String exptitleSeniorCitizen,String exptitleMaximizeYourFDReturn,String expttitleFAQ,String expctaContactUs) throws InterruptedException, IOException {
+    public void existingUserHomePage(String exptitleViewInvestmentSummary,String exptitleTopPlans,String exptitleInterest,String exptitleTenure,String exptitleBook,String exptitleChooseCustomtenure,String exptitleFemale,String exptitleSeniorCitizen,String exptitleMaximizeYourFDReturn,String expttitleFAQ,String expctaContactUs,String exphelpsupporttitle) throws InterruptedException, IOException {
 
         fixedDepositPage.allServicesCTA();
         fixedDepositPage.scrollToFixedDeposit();
@@ -83,13 +83,18 @@ public class FixedDepositHelper {
         String titleFAQ = fixedDepositPage.getCTAFAQ();
         Log.info("FAQ :" + titleFAQ);
         mbReporter.verifyEqualsWithLogging(titleFAQ, expttitleFAQ, "FAQ", false, false, true);
-
+        fixedDepositPage.clickonfirstfaq();
 
         fixedDepositPage.scrolltoNeedHelp();
         String ctaContactUs = fixedDepositPage.getCTAContactUs();
         Log.info("Contact us :" + ctaContactUs);
         mbReporter.verifyEqualsWithLogging(ctaContactUs, expctaContactUs, "Contact Us", false, false, true);
-        screen.swipeUpMore(driver);
+        fixedDepositPage.clickonContactUs();
+
+        String helpsupporttitle = fixedDepositPage.getHeaderTextHelp();
+        Log.info("help support title :" + helpsupporttitle);
+        mbReporter.verifyEqualsWithLogging(helpsupporttitle, exphelpsupporttitle, "Help Support title", false, false, true);
+
 
     }
 
@@ -170,7 +175,14 @@ public class FixedDepositHelper {
 
         // Click on  proceed page
         fixedDepositPage.ctaProceed();
-
+        Thread.sleep(2000);
+        fixedDepositPage.clickBankAccount();
+        Thread.sleep(2000);
+        fixedDepositPage.clickBankAccountHDFC();
+        Thread.sleep(2000);
+        fixedDepositPage.ctaProceed();
+        fixedDepositPage.ctaProceedtoPay();
+        fixedDepositPage.ctaProceed();
 
     }
 
