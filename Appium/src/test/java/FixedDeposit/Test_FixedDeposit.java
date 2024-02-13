@@ -11,7 +11,7 @@ import java.io.IOException;
 public class Test_FixedDeposit extends TestBase {
 
 
-    @Test(groups = {"FixedDeposit", "sanity", "regression"}, priority = 0, description = "Verify Existing User Fixed deposit Home Page")
+    @Test(groups = {"FixedDeposit", "sanity", "regression"}, priority = 1, description = "Verify Existing User Fixed deposit Home Page")
     public void Test01_existing_User_Dashboard() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
@@ -19,7 +19,8 @@ public class Test_FixedDeposit extends TestBase {
         FixedDepositHelper fixedDepositHelper = new FixedDepositHelper(getAndroidDriver());
         // Execute the test
         fixedDepositHelper.existingUserHomePage("View Investment Activity","TOP PLANS","Interest","Tenure","Book","Choose Custom Tenure",
-                "Females  upto 0.1% more ","Sr. Citizen  upto 0.5% more","Maximize Your FD Returns","Frequently Asked Questions","Contact us");
+                "Females  upto 0.1% more ","Sr. Citizen  upto 0.5% more","Maximize Your FD Returns","Frequently Asked Questions","Contact us","Help & Support");
+
         Log.info("======= Fixed Deposit test =======");
 
     }
@@ -37,7 +38,7 @@ public class Test_FixedDeposit extends TestBase {
 
     }
 
-    @Test(groups = {"FixedDeposit", "sanity", "regression"}, priority = 0, description = "Verify Edit profile")
+    @Test(groups = {"FixedDeposit", "sanity", "regression"}, priority = 1, description = "Verify Edit profile")
     public void Test03_edit_profile() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
@@ -89,7 +90,7 @@ public class Test_FixedDeposit extends TestBase {
 
     }
 
-    @Test(groups = {"FixedDeposit", "sanity", "regression"}, priority = 0, description = "Verify Edit profile error case")
+    @Test(groups = {"FixedDeposit", "sanity", "regression"}, priority = 1, description = "Verify Edit profile error case")
     public void Test03_edit_profile_errorcase() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());

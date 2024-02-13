@@ -98,6 +98,9 @@ public class FixedDepositPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Nominee']/../android.view.ViewGroup/android.widget.TextView")
     private AndroidElement ctaNomineeName;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Bank Account']/../android.view.ViewGroup/android.widget.TextView")
+    private AndroidElement ctaBankAccountno;
+
     @AndroidFindBy(id="tv_name")
     private AndroidElement clickEditNomineeFirstField;
 
@@ -139,6 +142,10 @@ public class FixedDepositPage {
     @AndroidFindBy(id="tv_hint_know_more")
     private AndroidElement ctaKnowmoreforBankAccount;
 
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'HDFC BANK']")
+    private AndroidElement clickOnHdfcBank;
+
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'View Investment Activity']")
     private AndroidElement CTAViewInvestmentActivity;
 
@@ -167,8 +174,18 @@ public class FixedDepositPage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[contains(@text, 'Secure')]")
     private AndroidElement clickOutside;
 
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[contains(@text, 'Proceed')]")
+    private AndroidElement ctaProceedtoPay;
+
     @AndroidFindBy(id="ctaConfirm")
     private AndroidElement ctaConfirm;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Help & Support']")
+    private AndroidElement helpsupporttitle;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'What are fixed deposits?']")
+    private AndroidElement faqfirstitems;
 
     public FixedDepositPage(AndroidDriver driver) throws IOException {
         this.driver = driver;
@@ -195,6 +212,9 @@ public class FixedDepositPage {
         return Elements.getText(driver,titleTopPlans, "Top plans Title");
     }
 
+    public String clickonfirstfaq() throws InterruptedException {
+        return Elements.getText(driver,faqfirstitems, "First FAQ");
+    }
 
     public String getCTAInterest() throws InterruptedException {
         return Elements.getText(driver,titleInterest, "Title of Interest");
@@ -245,10 +265,17 @@ public class FixedDepositPage {
         return Elements.scrollToElement(driver, ctaContactUs);
     }
 
+    public void clickonContactUs() throws InterruptedException{
+        Elements.selectElement(driver,ctaContactUs,"Click on contact us ");
+    }
 
+    public String getHeaderTextHelp() throws InterruptedException {
+        return Elements.getText(driver,helpsupporttitle, "Help & Support");
+    }
     public String getCTAInterestRate() throws InterruptedException {
         return Elements.getText(driver,ctaInterestRate, "CTA Interest Rate");
     }
+
 
     public String getCTAAnnualYield() throws InterruptedException {
         return Elements.getText(driver,ctaAnnualYield, "CTA Annual Yield");
@@ -308,8 +335,20 @@ public class FixedDepositPage {
         Elements.selectElement(driver,ctaProceed,"Select Proceed");
     }
 
+    public void ctaProceedtoPay() throws InterruptedException{
+        Elements.selectElement(driver,ctaProceedtoPay,"Select Proceed to pay");
+    }
+
     public void ctaNomineeName() throws InterruptedException{
         Elements.selectElement(driver,ctaNomineeName,"Select Nominee name");
+    }
+
+    public void clickBankAccount() throws InterruptedException{
+        Elements.selectElement(driver,ctaBankAccountno,"Select Bank Account");
+    }
+
+    public void clickBankAccountHDFC() throws InterruptedException{
+        Elements.selectElement(driver,clickOnHdfcBank,"Select Bank Account HDFC");
     }
 
     public void clickEditNomineeFirstField() throws InterruptedException{
