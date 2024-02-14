@@ -41,6 +41,8 @@ public class LoginPage {
 
     @AndroidFindBy(xpath = "//*[@text='Login/Signup']")
     private AndroidElement loginSignupButton;
+    @AndroidFindBy(xpath = "//*[@text='Login']")
+    private AndroidElement loginButton;
 
     @AndroidFindBy(id = "et_otp")
     private AndroidElement textbox_enter_otp;
@@ -51,17 +53,20 @@ public class LoginPage {
     @AndroidFindBy(id = "retry_btn")
     private AndroidElement cta_resend_otp;
 
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Logout']")
+    private AndroidElement text_logout;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Accounts']")
+    private AndroidElement text_account;
 
     public LoginPage(AndroidDriver driver) {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
-
     public void clickGetstarted() {
         Elements.selectElement(driver, getStartedButton, "Click Get Started button");
     }
-
 
     public void clickNoneOfAbove() {
         Elements.selectElement(driver, noneOfAboveButton, "Click None of the Above button");
@@ -74,6 +79,10 @@ public class LoginPage {
 
     public void clickSendOtpbutton() {
         Elements.selectElement(driver, sendOtpButton, "Click Send OTP button");
+    }
+
+    public String getTextSendOtpbutton() throws InterruptedException {
+        return Elements.getText(driver, sendOtpButton, "Get Text Continue");
     }
 
     public void clickHistoryTab() {
@@ -97,6 +106,9 @@ public class LoginPage {
         Elements.selectElement(driver, loginSignupButton, "Click on Login/Signup button");
     }
 
+    public String gettextLoginSignup() throws InterruptedException {
+        return Elements.getText(driver, loginSignupButton, "Get Text Login Signup");
+    }
     public void enterOtp(String otp) throws InterruptedException {
         if (otp.length() > 0) {
             Element.enterText(driver, textbox_enter_otp, otp, "Enter OTP");
@@ -107,5 +119,22 @@ public class LoginPage {
         Element.selectElement(driver, cta_submit_otp, "Submit OTP CTA");
     }
 
+
+    public boolean scrollToAccount() throws InterruptedException {
+        return Elements.scrollToElement(driver, text_account);
+    }
+    public void clickAccount() {
+        Elements.selectElement(driver, text_account, "Click Account");
+    }
+    public boolean scrollToLogout() throws InterruptedException {
+        return Elements.scrollToElement(driver, text_logout);
+    }
+    public void clickLogout() {
+        Elements.selectElement(driver, text_logout, "click logout");
+    }
+
+    public void clickLoginButton() {
+        Elements.selectElement(driver, loginButton, "click login");
+    }
 
 }

@@ -22,4 +22,16 @@ public class LoginTest extends TestBase {
 
     }
 
+
+    @Test(groups = {"logoutFlow"}, priority = 0, description = "Verify Logout Flow on android app")
+    public void Test_Logout_Flow() throws InterruptedException, IOException {
+
+        Log.info("======= START : Logout test =======");
+
+        LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
+        loginHelp.loginViaOtp("7042338867", "547372");
+        loginHelp.logout("Login/Signup","Continue");
+        Log.info("======= END : Logout test =======");
+
+    }
 }
