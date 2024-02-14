@@ -3,6 +3,7 @@ package Helpers;
 import PageObject.HomePage;
 import PageObject.LoginPage;
 import PageObject.PermissionPage;
+import PageObject.ProfilePage;
 import Utils.MBReporter;
 import org.openqa.selenium.By;
 import Utils.Element;
@@ -22,6 +23,7 @@ public class LoginHelper {
     MBReporter mbReporter;
     PermissionHelper permissionHelper;
     HomePage homePage;
+    ProfilePage profilePage;
     PermissionPage permissionPage;
 
 
@@ -159,6 +161,15 @@ public class LoginHelper {
         mbkCommonControlsHelper.handleHomePageLanding();
 
         element.waitForVisibility(driver, By.xpath("//*[@text='History']"));
+    }
+
+    public void logout() throws InterruptedException, IOException {
+
+        homePage.clickWalletBalanceDropDown();
+        loginPage.scrollToAccount();
+        loginPage.clickAccount();
+        loginPage.scrollToLogout();
+        loginPage.clickLogout();
     }
 
 }

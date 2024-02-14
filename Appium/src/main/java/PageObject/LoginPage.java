@@ -51,17 +51,20 @@ public class LoginPage {
     @AndroidFindBy(id = "retry_btn")
     private AndroidElement cta_resend_otp;
 
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Logout']")
+    private AndroidElement text_logout;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Accounts']")
+    private AndroidElement text_account;
 
     public LoginPage(AndroidDriver driver) {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
-
     public void clickGetstarted() {
         Elements.selectElement(driver, getStartedButton, "Click Get Started button");
     }
-
 
     public void clickNoneOfAbove() {
         Elements.selectElement(driver, noneOfAboveButton, "Click None of the Above button");
@@ -107,5 +110,18 @@ public class LoginPage {
         Element.selectElement(driver, cta_submit_otp, "Submit OTP CTA");
     }
 
+
+    public boolean scrollToAccount() throws InterruptedException {
+        return Elements.scrollToElement(driver, text_account);
+    }
+    public void clickAccount() {
+        Elements.selectElement(driver, text_account, "Click Account");
+    }
+    public boolean scrollToLogout() throws InterruptedException {
+        return Elements.scrollToElement(driver, text_logout);
+    }
+    public void clickLogout() {
+        Elements.selectElement(driver, text_logout, "click logout");
+    }
 
 }
