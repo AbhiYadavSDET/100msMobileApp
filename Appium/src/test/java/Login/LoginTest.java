@@ -30,7 +30,7 @@ public class LoginTest extends TestBase {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
         loginHelp.loginViaOtp("7042338867", "547372");
-        loginHelp.logout();
+        loginHelp.logout("Login/Signup","Continue");
         Log.info("======= END : Logout test =======");
 
     }

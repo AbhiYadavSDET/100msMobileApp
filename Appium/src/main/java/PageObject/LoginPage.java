@@ -41,6 +41,8 @@ public class LoginPage {
 
     @AndroidFindBy(xpath = "//*[@text='Login/Signup']")
     private AndroidElement loginSignupButton;
+    @AndroidFindBy(xpath = "//*[@text='Login']")
+    private AndroidElement loginButton;
 
     @AndroidFindBy(id = "et_otp")
     private AndroidElement textbox_enter_otp;
@@ -79,6 +81,10 @@ public class LoginPage {
         Elements.selectElement(driver, sendOtpButton, "Click Send OTP button");
     }
 
+    public String getTextSendOtpbutton() throws InterruptedException {
+        return Elements.getText(driver, sendOtpButton, "Get Text Continue");
+    }
+
     public void clickHistoryTab() {
         Elements.waitForElementToVisibleOnPage(driver, history, 15);
         Elements.selectElement(driver, history, "Click history tab");
@@ -100,6 +106,9 @@ public class LoginPage {
         Elements.selectElement(driver, loginSignupButton, "Click on Login/Signup button");
     }
 
+    public String gettextLoginSignup() throws InterruptedException {
+        return Elements.getText(driver, loginSignupButton, "Get Text Login Signup");
+    }
     public void enterOtp(String otp) throws InterruptedException {
         if (otp.length() > 0) {
             Element.enterText(driver, textbox_enter_otp, otp, "Enter OTP");
@@ -122,6 +131,10 @@ public class LoginPage {
     }
     public void clickLogout() {
         Elements.selectElement(driver, text_logout, "click logout");
+    }
+
+    public void clickLoginButton() {
+        Elements.selectElement(driver, loginButton, "click login");
     }
 
 }

@@ -1,5 +1,6 @@
 package Helpers;
 
+import Logger.Log;
 import PageObject.HomePage;
 import PageObject.LoginPage;
 import PageObject.PermissionPage;
@@ -163,13 +164,30 @@ public class LoginHelper {
         element.waitForVisibility(driver, By.xpath("//*[@text='History']"));
     }
 
-    public void logout() throws InterruptedException, IOException {
+    public void logout(String exptitleLoginSignup,String exptitleContinue) throws InterruptedException, IOException {
 
         homePage.clickWalletBalanceDropDown();
         loginPage.scrollToAccount();
         loginPage.clickAccount();
         loginPage.scrollToLogout();
         loginPage.clickLogout();
+
+        String titleLoginSignup = loginPage.gettextLoginSignup();
+
+        Log.info("Title Login Sign Up :" + titleLoginSignup);
+
+        mbReporter.verifyEqualsWithLogging(titleLoginSignup, exptitleLoginSignup, "Title Login Sign Up ", false, false, true);
+        loginPage.clickLoginSignup();
+        loginPage.clickLoginButton();
+
+        String titleContinue= loginPage.getTextSendOtpbutton();
+
+        Log.info("Title Continue button :" + titleContinue);
+
+        mbReporter.verifyEqualsWithLogging(titleContinue, exptitleContinue, "Title Continue ", false, false, true);
+
+
+
     }
 
 }
