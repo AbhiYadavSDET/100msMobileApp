@@ -84,7 +84,7 @@ public class PayRentHelper {
     }
 
     public void addNewPropertyNewUser(String accountNumber, String ifscCode, String name, String amount) throws IOException, InterruptedException {
-        if (!isNewUserTestStarted) {
+
             clickOnPayRentOption();
 
             if (!payRentPage.isNewUser()) {
@@ -118,7 +118,7 @@ public class PayRentHelper {
 
             if (securityPinPage.isSecurityPinPageShown()) {
                 securityPinPage.enterSecurityPin();
-            }
+
         }
     }
 
