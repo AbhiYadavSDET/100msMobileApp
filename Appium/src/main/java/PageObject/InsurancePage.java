@@ -1,5 +1,6 @@
 package PageObject;
 
+import Utils.Elements;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -15,118 +16,214 @@ public class InsurancePage {
     AndroidDriver driver;
 
 
-    @AndroidFindBy(id = "mkab_title")
-    public AndroidElement top_bar;
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'All Services']")
+    private AndroidElement allServices;
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Insurance']")
+    private AndroidElement insuranceCTA;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Home Insurance (Gas)']")
-    private AndroidElement image_gas_insurance;
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Group Insurance']")
+    private AndroidElement sub_heading_group_insurance;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Loss of Job']")
+    private AndroidElement text_LossofJob;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Retail Insurance']")
+    private AndroidElement sub_heading_retail_insurance;
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Personal Accident Insurance']")
+    private AndroidElement text_personalAccidentInsurance;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Wallet Protect']")
+    private AndroidElement text_walletProtect;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Health Insurance']")
+    private AndroidElement text_healthInsurance;
+
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'DocAssure']")
+    private AndroidElement text_docAssure;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Pay your existing insurance Premium']")
+    private AndroidElement text_payyourexistinginsurancePremium;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'My Policies']")
+    private AndroidElement heading_myPolices;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Select Sum Insured']")
+    private AndroidElement heading_selectSumIssured;
 
     @AndroidFindBy(id = "btnPrice")
-    private AndroidElement button_price;
-
-    @AndroidFindBy(id = "cta")
-    private AndroidElement cta_make_payment;
-
-    @AndroidFindBy(id = "txInsuranceSubHeading")
-    private AndroidElement fill_kyc_details_page_description;
-
-    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView[1]")
-    private AndroidElement fill_kyc_details_page_header;
-
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Personal Accident Insurance']")
-    private AndroidElement image_personal_accident_insurance;
-
-    @AndroidFindBy(xpath = "//android.widget.Button[@text = 'X20']")
-    private AndroidElement selective_button_price;
-
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Insured By']/following-sibling::android.widget.TextView")
-    private AndroidElement policy_insurer_name;
+    private AndroidElement picebutton_onDocInsurancePage;
 
     @AndroidFindBy(id = "i_agree")
-    private AndroidElement i_agree_terms;
+    private AndroidElement checkbox;
 
-    @AndroidFindBy(id = "amount_to_be_paid")
-    private AndroidElement amount_to_be_paid;
+    @AndroidFindBy(id = "text_payment_label")
+    private AndroidElement text_payable_amount;
 
-    @AndroidFindBy(xpath="//android.widget.TextView[@text='Personal Accident Insurance']")
-    private AndroidElement personal_accident_insurance;
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Your Risk Exposure']")
+    private AndroidElement text_your_risk_exposure;
 
-    @AndroidFindBy(xpath="//android.widget.TextView[@text='Personal Accident Insurance']/following::android.widget.TextView[@text='Personal Accident Insurance']")
-    private AndroidElement personal_accident_insurance_lower;
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Product Benefits']")
+    private AndroidElement text_product_benefits;
 
-    @AndroidFindBy(id = "mkab_icon_1")
-    private AndroidElement back_button;
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Market Value']")
+    private AndroidElement text_market_value;
 
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Partner Name']")
+    private AndroidElement text_partner_name;
 
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Start Date']")
+    private AndroidElement text_start_date;
 
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'End Date']")
+    private AndroidElement text_end_date;
 
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Amount to be paid']")
+    private AndroidElement text_amount_to_be_paid;
 
+    @AndroidFindBy(xpath = "//*/android.widget.Button[@text = 'Make payment']")
+    private AndroidElement cta_make_payment;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Coverage']")
+    private AndroidElement text_coverage;
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Insured By']")
+    private AndroidElement text_insured_by;
+
+    public void clickAllServices() {
+        Elements.selectElement(driver, allServices, "All Services");
+    }
+    public boolean scrollToInsurance() throws InterruptedException {
+        return Elements.scrollToElement(driver,insuranceCTA);
+    }
+
+    public void clickOnInsurance() throws InterruptedException{
+        Elements.selectElement(driver,insuranceCTA,"Click on Insurance");
+    }
+    public String getInsuranceText() throws InterruptedException {
+        return Elements.getText(driver,insuranceCTA, "Heading Insurance");
+    }
+    public String getHeadingGroupInsurance() throws InterruptedException {
+        return Elements.getText(driver,sub_heading_group_insurance, "Heading Group Insurance");
+    }
+    public String getLossOfJob() throws InterruptedException {
+        return Elements.getText(driver,text_LossofJob, "Loss of Job Text");
+    }
+
+    public String getSecondSubheaderRetailInsurance() throws InterruptedException {
+        return Elements.getText(driver,sub_heading_retail_insurance, "Retail Insurance");
+    }
+    public void clickOnLossOfJob() throws InterruptedException{
+        Elements.selectElement(driver,text_LossofJob,"Loss of Job Text");
+    }
+
+    public String getPersonalAccidentInsurance() throws InterruptedException {
+        return Elements.getText(driver,text_personalAccidentInsurance, "Personal Accident Insurance");
+    }
+
+    public void clickOnPersonalAccidentInsurance() throws InterruptedException{
+        Elements.selectElement(driver,text_personalAccidentInsurance,"Personal Accident Insurance");
+    }
+
+    public String getWalletProtectInsurance() throws InterruptedException {
+        return Elements.getText(driver,text_walletProtect, "Wallet Protect");
+    }
+
+    public void clickOnWalletProtectInsurance() throws InterruptedException{
+        Elements.selectElement(driver,text_walletProtect,"Click on Wallet Protect");
+    }
+
+    public String getHealthInsurance() throws InterruptedException {
+        return Elements.getText(driver,text_healthInsurance, "Health Insurance");
+    }
+
+    public void clickOnHealthInsuranceInsurance() throws InterruptedException{
+        Elements.selectElement(driver,text_healthInsurance,"Health Insurance");
+    }
+
+    public String getDocAssure() throws InterruptedException {
+        return Elements.getText(driver,text_docAssure, "DOc assure");
+    }
+
+    public void clickOnDocAssureInsurance() throws InterruptedException{
+        Elements.selectElement(driver,text_docAssure,"DOc assure");
+    }
+
+    public String getPayyourexistinginsurancePremium() throws InterruptedException {
+        return Elements.getText(driver,text_payyourexistinginsurancePremium, "Pay your existing insurance Premium");
+    }
+
+    public void clickOnsumassuredbutton() throws InterruptedException{
+        Elements.selectElement(driver,picebutton_onDocInsurancePage,"Pay your existing insurance Premium");
+    }
+    public void clickOnPayyourexistinginsurance() throws InterruptedException{
+        Elements.selectElement(driver,text_payyourexistinginsurancePremium,"Pay your existing insurance Premium");
+    }
+
+    public String getMyPolicies() throws InterruptedException {
+        return Elements.getText(driver,heading_myPolices, "My Policies");
+    }
+
+    public void clickOnMyPolicies() throws InterruptedException{
+        Elements.selectElement(driver,heading_myPolices,"My Policies");
+    }
+
+    public String getMakePayment() throws InterruptedException {
+        return Elements.getText(driver,cta_make_payment, "Make Payment");
+    }
+
+    public String getSelectSumassured() throws InterruptedException {
+        return Elements.getText(driver,heading_selectSumIssured, "Select Sum Insured");
+    }
+
+    public String getProductBenifit() throws InterruptedException {
+        return Elements.getText(driver,text_product_benefits, "Product Benifit");
+    }
+
+    public String getMarketValue() throws InterruptedException {
+        return Elements.getText(driver,text_market_value, "Market Value");
+    }
+
+    public String getPartnerName() throws InterruptedException {
+        return Elements.getText(driver,text_partner_name, "Partner Name");
+    }
+
+    public String getStartDate() throws InterruptedException {
+        return Elements.getText(driver,text_start_date, "Start Date");
+    }
+
+    public String getEndDate() throws InterruptedException {
+        return Elements.getText(driver,text_end_date, "End Date");
+    }
+
+    public String getAmounttobePaid() throws InterruptedException {
+        return Elements.getText(driver,text_amount_to_be_paid, "Amount to be paid");
+    }
+
+    public String getCoverage() throws InterruptedException {
+        return Elements.getText(driver,text_coverage, "Get Coverage");
+    }
+
+    public String getInsuredBy() throws InterruptedException {
+        return Elements.getText(driver,text_insured_by, "Get Insured By");
+    }
+
+    public void clickOncheckBox() throws InterruptedException{
+        Elements.selectElement(driver,checkbox,"Click on CheckBox");
+    }
+    public void clickOnMakePayment() throws InterruptedException{
+        Elements.selectElement(driver,cta_make_payment,"Make Payments");
+    }
+
+    public String getPayableAmount() throws InterruptedException {
+        return Elements.getText(driver,text_payable_amount, "Amount to be paid");
+    }
 
     public InsurancePage(AndroidDriver driver) throws IOException {
 
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
 
-
-        /*
-        To Do
-        wait for Page load to be added
-         */
-
         Log.info("*****Insurance Page*****");
     }
-/*
-    public void clickOnButtonPrice() throws InterruptedException {
-        Element.selectElement(driver, button_price, "Price Button");
-    }
-
-    public void clickOnCtaMakePayment() throws InterruptedException {
-        Element.selectElement(driver, cta_make_payment, "make Payment");
-    }
-
-    public void clickOnImageGasInsurance() throws InterruptedException {
-        Element.selectElement(driver, image_gas_insurance, "Gas Insurance Image");
-    }
-
-    public String getFillDetailsHeader() {
-        return Element.getText(driver, fill_kyc_details_page_header, "Header");
-    }
-
-    public String getFillDetailsDescription() {
-        return Element.getText(driver, fill_kyc_details_page_description, "Description");
-    }
-
-    public void clickOnImagePersonalAccidentInsurance() throws InterruptedException {
-        Element.selectElement(driver, image_personal_accident_insurance, "Personal Accident Insurance Image");
-    }
-
-    public void clickOnSelectiveBtnPrice() throws InterruptedException {
-        Element.selectElement(driver, selective_button_price, "Selective Price Button");
-    }
-
-    public String getInsuredBy() {
-        return Element.getText(driver, policy_insurer_name, "Insurer Name");
-    }
-
-    public void clickOnAgreeTerms() throws InterruptedException {
-        Element.selectElement(driver, i_agree_terms, "Agree to Terms and Conditions");
-    }
-
-    public String getAmountToBePaid() {
-        return Element.getText(driver, amount_to_be_paid, "Amount To Be Paid");
-    }
-
-    public void selectPersonalAccidentInsurance() throws InterruptedException {
-        Element.selectElement(driver, personal_accident_insurance, "Selective Personal Accident Insurance");
-        Thread.sleep(1000);
-        Element.selectElement(driver, personal_accident_insurance_lower, "Selective Personal Accident Insurance lower Category");
-
-    }
-
-    public void clickOnBackButton() throws InterruptedException {
-        Element.selectElement(driver, back_button, "Click on Back Button");
-    }
-
- */
 
 }
