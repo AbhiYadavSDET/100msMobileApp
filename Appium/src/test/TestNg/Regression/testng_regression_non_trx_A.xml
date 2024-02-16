@@ -33,6 +33,8 @@
             <class name="MoneyPlus.MoneyPlusTest"/>
             <class name="Profile.ProfileTest"/>
             <class name="FixedDeposit.Test_FixedDeposit"/>
+            <class name="Login.LoginTest"/>
+            <class name="Insurance.Test_Insurance"/>
 
         </classes>
     </test>
