@@ -95,7 +95,7 @@ public class IMPSTest extends TestBase {
     }
 */
 
-    @Test(groups = {"impsErrorMessage", "impsSanity", "regression"}, priority = 0, description = "Refer and earn on Imps")
+    @Test(groups = {"impsErrorMessage", "impsSanity", "regression"}, priority = 0, description = "Error messages on Imps")
     public void Test06_imps_new_account_numberWithErrorMessage() throws IOException, InterruptedException {
 
         Log.info("======= START : Error message on add new property on Imps Test =======");
@@ -109,7 +109,7 @@ public class IMPSTest extends TestBase {
 
     }
 
-    @Test(groups = {"impsCheckLimits", "impsSanity", "regression"}, priority = 0, description = "Refer and earn on Imps")
+    @Test(groups = {"impsCheckLimits", "impsSanity", "regression"}, priority = 0, description = "Check limit option on IMPS")
     public void Test07_imps_checkLimits() throws IOException, InterruptedException {
 
         Log.info("======= START : check limits on Imps Test =======");
@@ -123,7 +123,7 @@ public class IMPSTest extends TestBase {
 
     }
 
-    @Test(groups = {"impsNewAccountNumberManualIfscCode", "impsSanity","regression"}, priority = 0, description = "IMPS on New Account Number")
+    @Test(groups = {"impsNewAccountNumberManualIfscCode", "impsSanity","regression"}, priority = 0, description = "IMPS on New Account Number with manual ifsc code")
     public void Test01_imps_new_account_number_Manual_IfscCode() throws IOException, InterruptedException {
 
         Log.info("======= START : IMPS to New Account Number manual IFC code Test =======");
@@ -139,7 +139,7 @@ public class IMPSTest extends TestBase {
     }
 
 
-    @Test(groups = {"impsInfoMessage", "impsSanity", "regression"}, priority = 0, description = "Refer and earn on Imps")
+    @Test(groups = {"impsInfoMessage", "impsSanity", "regression"}, priority = 0, description = "Info messages on amount screen on Imps")
     public void Test06_imps_new_account_Info_Messages() throws IOException, InterruptedException {
 
         Log.info("======= START : Info message on add new property on Amount page  =======");
@@ -154,7 +154,7 @@ public class IMPSTest extends TestBase {
     }
 
 
-    @Test(groups = {"impsCheckout", "impsSanity"}, priority = 0, description = "Refer and earn on Imps")
+    @Test(groups = {"impsCheckout", "impsSanity"}, priority = 0, description = "Checkout options on Imps")
     public void Test06_imps_new_account_checkout_option() throws IOException, InterruptedException {
 
         Log.info("======= START : Checkout option on IMPS page  =======");
