@@ -157,4 +157,5 @@ public class PayRentTest extends TestBase {
 
         Log.info("======= END : Verify UPI page on rent pay =======");
     }
+
 }
