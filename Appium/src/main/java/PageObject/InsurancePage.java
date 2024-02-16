@@ -110,6 +110,48 @@ public class InsurancePage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Communicable Diseases']")
     private AndroidElement text_communicable_dises;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'J']")
+    private AndroidElement dateofbirth_textview;
+
+    @AndroidFindBy(xpath = "//android.widget.AutoCompleteTextView[@text= 'Monthly Gross Salary']")
+
+    private AndroidElement monthly_gross_salary;
+
+    @AndroidFindBy(id = "com.mobikwik_new.debug:id/button_continue")
+    private AndroidElement cta_continue;
+
+    @AndroidFindBy(id = "com.mobikwik_new.debug:id/primary_button")
+    private AndroidElement select_cta;
+
+    @AndroidFindBy(xpath = "//android.widget.AutoCompleteTextView[@text= 'Name of Current Organization']")
+    private AndroidElement current_organization;
+
+    public void clickOnMonthlyGrossSalaryTextfield() throws InterruptedException{
+        Elements.selectElement(driver,monthly_gross_salary,"Click on Monthly gross Salary");
+    }
+
+    public void clickOndobfield() throws InterruptedException{
+        Elements.selectElement(driver,dateofbirth_textview,"Click on Date of birth");
+    }
+
+    public void clickOnselectCTA() throws InterruptedException{
+        Elements.selectElement(driver,select_cta,"Click on Select");
+    }
+
+    public void clickOnMonthlyGrossSalary() throws InterruptedException{
+        Elements.selectElement(driver,monthly_gross_salary,"Monthly Gross Salary");
+    }
+    public void enterMonthlyGrossSalary(String grosssalary) {
+        Elements.enterToElement(driver, monthly_gross_salary, grosssalary, "Monthly Gross Salary");
+    }
+
+    public void enterNameOfCurrentOrganization(String currentorganization) {
+        Elements.enterToElement(driver, current_organization, currentorganization, "Name of Current Organization");
+    }
+    public void clickOnContinueButton() throws InterruptedException{
+        Elements.selectElement(driver,cta_continue,"Click on Continue button");
+    }
+
     public void clickAllServices() {
         Elements.selectElement(driver, allServices, "All Services");
     }
@@ -137,6 +179,10 @@ public class InsurancePage {
         return Elements.getText(driver,text_LossofJob, "Loss of Job Text");
     }
 
+    public void clickOnLossOfJob() throws InterruptedException{
+        Elements.selectElement(driver,text_LossofJob,"Loss of Job Text");
+    }
+
     public String getyourPolicyCovers() throws InterruptedException {
         return Elements.getText(driver,text_policy_cover, "your policy covers");
     }
@@ -144,9 +190,7 @@ public class InsurancePage {
     public String getSecondSubheaderRetailInsurance() throws InterruptedException {
         return Elements.getText(driver,sub_heading_retail_insurance, "Retail Insurance");
     }
-    public void clickOnLossOfJob() throws InterruptedException{
-        Elements.selectElement(driver,text_LossofJob,"Loss of Job Text");
-    }
+
 
     public String getPersonalAccidentInsurance() throws InterruptedException {
         return Elements.getText(driver,text_personalAccidentInsurance, "Personal Accident Insurance");
@@ -163,6 +207,8 @@ public class InsurancePage {
     public void clickOnPersonalAccidentInsurance() throws InterruptedException{
         Elements.selectElement(driver,text_personalAccidentInsurance,"Personal Accident Insurance");
     }
+
+
 
     public String getWalletProtectInsurance() throws InterruptedException {
         return Elements.getText(driver,text_walletProtect, "Wallet Protect");

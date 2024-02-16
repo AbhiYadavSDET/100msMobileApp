@@ -123,6 +123,23 @@ public class Test_Insurance extends TestBase {
     }
 
 
+    @Test(groups = {"insurance", "sanity", "regression"}, priority = 0, description = "Verify Personal Accident Insurance")
+    public void Test_Loss_of_Job_insurance() throws IOException, InterruptedException {
+
+        Log.info("======= START : Insurance =======");
+        // Starting the test in the extent report
+
+        // Login to the account
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaOtp("7042338867", "547372");
+
+        // Execute the test
+        InsuranceHelper insuranceHelper = new InsuranceHelper(getAndroidDriver());
+        insuranceHelper.lossOfJobInsurance("Loss of Job","Select Sum Insured","Insured By","Start Date","End Date","Amount to be paid","Payable Amount");
+
+    }
+
+
 
 
 }
