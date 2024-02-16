@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class Test_Insurance extends TestBase {
 
-    @Test(groups = {"insurance", "sanity", "regression"}, priority = 1, description = "Insurance Home Screen")
+    @Test(groups = {"insurance", "sanity", "regression"}, priority = 0, description = "Insurance Home Screen")
     public void Test_Insurance_Homescreen() throws IOException, InterruptedException {
         Log.info("======= START : Insurance =======");
         // Starting the test in the extent report
@@ -26,7 +26,7 @@ public class Test_Insurance extends TestBase {
 
     }
 
-    @Test(groups = {"insurance", "sanity", "regression"}, priority = 1, description = "Verify Doc Assure")
+    @Test(groups = {"insurance", "sanity", "regression"}, priority = 0, description = "Verify Doc Assure")
     public void Test_DocAssure_insurance() throws IOException, InterruptedException {
 
         Log.info("======= START : Insurance =======");
@@ -42,7 +42,7 @@ public class Test_Insurance extends TestBase {
 
     }
 
-    @Test(groups = {"insurance", "sanity", "regression"}, priority = 1, description = "Verify Wallet Protect")
+    @Test(groups = {"insurance", "sanity", "regression"}, priority = 0, description = "Verify Wallet Protect")
     public void Test_WalletProtect_insurance() throws IOException, InterruptedException {
 
         Log.info("======= START : Insurance =======");
@@ -58,7 +58,7 @@ public class Test_Insurance extends TestBase {
 
     }
 
-    @Test(groups = {"insurance", "sanity", "regression"}, priority = 1, description = "Verify Hospicash Protect")
+    @Test(groups = {"insurance", "sanity", "regression"}, priority = 0, description = "Verify Hospicash Protect")
     public void Test_Hospicash_insurance() throws IOException, InterruptedException {
 
         Log.info("======= START : Insurance =======");
@@ -74,7 +74,7 @@ public class Test_Insurance extends TestBase {
 
     }
 
-    @Test(groups = {"insurance", "sanity", "regression"}, priority = 1, description = "Verify Dengue Insurance")
+    @Test(groups = {"insurance", "sanity", "regression"}, priority = 0, description = "Verify Dengue Insurance")
     public void Test_Dengue_insurance() throws IOException, InterruptedException {
 
         Log.info("======= START : Insurance =======");
@@ -90,7 +90,7 @@ public class Test_Insurance extends TestBase {
 
     }
 
-    @Test(groups = {"insurance", "sanity", "regression"}, priority = 1, description = "Verify Communicable Diseases Insurance")
+    @Test(groups = {"insurance", "sanity", "regression"}, priority = 0, description = "Verify Communicable Diseases Insurance")
     public void Test_Communicable_Diseases_insurance() throws IOException, InterruptedException {
 
         Log.info("======= START : Insurance =======");
