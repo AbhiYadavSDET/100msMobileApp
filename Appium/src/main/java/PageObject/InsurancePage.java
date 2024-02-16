@@ -32,6 +32,10 @@ public class InsurancePage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Personal Accident Insurance']")
     private AndroidElement text_personalAccidentInsurance;
 
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Comprehensive Accidental Insurance']")
+    private AndroidElement text_comprehensivepersonalAccidentInsura;
+
+
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Wallet Protect']")
     private AndroidElement text_walletProtect;
 
@@ -89,11 +93,35 @@ public class InsurancePage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Insured By']")
     private AndroidElement text_insured_by;
 
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Your policy covers']")
+
+    private AndroidElement text_policy_cover;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Hospital Cash + Personal Accident']")
+    private AndroidElement text_hospicash;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = '30 Days Coverage']")
+    private AndroidElement text_30daysCoverage;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Dengue Insurance']")
+    private AndroidElement text_dengue;
+
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Communicable Diseases']")
+    private AndroidElement text_communicable_dises;
+
     public void clickAllServices() {
         Elements.selectElement(driver, allServices, "All Services");
     }
     public boolean scrollToInsurance() throws InterruptedException {
         return Elements.scrollToElement(driver,insuranceCTA);
+    }
+
+    public void clickOnCommunicableDisesInsurance() throws InterruptedException{
+        Elements.selectElement(driver,text_communicable_dises,"Click on Communicable Diseases Insurance");
+    }
+    public String getCommunicableDisesInsuranceText() throws InterruptedException {
+        return Elements.getText(driver,text_communicable_dises, "Heading Communicable Diseases Insurance");
     }
 
     public void clickOnInsurance() throws InterruptedException{
@@ -109,6 +137,10 @@ public class InsurancePage {
         return Elements.getText(driver,text_LossofJob, "Loss of Job Text");
     }
 
+    public String getyourPolicyCovers() throws InterruptedException {
+        return Elements.getText(driver,text_policy_cover, "your policy covers");
+    }
+
     public String getSecondSubheaderRetailInsurance() throws InterruptedException {
         return Elements.getText(driver,sub_heading_retail_insurance, "Retail Insurance");
     }
@@ -118,6 +150,14 @@ public class InsurancePage {
 
     public String getPersonalAccidentInsurance() throws InterruptedException {
         return Elements.getText(driver,text_personalAccidentInsurance, "Personal Accident Insurance");
+    }
+
+    public String getComprehensivePersonalAccidentInsurance() throws InterruptedException {
+        return Elements.getText(driver,text_comprehensivepersonalAccidentInsura, "Comprehensive Personal Accident Insurance");
+    }
+
+    public void clickComprehensivePersonalAccidentInsurance() throws InterruptedException{
+        Elements.selectElement(driver,text_comprehensivepersonalAccidentInsura,"Comprehensive Personal Accident Insurance");
     }
 
     public void clickOnPersonalAccidentInsurance() throws InterruptedException{
@@ -217,6 +257,27 @@ public class InsurancePage {
     public String getPayableAmount() throws InterruptedException {
         return Elements.getText(driver,text_payable_amount, "Amount to be paid");
     }
+
+    public void clickOnHospicash() throws InterruptedException{
+        Elements.selectElement(driver,text_hospicash,"Click on Hospicash");
+    }
+
+    public String getHospicashText() throws InterruptedException {
+        return Elements.getText(driver,text_hospicash, "get text  Hospicash");
+    }
+
+    public String get30DaysCoveage() throws InterruptedException {
+        return Elements.getText(driver,text_30daysCoverage, "Get 30 days coverage");
+    }
+
+    public void clickOnDengue() throws InterruptedException{
+        Elements.selectElement(driver,text_dengue,"Click on Dengue");
+    }
+
+    public String gettextDengue() throws InterruptedException {
+        return Elements.getText(driver,text_dengue, " get text Dengue");
+    }
+
 
     public InsurancePage(AndroidDriver driver) throws IOException {
 
