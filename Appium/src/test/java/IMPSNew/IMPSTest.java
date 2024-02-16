@@ -22,7 +22,7 @@ public class IMPSTest extends TestBase {
         Log.info("======= START : IMPS to New Account Number Test =======");
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.quickLoginViaOtp("8076595767","547372");
+        loginHelp.quickLoginViaOtp("9205299330","547372");
 
         IMPSNewHelper impsHelper = new IMPSNewHelper(getAndroidDriver());
         impsHelper.verifyIMPSNewAccount("Paraj Jain", "167795709569", "INDB0000724", "5000","Transfer Successful" , "₹50","Bank transfer to  Paraj Jain (XXXXXXXXXXX0315)","-₹51.18","Success");
@@ -37,7 +37,7 @@ public class IMPSTest extends TestBase {
         Log.info("======= START : IMPS to New UPI ID Test =======");
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.quickLoginViaOtp("8076595767","547372");
+        loginHelp.quickLoginViaOtp("9205299330","547372");
 
         IMPSNewHelper impsHelper = new IMPSNewHelper(getAndroidDriver());
         impsHelper.verifyIMPSNewVPA("8882305453@paytm","50", "Transfer Successful" , "5000","Bank transfer to  Ashish Kumar Pradhan (8882305453@paytm)","-₹51.18","Success");
@@ -52,7 +52,7 @@ public class IMPSTest extends TestBase {
         Log.info("======= START : IMPS to Saved VPA Test =======");
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.quickLoginViaOtp("8076595767","547372");
+        loginHelp.quickLoginViaOtp("9205299330","547372");
 
 
         IMPSNewHelper impsHelper = new IMPSNewHelper(getAndroidDriver());
@@ -71,7 +71,7 @@ public class IMPSTest extends TestBase {
         Log.info("======= START : IMPS to New Account Number with auto ifsc code Test =======");
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.quickLoginViaOtp("8076595767","547372");
+        loginHelp.quickLoginViaOtp("9205299330","547372");
 
         IMPSNewHelper impsHelper = new IMPSNewHelper(getAndroidDriver());
        impsHelper.verifyIMPSNewAccountWithAutoIfscCode("Abhishek Kumar", "040801000080315", "ICICI","5000");
@@ -101,7 +101,7 @@ public class IMPSTest extends TestBase {
         Log.info("======= START : Error message on add new property on Imps Test =======");
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.quickLoginViaOtp("8076595767","547372");
+        loginHelp.quickLoginViaOtp("9205299330","547372");
 
         IMPSNewHelper impsHelper = new IMPSNewHelper(getAndroidDriver());
         impsHelper.verifyIMPSErrorMessageOnAddNewProperty("Abhishek kumar","6213768365");
@@ -115,7 +115,7 @@ public class IMPSTest extends TestBase {
         Log.info("======= START : check limits on Imps Test =======");
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.quickLoginViaOtp("8076595767","547372");
+        loginHelp.quickLoginViaOtp("9205299330","547372");
 
         IMPSNewHelper impsHelper = new IMPSNewHelper(getAndroidDriver());
         impsHelper.verifyCheckLimitsOnImps();
@@ -129,7 +129,7 @@ public class IMPSTest extends TestBase {
         Log.info("======= START : IMPS to New Account Number manual IFC code Test =======");
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.quickLoginViaOtp("8076595767","547372");
+        loginHelp.quickLoginViaOtp("9205299330","547372");
 
         IMPSNewHelper impsHelper = new IMPSNewHelper(getAndroidDriver());
         impsHelper.verifyIMPSNewAccountWithManualIfscCode("Paraj Jain", "167795709569", "INDB0000724", "5000","Transfer Successful" , "₹50","Bank transfer to  Paraj Jain (XXXXXXXXXXX0315)","-₹51.18","Success");
@@ -145,7 +145,7 @@ public class IMPSTest extends TestBase {
         Log.info("======= START : Info message on add new property on Amount page  =======");
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.quickLoginViaOtp("8076595767","547372");
+        loginHelp.quickLoginViaOtp("9205299330","547372");
 
         IMPSNewHelper impsHelper = new IMPSNewHelper(getAndroidDriver());
         impsHelper.verifyIMPSInfoMessages("inder786@ikwik","50");
@@ -160,7 +160,7 @@ public class IMPSTest extends TestBase {
         Log.info("======= START : Checkout option on IMPS page  =======");
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.quickLoginViaOtp("8076595767","547372");
+        loginHelp.quickLoginViaOtp("9205299330","547372");
 
         IMPSNewHelper impsHelper = new IMPSNewHelper(getAndroidDriver());
         impsHelper.verifyIMPSCheckout("inder786@ikwik","9000","492");
