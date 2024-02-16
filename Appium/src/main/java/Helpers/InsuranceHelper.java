@@ -3,6 +3,7 @@ package Helpers;
 import Logger.Log;
 import PageObject.InsurancePage;
 import Utils.MBReporter;
+import Utils.Screen;
 import io.appium.java_client.android.AndroidDriver;
 
 import java.io.IOException;
@@ -11,7 +12,7 @@ public class InsuranceHelper {
 
     AndroidDriver driver;
     InsurancePage insurancePage;
-
+    Screen screen;
     MBReporter mbReporter;
 
     public InsuranceHelper(AndroidDriver driver) throws IOException {
@@ -168,4 +169,267 @@ public class InsuranceHelper {
 
 
     }
+
+
+
+    public void hospicashInsurance(String expheaderTextHospicash,String exptextselectSumInssured,String exptextyourPolicyCovers,String exptextCoverage,String exptextInsuredBy,String  exptextStartDate,String exptextEndDate,String exptextAmounttobePaid,String exptextpayableAmount) throws InterruptedException, IOException {
+        insurancePage.clickAllServices();
+        insurancePage.scrollToInsurance();
+        insurancePage.clickOnInsurance();
+        insurancePage.clickOnHealthInsuranceInsurance();
+        insurancePage.clickOnHospicash();
+
+        // Get Header for Insurance Home screen
+        String headerTextHospicash = insurancePage.getHospicashText();
+        String textselectSumInssured = insurancePage.getSelectSumassured();
+        String textyourPolicyCovers = insurancePage.getyourPolicyCovers();
+
+        // Display the values
+        Log.info("First Top Header on Hospicash: " + headerTextHospicash);
+        Log.info("Text Sum Insured" + textselectSumInssured);
+        Log.info("Policy Covers" + textyourPolicyCovers);
+
+        // Add the assertions
+        mbReporter.verifyEqualsWithLogging(headerTextHospicash, expheaderTextHospicash, "First Top Header Hospicash", false, false, true);
+        mbReporter.verifyEqualsWithLogging(textselectSumInssured, exptextselectSumInssured, "Sum Insured Text", false, false, true);
+        mbReporter.verifyEqualsWithLogging(textyourPolicyCovers, exptextyourPolicyCovers, "Product Benifits", false, false, true);
+
+        //Click on Sum Insured value
+        insurancePage.clickOncheckBox();
+        insurancePage.clickOnsumassuredbutton();
+
+        String textCoverage = insurancePage.get30DaysCoveage();
+        String textInsuredBy = insurancePage.getInsuredBy();
+        String textStartDate = insurancePage.getStartDate();
+        String textEndDate = insurancePage.getEndDate();
+        String textAmounttobePaid = insurancePage.getAmounttobePaid();
+
+        Log.info("Text Coverage : " + textCoverage);
+        Log.info("Text Partner Name" + textInsuredBy);
+        Log.info("Text Start Date" + textStartDate);
+        Log.info("Text End Date" + textEndDate);
+        Log.info("Text Amount to be Paid" + textAmounttobePaid);
+
+        mbReporter.verifyEqualsWithLogging(textCoverage, exptextCoverage, "Text 30 days Coverage", false, false, true);
+        mbReporter.verifyEqualsWithLogging(textInsuredBy, exptextInsuredBy, "Text Insured By", false, false, true);
+        mbReporter.verifyEqualsWithLogging(textStartDate, exptextStartDate, "Text Start Date", false, false, true);
+        mbReporter.verifyEqualsWithLogging(textEndDate, exptextEndDate, "Text End Date", false, false, true);
+        mbReporter.verifyEqualsWithLogging(textAmounttobePaid, exptextAmounttobePaid, "Text Amount to be Paid", false, false, true);
+
+        //Click On Make Payment
+        insurancePage.clickOnMakePayment();
+        String textpayableAmount = insurancePage.getPayableAmount();
+
+        Log.info("Text Payable Amount : " + textpayableAmount);
+        mbReporter.verifyEqualsWithLogging(textpayableAmount, exptextpayableAmount, "Text Payable Amount", false, false, true);
+
+
+    }
+
+
+
+    public void dengueInsurance(String expheaderTextDengue,String exptextselectSumInssured,String exptextInsuredBy,String  exptextStartDate,String exptextEndDate,String exptextAmounttobePaid,String exptextpayableAmount) throws InterruptedException, IOException {
+        insurancePage.clickAllServices();
+        insurancePage.scrollToInsurance();
+        insurancePage.clickOnInsurance();
+        insurancePage.clickOnHealthInsuranceInsurance();
+        insurancePage.clickOnDengue();
+
+        // Get Header for Insurance Home screen
+        String headerTextDengue = insurancePage.gettextDengue();
+        String textselectSumInssured = insurancePage.getSelectSumassured();
+
+        // Display the values
+        Log.info("First Top Header on Dengue: " + headerTextDengue);
+        Log.info("Text Sum Insured" + textselectSumInssured);
+
+        // Add the assertions
+        mbReporter.verifyEqualsWithLogging(headerTextDengue, expheaderTextDengue, "First Top Header Dengue", false, false, true);
+        mbReporter.verifyEqualsWithLogging(textselectSumInssured, exptextselectSumInssured, "Sum Insured Text", false, false, true);
+        //Click on Sum Insured value
+        insurancePage.clickOncheckBox();
+        insurancePage.clickOnsumassuredbutton();
+
+        String textInsuredBy = insurancePage.getInsuredBy();
+        String textStartDate = insurancePage.getStartDate();
+        String textEndDate = insurancePage.getEndDate();
+        String textAmounttobePaid = insurancePage.getAmounttobePaid();
+
+        Log.info("Text Partner Name" + textInsuredBy);
+        Log.info("Text Start Date" + textStartDate);
+        Log.info("Text End Date" + textEndDate);
+        Log.info("Text Amount to be Paid" + textAmounttobePaid);
+
+        mbReporter.verifyEqualsWithLogging(textInsuredBy, exptextInsuredBy, "Text Insured By", false, false, true);
+        mbReporter.verifyEqualsWithLogging(textStartDate, exptextStartDate, "Text Start Date", false, false, true);
+        mbReporter.verifyEqualsWithLogging(textEndDate, exptextEndDate, "Text End Date", false, false, true);
+        mbReporter.verifyEqualsWithLogging(textAmounttobePaid, exptextAmounttobePaid, "Text Amount to be Paid", false, false, true);
+
+        //Click On Make Payment
+        insurancePage.clickOnMakePayment();
+        String textpayableAmount = insurancePage.getPayableAmount();
+
+        Log.info("Text Payable Amount : " + textpayableAmount);
+        mbReporter.verifyEqualsWithLogging(textpayableAmount, exptextpayableAmount, "Text Payable Amount", false, false, true);
+
+
+    }
+
+
+    public void communicableDisesInsurance(String expheaderTextCommunicableDises,String exptextselectSumInssured,String exptextInsuredBy,String  exptextStartDate,String exptextEndDate,String exptextAmounttobePaid,String exptextpayableAmount) throws InterruptedException, IOException {
+        insurancePage.clickAllServices();
+        insurancePage.scrollToInsurance();
+        insurancePage.clickOnInsurance();
+        insurancePage.clickOnHealthInsuranceInsurance();
+        screen.swipeUpMore(driver);
+
+        insurancePage.clickOnCommunicableDisesInsurance();
+
+        // Get Header for Insurance Home screen
+        String headerTextCommunicableDises = insurancePage.getCommunicableDisesInsuranceText();
+        String textselectSumInssured = insurancePage.getSelectSumassured();
+
+        // Display the values
+        Log.info("First Top Header on Communicable diseases: " + headerTextCommunicableDises);
+        Log.info("Text Sum Insured" + textselectSumInssured);
+
+        // Add the assertions
+        mbReporter.verifyEqualsWithLogging(headerTextCommunicableDises, expheaderTextCommunicableDises, "First Top Header Communicable Diseases", false, false, true);
+        mbReporter.verifyEqualsWithLogging(textselectSumInssured, exptextselectSumInssured, "Sum Insured Text", false, false, true);
+        //Click on Sum Insured value
+        insurancePage.clickOncheckBox();
+        insurancePage.clickOnsumassuredbutton();
+
+        String textInsuredBy = insurancePage.getInsuredBy();
+        String textStartDate = insurancePage.getStartDate();
+        String textEndDate = insurancePage.getEndDate();
+        String textAmounttobePaid = insurancePage.getAmounttobePaid();
+
+        Log.info("Text Partner Name" + textInsuredBy);
+        Log.info("Text Start Date" + textStartDate);
+        Log.info("Text End Date" + textEndDate);
+        Log.info("Text Amount to be Paid" + textAmounttobePaid);
+
+        mbReporter.verifyEqualsWithLogging(textInsuredBy, exptextInsuredBy, "Text Insured By", false, false, true);
+        mbReporter.verifyEqualsWithLogging(textStartDate, exptextStartDate, "Text Start Date", false, false, true);
+        mbReporter.verifyEqualsWithLogging(textEndDate, exptextEndDate, "Text End Date", false, false, true);
+        mbReporter.verifyEqualsWithLogging(textAmounttobePaid, exptextAmounttobePaid, "Text Amount to be Paid", false, false, true);
+
+        //Click On Make Payment
+        insurancePage.clickOnMakePayment();
+        String textpayableAmount = insurancePage.getPayableAmount();
+
+        Log.info("Text Payable Amount : " + textpayableAmount);
+        mbReporter.verifyEqualsWithLogging(textpayableAmount, exptextpayableAmount, "Text Payable Amount", false, false, true);
+
+
+    }
+
+
+    public void comprehensivePersonalAccidentInsurance(String expheaderTextPersonalAccident,String exptextselectSumInssured,String exptextInsuredBy,String  exptextStartDate,String exptextEndDate,String exptextAmounttobePaid,String exptextpayableAmount) throws InterruptedException, IOException {
+        insurancePage.clickAllServices();
+        insurancePage.scrollToInsurance();
+        insurancePage.clickOnInsurance();
+        insurancePage.clickOnPersonalAccidentInsurance();
+        insurancePage.clickComprehensivePersonalAccidentInsurance();
+
+
+        // Get Header for Insurance Home screen
+        String headerTextComprehensivePersonalAccident = insurancePage.getComprehensivePersonalAccidentInsurance();
+        String textselectSumInssured = insurancePage.getSelectSumassured();
+
+        // Display the values
+        Log.info("First Top Header on Comprehensive Personal Accident: " + headerTextComprehensivePersonalAccident);
+        Log.info("Text Sum Insured" + textselectSumInssured);
+
+        // Add the assertions
+        mbReporter.verifyEqualsWithLogging(headerTextComprehensivePersonalAccident, expheaderTextPersonalAccident, "First Top Header personal", false, false, true);
+        mbReporter.verifyEqualsWithLogging(textselectSumInssured, exptextselectSumInssured, "Sum Insured Text", false, false, true);
+        //Click on Sum Insured value
+        insurancePage.clickOncheckBox();
+        insurancePage.clickOnsumassuredbutton();
+
+        String textInsuredBy = insurancePage.getInsuredBy();
+        String textStartDate = insurancePage.getStartDate();
+        String textEndDate = insurancePage.getEndDate();
+        String textAmounttobePaid = insurancePage.getAmounttobePaid();
+
+        Log.info("Text Partner Name" + textInsuredBy);
+        Log.info("Text Start Date" + textStartDate);
+        Log.info("Text End Date" + textEndDate);
+        Log.info("Text Amount to be Paid" + textAmounttobePaid);
+
+        mbReporter.verifyEqualsWithLogging(textInsuredBy, exptextInsuredBy, "Text Insured By", false, false, true);
+        mbReporter.verifyEqualsWithLogging(textStartDate, exptextStartDate, "Text Start Date", false, false, true);
+        mbReporter.verifyEqualsWithLogging(textEndDate, exptextEndDate, "Text End Date", false, false, true);
+        mbReporter.verifyEqualsWithLogging(textAmounttobePaid, exptextAmounttobePaid, "Text Amount to be Paid", false, false, true);
+
+        //Click On Make Payment
+        insurancePage.clickOnMakePayment();
+        String textpayableAmount = insurancePage.getPayableAmount();
+
+        Log.info("Text Payable Amount : " + textpayableAmount);
+        mbReporter.verifyEqualsWithLogging(textpayableAmount, exptextpayableAmount, "Text Payable Amount", false, false, true);
+
+
+    }
+
+    public void lossOfJobInsurance(String expheaderTextLossOfJob,String exptextselectSumInssured,String exptextInsuredBy,String  exptextStartDate,String exptextEndDate,String exptextAmounttobePaid,String exptextpayableAmount) throws InterruptedException, IOException {
+        insurancePage.clickAllServices();
+        insurancePage.scrollToInsurance();
+        insurancePage.clickOnInsurance();
+        insurancePage.clickOnLossOfJob();
+        insurancePage.clickOndobfield();
+        insurancePage.clickOnselectCTA();
+        insurancePage.enterMonthlyGrossSalary("11000");
+        insurancePage.enterNameOfCurrentOrganization("mobikwik");
+        insurancePage.clickOnContinueButton();
+
+        // Get Header for Insurance Home screen
+        String headerTextLossOfJob = insurancePage.getLossOfJob();
+
+
+        String textselectSumInssured = insurancePage.getSelectSumassured();
+
+        // Display the values
+        Log.info("First Top Header Loss Of job: " + headerTextLossOfJob);
+        Log.info("Text Sum Insured" + textselectSumInssured);
+
+        // Add the assertions
+        mbReporter.verifyEqualsWithLogging(headerTextLossOfJob, expheaderTextLossOfJob, "First Top Header Loss Of job", false, false, true);
+        mbReporter.verifyEqualsWithLogging(textselectSumInssured, exptextselectSumInssured, "Sum Insured Text", false, false, true);
+        //Click on Sum Insured value
+        insurancePage.clickOncheckBox();
+        insurancePage.clickOnsumassuredbutton();
+
+
+
+        String textInsuredBy = insurancePage.getInsuredBy();
+        String textStartDate = insurancePage.getStartDate();
+        String textEndDate = insurancePage.getEndDate();
+        String textAmounttobePaid = insurancePage.getAmounttobePaid();
+
+        Log.info("Text Partner Name" + textInsuredBy);
+        Log.info("Text Start Date" + textStartDate);
+        Log.info("Text End Date" + textEndDate);
+        Log.info("Text Amount to be Paid" + textAmounttobePaid);
+
+        mbReporter.verifyEqualsWithLogging(textInsuredBy, exptextInsuredBy, "Text Insured By", false, false, true);
+        mbReporter.verifyEqualsWithLogging(textStartDate, exptextStartDate, "Text Start Date", false, false, true);
+        mbReporter.verifyEqualsWithLogging(textEndDate, exptextEndDate, "Text End Date", false, false, true);
+        mbReporter.verifyEqualsWithLogging(textAmounttobePaid, exptextAmounttobePaid, "Text Amount to be Paid", false, false, true);
+
+        //Click On Make Payment
+        insurancePage.clickOnMakePayment();
+        String textpayableAmount = insurancePage.getPayableAmount();
+
+        Log.info("Text Payable Amount : " + textpayableAmount);
+        mbReporter.verifyEqualsWithLogging(textpayableAmount, exptextpayableAmount, "Text Payable Amount", false, false, true);
+
+
+    }
+
+
+
+
 }
