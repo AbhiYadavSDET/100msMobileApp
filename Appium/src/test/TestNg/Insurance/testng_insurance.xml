@@ -1,27 +1,30 @@
-<suite name="Appium-Framework">
-    <listeners>
-        <listener class-name="UITestFramework.retryLogic.RetryListener"/>
-        <listener class-name="Utils.Listeners.TestListener"/>
-    </listeners>
-    <parameter name="build" value="prod"/>
-    <parameter name="level" value="payments"/>
-    <parameter name="saucelabs" value="false"></parameter>
-    <parameter name="androidOSVersion" value="7.0"></parameter>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Insurance Flow">
 
-    <test name="Insurance Sanity">
+    <parameter name="build" value="prod"/>
+    <parameter name="level" value="wealth"/>
+    <parameter name="saucelabs" value="false"></parameter>
+    <parameter name="androidOSVersion" value="11.0"></parameter>
+    <parameter name="deviceName" value="deviceName"></parameter>
+    <parameter name="udId" value="17228df2"></parameter>
+    <parameter name="portNo" value="4723"></parameter>
+
+    <test verbose="2" preserve-order="true" name="Insurance">
         <groups>
             <run>
                 <include name="setUp"/>
                 <include name="instantiateHelpers"/>
-                <include name="insuranceSanity"/>
+                <include name="insurance"/>
                 <include name="tearDown"/>
             </run>
         </groups>
 
+
         <classes>
-            <class name="UITestFramework.CreateSession"/>
-            <class name="UITestFramework.ExtentReport.Reporter"/>
+            <class name="Utils.TestBase"/>
             <class name="Insurance.Test_Insurance"/>
         </classes>
     </test>
+
 </suite>

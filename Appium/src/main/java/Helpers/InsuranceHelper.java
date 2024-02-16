@@ -1,245 +1,171 @@
 package Helpers;
-/*
-import PageObject.HomePage;
+
+import Logger.Log;
 import PageObject.InsurancePage;
-import PageObject.TransactionHistoryPage;
-import utils.MBReporter;
+import Utils.MBReporter;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
-import logger.Log;
-import org.json.JSONException;
-import org.openqa.selenium.By;
-import utils.Element;
-import utils.Screen;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class InsuranceHelper {
 
     AndroidDriver driver;
-    HomePage homePage;
-    Screen screen;
-    Element element;
-    MBKCommonControlsHelper mbkCommonControlsHelper;
-    MBReporter mbReporter;
-    PermissionHelper permissionHelper;
     InsurancePage insurancePage;
-    TransactionHistoryPage transactionHistoryPage;
 
-    public static HashMap<String, String> map;
-    public static HashMap<String, String> balanceBefore;
-    public static HashMap<String, String> balanceAfter;
-
+    MBReporter mbReporter;
 
     public InsuranceHelper(AndroidDriver driver) throws IOException {
         this.driver = driver;
+        insurancePage = new InsurancePage(driver);
+        mbReporter = new MBReporter(driver);
+    }
 
-        homePage = new HomePage(driver);
-        screen = new Screen(driver);
-        element = new Element(driver);
-        mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
-        mbReporter = new MBReporter(driver, "testScreenshotDir");
-        permissionHelper = new PermissionHelper(driver);
+    public void insuranceHomePage(String expheaderTextInurance, String expsubheaderFirstTab, String expsubheaderSecondTab, String expheadingLossOfjob, String expheadingPersonalAccident, String expheadingWalletProtectInsurance, String expheadinggetHealthInsurance, String expheadingDocAssure, String expheadingPayyourPremium) throws InterruptedException, IOException {
+        insurancePage.clickAllServices();
+        insurancePage.scrollToInsurance();
+        insurancePage.clickOnInsurance();
+
+        // Get Header for Insurance Home screen
+        String headerTextInurance = insurancePage.getInsuranceText();
+
+        // Get all Insurance Text on Insurance Home page
+        String subheaderFirstTab = insurancePage.getHeadingGroupInsurance();
+        String subheaderSecondTab = insurancePage.getSecondSubheaderRetailInsurance();
+        String headingLossOfjob = insurancePage.getLossOfJob();
+        String headingPersonalAccident = insurancePage.getPersonalAccidentInsurance();
+        String headingWalletProtectInsurance = insurancePage.getWalletProtectInsurance();
+        String headinggetHealthInsurance = insurancePage.getHealthInsurance();
+        String headingDocAssure = insurancePage.getDocAssure();
+        String headingPayyourPremium = insurancePage.getPayyourexistinginsurancePremium();
+
+        // Display the values
+        Log.info("First Top Header on Insurance Home Page : " + subheaderFirstTab);
+        Log.info("First Subheader  on Insurance Home Page " + subheaderSecondTab);
+        Log.info("Loss of Job" + headingLossOfjob);
+        Log.info("Personal Accident" + headingPersonalAccident);
+        Log.info("Heading Wallet Protect Insurance " + headingWalletProtectInsurance);
+        Log.info("Heading Health Insurance" + headinggetHealthInsurance);
+        Log.info("Heading Doc assure " + headingDocAssure);
+        Log.info("Pay your existing Premium " + headingPayyourPremium);
+
+
+        // Add the assertions
+        mbReporter.verifyEqualsWithLogging(headerTextInurance, expheaderTextInurance, "First Top Header on Insurance Home Page", false, false, true);
+        mbReporter.verifyEqualsWithLogging(subheaderFirstTab, expsubheaderFirstTab, "First Subheader  on Insurance Home Page Group Insurance", false, false, true);
+        mbReporter.verifyEqualsWithLogging(subheaderSecondTab, expsubheaderSecondTab, "Retail insurance", false, false, true);
+        mbReporter.verifyEqualsWithLogging(headingLossOfjob, expheadingLossOfjob, "Heading of Loss of Job", false, false, true);
+        mbReporter.verifyEqualsWithLogging(headingPersonalAccident, expheadingPersonalAccident, "Heading Personal Accident ", false, false, true);
+        mbReporter.verifyEqualsWithLogging(headingWalletProtectInsurance, expheadingWalletProtectInsurance, "Heading Wallet Protect", false, false, true);
+        mbReporter.verifyEqualsWithLogging(headinggetHealthInsurance, expheadinggetHealthInsurance, "Health Insurance", false, false, true);
+        mbReporter.verifyEqualsWithLogging(headingDocAssure, expheadingDocAssure, "Doc assure", false, false, true);
+        mbReporter.verifyEqualsWithLogging(headingPayyourPremium, expheadingPayyourPremium, "Pay your existing Premium", false, false, true);
 
     }
 
 
-    public String buyInsurance(String expectedHeader, String expectedDescription, String securityPin) throws InterruptedException, IOException, JSONException {
+    public void docAssureInsurance(String expheaderTextDocassure,String exptextselectSumInssured,String exptextproductBenifit,String exptextMarketValue,String exptextPartnerName,String exptextStartDate,String exptextEndDate,String exptextAmounttobePaid,String exptextpayableAmount) throws InterruptedException, IOException {
+        insurancePage.clickAllServices();
+        insurancePage.scrollToInsurance();
+        insurancePage.clickOnInsurance();
+        insurancePage.clickOnDocAssureInsurance();
 
-        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+        // Get Header for Insurance Home screen
+        String headerTextDocassure = insurancePage.getDocAssure();
+        String textselectSumInssured = insurancePage.getSelectSumassured();
+        String textproductBenifit = insurancePage.getProductBenifit();
 
-        Element.waitForVisibility(driver, homePage.sidedrawer_icon);
-        screen.swipeUpMedium(driver);
+        // Display the values
+        Log.info("First Top Header on DocAssure : " + headerTextDocassure);
+        Log.info("Text Sum Insured" + textselectSumInssured);
+        Log.info("Product Benifit" + textproductBenifit);
 
-        homePage.clickInvestmentAndInsuranceLayout();
-        insurancePage = homePage.clickOnInsuranceIcon();
+        // Add the assertions
+        mbReporter.verifyEqualsWithLogging(headerTextDocassure, expheaderTextDocassure, "First Top Header on Doc Assure", false, false, true);
+        mbReporter.verifyEqualsWithLogging(textselectSumInssured, exptextselectSumInssured, "Sum Insured Text", false, false, true);
+        mbReporter.verifyEqualsWithLogging(textproductBenifit, exptextproductBenifit, "Product Benifits", false, false, true);
 
-        Element.waitForVisibility(driver, By.id("mkab_title"));
-        screen.swipeUpMore(driver);
+        //Click on Sum Insured value
+        insurancePage.clickOncheckBox();
+        insurancePage.clickOnsumassuredbutton();
 
-        insurancePage.clickOnImagePersonalAccidentInsurance();
+        String textMarketValue = insurancePage.getMarketValue();
+        String textPartnerName = insurancePage.getPartnerName();
+        String textStartDate = insurancePage.getStartDate();
+        String textEndDate = insurancePage.getEndDate();
+        String textAmounttobePaid = insurancePage.getAmounttobePaid();
 
-        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text = 'Personal Accident Insurance']"));
+        Log.info("Text Market Value : " + textMarketValue);
+        Log.info("Text Partner Name" + textPartnerName);
+        Log.info("Text Start Date" + textStartDate);
+        Log.info("Text End Date" + textEndDate);
+        Log.info("Text Amount to be Paid" + textAmounttobePaid);
 
-        insurancePage.clickOnSelectiveBtnPrice();
+        mbReporter.verifyEqualsWithLogging(textMarketValue, exptextMarketValue, "Text Market Value", false, false, true);
+        mbReporter.verifyEqualsWithLogging(textPartnerName, exptextPartnerName, "Text Partner Name", false, false, true);
+        mbReporter.verifyEqualsWithLogging(textStartDate, exptextStartDate, "Text Start Date", false, false, true);
+        mbReporter.verifyEqualsWithLogging(textEndDate, exptextEndDate, "Text End Date", false, false, true);
+        mbReporter.verifyEqualsWithLogging(textAmounttobePaid, exptextAmounttobePaid, "ext Amount to be Paid", false, false, true);
 
-        String insuredBy = insurancePage.getInsuredBy();
+        //Click On Make Payment
+        insurancePage.clickOnMakePayment();
+        String textpayableAmount = insurancePage.getPayableAmount();
 
-        insurancePage.clickOnCtaMakePayment();
-
-        mbkCommonControlsHelper.handleSecurityPin(securityPin);
-
-        // Fetch the details from the screen
-        String actualHeader = insurancePage.getFillDetailsHeader();
-
-        Log.info(insurancePage.getFillDetailsDescription());
-        String actualDescription = insurancePage.getFillDetailsDescription().toLowerCase().replaceAll("\n","");
-        Log.info(actualDescription);
-
-        // fetch the policy ID
-        String policyId;
-
-        mbReporter.verifyEqualsWithLogging(actualHeader, expectedHeader, "Fill details Screen | Header", false, false);
-        mbReporter.verifyEqualsWithLogging(actualDescription, expectedDescription.toLowerCase() + insuredBy.toLowerCase(), "Fill details Screen | Description", true, false);
-
-
-        // Return to the homepage
-        mbkCommonControlsHelper.clickUpButton();
-        mbkCommonControlsHelper.clickUpButton();
-
-        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
-
-        // Goto History Tab
-        transactionHistoryPage = homePage.clickHistory();
-
-        transactionHistoryPage.clickOnFirstElementInTheList();
-
-        policyId = transactionHistoryPage.getTrxId();
-        Log.info("Policy Id : " + policyId);
-        return policyId;
-    }
-
-
-    public void validateInsurance(String insuranceAmount) throws InterruptedException, IOException, JSONException {
-
-        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
-
-        Element.waitForVisibility(driver, homePage.sidedrawer_icon);
-        screen.swipeUpMedium(driver);
-
-        homePage.clickInvestmentAndInsuranceLayout();
-        Thread.sleep(500);
-        insurancePage = homePage.clickOnInsuranceIcon();
-
-        Thread.sleep(4000);
-        Element.waitForVisibility(driver, By.id("mkab_title"));
-
-        mbReporter.verifyTrueWithLogging(getInsuranceDetails(), "Verify Insurance Details", false,false);
-
-        insurancePage.selectPersonalAccidentInsurance();
-
-        Element.waitForVisibility(driver,By.id("tnc_view"));
-
-        insurancePage.clickOnAgreeTerms();
-
-        permissionHelper.permissionAllow();
-
-        Thread.sleep(2000);
-        Element.selectElement(driver, (AndroidElement) driver.findElement(By.xpath("//android.widget.Button[@text='"+insuranceAmount+"']")), "Select Insurance Category");
-
-
-        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text = 'Confirm Payment']"));
-
-
-        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Confirm Payment']")), "Verify Confirmation Page is Loaded", true, true);
-
-        mbReporter.verifyTrueWithLogging(getInsuranceDetailsInfo(), "Verify Insurance Info Details", false,false);
-
-        insurancePage.clickOnBackButton();
-
-        Thread.sleep(500);
-
-        insurancePage.clickOnBackButton();
-
-        Thread.sleep(500);
-
-        insurancePage.clickOnBackButton();
-
-        Thread.sleep(500);
-
-        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
-
-        homePage.closeMoreServicesOverlay();
-
-
-
-
-
+        Log.info("Text Payable Amount : " + textpayableAmount);
+        mbReporter.verifyEqualsWithLogging(textpayableAmount, exptextpayableAmount, "Text Payable Amount", false, false, true);
 
 
     }
 
+    public void walletProtectInsurance(String expheaderTextwalletProtect,String exptextselectSumInssured,String exptextproductBenifit,String exptextCoverage,String exptextInsuredBy,String  exptextStartDate,String exptextEndDate,String exptextAmounttobePaid,String exptextpayableAmount) throws InterruptedException, IOException {
+        insurancePage.clickAllServices();
+        insurancePage.scrollToInsurance();
+        insurancePage.clickOnInsurance();
+        insurancePage.clickOnWalletProtectInsurance();
 
+        // Get Header for Insurance Home screen
+        String headerTextwalletProtect = insurancePage.getWalletProtectInsurance();
+        String textselectSumInssured = insurancePage.getSelectSumassured();
+        String textproductBenifit = insurancePage.getProductBenifit();
 
-    public Boolean getInsuranceDetails() throws InterruptedException, IOException {
-        LinkedHashMap<String, String> insuranceDetails = new LinkedHashMap<>();
-        Log.info("START", "Fetch Insurance Details");
+        // Display the values
+        Log.info("First Top Header on DocAssure : " + headerTextwalletProtect);
+        Log.info("Text Sum Insured" + textselectSumInssured);
+        Log.info("Product Benifit" + textproductBenifit);
 
-        if(Element.waitForVisibility(driver, By.id("deeplinkLayout"))) {
-            int noOfDetails = Element.findElements(driver, By.id("offer_tittle")).size();
-            Log.info("No Of Insurance Details - " + noOfDetails);
+        // Add the assertions
+        mbReporter.verifyEqualsWithLogging(headerTextwalletProtect, expheaderTextwalletProtect, "First Top Header Wallet Protect", false, false, true);
+        mbReporter.verifyEqualsWithLogging(textselectSumInssured, exptextselectSumInssured, "Sum Insured Text", false, false, true);
+        mbReporter.verifyEqualsWithLogging(textproductBenifit, exptextproductBenifit, "Product Benifits", false, false, true);
 
-            // Fetch Details
-            for (int i = 1; i <= noOfDetails; i++) {
+        //Click on Sum Insured value
+        insurancePage.clickOncheckBox();
+        insurancePage.clickOnsumassuredbutton();
 
-                String TitleText = element.findElement(driver, By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.ScrollView/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout["+i+"]/android.widget.LinearLayout/android.view.ViewGroup/android.widget.TextView[1]")).getText();
-                String Subtitle = element.findElement(driver, By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.ScrollView/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout["+i+"]/android.widget.LinearLayout/android.view.ViewGroup/android.widget.TextView[2]")).getText();
-                insuranceDetails.put(TitleText, Subtitle);
-            }
+        String textCoverage = insurancePage.getCoverage();
+        String textInsuredBy = insurancePage.getInsuredBy();
+        String textStartDate = insurancePage.getStartDate();
+        String textEndDate = insurancePage.getEndDate();
+        String textAmounttobePaid = insurancePage.getAmounttobePaid();
 
-            Log.info("------------ Insurance Details --------------");
+        Log.info("Text Coverage : " + textCoverage);
+        Log.info("Text Partner Name" + textInsuredBy);
+        Log.info("Text Start Date" + textStartDate);
+        Log.info("Text End Date" + textEndDate);
+        Log.info("Text Amount to be Paid" + textAmounttobePaid);
 
-            for (Map.Entry<String, String> e : insuranceDetails.entrySet()) {
-                Log.info(e.getKey(), e.getValue());
-            }
+        mbReporter.verifyEqualsWithLogging(textCoverage, exptextCoverage, "Text Coverage", false, false, true);
+        mbReporter.verifyEqualsWithLogging(textInsuredBy, exptextInsuredBy, "Text Insured By", false, false, true);
+        mbReporter.verifyEqualsWithLogging(textStartDate, exptextStartDate, "Text Start Date", false, false, true);
+        mbReporter.verifyEqualsWithLogging(textEndDate, exptextEndDate, "Text End Date", false, false, true);
+        mbReporter.verifyEqualsWithLogging(textAmounttobePaid, exptextAmounttobePaid, "Text Amount to be Paid", false, false, true);
 
-//            dealDetails.entrySet().forEach( entry -> {
-//                System.out.println( entry.getKey() + " => " + entry.getValue() );
-//            });
+        //Click On Make Payment
+        insurancePage.clickOnMakePayment();
+        String textpayableAmount = insurancePage.getPayableAmount();
 
-            Log.info("-----------------------------------");
-
-            return true;
-
-        }else {
-            return false;
-        }
-
-
-    }
-
-    public Boolean getInsuranceDetailsInfo() throws InterruptedException, IOException {
-        LinkedHashMap<String, String> insuranceDetailsInfo = new LinkedHashMap<>();
-        Log.info("START", "Fetch Insurance Info Details");
-
-        if(Element.waitForVisibility(driver, By.id("amount_to_be_paid"))) {
-            int noOfDetails = Element.findElements(driver, By.id("row_element_left")).size();
-            Log.info("No Of Insurance Info Details - " + noOfDetails);
-
-            // Fetch Details
-            for (int i = 1; i <= noOfDetails; i++) {
-
-                String leftDetails = element.findElement(driver, By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.LinearLayout["+i+"]/android.widget.LinearLayout/android.widget.TextView[1]")).getText();
-                String rightDetails = element.findElement(driver, By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.LinearLayout["+i+"]/android.widget.LinearLayout/android.widget.TextView[2]")).getText();
-                insuranceDetailsInfo.put(leftDetails, rightDetails);
-            }
-
-            Log.info("------------ Insurance Details --------------");
-
-            for (Map.Entry<String, String> e : insuranceDetailsInfo.entrySet()) {
-                Log.info(e.getKey(), e.getValue());
-            }
-
-//            dealDetails.entrySet().forEach( entry -> {
-//                System.out.println( entry.getKey() + " => " + entry.getValue() );
-//            });
-
-            Log.info("-----------------------------------");
-
-            return true;
-
-        }else {
-            return false;
-        }
+        Log.info("Text Payable Amount : " + textpayableAmount);
+        mbReporter.verifyEqualsWithLogging(textpayableAmount, exptextpayableAmount, "Text Payable Amount", false, false, true);
 
 
     }
-
-
 }
-
-
- */
