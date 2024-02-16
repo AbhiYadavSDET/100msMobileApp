@@ -58,6 +58,10 @@ public class GoldPage {
     @AndroidFindBy(id = "mkab_icon_1")
     private AndroidElement successScreenUpButton;
 
+
+    @AndroidFindBy(xpath = "//*/android.widget.Button[@text = 'Explore Gold SIP']")
+    private AndroidElement explore_cta;
+
     public GoldPage(AndroidDriver driver) {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -127,6 +131,10 @@ public class GoldPage {
 
     public void clickUpIcon() {
         Elements.selectElement(driver, successScreenUpButton, "Up Icon");
+    }
+
+    public boolean checkEXploreSipBottomsheet() throws InterruptedException {
+        return Elements.isElementPresent(driver, explore_cta);
     }
 
 }
