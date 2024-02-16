@@ -52,13 +52,12 @@ public class GoldHelper {
         goldPage.clickBuyGold();
 
         // Close what's new in gold bottom sheet
-        while(!goldPage.isBuyGoldPresent()){
+        if(goldPage.checkEXploreSipBottomsheet()){
             mbkCommonControlsHelper.pressback();
         }
 
         // Click on Buy Gold
         goldPage.clickBuyCta();
-
 
         // Enter the Gold amount
         goldPage.enterAmount(amount);
