@@ -154,7 +154,7 @@ public class IMPSTest extends TestBase {
     }
 
 
-    @Test(groups = {"impsCheckout", "impsSanity", "regression"}, priority = 0, description = "Refer and earn on Imps")
+    @Test(groups = {"impsCheckout", "impsSanity"}, priority = 0, description = "Refer and earn on Imps")
     public void Test06_imps_new_account_checkout_option() throws IOException, InterruptedException {
 
         Log.info("======= START : Checkout option on IMPS page  =======");
