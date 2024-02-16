@@ -55,7 +55,7 @@ public class IMPSNewHelper {
         //Going to IMPS Option
         impsPage.clickOnWalletToBank();
 
-        Thread.sleep(3000);
+        Thread.sleep(5000);
         if (impsPage.isZeroState()) {
             impsPage.clickOnTransferNowOnZeroState();
         } else {
@@ -117,7 +117,7 @@ public class IMPSNewHelper {
         //Going to IMPS Option
         impsPage.clickOnWalletToBank();
 
-        Thread.sleep(3000);
+        Thread.sleep(5000);
 
         //Going to UPI Option
         if (impsPage.isZeroState()) {
@@ -197,7 +197,7 @@ public class IMPSNewHelper {
         if (securityPinPage.checkSecurityPinPage()) securityPinPage.enterSecurityPin();
 
         //Assertion Check on Confirmation Page
-        Thread.sleep(3000);
+        Thread.sleep(5000);
         Log.info("Payment Flow done here, Now checking the status...");
 
         //Storing Actual Message on Screen and Expected Result in String
@@ -231,7 +231,7 @@ public class IMPSNewHelper {
         //Going to IMPS Option
         impsPage.clickOnWalletToBank();
 
-        Thread.sleep(4000);
+        Thread.sleep(5000);
         if (impsPage.isZeroState()) {
             impsPage.clickOnTransferNowOnZeroState();
         } else {
@@ -254,7 +254,7 @@ public class IMPSNewHelper {
         //Going to IMPS Option
         impsPage.clickOnWalletToBank();
 
-        Thread.sleep(3000);
+        Thread.sleep(5000);
         if (impsPage.isZeroState()) {
             impsPage.clickOnTransferNowOnZeroState();
         } else {
@@ -299,7 +299,7 @@ public class IMPSNewHelper {
         //Going to IMPS Option
         impsPage.clickOnWalletToBank();
 
-        Thread.sleep(3000);
+        Thread.sleep(5000);
 
         //Click on transfer new account
         if (impsPage.isZeroState()) {
@@ -358,7 +358,7 @@ public class IMPSNewHelper {
 
         impsPage.clickOnWalletToBank();
 
-        Thread.sleep(3000);
+        Thread.sleep(5000);
         if (impsPage.isZeroState()) {
             impsPage.clickOnTransferNowOnZeroState();
         } else {
@@ -399,7 +399,7 @@ public class IMPSNewHelper {
         //Going to IMPS Option
         impsPage.clickOnWalletToBank();
 
-        Thread.sleep(3000);
+        Thread.sleep(5000);
         if (impsPage.isZeroState()) {
             impsPage.clickOnTransferNowOnZeroState();
         } else {
@@ -443,7 +443,7 @@ public class IMPSNewHelper {
         //Going to IMPS Option
         impsPage.clickOnWalletToBank();
 
-        Thread.sleep(3000);
+        Thread.sleep(5000);
         if (impsPage.isZeroState()) {
             impsPage.clickOnTransferNowOnZeroState();
         } else {
