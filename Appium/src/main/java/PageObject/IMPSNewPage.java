@@ -127,13 +127,16 @@ public class IMPSNewPage {
     @AndroidFindBy(id = "info_message")
     private AndroidElement infoMessageOnAmountScreen ;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[text()='More payment options']")
+
+    //xpath = "//android.widget.TextView[text()='More payment options']
+
+    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView[1]")
     private AndroidElement morePaymentOption ;
 
     @AndroidFindBy(id = "next_icon")
     private AndroidElement checkBox ;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[starts-with(@text, 'Pay ₹')]")
+    @AndroidFindBy(id = "cta")
     private AndroidElement continueButtonOnFinalCheckout ;
 
     @AndroidFindBy(xpath = "//android.widget.EditText[contains(@text, 'CVV')]")
@@ -142,9 +145,11 @@ public class IMPSNewPage {
     @AndroidFindBy(xpath = "//android.widget.Button[contains(@text, 'Pay ₹')]")
     private AndroidElement payAfterCvv ;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[contains(@text, 'w')]")
+    @AndroidFindBy(id = "btn_pin_submit")
     private AndroidElement arrowButton ;
 
+    @AndroidFindBy(id = "btn_check_out_pay")
+    private AndroidElement continueOnCheckoutPage ;
 
 
     public IMPSNewPage(AndroidDriver driver) throws IOException {
@@ -353,6 +358,13 @@ public class IMPSNewPage {
     public void clickOnArrowButton() throws InterruptedException{
         Elements.selectElement(driver,arrowButton,"Tapped on arrow continue button ");
     }
+
+    public void clickOnContinueOnCheckout() throws InterruptedException{
+        Elements.selectElement(driver,continueOnCheckoutPage,"Tapped on pay button on checkout page ");
+    }
+
+
+
 
 }
 

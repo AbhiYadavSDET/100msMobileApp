@@ -437,7 +437,7 @@ public class IMPSNewHelper {
     }
 
 
-    public void verifyIMPSCheckout( String upiId,String amount,String cvv) throws InterruptedException, IOException {
+    public void verifyIMPSCheckout( String beneficiaryName,String accountNumber,String ifscCode, String amount,String cvv) throws InterruptedException, IOException {
 
 
         //Going to IMPS Option
@@ -450,20 +450,23 @@ public class IMPSNewHelper {
             impsPage.clickOnTransferToNewAccount();
         }
 
-        //click on upi id button
-        impsPage.clickOnUPIRadioBtn();
+     impsPage.setBeneficiaryName(beneficiaryName);
+        impsPage.setAccountNumber(accountNumber);
+        impsPage.setIFSC_Code(ifscCode);
 
-        impsPage.setUPIID(upiId);
+
         impsPage.clickOnContinueToAmtCTA();
         impsPage.setAmount(amount);
+        Thread.sleep(3000);
       impsPage.clickOnArrowButton();
+      impsPage.clickOnContinueButtonOnFinalCheckout();
 
         //Check Security PIN Page
         if (securityPinPage.checkSecurityPinPage()) securityPinPage.enterSecurityPin();
-
+        Thread.sleep(2000);
         impsPage.clickOnMorePaymentOptions();
         impsPage.clickOnCheckBox();
-        impsPage.clickOnContinueButtonOnFinalCheckout();
+        impsPage.clickOnContinueOnCheckout();
         impsPage.setCVV(cvv);
         impsPage.clickOnPayAftercvv();
 
