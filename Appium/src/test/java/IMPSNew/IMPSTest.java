@@ -163,7 +163,7 @@ public class IMPSTest extends TestBase {
         loginHelp.quickLoginViaOtp("9205299330","547372");
 
         IMPSNewHelper impsHelper = new IMPSNewHelper(getAndroidDriver());
-        impsHelper.verifyIMPSCheckout("inder786@ikwik","9000","492");
+        impsHelper.verifyIMPSCheckout("Abhishek Yadav","135701525113","ICIC0001437","9000","492");
         Log.info("======= END  : Checkout option on IMPS page   =======");
 
     }
