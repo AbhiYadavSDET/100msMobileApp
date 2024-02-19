@@ -290,15 +290,13 @@ public class AAHelper {
     public void existingUserManage(String expautoRefreshext, String expmanageConsentText, String exphelpText) throws InterruptedException, IOException {
 
         aaPage.allServicesCTA();
-//        screen.swipeUpMore(driver);
-//        screen.swipeUpMore(driver);
         aaPage.trackBankAccountsCTA();
-       // Thread.sleep(2000);
-        screen.swipeUpMore(driver);
+       /* screen.swipeUpMore(driver);
 
         if(!aaPage.checkSettingCta()) {
             screen.swipeUpMore(driver);
-        }
+        }*/
+        aaPage.scrollToSetting();
         aaPage.selectSetting();
        // Thread.sleep(2000);
         String autoRefreshext = aaPage.autoRefreshext();
@@ -332,7 +330,8 @@ public class AAHelper {
         aaPage.trackBankAccountsCTA();
         screen.swipeUpMore(driver);
 
-        if(!aaPage.savedBankAccount()){
+        if(!aaPage.savedBankAccount())
+        {
             screen.swipeUpMore(driver);
         }
         aaPage.clickOnYourSavedBankAccount();

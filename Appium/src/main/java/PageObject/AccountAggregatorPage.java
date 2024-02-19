@@ -93,10 +93,10 @@ public class AccountAggregatorPage {
     @AndroidFindBy(xpath = "//*[@text='Expenses']")
     private AndroidElement outgoingSecondSubTitle;
 
-    @AndroidFindBy(xpath = "//*[@text='SIPs & EMIs']")
+    @AndroidFindBy(xpath = "//*[@text='EMI']")
     private AndroidElement outgoingThirdSubTitle;
 
-    @AndroidFindBy(xpath = "//*[@text='Bank charges']")
+    @AndroidFindBy(xpath = "//*[@text='Investment']")
     private AndroidElement outgoingFourthSubTitle;
 
     @AndroidFindBy(xpath = "//*[@text='Your Monthly Summary']")
@@ -490,6 +490,10 @@ public class AccountAggregatorPage {
 
     public void selectSetting() throws InterruptedException {
         Elements.selectElement(driver,settingsTitle,"Click on Setting");
+    }
+
+    public boolean scrollToSetting() throws InterruptedException {
+        return Elements.scrollToElement(driver, settingsTitle);
     }
 
     public Boolean checkSettingCta() throws InterruptedException{
