@@ -40,18 +40,7 @@ public class MutualFundsHelper {
         // Tap on See All Services
         homePage.clickAllServices();
 
-        for(int i=0;i<5;i++){
-        if(!Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text= 'Direct Mutual Funds']"))){
-            // Swipe till the bottom
-            screen.swipeUpMore(driver);
-        }else {
-            break;
-        }
-        }
-
-        // Click on direct mutual funds
-        mutualFundPage.clickOnMutualFunds();
-
+        clickOnMutualFund();
         // Click on get started button.
         mutualFundPage.clickOnGetStarted();
 
@@ -103,9 +92,93 @@ public class MutualFundsHelper {
         mbReporter.verifyEquals(popupSubTitle, expPopUpSubTitle, "Verify Pop Up Sub Title", false, false);
         mbReporter.verifyEquals(popCtaText, expPopUpCtaText, "Verify Pop Up Cta Text", false, false);
 
-
         Log.info("END", "Explore Mutual Funds");
 
+    }
 
+    public void retakeRiskAnalyser() throws IOException, InterruptedException {
+
+        Log.info("START", "Risk analyser Mutual Funds");
+
+        // Tap on See All Services
+        homePage.clickAllServices();
+
+        // click on mutual funds from All service
+        clickOnMutualFund();
+
+        mutualFundPage.clickOnGetStarted();
+
+        mutualFundPage.clickOnRetakeButton();
+        mutualFundPage.clickOnStartNow();
+
+        mutualFundPage.clickOnInvsetmentTimeFor();
+        mutualFundPage.clickOnInvsetmentTimeLast();
+        mutualFundPage.clickOnSaveButton();
+
+        mutualFundPage.clickOnAnnualIncomeOption();
+        mutualFundPage.clickOnIsPrimaryBreadWinner();
+        mutualFundPage.clickOnSaveButton();
+
+        mutualFundPage.clickOnCareMostOption();
+        mutualFundPage.clickOnInvestmentDownOption();
+        mutualFundPage.clickOnSaveButton();
+
+        mutualFundPage.clickOnInvestmentGoUpDownOption();
+        mutualFundPage.clickOnCurrentSavingOption();
+        mutualFundPage.clickOnSaveButton();
+       String successText=  mutualFundPage.getTextOnRiskAnalyserSuccessScreen();
+
+        mbReporter.verifyEquals(successText, "Recommended combination for you", "Verify retake analyser success ", false, false);
+
+    }
+
+    public void privacyPolicy() throws IOException, InterruptedException {
+
+        Log.info("START", "Privacy policy on  Mutual Funds");
+
+        // Tap on See All Services
+        homePage.clickAllServices();
+
+        // click on mutual funds from All service
+        clickOnMutualFund();
+
+        mutualFundPage.clickOnGetStarted();
+        mutualFundPage.clickOnProfile();
+
+        mutualFundPage.clickOnPrivacyPolicy();
+        String  privacyPolicy = mutualFundPage.getTitleOnPrivacyPolicy();
+
+        mbReporter.verifyEquals(privacyPolicy, "Privacy Policy", "Verify Privacy policy link on MF", false, false);
+    }
+    public  void faq() throws IOException, InterruptedException {
+
+        Log.info("START", "FAQ on  Mutual Funds");
+        // Tap on See All Services
+        homePage.clickAllServices();
+
+        // click on mutual funds from All service
+        clickOnMutualFund();
+
+        mutualFundPage.clickOnGetStarted();
+        mutualFundPage.clickOnProfile();
+        mutualFundPage.clickOnFaq();
+
+        String faqText = mutualFundPage.getTitleOnFaq();
+        mbReporter.verifyEquals(faqText, "FAQs", "Verify FAQ on MF", false, false);
+
+    }
+
+    public void clickOnMutualFund() throws InterruptedException {
+        for(int i=0;i<5;i++){
+            if(!Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text= 'Direct Mutual Funds']"))){
+                // Swipe till the bottom
+                screen.swipeUpMore(driver);
+            }else {
+                break;
+            }
+        }
+
+        // Click on direct mutual funds
+        mutualFundPage.clickOnMutualFunds();
     }
 }
