@@ -32,10 +32,15 @@ public class InsurancePage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Personal Accident Insurance']")
     private AndroidElement text_personalAccidentInsurance;
 
+    @AndroidFindBy(xpath = "(//android.widget.TextView[@text = 'Personal Accident Insurance'])[2]")
+    private AndroidElement text_personalAccidentInsurance_subheading;
+
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Comprehensive Accidental Insurance']")
     private AndroidElement text_comprehensivepersonalAccidentInsura;
 
 
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'J']")
+    private AndroidElement calender_click;
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Wallet Protect']")
     private AndroidElement text_walletProtect;
 
@@ -55,14 +60,30 @@ public class InsurancePage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Select Sum Insured']")
     private AndroidElement heading_selectSumIssured;
 
+
     @AndroidFindBy(id = "btnPrice")
     private AndroidElement picebutton_onDocInsurancePage;
+
+
+    @AndroidFindBy(xpath = "//*/android.widget.Button[@text = '₹99']")
+    private AndroidElement picebutton_onDocInsurancePage1;
+
+    @AndroidFindBy(xpath = "//*/android.widget.Button[@text = '₹20']")
+    private AndroidElement picebutton20_onInsurancePage1;
 
     @AndroidFindBy(id = "i_agree")
     private AndroidElement checkbox;
 
+    @AndroidFindBy(id = "ctaCancel")
+    private AndroidElement ctaCancel_yesplease_myPolicy;
+
+    @AndroidFindBy(id = "dynamic_btn_1")
+    private AndroidElement cta_cancelPolicy;
+
     @AndroidFindBy(id = "text_payment_label")
     private AndroidElement text_payable_amount;
+    @AndroidFindBy(id = "btnGeneratePolicy")
+    private AndroidElement generatePolicy_cta;
 
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Your Risk Exposure']")
     private AndroidElement text_your_risk_exposure;
@@ -114,17 +135,87 @@ public class InsurancePage {
     private AndroidElement dateofbirth_textview;
 
     @AndroidFindBy(xpath = "//android.widget.AutoCompleteTextView[@text= 'Monthly Gross Salary']")
-
     private AndroidElement monthly_gross_salary;
 
-    @AndroidFindBy(id = "com.mobikwik_new.debug:id/button_continue")
+    @AndroidFindBy(id = "button_continue")
     private AndroidElement cta_continue;
 
-    @AndroidFindBy(id = "com.mobikwik_new.debug:id/primary_button")
+    @AndroidFindBy(id = "btnContinue")
+    private AndroidElement cta_continue_formfield;
+
+    @AndroidFindBy(id = "skipButton")
+    private AndroidElement skip_nominee;
+
+
+    @AndroidFindBy(id = "back_icon")
+    private AndroidElement back_arrow;
+    @AndroidFindBy(id = "view_detail_text")
+    private AndroidElement text_viewMore;
+
+    @AndroidFindBy(id = "primary_button")
     private AndroidElement select_cta;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'Full Name']")
+    private AndroidElement text_fullname;
 
     @AndroidFindBy(xpath = "//android.widget.AutoCompleteTextView[@text= 'Name of Current Organization']")
     private AndroidElement current_organization;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'Select Gender']")
+    private AndroidElement text_selectgender;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Mobile Number']")
+    private AndroidElement text_phoneno;
+
+    @AndroidFindBy(xpath = "//android.widget.Button[@text='Download Policy']")
+    private AndroidElement text_downloadPolicy;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Congratulations']")
+    private AndroidElement text_congratulation;
+
+    @AndroidFindBy(xpath = "//android.widget.AutoCompleteTextView[@text= 'Age should be between 18-99']")
+    private AndroidElement nominee_age_enterfield;
+
+    public void clickOnNomineeAge() throws InterruptedException{
+        Elements.selectElement(driver,nominee_age_enterfield,"Click on Nominee Age");
+    }
+
+    public void clickonCancelConfirmationYesPlease() throws InterruptedException{
+        Elements.selectElement(driver,ctaCancel_yesplease_myPolicy,"Click on Yes,please cancel");
+    }
+
+    public void clickonCancelPolicyOnHistory() throws InterruptedException{
+        Elements.selectElement(driver,cta_cancelPolicy,"Click on History button cancel Policy");
+    }
+
+    public void enterOnNomineeAge(String age) throws InterruptedException {
+        Elements.enterToElement(driver, nominee_age_enterfield, age, "Enter Nominee Name");
+    }
+
+    public String gettextfullName() throws InterruptedException {
+        return Elements.getText(driver,text_fullname, "Text Full name");
+    }
+
+    public String gettextSelectGender() throws InterruptedException {
+        return Elements.getText(driver,text_selectgender, "text select gender");
+    }
+
+
+    public String gettextCongratulation() throws InterruptedException {
+        return Elements.getText(driver,text_congratulation, "text congratulation");
+    }
+
+    public String gettextDownloadPolicy() throws InterruptedException {
+        return Elements.getText(driver,text_downloadPolicy, "text download policy");
+    }
+
+    public String gettextViewMore() throws InterruptedException {
+        return Elements.getText(driver,text_viewMore, "text view more");
+    }
+
+    public String gettextPhoneNo() throws InterruptedException {
+        return Elements.getText(driver,text_phoneno, "Text phone no");
+    }
 
     public void clickOnMonthlyGrossSalaryTextfield() throws InterruptedException{
         Elements.selectElement(driver,monthly_gross_salary,"Click on Monthly gross Salary");
@@ -136,6 +227,10 @@ public class InsurancePage {
 
     public void clickOnselectCTA() throws InterruptedException{
         Elements.selectElement(driver,select_cta,"Click on Select");
+    }
+
+    public void clickOnBackIcon() throws InterruptedException{
+        Elements.selectElement(driver,back_arrow,"Click on BackButton");
     }
 
     public void clickOnMonthlyGrossSalary() throws InterruptedException{
@@ -152,11 +247,25 @@ public class InsurancePage {
         Elements.selectElement(driver,cta_continue,"Click on Continue button");
     }
 
+    public void clickOnContinueButtonOnFormPage() throws InterruptedException{
+        Elements.selectElement(driver,cta_continue_formfield,"Click on Continue button on form field");
+    }
+
+    public void clickOnskipNominee() throws InterruptedException{
+        Elements.selectElement(driver,skip_nominee,"Click on Exit Nominee");
+    }
+
+
     public void clickAllServices() {
         Elements.selectElement(driver, allServices, "All Services");
     }
     public boolean scrollToInsurance() throws InterruptedException {
         return Elements.scrollToElement(driver,insuranceCTA);
+    }
+
+
+    public boolean scrollToContinueButton() throws InterruptedException {
+        return Elements.scrollToElement(driver,cta_continue_formfield);
     }
 
     public void clickOnCommunicableDisesInsurance() throws InterruptedException{
@@ -204,11 +313,21 @@ public class InsurancePage {
         Elements.selectElement(driver,text_comprehensivepersonalAccidentInsura,"Comprehensive Personal Accident Insurance");
     }
 
+    public void clickOnCalender() throws InterruptedException{
+        Elements.selectElement(driver,calender_click,"Calender Click");
+    }
+
+    public void clickOnGeneratePolicy() throws InterruptedException{
+        Elements.selectElement(driver,generatePolicy_cta,"Generate Policy");
+    }
+
     public void clickOnPersonalAccidentInsurance() throws InterruptedException{
         Elements.selectElement(driver,text_personalAccidentInsurance,"Personal Accident Insurance");
     }
 
-
+    public void clickOnPersonalAccidentInsurancesubheading() throws InterruptedException{
+        Elements.selectElement(driver,text_personalAccidentInsurance_subheading,"Personal Accident Insurance subheading");
+    }
 
     public String getWalletProtectInsurance() throws InterruptedException {
         return Elements.getText(driver,text_walletProtect, "Wallet Protect");
@@ -241,6 +360,17 @@ public class InsurancePage {
     public void clickOnsumassuredbutton() throws InterruptedException{
         Elements.selectElement(driver,picebutton_onDocInsurancePage,"Pay your existing insurance Premium");
     }
+
+    public void clickOnsumassuredbutton1() throws InterruptedException{
+        Elements.selectElement(driver,picebutton_onDocInsurancePage1,"Pay your existing insurance Premium");
+    }
+
+    public void clickOnsumassured20button() throws InterruptedException{
+        Elements.selectElement(driver,picebutton20_onInsurancePage1,"Pay 20 your existing insurance Premium");
+    }
+
+
+
     public void clickOnPayyourexistinginsurance() throws InterruptedException{
         Elements.selectElement(driver,text_payyourexistinginsurancePremium,"Pay your existing insurance Premium");
     }
