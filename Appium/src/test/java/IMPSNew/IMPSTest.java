@@ -148,7 +148,7 @@ public class IMPSTest extends TestBase {
         loginHelp.quickLoginViaOtp("9205299330","547372");
 
         IMPSNewHelper impsHelper = new IMPSNewHelper(getAndroidDriver());
-        impsHelper.verifyIMPSInfoMessages("inder786@ikwik","50");
+        impsHelper.verifyIMPSInfoMessages("Abhishek yadav","50","135701525113","ICIC0001437");
         Log.info("======= END  : Info  message on add new property on Amount page =======");
 
     }
