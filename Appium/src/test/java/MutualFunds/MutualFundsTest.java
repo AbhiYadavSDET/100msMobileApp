@@ -75,5 +75,23 @@ public class MutualFundsTest extends TestBase {
 
         Log.info("======= END : Mutual Funds privacy policy  Flow test =======");
     }
+
+
+
+    @Test(groups = {"MutualFunds", "sanity", "mutlipleFDsOptions", "regression"}, priority = 0, description = "Retake risk analyser ")
+    public void Test_MF_multipleFdsOptions() throws InterruptedException, IOException {
+
+        Log.info("======= START : Mutual Funds privacy policy analyser Flow test =======");
+
+
+        // Start the test
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaOtp("9205299330", "547372");
+
+        MutualFundsHelper mutualFundsHelper = new MutualFundsHelper(getAndroidDriver());
+        mutualFundsHelper.multipleFDsOptions();
+
+        Log.info("======= END : Mutual Funds privacy policy  Flow test =======");
+    }
 }
 

@@ -181,7 +181,6 @@ public class MutualFundsHelper {
 
         mutualFundPage.clickOnLiquidFunds();
         String liquidFunds = mutualFundPage.getTitleOfFDs();
-
         mbReporter.verifyEquals(liquidFunds, "Liquid Funds", "Verify title of Liquid funds", false, false);
 
         mutualFundPage.clickOnBackButton();
@@ -194,7 +193,6 @@ public class MutualFundsHelper {
 
         mutualFundPage.clickOnGetRich();
         String getRich = mutualFundPage.getTitleOfFDs();
-
         mbReporter.verifyEquals(getRich, "Get Rich Fund", "Verify title of Liquid funds", false, false);
 
         mutualFundPage.clickOnBackButton();
@@ -202,7 +200,6 @@ public class MutualFundsHelper {
         mutualFundPage.clickOnTaxSaver();
         String taxSaver = mutualFundPage.getTitleOfFDs();
         mbReporter.verifyEquals(taxSaver, "Tax Saver", "Verify title of Liquid funds", false, false);
-
 
     }
 
