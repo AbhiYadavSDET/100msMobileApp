@@ -55,17 +55,14 @@ public class MutualFundPage {
     @AndroidFindBy(id = "primary_button")
     private AndroidElement popUPCtaText;
 
-
     @AndroidFindBy(id = "icon_profile")
     private AndroidElement profileIcon;
 
     @AndroidFindBy(id = "tv_edit")
     private AndroidElement editButton;
 
-
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Retake']")
     private AndroidElement retakeButoon;
-
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Start Now']")
     private AndroidElement startNow;
@@ -85,7 +82,6 @@ public class MutualFundPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Yes']")
     private AndroidElement isPrimaryBreadWinnderOption;
 
-
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Avoiding loss, minimum risks']")
     private AndroidElement careMostOption;
 
@@ -95,30 +91,23 @@ public class MutualFundPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Very comfortable']")
     private AndroidElement investmentGoUpOption;
 
-
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='10 - 25 lakhs']\n")
     private AndroidElement currentSavingOption;
-
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Learn about Mutual Funds']")
     private AndroidElement learnAboutMutualFunds;
 
-
     @AndroidFindBy(id = "tv_title")
     private AndroidElement faqText;
 
-
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Privacy Policy']\n")
     private AndroidElement privacyPolicy;
-
 
     @AndroidFindBy(id = "tv_title")
     private AndroidElement privacyPolicyText;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Recommended combination for you']")
     private AndroidElement riskAnalyserSuccess;
-
-
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Liquid Funds']")
     private AndroidElement liquidFunds;
@@ -138,41 +127,6 @@ public class MutualFundPage {
     @AndroidFindBy(id = "mkab_icon_1")
     private AndroidElement backButton;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public MutualFundPage(AndroidDriver driver) throws IOException {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -181,10 +135,6 @@ public class MutualFundPage {
     public void clickOnMutualFunds() throws InterruptedException {
         Element.selectElement(driver, directMutualFunds, "Click on Mutual Funds");
     }
-
-//    public boolean isGetStartedPresent() throws InterruptedException {
-//        return Element.isElementPresent(driver,getStarted);
-//    }
 
     public void clickOnGetStarted() throws InterruptedException {
         Element.selectElement(driver, getStarted, "Click on Get Started");
@@ -246,8 +196,6 @@ public class MutualFundPage {
         Element.selectElement(driver, editButton, "Click on Edit button on prfile page ");
     }
 
-
-
     public void clickOnRetakeButton() throws InterruptedException {
         Element.selectElement(driver, retakeButoon, "Click on retake button");
     }
@@ -307,7 +255,6 @@ public class MutualFundPage {
     public String getTextOnRiskAnalyserSuccessScreen(){
         return Element.getText(driver, riskAnalyserSuccess, " Risk analyser text on success screen ");
     }
-
 
     public void clickOnLiquidFunds() throws InterruptedException {
         Element.selectElement(driver, liquidFunds, "Click on Liquid Funds");
