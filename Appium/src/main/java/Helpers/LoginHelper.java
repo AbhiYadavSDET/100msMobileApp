@@ -98,7 +98,7 @@ public class LoginHelper {
         //loginPage.clickSubmitOtpCta();
 
         // Wait for 5000 ms for all the banners to load
-        Thread.sleep(5000);
+        Thread.sleep(2000);
 
         mbkCommonControlsHelper.handleHomePage();
 
