@@ -112,7 +112,7 @@ public class MutualFundPage {
     private AndroidElement privacyPolicy;
 
 
-    @AndroidFindBy(xpath = "tv_title")
+    @AndroidFindBy(id = "tv_title")
     private AndroidElement privacyPolicyText;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Recommended combination for you']")
