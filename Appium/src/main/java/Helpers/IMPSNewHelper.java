@@ -388,7 +388,7 @@ public class IMPSNewHelper {
 
             }
 
-    public void verifyIMPSInfoMessages( String upiId,String amount) throws InterruptedException, IOException {
+    public void verifyIMPSInfoMessages( String beneficiaryName,String amount,String accountNumber,String ifscCode) throws InterruptedException, IOException {
 
         balanceBefore = mbkCommonControlsHelper.getBalance();
         String balance1 =  balanceBefore.get("Balance");
@@ -406,10 +406,10 @@ public class IMPSNewHelper {
             impsPage.clickOnTransferToNewAccount();
         }
 
-        //click on upi id button
-        impsPage.clickOnUPIRadioBtn();
+        impsPage.setBeneficiaryName(beneficiaryName);
+        impsPage.setAccountNumber(accountNumber);
+        impsPage.setIFSC_Code(ifscCode);
 
-        impsPage.setUPIID(upiId);
         impsPage.clickOnContinueToAmtCTA();
         impsPage.setAmount(amount);
 
