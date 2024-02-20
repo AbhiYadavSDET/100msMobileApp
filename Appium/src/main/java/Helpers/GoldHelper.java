@@ -62,48 +62,55 @@ public class GoldHelper {
         // Enter the Gold amount
         goldPage.enterAmount(amount);
 
-        // Click on Pay Now CTA
-        goldPage.clickPayCta();
+        if(goldPage.isErrorTextVisible()){
+            mbReporter.verifyTrueWithLogging(goldPage.isErrorTextVisible(), "Error Shown : "+ goldPage.getErrorText(),  false, false, true);
+        }else {
 
-        // checking for security pin
-        if(securityPinPage.checkSecurityPinPage()){
-            securityPinPage.enterSecurityPin();
+            Log.info("No error on amount field shown : Continue with Existing Case");
+
+            // Click on Pay Now CTA
+            goldPage.clickPayCta();
+
+            // checking for security pin
+            if (securityPinPage.checkSecurityPinPage()) {
+                securityPinPage.enterSecurityPin();
+            }
+
+            // Verification on the Success Screen
+            String title = goldPage.getTitle();
+            String subTitle = goldPage.getSubTitle();
+            String goldAmount = goldPage.getGoldAmount();
+            String txnAmount = goldPage.getAmount();
+
+            // Display the values
+            Log.info("Title : " + title);
+            Log.info("Sub Title : " + subTitle);
+            Log.info("Gold Amount : " + goldAmount);
+            Log.info("Txn Amount : " + txnAmount);
+
+            // Add the assertions
+            mbReporter.verifyEqualsWithLogging(title, expTitle, "Verify Title", false, false, true);
+            mbReporter.verifyEqualsWithLogging(subTitle, expSubTitle, "Verify Sub Title", false, false, true);
+            mbReporter.verifyEqualsWithLogging(goldAmount, expGoldAmount, "Verify Gold Amount", false, false, true);
+            mbReporter.verifyEqualsWithLogging(txnAmount, expAmount, "Verify Amount", false, false, true);
+
+
+            // back to home
+            mbkCommonControlsHelper.pressback(2);
+
+            // Click on the back button if the bottom sheet is present
+            mbkCommonControlsHelper.handleHomePageLanding();
+
+            // Get the Balance if the User Before TRX
+            balanceAfter = mbkCommonControlsHelper.getBalance();
+
+            // Assertions on the balance deducted
+            mbkCommonControlsHelper.verifyWalletBalanceAfterTransaction(driver, balanceBefore, balanceAfter, amount, "Sub");
+
+            // Verify the History details
+            mbkCommonControlsHelper.verifyHistoryDetails(driver, expectedHistoryDescription, expectedHistoryAmount, expectedHistoryStatus);
+
         }
-
-        // Verification on the Success Screen
-        String title = goldPage.getTitle();
-        String subTitle = goldPage.getSubTitle();
-        String goldAmount = goldPage.getGoldAmount();
-        String txnAmount = goldPage.getAmount();
-
-        // Display the values
-        Log.info("Title : " + title);
-        Log.info("Sub Title : " + subTitle);
-        Log.info("Gold Amount : " + goldAmount);
-        Log.info("Txn Amount : " + txnAmount);
-
-        // Add the assertions
-        mbReporter.verifyEqualsWithLogging(title, expTitle, "Verify Title", false, false,true);
-        mbReporter.verifyEqualsWithLogging(subTitle, expSubTitle, "Verify Sub Title", false, false,true);
-        mbReporter.verifyEqualsWithLogging(goldAmount, expGoldAmount, "Verify Gold Amount", false, false,true);
-        mbReporter.verifyEqualsWithLogging(txnAmount, expAmount, "Verify Amount", false, false,true);
-
-
-        // back to home
-        mbkCommonControlsHelper.pressback(2);
-
-        // Click on the back button if the bottom sheet is present
-        mbkCommonControlsHelper.handleHomePageLanding();
-
-        // Get the Balance if the User Before TRX
-        balanceAfter = mbkCommonControlsHelper.getBalance();
-
-        // Assertions on the balance deducted
-        mbkCommonControlsHelper.verifyWalletBalanceAfterTransaction(driver, balanceBefore, balanceAfter, amount, "Sub");
-
-        // Verify the History details
-        mbkCommonControlsHelper.verifyHistoryDetails(driver ,expectedHistoryDescription,expectedHistoryAmount,expectedHistoryStatus);
-
 
     }
 
@@ -132,52 +139,60 @@ public class GoldHelper {
         // Enter the Gold amount
         goldPage.enterAmount(amount);
 
-        // Shut the keyboard
-        screen.hideKeyboard(driver);
 
-        // Click on Continue CTA
-        goldPage.clickContinueCta();
+        if(goldPage.isErrorTextVisible()) {
+            mbReporter.verifyTrueWithLogging(goldPage.isErrorTextVisible(), "Error Shown : " + goldPage.getErrorText(), false, false, true);
+        }else {
 
-        Thread.sleep(3000);
+            Log.info("No error on amount field shown : Continue with Existing Case");
 
-        // Click on Sell Gold Cta
-        goldPage.clickSellGoldCta();
+            // Shut the keyboard
+            screen.hideKeyboard(driver);
 
+            // Click on Continue CTA
+            goldPage.clickContinueCta();
 
-        // Verification on the Success Screen
-        String title = goldPage.getTitle();
-        String subTitle = goldPage.getSubTitle();
-        String goldAmount = goldPage.getGoldAmount();
-        String txnAmount = goldPage.getAmount();
+            Thread.sleep(3000);
 
-        // Display the values
-        Log.info("Title : " + title);
-        Log.info("Sub Title : " + subTitle);
-        Log.info("Gold Amount : " + goldAmount);
-        Log.info("Txn Amount : " + txnAmount);
-
-        // Add the assertions
-        mbReporter.verifyEqualsWithLogging(title, expTitle, "Verify Title", false, false,true);
-        mbReporter.verifyEqualsWithLogging(subTitle, expSubTitle, "Verify Sub Title", false, false,true);
-        mbReporter.verifyEqualsWithLogging(goldAmount, expGoldAmount, "Verify Gold Amount", false, false,true);
-        mbReporter.verifyEqualsWithLogging(txnAmount, expAmount, "Verify Amount", false, false,true);
-
-        // back to home
-        mbkCommonControlsHelper.pressback(2);
-
-        // Click on the back button if the bottom sheet is present
-        mbkCommonControlsHelper.handleHomePageLanding();
-
-        // Get the Balance if the User Before TRX
-        balanceAfter = mbkCommonControlsHelper.getBalance();
+            // Click on Sell Gold Cta
+            goldPage.clickSellGoldCta();
 
 
-        // Assertions on the balance deducted
-        mbkCommonControlsHelper.verifyWalletBalanceAfterTransaction(driver, balanceBefore, balanceAfter, amount, "Add");
+            // Verification on the Success Screen
+            String title = goldPage.getTitle();
+            String subTitle = goldPage.getSubTitle();
+            String goldAmount = goldPage.getGoldAmount();
+            String txnAmount = goldPage.getAmount();
 
-        // Verify the History details
-        mbkCommonControlsHelper.verifyHistoryDetails(driver ,expectedHistoryDescription,expectedHistoryAmount,expectedHistoryStatus);
+            // Display the values
+            Log.info("Title : " + title);
+            Log.info("Sub Title : " + subTitle);
+            Log.info("Gold Amount : " + goldAmount);
+            Log.info("Txn Amount : " + txnAmount);
 
+            // Add the assertions
+            mbReporter.verifyEqualsWithLogging(title, expTitle, "Verify Title", false, false, true);
+            mbReporter.verifyEqualsWithLogging(subTitle, expSubTitle, "Verify Sub Title", false, false, true);
+            mbReporter.verifyEqualsWithLogging(goldAmount, expGoldAmount, "Verify Gold Amount", false, false, true);
+            mbReporter.verifyEqualsWithLogging(txnAmount, expAmount, "Verify Amount", false, false, true);
+
+            // back to home
+            mbkCommonControlsHelper.pressback(2);
+
+            // Click on the back button if the bottom sheet is present
+            mbkCommonControlsHelper.handleHomePageLanding();
+
+            // Get the Balance if the User Before TRX
+            balanceAfter = mbkCommonControlsHelper.getBalance();
+
+
+            // Assertions on the balance deducted
+            mbkCommonControlsHelper.verifyWalletBalanceAfterTransaction(driver, balanceBefore, balanceAfter, amount, "Add");
+
+            // Verify the History details
+            mbkCommonControlsHelper.verifyHistoryDetails(driver, expectedHistoryDescription, expectedHistoryAmount, expectedHistoryStatus);
+
+        }
 
     }
 

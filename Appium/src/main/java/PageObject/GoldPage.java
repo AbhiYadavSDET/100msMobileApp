@@ -62,6 +62,9 @@ public class GoldPage {
     @AndroidFindBy(xpath = "//*/android.widget.Button[@text = 'Explore Gold SIP']")
     private AndroidElement explore_cta;
 
+    @AndroidFindBy(id="txt_description_amount")
+    private AndroidElement error_text;
+
     public GoldPage(AndroidDriver driver) {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -135,6 +138,14 @@ public class GoldPage {
 
     public boolean checkEXploreSipBottomsheet() throws InterruptedException {
         return Elements.isElementPresent(driver, explore_cta);
+    }
+
+    public String getErrorText() throws InterruptedException {
+        return Elements.getText(driver, error_text, "Fetching Error Text");
+    }
+
+    public Boolean isErrorTextVisible() throws InterruptedException {
+        return Elements.isElementPresent(driver, error_text);
     }
 
 }
