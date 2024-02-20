@@ -209,4 +209,111 @@ public class RechargeHelper {
 
     }
 
+    public void changeOperator(String circle, String expOperatorName, String expCircleName) throws InterruptedException, IOException {
+
+
+        // scroll to Recharge And PayBills
+        rechargePage.scrollToRechargeAndPayBills();
+
+        // Click on Recharge And PayBills
+        rechargePage.clickRechargeAndPayBills();
+
+        // Click on outside Swipe Left Bottom Popup
+        rechargePage.clickSwipeLeftBottomRemove();
+
+        // Click on Mobile
+        rechargePage.clickOnMobile();
+
+        // Click on Select Number
+        rechargePage.selectNumberPrepaid();
+
+        //Click on Change button
+        rechargePage.clickChangeButton();
+
+        //Select an operator
+        rechargePage.selectAirtelOperator();
+
+        //Click on search your circle
+        rechargePage.clickOnSearchCircle();
+
+        //Enter circle name
+        rechargePage.enterCircleName(circle);
+
+        //Select circle
+        rechargePage.selectCircle();
+
+        Thread.sleep(2000);
+
+        //Verification on Search Plan screen
+        String operatorName = rechargePage.getOperatorName();
+        String circleName = rechargePage.getCircleName();
+
+        // Display the values
+        Log.info("Operator Name : " + operatorName);
+        Log.info("Circle Name : " + circle);
+
+        // Add the assertions
+        mbReporter.verifyEqualsWithLogging(operatorName, expOperatorName, "Verify Operator Name", false, false,true);
+        mbReporter.verifyEqualsWithLogging(circle, expCircleName, "Verify Circle Name", false, false, true);
+
+    }
+
+    public void changePrepaidToPostpaid(String number, String circle, String expOperatorName, String expCircleName) throws InterruptedException, IOException{
+
+        // scroll to Recharge And PayBills
+        rechargePage.scrollToRechargeAndPayBills();
+
+        // Click on Recharge And PayBills
+        rechargePage.clickRechargeAndPayBills();
+
+        // Click on outside Swipe Left Bottom Popup
+        rechargePage.clickSwipeLeftBottomRemove();
+
+        // Click on Mobile
+        rechargePage.clickOnMobile();
+
+        //Click on Search Mobile no. text field
+        rechargePage.clickOnSearchMobileNoField();
+
+        //Enter mobile no.
+        rechargePage.enterMobileNo(number);
+
+        //Select mobile no.
+        rechargePage.selectNumber();
+
+        //Click on Change button
+        rechargePage.clickChangeButton();
+
+        //Click on switch to postpaid
+        rechargePage.clickOnSwitchToPostpaid();
+
+        //Click on Reliance operator
+        rechargePage.selectRelianceOperator();
+
+        //Click on search your circle
+        rechargePage.clickOnSearchCircle();
+
+        //Enter circle name
+        rechargePage.enterCircleName(circle);
+
+        //Select circle
+        rechargePage.selectCircle();
+
+        Thread.sleep(2000);
+
+        //Verification on Search Plan screen
+        String operatorName = rechargePage.getOperatorName();
+        String circleName = rechargePage.getCircleName();
+
+        // Display the values
+        Log.info("Operator Name : " + operatorName);
+        Log.info("Circle Name : " + circle);
+
+        // Add the assertions
+        mbReporter.verifyEqualsWithLogging(operatorName, expOperatorName, "Verify Operator Name", false, false,true);
+        mbReporter.verifyEqualsWithLogging(circle, expCircleName, "Verify Circle Name", false, false, true);
+
+
+    }
+
 }

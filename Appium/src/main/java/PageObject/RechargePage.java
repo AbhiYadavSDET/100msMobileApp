@@ -80,6 +80,38 @@ public class RechargePage {
     @AndroidFindBy(id = "btn_explore")
     private AndroidElement checkAutoPayBottomsheet;
 
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Change']")
+    private AndroidElement change;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Airtel']")
+    private AndroidElement airtelOperator;
+
+    @AndroidFindBy(xpath = "//*/android.widget.EditText[@text = 'Search your circle']")
+    private AndroidElement searchCircle;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Delhi NCR']")
+    private AndroidElement selectCircle;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text='Airtel prepaid']")
+    private AndroidElement operatorName;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text='Delhi NCR']")
+    private AndroidElement circleName;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text='Enter name or Mobile no.']")
+    private AndroidElement searchMobileNo;
+
+    @AndroidFindBy(xpath = "//*/android.widget.EditText[@text = 'Search your contacts or enter number']")
+    private AndroidElement searchContact;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text='9311878235']")
+    private AndroidElement selectNumber;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Switch to Postpaid']")
+    private AndroidElement switchToPostpaid;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Reliance']")
+    private AndroidElement relianceOperator;
 
 
 
@@ -166,6 +198,51 @@ public class RechargePage {
     public String getAmountOnPayment() throws InterruptedException {
         return Elements.getText(driver, amountDisplayed, "Amount on payment screen");
     }
+
+    public void clickChangeButton() {
+        Elements.selectElement(driver, change,"Click on change button");
+    }
+
+    public void selectAirtelOperator() {
+        Elements.selectElement(driver, airtelOperator,"Select an operator");
+    }
+
+    public void clickOnSearchCircle() {
+        Elements.selectElement(driver, searchCircle,"Select an search your circle");
+    }
+
+    public void enterCircleName(String circle) {
+        Elements.enterToElement(driver, searchCircle, circle,"enter amount");
+    }
+
+    public void selectCircle() {
+        Elements.selectElement(driver, selectCircle,"Select circle");
+    }
+
+    public String getOperatorName() throws InterruptedException { return Elements.getText(driver, operatorName); }
+
+    public String getCircleName() throws InterruptedException { return Elements.getText(driver, circleName); }
+
+    public void clickOnSearchMobileNoField(){
+        Elements.selectElement(driver, searchMobileNo, "Click on Search Mobile No. Field");
+    }
+
+    public void enterMobileNo(String number){
+        Elements.enterToElement(driver, searchMobileNo,number, "Click on Search Mobile No. Field");
+    }
+
+    public void selectNumber(){
+        Elements.selectElement(driver, selectNumber,"Select mobile no.");
+    }
+
+    public void clickOnSwitchToPostpaid(){
+        Elements.selectElement(driver, switchToPostpaid,"Click on Switch to postpaid");
+    }
+
+    public void selectRelianceOperator() {
+        Elements.selectElement(driver, relianceOperator,"Select an operator");
+    }
+
 
 
 

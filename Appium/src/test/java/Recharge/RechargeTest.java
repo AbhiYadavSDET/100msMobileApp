@@ -36,11 +36,47 @@ public class RechargeTest extends TestBase {
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
         loginHelper.quickLoginViaOtp("9205299330", "547372");
 
-        Log.info("======= START : Postpaid Recharge =======");
+        Log.info("======= START : Prepaid Recharge =======");
 
         // Execute the test
         RechargeHelper rechargeHelper = new RechargeHelper(getAndroidDriver());
         rechargeHelper.prepaidRecharge("10","₹10","Recharge Successful","for Vi 7795709569 ","₹10","Vi Recharge", "-₹10", "Success");
+
+        Log.info("======= END : Prepaid Recharge =======");
+
+
+    }
+
+    @Test(groups = {"sanity", "rechargeSanity", "regression"}, priority = 0, description = "Verify change operator flow")
+    public void changeOperator() throws IOException, InterruptedException {
+
+        // Login to the account
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaOtp("9205299330", "547372");
+
+        Log.info("======= START : Change Operator Flow test  =======");
+
+        // Execute the test
+        RechargeHelper rechargeHelper = new RechargeHelper(getAndroidDriver());
+        rechargeHelper.changeOperator("Delhi","Airtel prepaid","Delhi NCR");
+
+        Log.info("======= END : Change Operator Flow test  =======");
+
+
+    }
+
+    @Test(groups = {"sanity", "rechargeSanity", "regression"}, priority = 0, description = "Change prepaid to postpaid")
+    public void changePrepaidToPostpaid() throws IOException, InterruptedException {
+
+        // Login to the account
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaOtp("9205299330", "547372");
+
+        Log.info("======= START : Postpaid Recharge =======");
+
+        // Execute the test
+        RechargeHelper rechargeHelper = new RechargeHelper(getAndroidDriver());
+        rechargeHelper.changePrepaidToPostpaid("9311878235","Delhi","Reliance prepaid","Delhi NCR");
 
         Log.info("======= END : Prepaid Recharge =======");
 
