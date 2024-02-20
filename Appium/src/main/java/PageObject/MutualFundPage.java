@@ -120,6 +120,27 @@ public class MutualFundPage {
 
 
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Liquid Funds']")
+    private AndroidElement liquidFunds;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Better Than FD']")
+    private AndroidElement betterThanFd;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Tax Saver']")
+    private AndroidElement taxSaver;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Get Rich']")
+    private AndroidElement getRich;
+
+    @AndroidFindBy(id = "tv_title")
+    private AndroidElement titleofFDs;
+
+    @AndroidFindBy(id = "mkab_icon_1")
+    private AndroidElement backButton;
+
+
+
+
 
 
 
@@ -288,5 +309,25 @@ public class MutualFundPage {
     }
 
 
+    public void clickOnLiquidFunds() throws InterruptedException {
+        Element.selectElement(driver, liquidFunds, "Click on Liquid Funds");
+    }
+    public void clickOnBetterThanFd() throws InterruptedException {
+        Element.selectElement(driver, betterThanFd, "Click onbetter than FD");
+    }
+    public void clickOnTaxSaver() throws InterruptedException {
+        Element.selectElement(driver, taxSaver, "Click on Tax saver");
+    }
+    public void clickOnGetRich() throws InterruptedException {
+        Element.selectElement(driver, getRich, "Click on get Rich");
+    }
+
+    public String getTitleOfFDs(){
+        return Element.getText(driver, titleofFDs, " Title of FDs ");
+    }
+
+    public void clickOnBackButton() throws InterruptedException {
+        Element.selectElement(driver, backButton, "Click on back button");
+    }
 
 }

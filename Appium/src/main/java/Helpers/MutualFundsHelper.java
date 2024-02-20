@@ -168,6 +168,44 @@ public class MutualFundsHelper {
 
     }
 
+    public  void multipleFDsOptions() throws IOException, InterruptedException {
+
+        Log.info("START", "Multiple FDs options on  Mutual Funds");
+        // Tap on See All Services
+        homePage.clickAllServices();
+
+        // click on mutual funds from All service
+        clickOnMutualFund();
+
+        mutualFundPage.clickOnGetStarted();
+
+        mutualFundPage.clickOnLiquidFunds();
+        String liquidFunds = mutualFundPage.getTitleOfFDs();
+
+        mbReporter.verifyEquals(liquidFunds, "Liquid Funds", "Verify title of Liquid funds", false, false);
+
+        mutualFundPage.clickOnBackButton();
+
+        mutualFundPage.clickOnBetterThanFd();
+        String betterThanFd = mutualFundPage.getTitleOfFDs();
+        mbReporter.verifyEquals(betterThanFd, "Better than FD", "Verify title of Liquid funds", false, false);
+
+        mutualFundPage.clickOnBackButton();
+
+        mutualFundPage.clickOnGetRich();
+        String getRich = mutualFundPage.getTitleOfFDs();
+
+        mbReporter.verifyEquals(getRich, "Get Rich Fund", "Verify title of Liquid funds", false, false);
+
+        mutualFundPage.clickOnBackButton();
+
+        mutualFundPage.clickOnTaxSaver();
+        String taxSaver = mutualFundPage.getTitleOfFDs();
+        mbReporter.verifyEquals(taxSaver, "Tax Saver", "Verify title of Liquid funds", false, false);
+
+
+    }
+
     public void clickOnMutualFund() throws InterruptedException {
         for(int i=0;i<5;i++){
             if(!Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text= 'Direct Mutual Funds']"))){
