@@ -243,6 +243,22 @@ public class AccountAggregatorPage {
         Elements.selectElement(driver,TrackBankAccountsCTA,"Click on Track bank account lens icon");
     }
 
+    public void clickOnAAOnHomeScreen() throws InterruptedException{
+        Elements.selectElement(driver,TrackBankAccountsCTA,"Click on Insurance");
+    }
+
+    public boolean scrollToAAOnHomeScreen() throws InterruptedException {
+        return Elements.scrollToElement(driver,TrackBankAccountsCTA);
+    }
+//2
+    public boolean scrollToAddAccountOnHomeScreen() throws InterruptedException {
+        return Elements.scrollToElement(driver,addAccountTitle);
+    }
+
+    public void clickOnToAddAccountOnHomeScreen() throws InterruptedException{
+        Elements.selectElement(driver,addAccountTitle,"Click on Add Account");
+    }
+
     public boolean checkTrackbankAccountsCTA() throws InterruptedException {
         return Elements.isElementPresent(driver, TrackBankAccountsCTA);
     }

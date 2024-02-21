@@ -344,5 +344,19 @@ public class AAHelper {
 
     }
 
+
+    public void addAccountNewScreen() throws InterruptedException, IOException {
+
+        aaPage.allServicesCTA();
+        aaPage.scrollToAAOnHomeScreen();
+        aaPage.clickOnAAOnHomeScreen();
+        aaPage.scrollToAddAccountOnHomeScreen();
+        aaPage.clickOnToAddAccountOnHomeScreen();
+
+
+    }
+
+
+
 }
 
