@@ -267,6 +267,7 @@ public class MutualFundsHelper {
         // click on mutual funds from All service
         clickOnMutualFund();
 
+
         mutualFundPage.clickOnGetStarted();
         Thread.sleep(2000);
 
@@ -282,6 +283,7 @@ public class MutualFundsHelper {
         mutualFundPage.clickOnNextButtonOnProfile();
         mutualFundPage.clickOnIncomeOption();
         mutualFundPage.clickOnNextButtonOnProfile();
+        Thread.sleep(3000);
         String mutualFundKycText = mutualFundPage.getMutualFundsKycText();
 
         mbReporter.verifyEquals(mutualFundKycText, "Mutual Funds KYC", "Verify MUTUAL FUNDS KYC button", false, false);
