@@ -352,7 +352,7 @@ public class AAHelper {
         aaPage.clickOnAAOnHomeScreen();
         aaPage.scrollToAddAccountOnHomeScreen();
         aaPage.clickOnToAddAccountOnHomeScreen();
-
+        aaPage.clickContinueOnbottomSheet();
 
     }
 

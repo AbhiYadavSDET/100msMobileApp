@@ -17,6 +17,9 @@ public class AccountAggregatorPage {
     @AndroidFindBy(id="tx_balance")
     private AndroidElement userLoggedIn;
 
+    @AndroidFindBy(id="btn_continue")
+    private AndroidElement continue_cta_newbootsheet;
+
     @AndroidFindBy(xpath = "//*[@text = 'All Services']")
     private AndroidElement allServicesCTA;
 
@@ -395,7 +398,9 @@ public class AccountAggregatorPage {
     public void checkCTA() throws InterruptedException {
         Elements.selectElement(driver, checkCTA, "Click on check cta AA Card in wallet dropdown");
     }
-
+    public void clickContinueOnbottomSheet() throws InterruptedException {
+        Elements.selectElement(driver, continue_cta_newbootsheet, "Click on Continue cta on new bottomsheet");
+    }
 
     public void refreshCTA() throws InterruptedException {
         Elements.selectElement(driver, refreshCTA, "Click on refresh cta");
