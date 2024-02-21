@@ -29,7 +29,7 @@ public class RechargeTest extends TestBase {
 
     }
 
-    @Test(groups = {"sanity", "rechargeSanity", "regression"}, priority = 0, description = "mobile Recharge")
+    @Test(groups = {"sanity", "regression"}, priority = 0, description = "mobile Recharge")
     public void prepaid_Recharge() throws IOException, InterruptedException {
 
         // Login to the account
@@ -76,7 +76,7 @@ public class RechargeTest extends TestBase {
 
         // Execute the test
         RechargeHelper rechargeHelper = new RechargeHelper(getAndroidDriver());
-        rechargeHelper.changePrepaidToPostpaid("9311878235","Delhi","Reliance prepaid","Delhi NCR");
+        rechargeHelper.changePrepaidToPostpaid("9311878235","Delhi","Reliance prepaid","Delhi");
 
         Log.info("======= END : Prepaid Recharge =======");
 

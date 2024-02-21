@@ -146,14 +146,31 @@ public class RechargeHelper {
         // Click on Recharge And PayBills
         rechargePage.clickRechargeAndPayBills();
 
+        //
+        // rechargePage.clickEnableSecureLoginBottomSheet();
+
+        //
+        if (rechargePage.clickMobileRechargeAlert()) {
+            rechargePage.clickToCloseMobileRechargeAlert();
+        }
+
+        if(rechargePage.checkAutoPayBottomsheet()) {
+            rechargePage.clickSkipbtn();
+        }
+
+        //Press back to close Third Time Lucky Popup
+        //rechargePage.clickThirdTimeLuckyPopupRemove();
+
         // Click on outside Swipe Left Bottom Popup
-        rechargePage.clickSwipeLeftBottomRemove();
+        if(rechargePage.checkSwipeLeftBottom()) {
+            rechargePage.clickSwipeLeftBottomRemove();
+        }
 
         // Click on Mobile
         rechargePage.clickOnMobile();
 
-        // Click on Select Number
-        rechargePage.selectNumberPrepaid();
+        //Click on my number
+        rechargePage.clickOnMyNumber();
 
         // Tap to search plan
         rechargePage.tapToSearchPlan();
@@ -310,6 +327,10 @@ public class RechargeHelper {
         //Click on Search Mobile no. text field
         rechargePage.clickOnSearchMobileNoField();
 
+        if(permissionsPage.isPermissionContactsPresent()){
+
+            permissionsPage.allowPermissionContacts();
+        }
 
         //Enter mobile no.
         rechargePage.enterMobileNo(number);
@@ -338,7 +359,7 @@ public class RechargeHelper {
         Thread.sleep(2000);
 
         //Verification on Search Plan screen
-        String operatorName = rechargePage.getOperatorName();
+        String operatorName = rechargePage.getRelianceOperatorName();
         String circleName = rechargePage.getCircleName();
 
         // Display the values

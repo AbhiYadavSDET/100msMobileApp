@@ -116,6 +116,9 @@ public class RechargePage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'My Number']")
     private AndroidElement myNumber;
 
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text='Reliance prepaid']")
+    private AndroidElement relianceOperatorName;
+
 
 
     public RechargePage(AndroidDriver driver){
@@ -229,8 +232,12 @@ public class RechargePage {
         Elements.selectElement(driver, searchMobileNo, "Click on Search Mobile No. Field");
     }
 
+    public void clickEnterMobileNoField(){
+        Elements.selectElement(driver, searchMobileNo,"Click on Search mobile no. field");
+    }
+
     public void enterMobileNo(String number){
-        Elements.enterToElement(driver, searchMobileNo,number, "Click on Search Mobile No. Field");
+        Elements.enterToElement(driver, searchContact,number, "Enter Mobile no");
     }
 
     public void selectNumber(){
@@ -248,6 +255,7 @@ public class RechargePage {
     public void clickOnMyNumber() {
         Elements.selectElement(driver, myNumber,"Click on my number");
     }
+    public String getRelianceOperatorName() throws InterruptedException { return Elements.getText(driver, relianceOperatorName); }
 
 
 
