@@ -43,7 +43,7 @@ public class Test_Insurance extends TestBase {
         insuranceHelper.mypolicyRefund("Full Name","Select Gender","Mobile Number","Congratulations","Download Policy");
 
     }
-/*
+
     @Test(groups = {"insurance", "sanity", "regression"}, priority = 1, description = "Insurance Home Screen")
     public void Test_Insurance_Homescreen() throws IOException, InterruptedException {
         Log.info("======= START : Insurance =======");
@@ -170,7 +170,7 @@ public class Test_Insurance extends TestBase {
         InsuranceHelper insuranceHelper = new InsuranceHelper(getAndroidDriver());
         insuranceHelper.lossOfJobInsurance("Loss of Job","Select Sum Insured","Insured By","Start Date","End Date","Amount to be paid","Payable Amount");
 
-    }*/
+    }
 
 
 
