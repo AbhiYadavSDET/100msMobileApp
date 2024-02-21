@@ -58,7 +58,7 @@ public class RechargeTest extends TestBase {
 
         // Execute the test
         RechargeHelper rechargeHelper = new RechargeHelper(getAndroidDriver());
-        rechargeHelper.changeOperator("Delhi","Airtel prepaid","Delhi NCR");
+        rechargeHelper.changeOperator("Delhi","MTNL prepaid","Delhi");
 
         Log.info("======= END : Change Operator Flow test  =======");
 

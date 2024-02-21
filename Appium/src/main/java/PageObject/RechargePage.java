@@ -83,7 +83,7 @@ public class RechargePage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Change']")
     private AndroidElement change;
 
-    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Airtel']")
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'MTNL']")
     private AndroidElement airtelOperator;
 
     @AndroidFindBy(xpath = "//*/android.widget.EditText[@text = 'Search your circle']")
@@ -92,7 +92,7 @@ public class RechargePage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Delhi NCR']")
     private AndroidElement selectCircle;
 
-    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text='Airtel prepaid']")
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text='MTNL prepaid']")
     private AndroidElement operatorName;
 
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text='Delhi NCR']")
@@ -113,6 +113,8 @@ public class RechargePage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Reliance']")
     private AndroidElement relianceOperator;
 
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'My Number']")
+    private AndroidElement myNumber;
 
 
 
@@ -212,7 +214,7 @@ public class RechargePage {
     }
 
     public void enterCircleName(String circle) {
-        Elements.enterToElement(driver, searchCircle, circle,"enter amount");
+        Elements.enterToElement(driver, searchCircle, circle,"enter circle name");
     }
 
     public void selectCircle() {
@@ -241,6 +243,10 @@ public class RechargePage {
 
     public void selectRelianceOperator() {
         Elements.selectElement(driver, relianceOperator,"Select an operator");
+    }
+
+    public void clickOnMyNumber() {
+        Elements.selectElement(driver, myNumber,"Click on my number");
     }
 
 
