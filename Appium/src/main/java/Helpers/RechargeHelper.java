@@ -146,14 +146,31 @@ public class RechargeHelper {
         // Click on Recharge And PayBills
         rechargePage.clickRechargeAndPayBills();
 
+        //
+        // rechargePage.clickEnableSecureLoginBottomSheet();
+
+        //
+        if (rechargePage.clickMobileRechargeAlert()) {
+            rechargePage.clickToCloseMobileRechargeAlert();
+        }
+
+        if(rechargePage.checkAutoPayBottomsheet()) {
+            rechargePage.clickSkipbtn();
+        }
+
+        //Press back to close Third Time Lucky Popup
+        //rechargePage.clickThirdTimeLuckyPopupRemove();
+
         // Click on outside Swipe Left Bottom Popup
-        rechargePage.clickSwipeLeftBottomRemove();
+        if(rechargePage.checkSwipeLeftBottom()) {
+            rechargePage.clickSwipeLeftBottomRemove();
+        }
 
         // Click on Mobile
         rechargePage.clickOnMobile();
 
-        // Click on Select Number
-        rechargePage.selectNumberPrepaid();
+        //Click on my number
+        rechargePage.clickOnMyNumber();
 
         // Tap to search plan
         rechargePage.tapToSearchPlan();
@@ -206,6 +223,153 @@ public class RechargeHelper {
 
         // Verify the History details
         mbkCommonControlsHelper.verifyHistoryDetails(driver, expectedHistoryDescription, expectedHistoryAmount, expectedHistoryStatus);
+
+    }
+
+    public void changeOperator(String circle, String expOperatorName, String expCircleName) throws InterruptedException, IOException {
+
+
+        // scroll to Recharge And PayBills
+        rechargePage.scrollToRechargeAndPayBills();
+
+        // Click on Recharge And PayBills
+        rechargePage.clickRechargeAndPayBills();
+
+        //
+        // rechargePage.clickEnableSecureLoginBottomSheet();
+
+        //
+        if (rechargePage.clickMobileRechargeAlert()) {
+            rechargePage.clickToCloseMobileRechargeAlert();
+        }
+
+        if(rechargePage.checkAutoPayBottomsheet()) {
+            rechargePage.clickSkipbtn();
+        }
+
+        //Press back to close Third Time Lucky Popup
+        //rechargePage.clickThirdTimeLuckyPopupRemove();
+
+        // Click on outside Swipe Left Bottom Popup
+        if(rechargePage.checkSwipeLeftBottom()) {
+            rechargePage.clickSwipeLeftBottomRemove();
+        }
+
+        // Click on Mobile
+        rechargePage.clickOnMobile();
+
+        // Click on Select Number
+        rechargePage.clickOnMyNumber();
+//        rechargePage.selectNumberPrepaid();
+
+        //Click on Change button
+        rechargePage.clickChangeButton();
+
+        //Select an operator
+        rechargePage.selectAirtelOperator();
+
+        //Click on search your circle
+        rechargePage.clickOnSearchCircle();
+
+        //Enter circle name
+        rechargePage.enterCircleName(circle);
+
+        //Select circle
+        rechargePage.selectCircle();
+
+        Thread.sleep(2000);
+
+        //Verification on Search Plan screen
+        String operatorName = rechargePage.getOperatorName();
+        String circleName = rechargePage.getCircleName();
+
+        // Display the values
+        Log.info("Operator Name : " + operatorName);
+        Log.info("Circle Name : " + circle);
+
+        // Add the assertions
+        mbReporter.verifyEqualsWithLogging(operatorName, expOperatorName, "Verify Operator Name", false, false,true);
+        mbReporter.verifyEqualsWithLogging(circle, expCircleName, "Verify Circle Name", false, false, true);
+
+    }
+
+    public void changePrepaidToPostpaid(String number, String circle, String expOperatorName, String expCircleName) throws InterruptedException, IOException{
+
+        // scroll to Recharge And PayBills
+        rechargePage.scrollToRechargeAndPayBills();
+
+        // Click on Recharge And PayBills
+        rechargePage.clickRechargeAndPayBills();
+
+        //
+        // rechargePage.clickEnableSecureLoginBottomSheet();
+
+        //
+        if (rechargePage.clickMobileRechargeAlert()) {
+            rechargePage.clickToCloseMobileRechargeAlert();
+        }
+
+        if(rechargePage.checkAutoPayBottomsheet()) {
+            rechargePage.clickSkipbtn();
+        }
+
+        //Press back to close Third Time Lucky Popup
+        //rechargePage.clickThirdTimeLuckyPopupRemove();
+
+        // Click on outside Swipe Left Bottom Popup
+        if(rechargePage.checkSwipeLeftBottom()) {
+            rechargePage.clickSwipeLeftBottomRemove();
+        }
+
+        // Click on Mobile
+        rechargePage.clickOnMobile();
+
+        //Click on Search Mobile no. text field
+        rechargePage.clickOnSearchMobileNoField();
+
+        if(permissionsPage.isPermissionContactsPresent()){
+
+            permissionsPage.allowPermissionContacts();
+        }
+
+        //Enter mobile no.
+        rechargePage.enterMobileNo(number);
+
+        //Select mobile no.
+        rechargePage.selectNumber();
+
+        //Click on Change button
+        rechargePage.clickChangeButton();
+
+        //Click on switch to postpaid
+        rechargePage.clickOnSwitchToPostpaid();
+
+        //Click on Reliance operator
+        rechargePage.selectRelianceOperator();
+
+        //Click on search your circle
+        rechargePage.clickOnSearchCircle();
+
+        //Enter circle name
+        rechargePage.enterCircleName(circle);
+
+        //Select circle
+        rechargePage.selectCircle();
+
+        Thread.sleep(2000);
+
+        //Verification on Search Plan screen
+        String operatorName = rechargePage.getRelianceOperatorName();
+        String circleName = rechargePage.getCircleName();
+
+        // Display the values
+        Log.info("Operator Name : " + operatorName);
+        Log.info("Circle Name : " + circle);
+
+        // Add the assertions
+        mbReporter.verifyEqualsWithLogging(operatorName, expOperatorName, "Verify Operator Name", false, false,true);
+        mbReporter.verifyEqualsWithLogging(circle, expCircleName, "Verify Circle Name", false, false, true);
+
 
     }
 
