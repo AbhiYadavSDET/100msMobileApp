@@ -1,12 +1,15 @@
 package PageObject;
 
 import Utils.Element;
+import Utils.Elements;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 
+import javax.swing.*;
 import java.io.IOException;
 
 public class MutualFundPage {
@@ -132,6 +135,27 @@ public class MutualFundPage {
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Terms and Conditions']")
     private AndroidElement termsAndConditions;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='PAN Number']")
+    private AndroidElement panNumber;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Date of Birth']")
+    private AndroidElement dateOfBirth;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Email Address']")
+    private AndroidElement emailAddress;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Income Details']")
+    private AndroidElement incomeDetails;
+
+    @AndroidFindBy(id = "btnNext")
+    private AndroidElement nextButtonOnProfile;
+
+    @AndroidFindBy(xpath = "//android.widget.Button[@text='Mutual Funds KYC']")
+    private AndroidElement mutualFundsKyc;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Above 1 Crore']")
+    private AndroidElement selectIncome;
 
     public MutualFundPage(AndroidDriver driver) throws IOException {
         this.driver = driver;
@@ -296,5 +320,34 @@ public class MutualFundPage {
     public String getTitleOnTermsAndConditions(){
         return Element.getText(driver, termsAndConditions, " Title of terms and condition on mf home screen ");
     }
+
+    public void setPanNumber(String pan) throws InterruptedException {
+        Elements.clearText(driver, panNumber, "Clear before pasting");
+        Elements.enterToElement(driver, panNumber, pan,"Set Pan Number");
+
+    }
+    public void setDateOfBirth(String date) throws InterruptedException {
+        Elements.clearText(driver, dateOfBirth, "Clear before pasting");
+        Elements.enterToElement(driver, dateOfBirth,date, "Set Date of birth");
+    }
+    public void setEmailAddress(String email) throws InterruptedException {
+        Elements.clearText(driver, emailAddress, "Clear before pasting");
+        Elements.enterToElement(driver, emailAddress,email, "Set Email address");
+    }
+    public void setIncomeDetails(String income) throws InterruptedException {
+        Elements.clearText(driver, incomeDetails, "Clear before pasting");
+        Elements.enterToElement(driver, incomeDetails,income ,"Set income details");
+    }
+    public void clickOnNextButtonOnProfile() throws InterruptedException {
+        Element.selectElement(driver, nextButtonOnProfile ,"Click on next Button on profile");
+    }
+    public void clickOnIncomeOption() throws InterruptedException {
+        Element.selectElement(driver, selectIncome ,"Click on income option");
+    }
+
+    public String getMutualFundsKycText() throws InterruptedException {
+        return Element.getText(driver, mutualFundsKyc, " Mutual funds kyc button ");
+    }
+
 
 }
