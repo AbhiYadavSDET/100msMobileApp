@@ -2,6 +2,7 @@ package Helpers;
 
 import Logger.Log;
 import PageObject.InsurancePage;
+import Utils.Element;
 import Utils.MBReporter;
 import Utils.Screen;
 import com.beust.jcommander.internal.Lists;
@@ -463,71 +464,89 @@ public class InsuranceHelper {
         insurancePage.clickOnInsurance();
         insurancePage.clickOnPersonalAccidentInsurance();
         insurancePage.clickOnPersonalAccidentInsurancesubheading();
-        insurancePage.clickOncheckBox();
-        insurancePage.clickOnsumassured20button();
-        insurancePage.clickOnMakePayment();
+       if (Element.isElementPresent(driver, By.id("view_detail_text")))
+        {
 
-        String textfullname = insurancePage.gettextfullName();
-        String textGender = insurancePage.gettextSelectGender();
-        String textphoneno = insurancePage.gettextPhoneNo();
+            String textcongratulation = insurancePage.gettextCongratulation();
+            String textDownloadPolicy = insurancePage.gettextDownloadPolicy();
 
-        Log.info("Text full Name" + textfullname);
-        Log.info("Text Gender" + textGender);
-        Log.info("Text Phone No" + textphoneno);
 
-        mbReporter.verifyEqualsWithLogging(textfullname, exptextfullname, "Text full Name", false, false, true);
-        mbReporter.verifyEqualsWithLogging(textGender, exptextGender, "Text Gender", false, false, true);
-        mbReporter.verifyEqualsWithLogging(textphoneno, exptextphoneno, "Text Phone No", false, false, true);
-        insurancePage.clickOnCalender();
+            Log.info("Text Congratulation" + textcongratulation);
+            Log.info("Text Download Policy" + textDownloadPolicy);
 
-        org.openqa.selenium.Dimension windowSize = driver.manage().window().getSize();
-        Map<String, Object> args = new HashMap<>();
-        args.put("command", "input");
-        args.put("args", Lists.newArrayList("swipe", windowSize.width / 2,
-                windowSize.height / 2, windowSize.width / 2, windowSize.height));
-        while (driver.findElements(By.xpath("//android.widget.EditText[@text='2004']")).size() == 0) {
+            mbReporter.verifyEqualsWithLogging(textcongratulation, exptextcongratulation, "Text Congratulation", false, false, true);
+            mbReporter.verifyEqualsWithLogging(textDownloadPolicy, exptextDownloadPolicy, "Text Download Policy", false, false, true);
 
-            driver.executeScript("mobile: shell", args);
+            insurancePage.clickOnBackIcon();
+            insurancePage.clickOnMyPolicies();
+            insurancePage.clickonCancelPolicyOnHistory();
+
         }
-        driver.findElement(By.xpath("//android.widget.EditText[@text='2004']")).click();
+        else
+        {
+            insurancePage.clickOncheckBox();
+            insurancePage.clickOnsumassured20button();
+            insurancePage.clickOnMakePayment();
 
-        insurancePage.clickOnselectCTA();
-        insurancePage.scrollToContinueButton();
-        insurancePage.clickOnContinueButtonOnFormPage();
+            String textfullname = insurancePage.gettextfullName();
+            String textGender = insurancePage.gettextSelectGender();
+            String textphoneno = insurancePage.gettextPhoneNo();
 
-        // Enter invalid age for error case
-        insurancePage.enterOnNomineeAge("123");
+            Log.info("Text full Name" + textfullname);
+            Log.info("Text Gender" + textGender);
+            Log.info("Text Phone No" + textphoneno);
 
-        insurancePage.scrollToContinueButton();
-        insurancePage.clickOnContinueButtonOnFormPage();
-        insurancePage.clickOnselectCTA();
-        insurancePage.scrollToContinueButton();
-        insurancePage.clickOnContinueButtonOnFormPage();
+            mbReporter.verifyEqualsWithLogging(textfullname, exptextfullname, "Text full Name", false, false, true);
+            mbReporter.verifyEqualsWithLogging(textGender, exptextGender, "Text Gender", false, false, true);
+            mbReporter.verifyEqualsWithLogging(textphoneno, exptextphoneno, "Text Phone No", false, false, true);
+            insurancePage.clickOnCalender();
 
-        // Skip Nominee and continue
-        insurancePage.clickOnskipNominee();
-        insurancePage.clickOnGeneratePolicy();
+            org.openqa.selenium.Dimension windowSize = driver.manage().window().getSize();
+            Map<String, Object> args = new HashMap<>();
+            args.put("command", "input");
+            args.put("args", Lists.newArrayList("swipe", windowSize.width / 2,
+                    windowSize.height / 2, windowSize.width / 2, windowSize.height));
+            while (driver.findElements(By.xpath("//android.widget.EditText[@text='2004']")).size() == 0) {
 
-        //Insurance Success screen
+                driver.executeScript("mobile: shell", args);
+            }
+            driver.findElement(By.xpath("//android.widget.EditText[@text='2004']")).click();
 
-        String textcongratulation = insurancePage.gettextCongratulation();
-        String textDownloadPolicy = insurancePage.gettextDownloadPolicy();
+            insurancePage.clickOnselectCTA();
+            insurancePage.scrollToContinueButton();
+            insurancePage.clickOnContinueButtonOnFormPage();
 
+            // Enter invalid age for error case
+            insurancePage.enterOnNomineeAge("123");
 
-        Log.info("Text Congratulation" + textcongratulation);
-        Log.info("Text Download Policy" + textDownloadPolicy);
+            insurancePage.scrollToContinueButton();
+            insurancePage.clickOnContinueButtonOnFormPage();
+            insurancePage.clickOnselectCTA();
+            insurancePage.scrollToContinueButton();
+            insurancePage.clickOnContinueButtonOnFormPage();
 
-        mbReporter.verifyEqualsWithLogging(textcongratulation, exptextcongratulation, "Text Congratulation", false, false, true);
-        mbReporter.verifyEqualsWithLogging(textDownloadPolicy, exptextDownloadPolicy, "Text Download Policy", false, false, true);
+            // Skip Nominee and continue
+            insurancePage.clickOnskipNominee();
+            insurancePage.clickOnGeneratePolicy();
 
-        insurancePage.clickOnBackIcon();
+            //Insurance Success screen
 
-        insurancePage.clickOnMyPolicies();
-        insurancePage.clickonCancelPolicyOnHistory();
-        insurancePage.clickOncheckBox();
-        insurancePage.clickonCancelConfirmationYesPlease();
+            String textcongratulation = insurancePage.gettextCongratulation();
+            String textDownloadPolicy = insurancePage.gettextDownloadPolicy();
 
+            Log.info("Text Congratulation" + textcongratulation);
+            Log.info("Text Download Policy" + textDownloadPolicy);
 
+            mbReporter.verifyEqualsWithLogging(textcongratulation, exptextcongratulation, "Text Congratulation", false, false, true);
+            mbReporter.verifyEqualsWithLogging(textDownloadPolicy, exptextDownloadPolicy, "Text Download Policy", false, false, true);
+
+            insurancePage.clickOnBackIcon();
+            insurancePage.clickOnMyPolicies();
+            insurancePage.clickonCancelPolicyOnHistory();
+            insurancePage.clickOncheckBox();
+            insurancePage.clickonCancelConfirmationYesPlease();
+
+        }
 
     }
 
