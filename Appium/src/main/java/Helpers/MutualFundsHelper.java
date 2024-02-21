@@ -178,6 +178,8 @@ public class MutualFundsHelper {
         clickOnMutualFund();
 
         mutualFundPage.clickOnGetStarted();
+        Thread.sleep(2000);
+        screen.swipeUpMore(driver);
 
         mutualFundPage.clickOnLiquidFunds();
         String liquidFunds = mutualFundPage.getTitleOfFDs();
@@ -200,6 +202,61 @@ public class MutualFundsHelper {
         mutualFundPage.clickOnTaxSaver();
         String taxSaver = mutualFundPage.getTitleOfFDs();
         mbReporter.verifyEquals(taxSaver, "Tax Saver", "Verify title of Liquid funds", false, false);
+
+    }
+
+
+    public  void termsAndConditions() throws IOException, InterruptedException {
+
+        Log.info("START", "Terms and conditions on  Mutual Funds");
+        // Tap on See All Services
+        homePage.clickAllServices();
+
+        // click on mutual funds from All service
+        clickOnMutualFund();
+
+        mutualFundPage.clickOnGetStarted();
+        Thread.sleep(2000);
+
+
+        for(int i=0;i<5;i++){
+            if(!Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Terms and Conditions']"))){
+                // Swipe till the bottom
+                screen.swipeUpMore(driver);
+            }else {
+                break;
+            }
+        }
+
+        mutualFundPage.clickOnTermsAndConditions();
+        String termsAndCondition = mutualFundPage.getTitleOnTermsAndConditions();
+        mbReporter.verifyEquals(termsAndCondition, "Terms and Conditions", "Verify title of Terms and Conditions", false, false);
+
+    }
+    public  void investCharter() throws InterruptedException, IOException {
+
+        Log.info("START", "Invest Charter options on  Mutual Funds");
+        // Tap on See All Services
+        homePage.clickAllServices();
+
+        // click on mutual funds from All service
+        clickOnMutualFund();
+
+        mutualFundPage.clickOnGetStarted();
+        Thread.sleep(2000);
+
+
+        for(int i=0;i<5;i++){
+            if(!Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Investor Charter']"))){
+                // Swipe till the bottom
+                screen.swipeUpMore(driver);
+            }else {
+                break;
+            }
+        }
+        mutualFundPage.clickOnInvestCharter();
+        String investCharter = mutualFundPage.getTitleOnInvestCharter();
+        mbReporter.verifyEquals(investCharter, "Investor Charter", "Verify title of Investor Charter", false, false);
 
     }
 

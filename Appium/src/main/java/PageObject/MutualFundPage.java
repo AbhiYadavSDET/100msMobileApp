@@ -127,6 +127,12 @@ public class MutualFundPage {
     @AndroidFindBy(id = "mkab_icon_1")
     private AndroidElement backButton;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Investor Charter']")
+    private AndroidElement investCharter;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Terms and Conditions']")
+    private AndroidElement termsAndConditions;
+
     public MutualFundPage(AndroidDriver driver) throws IOException {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -275,6 +281,20 @@ public class MutualFundPage {
 
     public void clickOnBackButton() throws InterruptedException {
         Element.selectElement(driver, backButton, "Click on back button");
+    }
+
+    public void clickOnInvestCharter() throws InterruptedException {
+        Element.selectElement(driver, investCharter, "Click on invest charter option on mf home screen");
+    }
+    public String getTitleOnInvestCharter(){
+        return Element.getText(driver, investCharter, " Title of Invest Charter on mf home screen");
+    }
+    public void clickOnTermsAndConditions() throws InterruptedException {
+        Element.selectElement(driver, termsAndConditions, "Click on terms and condition on mf home screen");
+    }
+
+    public String getTitleOnTermsAndConditions(){
+        return Element.getText(driver, termsAndConditions, " Title of terms and condition on mf home screen ");
     }
 
 }

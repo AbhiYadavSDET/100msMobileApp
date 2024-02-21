@@ -93,5 +93,35 @@ public class MutualFundsTest extends TestBase {
 
         Log.info("======= END : Mutual Funds privacy policy  Flow test =======");
     }
+
+    @Test(groups = {"MutualFunds", "sanity", "investCharter", "regression"}, priority = 0, description = "Retake risk analyser ")
+    public void Test_MF_InvestCharter() throws InterruptedException, IOException {
+
+        Log.info("======= START : Mutual Funds Invest charter Flow test =======");
+
+        // Start the test
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaOtp("9205299330", "547372");
+
+        MutualFundsHelper mutualFundsHelper = new MutualFundsHelper(getAndroidDriver());
+        mutualFundsHelper.investCharter();
+
+        Log.info("======= END : Mutual Funds Invest charter Flow test =======");
+    }
+    @Test(groups = {"MutualFunds", "sanity", "termsAndConditions", "regression"}, priority = 0, description = "Terms and conditions on MF ")
+    public void Test_MF_TermsAndConditions() throws InterruptedException, IOException {
+
+        Log.info("======= START : Mutual Funds Terms and conditions Flow test =======");
+
+
+        // Start the test
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaOtp("9205299330", "547372");
+
+        MutualFundsHelper mutualFundsHelper = new MutualFundsHelper(getAndroidDriver());
+        mutualFundsHelper.termsAndConditions();
+
+        Log.info("======= END :Mutual Funds Terms and conditions Flow test======");
+    }
 }
 
