@@ -27,6 +27,7 @@
 
         <classes>
             <class name="Rewards.RewardsTest"/>
+            <class name="MutualFunds.MutualFundsTest"/>
             <class name="HelpAndSupport.Test_HelpAndSupport"/>
             <class name="PayRent.PayRentTest"/>
             <class name="AccountAggregator.Test_AccountAggregator"/>
