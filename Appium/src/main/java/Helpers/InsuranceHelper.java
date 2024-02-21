@@ -464,7 +464,9 @@ public class InsuranceHelper {
         insurancePage.clickOnInsurance();
         insurancePage.clickOnPersonalAccidentInsurance();
         insurancePage.clickOnPersonalAccidentInsurancesubheading();
-       if (Element.isElementPresent(driver, By.id("view_detail_text")))
+
+
+       if (insurancePage.isViewMorePresent())
         {
 
             String textcongratulation = insurancePage.gettextCongratulation();
@@ -484,6 +486,7 @@ public class InsuranceHelper {
         }
         else
         {
+
             insurancePage.clickOncheckBox();
             insurancePage.clickOnsumassured20button();
             insurancePage.clickOnMakePayment();
@@ -543,6 +546,7 @@ public class InsuranceHelper {
             insurancePage.clickOnBackIcon();
             insurancePage.clickOnMyPolicies();
             insurancePage.clickonCancelPolicyOnHistory();
+            Element.waitForVisibility(driver, By.id("i_agree"));
             insurancePage.clickOncheckBox();
             insurancePage.clickonCancelConfirmationYesPlease();
 
