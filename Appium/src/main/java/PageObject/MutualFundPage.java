@@ -159,7 +159,7 @@ public class MutualFundPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Income Details']")
     private AndroidElement incomeDetails;
 
-    @AndroidFindBy(id = "btnNext")
+    @AndroidFindBy(id = "//android.widget.Button[@text='Next']")
     private AndroidElement nextButtonOnProfile;
 
     @AndroidFindBy(xpath = "//android.widget.Button[@text='Mutual Funds KYC']")
