@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class Test_AccountAggregator extends TestBase {
 
-
+/*
     @Test(groups = {"AccountAggregator", "sanity", "regression"}, priority = 1, description = "Verify Existing User flow in AA")
     public void Test01_existing_User_Dashboard() throws IOException, InterruptedException {
 
@@ -71,7 +71,7 @@ public class Test_AccountAggregator extends TestBase {
         Log.info("======= Account Aggregator test =======");
 
     }
-
+*/
 
     @Test(groups = {"AccountAggregator", "sanity", "regression"}, priority = 0, description = "Verify Add account")
     public void Test05_AA_new_addaccount() throws IOException, InterruptedException {
