@@ -185,19 +185,19 @@ public class MutualFundsHelper {
         mutualFundPage.clickOnLiquidFunds();
         String liquidFunds = mutualFundPage.getTitleOfFDs();
         mbReporter.verifyEquals(liquidFunds, "Liquid Funds", "Verify title of Liquid funds", false, false);
-
+Thread.sleep(2000);
         mutualFundPage.clickOnBackButton();
 
         mutualFundPage.clickOnBetterThanFd();
         String betterThanFd = mutualFundPage.getTitleOfFDs();
         mbReporter.verifyEquals(betterThanFd, "Better than FD", "Verify title of Liquid funds", false, false);
-
+        Thread.sleep(2000);
         mutualFundPage.clickOnBackButton();
 
         mutualFundPage.clickOnGetRich();
         String getRich = mutualFundPage.getTitleOfFDs();
         mbReporter.verifyEquals(getRich, "Get Rich Fund", "Verify title of Liquid funds", false, false);
-
+        Thread.sleep(2000);
         mutualFundPage.clickOnBackButton();
 
         mutualFundPage.clickOnTaxSaver();
