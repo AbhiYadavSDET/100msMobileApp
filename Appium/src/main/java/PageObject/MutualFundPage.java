@@ -313,15 +313,15 @@ public class MutualFundPage {
     }
 
     public String getTitleOfBetterThanFd(){
-        return Element.getText(driver, betterThanFd, " Title of Better than FD ");
+        return Element.getText(driver, titleofBetterThanFd, " Title of Better than FD ");
     }
 
     public String getTitleOfGetRich(){
-        return Element.getText(driver, getRich, " Title of Get Rich FD ");
+        return Element.getText(driver, titleofGetRich, " Title of Get Rich FD ");
     }
 
     public String getTitleOfTaxSaver(){
-        return Element.getText(driver, taxSaver, " Title of Tax Saver ");
+        return Element.getText(driver, titleofTaxSaver, " Title of Tax Saver ");
     }
 
     public void clickOnBackButton() throws InterruptedException {
