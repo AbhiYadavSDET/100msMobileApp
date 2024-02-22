@@ -12,7 +12,7 @@ import java.io.IOException;
 public class Test_Insurance extends TestBase {
 
 
-   /* @Test(groups = {"insurance", "sanity", "regression"}, priority = 1, description = "Verify Personal Accident Insurance payment success screen")
+    @Test(groups = {"insurance", "sanity", "regression"}, priority = 1, description = "Verify Personal Accident Insurance payment success screen")
     public void Test_payment_of_PersonalAccident_insurance() throws IOException, InterruptedException {
 
         Log.info("======= START : Insurance =======");
@@ -26,9 +26,9 @@ public class Test_Insurance extends TestBase {
         InsuranceHelper insuranceHelper = new InsuranceHelper(getAndroidDriver());
         insuranceHelper.personalAccidentInsuranceBuy();
 
-    }*/
+    }
 
-    @Test(groups = {"insurance", "sanity", "regression"}, priority = 0, description = "My PolicyRefund")
+    @Test(groups = {"insurance", "sanity", "regression"}, priority = 1, description = "My PolicyRefund")
     public void Test_insurance_mypolicy_refund() throws IOException, InterruptedException {
 
         Log.info("======= START : Insurance =======");
