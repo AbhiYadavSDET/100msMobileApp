@@ -124,16 +124,16 @@ public class MutualFundPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Get Rich']")
     private AndroidElement getRich;
 
-    @AndroidFindBy(id = "//android.widget.TextView[@text='Liquid Funds']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Liquid Funds']")
     private AndroidElement titleofLiquidFunds;
 
-    @AndroidFindBy(id = "//android.widget.TextView[@text='Better Than FD']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Better Than FD']")
     private AndroidElement titleofBetterThanFd;
 
-    @AndroidFindBy(id = "//android.widget.TextView[@text='Tax Saver']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Tax Saver']")
     private AndroidElement titleofTaxSaver;
 
-    @AndroidFindBy(id = "//android.widget.TextView[@text='Get Rich']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Get Rich']")
     private AndroidElement titleofGetRich;
 
     @AndroidFindBy(id = "mkab_icon_1")
