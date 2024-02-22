@@ -353,6 +353,7 @@ public class AAHelper {
         aaPage.scrollToAddAccountOnHomeScreen();
         aaPage.clickOnToAddAccountOnHomeScreen();
         aaPage.clickContinueOnbottomSheet();
+        aaPage.enterBankDetail("HDFC");
 
     }
 

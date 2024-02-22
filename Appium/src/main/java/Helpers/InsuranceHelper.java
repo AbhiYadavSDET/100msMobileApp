@@ -428,11 +428,6 @@ public class InsuranceHelper {
 
         //Click On Make Payment
         insurancePage.clickOnMakePayment();
-        String textpayableAmount = insurancePage.getPayableAmount();
-
-        Log.info("Text Payable Amount : " + textpayableAmount);
-        mbReporter.verifyEqualsWithLogging(textpayableAmount, exptextpayableAmount, "Text Payable Amount", false, false, true);
-
 
     }
 

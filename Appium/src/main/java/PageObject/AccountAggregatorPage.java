@@ -187,6 +187,9 @@ public class AccountAggregatorPage {
     @AndroidFindBy(xpath = "//*[@text='Credits']")
     private AndroidElement  creditTextOnAnlyser;
 
+    @AndroidFindBy(id="icon_check_box")
+    private AndroidElement consent_checkbox;
+
     @AndroidFindBy(id="txt_update_at")
     private AndroidElement  debitedthisweekTextOnAnlyser;
 
@@ -216,6 +219,10 @@ public class AccountAggregatorPage {
 
     @AndroidFindBy(id="mkab_left_icon")
     private AndroidElement  backbuttonOnManageConsentInside;
+
+
+    @AndroidFindBy(id="et_search")
+    private AndroidElement  bankname_enter;
 
     @AndroidFindBy(id="cl_root")
     private AndroidElement  yourBankAccountonHomePage;
@@ -545,6 +552,16 @@ public class AccountAggregatorPage {
         Elements.selectElement(driver,every15days,"Click on Every 15 days");
     }
 
+
+    public void enterBankDetail(String bankdetails) throws InterruptedException {
+        Elements.enterToElement(driver, bankname_enter, bankdetails, "Enter Bank Name");
+
+    }
+
+
+    public void clickonConsentcheckBox() throws InterruptedException{
+        Elements.selectElement(driver,consent_checkbox,"click on checkbox");
+    }
     public Boolean getsnackbarAfterupdatingAutoupdatey() throws InterruptedException {
         return Elements.isElementPresent(driver, snackbarAfterupdatingAutoupdate);
     }
