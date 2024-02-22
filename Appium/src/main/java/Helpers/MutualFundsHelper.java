@@ -193,8 +193,8 @@ public class MutualFundsHelper {
         mutualFundPage.clickOnBackButton();
 
         mutualFundPage.clickOnGetRich();
-        String getRich = mutualFundPage.getTitleOfGetRich();
-        mbReporter.verifyEquals(getRich, "Get Rich Fund", "Verify title of Liquid funds", false, false);
+       String getRich = mutualFundPage.getTitleOfGetRich();
+       mbReporter.verifyEquals(getRich, "Get Rich Fund", "Verify title of Liquid funds", false, false);
         mutualFundPage.clickOnBackButton();
 
         mutualFundPage.clickOnTaxSaver();
