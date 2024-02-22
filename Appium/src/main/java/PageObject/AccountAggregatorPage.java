@@ -123,11 +123,22 @@ public class AccountAggregatorPage {
     @AndroidFindBy(xpath = "//*[@text='Download Statements']")
     private AndroidElement downloadStatementsTitle;
 
-//    @AndroidFindBy(xpath = "//*[@text='Download']")
-//    private AndroidElement downloadTitle;
+//text
+    @AndroidFindBy(id = "mkab_left_icon")
+    private AndroidElement cross_click;
+
+    @AndroidFindBy(id = "cta_allow")
+    private AndroidElement allow_onbottomsheet;
+
+    @AndroidFindBy(xpath = "//*/android.widget.Button[@text = 'Allow']")
+    private AndroidElement permission_allow_button_popup;
+
+    @AndroidFindBy(id = "permission_allow_button")
+    private AndroidElement permission_allow_button_popup1;
 
     @AndroidFindBy(id = "cta")
     private AndroidElement downloadTitle;
+
 
     @AndroidFindBy(xpath = "//*[@text='Help & Support']")
     private AndroidElement  helpSupportTitle;
@@ -190,6 +201,8 @@ public class AccountAggregatorPage {
     @AndroidFindBy(id="icon_check_box")
     private AndroidElement consent_checkbox;
 
+    @AndroidFindBy(id="cta_exit")
+    private AndroidElement cta_exit;
     @AndroidFindBy(id="txt_update_at")
     private AndroidElement  debitedthisweekTextOnAnlyser;
 
@@ -220,6 +233,8 @@ public class AccountAggregatorPage {
     @AndroidFindBy(id="mkab_left_icon")
     private AndroidElement  backbuttonOnManageConsentInside;
 
+    @AndroidFindBy(id="action_button")
+    private AndroidElement  confirm_cta;
 
     @AndroidFindBy(id="et_search")
     private AndroidElement  bankname_enter;
@@ -254,7 +269,7 @@ public class AccountAggregatorPage {
     }
 
     public void clickOnAAOnHomeScreen() throws InterruptedException{
-        Elements.selectElement(driver,TrackBankAccountsCTA,"Click on Insurance");
+        Elements.selectElement(driver,TrackBankAccountsCTA,"Track bank account");
     }
 
     public boolean scrollToAAOnHomeScreen() throws InterruptedException {
@@ -268,6 +283,23 @@ public class AccountAggregatorPage {
     public void clickOnToAddAccountOnHomeScreen() throws InterruptedException{
         Elements.selectElement(driver,addAccountTitle,"Click on Add Account");
     }
+
+    public void clickOnexitbutoonOnfeedback() throws InterruptedException{
+        Elements.selectElement(driver,cta_exit,"Click on Exit button on feedback");
+    }
+
+    public void clickOnTocrossButtonOnOTPFetch() throws InterruptedException{
+
+        Elements.selectElement(driver,cross_click,"Click on Cross");
+    }
+    public void clickOnAllowCTaOnBottomsheet() throws InterruptedException{
+        Elements.selectElement(driver,allow_onbottomsheet,"Click on Allow on bottomsheet");
+    }
+
+    public void clickOnAllowCTaOnPopUp() throws InterruptedException{
+        Elements.selectElement(driver,permission_allow_button_popup,"Click on Allow on pop up");
+    }
+
 
     public boolean checkTrackbankAccountsCTA() throws InterruptedException {
         return Elements.isElementPresent(driver, TrackBankAccountsCTA);
@@ -558,10 +590,14 @@ public class AccountAggregatorPage {
 
     }
 
-
     public void clickonConsentcheckBox() throws InterruptedException{
         Elements.selectElement(driver,consent_checkbox,"click on checkbox");
     }
+
+    public void clickConfirmButtonOnFIPPage() throws InterruptedException{
+        Elements.selectElement(driver,confirm_cta,"Click on Confirm button");
+    }
+
     public Boolean getsnackbarAfterupdatingAutoupdatey() throws InterruptedException {
         return Elements.isElementPresent(driver, snackbarAfterupdatingAutoupdate);
     }
@@ -569,6 +605,8 @@ public class AccountAggregatorPage {
     public void clickManageConsent() throws InterruptedException{
         Elements.selectElement(driver,manageConsent,"Select Manage Consent");
     }
+
+
 
     public void clickBackButtonOnManageConsentInside() throws InterruptedException{
         Elements.selectElement(driver,backbuttonOnManageConsentInside,"Click on back button on ManageConsent Inside");

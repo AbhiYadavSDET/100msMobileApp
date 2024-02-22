@@ -499,17 +499,6 @@ public class InsuranceHelper {
             mbReporter.verifyEqualsWithLogging(textphoneno, exptextphoneno, "Text Phone No", false, false, true);
             insurancePage.clickOnCalender();
 
-//            org.openqa.selenium.Dimension windowSize = driver.manage().window().getSize();
-//            Map<String, Object> args = new HashMap<>();
-//            args.put("command", "input");
-//            args.put("args", Lists.newArrayList("swipe", windowSize.width / 2,
-//                    windowSize.height / 2, windowSize.width / 2, windowSize.height));
-//            while (driver.findElements(By.xpath("//android.widget.EditText[@text='2004']")).size() == 0) {
-//
-//                driver.executeScript("mobile: shell", args);
-//            }
-//            driver.findElement(By.xpath("//android.widget.EditText[@text='2004']")).click();
-
             insurancePage.clickOnselectCTA();
             insurancePage.scrollToContinueButton();
             insurancePage.clickOnContinueButtonOnFormPage();

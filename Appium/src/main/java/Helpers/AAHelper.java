@@ -352,8 +352,26 @@ public class AAHelper {
         aaPage.clickOnAAOnHomeScreen();
         aaPage.scrollToAddAccountOnHomeScreen();
         aaPage.clickOnToAddAccountOnHomeScreen();
+
+        //New Bottomsheet for Add account
         aaPage.clickContinueOnbottomSheet();
+
+        //Fip list Page for add account
         aaPage.enterBankDetail("HDFC");
+        aaPage.clickonConsentcheckBox();
+        aaPage.clickConfirmButtonOnFIPPage();
+        aaPage.clickOnAllowCTaOnBottomsheet();
+        Thread.sleep(3000);
+        aaPage.clickOnAllowCTaOnPopUp();
+        Element.waitForVisibility(driver, By.xpath("//*/android.widget.TextView[@text = 'Enter OTP to']"));
+
+        aaPage.clickOnTocrossButtonOnOTPFetch();
+
+        //FeedbackSheet handle
+        Element.waitForVisibility(driver, By.xpath("//*/android.widget.TextView[@text = 'Others']"));
+        aaPage.clickonConsentcheckBox();
+
+        aaPage.clickOnexitbutoonOnfeedback();
 
     }
 
