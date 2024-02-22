@@ -124,8 +124,19 @@ public class MutualFundPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Get Rich']")
     private AndroidElement getRich;
 
-    @AndroidFindBy(id = "tv_title")
-    private AndroidElement titleofFDs;
+    // title of MF
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Liquid Funds']")
+    private AndroidElement titleofLiquidFunds;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Better than FD']")
+    private AndroidElement titleofBetterThanFd;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Tax Saver']")
+    private AndroidElement titleofTaxSaver;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Get Rich Fund']")
+    private AndroidElement titleofGetRich;
 
     @AndroidFindBy(id = "mkab_icon_1")
     private AndroidElement backButton;
@@ -148,7 +159,7 @@ public class MutualFundPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Income Details']")
     private AndroidElement incomeDetails;
 
-    @AndroidFindBy(id = "btnNext")
+    @AndroidFindBy(xpath = "//android.widget.Button[@text='Next']")
     private AndroidElement nextButtonOnProfile;
 
     @AndroidFindBy(xpath = "//android.widget.Button[@text='Mutual Funds KYC']")
@@ -299,8 +310,20 @@ public class MutualFundPage {
         Element.selectElement(driver, getRich, "Click on get Rich");
     }
 
-    public String getTitleOfFDs(){
-        return Element.getText(driver, titleofFDs, " Title of FDs ");
+    public String getTitleOfLiquidFunds(){
+        return Element.getText(driver, titleofLiquidFunds, " Title of Liquid funds ");
+    }
+
+    public String getTitleOfBetterThanFd(){
+        return Element.getText(driver, titleofBetterThanFd, " Title of Better than FD ");
+    }
+
+    public String getTitleOfGetRich(){
+        return Element.getText(driver, titleofGetRich, " Title of Get Rich FD ");
+    }
+
+    public String getTitleOfTaxSaver(){
+        return Element.getText(driver, titleofTaxSaver, " Title of Tax Saver ");
     }
 
     public void clickOnBackButton() throws InterruptedException {
