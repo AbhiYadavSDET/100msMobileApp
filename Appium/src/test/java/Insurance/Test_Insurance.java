@@ -12,7 +12,7 @@ import java.io.IOException;
 public class Test_Insurance extends TestBase {
 
 
-    @Test(groups = {"insurance", "sanity", "regression"}, priority = 0, description = "Verify Personal Accident Insurance payment success screen")
+    @Test(groups = {"insurance", "sanity", "regression"}, priority = 1, description = "Verify Personal Accident Insurance payment success screen")
     public void Test_payment_of_PersonalAccident_insurance() throws IOException, InterruptedException {
 
         Log.info("======= START : Insurance =======");
@@ -139,7 +139,7 @@ public class Test_Insurance extends TestBase {
 
     }
 
-    @Test(groups = {"insurance", "sanity", "regression"}, priority = 0, description = "Verify Personal Accident Insurance")
+    @Test(groups = {"insurance", "sanity", "regression"}, priority = 1, description = "Verify Personal Accident Insurance")
     public void Test_Personal_Accident_insurance() throws IOException, InterruptedException {
 
         Log.info("======= START : Insurance =======");
@@ -164,7 +164,7 @@ public class Test_Insurance extends TestBase {
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("7042338867", "547372");
+        loginHelper.quickLoginViaOtp("7795709569", "547372");
 
         // Execute the test
         InsuranceHelper insuranceHelper = new InsuranceHelper(getAndroidDriver());

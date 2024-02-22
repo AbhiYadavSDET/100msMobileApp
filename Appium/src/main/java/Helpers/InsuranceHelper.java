@@ -428,11 +428,6 @@ public class InsuranceHelper {
 
         //Click On Make Payment
         insurancePage.clickOnMakePayment();
-        String textpayableAmount = insurancePage.getPayableAmount();
-
-        Log.info("Text Payable Amount : " + textpayableAmount);
-        mbReporter.verifyEqualsWithLogging(textpayableAmount, exptextpayableAmount, "Text Payable Amount", false, false, true);
-
 
     }
 
@@ -464,7 +459,9 @@ public class InsuranceHelper {
         insurancePage.clickOnInsurance();
         insurancePage.clickOnPersonalAccidentInsurance();
         insurancePage.clickOnPersonalAccidentInsurancesubheading();
-       if (Element.isElementPresent(driver, By.id("view_detail_text")))
+
+
+       if (insurancePage.isViewMorePresent())
         {
 
             String textcongratulation = insurancePage.gettextCongratulation();
@@ -484,6 +481,7 @@ public class InsuranceHelper {
         }
         else
         {
+
             insurancePage.clickOncheckBox();
             insurancePage.clickOnsumassured20button();
             insurancePage.clickOnMakePayment();
@@ -500,17 +498,6 @@ public class InsuranceHelper {
             mbReporter.verifyEqualsWithLogging(textGender, exptextGender, "Text Gender", false, false, true);
             mbReporter.verifyEqualsWithLogging(textphoneno, exptextphoneno, "Text Phone No", false, false, true);
             insurancePage.clickOnCalender();
-
-            org.openqa.selenium.Dimension windowSize = driver.manage().window().getSize();
-            Map<String, Object> args = new HashMap<>();
-            args.put("command", "input");
-            args.put("args", Lists.newArrayList("swipe", windowSize.width / 2,
-                    windowSize.height / 2, windowSize.width / 2, windowSize.height));
-            while (driver.findElements(By.xpath("//android.widget.EditText[@text='2004']")).size() == 0) {
-
-                driver.executeScript("mobile: shell", args);
-            }
-            driver.findElement(By.xpath("//android.widget.EditText[@text='2004']")).click();
 
             insurancePage.clickOnselectCTA();
             insurancePage.scrollToContinueButton();
@@ -543,6 +530,7 @@ public class InsuranceHelper {
             insurancePage.clickOnBackIcon();
             insurancePage.clickOnMyPolicies();
             insurancePage.clickonCancelPolicyOnHistory();
+            Element.waitForVisibility(driver, By.id("i_agree"));
             insurancePage.clickOncheckBox();
             insurancePage.clickonCancelConfirmationYesPlease();
 

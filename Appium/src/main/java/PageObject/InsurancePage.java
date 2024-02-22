@@ -430,6 +430,10 @@ public class InsurancePage {
         Elements.selectElement(driver,cta_make_payment,"Make Payments");
     }
 
+    public Boolean isViewMorePresent() throws InterruptedException{
+        return Elements.isElementPresent(driver, text_viewMore);
+    }
+
     public String getPayableAmount() throws InterruptedException {
         return Elements.getText(driver,text_payable_amount, "Amount to be paid");
     }
