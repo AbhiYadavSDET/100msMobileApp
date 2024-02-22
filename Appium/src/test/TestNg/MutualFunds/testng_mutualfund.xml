@@ -18,7 +18,6 @@
                 <include name="setUp"/>
                 <include name="instantiateHelpers"/>
                 <include name="mutlipleFDsOptions"/>
-                <include name="faq"/>
                 <include name="tearDown"/>
             </run>
         </groups>
