@@ -72,7 +72,9 @@ public class MoneyPlusHelper {
 
         moneyPlusPage.navigateBack();
 
-        Screen.swipeUpMore(driver);
+        //Screen.swipeUpMore(driver);
+        moneyPlusPage.scrollToGoldScreen();
+       // moneyPlusPage.clickToGoldScreen();
 
         Double goldCurrentValue=Double.parseDouble(moneyPlusPage.fetchGoldCurrentValue());
 

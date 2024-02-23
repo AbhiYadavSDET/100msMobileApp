@@ -126,6 +126,15 @@ public class MoneyPlusPage {
 
     }
 
+    public boolean scrollToGoldScreen() throws InterruptedException {
+        return Elements.scrollToElement(driver,gold_current_value);
+    }
+
+    public void clickToGoldScreen() throws InterruptedException{
+        Elements.selectElement(driver,gold_current_value,"Click on Gold card");
+    }
+
+
     public String fetchGold1DayChangeValue() throws InterruptedException{
         return Elements.getText(driver, gold_1_day_change_value);
 
