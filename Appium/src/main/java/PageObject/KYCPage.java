@@ -64,6 +64,28 @@ public class KYCPage {
     @AndroidFindBy(xpath = "//android.widget.Button[@text='Select']")
     private AndroidElement selectDate;
 
+    @AndroidFindBy(id = "mkab_icon_1")
+    private AndroidElement backButtonFromCompleteYourKycScreen;
+
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='I don’t want benefits']")
+    private AndroidElement iDontWantbenefits;
+
+    @AndroidFindBy(xpath = "//android.widget.Button[@text='Complete using other options']")
+    private AndroidElement completeUsingOtherOptions;
+
+    @AndroidFindBy(xpath = "//android.widget.Button[@text='Continue with your KYC']")
+    private AndroidElement continueWithYourkyc;
+
+    @AndroidFindBy(id = "close_button")
+    private AndroidElement closeButtonOnKycPopup;
+
+
+
+
+
+
+
     public void clickOnContinueButtonOnBoradingScreen() {
         Elements.selectElement(driver, continueButtonOnLendingScreen, "Click on continue button on lending page for KYC");
     }
@@ -134,5 +156,24 @@ public class KYCPage {
         return Elements.isElementPresent(driver,allowButtonOnContactPermission);
     }
 
+    public void clickOnBackButtonFromCompleteYourKycScreen(){
+        Elements.selectElement(driver, backButtonFromCompleteYourKycScreen, "Click on Back button ");
+    }
+
+    public void clickOnIDontWantBenefits(){
+        Elements.selectElement(driver, iDontWantbenefits, "Click on i don't want benefits ");
+    }
+
+    public void clickOnCompleteUsingOtherOptions(){
+        Elements.selectElement(driver, completeUsingOtherOptions, "Click on complete using other options");
+    }
+
+    public void clickOnContinueWithYourKyc(){
+        Elements.selectElement(driver, continueWithYourkyc, "Click on Continue with yout kyc ");
+    }
+
+    public void clickOnPopupClosePopup(){
+        Elements.selectElement(driver, closeButtonOnKycPopup, "Click on close on popup ");
+    }
 
 }
