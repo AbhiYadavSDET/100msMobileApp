@@ -38,7 +38,7 @@ public class TestKYC extends TestBase {
 
     }
 
-    @Test(groups = {"NoKYC", "FullKycViaCKYC","regression"}, priority = 0, description = "Error message validation on Non kyc flow")
+    @Test(groups = {"NoKYC", "FullKycViaCKYC","regression"}, priority = 0, description = "Full kyc flow via CKYC")
     public void Test03_fULL_KYC_FLOW_VIA_CKYC() throws IOException, InterruptedException {
 
         Log.info("======= START : Full KYC flow via CKYC =======");
@@ -52,7 +52,7 @@ public class TestKYC extends TestBase {
 
     }
 
-    @Test(groups = {"NoKYC", "FullKycViaDigilocker","regression"}, priority = 0, description = "Full kyc flow via digi locker")
+    @Test(groups = {"NoKYC", "FullKycViaDigilocker","regression"}, priority = 0, description = "Full kyc flow via digilocker")
     public void Test04_fULL_KYC_FLOW_VIA_DIGILOCKER() throws IOException, InterruptedException {
 
         Log.info("======= START : Full KYC flow via DIGILOCKER =======");
@@ -83,7 +83,7 @@ public class TestKYC extends TestBase {
 
     }
 
-    @Test(groups = {"NoKYC", "FullKycViaCKYCOnailureViaAdhaarWebsite","regression"}, priority = 0, description = "Full kyc flow via adhaar website")
+    @Test(groups = {"NoKYC", "FullKycViaCKYCOnailureViaAdhaarWebsite","regression"}, priority = 0, description = "Full kyc flow via ckyc on  FAILURE FROM Adhaar website ")
     public void Test06_fULL_KYC_FLOW_VIA_CKYC_ON_FAILURE_FROM_ADHARWEBSITE() throws IOException, InterruptedException {
 
         Log.info("======= START : Full KYC flow - On FAILURE FROM Adhaar website =======");
@@ -94,7 +94,7 @@ public class TestKYC extends TestBase {
         KYCHelper kycHelper = new KYCHelper(getAndroidDriver());
         kycHelper.fullKycFromCKYCOnFailureFromAdhaarWebsite("5851 2156 7144","123456","Abhishek","Yadav","HTIPK7865M");
 
-        Log.info("======= END : Full KYC flow - On FAILURE FROM Adhaar website  ======");
+        Log.info("======= END : Full KYC flow Via ckyc - On FAILURE FROM Adhaar website  ======");
 
     }
 }
