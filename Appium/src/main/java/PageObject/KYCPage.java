@@ -73,6 +73,7 @@ public class KYCPage {
     }
 
     public void setFirstNameWithErrorMessage(String name) throws InterruptedException{
+        Elements.clearText(driver,firstNameWithErrorMessage,"Clearing text");
         Elements.enterToElement(driver, firstName,name,"First Name set ");
     }
 
@@ -80,6 +81,7 @@ public class KYCPage {
         Elements.enterToElement(driver, lastName,name,"Last Name set ");
     }
     public void setLastNameWithErrorMessage(String name) throws InterruptedException{
+        Elements.clearText(driver,lastNameWithErrorMessage,"Clearing text");
         Elements.enterToElement(driver, lastName,name,"Last Name set ");
     }
 
@@ -96,6 +98,7 @@ public class KYCPage {
     }
 
     public void setPanNumberWithErrorMessage(String pan) throws InterruptedException{
+        Elements.clearText(driver,panCardNumberWithErrorMessage,"Clearing text");
         Elements.enterToElement(driver, panCardNumber,pan,"Pan Card set ");
     }
 

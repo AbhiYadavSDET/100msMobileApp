@@ -59,12 +59,11 @@ public class KYCHelper {
         mbReporter.verifyEqualsWithLogging(error,"Please enter a valid name","Verifing error message on name",false,false);
 
         kycPage.setFirstNameWithErrorMessage("Abhishek");
-        kycPage.setLastName("Yadav123");
+        kycPage.setLastNameWithErrorMessage("Yadav123");
         kycPage.clickOnProceedAfterName();
         mbReporter.verifyEqualsWithLogging(error,"Please enter a valid name","Verifing error message on name",false,false);
 
-        kycPage.setFirstName("Abhishek");
-        kycPage.setLastName("Yadav");
+        kycPage.setLastNameWithErrorMessage("Yadav");
         kycPage.clickOnProceedAfterName();
 
         kycPage.setPanNumber("HTIPKQWERT");
@@ -72,11 +71,7 @@ public class KYCHelper {
         kycPage.clickOnSelectDate();
         kycPage.clickOnKycConsent();
 
-        kycPage.setPanNumber("HTIPK7865M");
-        kycPage.clickOnDateOption();
-        kycPage.clickOnSelectDate();
-        kycPage.clickOnKycConsent();
-
+        kycPage.setPanNumberWithErrorMessage("HTIPK7865M");
     }
 
     public void handelPopups() throws InterruptedException {
