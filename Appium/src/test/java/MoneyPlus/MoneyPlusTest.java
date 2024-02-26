@@ -28,10 +28,7 @@ public class MoneyPlusTest extends TestBase {
 
         Log.info("======= END : Money Plus Verify test =======");
 
-
     }
-
-
 
 
 }

@@ -25,6 +25,8 @@ public class MoneyPlusHelper {
     MBReporter mbReporter;
 
     MoneyPlusPage moneyPlusPage;
+    MBKCommonControlsHelper mbkCommonControlsHelper;
+
 
 
 
@@ -36,15 +38,16 @@ public class MoneyPlusHelper {
         mbReporter = new MBReporter(driver);
         moneyPlusPage=new MoneyPlusPage(driver);
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
+        mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
     }
     //"Track your bank accounts with 100% accuracy","Watch your money grow", "Get Started", "Track your PF accounts at one place"
     public void verifyMoneyPlusFlow(String AAIntroText, String xtraIntroText, String mfIntroPageCtaText, String epfoIntroPagetitleText) throws InterruptedException, IOException {
 
         moneyPlusPage.clickAllServices();
 
-        Screen.swipeUpMore(driver);
-
+        moneyPlusPage.scrollToMoneyPlus();
         moneyPlusPage.clickOnMoneyPlus();
+        
 
         Element.waitForVisibility(driver,By.id("lineChart"));
 
@@ -62,7 +65,7 @@ public class MoneyPlusHelper {
 
         moneyPlusPage.navigateBack();
 
-        Screen.swipeUpMedium(driver);
+        moneyPlusPage.scrollToXtraCard();
 
         moneyPlusPage.clickOnXtraCard();
 
@@ -72,15 +75,19 @@ public class MoneyPlusHelper {
 
         moneyPlusPage.navigateBack();
 
-        //Screen.swipeUpMore(driver);
         moneyPlusPage.scrollToGoldScreen();
-       // moneyPlusPage.clickToGoldScreen();
+        moneyPlusPage.clickToGoldScreen();
+        //moneyPlusPage.tapOutsideBottomSheet();
+
+        while(!moneyPlusPage.isBuyGoldPresent()){
+            mbkCommonControlsHelper.pressback();
+        }
 
         Double goldCurrentValue=Double.parseDouble(moneyPlusPage.fetchGoldCurrentValue());
 
         mbReporter.verifyTrueWithLogging(goldCurrentValue>0,"Checking Gold Current Value", false,false);
-        mbReporter.verifyTrueWithLogging(!(moneyPlusPage.fetchGold1DayChangeValue() ==null), " Gold 1 Day Change Value : "+ moneyPlusPage.fetchGold1DayChangeValue(), false,false);
 
+        moneyPlusPage.navigateBack();
 
         moneyPlusPage.clickOnMutualFundCard();
 

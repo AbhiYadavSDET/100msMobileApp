@@ -9,6 +9,7 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 
+
 public class MoneyPlusPage {
 
 
@@ -29,6 +30,9 @@ public class MoneyPlusPage {
     @AndroidFindBy(id="mkab_left_icon")
     private AndroidElement navigate_back;
 
+    @AndroidFindBy(id="touch_outside")
+    private AndroidElement touch_outside;
+
     @AndroidFindBy(id="btn_back")
     private AndroidElement navigate_back2;
 
@@ -47,8 +51,11 @@ public class MoneyPlusPage {
     @AndroidFindBy(id="title")
     private AndroidElement xtra_page_title;
 
-    @AndroidFindBy(id = "tvAmountLeft")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Gold']")
     private AndroidElement gold_current_value;
+
+    @AndroidFindBy(id = "gold_price")
+    private AndroidElement gold_price_inside;
 
     @AndroidFindBy(id = "tvAmountRight")
     private AndroidElement gold_1_day_change_value;
@@ -65,6 +72,10 @@ public class MoneyPlusPage {
     @AndroidFindBy(id="txtIntroTitle")
     private AndroidElement epfo_introPage_title;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='gold_title']")
+    private AndroidElement gold_bal_text;
+
+
 
     public MoneyPlusPage(AndroidDriver driver) {
         this.driver = driver;
@@ -75,6 +86,12 @@ public class MoneyPlusPage {
         Elements.selectElement(driver, allServices,"Click on All Services");
     }
 
+    @AndroidFindBy(id = "buy_gold_btn")
+    private AndroidElement buyGoldButton;
+
+    public boolean scrollToMoneyPlus() throws InterruptedException {
+        return Elements.scrollToElement(driver,moneyPlus);
+    }
 
     public void clickOnMoneyPlus(){
         Elements.selectElement(driver, moneyPlus,"Click on Money +");
@@ -87,6 +104,21 @@ public class MoneyPlusPage {
     public String fetchAccountAggregatorIntroText() throws InterruptedException{
         return Elements.getText(driver, account_agregator_intro_page_text);
 
+    }
+
+    public void tapOutsideBottomSheet() throws InterruptedException {
+
+        if(Element.isElementPresent(driver,By.id("touch_outside"))) {
+            Elements.selectElement(driver, touch_outside, "TouchOutside if bottomsheet is present");
+        }else {
+            Elements.selectElement(driver, gold_bal_text, "Click on Gold home page");
+        }
+
+    }
+
+
+    public boolean isBuyGoldPresent() throws InterruptedException {
+        return Elements.isElementPresent(driver, buyGoldButton);
     }
 
     public void navigateBack() throws InterruptedException{
@@ -112,6 +144,10 @@ public class MoneyPlusPage {
 
     }
 
+    public boolean scrollToXtraCard() throws InterruptedException {
+        return Elements.scrollToElement(driver,xtra_card);
+    }
+
     public void clickOnXtraCard() throws InterruptedException {
         Elements.selectElement(driver, xtra_card,"Click on Xtra Card");
     }
@@ -122,7 +158,7 @@ public class MoneyPlusPage {
     }
 
     public String fetchGoldCurrentValue() throws InterruptedException{
-        return Elements.getText(driver, gold_current_value).replace("₹", "");
+        return Elements.getText(driver, gold_price_inside).replace("₹", "");
 
     }
 
