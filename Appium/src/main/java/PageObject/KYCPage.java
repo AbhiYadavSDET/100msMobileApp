@@ -67,7 +67,6 @@ public class KYCPage {
     @AndroidFindBy(id = "mkab_icon_1")
     private AndroidElement backButtonFromCompleteYourKycScreen;
 
-
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='I don’t want benefits']")
     private AndroidElement iDontWantbenefits;
 
@@ -107,8 +106,6 @@ public class KYCPage {
     @AndroidFindBy(id = "eft_container")
     private AndroidElement backFromDigiLockerScreen;
 
-//
-
     @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.webkit.WebView/android.webkit.WebView/android.view.View[2]/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.widget.EditText[1]")
     private AndroidElement adharCardFirstDigits;
 
@@ -122,20 +119,34 @@ public class KYCPage {
     @AndroidFindBy(xpath = "//android.widget.Button[@text='Next']")
     private AndroidElement nextButtonOnDigilockerAadharCard;
 
-
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Try another way']")
     private AndroidElement tryAnotherWayOnDigilocker;
 
-
-    @AndroidFindBy(xpath = "///hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.webkit.WebView/android.webkit.WebView/android.view.View[2]/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[3]/android.widget.EditText")
+    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.webkit.WebView/android.webkit.WebView/android.view.View[2]/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[3]/android.widget.EditText")
     private AndroidElement enterOtpOnDigiLocker;
 
     @AndroidFindBy(xpath = "//android.widget.Button[@text='Submit']")
     private AndroidElement submitButtonOnDigilocker;
 
-
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Other Banks']")
     private AndroidElement otherBanksOptionOnSetup;
+
+    @AndroidFindBy(xpath = "//android.widget.EditText[@text='Aadhaar Number']")
+    private AndroidElement adhaarNumberOptionOnAdhaarWebsite;
+
+
+    @AndroidFindBy(id = "btn_submit")
+    private AndroidElement arrowbuttonOnAdhaarWebsite;
+
+
+
+    @AndroidFindBy(xpath = "//android.widget.EditText[@text='Enter security code']")
+    private AndroidElement enterSecurityCodeOnAdhaarWebsite;
+
+
+    @AndroidFindBy(xpath = "//android.widget.Button[@text='OK']")
+    private AndroidElement okOnCaptchaFailurePopup;
+
 
     public void clickOnContinueButtonOnBoradingScreen() {
         Elements.selectElement(driver, continueButtonOnLendingScreen, "Click on continue button on lending page for KYC");
@@ -251,7 +262,7 @@ public class KYCPage {
     public void clickOnBackFromDigilocker(){
         Elements.selectElement(driver, backFromDigiLockerScreen, "Click on Back from DigiLocker screen");
     }
-//
+
     public void setAdharCardFirstDigits(String digits) throws InterruptedException{
         Elements.enterToElement(driver, adharCardFirstDigits,digits,"Set Adhar card first 4 digits ");
     }
@@ -283,16 +294,20 @@ public class KYCPage {
         Elements.selectElement(driver, otherBanksOptionOnSetup, "Click on other options on upi setup page.");
     }
 
+    public void setAdharNumberOnAdharWebsite(String adhaarNumber) throws InterruptedException{
+        Elements.enterToElement(driver, adhaarNumberOptionOnAdhaarWebsite,adhaarNumber,"Set adhar number on adhaar website ");
+    }
 
+    public void clickOnArrowButtonOnAdhaarWebsite(){
+        Elements.selectElement(driver, arrowbuttonOnAdhaarWebsite, "Click on arrow button on adhaar website.");
+    }
 
+    public void setSecurityCode(String securityCode) throws InterruptedException{
+        Elements.enterToElement(driver,enterSecurityCodeOnAdhaarWebsite ,securityCode,"Set security code on  website ");
+    }
 
-
-
-
-
-
-
-
-
+    public void clickOkOnCaptcaFailure(){
+        Elements.selectElement(driver, okOnCaptchaFailurePopup, "Click ok on captcha failure ");
+    }
 
 }
