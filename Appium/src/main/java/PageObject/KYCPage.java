@@ -80,11 +80,62 @@ public class KYCPage {
     @AndroidFindBy(id = "close_button")
     private AndroidElement closeButtonOnKycPopup;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Fetch From CKYC']")
+    private AndroidElement fetchFromCKYC;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='via Digilocker']")
+    private AndroidElement viaDigiLocker;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='via Aadhaar Website']")
+    private AndroidElement viaAadharWebsite;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='via PAN Card']")
+    private AndroidElement viaPanCard;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='via Passport']")
+    private AndroidElement viaPassport;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='via NREGA Job Card']")
+    private AndroidElement viaNREGA;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='via Driving License']")
+    private AndroidElement viaDrivingLiscence;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='via Voter ID Card']")
+    private AndroidElement viaVoterIdCard;
+
+    @AndroidFindBy(id = "eft_container")
+    private AndroidElement backFromDigiLockerScreen;
+
+//
+
+    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.webkit.WebView/android.webkit.WebView/android.view.View[2]/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.widget.EditText[1]")
+    private AndroidElement adharCardFirstDigits;
+
+    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.webkit.WebView/android.webkit.WebView/android.view.View[2]/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.widget.EditText[2]")
+    private AndroidElement adharCardSecondDigits;
+
+    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.webkit.WebView/android.webkit.WebView/android.view.View[2]/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.widget.EditText[3]")
+    private AndroidElement adharCardThirdDigits;
 
 
+    @AndroidFindBy(xpath = "//android.widget.Button[@text='Next']")
+    private AndroidElement nextButtonOnDigilockerAadharCard;
 
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Try another way']")
+    private AndroidElement tryAnotherWayOnDigilocker;
 
+
+    @AndroidFindBy(xpath = "///hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.webkit.WebView/android.webkit.WebView/android.view.View[2]/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[3]/android.widget.EditText")
+    private AndroidElement enterOtpOnDigiLocker;
+
+    @AndroidFindBy(xpath = "//android.widget.Button[@text='Submit']")
+    private AndroidElement submitButtonOnDigilocker;
+
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Other Banks']")
+    private AndroidElement otherBanksOptionOnSetup;
 
     public void clickOnContinueButtonOnBoradingScreen() {
         Elements.selectElement(driver, continueButtonOnLendingScreen, "Click on continue button on lending page for KYC");
@@ -172,8 +223,76 @@ public class KYCPage {
         Elements.selectElement(driver, continueWithYourkyc, "Click on Continue with yout kyc ");
     }
 
-    public void clickOnPopupClosePopup(){
-        Elements.selectElement(driver, closeButtonOnKycPopup, "Click on close on popup ");
+    public void clickOnFetchFromCKYC(){
+        Elements.selectElement(driver, fetchFromCKYC, "Click on close on popup ");
     }
+    public void clickOnViaDigiLocker(){
+        Elements.selectElement(driver, viaDigiLocker, "Click on viaDigiLocker ");
+    }
+    public void clickOnViaAadharWebsite(){
+        Elements.selectElement(driver, viaAadharWebsite, "Click on viaAadharWebsite ");
+    }
+    public void clickOnViapanCard(){
+        Elements.selectElement(driver, viaPanCard, "Click on viaPanCard ");
+    }
+    public void clickOnViaPassport(){
+        Elements.selectElement(driver, viaPassport, "Click on viaPassport");
+    }
+    public void clickOnViaNREGA(){
+        Elements.selectElement(driver, viaNREGA, "Click on viaNREGA ");
+    }
+    public void clickOnViaDrivingLiscence(){
+        Elements.selectElement(driver, viaDrivingLiscence, "Click on viaDrivingLiscence");
+    }
+    public void clickOnViaVoterIdCard(){
+        Elements.selectElement(driver, viaVoterIdCard, "Click on viaVoterIdCard");
+    }
+
+    public void clickOnBackFromDigilocker(){
+        Elements.selectElement(driver, backFromDigiLockerScreen, "Click on Back from DigiLocker screen");
+    }
+//
+    public void setAdharCardFirstDigits(String digits) throws InterruptedException{
+        Elements.enterToElement(driver, adharCardFirstDigits,digits,"Set Adhar card first 4 digits ");
+    }
+
+    public void setAdharCardSecondDigits(String digits) throws InterruptedException{
+        Elements.enterToElement(driver, adharCardSecondDigits,digits,"Set Adhar card middle 4 digits  ");
+    }
+
+    public void setAdharCardThirdDigits(String digits) throws InterruptedException{
+        Elements.enterToElement(driver, adharCardThirdDigits,digits,"Set Adhar card last 4 digits  ");
+    }
+
+    public void clickOnNextButtonOnDigilocker(){
+        Elements.selectElement(driver, nextButtonOnDigilockerAadharCard, "Click on next button from digilocker screem");
+    }
+    public void clickOnTryAnotherWayOnDigilocker(){
+        Elements.selectElement(driver, tryAnotherWayOnDigilocker, "Click on try another way on digilocker");
+    }
+
+    public void setEnterOtpOnDigiLocker(String otp) throws InterruptedException{
+        Elements.enterToElement(driver, enterOtpOnDigiLocker,otp,"Set OTP on digi locker ");
+    }
+
+    public void clickOnSubmitButtonOnDigilocker(){
+        Elements.selectElement(driver, submitButtonOnDigilocker, "Click on submit button on  digilocker");
+    }
+
+    public void clickOnOtherOptionsOnUPISetupPage(){
+        Elements.selectElement(driver, otherBanksOptionOnSetup, "Click on other options on upi setup page.");
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
