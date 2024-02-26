@@ -156,6 +156,9 @@ public class P2PExtraPage {
     @AndroidFindBy(id = "mkab_left_icon")
     private AndroidElement back_btn;
 
+    @AndroidFindBy(id = "icon_cross")
+    private AndroidElement back_btn_amountscreen;
+
     @AndroidFindBy(xpath = "//*/android.view.ViewGroup[@index = 0]")
     private AndroidElement first_fixed_investment;
 
@@ -230,6 +233,11 @@ public class P2PExtraPage {
     @AndroidFindBy(id = "com.mobikwik_new.debug:id/cta")
     private AndroidElement got_it_btn_mapping_report;
 
+    @AndroidFindBy(id = "error_text")
+    private AndroidElement errorOnExceedAmount;
+
+
+
     @AndroidFindBy(xpath = "//android.widget.Button[@text='Got it!']")
     private AndroidElement borrower_preference_bottomsheet;
 
@@ -284,6 +292,11 @@ public class P2PExtraPage {
         Element.selectElement(driver, select_bank_to_withdraw, "Select bank on bottom sheet");
     }
 
+
+    public Boolean iserrorMessageOnWithdrawPresent() throws InterruptedException {
+        return Elements.isElementPresent(driver, errorOnExceedAmount);
+    }
+
     public void selectInvestMore() throws InterruptedException {
         Element.selectElement(driver, cta_invest, "Invest More Amount cta");
     }
@@ -322,6 +335,12 @@ public class P2PExtraPage {
         Thread.sleep(1000);
         Elements.enterToElement(driver, investment_amount_box, amount, "Enter Investment Amount");
     }
+
+    public String getErrortextMessageOnAmountScreen() throws InterruptedException {
+        return Element.getText(driver, errorOnExceedAmount, "Get Error on Amount Screen");
+    }
+
+
 
     public void selectNBOnCheckoutScreen() throws InterruptedException {
         Element.selectElement(driver, selectNBOnCheckoutScreen, "Select NetBanking From Checkout Screen");
@@ -454,6 +473,11 @@ public class P2PExtraPage {
 
     public void clickBackBtn() throws InterruptedException {
         Element.selectElement(driver, back_btn, "Click on Top Left Back Button");
+    }
+
+
+    public void clickBackBtnOnAmountScreen() throws InterruptedException {
+        Element.selectElement(driver, back_btn_amountscreen, "Click on Top Left Back Button on amount screen");
     }
 
     public void clickAddBankBtn() throws InterruptedException {
