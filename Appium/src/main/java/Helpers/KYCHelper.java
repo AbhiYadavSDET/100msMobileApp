@@ -45,6 +45,10 @@ public class KYCHelper {
         kycPage.clickOnContinueButtonOnBoradingScreen();
         handelPopups();
 
+        if(kycPage.isOnboardingOptionsScreenPresent()){
+            kycPage.clickOnFullKyc();
+        }
+
         //Enter first name
         kycPage.setFirstName(firstName);
 
@@ -73,6 +77,10 @@ public class KYCHelper {
         //Error message validation on full kyc flow from Onboarding
         kycPage.clickOnContinueButtonOnBoradingScreen();
         handelPopups();
+
+        if(kycPage.isOnboardingOptionsScreenPresent()){
+            kycPage.clickOnFullKyc();
+        }
 
         //Enter invalid first name
        kycPage.setFirstName("Abhishek123");

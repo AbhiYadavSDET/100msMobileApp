@@ -466,4 +466,8 @@ public class KYCPage {
         return Elements.getText(driver, checkBoxConsent, "Profile Kyc Screen Text");
     }
 
+    public  boolean isOnboardingOptionsScreenPresent() throws InterruptedException {
+        return Elements.isElementPresent(driver,bottomSheetFullKyc);
+    }
+
 }
