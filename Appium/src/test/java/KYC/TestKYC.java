@@ -123,7 +123,7 @@ public class TestKYC extends TestBase {
         loginHelp.quickLoginViaOtpForNonKycUser("8216900006","547372");
 
         KYCHelper kycHelper = new KYCHelper(getAndroidDriver());
-        kycHelper.profileFullKycFlow("HTIPK7865L","585121567144","Abhishek", "Yadav", "CKYC", "NOKYC", "Complete your KYC", "Upgrade your wallet limit for unlimited transactions");
+        kycHelper.profileFullKycFlow("HTIPK7865L","585121567144","Abhishek", "Yadav", "CKYC", "NOKYC", "Complete your KYC ", "Upgrade your wallet limit for unlimited transactions");
         Log.info("======= END : CKYC flow from Profile =======");
 
     }
@@ -137,7 +137,7 @@ public class TestKYC extends TestBase {
         loginHelp.quickLoginViaOtpForNonKycUser("8216900006","547372");
 
         KYCHelper kycHelper = new KYCHelper(getAndroidDriver());
-        kycHelper.profileFullKycFlow("HTIPK7865L","585121567144","Abhishek", "Yadav", "DIGILOCKER", "NOKYC", "Complete your KYC", "Upgrade your wallet limit for unlimited transactions");
+        kycHelper.profileFullKycFlow("HTIPK7865L","585121567144","Abhishek", "Yadav", "DIGILOCKER", "NOKYC", "Complete your KYC ", "Upgrade your wallet limit for unlimited transactions");
         Log.info("======= END : DIGILOCKER flow from Profile =======");
 
     }
@@ -151,7 +151,7 @@ public class TestKYC extends TestBase {
         loginHelp.quickLoginViaOtpForNonKycUser("8216900006","547372");
 
         KYCHelper kycHelper = new KYCHelper(getAndroidDriver());
-        kycHelper.profileFullKycFlow("HTIPK7865L","585121567144","Abhishek", "Yadav", "OKYC", "NOKYC", "Complete your KYC", "Upgrade your wallet limit for unlimited transactions");
+        kycHelper.profileFullKycFlow("HTIPK7865L","585121567144","Abhishek", "Yadav", "OKYC", "NOKYC", "Complete your KYC ", "Upgrade your wallet limit for unlimited transactions");
         Log.info("======= END : OKYC flow from Profile =======");
 
     }
@@ -165,7 +165,7 @@ public class TestKYC extends TestBase {
         loginHelp.quickLoginViaOtpForNonKycUser("8216900001","547372");
 
         KYCHelper kycHelper = new KYCHelper(getAndroidDriver());
-        kycHelper.profileFullKycFlow("HTIPK7865L","585121567144","Abhishek", "Yadav", "CKYC", "MINKYC", "Complete your KYC", "Upgrade your wallet limit for unlimited transactions");
+        kycHelper.profileFullKycFlow("HTIPK7865L","585121567144","Abhishek", "Yadav", "CKYC", "MINKYC", "Complete your KYC ", "Upgrade your wallet limit for unlimited transactions");
         Log.info("======= END : CKYC flow from Profile =======");
 
     }
@@ -179,7 +179,7 @@ public class TestKYC extends TestBase {
         loginHelp.quickLoginViaOtpForNonKycUser("8216900001","547372");
 
         KYCHelper kycHelper = new KYCHelper(getAndroidDriver());
-        kycHelper.profileFullKycFlow("HTIPK7865L","585121567144","Abhishek", "Yadav", "DIGILOCKER", "MINKYC", "Complete your KYC", "Upgrade your wallet limit for unlimited transactions");
+        kycHelper.profileFullKycFlow("HTIPK7865L","585121567144","Abhishek", "Yadav", "DIGILOCKER", "MINKYC", "Complete your KYC ", "Upgrade your wallet limit for unlimited transactions");
         Log.info("======= END : DIGILOCKER flow from Profile =======");
 
     }
@@ -193,7 +193,7 @@ public class TestKYC extends TestBase {
         loginHelp.quickLoginViaOtpForNonKycUser("8216900001","547372");
 
         KYCHelper kycHelper = new KYCHelper(getAndroidDriver());
-        kycHelper.profileFullKycFlow("HTIPK7865L","585121567144","Abhishek", "Yadav", "OKYC", "MINKYC","Complete your KYC", "Upgrade your wallet limit for unlimited transactions");
+        kycHelper.profileFullKycFlow("HTIPK7865L","585121567144","Abhishek", "Yadav", "OKYC", "MINKYC","Complete your KYC ", "Upgrade your wallet limit for unlimited transactions");
         Log.info("======= END : OKYC flow from Profile =======");
 
     }
