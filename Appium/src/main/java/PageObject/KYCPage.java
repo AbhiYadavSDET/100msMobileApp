@@ -106,13 +106,13 @@ public class KYCPage {
     @AndroidFindBy(id = "eft_container")
     private AndroidElement backFromDigiLockerScreen;
 
-    @AndroidFindBy(id = "aadhaar_1")
+    @AndroidFindBy(xpath = "//android.view.View/android.widget.EditText[1]")
     private AndroidElement adharCardFirstDigits;
 
-    @AndroidFindBy(id = "aadhaar_2")
+    @AndroidFindBy(xpath = "//android.view.View/android.widget.EditText[2]")
     private AndroidElement adharCardSecondDigits;
 
-    @AndroidFindBy(id = "aadhaar_3")
+    @AndroidFindBy(xpath = "//android.view.View/android.widget.EditText[3]")
     private AndroidElement adharCardThirdDigits;
 
     @AndroidFindBy(xpath = "//android.widget.Button[@text='Next']")
@@ -121,7 +121,7 @@ public class KYCPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Try another way']")
     private AndroidElement tryAnotherWayOnDigilocker;
 
-    @AndroidFindBy(id = "a_otp_1")
+    @AndroidFindBy(xpath = "//android.view.View[3]/android.widget.EditText")
     private AndroidElement enterOtpOnDigiLocker;
 
     @AndroidFindBy(xpath = "//android.widget.Button[@text='Submit']")
@@ -306,6 +306,4 @@ public class KYCPage {
     public void clickOkOnCaptcaFailure(){
         Elements.selectElement(driver, okOnCaptchaFailurePopup, "Click ok on captcha failure ");
     }
-
-
 }
