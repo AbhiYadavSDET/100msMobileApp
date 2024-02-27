@@ -35,6 +35,7 @@
             <class name="ViewElectricityBill.ViewElectricityBillTest"/>
             <class name="ViewPipedGasBill.ViewPipedGasBillTest"/>
             <class name="Checkout.CheckoutTest"/>
+            <class name="KYC.TestKYC"></class>
         </classes>
     </test>
 
