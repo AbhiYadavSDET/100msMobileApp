@@ -372,5 +372,9 @@ public class MutualFundPage {
         return Element.getText(driver, mutualFundsKyc, " Mutual funds kyc button ");
     }
 
+    public boolean isMutualFundsKycBottomsheetPresent() throws InterruptedException {
+        return Elements.isElementPresent(driver,mutualFundsKyc);
+    }
+
 
 }
