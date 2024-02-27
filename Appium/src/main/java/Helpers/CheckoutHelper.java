@@ -73,8 +73,10 @@ public class CheckoutHelper {
         //Click on Invest More button on XTRA dashboard
         p2PExtraPage.selectInvestMore();
 
+        Thread.sleep(1000);
         if(p2PExtraPage.isBorrowerPreferenceBottomsheetVisible()){
-            p2PExtraPage.selectBorrowerPreferenceBottomsheet();
+            mbkCommonControlsHelper.pressback();
+            //p2PExtraPage.selectBorrowerPreferenceBottomsheet();
         }
 
         // Click on the Tooltip
@@ -84,7 +86,8 @@ public class CheckoutHelper {
         p2PExtraPage.selectFlexiFromNavBar();
 
         if(p2PExtraPage.isBorrowerPreferenceBottomsheetVisible()){
-            p2PExtraPage.selectBorrowerPreferenceBottomsheet();
+         //   p2PExtraPage.selectBorrowerPreferenceBottomsheet();
+            p2PExtraPage.clickGotItCtaBorrowerMappingReport();
         }
 
 //        //Click on Proceed to pay Btn on Amount Summary Page
@@ -175,8 +178,10 @@ public class CheckoutHelper {
         //Click on Invest More button on XTRA dashboard
         p2PExtraPage.selectInvestMore();
 
+        Thread.sleep(1000);
         if(p2PExtraPage.isBorrowerPreferenceBottomsheetVisible()){
-            p2PExtraPage.selectBorrowerPreferenceBottomsheet();
+            mbkCommonControlsHelper.pressback();
+        //    p2PExtraPage.selectBorrowerPreferenceBottomsheet();
         }
 
         // Click on the Tooltip
@@ -186,7 +191,7 @@ public class CheckoutHelper {
         p2PExtraPage.selectFlexiFromNavBar();
 
         if(p2PExtraPage.isBorrowerPreferenceBottomsheetVisible()){
-            p2PExtraPage.selectBorrowerPreferenceBottomsheet();
+            p2PExtraPage.clickGotItCtaBorrowerMappingReport();
         }
 
         p2PExtraPage.enterInvestmentAmount(amount);
@@ -305,11 +310,11 @@ public class CheckoutHelper {
                 checkoutPage.selectZipModule();
                 mbReporter.verifyTrueWithLogging(checkoutPage.isZipModuleAvailable(), "Zip Module Visible in Recommended Bottom Sheet", false,false);
 
-                Integer convFeeBelowZipModule= checkoutPage.getConvFee();
-                Integer convFeeInBreakup= checkoutPage.getConvFeeInBreakup();
-                Integer totalPayableAmount= checkoutPage.getPayableAmountBreakup();
+                Double convFeeBelowZipModule= checkoutPage.getConvFee();
+                Double convFeeInBreakup= checkoutPage.getConvFeeInBreakup();
+                Double totalPayableAmount= checkoutPage.getPayableAmountBreakup();
 
-                Integer expectedTotalPayableAmount=Integer.parseInt(amount)+convFeeBelowZipModule;
+                Double expectedTotalPayableAmount=Double.parseDouble(amount)+convFeeBelowZipModule;
 
                 mbReporter.verifyEqualsWithLogging(convFeeBelowZipModule,convFeeInBreakup, "Matching Conv fee is displayed same on both places", false, false);
                 mbReporter.verifyEqualsWithLogging(totalPayableAmount,expectedTotalPayableAmount, "Matching payable amount calculation", false,false);
@@ -327,12 +332,14 @@ public class CheckoutHelper {
                 checkoutPage.selectZipModule();
                 mbReporter.verifyTrueWithLogging(checkoutPage.isZipModuleAvailable(), "Zip Module Visible in Main Bottom Sheet", false, false);
 
-                Integer convFeeBelowZipModule = checkoutPage.getConvFee();
-                Integer convFeeInBreakup = checkoutPage.getConvFeeInBreakup();
-                Integer totalPayableAmount = checkoutPage.getPayableAmountBreakup();
+                Double convFeeBelowZipModule= checkoutPage.getConvFee();
+                Double convFeeInBreakup= checkoutPage.getConvFeeInBreakup();
+                Double totalPayableAmount= checkoutPage.getPayableAmountBreakup();
+
+                Double expectedTotalPayableAmount=Double.parseDouble(amount)+convFeeBelowZipModule;
 
                 mbReporter.verifyEqualsWithLogging(convFeeBelowZipModule, convFeeInBreakup, "Matching Conv fee is displayed same on both places", false, false);
-                mbReporter.verifyEqualsWithLogging(amount + convFeeBelowZipModule, totalPayableAmount, "Matching payable amount calculation", false, false);
+                mbReporter.verifyEqualsWithLogging(expectedTotalPayableAmount, totalPayableAmount, "Matching payable amount calculation", false, false);
                 zipModule=true;
             }
         }

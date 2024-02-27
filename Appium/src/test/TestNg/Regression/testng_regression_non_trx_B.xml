@@ -27,6 +27,7 @@
 
         <classes>
             <class name="Rewards.RewardsTest"/>
+            <class name="MutualFunds.MutualFundsTest"/>
             <class name="HelpAndSupport.Test_HelpAndSupport"/>
             <class name="PayRent.PayRentTest"/>
             <class name="AccountAggregator.Test_AccountAggregator"/>
@@ -34,6 +35,7 @@
             <class name="ViewElectricityBill.ViewElectricityBillTest"/>
             <class name="ViewPipedGasBill.ViewPipedGasBillTest"/>
             <class name="Checkout.CheckoutTest"/>
+            <class name="KYC.TestKYC"></class>
         </classes>
     </test>
 

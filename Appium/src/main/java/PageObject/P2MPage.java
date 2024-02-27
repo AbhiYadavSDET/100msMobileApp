@@ -83,7 +83,7 @@ public class P2MPage {
     @AndroidFindBy(id = "add_account_button")
     public AndroidElement upiBottomSheetCta;
 
-    @AndroidFindBy(id = "text_gallery")
+    @AndroidFindBy(id = "btn_external_storage")
     public AndroidElement text_gallery;
 
     @AndroidFindBy(id = "name_initial_text_view")

@@ -84,7 +84,7 @@ public class IMPSTest extends TestBase {
         Log.info("======= START : Check Transfer to UPI Id Flow test =======");
 
         IMPSHelper impsHelper = new IMPSHelper(getIosDriver());
-        impsHelper.transferToUpiId("parajmbk2024@ikwik","Paraj Jain","parajmbk2024@ikwik","4000");
+        impsHelper.transferToUpiId("7795709569@paytm","Paraj Jain","7795709569@paytm","4000");
 
         Log.info("======= END : Check Transfer to UPI Id Flow test =======");
 

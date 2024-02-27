@@ -120,6 +120,38 @@ public class IMPSNewPage {
     @AndroidFindBy(id = "close_button")
     private AndroidElement closeCheckLimit ;
 
+
+    @AndroidFindBy(xpath = "//android.widget.Button[contains(@text, 'Transfer now')]")
+    private AndroidElement transferNowOnZeroState ;
+
+    @AndroidFindBy(id = "info_message")
+    private AndroidElement infoMessageOnAmountScreen ;
+
+
+    //xpath = "//android.widget.TextView[text()='More payment options']
+
+    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView[1]")
+    private AndroidElement morePaymentOption ;
+
+    @AndroidFindBy(id = "next_icon")
+    private AndroidElement checkBox ;
+
+    @AndroidFindBy(id = "cta")
+    private AndroidElement continueButtonOnFinalCheckout ;
+
+    @AndroidFindBy(xpath = "//android.widget.EditText[contains(@text, 'CVV')]")
+    private AndroidElement cvvText ;
+
+    @AndroidFindBy(xpath = "//android.widget.Button[contains(@text, 'Pay ₹')]")
+    private AndroidElement payAfterCvv ;
+
+    @AndroidFindBy(id = "btn_pin_submit")
+    private AndroidElement arrowButton ;
+
+    @AndroidFindBy(id = "btn_check_out_pay")
+    private AndroidElement continueOnCheckoutPage ;
+
+
     public IMPSNewPage(AndroidDriver driver) throws IOException {
 
         this.driver = driver;
@@ -155,7 +187,7 @@ public class IMPSNewPage {
     }
 
     public void setAmount(String amt) throws InterruptedException{
-        Elements.clearText(driver,amount_field,"Clear if any");
+    /*    Elements.clearText(driver,amount_field,"Clear if any");*/
         Elements.enterToElement(driver,amount_field,amt,"Amount set..");
     }
 
@@ -292,6 +324,43 @@ public class IMPSNewPage {
 
     public void clickOnCloseCheckLimits() throws InterruptedException{
         Elements.selectElement(driver,closeCheckLimit,"Tapped on close check limits ");
+    }
+    public void clickOnTransferNowOnZeroState() throws InterruptedException{
+        Elements.selectElement(driver,transferNowOnZeroState,"Tapped on transfer now on zero state on IMPS ");
+    }
+
+    public boolean isZeroState() throws InterruptedException {
+        return Elements.isElementPresent(driver,transferNowOnZeroState);
+    }
+
+    public String getInfoMessage() throws InterruptedException {
+        return Elements.getText(driver, infoMessageOnAmountScreen, "Info message onAmount screen ");
+    }
+    public void clickOnMorePaymentOptions() throws InterruptedException{
+        Elements.selectElement(driver,morePaymentOption,"Tapped on more payment options on IMPS checkout ");
+    }
+    public void clickOnCheckBox() throws InterruptedException{
+        Elements.selectElement(driver,checkBox,"Tapped checkbox on  IMPS checkout ");
+    }
+
+    public void clickOnContinueButtonOnFinalCheckout() throws InterruptedException{
+        Elements.selectElement(driver,continueButtonOnFinalCheckout,"Tapped continue on  IMPS checkout ");
+    }
+
+    public void setCVV(String cvv) throws InterruptedException{
+        Elements.enterToElement(driver,cvvText,cvv,"CVV set....");
+    }
+
+    public void clickOnPayAftercvv() throws InterruptedException{
+        Elements.selectElement(driver,payAfterCvv,"Tapped on pay after entering CVV ");
+    }
+
+    public void clickOnArrowButton() throws InterruptedException{
+        Elements.selectElement(driver,arrowButton,"Tapped on arrow continue button ");
+    }
+
+    public void clickOnContinueOnCheckout() throws InterruptedException{
+        Elements.selectElement(driver,continueOnCheckoutPage,"Tapped on pay button on checkout page ");
     }
 
 

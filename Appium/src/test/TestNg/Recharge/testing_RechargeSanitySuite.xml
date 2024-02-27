@@ -2,17 +2,22 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Recharge Sanity">
 
-    <parameter name="build" value="prod"/>
-    <parameter name="level" value="payments"/>
-    <parameter name="saucelabs" value="false"></parameter>
-    <parameter name="androidOSVersion" value="12.0"></parameter>
-
     <listeners>
         <listener class-name="Utils.Listeners.AnnotationTransformer"/>
         <listener class-name="Utils.ExtentReportListener"/>
     </listeners>
 
     <test verbose="2" preserve-order="true" name="Recharge Sanity Test">
+
+        <parameter name="build" value="prod"/>
+        <parameter name="level" value="payments"/>
+        <parameter name="saucelabs" value="false"></parameter>
+        <parameter name="codeCoverage" value="false"></parameter>
+        <parameter name="androidOSVersion" value="12.0"></parameter>
+        <parameter name="deviceName" value="deviceName"></parameter>
+        <parameter name="udId" value="17228df2"></parameter>
+        <parameter name="portNo" value="4723"></parameter>
+
         <groups>
             <run>
                 <include name="setUp"/>
@@ -25,7 +30,7 @@
 
         <classes>
             <class name="Utils.TestBase"/>
-<!--            <class name="AddMoney.Test_AddMoney"/>-->
+            <class name="AddMoney.Test_AddMoney"/>
             <class name="Recharge.RechargeTest"/>
             <class name="ViewElectricityBill.ViewElectricityBillTest"/>
             <class name="ViewPipedGasBill.ViewPipedGasBillTest"/>

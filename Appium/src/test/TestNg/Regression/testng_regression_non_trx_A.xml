@@ -26,7 +26,6 @@
 
         <classes>
             <class name="P2PExtra.P2PExtraTest"/>
-            <class name="MutualFunds.MutualFundsTest"/>
             <class name="Loan.LoanTest"/>
             <class name="Zip.ZipTest"/>
             <class name="Offers.OfferTest"/>

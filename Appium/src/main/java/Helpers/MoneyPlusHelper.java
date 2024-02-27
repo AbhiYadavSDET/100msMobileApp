@@ -45,7 +45,9 @@ public class MoneyPlusHelper {
 
         moneyPlusPage.clickAllServices();
 
+
         moneyPlusPage.scrollToMoneyPlus();
+
         moneyPlusPage.clickOnMoneyPlus();
         
 

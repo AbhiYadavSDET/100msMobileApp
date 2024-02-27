@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Mutual Funds Flow">
+<suite name="Non KYC Flow">
 
     <parameter name="build" value="prod"/>
     <parameter name="level" value="payments"/>
@@ -11,8 +11,7 @@
     <parameter name="udId" value="17228df2"></parameter>
     <parameter name="portNo" value="4723"></parameter>
 
-
-    <test verbose="2" preserve-order="true" name="Mutual Funds flow Test">
+    <test verbose="2" preserve-order="true" name="Non KYC flow Test">
         <groups>
             <run>
                 <include name="setUp"/>
@@ -25,7 +24,7 @@
 
         <classes>
             <class name="Utils.TestBase"/>
-            <class name="MutualFunds.MutualFundsTest"/>
+            <class name="KYC.TestKYC"/>
         </classes>
     </test>
 

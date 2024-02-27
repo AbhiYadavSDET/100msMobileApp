@@ -17,85 +17,85 @@ public class CCBPPage {
     @iOSXCUITFindBy(id = "Timely reminders & Insights of your spends")
     private IOSElement emailAccessBottomSheet;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[3]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeButton")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
     private IOSElement cross;
 
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeButton")
     private IOSElement addNewCreditCard;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[4]")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[4]")
     private IOSElement addCard;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeButton")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[3]/XCUIElementTypeButton[1]")
     private IOSElement enterCreditCardNumber;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"0\"]")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='0']")
     private IOSElement zeroButton;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"1\"]")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='1']")
     private IOSElement oneButton;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"2\"]")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='2']")
     private IOSElement twoButton;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"3\"]")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='3']")
     private IOSElement threeButton;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"4\"]")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='4']")
     private IOSElement fourButton;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"5\"]")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='5']")
     private IOSElement fiveButton;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"6\"]")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='6']")
     private IOSElement sixButton;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"7\"]")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='7']")
     private IOSElement sevenButton;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"8\"]")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='8']")
     private IOSElement eightButton;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"9\"]")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='9']")
     private IOSElement nineButton;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Continue\"]")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='Continue']")
     private IOSElement continueCTA;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeOther[2]/XCUIElementTypeButton")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[2]/XCUIElementTypeButton[1]")
     private IOSElement enterAmountManually;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeOther[2]//XCUIElementTypeStaticText[2]")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[2]/XCUIElementTypeStaticText[2]")
     private IOSElement amountOnPaymentScreen;
 
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[starts-with(@name, 'Pay')]")
     private IOSElement payButton;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeStaticText[1]")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeStaticText[1]")
     private IOSElement bankNameOnPaymentScreen;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeStaticText[2]")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeStaticText[2]")
     private IOSElement cardNumberOnPaymentScreen;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='RECOMMENDED']")
     private IOSElement emailOptionScreen;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"ic help\"]")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='ic help']")
     private IOSElement cardSettings;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeStaticText[2]")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther/XCUIElementTypeStaticText[2]")
     private IOSElement emailLinkedMessage;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeButton")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='\uE904']")
     private IOSElement backButton;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeButton")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name='MobiKwik']/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeButton")
     private IOSElement referNow;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeStaticText")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeScrollView[1]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[1]")
     private IOSElement referAndEarnScreen;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther")
     private IOSElement referNowBannerAtTop;
 
     public CCBPPage(IOSDriver driver){

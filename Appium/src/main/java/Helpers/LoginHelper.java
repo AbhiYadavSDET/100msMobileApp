@@ -98,7 +98,7 @@ public class LoginHelper {
         //loginPage.clickSubmitOtpCta();
 
         // Wait for 5000 ms for all the banners to load
-        Thread.sleep(5000);
+        Thread.sleep(2000);
 
         mbkCommonControlsHelper.handleHomePage();
 
@@ -163,6 +163,49 @@ public class LoginHelper {
 
         element.waitForVisibility(driver, By.xpath("//*[@text='History']"));
     }
+
+
+    public void quickLoginViaOtpForNonKycUser(String mobileNumber, String otp) throws InterruptedException {
+
+        if (permissionPage.isPermissionNotificationsPresent()) {
+            permissionPage.allowPermissionNotifications();
+        }
+
+        Thread.sleep(1000);
+        if (element.isElementPresent(driver, By.xpath("//*[@text='Get Started']"))) {
+            loginPage.clickGetstarted();
+        } else if (element.isElementPresent(driver, By.xpath("//*[@text='Login/Signup']"))) {
+            loginPage.clickLoginSignup();
+        }
+
+        if (element.isElementPresent(driver, By.xpath("//*[@text='NONE OF THE ABOVE']"))) {
+            loginPage.clickNoneOfAbove();
+        }
+
+        loginPage.enterMobileNum(mobileNumber);
+        loginPage.clickSendOtpbutton();
+
+        if (!element.isElementPresent(driver, By.id("et_otp"))) {
+            loginPage.clickSendOtpbutton();
+        }
+
+        loginPage.enterOtp(otp);
+
+        // Now it is auto submitted so click CTA not needed
+        //loginPage.clickSubmitOtpCta();
+
+        // Wait for 3 sec
+        Thread.sleep(3000);
+
+        // If the error message is present --> resend OTP
+        if (element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Please try again']"))) {
+
+            loginPage.clickResendOtp();
+            loginPage.enterOtp(otp);
+        }
+
+    }
+
 
     public void logout(String exptitleLoginSignup,String exptitleContinue) throws InterruptedException, IOException {
 

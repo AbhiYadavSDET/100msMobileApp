@@ -275,19 +275,19 @@ public class CheckoutPage {
 //        return Elements.isElementEnabled(driver, zip_module_checkBox);
 //    }
 
-    public Integer getConvFee() throws InterruptedException{
+    public Double getConvFee() throws InterruptedException{
         String convFee= Elements.getText(driver, conv_fee, "Extracting Conv Fee").replace(" Conv. fees", "").replace("₹", "");
-        return Integer.parseInt(convFee);
+        return Double.parseDouble(convFee);
     }
 
-    public Integer getConvFeeInBreakup() throws InterruptedException{
+    public Double getConvFeeInBreakup() throws InterruptedException{
         String convFee= Elements.getText(driver, conv_fee_breakup, "Extracting Conv Fee in Breakup Module").replace(",", "").replace("₹", "");
-        return Integer.parseInt(convFee);
+        return Double.parseDouble(convFee);
     }
 
-    public Integer getPayableAmountBreakup() throws InterruptedException{
+    public Double getPayableAmountBreakup() throws InterruptedException{
         String payableAmount= Elements.getText(driver, payable_amount, "Extracting Payable Amount in Breakup Module").replace(",", "").replace("₹", "");
-        return Integer.parseInt(payableAmount);
+        return Double.parseDouble(payableAmount);
     }
 
     public void clickMorePaymentOptionsCta() throws InterruptedException{

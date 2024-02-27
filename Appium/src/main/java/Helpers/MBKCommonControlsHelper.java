@@ -507,6 +507,8 @@ public class MBKCommonControlsHelper {
         Thread.sleep(3000);
         for (int i = 0; i < 5; i++) {
             if (!Element.isElementPresent(driver, By.id("cl_root"))) {
+                String activity = driver.currentActivity();
+                Log.info("Current open activity : "+activity);
                 driver.navigate().back();
                 Log.info("Pressed Back : Due to Pop UP interruption");
                 Thread.sleep(2000);
@@ -529,8 +531,8 @@ public class MBKCommonControlsHelper {
             mbkCommonControlsPage.closeWhitePopUp();
             Thread.sleep(3000);
         }
-        for (int i = 0; i < 10; i++) {
-            if (!Element.isElementPresent(driver, By.id("view_icon_bg"))) {
+        for (int i = 0; i < 4; i++) {
+            if (!Element.isElementPresent(driver, By.id("cl_root"))) {
                 driver.navigate().back();
                 Log.info("Pressed Back : Due to Pop UP interruption");
                 Thread.sleep(1000);
