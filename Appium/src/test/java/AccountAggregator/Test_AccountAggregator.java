@@ -12,7 +12,7 @@ public class Test_AccountAggregator extends TestBase {
 
 
     @Test(groups = {"AccountAggregator", "sanity", "regression"}, priority = 1, description = "Verify Existing User flow in AA")
-    public void Test01_existing_User_Dashboard() throws IOException, InterruptedException {
+    public void Test01_existing_User_AA_Dashboard() throws IOException, InterruptedException {
 
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
