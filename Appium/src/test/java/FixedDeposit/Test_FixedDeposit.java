@@ -12,7 +12,7 @@ public class Test_FixedDeposit extends TestBase {
 
 
     @Test(groups = {"FixedDeposit", "sanity", "regression"}, priority = 0, description = "Verify Existing User Fixed deposit Home Page")
-    public void Test01_existing_User_Dashboard() throws IOException, InterruptedException {
+    public void Test01_existing_User__FD_Dashboard() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
         loginHelp.quickLoginViaOtp("7042338867", "547372");

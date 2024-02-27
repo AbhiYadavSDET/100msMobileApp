@@ -616,6 +616,52 @@ public class P2PExtraHelper {
 
     }
 
+    public void investInFixedErrorCase(String expTitle,String expErrormessage) throws InterruptedException, IOException {
+
+        Log.info("----------- Arguments ---------------");
+        Log.info("expTitle : " + expTitle);
+
+        // Click on xtra icon on home page.
+        p2PExtraPage.selectXtra();
+
+        // Click on Got it to remove referral bottom sheet.
+        Thread.sleep(1000);
+        if (p2PExtraPage.isBottomSheetPresent()) p2PExtraPage.removeBottomSheet();
+
+        //Click on Invest More button on XTRA dashboard
+        p2PExtraPage.selectInvestMore();
+
+        // CLick on Got it CTA on Borrower Mapping Report Bottomsheet
+        p2PExtraPage.clickGotItCtaBorrowerMappingReport();
+
+        // Click on the Tooltip
+        p2PExtraPage.selectOkfromPlusPopUp();
+
+        Thread.sleep(5000);
+        p2PExtraPage.enterInvestmentAmount("1000000");
+
+        String erorMessage = p2PExtraPage.getErrortextMessageOnAmountScreen();
+
+        Log.info("Error message " + erorMessage);
+
+        mbReporter.verifyEqualsWithLogging(erorMessage, expErrormessage, "Error message", false, false, true);
+
+        // Click Flexi from slider
+        p2PExtraPage.clickBackBtnOnAmountScreen();
+
+        p2PExtraPage.selectWithdraw();
+
+        if (p2PExtraPage.isBottomSheetPresent()) p2PExtraPage.removeBottomSheet();
+
+        // Enter amount on withdrawal amount page.
+        p2PExtraPage.enterAmount("1000000");
+
+        mbReporter.verifyTrueWithLogging(p2PExtraPage.iserrorMessageOnWithdrawPresent(), "Error Message  is present", false, false);
+
+
+    }
+
+
 
 }
 
