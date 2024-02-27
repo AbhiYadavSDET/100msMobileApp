@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 
 public class TestKYC extends TestBase {
-    @Test(groups = {"NoKYC", "kycSanity","regression"}, priority = 0, description = "Full KYC flow from Onboarding")
+    @Test(groups = {"NoKYC", "kycSanity","regression","onboardingFlow"}, priority = 0, description = "Full KYC flow from Onboarding")
     public void Test01_full_KYC_FLOW_From_Onboarding() throws IOException, InterruptedException {
 
         Log.info("======= START : Full KYC flow from Onboarding =======");
@@ -79,7 +79,7 @@ public class TestKYC extends TestBase {
         KYCHelper kycHelper = new KYCHelper(getAndroidDriver());
         kycHelper.fullKycFromAdharWebsite("5851 2156 7144","123456");
 
-        Log.info("======= END : Full KYC flow via Adhaar website======");
+        Log.info("======= END : Full KYC flow via Adhaar website ======");
 
     }
 
@@ -94,7 +94,7 @@ public class TestKYC extends TestBase {
         KYCHelper kycHelper = new KYCHelper(getAndroidDriver());
         kycHelper.fullKycFromCKYCOnFailureFromAdhaarWebsite("5851 2156 7144","123456","Abhishek","Yadav","HTIPK7865M");
 
-        Log.info("======= END : Full KYC flow Via ckyc - On FAILURE FROM Adhaar website  ======");
+        Log.info("======= END : Full KYC flow Via ckyc - On FAILURE FROM Adhaar website ======");
 
     }
 }

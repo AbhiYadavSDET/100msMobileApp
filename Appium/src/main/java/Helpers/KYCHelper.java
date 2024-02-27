@@ -37,6 +37,7 @@ public class KYCHelper {
     }
 
     public void OnboardingNonKycFlow(String firstName, String lastName,String pan) throws InterruptedException {
+        // Full kyc flow from Onboarding
         kycPage.clickOnContinueButtonOnBoradingScreen();
         handelPopups();
         kycPage.setFirstName(firstName);
@@ -50,6 +51,7 @@ public class KYCHelper {
     }
 
     public void ErrorMessageOnNonKycFlow() throws InterruptedException, IOException {
+        //Error message validation on full kyc flow from Onboarding
         kycPage.clickOnContinueButtonOnBoradingScreen();
         handelPopups();
        kycPage.setFirstName("Abhishek123");
@@ -77,7 +79,7 @@ public class KYCHelper {
 
     public void fullKycFromCKYC() throws InterruptedException {
 
-        // Full kyc from CKYC flow
+        // Full kyc VIA CKYC
         kycPage.clickOnBackButtonFromCompleteYourKycScreen();
         kycPage.clickOnCompleteUsingOtherOptions();
         kycPage.clickOnFetchFromCKYC();
@@ -91,7 +93,7 @@ public class KYCHelper {
 
     }
     public void fullKycFromDigilocker(String firstFourDigits,String secondFourDigits,String lastFourDigits,String otp) throws InterruptedException {
-     // Full kyc from Digi locker
+     // Full kyc VIA Digi locker
         kycPage.clickOnBackButtonFromCompleteYourKycScreen();
         kycPage.clickOnCompleteUsingOtherOptions();
         kycPage.clickOnViaDigiLocker();
@@ -104,7 +106,7 @@ public class KYCHelper {
     }
 
     public void fullKycFromAdharWebsite(String adharNumber, String securityCode) throws InterruptedException {
-        // Full kyc from Adhaar website
+        // Full kyc VIA Adhaar website
         kycPage.clickOnBackButtonFromCompleteYourKycScreen();
         kycPage.clickOnCompleteUsingOtherOptions();
         kycPage.clickOnViaAadharWebsite();
@@ -118,7 +120,7 @@ public class KYCHelper {
 
     public void fullKycFromCKYCOnFailureFromAdhaarWebsite(String adharNumber, String securityCode,String firstName,String lastName,String pan) throws InterruptedException {
 
-        // String Full kyc from Adhaar website
+        // String Full kyc VIA Adhaar website
         kycPage.clickOnBackButtonFromCompleteYourKycScreen();
         kycPage.clickOnCompleteUsingOtherOptions();
         kycPage.clickOnViaAadharWebsite();
@@ -131,7 +133,7 @@ public class KYCHelper {
         kycPage.clickOnArrowButtonOnAdhaarWebsite();
         kycPage.clickOkOnCaptcaFailure();
 
-        // On failire from adhar website, user should  be redircted to CKYC flow
+        // On failire VIA adhar website, user should  be redircted to CKYC flow
         kycPage.setFirstName(firstName);
         kycPage.setLastName(lastName);
         kycPage.clickOnProceedAfterName();
@@ -143,6 +145,7 @@ public class KYCHelper {
     public void handelPopups() throws InterruptedException {
 
         if (kycPage.isPermissionScreenVisible()) {
+
             kycPage.clickOnPermissionScreen();
             kycPage.clickOnWhileUsingApp();
             kycPage.clickOnAllowButton();

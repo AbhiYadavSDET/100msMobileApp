@@ -19,14 +19,14 @@ public class KYCPage {
     @AndroidFindBy(xpath = "//android.widget.Button[@text='Continue']")
     private AndroidElement continueButtonOnLendingScreen;
 
-    @AndroidFindBy(xpath = "//android.widget.Button[@text='Allow']")
-    private AndroidElement allowButtonOnBottomsheetPermissionScreen;
+    @AndroidFindBy(id = "button_accept")
+    private AndroidElement allowButtonOnInAppPermissionScreen;
 
-    @AndroidFindBy(xpath = "//android.widget.Button[@text='WHILE USING THE APP']")
+    @AndroidFindBy(id = "com.android.permissioncontroller:id/permission_allow_foreground_only_button")
     private AndroidElement whileUsingTheApp;
 
-    @AndroidFindBy(xpath = "//android.widget.Button[@text='ALLOW']")
-    private AndroidElement allowButtonOnContactPermission;
+    @AndroidFindBy(id = "com.android.permissioncontroller:id/permission_allow_button")
+    private AndroidElement allowButtonOnContactPermissionCaps;
 
     @AndroidFindBy(xpath = "//android.widget.EditText[@text='First Name']")
     private AndroidElement firstName;
@@ -134,19 +134,17 @@ public class KYCPage {
     @AndroidFindBy(xpath = "//android.widget.EditText[@text='Aadhaar Number']")
     private AndroidElement adhaarNumberOptionOnAdhaarWebsite;
 
-
     @AndroidFindBy(id = "btn_submit")
     private AndroidElement arrowbuttonOnAdhaarWebsite;
-
-
 
     @AndroidFindBy(xpath = "//android.widget.EditText[@text='Enter security code']")
     private AndroidElement enterSecurityCodeOnAdhaarWebsite;
 
-
     @AndroidFindBy(xpath = "//android.widget.Button[@text='OK']")
     private AndroidElement okOnCaptchaFailurePopup;
 
+    @AndroidFindBy(xpath = "//android.view.View[@text='Please enter a valid aadhaar number.']")
+    private AndroidElement errorMessageOfAdhaarOnDigilocker;
 
     public void clickOnContinueButtonOnBoradingScreen() {
         Elements.selectElement(driver, continueButtonOnLendingScreen, "Click on continue button on lending page for KYC");
@@ -199,23 +197,23 @@ public class KYCPage {
     }
 
     public void clickOnPermissionScreen(){
-        Elements.selectElement(driver, allowButtonOnBottomsheetPermissionScreen, "Click on allow button on permission screen ");
+        Elements.selectElement(driver, allowButtonOnInAppPermissionScreen, "Click on allow button on permission screen ");
     }
+
     public void clickOnWhileUsingApp(){
         Elements.selectElement(driver, whileUsingTheApp, "Click on while using app ");
     }
     public void clickOnAllowButton(){
-        Elements.selectElement(driver, allowButtonOnContactPermission, "Click on ALLOW button ");
+        Elements.selectElement(driver, allowButtonOnContactPermissionCaps, "Click on ALLOW button ");
     }
 
+
     public boolean isPermissionScreenVisible() throws InterruptedException {
-        return Elements.isElementPresent(driver,allowButtonOnBottomsheetPermissionScreen);
+        return Elements.isElementPresent(driver,allowButtonOnInAppPermissionScreen);
     }
-    public boolean isWhileUsingpresent() throws InterruptedException {
-        return Elements.isElementPresent(driver,whileUsingTheApp);
-    }
+
     public boolean isAllowButtonPresent() throws InterruptedException {
-        return Elements.isElementPresent(driver,allowButtonOnContactPermission);
+        return Elements.isElementPresent(driver,allowButtonOnContactPermissionCaps);
     }
 
     public void clickOnBackButtonFromCompleteYourKycScreen(){
@@ -309,5 +307,6 @@ public class KYCPage {
     public void clickOkOnCaptcaFailure(){
         Elements.selectElement(driver, okOnCaptchaFailurePopup, "Click ok on captcha failure ");
     }
+
 
 }
