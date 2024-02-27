@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Zip Flow">
+<suite name="P2PExtra Flow">
 
     <parameter name="build" value="prod"/>
     <parameter name="level" value="wealth"/>
@@ -10,12 +10,13 @@
     <parameter name="udId" value="17228df2"></parameter>
     <parameter name="portNo" value="4723"></parameter>
 
-    <test verbose="2" preserve-order="true" name="Verify Money Plus Test">
+
+    <test verbose="2" preserve-order="true" name="P2P Extra flow Test">
         <groups>
             <run>
                 <include name="setUp"/>
                 <include name="instantiateHelpers"/>
-                <include name="sanity"/>
+                <include name="p2pXtraInvestInFixedErrorCase"/>
                 <include name="tearDown"/>
             </run>
         </groups>
@@ -23,7 +24,7 @@
 
         <classes>
             <class name="Utils.TestBase"/>
-            <class name="MoneyPlus.MoneyPlusTest"/>
+            <class name="P2PExtra.P2PExtraTest"/>
         </classes>
     </test>
 
