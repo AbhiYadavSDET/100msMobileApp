@@ -143,7 +143,7 @@ public class TestKYC extends TestBase {
     }
 
     @Test(groups = {"NoKYC", "minKycFullKycViaDigilocker","regression"}, priority = 0, description = " min kyc user - Full kyc flow via digilocker")
-    public void Test010_minKyc_user_fULL_KYC_FLOW_VIA_DIGILOCKER() throws IOException, InterruptedException {
+    public void Test10_minKyc_user_fULL_KYC_FLOW_VIA_DIGILOCKER() throws IOException, InterruptedException {
 
         Log.info("======= START : min kyc user -  Full KYC flow via DIGILOCKER =======");
 
@@ -159,7 +159,7 @@ public class TestKYC extends TestBase {
 
 
     @Test(groups = {"NoKYC", "minKycFullKycViaAdhaarWebsite","regression"}, priority = 0, description = " min kyc user -Full kyc flow via adhaar website")
-    public void Test011_minKyc_user_fULL_KYC_FLOW_VIA_Adhaar_Website() throws IOException, InterruptedException {
+    public void Test11_minKyc_user_fULL_KYC_FLOW_VIA_Adhaar_Website() throws IOException, InterruptedException {
 
         Log.info("======= START : min kyc user -  Full KYC flow via Adhaar website =======");
 
@@ -174,7 +174,7 @@ public class TestKYC extends TestBase {
     }
 
     @Test(groups = {"NoKYC", "minKycFullKycViaCKYCOnailureViaAdhaarWebsite","regression"}, priority = 0, description = " min kyc user -Full kyc flow via ckyc on  FAILURE FROM Adhaar website ")
-    public void Test012_minKyc_user_fULL_KYC_FLOW_VIA_CKYC_ON_FAILURE_FROM_ADHARWEBSITE() throws IOException, InterruptedException {
+    public void Test12_minKyc_user_fULL_KYC_FLOW_VIA_CKYC_ON_FAILURE_FROM_ADHARWEBSITE() throws IOException, InterruptedException {
 
         Log.info("======= START :  min kyc user - Full KYC flow - On FAILURE FROM Adhaar website =======");
 

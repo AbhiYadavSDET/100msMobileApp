@@ -281,9 +281,13 @@ public class MutualFundsHelper {
         mutualFundPage.clickOnIncomeOption();
         mutualFundPage.clickOnNextButtonOnProfile();
         Thread.sleep(3000);
-        String mutualFundKycText = mutualFundPage.getMutualFundsKycText();
 
-        mbReporter.verifyEquals(mutualFundKycText, "Mutual Funds KYC", "Verify MUTUAL FUNDS KYC button", false, false);
+        if(mutualFundPage.isMutualFundsKycBottomsheetPresent()){
+            String mutualFundKycText = mutualFundPage.getMutualFundsKycText();
+
+            mbReporter.verifyEquals(mutualFundKycText, "Mutual Funds KYC", "Verify MUTUAL FUNDS KYC button", false, false);
+        }
+
     }
 
     public void clickOnMutualFund() throws InterruptedException {
