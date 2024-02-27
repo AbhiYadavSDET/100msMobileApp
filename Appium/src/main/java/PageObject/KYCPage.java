@@ -109,10 +109,10 @@ public class KYCPage {
     @AndroidFindBy(id = "aadhaar_1")
     private AndroidElement adharCardFirstDigits;
 
-    @AndroidFindBy(xpath = "aadhaar_2")
+    @AndroidFindBy(id = "aadhaar_2")
     private AndroidElement adharCardSecondDigits;
 
-    @AndroidFindBy(xpath = "aadhaar_3")
+    @AndroidFindBy(id = "aadhaar_3")
     private AndroidElement adharCardThirdDigits;
 
     @AndroidFindBy(xpath = "//android.widget.Button[@text='Next']")
@@ -121,7 +121,7 @@ public class KYCPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Try another way']")
     private AndroidElement tryAnotherWayOnDigilocker;
 
-    @AndroidFindBy(xpath = "a_otp_1")
+    @AndroidFindBy(id = "a_otp_1")
     private AndroidElement enterOtpOnDigiLocker;
 
     @AndroidFindBy(xpath = "//android.widget.Button[@text='Submit']")
