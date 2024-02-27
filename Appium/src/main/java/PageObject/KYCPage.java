@@ -186,6 +186,21 @@ public class KYCPage {
     @AndroidFindBy(xpath = "//android.widget.Button[@text='OK']")
     private AndroidElement okOnCaptchaFailurePopup;
 
+    @AndroidFindBy(id = "edit_text_mket")
+    private AndroidElement profileAadhaarEditText;
+
+    @AndroidFindBy(id = "btnSubmit")
+    private AndroidElement profileAadhaarSubmit;
+
+    @AndroidFindBy(id = "primary_button")
+    private AndroidElement profileAadhaarPopUp;
+
+    @AndroidFindBy(id = "advantages_text")
+    private AndroidElement profileKycTitle;
+
+    @AndroidFindBy(id = "tx_kyc_cond")
+    private AndroidElement profileKycSubTitle;
+
 
     public void clickOnContinueButtonOnBoradingScreen() {
         Elements.selectElement(driver, continueButtonOnLendingScreen, "Click on continue button on lending page for KYC");
@@ -409,5 +424,44 @@ public class KYCPage {
         Elements.selectElement(driver, profileKycContinue, "Click on continue");
     }
 
+    public void clickPofileAadhaar(){
+        Elements.selectElement(driver, profileAadhar, "Click on Aadhaar");
+    }
+
+    public void clickPofileDigilocker(){
+        Elements.selectElement(driver, profileDigilocker, "Click on Digilocker");
+    }
+
+    public void enterProfileAadhaarTextBox(String aadhaarNumber) throws InterruptedException{
+        Elements.enterToElement(driver, profileAadhaarEditText, aadhaarNumber,"Enter Aadhaar Number");
+    }
+
+    public void enterAadhaarCaptcha(String aadhaarCaptcha) throws InterruptedException{
+        Elements.enterToElement(driver, profileAadhaarEditText, aadhaarCaptcha,"Enter Aadhaar Captcha");
+    }
+
+    public void clickPofileAadhaarSubmit(){
+        Elements.selectElement(driver, profileAadhaarSubmit, "Click on Submit");
+    }
+
+    public boolean isProfileAadhaarPopUpPresent() throws InterruptedException {
+        return Elements.isElementPresent(driver, profileAadhaarPopUp);
+    }
+
+    public void removeProfileAadhaarPopUp(){
+        Elements.selectElement(driver, profileAadhaarPopUp, "Click on Submit");
+    }
+
+    public String getProfileKycScreenTitle() throws InterruptedException {
+        return Elements.getText(driver, profileKycTitle, "Profile Kyc Screen Title");
+    }
+
+    public String getProfileKycScreenSubTitle() throws InterruptedException {
+        return Elements.getText(driver, profileKycSubTitle, "Profile Kyc Screen Sub Title");
+    }
+
+    public String getProfileKycScreenText() throws InterruptedException {
+        return Elements.getText(driver, checkBoxConsent, "Profile Kyc Screen Text");
+    }
 
 }

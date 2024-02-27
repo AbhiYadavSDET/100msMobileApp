@@ -55,7 +55,7 @@ public class KYCHelper {
     public void ErrorMessageOnNonKycFlow() throws InterruptedException, IOException {
         kycPage.clickOnContinueButtonOnBoradingScreen();
         handelPopups();
-       kycPage.setFirstName("Abhishek123");
+        kycPage.setFirstName("Abhishek123");
         kycPage.setLastName("Yadav123");
         kycPage.clickOnProceedAfterName();
         String error = kycPage.getNameErrorMessage();
@@ -216,7 +216,7 @@ public class KYCHelper {
     }
 
 
-    public void profileFullKycFlow(String pan, String firstName, String lastName) throws InterruptedException, IOException {
+    public void profileFullKycFlow(String pan, String aadhaar, String firstName, String lastName, String kycType, String userType, String expTitle, String expSubTitle) throws InterruptedException, IOException {
 
         // Go to Home Page
         homePageLand();
@@ -235,32 +235,105 @@ public class KYCHelper {
         // Click On Complete Your Kyc
         kycPage.clickOnCompleteYourKyc();
 
-        // Click On Full Kyc
-        kycPage.clickOnFullKyc();
+        if(userType.equals("NOKYC")){
+            // Click On Full Kyc
+            kycPage.clickOnFullKyc();
+        }
 
+        // Verification on the Success Screen
+        String title = kycPage.getProfileKycScreenTitle();
+        String subTitle = kycPage.getProfileKycScreenSubTitle();
+        String screenText = kycPage.getProfileKycScreenText();
+
+        // Display the values
+        Log.info("Title : " + title);
+        Log.info("Sub Title : " + subTitle);
+        Log.info("Screen Text : " + screenText);
+
+        // Add the assertions
+        mbReporter.verifyEqualsWithLogging(title, expTitle, "Verify Title", false, false, true);
+        mbReporter.verifyEqualsWithLogging(subTitle, expSubTitle, "Verify Sub Title", false, false, true);
+
+
+        // select kyc Consent
         kycPage.clickOnKycConsent();
 
-        kycPage.clickPofileKycContinue();
+        if(kycType.equals("CKYC")){
 
-        kycPage.setFirstName(firstName);
+            // Click Continue
+            kycPage.clickPofileKycContinue();
 
-        kycPage.setLastName(lastName);
+            // Set First Name
+            kycPage.setFirstName(firstName);
 
-        kycPage.clickOnProceedAfterName();
+            // Set Last Name
+            kycPage.setLastName(lastName);
 
-        kycPage.setPanNumber(pan);
+            // Click On Proceed
+            kycPage.clickOnProceedAfterName();
 
-        kycPage.clickOnDateOption();
+            // Set Pan
+            kycPage.setPanNumber(pan);
 
-        kycPage.clickOnSelectDate();
+            // click On Date
+            kycPage.clickOnDateOption();
 
-        kycPage.clickOnKycConsent();
+            // Select Date
+            kycPage.clickOnSelectDate();
+
+            // select kyc Consent
+            kycPage.clickOnKycConsent();
+        }
+        else if(kycType.equals("OKYC")){
+
+            // click Pofile Aadhaar
+            kycPage.clickPofileAadhaar();
+
+            // Click Continue
+            kycPage.clickPofileKycContinue();
+
+            // check Profile Aadhaar Pop up
+            if(kycPage.isProfileAadhaarPopUpPresent()) kycPage.removeProfileAadhaarPopUp();
+
+            Thread.sleep(3000);
+
+            // Enter Aadhaar
+            kycPage.enterProfileAadhaarTextBox(aadhaar);
+
+            // Submit Aadhaar
+            kycPage.clickPofileAadhaarSubmit();
+
+            // Enter captcha
+            kycPage.enterAadhaarCaptcha("gcysd");
 
 
+        }
+        else {
+
+            // click Profile
+            kycPage.clickPofileDigilocker();
+
+            // Click Continue
+            kycPage.clickPofileKycContinue();
+
+            Thread.sleep(2000);
+
+            // Set first four digits
+            kycPage.setAdharCardFirstDigits(aadhaar.substring(0,4));
+
+            // Set middle four digits
+            kycPage.setAdharCardSecondDigits(aadhaar.substring(4,8));
+
+            // Set last four digits
+            kycPage.setAdharCardThirdDigits(aadhaar.substring(8,12));
+
+            // click On Digilocker
+            kycPage.clickOnNextButtonOnDigilocker();
+
+            // set Otp
+            kycPage.setEnterOtpOnDigiLocker("00000");
+        }
 
     }
-
-
-
 
 }
