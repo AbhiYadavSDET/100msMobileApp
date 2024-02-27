@@ -1,10 +1,13 @@
 package Helpers;
 
+import Logger.Log;
 import PageObject.*;
+import Utils.Element;
 import Utils.Elements;
 import Utils.MBReporter;
 import Utils.Screen;
 import io.appium.java_client.android.AndroidDriver;
+import org.openqa.selenium.By;
 
 import java.io.IOException;
 
@@ -83,4 +86,114 @@ public class KYCHelper {
             kycPage.clickOnAllowButton();
         }
     }
+
+    public void homePageLand() throws InterruptedException {
+
+        // Press Back
+        mbkCommonControlsHelper.pressback();
+
+        // Check Onboarding Pop Up Present
+        if(kycPage.isOnboardingPopUpPresent()) kycPage.clickIDontWantBenefits();
+
+        // Press Back
+        mbkCommonControlsHelper.pressback();
+
+        // Check Onboarding Pop Up Present
+        if(kycPage.isOnboardingPopUpPresent()) kycPage.clickIDontWantBenefits();
+
+        // Go to Home Page
+        mbkCommonControlsHelper.handleHomePageLanding();
+    }
+
+    public void profileMinKycFlow(String pan, String fullName, String expTitle, String expSubTitle, String expScreenText) throws InterruptedException, IOException {
+
+        // Go to Home Page
+        homePageLand();
+
+        // Click On Profile Button
+        kycPage.clickOnProfileButton();
+
+        Thread.sleep(2000);
+
+        // Check CC Tool Tip Present
+        if(kycPage.isCCToolTipPresent()) {
+            screen.tapAtCentre(driver);
+            screen.tapAtCentre(driver);
+        }
+
+        // Click On Complete Your Kyc
+        kycPage.clickOnCompleteYourKyc();
+
+        // Click On Min Kyc
+        kycPage.clickOnMinKyc();
+
+        // Click On Pan Card
+        kycPage.clickOnMinKycPanCard();
+
+
+        // Verification on the Success Screen
+        String title = kycPage.getMinKycScreenTitle();
+        String subTitle = kycPage.getminKycScreenSubTitle();
+        String screenText = kycPage.getMinKycScreenText();
+
+        // Display the values
+        Log.info("Title : " + title);
+        Log.info("Sub Title : " + subTitle);
+        Log.info("Screen Text : " + screenText);
+
+        // Add the assertions
+        mbReporter.verifyEqualsWithLogging(title, expTitle, "Verify Title", false, false, true);
+        mbReporter.verifyEqualsWithLogging(subTitle, expSubTitle, "Verify Sub Title", false, false, true);
+        mbReporter.verifyEqualsWithLogging(screenText, expScreenText, "Verify Screen Text", false, false, true);
+
+    }
+
+
+    public void profileFullKycFlow(String pan, String firstName, String lastName) throws InterruptedException, IOException {
+
+        // Go to Home Page
+        homePageLand();
+
+        // Click On Profile Button
+        kycPage.clickOnProfileButton();
+
+        Thread.sleep(2000);
+
+        // Check CC Tool Tip Present
+        if(kycPage.isCCToolTipPresent()) {
+            screen.tapAtCentre(driver);
+            screen.tapAtCentre(driver);
+        }
+
+        // Click On Complete Your Kyc
+        kycPage.clickOnCompleteYourKyc();
+
+        // Click On Full Kyc
+        kycPage.clickOnFullKyc();
+
+        kycPage.clickOnKycConsent();
+
+        kycPage.clickPofileKycContinue();
+
+        kycPage.setFirstName(firstName);
+
+        kycPage.setLastName(lastName);
+
+        kycPage.clickOnProceedAfterName();
+
+        kycPage.setPanNumber(pan);
+
+        kycPage.clickOnDateOption();
+
+        kycPage.clickOnSelectDate();
+
+        kycPage.clickOnKycConsent();
+
+
+
+    }
+
+
+
+
 }

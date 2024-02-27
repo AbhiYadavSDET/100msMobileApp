@@ -80,10 +80,48 @@ public class KYCPage {
     @AndroidFindBy(id = "close_button")
     private AndroidElement closeButtonOnKycPopup;
 
+    @AndroidFindBy(id = "iv_arrow_down")
+    private AndroidElement profile_button;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Do it Later']")
+    private AndroidElement cc_toolTip;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Complete your KYC']")
+    private AndroidElement completeYourKycProfile;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Proceed with Min KYC']")
+    private AndroidElement bottomSheetMinKyc;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Proceed with Full KYC']")
+    private AndroidElement bottomSheetFullKyc;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='PAN Card']")
+    private AndroidElement minKycPanCard;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Enter PAN Card number']")
+    private AndroidElement minKycPanCardNumber;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Enter Full name']")
+    private AndroidElement minKycFullName;
 
 
+    @AndroidFindBy(id = "mkab_title")
+    private AndroidElement minKycScreenTitle;
 
+    @AndroidFindBy(id = "tx_static5")
+    private AndroidElement minKycScreenSubTitle;
 
+    @AndroidFindBy(id = "tx_static6")
+    private AndroidElement minKycScreenText;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Fetch From Digilocker']")
+    private AndroidElement profileDigilocker;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Through Aadhaar Details']")
+    private AndroidElement profileAadhar;
+
+    @AndroidFindBy(id = "btnContinue")
+    private AndroidElement profileKycContinue;
 
 
     public void clickOnContinueButtonOnBoradingScreen() {
@@ -175,5 +213,66 @@ public class KYCPage {
     public void clickOnPopupClosePopup(){
         Elements.selectElement(driver, closeButtonOnKycPopup, "Click on close on popup ");
     }
+
+    public void clickOnProfileButton(){
+        Elements.selectElement(driver, profile_button, "Click on Profile Button");
+    }
+
+    public boolean isCCToolTipPresent() throws InterruptedException {
+        return Elements.isElementPresent(driver, cc_toolTip);
+    }
+
+    public void removeCCToolTip(){
+        Elements.selectElement(driver, cc_toolTip, "Remove CC Tool Tip");
+    }
+
+    public void clickOnCompleteYourKyc(){
+        Elements.selectElement(driver, completeYourKycProfile, "Click On Complete Your Kyc");
+    }
+
+    public void clickOnMinKyc(){
+        Elements.selectElement(driver, bottomSheetMinKyc, "Click on Min Kyc");
+    }
+
+    public void clickOnFullKyc(){
+        Elements.selectElement(driver, bottomSheetFullKyc, "Click on Full Kyc");
+    }
+
+    public void clickOnMinKycPanCard(){
+        Elements.selectElement(driver, minKycPanCard, "Click on Min Kyc Pan Card");
+    }
+
+    public void enterPanCardNumber(String pan) throws InterruptedException{
+        Elements.enterToElement(driver, minKycPanCardNumber, pan,"Enter Pan Card Number");
+    }
+
+    public void enterFullName(String fullName) throws InterruptedException{
+        Elements.enterToElement(driver, minKycFullName, fullName,"Enter Full Name");
+    }
+
+    public boolean isOnboardingPopUpPresent() throws InterruptedException {
+        return Elements.isElementPresent(driver, iDontWantbenefits);
+    }
+
+    public void clickIDontWantBenefits(){
+        Elements.selectElement(driver, iDontWantbenefits, "Click on I Dont Want Benefits");
+    }
+
+    public String getMinKycScreenTitle() throws InterruptedException {
+        return Elements.getText(driver, minKycScreenTitle, "Min Kyc Screen Title");
+    }
+
+    public String getminKycScreenSubTitle() throws InterruptedException {
+        return Elements.getText(driver, minKycScreenSubTitle, "Min Kyc Screen Sub Title");
+    }
+
+    public String getMinKycScreenText() throws InterruptedException {
+        return Elements.getText(driver, minKycScreenText, "Min Kyc Screen Text");
+    }
+
+    public void clickPofileKycContinue(){
+        Elements.selectElement(driver, profileKycContinue, "Click on continue");
+    }
+
 
 }

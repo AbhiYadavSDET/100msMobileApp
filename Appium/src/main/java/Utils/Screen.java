@@ -247,4 +247,18 @@ public class Screen {
     }
 
  */
+
+    public static void tapAtCentre(AndroidDriver driver) {
+        try {
+            int centerX = driver.manage().window().getSize().getWidth() / 2;
+            int centerY = driver.manage().window().getSize().getHeight() / 2;
+
+            touchAction.tap(PointOption.point(centerX, centerY)).perform();
+
+            Log.info("Tap", "On Centre");
+
+        } catch (NullPointerException e) {
+            Log.info("Screen is not Tapable");
+        }
+    }
 }

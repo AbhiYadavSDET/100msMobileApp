@@ -37,4 +37,33 @@ public class TestKYC extends TestBase {
         Log.info("======= END : Non KYC flow Error message validation ======");
 
     }
+
+
+    @Test(groups = {"minKYCProfile", "kycSanity","regression"}, priority = 0, description = "min KYC flow from Profile")
+    public void Test11_min_KYC_FLOW_From_Profile() throws IOException, InterruptedException {
+
+        Log.info("======= START : min KYC flow from Profile =======");
+
+        LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
+        loginHelp.quickLoginViaOtpForNonKycUser("8216900006","547372");
+
+        KYCHelper kycHelper = new KYCHelper(getAndroidDriver());
+        kycHelper.profileMinKycFlow("HTIPK7865L","Abhishek Yadav", "Provide below details", "Self Declared Verification", "Your wallet limit will increase to ₹ 10,000");
+        Log.info("======= END : min KYC flow from Profile =======");
+
+    }
+
+    @Test(groups = {"fullKYCProfile", "kycSanity","regression"}, priority = 0, description = "CKYC KYC flow from Profile")
+    public void Test12_CKYC_full_KYC_FLOW_From_Profile() throws IOException, InterruptedException {
+
+        Log.info("======= START : CKYC flow from Profile =======");
+
+        LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
+        loginHelp.quickLoginViaOtpForNonKycUser("8216900006","547372");
+
+        KYCHelper kycHelper = new KYCHelper(getAndroidDriver());
+        kycHelper.profileFullKycFlow("HTIPK7865L","Abhishek", "Yadav");
+        Log.info("======= END : CKYC flow from Profile =======");
+
+    }
 }
