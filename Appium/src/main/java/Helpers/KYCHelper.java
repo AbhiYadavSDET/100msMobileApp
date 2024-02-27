@@ -82,11 +82,10 @@ public class KYCHelper {
             kycPage.clickOnFullKyc();
         }
 
-        //Enter invalid first name
-       kycPage.setFirstName("Abhishek123");
-
         //enter invalid last name
         kycPage.setFirstName("Abhishek123");
+
+        // enter last name
         kycPage.setLastName("Yadav123");
 
         //click on proceed after entering name
