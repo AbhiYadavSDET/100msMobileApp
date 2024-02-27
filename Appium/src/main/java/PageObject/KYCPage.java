@@ -106,15 +106,14 @@ public class KYCPage {
     @AndroidFindBy(id = "eft_container")
     private AndroidElement backFromDigiLockerScreen;
 
-    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.webkit.WebView/android.webkit.WebView/android.view.View[2]/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.widget.EditText[1]")
+    @AndroidFindBy(id = "aadhaar_1")
     private AndroidElement adharCardFirstDigits;
 
-    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.webkit.WebView/android.webkit.WebView/android.view.View[2]/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.widget.EditText[2]")
+    @AndroidFindBy(xpath = "aadhaar_2")
     private AndroidElement adharCardSecondDigits;
 
-    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.webkit.WebView/android.webkit.WebView/android.view.View[2]/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.widget.EditText[3]")
+    @AndroidFindBy(xpath = "aadhaar_3")
     private AndroidElement adharCardThirdDigits;
-
 
     @AndroidFindBy(xpath = "//android.widget.Button[@text='Next']")
     private AndroidElement nextButtonOnDigilockerAadharCard;
@@ -122,7 +121,7 @@ public class KYCPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Try another way']")
     private AndroidElement tryAnotherWayOnDigilocker;
 
-    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.webkit.WebView/android.webkit.WebView/android.view.View[2]/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[3]/android.widget.EditText")
+    @AndroidFindBy(xpath = "a_otp_1")
     private AndroidElement enterOtpOnDigiLocker;
 
     @AndroidFindBy(xpath = "//android.widget.Button[@text='Submit']")
