@@ -230,7 +230,7 @@ public class P2PExtraPage {
     private AndroidElement check_fixed_investment_amount;
 
 
-    @AndroidFindBy(id = "com.mobikwik_new.debug:id/cta")
+    @AndroidFindBy(id = "cta")
     private AndroidElement got_it_btn_mapping_report;
 
 
@@ -239,8 +239,8 @@ public class P2PExtraPage {
 
 
 
-    @AndroidFindBy(xpath = "//android.widget.Button[@text='Got it!']")
-
+//    @AndroidFindBy(xpath = "//android.widget.TextView[contains(text(), 'Borrower Preferences']")
+    @AndroidFindBy(id = "rv_main")
     private AndroidElement borrower_preference_bottomsheet;
 
 
