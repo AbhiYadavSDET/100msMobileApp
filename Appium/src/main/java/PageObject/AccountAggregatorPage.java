@@ -168,7 +168,7 @@ public class AccountAggregatorPage {
     @AndroidFindBy(xpath = "//*[@text='Expenses']")
     private AndroidElement  expensesnmonthlysummery;
 
-    @AndroidFindBy(xpath = "//*[@text='SIPs & EMIs']")
+    @AndroidFindBy(xpath = "//*[@text='EMI']")
     private AndroidElement  sIPsEMIsmonthlysummery;
 
     @AndroidFindBy(xpath = "//*[@text='Bank charges']")
@@ -481,27 +481,56 @@ public class AccountAggregatorPage {
         return Elements.isElementPresent(driver, investedonmonthlysummery);
     }
     public String getRemaingtextOnMonthlySummary() throws InterruptedException {
+        if(Elements.isElementPresent(driver,remainingonmonthlysummery)){
         return Elements.getText(driver, remainingonmonthlysummery);
+        }else {
+            return "";
+        }
     }
 
     public String getOutgoingtextOnMonthlySummarySpendbycategory() throws InterruptedException {
-        return Elements.getText(driver, outgoingonSpendBycategory);
+        if(Elements.isElementPresent(driver,outgoingonSpendBycategory)){
+            return Elements.getText(driver, outgoingonSpendBycategory);
+        }else {
+            return "";
+        }
+
     }
 
     public String getExpensesSpendbycategory() throws InterruptedException {
-        return Elements.getText(driver, expensesnmonthlysummery);
+        if(Elements.isElementPresent(driver,expensesnmonthlysummery)){
+            return Elements.getText(driver, expensesnmonthlysummery);
+        }else {
+            return "";
+        }
+
     }
 
     public String getSipEmiSpendbycategory() throws InterruptedException {
-        return Elements.getText(driver, sIPsEMIsmonthlysummery);
+        if(Elements.isElementPresent(driver,sIPsEMIsmonthlysummery)){
+            return Elements.getText(driver, sIPsEMIsmonthlysummery);
+        }else {
+            return "";
+        }
+
     }
 
     public String getBankChargesSpendbycategory() throws InterruptedException {
-        return Elements.getText(driver, bankChargesmonthlysummery);
+        if(Elements.isElementPresent(driver,bankChargesmonthlysummery)){
+            return Elements.getText(driver, bankChargesmonthlysummery);
+        }else {
+            return "";
+        }
+
     }
 
     public String getOthersSpendbycategory() throws InterruptedException {
-        return Elements.getText(driver, othersgonmonthlysummery);
+        if(Elements.isElementPresent(driver,othersgonmonthlysummery)){
+            return Elements.getText(driver, othersgonmonthlysummery);
+        }else {
+            return "";
+        }
+
     }
 
     public String getSpenbyDatedonMontlysummary() throws InterruptedException {
