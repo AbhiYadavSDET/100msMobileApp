@@ -13,9 +13,6 @@ public class PayRentTest extends TestBase {
     @Test(groups = {"regression", "PayRent", "addNewProperty"}, priority = 0, description = "Add New Property")
     public void PayRent_addNewProperty() throws InterruptedException, IOException {
 
-
-        Log.info("======= START : Add New Property =======");
-
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
         loginHelper.quickLoginViaOtp("9205299330", "547372");
@@ -34,9 +31,6 @@ public class PayRentTest extends TestBase {
 
     public void PayRent_payRentviaZip() throws InterruptedException, IOException {
 
-
-        Log.info("======= START : P2M Send test =======");
-
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
         loginHelper.quickLoginViaOtp("9205299330", "547372");
@@ -54,9 +48,6 @@ public class PayRentTest extends TestBase {
     @Test(groups = {"regression", "PayRent", "payRentviaCard"}, priority = 0, description = "Verify pay rent via Card")
     public void PayRent_payRentviaCard() throws InterruptedException, IOException {
 
-
-        Log.info("======= START : P2M Send test =======");
-
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
         loginHelper.quickLoginViaOtp("9205299330", "547372");
@@ -73,9 +64,6 @@ public class PayRentTest extends TestBase {
 
     @Test(groups = {"regression", "PayRent", "payRentViaUPI"}, priority = 0, description = "Verify pay rent via UPI")
     public void PayRent_payRentViaUPI() throws InterruptedException, IOException {
-
-
-        Log.info("======= START : P2M Send test =======");
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
@@ -95,9 +83,6 @@ public class PayRentTest extends TestBase {
     @Test(groups = {"regression", "PayRent"}, priority = 0, description = "Verify FAQ Screen")
     public void PayRent_verifyFaqScreen() throws InterruptedException, IOException {
 
-
-        Log.info("======= START : Verify FAQ =======");
-
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
         loginHelper.quickLoginViaOtp("9205299330", "547372");
@@ -115,18 +100,17 @@ public class PayRentTest extends TestBase {
     @Test(groups = {"regression", "PayRent"}, priority = 0, description = "Delete property")
     public void deleteRentDetails() throws InterruptedException, IOException {
 
-        Log.info("======= START : P2M Send test =======");
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
         loginHelper.quickLoginViaOtp("8076595767", "547372");
 
-        Log.info("======= START : Verify FAQ =======");
+        Log.info("======= START : Verify Delete on pay rent =======");
 
         // Execute the test
         PayRentHelper payRentHelper = new PayRentHelper(getAndroidDriver());
         payRentHelper.deleteProperty();
 
-        Log.info("======= END : Verify FAQ =======");
+        Log.info("======= END : Verify Delete on pay rent ======");
 
     }
 

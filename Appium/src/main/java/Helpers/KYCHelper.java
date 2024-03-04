@@ -123,7 +123,7 @@ public class KYCHelper {
     }
 
 
-    public void fullKycFromCKYC() throws InterruptedException {
+    public void fullKycFromCKYC(String firstName, String lastName, String panNumber) throws InterruptedException {
 
         // Full kyc VIA CKYC
 
@@ -137,16 +137,16 @@ public class KYCHelper {
         kycPage.clickOnFetchFromCKYC();
 
         //enter invalid first name
-        kycPage.setFirstName("Abhishek");
+        kycPage.setFirstName(firstName);
 
         //enter invalid last name
-        kycPage.setLastName("yadav");
+        kycPage.setLastName(lastName);
 
         //click on proceed after entering name
         kycPage.clickOnProceedAfterName();
 
         // enter valid pan card
-        kycPage.setPanNumber("HTIPK7865K");
+        kycPage.setPanNumber(panNumber);
 
         //click on date option
         kycPage.clickOnDateOption();
@@ -247,16 +247,16 @@ public class KYCHelper {
 
         // On failire VIA adhar website, user should  be redircted to CKYC flow
         //enter invalid first name
-        kycPage.setFirstName("Abhishek");
+        kycPage.setFirstName(firstName);
 
         //enter invalid last name
-        kycPage.setLastName("yadav");
+        kycPage.setLastName(lastName);
 
         //click on proceed after entering name
         kycPage.clickOnProceedAfterName();
 
         // enter valid pan card
-        kycPage.setPanNumber("HTIPK7865K");
+        kycPage.setPanNumber(pan);
 
         //click on date option
         kycPage.clickOnDateOption();

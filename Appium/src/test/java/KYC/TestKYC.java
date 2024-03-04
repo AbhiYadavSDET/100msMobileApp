@@ -47,7 +47,7 @@ public class TestKYC extends TestBase {
         loginHelp.quickLoginViaOtpForNonKycUser("8216900006","547372");
 
         KYCHelper kycHelper = new KYCHelper(getAndroidDriver());
-        kycHelper.fullKycFromCKYC();
+        kycHelper.fullKycFromCKYC("Abhishek","yadav","HTIPK7865M");
         Log.info("======= END : Full KYC flow via CKYC ======");
 
     }
@@ -137,7 +137,7 @@ public class TestKYC extends TestBase {
         loginHelp.quickLoginViaOtpForNonKycUser("8216900001","547372");
 
         KYCHelper kycHelper = new KYCHelper(getAndroidDriver());
-        kycHelper.fullKycFromCKYC();
+        kycHelper.fullKycFromCKYC("Abhishek","yadav","HTIPK7865M");
         Log.info("======= END :  min kyc user - Full KYC flow via CKYC ======");
 
     }
