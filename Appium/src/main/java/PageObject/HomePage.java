@@ -251,6 +251,10 @@ public class HomePage {
     @AndroidFindBy(id = "btn_exit")
     private AndroidElement exit_btn_kyc_screen;
 
+    @AndroidFindBy(id="search")
+    private AndroidElement search_cta;
+
+
     //############################ Old end ################################
 
     public HomePage(AndroidDriver driver) {
@@ -570,6 +574,11 @@ public class HomePage {
 
     public void clickDonWantBenifitsBtn()  {
         Element.selectElement(driver, exit_btn_kyc_screen, " Click on Don't Want Benifits");
+    }
+
+    public SearchPage clickOnSearchCta() throws IOException {
+        Element.selectElement(driver, search_cta, "Click on search cta");
+        return new SearchPage(driver);
     }
 
 

@@ -59,13 +59,13 @@ public class MBKCommonControlsHelper {
     public void verifyWalletBalanceAfterTransaction(AndroidDriver driver, HashMap<String, String> balanceBefore, HashMap<String, String> balanceAfter, String amount, String change) throws IOException {
 
 
-        Double actualMainBalanceAfter = Double.parseDouble(getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100;
-        Double actualMoneyAddedAfter = Double.parseDouble(getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MONEYADDED)) * 100;
-        Double actualSupercashAfter = Double.parseDouble(getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
+        Double actualMainBalanceAfter = Double.parseDouble(getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MAINBALANCE).replace(",", "")) * 100;
+        Double actualMoneyAddedAfter = Double.parseDouble(getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MONEYADDED).replace(",", "")) * 100;
+        Double actualSupercashAfter = Double.parseDouble(getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.SUPERCASH).replace(",", "")) * 100;
 
-        Double expectedMainBalanceAfter = Double.parseDouble(getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100;
-        Double expectedMoneyAddedAfter = Double.parseDouble(getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MONEYADDED)) * 100;
-        Double expectedSupercashAfter = Double.parseDouble(getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
+        Double expectedMainBalanceAfter = Double.parseDouble(getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE).replace(",", "")) * 100;
+        Double expectedMoneyAddedAfter = Double.parseDouble(getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MONEYADDED).replace(",", "")) * 100;
+        Double expectedSupercashAfter = Double.parseDouble(getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.SUPERCASH).replace(",", "")) * 100;
 
         if (change.charAt(0) == 'a' || change.charAt(0) == 'A') {
             expectedMainBalanceAfter = expectedMainBalanceAfter + Double.parseDouble(amount) * 100;

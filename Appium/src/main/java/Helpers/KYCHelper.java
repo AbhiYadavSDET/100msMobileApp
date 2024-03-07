@@ -317,7 +317,7 @@ public class KYCHelper {
         // Check CC Tool Tip Present
         if(kycPage.isCCToolTipPresent()) {
             screen.tapAtCentre(driver);
-            screen.tapAtCentre(driver);
+//            screen.tapAtCentre(driver);
         }
 
         // Click On Complete Your Kyc
@@ -361,7 +361,7 @@ public class KYCHelper {
         // Check CC Tool Tip Present
         if(kycPage.isCCToolTipPresent()) {
             screen.tapAtCentre(driver);
-            screen.tapAtCentre(driver);
+//            screen.tapAtCentre(driver);
         }
 
         // Click On Complete Your Kyc
