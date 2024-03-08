@@ -639,7 +639,6 @@ public class P2PExtraHelper {
         if (p2PExtraPage.isselectOkfromPlusPopUp()) {
             p2PExtraPage.selectOkfromPlusPopUp();
         }
-
         Thread.sleep(5000);
         p2PExtraPage.enterInvestmentAmount("1000000");
 
@@ -651,8 +650,6 @@ public class P2PExtraHelper {
 
 
     }
-
-
 
 }
 
