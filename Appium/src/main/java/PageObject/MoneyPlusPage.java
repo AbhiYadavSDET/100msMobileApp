@@ -44,8 +44,7 @@ public class MoneyPlusPage {
 
     @AndroidFindBy(id="tvNetIncrementPercent")
     private AndroidElement net_increment_percent;
-
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Start Investing']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text= Start Investing']")
     private AndroidElement xtra_card;
 
     @AndroidFindBy(id="title")
@@ -65,6 +64,9 @@ public class MoneyPlusPage {
 
     @AndroidFindBy(id="btn_get_started")
     private AndroidElement mf_introPage_cta;
+
+    @AndroidFindBy(id="icon_cross")
+    private AndroidElement backicon_firstintro;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='PF account balance']")
     private AndroidElement epfo_card;
@@ -150,11 +152,16 @@ public class MoneyPlusPage {
     }
 
     public boolean scrollToXtraCard() throws InterruptedException {
-        return Elements.scrollToElement(driver,xtra_card);
+        return Elements.scrollToElement(driver,xtra_page_title);
     }
 
     public void clickOnXtraCard() throws InterruptedException {
-        Elements.selectElement(driver, xtra_card,"Click on Xtra Card");
+        Elements.selectElement(driver, xtra_page_title,"Click on Xtra Card");
+    }
+
+
+    public void clickOnBckIconOnFirstPage() throws InterruptedException {
+        Elements.selectElement(driver, backicon_firstintro,"Click on Xtra Card");
     }
 
     public String fetchXtraIntroText() throws InterruptedException{
