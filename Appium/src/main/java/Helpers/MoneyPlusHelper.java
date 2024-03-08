@@ -61,11 +61,11 @@ public class MoneyPlusHelper {
 
         moneyPlusPage.clickOnAccountAggregatorCard();
 
-        Element.waitForVisibility(driver, By.id("ic_text"));
+        Element.waitForVisibility(driver, By.id("txt_tap_to_explore"));
 
-        mbReporter.verifyEqualsWithLogging(moneyPlusPage.fetchAccountAggregatorIntroText().trim(), AAIntroText, " Validating Account Agregator Intro Text", false,false);
+        moneyPlusPage.clickOnBckIconOnFirstPage();
 
-        moneyPlusPage.navigateBack();
+        Element.waitForVisibility(driver, By.id("tvNetWorth"));
 
         moneyPlusPage.scrollToXtraCard();
 
