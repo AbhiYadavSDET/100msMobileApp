@@ -324,6 +324,11 @@ public class P2PExtraPage {
         Element.selectElement(driver, plus_ok_popup, "Click OK on Tool tip of Xtra Plus Pop Up ");
     }
 
+    public Boolean isselectOkfromPlusPopUp() throws InterruptedException {
+        return Elements.isElementPresent(driver, plus_ok_popup);
+    }
+
+
     public void selectFlexiFromNavBar() throws InterruptedException {
         Element.selectElement(driver, sliderBtnFlexi, "Select Flexi From Navbar");
     }
