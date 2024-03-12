@@ -39,7 +39,7 @@ public class Test_Upi extends TestBase {
 
     }
 
-    @Test(groups = {"upiCheckBalance", "upiSanity1"}, priority = 0, description = "UPI Check Account Balance test")
+    @Test(groups = {"upiCheckBalance", "upiSanity"}, priority = 0, description = "UPI Check Account Balance test")
     public void Upi_Check_Balance() throws IOException, InterruptedException {
 
         Log.info("======= START : UPI Check Account Balance test =======");
@@ -54,26 +54,20 @@ public class Test_Upi extends TestBase {
     }
 
 
+    @Test(groups = {"upiRequestMoney", "upiSanity"}, priority = 0, description = "UPI Request Money test")
+    public void Upi_Request_Money() throws IOException, InterruptedException {
+
+        Log.info("======= START : UPI Request Money test =======");
+
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
 
 
+        UpiHelper upiHelper = new UpiHelper(getAndroidDriver());
+        upiHelper.requestMoneyViaUpi("9205299330@paytm", "1", "Automation Request Money Flow", "Ashwani Garg", "Ashwani Garg");
 
+    }
 
-
-//
-//    @Test(groups = {"upiRequestMoney", "upiSanity"}, priority = 0, description = "UPI Request Money test")
-//    public void Upi_Request_Money() throws IOException, InterruptedException {
-//
-//        Log.info("======= START : UPI Request Money test =======");
-//
-//        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-//        loginHelper.quickLoginViaOtp("9205299330", "547372");
-//
-//
-//        UpiHelper upiHelper = new UpiHelper(getAndroidDriver());
-//        upiHelper.requestMoneyViaUpi("7795709569@paytm", "1", "Automation Test");
-//
-//    }
-//
 
 
 //

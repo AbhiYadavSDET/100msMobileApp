@@ -233,7 +233,7 @@ public class HomePage {
     @AndroidFindBy(id = "navigation_home")
     private AndroidElement bottom_bar_home;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'All Services']")
+    @AndroidFindBy(id = "navigation_service")
     private AndroidElement bottom_bar_all_services;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Home']")
@@ -263,6 +263,9 @@ public class HomePage {
 
     @AndroidFindBy(id="option4")
     private AndroidElement home_page_upi_option4_check_bank_balance;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Request Money']")
+    private AndroidElement upiRequestMoneyCTA;
 
 
 
@@ -563,6 +566,8 @@ public class HomePage {
         Element.selectElement(driver, bottom_bar_all_services, "Open All Service Section");
     }
 
+
+
     //    public DealsPage clickOnButtonDeals() throws IOException {
 //        Element.selectElement(driver, button_deals, "Open Deals");
 //        return new DealsPage(driver);
@@ -610,6 +615,11 @@ public class HomePage {
     public SearchPage clickOnSearchCta() throws IOException {
         Element.selectElement(driver, search_cta, "Click on search cta");
         return new SearchPage(driver);
+    }
+
+    public UpiPage clickOnUPIRequestMoney() throws IOException{
+        Element.selectElement(driver, upiRequestMoneyCTA, "Select Request Money Flow");
+        return new UpiPage(driver);
     }
 
 

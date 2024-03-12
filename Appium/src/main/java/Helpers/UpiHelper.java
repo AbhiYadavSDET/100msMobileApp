@@ -227,67 +227,62 @@ public class UpiHelper {
 
 
 
-//
-//    public void requestMoneyViaUpi(String upiId, String amount, String message) throws InterruptedException, IOException {
-//
-//
-//        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
-//
-//        Thread.sleep(100);
-//
-//
-////            Element.waitForVisibility(driver, By.id("tx_upi_id"));
-//
-//        upiPage = homePage.clickOnUpiId();
-//
-//        upiPage.clickOnUpiSetupCta();
-//
-//        permissionHelper.permissionAllow();
-//
-//        permissionHelper.permissionAllow();
-//
-//        permissionHelper.permissionAllow();
-//
-//        Thread.sleep(400);
-//
-////            Element.waitForVisibility(driver, By.id("qr_image"));
-//
-//        Boolean setup = Element.isElementPresent(driver, By.id("qr_image"));
-//
-//        mbReporter.verifyTrueWithLogging(setup, "Setup Done", true, true);
-//
-//        upiPage.clickRequestMoney();
-//
-//        upiPage.selectEnterUPI();
-//
-//        permissionHelper.permissionAllow();
-//
-//        upiPage.enterUpiId(upiId);
-//
-//        upiPage.clickConfrimUpi();
-//
-//        upiPage.enterAmount(amount);
-//
-//        upiPage.enterMessage(message);
-//
-//        upiPage.clickOnConfirmRequest();
-//
-//        Element.waitForVisibility(driver, By.id("payment_success_msg"));
-//
-//        mbReporter.verifyEqualsWithLogging(upiPage.getPaymentSuccessMessage(), "Your payment request sent successfully", "Request Message Validation", true, false);
-//
-//        String actualTotalAmountPaid = upiPage.getAmountPaid().replace("X", "");
-//
-//        mbReporter.verifyEqualsWithLogging(actualTotalAmountPaid, amount, "Validate Amount", false, false);
-//
-//        mbkCommonControlsHelper.returnToHomePageFromP2MSuccessScreen();
-//
-//        mbkCommonControlsHelper.handleRatingsPopUp();
-//
-//        mbkCommonControlsHelper.handleNPS();
-//
-//    }
-//
+
+    public void requestMoneyViaUpi(String upiId, String amount, String message, String expectedSenderName, String amountPageName) throws InterruptedException, IOException {
+
+
+        homePage.clickOnAllServicesSection();
+
+        upiPage = homePage.clickOnUPIRequestMoney();
+
+        upiPage.selectEnterUPI();
+
+        upiPage.enterUpiId(upiId);
+
+        upiPage.selectResultUpi();
+
+
+        //Amount Page Assertions
+
+        mbReporter.verifyEqualsWithLogging(upiPage.getAmountPageTransferTo(), amountPageName, "Verifying Fetched name", false, false);
+
+        upiPage.enterAmount(amount);
+
+        upiPage.enterMessage(message);
+
+        if(upiPage.isSetupMessageDisplayed()){
+
+            upiPage.clickOnConfirmPayment();
+            permissionHelper.permissionAllow();
+            permissionHelper.permissionAllow();
+            Thread.sleep(3000);
+            mbReporter.verifyTrueWithLogging(!upiPage.isSetupMessageDisplayed(), "Upi Restore Verification", false, false );
+
+        }
+
+        upiPage.clickOnConfirmPayment();
+
+
+        Thread.sleep(6000);
+
+
+        mbReporter.verifyEqualsWithLogging(upiPage.getPaymentSuccessMessage(), "You Requested", "Succes Message Validation", false, false);
+
+        String actualTotalAmountAsked = upiPage.getAmountPaid().replace("₹", "");
+
+        mbReporter.verifyEqualsWithLogging(actualTotalAmountAsked, amount, "Validate Amount", false, false);
+
+        String actualSenderName = upiPage.getReceiverName().replace("from ", "");
+
+        mbReporter.verifyEqualsWithLogging(actualSenderName, expectedSenderName, "Validate Sender name", false, false);
+
+        upiPage.returnToHomePage();
+
+
+
+
+    }
+
 
 
     //Payment Successful
