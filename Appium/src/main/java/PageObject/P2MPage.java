@@ -201,6 +201,10 @@ public class P2MPage {
         Elements.selectElement(driver, recent_merchant, "click on Recent Merchant");
     }
 
+    public Boolean checkRecentMerchant() throws InterruptedException {
+        return Elements.isElementPresent(driver, recent_merchant);
+    }
+
     public void clickOnMobikwikQRCode() {
         Elements.selectElement(driver, mobikwik_qr, "click on Mobikwik QR Code");
     }

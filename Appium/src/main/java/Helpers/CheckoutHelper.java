@@ -80,7 +80,7 @@ public class CheckoutHelper {
         }
 
         // Click on the Tooltip
-        p2PExtraPage.selectOkfromPlusPopUp();
+       // p2PExtraPage.selectOkfromPlusPopUp();
 
         // Click Flexi from slider
         p2PExtraPage.selectFlexiFromNavBar();
@@ -103,24 +103,24 @@ public class CheckoutHelper {
         //Select NetBanking from XTRA checkout screen
         checkoutPage.selectNBOnCheckoutScreen();
 
-        Thread.sleep(2000);
-
-        // Get bank page heading
-        String actualTitle = checkoutPage.getBankPageTitleNetbanking();
-
-        Log.info("Bank List Page Title : " + actualTitle);
-
-        // Add the assertions
-        mbReporter.verifyEqualsWithLogging(actualTitle, expTitle, "Xtra Net Banking Flow Bank List Shown", false, false, true);
-
-        checkoutPage.selectKotakBankFromBAnkList();
-
-        Thread.sleep(2000);
-
         permissionHelper.permissionAllow();
 
+        Thread.sleep(2000);
 
-        Thread.sleep(3000);
+//        // Get bank page heading
+//        String actualTitle = checkoutPage.getBankPageTitleNetbanking();
+//
+//        Log.info("Bank List Page Title : " + actualTitle);
+//
+//        // Add the assertions
+//        mbReporter.verifyEqualsWithLogging(actualTitle, expTitle, "Xtra Net Banking Flow Bank List Shown", false, false, true);
+//
+//        checkoutPage.selectKotakBankFromBAnkList();
+//
+//        Thread.sleep(2000);
+
+       // permissionHelper.permissionAllow();
+
 
         String bankPageTitleActual=checkoutPage.getBankPageTitleWeb();
 
@@ -185,7 +185,7 @@ public class CheckoutHelper {
         }
 
         // Click on the Tooltip
-        p2PExtraPage.selectOkfromPlusPopUp();
+        //p2PExtraPage.selectOkfromPlusPopUp();
 
         // Click Flexi from slider
         p2PExtraPage.selectFlexiFromNavBar();

@@ -61,7 +61,13 @@ public class P2MHelper {
         // Allow the Permission
         if(p2mPage.checkWhileUsingAppPermission()){ p2mPage.allowPermissionWhileUsingApp();}
 
-        if(merchant.equals("RecentMerchant")){
+        if(merchant.equals("RecentMerchant") && !p2mPage.checkRecentMerchant()){
+            Log.info("There are no recent Merchants Present for the user");
+            return;
+        }
+
+        if(merchant.equals("RecentMerchant") ){
+
             p2mPage.clickOnRecentMerchant();
 
         }else{

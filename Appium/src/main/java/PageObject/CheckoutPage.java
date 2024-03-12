@@ -30,8 +30,8 @@ public class CheckoutPage {
     private AndroidElement kotakBankCta;
 
 
-    @AndroidFindBy(id = "bottom_sheet_text")
-    private AndroidElement bank_page;
+    @AndroidFindBy(id = "mkab_title")
+    private AndroidElement bank_page_title;
 
     @AndroidFindBy(id = "mkab_title")
     private AndroidElement bank_Web_Page;
@@ -201,7 +201,7 @@ public class CheckoutPage {
     }
 
     public String getBankPageTitleNetbanking() throws InterruptedException {
-        return Elements.getText(driver, bank_page, "Heading on Bank Page");
+        return Elements.getText(driver, bank_page_title, "Heading on Bank Page");
     }
 
     public String getBankPageTitleWeb() throws InterruptedException {

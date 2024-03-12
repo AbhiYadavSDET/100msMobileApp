@@ -116,7 +116,7 @@ public class RechargeHelper {
         mbReporter.verifyEquals(subTitle, expSubTitle, "Verify Sub Title", false, false);
         mbReporter.verifyEquals(amountOnSuccesScreen, expAmountOnSuccessScreen, "Verify Gold Amount", false, false);
 
-        mbkCommonControlsHelper.pressback(2);
+        mbkCommonControlsHelper.pressback(1);
 
         // Click on the back button if the bottom sheet is present
         mbkCommonControlsHelper.handleHomePageLanding();
