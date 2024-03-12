@@ -1,12 +1,14 @@
 package PageObject;
 
+import com.aventstack.extentreports.gherkin.model.And;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import Logger.Log;
 import org.openqa.selenium.support.PageFactory;
-//import utils.Element;
+import Utils.Element;
+import Utils.Elements;
 
 import java.io.IOException;
 
@@ -15,96 +17,103 @@ public class UpiPage {
     AndroidDriver driver;
 
 
-    //    @AndroidFindBy(id = "com.mobikwik_new.debug:id/start_button")
-    @AndroidFindBy(id = "start_button")
-    private AndroidElement cta_start_upi_setup;
 
-    //As per RBI guidelines, below permissions are mandatory to enable UPI.
-//    @AndroidFindBy(id = "com.mobikwik_new.debug:id/header_text")
-    @AndroidFindBy(id = "header_text")
-    private AndroidElement text_header_upi_setup;
-
-    //UPI Home Page
-//    @AndroidFindBy(id ="com.mobikwik_new.debug:id/qr_image")
-    @AndroidFindBy(id = "qr_image")
-    private AndroidElement qr_image;
-
-    //    @AndroidFindBy(id ="com.mobikwik_new.debug:id/upi_id_text")
-    @AndroidFindBy(id = "upi_id_text")
-    private AndroidElement upi_id;
-
-    //    @AndroidFindBy(id ="com.mobikwik_new.debug:id/send_money_title")
-    @AndroidFindBy(id = "send_money_title")
-    private AndroidElement cta_send_money;
-
-    //Send Money Page
-//    @AndroidFindBy (id ="com.mobikwik_new.debug:id/pay_to_account")
-    @AndroidFindBy(id = "pay_to_account")
-    private AndroidElement radio_button_to_bank_account;
-
-    //    @AndroidFindBy(id ="com.mobikwik_new.debug:id/edit_field")
-    @AndroidFindBy(id = "edit_field")
+    @AndroidFindBy(id = "search_upi")
     private AndroidElement cta_enter_upi_id;
 
-    //Send money via UPI Flow
-//    @AndroidFindBy(id= "com.mobikwik_new.debug:id/search_edittext")
-    @AndroidFindBy(id = "search_edittext")
+    @AndroidFindBy(id = "search_upi")
     private AndroidElement enter_upi_id_or_number;
 
-    //    @AndroidFindBy(id ="com.mobikwik_new.debug:id/confirm_button")
-    @AndroidFindBy(id = "confirm_button")
-    private AndroidElement cta_confirm_upi;
-
-    //    @AndroidFindBy(id= "com.mobikwik_new.debug:id/vpa")
-    @AndroidFindBy(id = "vpa")
+    @AndroidFindBy(id = "send_money")
     private AndroidElement result_upi_id;
 
-    //    @AndroidFindBy(id= "com.mobikwik_new.debug:id/amount_field")
-    @AndroidFindBy(id = "amount_field")
+    @AndroidFindBy(id="transfer_to")
+    private AndroidElement transfer_to;
+
+    @AndroidFindBy(id = "edit_text")
     private AndroidElement enter_amount;
 
-    //    @AndroidFindBy(id= "com.mobikwik_new.debug:id/messageEditText")
     @AndroidFindBy(id = "messageEditText")
     private AndroidElement enter_message;
 
-    //    @AndroidFindBy(id= "com.mobikwik_new.debug:id/view_transaction_limit")
-    @AndroidFindBy(id = "view_transaction_limit")
-    private AndroidElement get_transaction_limit;
 
-    //    @AndroidFindBy(id= "com.mobikwik_new.debug:id/touch_outside")
-    @AndroidFindBy(id = "touch_outside")
-    private AndroidElement click_outside;
+    @AndroidFindBy(id = "setup_message")
+    private AndroidElement setup_message;
 
-    //    @AndroidFindBy(id= "com.mobikwik_new.debug:id/cta")
     @AndroidFindBy(id = "cta")
     private AndroidElement cta_confirm_payment;
 
-    //    @AndroidFindBy(id= "com.mobikwik_new.debug:id/payment_success_msg")
-    @AndroidFindBy(id = "payment_success_msg")
+
+    @AndroidFindBy(id = "status")
     private AndroidElement payment_succes_message;
 
-    //    @AndroidFindBy(id= "com.mobikwik_new.debug:id/amount")
+
     @AndroidFindBy(id = "amount")
     private AndroidElement amount_paid;
 
-    //    @AndroidFindBy(id= "com.mobikwik_new.debug:id/base_icon_close")
-    @AndroidFindBy(id = "base_icon_close")
-    private AndroidElement click_on_cross;
+    @AndroidFindBy(id = "name")
+    private AndroidElement receiver_name;
 
-//Send To Bank Flow
+    @AndroidFindBy(id = "transfer_bank_account")
+    private AndroidElement radio_button_to_bank_account;
 
-    @AndroidFindBy(id = "beneficiary_name")
+    @AndroidFindBy(xpath = "(//android.widget.EditText)[1]")
     private AndroidElement enter_beneficiary_name;
 
-    @AndroidFindBy(id = "account_number")
+    @AndroidFindBy(xpath = "(//android.widget.EditText)[2]")
     private AndroidElement enter_account_number;
 
-    @AndroidFindBy(id = "ifsc_code")
+    @AndroidFindBy(xpath = "(//android.widget.EditText)[3]")
     private AndroidElement enter_ifsc;
 
     @AndroidFindBy(id = "continue_button")
     private AndroidElement cta_confirm_bank_details;
 
+    @AndroidFindBy(id = "back_icon")
+    private AndroidElement click_on_cross;
+
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='Additional verification required']")
+    private AndroidElement TwoFA_page_displayed;
+
+    @AndroidFindBy(id="continue_button")
+    private AndroidElement TwoFA_page_cta;
+
+    @AndroidFindBy(id = "continue_button")
+    private AndroidElement cta_start_upi_setup;
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////
+
+
+
+    @AndroidFindBy(id = "header_text")
+    private AndroidElement text_header_upi_setup;
+
+    @AndroidFindBy(id = "qr_image")
+    private AndroidElement qr_image;
+
+    @AndroidFindBy(id = "upi_id_text")
+    private AndroidElement upi_id;
+
+    @AndroidFindBy(id = "send_money_title")
+    private AndroidElement cta_send_money;
+    @AndroidFindBy(id = "confirm_button")
+    private AndroidElement cta_confirm_upi;
+
+    @AndroidFindBy(id = "view_transaction_limit")
+    private AndroidElement get_transaction_limit;
+
+    @AndroidFindBy(id = "touch_outside")
+    private AndroidElement click_outside;
 
     //Request Money Flow
     @AndroidFindBy(id = "request_money_title")
@@ -148,6 +157,10 @@ public class UpiPage {
     private AndroidElement upi_setup_success_back_to_home_cta;
 
 
+
+
+
+
     public UpiPage(AndroidDriver driver) throws IOException {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -161,22 +174,6 @@ public class UpiPage {
         Log.info("*****UPI Page*****");
     }
 
-/*
-    public void clickOnUpiSetupCta() throws InterruptedException {
-        Element.selectElement(driver, cta_start_upi_setup, "Start UPI Setup");
-    }
-
-    public String verifySetupPopUp(String amount) throws InterruptedException {
-        return Element.getText(driver, text_header_upi_setup, "Get Header Text");
-    }
-
-    public void clickSendMoney() throws InterruptedException {
-        Element.selectElement(driver, cta_send_money, "Click on Send Money");
-    }
-
-    public void selectTransfertoBank() throws InterruptedException {
-        Element.selectElement(driver, radio_button_to_bank_account, "Select radio button to Bank");
-    }
 
     public void selectEnterUPI() throws InterruptedException {
         Element.selectElement(driver, cta_enter_upi_id, "Click on Enter UPI ID");
@@ -186,12 +183,13 @@ public class UpiPage {
         Element.enterText(driver, enter_upi_id_or_number, upiId, "Enter UPI ID");
     }
 
-    public void clickConfrimUpi() throws InterruptedException {
-        Element.selectElement(driver, cta_confirm_upi, "Click on Confirm UPI");
+    public void selectResultUpi() throws InterruptedException {
+        Element.waitForVisibility(driver, result_upi_id);
+         Element.selectElement(driver, result_upi_id, "Select UPI in search");
     }
 
-    public String getResultUpi() throws InterruptedException {
-        return Element.getText(driver, result_upi_id, " Get UPI on search");
+    public String getAmountPageTransferTo() throws InterruptedException {
+        return Element.getText(driver,transfer_to , "Get Amount Page Transfer To");
     }
 
     public void enterAmount(String amount) throws InterruptedException {
@@ -202,9 +200,20 @@ public class UpiPage {
         Element.enterText(driver, enter_message, message, "Enter Message");
     }
 
+    public Boolean isSetupMessageDisplayed() throws InterruptedException {
+        return Elements.isElementPresent(driver,setup_message);
+    }
 
     public void clickOnConfirmPayment() throws InterruptedException {
         Element.selectElement(driver, cta_confirm_payment, "Click on Confirm Payment");
+    }
+
+    public Boolean is2FAPageDisplayed() throws InterruptedException {
+        return Elements.isElementPresent(driver,TwoFA_page_displayed);
+    }
+
+    public void clickOnContinue2FAPage() throws InterruptedException {
+        Element.selectElement(driver, TwoFA_page_cta, "Click on Continue on 2FA Page");
     }
 
     public String getPaymentSuccessMessage() throws InterruptedException {
@@ -215,11 +224,16 @@ public class UpiPage {
         return Element.getText(driver, amount_paid, "Get Amount Paid");
     }
 
-    public void returnToHomePage() throws InterruptedException {
-        Element.selectElement(driver, click_on_cross, "Click on Cross");
+    public String getReceiverName() throws InterruptedException {
+        return Element.getText(driver, receiver_name, "Get Receiver Name");
+    }
+
+    public void selectTransfertoBank() throws InterruptedException {
+        Element.selectElement(driver, radio_button_to_bank_account, "Select radio button to Bank");
     }
 
     public void enterBeneficiaryName(String beneficiaryName) throws InterruptedException {
+        Element.waitForVisibility(driver,enter_beneficiary_name);
         Element.enterText(driver, enter_beneficiary_name, beneficiaryName, "Enter Beneficiary Name");
     }
 
@@ -234,6 +248,41 @@ public class UpiPage {
     public void clickConfirmBankDetails() throws InterruptedException {
         Element.selectElement(driver, cta_confirm_bank_details, "Confrim Bank details");
     }
+
+    public void returnToHomePage() throws InterruptedException {
+        Element.selectElement(driver, click_on_cross, "Click on Cross");
+    }
+
+    public void clickOnUpiSetupCta() throws InterruptedException {
+        Element.selectElement(driver, cta_start_upi_setup, "Permission Consent Page Continue CTA");
+    }
+
+
+
+
+
+
+
+
+
+
+    //////////////////////////////////////////////
+
+
+
+    public String verifySetupPopUp(String amount) throws InterruptedException {
+        return Element.getText(driver, text_header_upi_setup, "Get Header Text");
+    }
+
+    public void clickSendMoney() throws InterruptedException {
+        Element.selectElement(driver, cta_send_money, "Click on Send Money");
+    }
+
+    public void clickConfrimUpi() throws InterruptedException {
+        Element.selectElement(driver, cta_confirm_upi, "Click on Confirm UPI");
+    }
+
+
 
     public void clickRequestMoney() throws InterruptedException {
         Element.selectElement(driver, cta_request_money, "Click on Request Money");
@@ -278,6 +327,6 @@ public class UpiPage {
     }
 
 
- */
+
 
 }

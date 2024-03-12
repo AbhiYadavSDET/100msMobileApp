@@ -192,7 +192,7 @@ public class HomePage {
 
 
     //    @AndroidFindBy(id ="com.mobikwik_new.debug:id/tx_upi_id")
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Bank to Bank Transfer']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='UPI Transfers']")
     private AndroidElement navigate_upi_page;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Via UPI']")
@@ -205,7 +205,7 @@ public class HomePage {
     @AndroidFindBy(id = "tx_bank_balance")
     private AndroidElement cta_check_balance;
 
-    @AndroidFindBy(id = "balance")
+    @AndroidFindBy(id = "tv_check_balance")
     private AndroidElement account_balance;
 
     @AndroidFindBy(id = "cross_button")
@@ -253,6 +253,19 @@ public class HomePage {
 
     @AndroidFindBy(id="search")
     private AndroidElement search_cta;
+
+
+    @AndroidFindBy(id="include_search_bar")
+    private AndroidElement home_page_upi_search_bar;
+
+    @AndroidFindBy(id="option3")
+    private AndroidElement home_page_upi_option3_send_to_bank;
+
+    @AndroidFindBy(id="option4")
+    private AndroidElement home_page_upi_option4_check_bank_balance;
+
+
+
 
 
     //############################ Old end ################################
@@ -488,6 +501,24 @@ public class HomePage {
         return new UpiPage(driver);
     }
 
+    public UpiPage navigateAndSelectUpiSearch() throws IOException, InterruptedException {
+        Elements.scrollToElement(driver, home_page_upi_search_bar);
+        Element.selectElement(driver, home_page_upi_search_bar, "Navigate to UPI Page via HomePage Upi widget Search");
+        return new UpiPage(driver);
+    }
+
+    public void navigateAndSelectUpiCheckBalance() throws IOException, InterruptedException {
+        Elements.scrollToElement(driver, home_page_upi_option4_check_bank_balance);
+        Element.selectElement(driver, home_page_upi_option4_check_bank_balance, "Navigate to UPI Page via HomePage Upi widget Check Balance");
+    }
+
+
+    public UpiPage navigateAndSelectUpiSendToAccountNumber () throws IOException, InterruptedException {
+        Elements.scrollToElement(driver, home_page_upi_option3_send_to_bank);
+        Element.selectElement(driver, home_page_upi_option3_send_to_bank, "Navigate to UPI Page via HomePage Upi widget Send via Bank Account Number");
+        return new UpiPage(driver);
+    }
+
     public void clickCheckBalance() throws IOException {
         Element.selectElement(driver, cta_check_balance, "Get Account Balance");
     }
@@ -498,7 +529,7 @@ public class HomePage {
     }
 
     public String getAccountBalance() throws IOException {
-        String balance = Element.getText(driver, account_balance, "Account Balance").replace("Account Balance: ₹ ", "");
+        String balance = Element.getText(driver, account_balance, "Account Balance").replace("₹", "");
         return balance;
     }
 

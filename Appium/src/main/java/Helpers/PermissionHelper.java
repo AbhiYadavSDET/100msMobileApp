@@ -69,7 +69,7 @@ public class PermissionHelper {
 
     public boolean isAllowOnlyOnceOptionAvailable() throws InterruptedException {
 
-        if (Element.isElementPresent(driver, By.xpath("//android.widget.Button[@text= 'While using the app']"))) {
+        if (Element.isElementPresent(driver, By.id("com.android.permissioncontroller:id/permission_allow_foreground_only_button"))) {
             return true;
         } else {
 

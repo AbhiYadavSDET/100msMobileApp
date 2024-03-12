@@ -1,11 +1,14 @@
 package PageObject;
 
+import Helpers.LoginHelper;
+import Logger.Log;
 import Utils.Element;
 import Utils.Elements;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
@@ -58,6 +61,8 @@ public class LoginPage {
 
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Accounts']")
     private AndroidElement text_account;
+
+
 
     public LoginPage(AndroidDriver driver) {
         this.driver = driver;
@@ -135,6 +140,13 @@ public class LoginPage {
 
     public void clickLoginButton() {
         Elements.selectElement(driver, loginButton, "click login");
+    }
+
+    public boolean isOTPNotAutoRead() throws InterruptedException{
+
+        Thread.sleep(6000);
+        return Element.isElementPresent(driver, By.id("otp_sent_to"));
+
     }
 
 }
