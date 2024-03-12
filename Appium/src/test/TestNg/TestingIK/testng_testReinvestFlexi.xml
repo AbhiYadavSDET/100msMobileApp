@@ -2,13 +2,15 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="P2PExtra Flow">
 
-    <parameter name="build" value="debug"/>
+    <parameter name="build" value="prod"/>
     <parameter name="level" value="payments"/>
     <parameter name="saucelabs" value="false"></parameter>
+    <parameter name="codeCoverage" value="false"></parameter>
     <parameter name="androidOSVersion" value="12.0"></parameter>
     <parameter name="deviceName" value="deviceName"></parameter>
-    <parameter name="udId" value="93JAY0BLRH"></parameter>
+    <parameter name="udId" value="17228df2"></parameter>
     <parameter name="portNo" value="4723"></parameter>
+
 
     <test verbose="2" preserve-order="true" name="Testing For Failrue cases">
         <groups>
