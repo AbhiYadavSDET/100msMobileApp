@@ -6,11 +6,15 @@ import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import Logger.Log;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 import Utils.Element;
 import Utils.Elements;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class UpiPage {
 
@@ -86,6 +90,20 @@ public class UpiPage {
 
     @AndroidFindBy(id="upi_id_view")
     private AndroidElement qr_bottomsheet_upi_id;
+
+    @AndroidFindBy(id="continue_btn")
+    private AndroidElement continue_cta_contact1;
+
+    @AndroidFindBy(id="continue_button")
+    private AndroidElement continue_cta_contact2;
+
+    @AndroidFindBy(id="contact_name")
+    private AndroidElement contact_name;
+
+    @AndroidFindBy(id="logo")
+    private AndroidElement vpa1;
+
+
 
 
 
@@ -287,6 +305,43 @@ public class UpiPage {
     public String fetchUPIID() throws InterruptedException{
         return Elements.getText(driver, qr_bottomsheet_upi_id, " Fetch UPi ID from QR Bottomsheet").replace("UPI ID : ", "");
     }
+
+    public void clickContinueForContacts1() throws InterruptedException{
+        Element.selectElement(driver,continue_cta_contact1, "Select Continue1 for Contact Permission");
+    }
+
+    public void clickContinueForContacts2() throws InterruptedException{
+        Element.selectElement(driver,continue_cta_contact2, "Select Continue2 for Contact Permission");
+    }
+
+    public void selectFirstContactFromList() throws InterruptedException{
+        Element.selectElement(driver,contact_name, "Select Contact from Contact List");
+    }
+
+    public Map<String , String> getAllVpaList() throws InterruptedException{
+
+
+        Map<String, String> results = new HashMap<>();
+
+        List<AndroidElement> title = Element.findElements(driver, By.id("title"));
+        List<AndroidElement> description = Element.findElements(driver, By.id("subtitle"));
+
+        for(int i=1; i<description.size();i++) {
+
+            results.put(title.get(i).getText(), description.get(i).getText());
+            Log.info(title.get(i).getText(), description.get(i).getText());
+
+        }
+
+        return results;
+
+    }
+
+    public void selectFirstVpaFromList() throws InterruptedException{
+        Element.selectElement(driver,vpa1, "Select Vpa from List");
+    }
+
+
 
 
 

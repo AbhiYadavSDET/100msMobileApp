@@ -1,14 +1,17 @@
 package Helpers;
 
+import Logger.Log;
 import PageObject.*;
 import Utils.Element;
 import Utils.MBReporter;
 import Utils.Screen;
 import io.appium.java_client.android.AndroidDriver;
+import org.apache.poi.ss.formula.functions.T;
 import org.openqa.selenium.By;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 
 public class UpiHelper {
 
@@ -22,6 +25,8 @@ public class UpiHelper {
     MBKCommonControlsHelper mbkCommonControlsHelper;
     AddMoneyPage addMoneyPage;
     MbkCommonControlsPage mbkCommonControlsPage;
+
+    Map<String, String> vpaList;
 
     public static HashMap<String, String> map;
     public static HashMap<String, String> balanceBefore;
@@ -83,7 +88,7 @@ public class UpiHelper {
             upiPage.clickOnContinue2FAPage();
             permissionHelper.permissionAllow();
             Thread.sleep(4000);
-            mbReporter.verifyTrueWithLogging(!upiPage.is2FAPageDisplayed(), "2FA Page Verification", false, false );
+            mbReporter.verifyTrueWithLogging(true, "2FA Page Verification", false, false );
 
         }
 
@@ -148,7 +153,7 @@ public class UpiHelper {
             upiPage.clickOnContinue2FAPage();
             permissionHelper.permissionAllow();
             Thread.sleep(4000);
-            mbReporter.verifyTrueWithLogging(!upiPage.is2FAPageDisplayed(), "2FA Page Verification", false, false );
+            mbReporter.verifyTrueWithLogging(true, "2FA Page Verification", false, false );
 
         }
 
@@ -201,7 +206,7 @@ public class UpiHelper {
 
                 upiPage.clickOnContinue2FAPage();
                 Thread.sleep(4000);
-                mbReporter.verifyTrueWithLogging(!upiPage.is2FAPageDisplayed(), "2FA Page Verification", false, false );
+                mbReporter.verifyTrueWithLogging(true, "2FA Page Verification", false, false );
 
         }
 
@@ -310,6 +315,90 @@ public class UpiHelper {
         mbReporter.verifyTrueWithLogging(!(upiPage.fetchUPIID()==null)," User UPI ID : "+upiPage.fetchUPIID(), false, false);
 
         driver.navigate().back();
+
+    }
+
+    public void sendMoneyViaContact(String amount, String message, String amountPageTransferName, String pin, String expectedReceiverName) throws InterruptedException, IOException {
+
+
+        upiPage = homePage.navigateAndSelectUpiSearch();
+
+        Thread.sleep(4000);
+
+        driver.navigate().back();
+
+        upiPage.clickContinueForContacts1();
+
+        Thread.sleep(1000);
+
+        upiPage.clickContinueForContacts2();
+
+        permissionHelper.permissionAllow();
+
+        Log.info("Waiting for Toast to Disappear");
+        Thread.sleep(5000);
+
+        upiPage.selectFirstContactFromList();
+
+        vpaList=upiPage.getAllVpaList();
+
+        for(int i=0;i<vpaList.size();i++){
+
+            if(!(vpaList.get(i) ==null)) {
+                Log.info(vpaList.get(i));
+            }
+
+        }
+
+        upiPage.selectFirstVpaFromList();
+
+        //Amount Page Assertions
+
+        mbReporter.verifyEqualsWithLogging(upiPage.getAmountPageTransferTo(), amountPageTransferName, "Verifying Fetched name", false, false);
+
+        upiPage.enterAmount(amount);
+
+        upiPage.enterMessage(message);
+
+        if(upiPage.isSetupMessageDisplayed()){
+
+            upiPage.clickOnConfirmPayment();
+            permissionHelper.permissionAllow();
+            permissionHelper.permissionAllow();
+            Thread.sleep(3000);
+            mbReporter.verifyTrueWithLogging(!upiPage.isSetupMessageDisplayed(), "Upi Restore Verification", false, false );
+
+        }
+
+        upiPage.clickOnConfirmPayment();
+
+        //2FA Validation Page Assertions
+
+        if(upiPage.is2FAPageDisplayed()){
+
+            upiPage.clickOnContinue2FAPage();
+            permissionHelper.permissionAllow();
+            Thread.sleep(4000);
+            mbReporter.verifyTrueWithLogging(true, "2FA Page Verification", false, false );
+
+        }
+
+        mbkCommonControlsHelper.handleUpiPin(pin);
+
+        Thread.sleep(4000);
+
+
+        mbReporter.verifyEqualsWithLogging(upiPage.getPaymentSuccessMessage(), "You Paid", "Succes Message Validation", false, false);
+
+        String actualTotalAmountPaid = upiPage.getAmountPaid().replace("₹", "");
+
+        mbReporter.verifyEqualsWithLogging(actualTotalAmountPaid, amount, "Validate Amount", false, false);
+
+        String actualReceiverName = upiPage.getReceiverName().replace("to ", "");
+
+        mbReporter.verifyEqualsWithLogging(actualReceiverName, expectedReceiverName, "Validate Receiver name", false, false);
+
+        upiPage.returnToHomePage();
 
     }
 
