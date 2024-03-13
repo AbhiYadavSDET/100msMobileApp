@@ -63,6 +63,12 @@ import java.util.HashMap;
 
             mbReporter.verifyTrueWithLogging(historyPage.isTotalBalancePresent(), "Is Total Balance Present", false, false);
 
+
+            if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Enable secure login']")))
+            {
+                mbkCommonControlsHelper.handleSetupSecurityBottomSheet();
+            }
+
             String allCategoriesTitle = historyPage.getCategoriesText();
             String helpTitle = historyPage.getHelpText();
 
