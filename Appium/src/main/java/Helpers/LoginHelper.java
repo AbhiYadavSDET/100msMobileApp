@@ -264,10 +264,10 @@ public class LoginHelper {
         Thread.sleep(5000);
 
         // If the error message is present --> resend OTP
-        if (element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Please try again']"))) {
+        if (element.isElementPresent(driver, By.id("error_view"))) {
 
             loginPage.clickResendOtp();
-            loginPage.enterOtp(otp);
+//            loginPage.enterOtp(otp);
         }
 
         if(homePage.checkKycScreen()) {

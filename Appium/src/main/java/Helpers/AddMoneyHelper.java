@@ -1,10 +1,7 @@
 package Helpers;
 
-import PageObject.AddMoneyPage;
-import PageObject.HomePage;
-import PageObject.SecurityPinPage;
+import PageObject.*;
 import Helpers.IndusindBankPaymentPageHelper;
-import PageObject.PermissionPage;
 import io.appium.java_client.android.AndroidDriver;
 import Logger.Log;
 import Utils.MBReporter;
@@ -25,7 +22,11 @@ public class AddMoneyHelper {
     MBKCommonControlsHelper mbkCommonControlsHelper;
     MBReporter mbReporter;
     PermissionPage permissionPage;
+
+    PermissionHelper permissionHelper;
     IndusindBankPaymentPageHelper indusindBankPaymentPageHelper;
+
+    UpiPage upiPage;
 
 
     public static HashMap<String, String> map;
@@ -45,6 +46,8 @@ public class AddMoneyHelper {
         mbReporter = new MBReporter(driver, "testScreenshotDir");
         permissionPage = new PermissionPage(driver);
         indusindBankPaymentPageHelper = new IndusindBankPaymentPageHelper(driver);
+        upiPage=new UpiPage(driver);
+        permissionHelper=new PermissionHelper(driver);
 
     }
 
@@ -129,6 +132,108 @@ public class AddMoneyHelper {
         // Verify the History details
         mbkCommonControlsHelper.verifyHistoryDetails(driver ,expectedHistoryDescription,expectedHistoryAmount,expectedHistoryStatus);
     }
+
+    public void addMoneyViaUPI(String amount, String expTitle, String expSubTitle, String expAmount,String expectedHistoryDescription, String expectedHistoryAmount, String expectedHistoryStatus, String pin) throws InterruptedException, IOException {
+
+        Log.info("START", "Add Money Via UPI");
+        Log.info("----------- Arguments ---------------");
+        Log.info("amount : " + amount);
+        Log.info("-------------------------------------");
+
+        // Get the Balance if the User Before TRX
+        balanceBefore = mbkCommonControlsHelper.getBalance();
+
+        // Click on the profile
+        securityPinPage.clickOnProfile();
+
+        // Click on add Money
+        addMoneyPage.clickOnAddMoney();
+
+        // Enter amount
+        addMoneyPage.enterAmount(amount);
+
+        // Click on Add
+        addMoneyPage.clickOnAdd();
+
+        // Select More Payment Options
+        addMoneyPage.selectMorePaymentOptions();
+
+        if(upiPage.isRestoreUpiCheckoutWidgetShown()) {
+
+            upiPage.clickOnRestoreUpiCheckout();
+
+            permissionHelper.permissionAllow();
+            permissionHelper.permissionAllow();
+            permissionHelper.permissionAllow();
+
+
+            Thread.sleep(3000);
+            mbReporter.verifyTrueWithLogging(!upiPage.isRestoreUpiCheckoutWidgetShown(), "Upi Restore Verification", false, false );
+
+            upiPage.clickOnUpiAccountInCheckout();
+
+            addMoneyPage.clickOnPay();
+
+            Thread.sleep(5000);
+
+            //2FA Validation Page Assertions
+
+            if(upiPage.is2FAPageDisplayed()){
+
+                upiPage.clickOnContinue2FAPage();
+                Thread.sleep(3000);
+                mbReporter.verifyTrueWithLogging(true, "2FA Page Verification Done", false, false );
+
+            }
+
+            mbkCommonControlsHelper.handleUpiPin(pin);
+
+            Thread.sleep(6000);
+
+            // Verification on the Success Screen
+            String title = addMoneyPage.getTitleOnSuccess();
+            String subTitle = addMoneyPage.getSubTitleOnSuccess();
+            String amountOnSuccess = addMoneyPage.getAmountOnSuccess();
+
+            // Display the values
+            Log.info("Title : " + title);
+            Log.info("Sub Title : " + subTitle);
+            Log.info("Amount : " + amountOnSuccess);
+
+            // Add the assertions
+            mbReporter.verifyEqualsWithLogging(title, expTitle, "Verify Title", false, false, true);
+            mbReporter.verifyEqualsWithLogging(subTitle, expSubTitle, "Verify Sub Title", false, false, true);
+            mbReporter.verifyEqualsWithLogging(amountOnSuccess, expAmount, "Verify Amount", false, false, true);
+
+
+            mbkCommonControlsHelper.pressback(1);
+
+            // Click on the back button if the bottom sheet is present
+            mbkCommonControlsHelper.handleHomePageLanding();
+
+            // Get the Balance if the User Before TRX
+            balanceAfter = mbkCommonControlsHelper.getBalance();
+
+
+            // Assertions on the balance deducted
+            mbkCommonControlsHelper.verifyWalletBalanceAfterTransaction(driver, balanceBefore, balanceAfter, amount, "Add");
+
+            // Verify the History details
+            mbkCommonControlsHelper.verifyHistoryDetails(driver, expectedHistoryDescription, expectedHistoryAmount, expectedHistoryStatus);
+
+        }else {
+
+            mbReporter.verifyTrueWithLogging(upiPage.isRestoreUpiCheckoutWidgetShown(), "Upi Restore Widget shown", false, false);
+
+        }
+
+
+
+        }
+
+
+
+
 
 }
 

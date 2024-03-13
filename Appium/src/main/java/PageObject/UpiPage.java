@@ -156,6 +156,12 @@ public class UpiPage {
     @AndroidFindBy(id = "back_to_home")
     private AndroidElement upi_setup_success_back_to_home_cta;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Restore your UPI account']")
+    private AndroidElement restore_upi_widget_checkout;
+
+    @AndroidFindBy(id="masked_account_number")
+    private AndroidElement checkout_upi_account;
+
 
 
 
@@ -256,6 +262,21 @@ public class UpiPage {
     public void clickOnUpiSetupCta() throws InterruptedException {
         Element.selectElement(driver, cta_start_upi_setup, "Permission Consent Page Continue CTA");
     }
+
+
+    public Boolean isRestoreUpiCheckoutWidgetShown() throws InterruptedException {
+        return Elements.isElementPresent(driver,restore_upi_widget_checkout);
+    }
+
+    public void clickOnRestoreUpiCheckout() throws InterruptedException {
+        Element.selectElement(driver, restore_upi_widget_checkout, "Checkout Restore UPI Widget.");
+    }
+
+    public void clickOnUpiAccountInCheckout() throws InterruptedException {
+        Element.selectElement(driver, checkout_upi_account, "Select UPI account in Checkout");
+    }
+
+
 
 
 

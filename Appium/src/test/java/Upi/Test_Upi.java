@@ -1,5 +1,6 @@
 package Upi;
 
+import Helpers.AddMoneyHelper;
 import Helpers.LoginHelper;
 import Helpers.UpiHelper;
 import Logger.Log;
@@ -70,20 +71,20 @@ public class Test_Upi extends TestBase {
 
 
 
-//
-//    @Test(groups = {"addMoneyViaUpi", "upiSanity"}, priority = 0, description = "Add Money via UPI test")
-//    public void Upi_Add_Money() throws IOException, InterruptedException {
-//
-//        Log.info("======= START : Add Money via UPI test =======");
-//
-//        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-//        loginHelper.quickLoginViaOtp("9205299330", "547372");
-//
-//
-//        UpiHelper upiHelper = new UpiHelper(getAndroidDriver());
-//        upiHelper.addMoneyViaUpi("121212", "5", "Payment Successful", "Money added into your wallet successfully");
-//
-//    }
+
+    @Test(groups = {"addMoneyViaUpi", "upiSanity"}, priority = 0, description = "Add Money via UPI test")
+    public void Upi_Add_Money() throws IOException, InterruptedException {
+
+        Log.info("======= START : Add Money via UPI test =======");
+
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaOtp("9205299330", "547372");
+
+
+        AddMoneyHelper addMoneyHelper = new AddMoneyHelper(getAndroidDriver());
+        addMoneyHelper.addMoneyViaUPI("5", "You Added","to your wallet","₹5", "Add Money via UPI", "+₹5", "Success", "121212" );
+
+    }
 //
 //    @Test(groups = {"deregisterUpi"}, priority = 0, description = "Deregister UPI test")
 //    public void Upi_Deregister() throws IOException, InterruptedException {
