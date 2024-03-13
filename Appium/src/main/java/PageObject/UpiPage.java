@@ -81,6 +81,13 @@ public class UpiPage {
     @AndroidFindBy(id = "continue_button")
     private AndroidElement cta_start_upi_setup;
 
+    @AndroidFindBy(id="qr_image")
+    private AndroidElement qr_image;
+
+    @AndroidFindBy(id="upi_id_view")
+    private AndroidElement qr_bottomsheet_upi_id;
+
+
 
 
 
@@ -98,11 +105,8 @@ public class UpiPage {
     @AndroidFindBy(id = "header_text")
     private AndroidElement text_header_upi_setup;
 
-    @AndroidFindBy(id = "qr_image")
-    private AndroidElement qr_image;
 
-    @AndroidFindBy(id = "upi_id_text")
-    private AndroidElement upi_id;
+
 
     @AndroidFindBy(id = "send_money_title")
     private AndroidElement cta_send_money;
@@ -275,6 +279,16 @@ public class UpiPage {
     public void clickOnUpiAccountInCheckout() throws InterruptedException {
         Element.selectElement(driver, checkout_upi_account, "Select UPI account in Checkout");
     }
+
+    public Boolean isQRPresent() throws InterruptedException{
+        return Elements.isElementPresent(driver, qr_image);
+    }
+
+    public String fetchUPIID() throws InterruptedException{
+        return Elements.getText(driver, qr_bottomsheet_upi_id, " Fetch UPi ID from QR Bottomsheet").replace("UPI ID : ", "");
+    }
+
+
 
 
 

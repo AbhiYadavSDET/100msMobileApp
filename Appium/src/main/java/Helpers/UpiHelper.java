@@ -220,14 +220,6 @@ public class UpiHelper {
     }
 
 
-
-
-
-
-
-
-
-
     public void requestMoneyViaUpi(String upiId, String amount, String message, String expectedSenderName, String amountPageName) throws InterruptedException, IOException {
 
 
@@ -283,58 +275,46 @@ public class UpiHelper {
 
     }
 
+    public void viewUPIQR() throws InterruptedException, IOException {
+
+        homePage.navigateAndSelectMyQRCode();
+        mbReporter.verifyTrueWithLogging(!(homePage.getUpiBottomsheetTitle() ==null), "Bottomsheet Title Text : "+homePage.getUpiBottomsheetTitle(), false,false);
+
+        homePage.clickLinkNowUpiQRBottomsheet();
+
+        upiPage.clickOnUpiSetupCta();
+
+        permissionHelper.permissionAllow();
+
+        permissionHelper.permissionAllow();
+
+        permissionHelper.permissionAllow();
+
+        Thread.sleep(4000);
+
+        mbReporter.verifyTrueWithLogging(upiPage.isQRPresent(), "QR Present :"+upiPage.isQRPresent(), false, false);
+        mbReporter.verifyTrueWithLogging(!(upiPage.fetchUPIID()==null)," User UPI ID : "+upiPage.fetchUPIID(), false, false);
+
+        driver.navigate().back();
+
+    }
+
+    public void viewPocketUPIQR() throws InterruptedException, IOException {
+
+        homePage.navigateAndSelectMyQRCode();
+        mbReporter.verifyTrueWithLogging(!(homePage.getUpiBottomsheetTitle() ==null), "Bottomsheet Title Text : "+homePage.getUpiBottomsheetTitle(), false,false);
+
+        homePage.switchTabUpitoPocketUpi();
+
+        mbReporter.verifyTrueWithLogging(upiPage.isQRPresent(), "QR Present :"+upiPage.isQRPresent(), false, false);
+        mbReporter.verifyTrueWithLogging(!(upiPage.fetchUPIID()==null)," User UPI ID : "+upiPage.fetchUPIID(), false, false);
+
+        driver.navigate().back();
+
+    }
 
 
-    //Payment Successful
-    //Money added into your wallet successfully
 
-//    public void addMoneyViaUpi(String pin, String amount, String successPageStatus, String successPageText) throws InterruptedException, IOException {
-//
-//        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
-//
-//        Thread.sleep(100);
-//
-//        balanceBefore = mbkCommonControlsHelper.getBalance();
-//
-//        homePage.clickOnAddMoneyButton();
-//
-//        addMoneyPage.clickOnAmountTextBox();
-//
-//        addMoneyPage.enterAmount(amount);
-//
-//        addMoneyPage.clickOnContinueButton();
-//
-//        addMoneyPage.chooseUpiOption();
-//
-//        addMoneyPage.restoreUpi();
-//
-//        permissionHelper.permissionAllow();
-//
-//        permissionHelper.permissionAllow();
-//
-//        addMoneyPage.chooseUpiBank();
-//
-//        mbkCommonControlsHelper.handleUpiPin(pin);
-//
-//        //Assertions
-//        Double expectedMainBalance = (Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100) + Double.parseDouble(amount) * 100;
-//        Double actualMainBalance = Double.parseDouble(addMoneyPage.getSuccessPageWalletBalance().replace("New Wallet Balance X", "").replace(",", "")) * 100;
-//        mbReporter.verifyEqualsWithLogging(addMoneyPage.getSuccessPageStatus(), successPageStatus, "Success Screen | Verify Status", false, false);
-//        mbReporter.verifyEqualsWithLogging(addMoneyPage.getSuccessPageText(), successPageText, "Success Screen | Verify Text", false, false);
-//        mbReporter.verifyEqualsWithLogging(actualMainBalance, expectedMainBalance, "Success Screen | Verify Main Balance", false, false);
-//
-//        mbkCommonControlsHelper.returnToHomePageFromP2MSuccessScreen();
-//
-//        // POST TRX Assertions
-//        balanceAfter = mbkCommonControlsHelper.getBalance();
-//        Double actualMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100;
-//        Double actualSuperCashBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
-//        Double expectedMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100 + Double.parseDouble(amount) * 100;
-//        Double expectedSuperCashBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
-//        mbReporter.verifyEqualsWithLogging(actualMainBalanceAfter, expectedMainBalanceAfter, "After TRX | Verify Wallet Main Balance", false, false);
-//        mbReporter.verifyEqualsWithLogging(actualSuperCashBalanceAfter, expectedSuperCashBalanceAfter, "After TRX | Verify Supercash Balance", false, false);
-//
-//    }
 
 //    public void deregisterUpi() throws InterruptedException, IOException {
 //

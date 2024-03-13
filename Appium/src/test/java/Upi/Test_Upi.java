@@ -85,6 +85,32 @@ public class Test_Upi extends TestBase {
         addMoneyHelper.addMoneyViaUPI("5", "You Added","to your wallet","₹5", "Add Money via UPI", "+₹5", "Success", "121212" );
 
     }
+
+    @Test(groups = {"upiViewQr", "upiSanity"}, priority = 0, description = "View UPI QR test")
+    public void View_UPI_QR() throws IOException, InterruptedException {
+
+        Log.info("======= START : View UPI QR test=======");
+
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaOtp("9205299330", "547372");
+
+        UpiHelper upiHelper = new UpiHelper(getAndroidDriver());
+        upiHelper.viewUPIQR();
+    }
+
+    @Test(groups = {"upiViewQr", "upiSanity"}, priority = 0, description = "View Pocket UPI QR test")
+    public void View_Pocket_UPI_QR() throws IOException, InterruptedException {
+
+        Log.info("======= START : View Pocket UPI QR test=======");
+
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaOtp("9205299330", "547372");
+
+        UpiHelper upiHelper = new UpiHelper(getAndroidDriver());
+        upiHelper.viewPocketUPIQR();
+    }
+
+
 //
 //    @Test(groups = {"deregisterUpi"}, priority = 0, description = "Deregister UPI test")
 //    public void Upi_Deregister() throws IOException, InterruptedException {

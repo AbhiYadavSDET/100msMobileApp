@@ -264,8 +264,20 @@ public class HomePage {
     @AndroidFindBy(id="option4")
     private AndroidElement home_page_upi_option4_check_bank_balance;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='My QR Code']")
+    private AndroidElement home_page_upi_widget_myQR;
+
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Request Money']")
     private AndroidElement upiRequestMoneyCTA;
+
+    @AndroidFindBy(id="setup_title")
+    private AndroidElement upiqr_bottomsheet_title;
+
+    @AndroidFindBy(id="setup_upi_cta")
+    private AndroidElement upi_link_now_cta;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Pocket UPI QR']")
+    private AndroidElement switch_tab_upi_to_pocketupi;
 
 
 
@@ -513,6 +525,26 @@ public class HomePage {
     public void navigateAndSelectUpiCheckBalance() throws IOException, InterruptedException {
         Elements.scrollToElement(driver, home_page_upi_option4_check_bank_balance);
         Element.selectElement(driver, home_page_upi_option4_check_bank_balance, "Navigate to UPI Page via HomePage Upi widget Check Balance");
+    }
+
+    public void navigateAndSelectMyQRCode() throws IOException, InterruptedException {
+        Elements.scrollToElement(driver, home_page_upi_widget_myQR);
+        Element.selectElement(driver, home_page_upi_widget_myQR, "Navigate to UPI QR via HomePage Upi widget");
+    }
+
+    public String getUpiBottomsheetTitle() throws IOException {
+        return Element.getText(driver, upiqr_bottomsheet_title, "Title");
+
+    }
+
+    public void clickLinkNowUpiQRBottomsheet() throws IOException {
+        Element.selectElement(driver, upi_link_now_cta, "Click on Link Now Cta");
+
+    }
+
+    public void switchTabUpitoPocketUpi() throws IOException {
+        Element.selectElement(driver, switch_tab_upi_to_pocketupi, "Switch Tab Upi to Pocket Upi");
+
     }
 
 
