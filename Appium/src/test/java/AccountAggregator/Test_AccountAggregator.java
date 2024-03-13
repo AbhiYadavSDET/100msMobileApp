@@ -16,7 +16,7 @@ public class Test_AccountAggregator extends TestBase {
 
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.quickLoginViaOtp("7795709569", "547372");
+        loginHelp.quickLoginViaOtp("7042338867", "547372");
         AAHelper aaHelper = new AAHelper(getAndroidDriver());
         // Execute the test
         aaHelper.existingUser("All Bank Balance", "Your Monthly Summary", "Analyser", "HIGHLIGHTS", "YOUR ACCOUNTS", "OUTGOING", "Others", "Expenses", "EMI", "Investment", "Settings", "Download Statements", "Help & Support");
@@ -28,7 +28,7 @@ public class Test_AccountAggregator extends TestBase {
     public void Test02_existing_User_MonthlySummery() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.quickLoginViaOtp("7795709569", "547372");
+        loginHelp.quickLoginViaOtp("7042338867", "547372");
         AAHelper aaHelper = new AAHelper(getAndroidDriver());
         // Execute the test
         aaHelper.existingUserMonthlySummary("Incoming", "Outgoing", "Invested", "Remaining", "Outgoing", "Expenses", "SIPs & EMIs", "Bank charges", "Others", "Highest Spend", "Top Category", "Spends by Date", "Money Received");
@@ -40,7 +40,7 @@ public class Test_AccountAggregator extends TestBase {
     public void Test03_existing_User_Analyser() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.quickLoginViaOtp("7795709569", "547372");
+        loginHelp.quickLoginViaOtp("7042338867", "547372");
         AAHelper aaHelper = new AAHelper(getAndroidDriver());
         // Execute the test
         aaHelper.existingUserAnalyser("DEBITS", "Credits", "Week", "Month", "Year", "Debited this week");
@@ -52,7 +52,7 @@ public class Test_AccountAggregator extends TestBase {
     public void Test04_existing_User_Manage() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.quickLoginViaOtp("7795709569", "547372");
+        loginHelp.quickLoginViaOtp("7042338867", "547372");
         AAHelper aaHelper = new AAHelper(getAndroidDriver());
         // Execute the test
         aaHelper.existingUserManage("Auto Refresh Frequency", "Manage Consent", "Help");
@@ -64,7 +64,7 @@ public class Test_AccountAggregator extends TestBase {
     public void Test05_existing_User_Added_BankAccount() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.quickLoginViaOtp("7795709569", "547372");
+        loginHelp.quickLoginViaOtp("7042338867", "547372");
         AAHelper aaHelper = new AAHelper(getAndroidDriver());
         // Execute the test
         aaHelper.existingUserBankAccountDetails();
@@ -77,7 +77,7 @@ public class Test_AccountAggregator extends TestBase {
     public void Test05_AA_new_addaccount() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.quickLoginViaOtp("7795709569", "547372");
+        loginHelp.quickLoginViaOtp("7042338867", "547372");
         AAHelper aaHelper = new AAHelper(getAndroidDriver());
         // Execute the test
         aaHelper.addAccountNewScreen();
