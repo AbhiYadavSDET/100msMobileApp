@@ -47,6 +47,33 @@ public class HistoryPage {
     @AndroidFindBy(id = "txt_aa_not_setup_title")
     private AndroidElement txt_aa_not_setup_title;
 
+    @AndroidFindBy(id = "txt_amount")
+    private AndroidElement totalBalance;
+
+    @AndroidFindBy(id = "txt_categories")
+    private AndroidElement txt_categories;
+
+    @AndroidFindBy(id = "txt_help")
+    private AndroidElement txt_help;
+
+    @AndroidFindBy(id = "txt_transaction_summary")
+    private AndroidElement txt_transaction_summary;
+    @AndroidFindBy(id = "mkab_icon_1")
+    private AndroidElement back_cta_invoice;
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Done']")
+    private AndroidElement done_cta;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Insights']")
+    private AndroidElement insight_cta;
+
+    @AndroidFindBy(id = "ic_arrow_right_without_padding")
+    private AndroidElement right_arrow_nexttobank;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Re-Link Bank Accounts']")
+    private AndroidElement relink_bankaccount;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'SELECT YOUR BANK']")
+    private AndroidElement txt_select_your_bank;
 
     public HistoryPage(AndroidDriver driver) {
         this.driver = driver;
@@ -106,7 +133,57 @@ public class HistoryPage {
         return Elements.isElementPresent(driver, txt_aa_not_setup_title);
     }
 
-
+    public boolean isTotalBalancePresent() throws InterruptedException {
+        return Elements.isElementPresent(driver, totalBalance);
     }
+
+    public String getCategoriesText() throws InterruptedException {
+        return Elements.getText(driver, txt_categories, "Category Text");
+    }
+
+    public void clickonAllCategories() {
+        Elements.selectElement(driver, txt_categories, "Click on Category Text");
+    }
+
+    public String getHelpText() throws InterruptedException {
+        return Elements.getText(driver, txt_help, "Help Text");
+    }
+
+    public boolean isTxnHistoryDataPresent() throws InterruptedException {
+        return Elements.isElementPresent(driver, txt_transaction_summary);
+    }
+
+    public void clickonTxnHistoryDataPresent() {
+        Elements.selectElement(driver, txt_transaction_summary, "Click on Txn History");
+    }
+
+    public void clickonBackCTAOnInvoiceTxn() {
+        Elements.selectElement(driver, back_cta_invoice, "Click on Back CTA on Invoice");
+    }
+
+    public void clickonDoneCTAOnselectCategoryPage() {
+        Elements.selectElement(driver, done_cta, "Click on Done CTA on Select Categories");
+    }
+
+
+    public void clickOnRightArrowNexttobankNo() {
+        Elements.selectElement(driver, right_arrow_nexttobank, "Click on right arrow next to bank");
+    }
+
+    public void clickOnRelinkBankAccount() {
+        Elements.selectElement(driver, relink_bankaccount, "Click on Relink Bank account");
+    }
+
+    public String getTxtSelectYourBank() throws InterruptedException {
+        return Elements.getText(driver, txt_select_your_bank, "Select your bank txt");
+    }
+
+
+    public String getIsightTxt() throws InterruptedException {
+        return Elements.getText(driver, insight_cta, "Get insight txt");
+    }
+}
+
+
 
 

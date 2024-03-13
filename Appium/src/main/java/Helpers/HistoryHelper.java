@@ -5,6 +5,8 @@ import Utils.Element;
 import io.appium.java_client.android.AndroidDriver;
 import Utils.MBReporter;
 import Utils.Screen;
+import org.openqa.selenium.By;
+
 import java.io.IOException;
 
 import java.util.HashMap;
@@ -16,6 +18,8 @@ import java.util.HashMap;
         Screen screen;
         Element element;
         MBKCommonControlsHelper mbkCommonControlsHelper;
+        AAHelper aAHelper;
+        AccountAggregatorPage accountAggregatorPage;
         MBReporter mbReporter;
 
         public HistoryHelper(AndroidDriver driver) throws IOException {
@@ -24,7 +28,9 @@ import java.util.HashMap;
             screen = new Screen(driver);
             element = new Element(driver);
             mbReporter = new MBReporter(driver);
-
+            mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
+            aAHelper = new AAHelper(driver);
+            accountAggregatorPage= new AccountAggregatorPage(driver);
         }
 
     public void newUserHistory() throws InterruptedException, IOException
@@ -47,4 +53,55 @@ import java.util.HashMap;
            mbReporter.verifyTrueWithLogging(historyPage.isNotSetupAAtTitle(), "Is Not set up bank account Title in Credit tab", false, false);
 
     }
+
+        public void existingUserHistory(String expallCategoriesTitle,String exphelpTitle) throws InterruptedException, IOException
+        {
+            historyPage.clickHistoryTab();
+            historyPage.clickMobikwikHeaderOnHistory();
+
+            // First Mobikwik Tab verification for kyced User
+
+            mbReporter.verifyTrueWithLogging(historyPage.isTotalBalancePresent(), "Is Total Balance Present", false, false);
+
+            String allCategoriesTitle = historyPage.getCategoriesText();
+            String helpTitle = historyPage.getHelpText();
+
+            Log.info("Categories Title :" +allCategoriesTitle );
+            Log.info("Help Title :" +helpTitle );
+
+            mbReporter.verifyEqualsWithLogging(allCategoriesTitle, expallCategoriesTitle, "Verify All Categories Title", false, false, true);
+            mbReporter.verifyEqualsWithLogging(helpTitle, exphelpTitle, "Verify Help Title", false, false, true);
+            mbReporter.verifyTrueWithLogging(historyPage.isTxnHistoryDataPresent(), "Is Transaction History Data Present", false, false);
+
+            historyPage.clickonTxnHistoryDataPresent();
+            Element.waitForVisibility(driver, By.id("mkab_icon_1"));
+
+            historyPage.clickonBackCTAOnInvoiceTxn();
+            if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Enable secure login']")))
+            {
+                mbkCommonControlsHelper.handleSetupSecurityBottomSheet();
+            }
+            historyPage.clickonAllCategories();
+            historyPage.clickonDoneCTAOnselectCategoryPage();
+        }
+
+        public void existingUserHistoryAAbottomSheet(String expselectYourBank,String expinsightTxt) throws InterruptedException, IOException
+        {
+            historyPage.clickHistoryTab();
+            historyPage.clickBankAccountOnHistory();
+
+            String insightTxt = historyPage.getIsightTxt();
+            Log.info("Get Insight Txt" +insightTxt );
+            mbReporter.verifyEqualsWithLogging(insightTxt, expinsightTxt, "Insight txt", false, false, true);
+
+
+            historyPage.clickOnRightArrowNexttobankNo();
+
+            String selectYourBank = historyPage.getTxtSelectYourBank();
+            Log.info("Select your bank txt:" +selectYourBank );
+            mbReporter.verifyEqualsWithLogging(selectYourBank, expselectYourBank, "Select your bank txt", false, false, true);
+
+
+        }
+
     }
