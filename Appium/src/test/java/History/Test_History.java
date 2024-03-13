@@ -11,7 +11,7 @@ import java.io.IOException;
 public class Test_History extends TestBase {
 
 
-    @Test(groups = {"History", "sanity", "regression"}, priority = 2, description = "Verify New User History")
+    @Test(groups = {"History", "sanity", "regression"}, priority = 1, description = "Verify New User History")
     public void Test01_History_New_User() throws IOException, InterruptedException {
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
         loginHelp.quickLoginViaOtp("8216900006", "547372");
