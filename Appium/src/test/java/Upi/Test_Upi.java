@@ -124,6 +124,32 @@ public class Test_Upi extends TestBase {
 
     }
 
+    @Test(groups = {"pocketUpi", "upiSanity"}, priority = 0, description = "Pocket UPI Send Money via pocketUpi")
+    public void Test09_Upi_Send_Money_via_PocketUpi() throws IOException, InterruptedException {
+
+        Log.info("======= START : Pocket UPI Send Money via pocketUpi =======");
+
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
+
+
+        UpiHelper upiHelper = new UpiHelper(getAndroidDriver());
+        upiHelper.pocketUPITransferNow("1", "Automation Transfer via Pocket UPI", "Paraj Jain","7795709569@paytm", "Paraj Jain");
+    }
+
+    @Test(groups = {"pocketUpi", "upiSanity"}, priority = 0, description = "Pocket UPI Show My QR from Pocket UPI Home Page")
+    public void Test10_Upi_PocketUpi_Show_my_QR() throws IOException, InterruptedException {
+
+        Log.info("======= START : Pocket UPI Show My QR from Pocket UPI Home Page =======");
+
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
+
+
+        UpiHelper upiHelper = new UpiHelper(getAndroidDriver());
+        upiHelper.pocketUPIHomePageShowMyQrCode();
+    }
+
 
 //
 //    @Test(groups = {"deregisterUpi"}, priority = 0, description = "Deregister UPI test")

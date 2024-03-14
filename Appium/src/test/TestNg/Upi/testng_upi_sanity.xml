@@ -9,7 +9,7 @@
     <parameter name="androidOSVersion" value="12.0"></parameter>
 
 
-    <test verbose="2" preserve-order="true" name="Upi Send Money Test">
+    <test verbose="2" preserve-order="true" name="Upi Sanity Test">
         <groups>
             <run>
                 <include name="setUp"/>

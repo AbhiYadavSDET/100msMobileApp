@@ -258,6 +258,9 @@ public class HomePage {
     @AndroidFindBy(id="include_search_bar")
     private AndroidElement home_page_upi_search_bar;
 
+    @AndroidFindBy(id = "option1")
+    private AndroidElement home_page_upi_PocketUpi;
+
     @AndroidFindBy(id="option3")
     private AndroidElement home_page_upi_option3_send_to_bank;
 
@@ -519,6 +522,12 @@ public class HomePage {
     public UpiPage navigateAndSelectUpiSearch() throws IOException, InterruptedException {
         Elements.scrollToElement(driver, home_page_upi_search_bar);
         Element.selectElement(driver, home_page_upi_search_bar, "Navigate to UPI Page via HomePage Upi widget Search");
+        return new UpiPage(driver);
+    }
+
+    public UpiPage navigateAndSelectPocketUpi() throws IOException, InterruptedException {
+        Elements.scrollToElement(driver, home_page_upi_PocketUpi);
+        Element.selectElement(driver, home_page_upi_PocketUpi, "Navigate to Pocket UPI Page via HomePage Upi widget");
         return new UpiPage(driver);
     }
 

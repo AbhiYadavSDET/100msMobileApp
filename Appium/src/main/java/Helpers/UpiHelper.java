@@ -403,6 +403,104 @@ public class UpiHelper {
     }
 
 
+    public void pocketUPITransferNow(String amount, String message, String expectedReceiverName, String upiId, String amountPageTransferName) throws InterruptedException, IOException{
+
+        upiPage = homePage.navigateAndSelectPocketUpi();
+
+        if(upiPage.isWalletNowPocketUpiBottomsheetPresent()){
+
+            Thread.sleep(1000);
+            mbReporter.verifyTrueWithLogging(true, "Wallet UPI is now Pocket Upi bottomsheet shown", false, false);
+            mbReporter.verifyTrueWithLogging(true, "Title : "+upiPage.getbottomsheetTitle(), false,false);
+            mbReporter.verifyTrueWithLogging(true, "Description : "+upiPage.getbottomsheetDescription(), false,false);
+            upiPage.selectContinueCta();
+
+        }
+
+        Element.waitForVisibility(driver, By.id("pocket_upi_header"));
+        mbReporter.verifyTrueWithLogging(!(upiPage.getPocketUpiId() ==null), upiPage.getPocketUpiId(), false,false);
+
+        upiPage.selectPocketUpiTransferNowCta();
+
+        upiPage.selectEnterUPI();
+
+        upiPage.enterUpiId(upiId);
+
+        upiPage.selectResultUpi();
+
+        //Amount Page Assertions
+
+        mbReporter.verifyEqualsWithLogging(upiPage.getAmountPageTransferTo(), amountPageTransferName, "Verifying Fetched name", false, false);
+
+
+
+
+
+
+        mbReporter.verifyTrueWithLogging(upiPage.isPocketUPIPreSelected(), "Validating if Pocket Upi is Pre-selected", false,true);
+
+        upiPage.enterAmount(amount);
+
+        upiPage.enterMessage(message);
+
+        upiPage.clickOnConfirmPayment();
+        Thread.sleep(4000);
+
+        permissionHelper.permissionAllow();
+        permissionHelper.permissionAllow();
+        permissionHelper.permissionAllow();
+
+        Thread.sleep(4000);
+
+
+        mbReporter.verifyEqualsWithLogging(upiPage.getPaymentSuccessMessage(), "You Paid", "Success Message Validation", false, false);
+
+        String actualTotalAmountPaid = upiPage.getAmountPaid().replace("₹", "");
+
+        mbReporter.verifyEqualsWithLogging(actualTotalAmountPaid, amount, "Validate Amount", false, false);
+
+        String actualReceiverName = upiPage.getReceiverName().replace("to ", "");
+
+        mbReporter.verifyEqualsWithLogging(actualReceiverName, expectedReceiverName, "Validate Receiver name", false, false);
+
+        mbReporter.verifyTrueWithLogging(upiPage.isPayModeOnSuccessScreenPocketUPI(), "Validating if Pocket Upi is the Pay mode on Success Screen", false,true);
+
+
+        upiPage.returnToHomePage();
+
+    }
+
+    public void pocketUPIHomePageShowMyQrCode() throws InterruptedException, IOException{
+
+        upiPage = homePage.navigateAndSelectPocketUpi();
+
+        if(upiPage.isWalletNowPocketUpiBottomsheetPresent()){
+
+            Thread.sleep(1000);
+            mbReporter.verifyTrueWithLogging(true, "Wallet UPI is now Pocket Upi bottomsheet shown", false, false);
+            mbReporter.verifyTrueWithLogging(true, "Title : "+upiPage.getbottomsheetTitle(), false,false);
+            mbReporter.verifyTrueWithLogging(true, "Description : "+upiPage.getbottomsheetDescription(), false,false);
+            upiPage.selectContinueCta();
+
+        }
+
+        Element.waitForVisibility(driver, By.id("pocket_upi_header"));
+        mbReporter.verifyTrueWithLogging(!(upiPage.getPocketUpiId() ==null), upiPage.getPocketUpiId(), false,false);
+
+        upiPage.selectPocketUpiShowMyQRCta();
+
+        mbReporter.verifyTrueWithLogging(!(upiPage.getbottomsheetTitle() ==null), "Pocket UPI Bottomsheet Title Text : "+upiPage.getbottomsheetTitle(), false,false);
+
+
+        mbReporter.verifyTrueWithLogging(upiPage.isQRPresent(), "QR Present :"+upiPage.isQRPresent(), false, false);
+        mbReporter.verifyTrueWithLogging(!(upiPage.fetchUPIID()==null)," User UPI ID : "+upiPage.fetchUPIID(), false, false);
+
+        driver.navigate().back();
+
+
+    }
+
+
 
 
 //    public void deregisterUpi() throws InterruptedException, IOException {

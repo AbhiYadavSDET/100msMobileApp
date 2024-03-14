@@ -112,6 +112,56 @@ public class UpiPage {
 
 
 
+////////////////////////////////Pocket UPI
+
+    @AndroidFindBy(id = "pocket_upi_title")
+    private AndroidElement pocketUpi_bottomsheet;
+
+    @AndroidFindBy(id = "title")
+    private AndroidElement pocketUpi_bottomsheet_title;
+    @AndroidFindBy(id = "desc")
+    private AndroidElement pocketUpi_bottomsheet_description;
+
+    @AndroidFindBy(id = "cta")
+    private AndroidElement pocketUpi_bottomsheet_continue_cta;
+
+    @AndroidFindBy(id="pocket_upi_header")
+    private AndroidElement pocketUpi_homePage_header;
+
+    //Pocket UPI ID: 9205299330@mbk
+    @AndroidFindBy(id="pocket_upi_id")
+    private AndroidElement pocket_upi_id;
+
+    @AndroidFindBy (xpath = "//android.widget.TextView[@text='Transfer Now']")
+    private AndroidElement pocketUpi_homePage_transferNow_cta;
+
+    @AndroidFindBy (xpath = "//android.widget.TextView[@text='Scan any QR code']")
+    private AndroidElement pocketUpi_homePage_scanAnyQR_cta;
+
+    @AndroidFindBy (xpath = "//android.widget.TextView[@text='Show my QR code']")
+    private AndroidElement pocketUpi_homePage_showMyQr_cta;
+
+    //should be "Pocket UPI"
+    @AndroidFindBy(id = "selected_bank_account")
+    private AndroidElement pre_selected_bank_account;
+
+    //should be equal to "Pocket UPI"
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Payment Mode']/following-sibling::android.widget.TextView")
+    private AndroidElement success_page_validation_payment_mode;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -340,6 +390,64 @@ public class UpiPage {
     public void selectFirstVpaFromList() throws InterruptedException{
         Element.selectElement(driver,vpa1, "Select Vpa from List");
     }
+
+    ///////Pocket UPI Methods
+
+
+
+    public Boolean isWalletNowPocketUpiBottomsheetPresent() throws InterruptedException{
+        return Elements.isElementPresent(driver, pocketUpi_bottomsheet);
+    }
+
+    public String getbottomsheetTitle() throws InterruptedException {
+        return Element.getText(driver, pocketUpi_bottomsheet_title, "Get PocketUpi Bottomsheet title");
+    }
+
+    public String getbottomsheetDescription() throws InterruptedException {
+        return Element.getText(driver, pocketUpi_bottomsheet_description, "Get PocketUpi Bottomsheet Description");
+    }
+
+
+    public void selectContinueCta() throws InterruptedException{
+        Element.selectElement(driver,pocketUpi_bottomsheet_continue_cta, "Select PocketUpi bottomsheet Continue cta");
+    }
+
+    public String getPocketUpiId() throws InterruptedException {
+        return Element.getText(driver, pocket_upi_id, "Get PocketUpi ID");
+    }
+
+
+    public void selectPocketUpiTransferNowCta() throws InterruptedException{
+        Element.selectElement(driver,pocketUpi_homePage_transferNow_cta, "Select PocketUpi Transfer Now cta");
+    }
+
+    public void selectPocketUpiScanAnyQRCta() throws InterruptedException{
+        Elements.scrollToElement(driver,pocketUpi_homePage_scanAnyQR_cta );
+        Element.selectElement(driver,pocketUpi_homePage_scanAnyQR_cta, "Select PocketUpi Sacn Any QR cta");
+    }
+
+
+    public void selectPocketUpiShowMyQRCta() throws InterruptedException{
+        Elements.scrollToElement(driver,pocketUpi_homePage_showMyQr_cta );
+        Element.selectElement(driver,pocketUpi_homePage_showMyQr_cta, "Select PocketUpi Show my QR cta");
+    }
+
+    public Boolean isPocketUPIPreSelected() throws InterruptedException{
+        if(Element.getText(driver, pre_selected_bank_account, "Fetching Pre Selected PayMode" ).equals("Pocket UPI")){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public Boolean isPayModeOnSuccessScreenPocketUPI() throws InterruptedException{
+        if(Element.getText(driver, success_page_validation_payment_mode, "Fetching Success Page PayMode" ).equals("Pocket UPI")){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
 
 
 
