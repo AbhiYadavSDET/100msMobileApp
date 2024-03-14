@@ -153,7 +153,7 @@ public class Test_Upi extends TestBase {
     @Test(groups = {"manageUpi", "upiSanity"}, priority = 0, description = "Manage UPI Section")
     public void Test11_manage_UPI() throws IOException, InterruptedException {
 
-        Log.info("======= START : Pocket UPI Show My QR from Pocket UPI Home Page =======");
+        Log.info("======= START : Manage UPI Section =======");
 
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
         loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
@@ -161,6 +161,19 @@ public class Test_Upi extends TestBase {
 
         UpiHelper upiHelper = new UpiHelper(getAndroidDriver());
         upiHelper.manageUpi();
+    }
+
+    @Test(groups = {"manageUpi", "upiSanity"}, priority = 0, description = "Add New Bank account and Credit Card flow")
+    public void Test12_add_account_creditCard() throws IOException, InterruptedException {
+
+        Log.info("======= START : Add New Bank account and Credit Card flow =======");
+
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
+
+
+        UpiHelper upiHelper = new UpiHelper(getAndroidDriver());
+        upiHelper.addNewBankAccountAndCreditCard();
     }
 
 

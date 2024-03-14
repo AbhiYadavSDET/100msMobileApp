@@ -558,6 +558,63 @@ public class UpiHelper {
     }
 
 
+    public void addNewBankAccountAndCreditCard() throws InterruptedException, IOException {
+
+        homePage.clickOnAllServicesSection();
+        upiPage = homePage.clickOnUPITransfers();
+
+        Element.waitForVisibility(driver, By.id("transfer_own_account"));
+        upiPage.selectManageCta();
+
+        Element.waitForVisibility(driver, By.id("txtHowToUseUpi"));
+
+
+        upiPage.clickLinkAccount();
+
+        upiPage.clickOnUpiSetupCta();
+
+        permissionHelper.permissionAllow();
+
+        permissionHelper.permissionAllow();
+
+        permissionHelper.permissionAllow();
+
+        Thread.sleep(4000);
+
+        mbReporter.verifyTrueWithLogging(upiPage.isQRPresent(), "QR Present :"+upiPage.isQRPresent(), false, false);
+        mbReporter.verifyTrueWithLogging(!(upiPage.fetchUPIIDManageSection()==null)," User UPI ID : "+upiPage.fetchUPIIDManageSection(), false, false);
+        mbReporter.verifyTrueWithLogging(!(upiPage.fetchUPINumberManageSection()==null)," User UPI Number : "+upiPage.fetchUPINumberManageSection(), false, false);
+
+       upiPage.navigateToAddNewBankAccountAndSelect();
+       upiPage.selectHdfcBankFromList();
+
+       Thread.sleep(4000);
+
+       mbReporter.verifyTrueWithLogging(upiPage.validateErrorMessage().equals("You don’t seem to have an account in this bank"),"Validating Error Message", false, false);
+
+       upiPage.goBackAddFlow();
+       Thread.sleep(1000);
+       upiPage.goBackAddFlow();
+
+
+        upiPage.navigateToAddNewCreditCardAndSelect();
+
+        mbReporter.verifyTrueWithLogging(!(upiPage.getAddCreditCardLandingPageMessage() ==null),"Add Credit Card Landing Page Message : "+upiPage.getAddCreditCardLandingPageMessage(), false, false);
+
+
+        upiPage.selectHdfcBankCreditCardFromList();
+
+        Thread.sleep(4000);
+
+        mbReporter.verifyTrueWithLogging(upiPage.validateErrorMessage().equals("You don’t seem to have an account in this bank"),"Validating Error Message", false, false);
+
+        upiPage.goBackAddFlow();
+        Thread.sleep(1000);
+        upiPage.goBackAddFlow();
+
+    }
+
+
 
 
 //    public void deregisterUpi() throws InterruptedException, IOException {

@@ -143,6 +143,30 @@ public class UpiPage {
     @AndroidFindBy(id="mkab_icon_1")
     private AndroidElement back_button;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Add New Bank Account']")
+    private AndroidElement add_new_bank_account;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Hdfc Bank']")
+    private AndroidElement hdfc_bank;
+
+    //"You don’t seem to have an account in this bank"
+    @AndroidFindBy(id="description")
+    private AndroidElement errormessage_description;
+
+    @AndroidFindBy(id="mkab_left_icon")
+    private AndroidElement back_button_errorPage;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Add New Credit Card']")
+    private AndroidElement add_new_bank_credit_card;
+
+    @AndroidFindBy(id="subtitle")
+    private AndroidElement add_credit_card_landing_page_subtitle;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='HDFC Bank Credit Card']")
+    private AndroidElement hdfc_bank_credit_card;
+
+
+
 
 
 
@@ -185,6 +209,7 @@ public class UpiPage {
     //should be "Pocket UPI"
     @AndroidFindBy(id = "selected_bank_account")
     private AndroidElement pre_selected_bank_account;
+
 
     //should be equal to "Pocket UPI"
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Payment Mode']/following-sibling::android.widget.TextView")
@@ -554,6 +579,45 @@ public class UpiPage {
 
     public void clickOnBackButton() throws InterruptedException {
         Element.selectElement(driver, back_button, "Click on Back Button");
+    }
+
+
+    public void navigateToAddNewBankAccountAndSelect() throws InterruptedException {
+        Elements.scrollToElement(driver, add_new_bank_account );
+        Element.selectElement(driver, add_new_bank_account, "Select Add new Bank Account");
+    }
+
+
+    public void selectHdfcBankFromList() throws InterruptedException {
+        Element.waitForVisibility(driver,hdfc_bank );
+        Element.selectElement(driver, hdfc_bank, "Select HDFC Bank Account");
+    }
+
+
+
+    //"You don’t seem to have an account in this bank"
+    public String validateErrorMessage() throws InterruptedException {
+        return Element.getText(driver, errormessage_description, " Fetching Error Message");
+    }
+
+
+    public void goBackAddFlow() throws InterruptedException {
+        Element.selectElement(driver, back_button_errorPage, "Go Back");
+    }
+
+    public void navigateToAddNewCreditCardAndSelect() throws InterruptedException {
+        Elements.scrollToElement(driver, add_new_bank_credit_card );
+        Element.selectElement(driver, add_new_bank_credit_card, "Select Add new Credit card");
+    }
+
+
+    public String getAddCreditCardLandingPageMessage() throws InterruptedException {
+        return Element.getText(driver, add_credit_card_landing_page_subtitle, " Fetching Add Credit Card Landing Page Message");
+    }
+
+    public void selectHdfcBankCreditCardFromList() throws InterruptedException {
+        Element.waitForVisibility(driver,hdfc_bank_credit_card );
+        Element.selectElement(driver, hdfc_bank_credit_card, "Select HDFC Bank Credit Card");
     }
 
 
