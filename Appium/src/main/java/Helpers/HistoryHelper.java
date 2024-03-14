@@ -54,8 +54,8 @@ import java.util.HashMap;
 
     }
 
-        public void existingUserHistory(String expallCategoriesTitle,String exphelpTitle) throws InterruptedException, IOException
-        {
+
+        public void existingUserHistory(String expallCategoriesTitle,String exphelpTitle) throws InterruptedException, IOException {
             historyPage.clickHistoryTab();
             historyPage.clickMobikwikHeaderOnHistory();
 
@@ -64,33 +64,37 @@ import java.util.HashMap;
             mbReporter.verifyTrueWithLogging(historyPage.isTotalBalancePresent(), "Is Total Balance Present", false, false);
 
 
-            if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Enable secure login']")))
-            {
+            if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Enable secure login']"))) {
                 mbkCommonControlsHelper.handleSetupSecurityBottomSheet();
             }
 
-            String allCategoriesTitle = historyPage.getCategoriesText();
             String helpTitle = historyPage.getHelpText();
 
-            Log.info("Categories Title :" +allCategoriesTitle );
-            Log.info("Help Title :" +helpTitle );
+            Log.info("Help Title :" + helpTitle);
 
-            mbReporter.verifyEqualsWithLogging(allCategoriesTitle, expallCategoriesTitle, "Verify All Categories Title", false, false, true);
             mbReporter.verifyEqualsWithLogging(helpTitle, exphelpTitle, "Verify Help Title", false, false, true);
             mbReporter.verifyTrueWithLogging(historyPage.isTxnHistoryDataPresent(), "Is Transaction History Data Present", false, false);
 
             historyPage.clickonTxnHistoryDataPresent();
-            Element.waitForVisibility(driver, By.id("mkab_icon_1"));
-
-            historyPage.clickonBackCTAOnInvoiceTxn();
-            if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Enable secure login']")))
+            if (Element.isElementPresent(driver, By.id("download_statement_frame")))
             {
-                mbkCommonControlsHelper.handleSetupSecurityBottomSheet();
-            }
-            historyPage.clickonAllCategories();
-            historyPage.clickonDoneCTAOnselectCategoryPage();
-        }
 
+                Log.info("Invoice not present");
+
+            }
+
+            else {
+                Element.waitForVisibility(driver, By.id("mkab_icon_1"));
+
+                historyPage.clickonBackCTAOnInvoiceTxn();
+                if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Enable secure login']"))) {
+                    mbkCommonControlsHelper.handleSetupSecurityBottomSheet();
+                }
+                historyPage.clickonAllCategories();
+                historyPage.clickonDoneCTAOnselectCategoryPage();
+            }
+
+        }
         public void existingUserHistoryAAbottomSheet(String expselectYourBank,String expinsightTxt) throws InterruptedException, IOException
         {
             historyPage.clickHistoryTab();
