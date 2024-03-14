@@ -75,6 +75,9 @@ public class HistoryPage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'SELECT YOUR BANK']")
     private AndroidElement txt_select_your_bank;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@id='txt_transaction_summary'])[1]]")
+    private AndroidElement second_byid_ontx;
+
     public HistoryPage(AndroidDriver driver) {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -182,6 +185,14 @@ public class HistoryPage {
     public String getIsightTxt() throws InterruptedException {
         return Elements.getText(driver, insight_cta, "Get insight txt");
     }
+
+    public void clickonsecondelement()
+    {
+        Elements.selectElement(driver, second_byid_ontx, "click on second element");
+    }
+
+
+
 }
 
 
