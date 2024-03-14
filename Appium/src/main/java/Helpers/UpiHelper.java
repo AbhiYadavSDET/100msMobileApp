@@ -3,6 +3,7 @@ package Helpers;
 import Logger.Log;
 import PageObject.*;
 import Utils.Element;
+import Utils.Elements;
 import Utils.MBReporter;
 import Utils.Screen;
 import io.appium.java_client.android.AndroidDriver;
@@ -496,6 +497,62 @@ public class UpiHelper {
         mbReporter.verifyTrueWithLogging(!(upiPage.fetchUPIID()==null)," User UPI ID : "+upiPage.fetchUPIID(), false, false);
 
         driver.navigate().back();
+
+
+    }
+
+    public void manageUpi() throws InterruptedException, IOException {
+
+        homePage.clickOnAllServicesSection();
+        upiPage = homePage.clickOnUPITransfers();
+
+        Element.waitForVisibility(driver, By.id("transfer_own_account"));
+        upiPage.selectManageCta();
+
+        Element.waitForVisibility(driver, By.id("txtHowToUseUpi"));
+
+
+        upiPage.clickLinkAccount();
+
+        upiPage.clickOnUpiSetupCta();
+
+        permissionHelper.permissionAllow();
+
+        permissionHelper.permissionAllow();
+
+        permissionHelper.permissionAllow();
+
+        Thread.sleep(4000);
+
+        mbReporter.verifyTrueWithLogging(upiPage.isQRPresent(), "QR Present :"+upiPage.isQRPresent(), false, false);
+        mbReporter.verifyTrueWithLogging(!(upiPage.fetchUPIIDManageSection()==null)," User UPI ID : "+upiPage.fetchUPIIDManageSection(), false, false);
+        mbReporter.verifyTrueWithLogging(!(upiPage.fetchUPINumberManageSection()==null)," User UPI Number : "+upiPage.fetchUPINumberManageSection(), false, false);
+
+        //how to use upi
+        upiPage.clickHowToUseUpi();
+        upiPage.selectLanguage();
+        Thread.sleep(4000);
+        mbReporter.verifyTrueWithLogging(upiPage.isWebsiteOpened(), "Is Website Opened :"+upiPage.isWebsiteOpened(), false, false);
+
+        driver.navigate().back();
+
+        driver.navigate().back();
+
+        //account primary
+
+        upiPage.scrollToBankList();
+        mbReporter.verifyTrueWithLogging(upiPage.isPrimaryTagVisible(), "Primary Bank Account Tag Present : "+upiPage.isPrimaryTagVisible(), false, false);
+
+
+        //upi autopay
+
+        upiPage.clickOnManageUpiAutopay();
+
+        Element.waitForVisibility(driver, By.id("tab_layout"));
+
+        mbReporter.verifyTrueWithLogging(upiPage.verifyPageTitleUpiAutopay(), "is Upi Subscription Page Opened : "+upiPage.verifyPageTitleUpiAutopay(), false, false);
+
+        upiPage.clickOnBackButton();
 
 
     }

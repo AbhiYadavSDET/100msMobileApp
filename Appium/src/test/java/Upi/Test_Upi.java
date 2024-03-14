@@ -150,6 +150,19 @@ public class Test_Upi extends TestBase {
         upiHelper.pocketUPIHomePageShowMyQrCode();
     }
 
+    @Test(groups = {"manageUpi", "upiSanity"}, priority = 0, description = "Manage UPI Section")
+    public void Test11_manage_UPI() throws IOException, InterruptedException {
+
+        Log.info("======= START : Pocket UPI Show My QR from Pocket UPI Home Page =======");
+
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
+
+
+        UpiHelper upiHelper = new UpiHelper(getAndroidDriver());
+        upiHelper.manageUpi();
+    }
+
 
 //
 //    @Test(groups = {"deregisterUpi"}, priority = 0, description = "Deregister UPI test")

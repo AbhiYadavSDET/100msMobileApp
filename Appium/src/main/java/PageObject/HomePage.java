@@ -273,6 +273,9 @@ public class HomePage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Request Money']")
     private AndroidElement upiRequestMoneyCTA;
 
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'UPI Transfers']")
+    private AndroidElement upiTransfersCTA;
+
     @AndroidFindBy(id="setup_title")
     private AndroidElement upiqr_bottomsheet_title;
 
@@ -281,6 +284,8 @@ public class HomePage {
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Pocket UPI QR']")
     private AndroidElement switch_tab_upi_to_pocketupi;
+
+
 
 
 
@@ -660,6 +665,11 @@ public class HomePage {
 
     public UpiPage clickOnUPIRequestMoney() throws IOException{
         Element.selectElement(driver, upiRequestMoneyCTA, "Select Request Money Flow");
+        return new UpiPage(driver);
+    }
+
+    public UpiPage clickOnUPITransfers() throws IOException{
+        Element.selectElement(driver, upiTransfersCTA, "Select Transfers Flow");
         return new UpiPage(driver);
     }
 

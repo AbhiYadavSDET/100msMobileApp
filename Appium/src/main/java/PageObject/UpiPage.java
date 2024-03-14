@@ -91,6 +91,12 @@ public class UpiPage {
     @AndroidFindBy(id="upi_id_view")
     private AndroidElement qr_bottomsheet_upi_id;
 
+    @AndroidFindBy(id="upi_id")
+    private AndroidElement manage_section_upi_id;
+
+    @AndroidFindBy(id="upi_number")
+    private AndroidElement manage_section_upi_number;
+
     @AndroidFindBy(id="continue_btn")
     private AndroidElement continue_cta_contact1;
 
@@ -102,6 +108,41 @@ public class UpiPage {
 
     @AndroidFindBy(id="logo")
     private AndroidElement vpa1;
+
+    @AndroidFindBy(id="manage")
+    private AndroidElement manage_cta;
+
+    @AndroidFindBy(id="link_account_btn")
+    private AndroidElement link_account_cta;
+
+
+
+
+    @AndroidFindBy(id="txtHowToUseUpi")
+    private AndroidElement how_to_use_upi_cta;
+
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='English']")
+    private AndroidElement select_language;
+
+    @AndroidFindBy(id="com.android.chrome:id/title_url_container")
+    private AndroidElement isWebsiteOpened;
+
+
+    @AndroidFindBy(id="bank_name")
+    private AndroidElement primary_bank_account;
+
+    @AndroidFindBy(id="primary_tag")
+    private AndroidElement primary_tag;
+
+    @AndroidFindBy(id="manage_upi_subscriptions_view")
+    private AndroidElement manage_upi_autopay;
+
+    @AndroidFindBy(id="tv_title")
+    private AndroidElement page_title;
+
+    @AndroidFindBy(id="mkab_icon_1")
+    private AndroidElement back_button;
+
 
 
 
@@ -166,6 +207,9 @@ public class UpiPage {
 
 
 
+
+
+
 ////////////////////////////////
 
 
@@ -196,8 +240,7 @@ public class UpiPage {
 
 
     //Check Balance Flow
-    @AndroidFindBy(id = "back_button")
-    private AndroidElement back_button;
+
 
     //Setup UPI
 
@@ -391,6 +434,10 @@ public class UpiPage {
         Element.selectElement(driver,vpa1, "Select Vpa from List");
     }
 
+    public void selectManageCta() throws InterruptedException{
+        Element.selectElement(driver,manage_cta, "Click on Manage Cta");
+    }
+
     ///////Pocket UPI Methods
 
 
@@ -449,6 +496,67 @@ public class UpiPage {
     }
 
 
+    public void clickLinkAccount() throws InterruptedException {
+        Element.selectElement(driver, link_account_cta, "Click on Link Account");
+    }
+
+    public String fetchUPIIDManageSection() throws InterruptedException{
+        return Elements.getText(driver, manage_section_upi_id, " Fetch UPi ID in Manage Section").replace("UPI ID : ", "");
+    }
+
+
+    public String fetchUPINumberManageSection() throws InterruptedException{
+        return Elements.getText(driver, manage_section_upi_number, " Fetch UPi Number in Manage Section").replace("UPI ID : ", "");
+    }
+
+
+
+    public void clickHowToUseUpi() throws InterruptedException {
+        Element.selectElement(driver, how_to_use_upi_cta, "Click on how to use UPI");
+    }
+
+    public void selectLanguage() throws InterruptedException {
+        Element.selectElement(driver, select_language, "Select Language from the list");
+    }
+
+    public Boolean isWebsiteOpened() throws InterruptedException{
+        return Elements.isElementPresent(driver, isWebsiteOpened);
+    }
+
+
+    public void scrollToBankList() throws InterruptedException{
+        Thread.sleep(2000);
+        Elements.scrollToElement(driver, manage_upi_autopay);
+    }
+
+
+    public Boolean isPrimaryTagVisible() throws InterruptedException{
+        if(Elements.isElementPresent(driver, primary_tag)){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+
+    public void clickOnManageUpiAutopay() throws InterruptedException {
+        Elements.scrollToElement(driver, manage_upi_autopay);
+        Element.selectElement(driver, manage_upi_autopay, "Click on Manage Upi Autopay");
+    }
+
+    public Boolean verifyPageTitleUpiAutopay() throws InterruptedException{
+        if(Elements.getText(driver, page_title, "Fetching Title Text").equals("UPI Subscriptions")){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public void clickOnBackButton() throws InterruptedException {
+        Element.selectElement(driver, back_button, "Click on Back Button");
+    }
+
+
 
 
 
@@ -490,10 +598,7 @@ public class UpiPage {
         Element.selectElement(driver, cta_confirm_request, "Click on Confirm Request");
     }
 
-    public HomePage clickOnBackButton() throws InterruptedException {
-        Element.selectElement(driver, back_button, "Click on Back Button");
-        return new HomePage(driver);
-    }
+
 
     public void enterBankName(String bankName) throws InterruptedException {
         Element.enterText(driver, enter_bank_name, bankName, "Enter Bank Name");
@@ -523,6 +628,12 @@ public class UpiPage {
         Element.selectElement(driver, upi_setup_success_back_to_home_cta, "Click Back tom Home");
         return new HomePage(driver);
     }
+
+
+
+
+
+
 
 
 
