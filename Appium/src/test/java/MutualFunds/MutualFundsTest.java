@@ -135,7 +135,23 @@ public class MutualFundsTest extends TestBase {
         loginHelper.quickLoginViaOtp("9205299330", "547372");
 
         MutualFundsHelper mutualFundsHelper = new MutualFundsHelper(getAndroidDriver());
-        mutualFundsHelper.updateProfile("AQXPJ9529K","12/10/2000","mkwik9330@gmail.com","1 to 5 Lacks");
+        mutualFundsHelper.updateProfile("AQXPJ9529K","12/10/2000","mkwik9330@gmail.com","1 to 5 Lacks","Balanced", "Get Rich Fund");
+
+        Log.info("======= END : MF Profile update Flow test ======");
+    }
+
+    @Test(groups = {"MutualFunds", "sanity", "profileUpdate", "regression"}, priority = 0, description = "Verify Filters")
+    public void Test_MF_FilterOptions() throws InterruptedException, IOException {
+
+        Log.info("======= START : MF Profile update Flow test =======");
+
+
+        // Start the test
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaOtp("9205299330", "547372");
+
+        MutualFundsHelper mutualFundsHelper = new MutualFundsHelper(getAndroidDriver());
+        mutualFundsHelper.verifyFilter("icici","ICICI Pru Bluechip Dir Gr","₹100","+20.42%","5","No funds available");
 
         Log.info("======= END : MF Profile update Flow test ======");
     }

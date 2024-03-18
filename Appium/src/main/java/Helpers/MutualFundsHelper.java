@@ -21,6 +21,7 @@ public class MutualFundsHelper {
     Screen screen;
     Element element;
     MBReporter mbReporter;
+    MBKCommonControlsHelper mbkCommonControlsHelper;
 
 
     public MutualFundsHelper(AndroidDriver driver) throws IOException {
@@ -31,6 +32,7 @@ public class MutualFundsHelper {
         element = new Element(driver);
         mutualFundPage = new MutualFundPage(driver);
         mbReporter = new MBReporter(driver);
+        mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
 
     }
 
@@ -256,7 +258,7 @@ public class MutualFundsHelper {
 
     }
 
-    public void updateProfile(String pan,String dateofBirth, String emailAddress,String income) throws IOException, InterruptedException {
+    public void updateProfile(String pan,String dateofBirth, String emailAddress,String income, String expRecommendedApproachText, String expScreenTitle) throws IOException, InterruptedException {
         Log.info("START", "Verify - Update profile options on  Mutual Funds");
         // Tap on See All Services
         homePage.clickAllServices();
@@ -288,6 +290,22 @@ public class MutualFundsHelper {
             mbReporter.verifyEquals(mutualFundKycText, "Mutual Funds KYC", "Verify MUTUAL FUNDS KYC button", false, false);
         }
 
+        mbkCommonControlsHelper.pressback(2);
+
+        //Click on see funds for your investment approach
+        mutualFundPage.clickOnInvestmentApproach();
+
+        //Verify Recommended Investment Approach
+        String actualRecommendedApproach = mutualFundPage.getRecommendedApproachText();
+        mbReporter.verifyEqualsWithLogging(actualRecommendedApproach, expRecommendedApproachText, "Verify recommended approach", false, false, true);
+
+        //Click on Explore wealth portfolios button
+        mutualFundPage.clickExploreWealthPortfoliosButton();
+
+        //Verify explore wealth screen
+        String actualScreenTitle = mutualFundPage.getScreenTitle();
+        mbReporter.verifyEqualsWithLogging(actualScreenTitle, expScreenTitle, "Verify get rich fund screen text", false, false, true);
+
     }
 
     public void clickOnMutualFund() throws InterruptedException {
@@ -302,5 +320,100 @@ public class MutualFundsHelper {
 
         // Click on direct mutual funds
         mutualFundPage.clickOnMutualFunds();
+    }
+
+    public void verifyFilter(String amc, String expfundName, String expminInvestAmount, String expmfReturns, String expmfRating, String expTitle) throws InterruptedException, IOException {
+
+        // Tap on See All Services
+        homePage.clickAllServices();
+
+        //Click on mutual funds
+        clickOnMutualFund();
+
+        // Click on get started button.
+        mutualFundPage.clickOnGetStarted();
+
+        // Swipe till the bottom
+        screen.swipeUpMore(driver);
+        screen.swipeUpMore(driver);
+        screen.swipeUpLess(driver);
+
+
+        // Click on explore mutual funds.
+        mutualFundPage.clickOnExploreMutualFunds();
+
+        Thread.sleep(1000);
+
+        //Click on filter
+        mutualFundPage.clickFilter();
+
+        //Select all equity funds
+        mutualFundPage.selectAllEquityFunds();
+
+        //Click AMC
+        mutualFundPage.clickAMC();
+
+        //Search field
+        mutualFundPage.clickSearchAMC();
+
+        //Enter AMC name
+        mutualFundPage.enterAMC(amc);
+
+        //Select AMC
+        mutualFundPage.selectAMC();
+
+        //Click on rating
+        mutualFundPage.clickRating();
+
+        //Select 5 star rating
+        mutualFundPage.selectStarRating();
+
+        //Click on min. Investement
+        mutualFundPage.clickMinInvestment();
+
+        //Select min investment amount
+        mutualFundPage.selectMinInvestmentAmount();
+
+        //Click on risk
+        mutualFundPage.clickRisk();
+
+        //Select risk type
+        mutualFundPage.selectRiskType();
+
+        //Click Apply button
+        mutualFundPage.clickApplyButton();
+
+        Thread.sleep(2000);
+
+        if(mutualFundPage.isNoFundsAvailable()) {
+
+            String actualTitle = mutualFundPage.getNoFundsTitle();
+            mbReporter.verifyEqualsWithLogging(actualTitle, expTitle, "Verify that funds are available or not", false, false, true);
+        }
+        else{
+
+            // Getting mutual fund details.
+            String mutualFundName = mutualFundPage.getMutualFundName();
+            String minimumInvestmentAmount = mutualFundPage.getMinimumInvestmentAmount();
+            String returns = mutualFundPage.getReturns();
+            String rating = mutualFundPage.getRating();
+
+            // Printing mutual fund details.
+            Log.info("Mutual Fund Name : " + mutualFundName);
+            Log.info("Minimum Investment Amount : " + minimumInvestmentAmount);
+            Log.info("Mutual Fund Returns : " + returns);
+            Log.info("Mutual Fund Rating : " + rating);
+
+            // Add the assertions
+            mbReporter.verifyEqualsWithLogging(mutualFundName, expfundName, "Verify MF Name", false, false, true);
+            mbReporter.verifyEqualsWithLogging(minimumInvestmentAmount, expminInvestAmount, "Verify MF Min Amount", false, false, true);
+            mbReporter.verifyEqualsWithLogging(returns, expmfReturns, "Verify MF Returns", false, false, true);
+            mbReporter.verifyEqualsWithLogging(rating, expmfRating, "Verify MF rating", false, false, true);
+
+        }
+
+
+
+
     }
 }
