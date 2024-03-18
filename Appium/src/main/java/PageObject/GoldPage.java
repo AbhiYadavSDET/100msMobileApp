@@ -65,6 +65,25 @@ public class GoldPage {
     @AndroidFindBy(id="txt_description_amount")
     private AndroidElement error_text;
 
+    //Gold  Coin
+    @AndroidFindBy(id = "goldCoinLbl")
+    private AndroidElement goldCoin_txt;
+
+    @AndroidFindBy(id = "mkiv_image")
+    private AndroidElement goldCoin_img;
+
+    @AndroidFindBy(id = "safegold_know_more")
+    private AndroidElement safegold_know_more;
+
+    @AndroidFindBy(id = "mkab_title")
+    private AndroidElement title_aboutsafegold;
+
+    @AndroidFindBy(id = "edit_text_mket")
+    private AndroidElement enter_pincode;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'History']")
+    private AndroidElement ctaHistory;
+
     public GoldPage(AndroidDriver driver) {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -146,6 +165,37 @@ public class GoldPage {
 
     public Boolean isErrorTextVisible() throws InterruptedException {
         return Elements.isElementPresent(driver, error_text);
+    }
+
+    public boolean scrollToGoldCointXT() throws InterruptedException {
+        return Elements.scrollToElement(driver, goldCoin_txt);
+    }
+    public String getGoldCoinTxt() throws InterruptedException {
+        return Elements.getText(driver, goldCoin_txt, "Gold Coin txt");
+    }
+
+    public String getKnowMoreTx() throws InterruptedException {
+        return Elements.getText(driver, safegold_know_more, "Know More Txt");
+    }
+
+    public void clickKnowMoretxt() {
+        Elements.selectElement(driver, safegold_know_more, "Click on know More Txt");
+    }
+    public void clickSafeGoldIcon() {
+        Elements.selectElement(driver, goldCoin_img, "Click on Safe Gold Coin Image");
+    }
+
+    public String gettitleAboutSafeGold() throws InterruptedException {
+        return Elements.getText(driver, title_aboutsafegold, "title about safe gold,Gold History");
+    }
+
+    public void clickOnHistory() {
+        Elements.selectElement(driver, ctaHistory, "Click on kHistory");
+    }
+
+
+    public void enterPincode(String amount) {
+        Elements.enterToElement(driver, enter_pincode, amount, "EnterPincode");
     }
 
 }

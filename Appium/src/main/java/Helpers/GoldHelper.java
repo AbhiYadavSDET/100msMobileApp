@@ -3,12 +3,14 @@ package Helpers;
 import Logger.Log;
 import PageObject.GoldPage;
 import PageObject.SecurityPinPage;
+import Utils.Element;
 import Utils.Elements;
 import Utils.MBReporter;
 import Utils.Screen;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 import java.util.LinkedHashMap;
 import java.io.IOException;
@@ -196,4 +198,61 @@ public class GoldHelper {
 
     }
 
-}
+
+    public void goldCoin(String exptitleGoldCoins,String exptitleKnowMore,String exptitleAboutSafeGold) throws InterruptedException, IOException {
+
+        // Tap on See All Services
+        goldPage.clickAllServices();
+
+        // Swipe till the bottom
+        goldPage.scrollToBuyGold();
+
+        // Click on 99% Buy Gold
+        goldPage.clickBuyGold();
+
+        if(goldPage.checkEXploreSipBottomsheet()){
+            mbkCommonControlsHelper.pressback();
+        }
+
+        goldPage.clickOnHistory();
+        Element.waitForVisibility(driver, By.id("mkab_icon_1"));
+        goldPage.clickUpIcon();
+
+        // Click on Buy Gold
+        goldPage.clickBuyCta();
+        goldPage.scrollToGoldCointXT();
+
+
+        // Verification on the Gold Coin Txt
+        String titleGoldCoins = goldPage.getGoldCoinTxt();
+        String titleKnowMore = goldPage.getKnowMoreTx();
+
+        // Display the values
+        Log.info("titleGoldCoins : " + titleGoldCoins);
+        Log.info("titleKnowMore : " + titleKnowMore);
+
+        // Add the assertions
+        mbReporter.verifyEqualsWithLogging(titleGoldCoins, exptitleGoldCoins, "Verify Gold Coins Title", false, false, true);
+        mbReporter.verifyEqualsWithLogging(titleKnowMore, exptitleKnowMore, "Verify Know More Titles", false, false, true);
+
+        goldPage.clickKnowMoretxt();
+        Element.waitForVisibility(driver, By.id("mkab_icon_1"));
+        String titleAboutSafeGold = goldPage.gettitleAboutSafeGold();
+
+
+        // Display the values in about safe Gold page
+        Log.info("titleAboutSafeGold : " + titleAboutSafeGold);
+        mbReporter.verifyEqualsWithLogging(titleAboutSafeGold, exptitleAboutSafeGold, "Title About safe gold", false, false, true);
+
+        goldPage.clickUpIcon();
+        goldPage.clickSafeGoldIcon();
+        goldPage.enterPincode("122004");
+
+        Element.waitForVisibility(driver, By.id("buy_now_button"));
+        goldPage.clickPayCta();
+
+    }
+
+    }
+
+
