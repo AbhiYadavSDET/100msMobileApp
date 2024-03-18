@@ -82,6 +82,16 @@ public class UpiHelper {
 
         upiPage.clickOnConfirmPayment();
 
+        if(upiPage.isChoosePaymentModeBottomsheetDisplayed()){
+
+            upiPage.clickOnRestoreUpiInChoosePaymentModeBottomsheet();
+            upiPage.clickStartUpiRestoreJourney();
+            permissionHelper.permissionAllow();
+            upiPage.clickOnConfirmPaymentChoosePaymentModeBottomsheet();
+            Thread.sleep(3000);
+
+        }
+
         //2FA Validation Page Assertions
 
         if(upiPage.is2FAPageDisplayed()){
@@ -146,6 +156,16 @@ public class UpiHelper {
         }
 
         upiPage.clickOnConfirmPayment();
+
+        if(upiPage.isChoosePaymentModeBottomsheetDisplayed()){
+
+            upiPage.clickOnRestoreUpiInChoosePaymentModeBottomsheet();
+            upiPage.clickStartUpiRestoreJourney();
+            permissionHelper.permissionAllow();
+            upiPage.clickOnConfirmPaymentChoosePaymentModeBottomsheet();
+            Thread.sleep(3000);
+
+        }
 
         //2FA Validation Page Assertions
 
@@ -341,6 +361,8 @@ public class UpiHelper {
 
         upiPage.selectFirstContactFromList();
 
+        Thread.sleep(2000);
+
         vpaList=upiPage.getAllVpaList();
 
         for(int i=0;i<vpaList.size();i++){
@@ -372,6 +394,16 @@ public class UpiHelper {
         }
 
         upiPage.clickOnConfirmPayment();
+
+        if(upiPage.isChoosePaymentModeBottomsheetDisplayed()){
+
+            upiPage.clickOnRestoreUpiInChoosePaymentModeBottomsheet();
+            upiPage.clickStartUpiRestoreJourney();
+            permissionHelper.permissionAllow();
+            upiPage.clickOnConfirmPaymentChoosePaymentModeBottomsheet();
+            Thread.sleep(3000);
+
+        }
 
         //2FA Validation Page Assertions
 
