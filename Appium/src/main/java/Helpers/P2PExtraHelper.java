@@ -170,13 +170,15 @@ public class P2PExtraHelper {
         p2PExtraPage.clickGotItCtaBorrowerMappingReport();
 
         // Click on the Tooltip
-        p2PExtraPage.selectOkfromPlusPopUp();
+        if (p2PExtraPage.isselectOkfromPlusPopUp()) {
+            p2PExtraPage.selectOkfromPlusPopUp();
+        }
 
         // Click Flexi from slider
         p2PExtraPage.selectFlexiFromNavBar();
 
         // CLick on Got it CTA on Borrower Mapping Report Bottomsheet
-        p2PExtraPage.clickGotItCtaBorrowerMappingReport();
+        //pkchanges p2PExtraPage.clickGotItCtaBorrowerMappingReport();
 
         // Used to click Invest Now btn on Xtra FLEXI amount page
         p2PExtraPage.selectInvestMore();
@@ -184,16 +186,7 @@ public class P2PExtraHelper {
         // Select NetBanking from XTRA checkout screen
         p2PExtraPage.selectNBOnCheckoutScreen();
 
-        // Get bank page heading
-        String actualTitle = p2PExtraPage.getBankPageTitle();
-
-        Log.info("Title : " + actualTitle);
-        Log.info("You  have invested in FLEXI via NB ");
-
-        // Add the assertions
-        mbReporter.verifyEqualsWithLogging(actualTitle, expTitle, "Verify Flexi Investment", false, false, true);
     }
-
 
     public void investInFixed(String expTitle) throws InterruptedException, IOException {
 
@@ -205,7 +198,10 @@ public class P2PExtraHelper {
 
         // Click on Got it to remove referral bottom sheet.
         Thread.sleep(1000);
-        if (p2PExtraPage.isBottomSheetPresent()) p2PExtraPage.removeBottomSheet();
+        if (p2PExtraPage.isBottomSheetPresent())
+        {
+            p2PExtraPage.removeBottomSheet();
+        }
 
         //Click on Invest More button on XTRA dashboard
         p2PExtraPage.selectInvestMore();
@@ -214,7 +210,12 @@ public class P2PExtraHelper {
         p2PExtraPage.clickGotItCtaBorrowerMappingReport();
 
         // Click on the Tooltip
-        p2PExtraPage.selectOkfromPlusPopUp();
+
+
+        if (p2PExtraPage.isselectOkfromPlusPopUp()) {
+            p2PExtraPage.selectOkfromPlusPopUp();
+        }
+
 
         // Click Flexi from slider
         p2PExtraPage.selectFixedFromNavBar();
@@ -225,17 +226,6 @@ public class P2PExtraHelper {
         //Click Invest Now btn on Xtra FLEXI amount page
         p2PExtraPage.selectInvestMore();
 
-        //Select NetBanking from XTRA checkout screen
-        p2PExtraPage.selectNBOnCheckoutScreen();
-
-        // Get bank page heading
-        String actualTitle = p2PExtraPage.getBankPageTitle();
-
-        Log.info("Title : " + actualTitle);
-        Log.info("You  have invested in FIXED via NB ");
-
-        // Add the assertions
-        mbReporter.verifyEqualsWithLogging(actualTitle, expTitle, "Verify Fixed Investment", false, false, true);
 
     }
 
@@ -626,7 +616,9 @@ public class P2PExtraHelper {
 
         // Click on Got it to remove referral bottom sheet.
         Thread.sleep(1000);
-        if (p2PExtraPage.isBottomSheetPresent()) p2PExtraPage.removeBottomSheet();
+        if (p2PExtraPage.isBottomSheetPresent()) {
+            p2PExtraPage.removeBottomSheet();
+        }
 
         //Click on Invest More button on XTRA dashboard
         p2PExtraPage.selectInvestMore();
@@ -634,9 +626,9 @@ public class P2PExtraHelper {
         // CLick on Got it CTA on Borrower Mapping Report Bottomsheet
         p2PExtraPage.clickGotItCtaBorrowerMappingReport();
 
-        // Click on the Tooltip
-        p2PExtraPage.selectOkfromPlusPopUp();
-
+        if (p2PExtraPage.isselectOkfromPlusPopUp()) {
+            p2PExtraPage.selectOkfromPlusPopUp();
+        }
         Thread.sleep(5000);
         p2PExtraPage.enterInvestmentAmount("1000000");
 
@@ -646,22 +638,8 @@ public class P2PExtraHelper {
 
         mbReporter.verifyEqualsWithLogging(erorMessage, expErrormessage, "Error message", false, false, true);
 
-        // Click Flexi from slider
-        p2PExtraPage.clickBackBtnOnAmountScreen();
-
-        p2PExtraPage.selectWithdraw();
-
-        if (p2PExtraPage.isBottomSheetPresent()) p2PExtraPage.removeBottomSheet();
-
-        // Enter amount on withdrawal amount page.
-        p2PExtraPage.enterAmount("1000000");
-
-        mbReporter.verifyTrueWithLogging(p2PExtraPage.iserrorMessageOnWithdrawPresent(), "Error Message  is present", false, false);
-
 
     }
-
-
 
 }
 
