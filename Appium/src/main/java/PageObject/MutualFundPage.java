@@ -168,6 +168,57 @@ public class MutualFundPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Above 1 Crore']")
     private AndroidElement selectIncome;
 
+    @AndroidFindBy(id = "layout_recommended_approach")
+    private AndroidElement investmentApproach;
+
+    @AndroidFindBy(id = "tv_recommended_approach")
+    private AndroidElement recommendedApproach;
+
+    @AndroidFindBy(id = "btn_explore_packs")
+    private AndroidElement exploreWealthPortfolios;
+
+    @AndroidFindBy(id = "tv_risk")
+    private AndroidElement screenTitle;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Filter']")
+    private AndroidElement filter;
+
+    @AndroidFindBy(id = "checkbox")
+    private AndroidElement checkbox;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'AMC']")
+    private AndroidElement amc;
+
+    @AndroidFindBy(id = "edit_text")
+    private AndroidElement searchAMC;
+
+    @AndroidFindBy(id = "title_tv")
+    private AndroidElement selectAMC;
+
+    @AndroidFindBy(xpath = "//android.widget.LinearLayout[3]")
+    private AndroidElement selectRating;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = '5 Star']")
+    private AndroidElement starRating;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Min. Investment']")
+    private AndroidElement minInvestment;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = '₹ 100']")
+    private AndroidElement minInvestmentAmount;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Risk']")
+    private AndroidElement risk;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Medium Risk']")
+    private AndroidElement riskType;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Apply']")
+    private AndroidElement applyButton;
+
+    @AndroidFindBy(id = "bigTitle")
+    private AndroidElement title;
+
     public MutualFundPage(AndroidDriver driver) throws IOException {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -375,6 +426,85 @@ public class MutualFundPage {
     public boolean isMutualFundsKycBottomsheetPresent() throws InterruptedException {
         return Elements.isElementPresent(driver,mutualFundsKyc);
     }
+
+    public void clickOnInvestmentApproach(){
+        Elements.selectElement(driver, investmentApproach, "Click on see funds for your Investment Approach");
+    }
+
+    public String getRecommendedApproachText() throws InterruptedException{
+        return Elements.getText(driver, recommendedApproach,"Get Recommended Approach");
+    }
+
+    public void clickExploreWealthPortfoliosButton() {
+        Elements.selectElement(driver, exploreWealthPortfolios, "Click on explore wealth portfolios button");
+    }
+
+    public String getScreenTitle() throws InterruptedException{
+        return Elements.getText(driver, screenTitle);
+    }
+
+    public void clickFilter(){
+        Elements.selectElement(driver, filter, "Click on filter");
+    }
+
+    public void selectAllEquityFunds(){
+        Elements.selectElement(driver, checkbox,"Select All equity funds checkbox");
+    }
+
+    public void clickAMC(){
+        Elements.selectElement(driver, amc, "Click on AMC");
+    }
+
+    public void clickSearchAMC(){
+        Elements.selectElement(driver, searchAMC, "Click on Search AMC field");
+    }
+
+    public void enterAMC(String amc){
+        Elements.enterToElement(driver, searchAMC, amc,"Enter amc name");
+    }
+
+    public void selectAMC(){
+        Elements.selectElement(driver, selectAMC, "Select AMC");
+    }
+
+    public void clickRating(){
+        Elements.selectElement(driver, selectRating, "Click on rating");
+    }
+
+    public void selectStarRating(){
+        Elements.selectElement(driver, starRating, "Select 5 star rating");
+    }
+
+    public void clickMinInvestment(){
+        Elements.selectElement(driver, minInvestment, "Click on min. investment");
+    }
+
+
+    public void selectMinInvestmentAmount(){
+        Elements.selectElement(driver, minInvestmentAmount, "Select min. investment amount");
+    }
+
+    public void clickRisk(){
+        Elements.selectElement(driver, risk, "Click on risk");
+    }
+
+
+    public void selectRiskType(){
+        Elements.selectElement(driver, riskType, "Select risk type");
+    }
+
+    public void clickApplyButton(){
+        Elements.selectElement(driver, applyButton,"Click on apply button");
+    }
+
+    public boolean isNoFundsAvailable() throws InterruptedException {
+        return Elements.isElementPresent(driver, title);
+    }
+
+    public String getNoFundsTitle() throws InterruptedException {
+        return Elements.getText(driver, title,"Get text from Explore mutual fund screen");
+    }
+
 
 
 }
