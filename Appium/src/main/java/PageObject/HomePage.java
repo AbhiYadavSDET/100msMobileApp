@@ -192,7 +192,7 @@ public class HomePage {
 
 
     //    @AndroidFindBy(id ="com.mobikwik_new.debug:id/tx_upi_id")
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Bank to Bank Transfer']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='UPI Transfers']")
     private AndroidElement navigate_upi_page;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Via UPI']")
@@ -205,7 +205,7 @@ public class HomePage {
     @AndroidFindBy(id = "tx_bank_balance")
     private AndroidElement cta_check_balance;
 
-    @AndroidFindBy(id = "balance")
+    @AndroidFindBy(id = "tv_check_balance")
     private AndroidElement account_balance;
 
     @AndroidFindBy(id = "cross_button")
@@ -233,7 +233,7 @@ public class HomePage {
     @AndroidFindBy(id = "navigation_home")
     private AndroidElement bottom_bar_home;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'All Services']")
+    @AndroidFindBy(id = "navigation_service")
     private AndroidElement bottom_bar_all_services;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Home']")
@@ -253,6 +253,42 @@ public class HomePage {
 
     @AndroidFindBy(id="search")
     private AndroidElement search_cta;
+
+
+    @AndroidFindBy(id="include_search_bar")
+    private AndroidElement home_page_upi_search_bar;
+
+    @AndroidFindBy(id = "option1")
+    private AndroidElement home_page_upi_PocketUpi;
+
+    @AndroidFindBy(id="option3")
+    private AndroidElement home_page_upi_option3_send_to_bank;
+
+    @AndroidFindBy(id="option4")
+    private AndroidElement home_page_upi_option4_check_bank_balance;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='My QR Code']")
+    private AndroidElement home_page_upi_widget_myQR;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Request Money']")
+    private AndroidElement upiRequestMoneyCTA;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'UPI Transfers']")
+    private AndroidElement upiTransfersCTA;
+
+    @AndroidFindBy(id="setup_title")
+    private AndroidElement upiqr_bottomsheet_title;
+
+    @AndroidFindBy(id="setup_upi_cta")
+    private AndroidElement upi_link_now_cta;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Pocket UPI QR']")
+    private AndroidElement switch_tab_upi_to_pocketupi;
+
+
+
+
+
 
 
     //############################ Old end ################################
@@ -488,6 +524,50 @@ public class HomePage {
         return new UpiPage(driver);
     }
 
+    public UpiPage navigateAndSelectUpiSearch() throws IOException, InterruptedException {
+        Elements.scrollToElement(driver, home_page_upi_search_bar);
+        Element.selectElement(driver, home_page_upi_search_bar, "Navigate to UPI Page via HomePage Upi widget Search");
+        return new UpiPage(driver);
+    }
+
+    public UpiPage navigateAndSelectPocketUpi() throws IOException, InterruptedException {
+        Elements.scrollToElement(driver, home_page_upi_PocketUpi);
+        Element.selectElement(driver, home_page_upi_PocketUpi, "Navigate to Pocket UPI Page via HomePage Upi widget");
+        return new UpiPage(driver);
+    }
+
+    public void navigateAndSelectUpiCheckBalance() throws IOException, InterruptedException {
+        Elements.scrollToElement(driver, home_page_upi_option4_check_bank_balance);
+        Element.selectElement(driver, home_page_upi_option4_check_bank_balance, "Navigate to UPI Page via HomePage Upi widget Check Balance");
+    }
+
+    public void navigateAndSelectMyQRCode() throws IOException, InterruptedException {
+        Elements.scrollToElement(driver, home_page_upi_widget_myQR);
+        Element.selectElement(driver, home_page_upi_widget_myQR, "Navigate to UPI QR via HomePage Upi widget");
+    }
+
+    public String getUpiBottomsheetTitle() throws IOException {
+        return Element.getText(driver, upiqr_bottomsheet_title, "Title");
+
+    }
+
+    public void clickLinkNowUpiQRBottomsheet() throws IOException {
+        Element.selectElement(driver, upi_link_now_cta, "Click on Link Now Cta");
+
+    }
+
+    public void switchTabUpitoPocketUpi() throws IOException {
+        Element.selectElement(driver, switch_tab_upi_to_pocketupi, "Switch Tab Upi to Pocket Upi");
+
+    }
+
+
+    public UpiPage navigateAndSelectUpiSendToAccountNumber () throws IOException, InterruptedException {
+        Elements.scrollToElement(driver, home_page_upi_option3_send_to_bank);
+        Element.selectElement(driver, home_page_upi_option3_send_to_bank, "Navigate to UPI Page via HomePage Upi widget Send via Bank Account Number");
+        return new UpiPage(driver);
+    }
+
     public void clickCheckBalance() throws IOException {
         Element.selectElement(driver, cta_check_balance, "Get Account Balance");
     }
@@ -498,7 +578,7 @@ public class HomePage {
     }
 
     public String getAccountBalance() throws IOException {
-        String balance = Element.getText(driver, account_balance, "Account Balance").replace("Account Balance: ₹ ", "");
+        String balance = Element.getText(driver, account_balance, "Account Balance").replace("₹", "");
         return balance;
     }
 
@@ -531,6 +611,8 @@ public class HomePage {
     public void clickOnAllServicesSection() throws InterruptedException {
         Element.selectElement(driver, bottom_bar_all_services, "Open All Service Section");
     }
+
+
 
     //    public DealsPage clickOnButtonDeals() throws IOException {
 //        Element.selectElement(driver, button_deals, "Open Deals");
@@ -579,6 +661,16 @@ public class HomePage {
     public SearchPage clickOnSearchCta() throws IOException {
         Element.selectElement(driver, search_cta, "Click on search cta");
         return new SearchPage(driver);
+    }
+
+    public UpiPage clickOnUPIRequestMoney() throws IOException{
+        Element.selectElement(driver, upiRequestMoneyCTA, "Select Request Money Flow");
+        return new UpiPage(driver);
+    }
+
+    public UpiPage clickOnUPITransfers() throws IOException{
+        Element.selectElement(driver, upiTransfersCTA, "Select Transfers Flow");
+        return new UpiPage(driver);
     }
 
 

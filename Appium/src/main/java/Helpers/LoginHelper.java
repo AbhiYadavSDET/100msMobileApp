@@ -233,4 +233,60 @@ public class LoginHelper {
 
     }
 
+    public void quickLoginViaOtpAutoRead(String mobileNumber, String otp) throws InterruptedException {
+
+        if (permissionPage.isPermissionNotificationsPresent()) {
+            permissionPage.allowPermissionNotifications();
+        }
+
+        Thread.sleep(1000);
+        if (element.isElementPresent(driver, By.xpath("//*[@text='Get Started']"))) {
+            loginPage.clickGetstarted();
+        } else if (element.isElementPresent(driver, By.xpath("//*[@text='Login/Signup']"))) {
+            loginPage.clickLoginSignup();
+        }
+
+        if (element.isElementPresent(driver, By.xpath("//*[@text='NONE OF THE ABOVE']"))) {
+            loginPage.clickNoneOfAbove();
+        }
+
+        loginPage.enterMobileNum(mobileNumber);
+        loginPage.clickSendOtpbutton();
+
+
+
+//      if(loginPage.isOTPNotAutoRead()){
+//
+//          loginPage.enterOtp(otp);
+//
+//      }
+        // Wait for 3 sec
+        Thread.sleep(5000);
+
+        // If the error message is present --> resend OTP
+        if (element.isElementPresent(driver, By.id("error_view"))) {
+
+            loginPage.clickResendOtp();
+//            loginPage.enterOtp(otp);
+        }
+
+        if(homePage.checkKycScreen()) {
+            //  homePage.clickBackbtnOnKYCpage();
+            mbkCommonControlsHelper.pressback();
+            homePage.clickDonWantBenifitsBtn();
+            Thread.sleep(4000);
+        }
+
+        // Wait for 5000 ms for all the banners to load
+        Thread.sleep(5000);
+
+        mbkCommonControlsHelper.handleHomePageLanding();
+
+        element.waitForVisibility(driver, By.xpath("//*[@text='History']"));
+    }
+
+
+
+
+
 }

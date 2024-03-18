@@ -38,7 +38,7 @@ public class AddMoneyPage {
     @AndroidFindBy(xpath = "//*[@text = 'CVV']")
     private AndroidElement enter_CVV;
 
-    @AndroidFindBy(id = "btn_add_money")
+    @AndroidFindBy(id = "btn_check_out_pay")
     private AndroidElement pay;
 
     @AndroidFindBy(id = "status")

@@ -1,32 +1,23 @@
 package Helpers;
-/*
-import PageObject.AddMoneyPage;
-import PageObject.LoginPage;
-import PageObject.OnboardingPage;
-import PageObject.HomePage;
-import PageObject.UpiPage;
-import PageObject.SideDrawerPage;
-import PageObject.SecuritySettingsPage;
-import PageObject.WalletPage;
-//import UITestFramework.Api.ApiCommonControls;
-import utils.MBReporter;
+
+import Logger.Log;
+import PageObject.*;
+import Utils.Element;
+import Utils.Elements;
+import Utils.MBReporter;
+import Utils.Screen;
 import io.appium.java_client.android.AndroidDriver;
-//import org.json.JSONException;
+import org.apache.poi.ss.formula.functions.T;
 import org.openqa.selenium.By;
-import utils.Element;
-import utils.Helper;
-import utils.Screen;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 
 public class UpiHelper {
 
     AndroidDriver driver;
     OnboardingPage onboardingPage;
-    LoginPage loginPage;
-//    ApiCommonControls apiCommonControls;
-    HashMap<String, String> apiOtp;
     HomePage homePage;
     MBReporter mbReporter;
     PermissionHelper permissionHelper;
@@ -34,9 +25,9 @@ public class UpiHelper {
     UpiPage upiPage;
     MBKCommonControlsHelper mbkCommonControlsHelper;
     AddMoneyPage addMoneyPage;
-    SideDrawerPage sideDrawerPage;
-    SecuritySettingsPage securitySettingsPage;
-    WalletPage walletPage;
+    MbkCommonControlsPage mbkCommonControlsPage;
+
+    Map<String, String> vpaList;
 
     public static HashMap<String, String> map;
     public static HashMap<String, String> balanceBefore;
@@ -45,8 +36,7 @@ public class UpiHelper {
 
     public UpiHelper(AndroidDriver driver) throws IOException {
         this.driver = driver;
-//        apiCommonControls = new ApiCommonControls();
-        apiOtp = new HashMap<>();
+
         mbReporter = new MBReporter(driver, "testScreenshotDir");
         mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
         // Starting page declaration
@@ -55,106 +45,79 @@ public class UpiHelper {
         screen = new Screen(driver);
         homePage = new HomePage(driver);
         addMoneyPage = new AddMoneyPage(driver);
-        sideDrawerPage = new SideDrawerPage(driver);
-        securitySettingsPage = new SecuritySettingsPage(driver);
-        walletPage = new WalletPage(driver);
+        mbkCommonControlsPage=new MbkCommonControlsPage(driver);
+        upiPage=new UpiPage(driver);
 
 
     }
 
-    public void sendMoneyViaUpi(String upiId, String amount, String message, String pin) throws InterruptedException, IOException {
+    public void sendMoneyViaUpi(String upiId, String amount, String message, String amountPageTransferName, String pin, String expectedReceiverName) throws InterruptedException, IOException {
 
 
-        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
-
-        Thread.sleep(100);
-
-
-//            Element.waitForVisibility(driver, By.id("tx_upi_id"));
-
-        upiPage = homePage.clickOnUpiId();
-
-        upiPage.clickOnUpiSetupCta();
-
-        permissionHelper.permissionAllow();
-
-        permissionHelper.permissionAllow();
-
-        permissionHelper.permissionAllow();
-
-        Thread.sleep(400);
-
-//            Element.waitForVisibility(driver, By.id("qr_image"));
-
-        Boolean setup = Element.isElementPresent(driver, By.id("qr_image"));
-
-        mbReporter.verifyTrueWithLogging(setup, "Setup Done", true, true);
-
-        upiPage.clickSendMoney();
+        upiPage = homePage.navigateAndSelectUpiSearch();
 
         upiPage.selectEnterUPI();
 
-        permissionHelper.permissionAllow();
-
         upiPage.enterUpiId(upiId);
 
-        upiPage.clickConfrimUpi();
+        upiPage.selectResultUpi();
+
+        //Amount Page Assertions
+
+        mbReporter.verifyEqualsWithLogging(upiPage.getAmountPageTransferTo(), amountPageTransferName, "Verifying Fetched name", false, false);
 
         upiPage.enterAmount(amount);
 
         upiPage.enterMessage(message);
 
+        if(upiPage.isSetupMessageDisplayed()){
+
+            upiPage.clickOnConfirmPayment();
+            permissionHelper.permissionAllow();
+            permissionHelper.permissionAllow();
+            Thread.sleep(3000);
+            mbReporter.verifyTrueWithLogging(!upiPage.isSetupMessageDisplayed(), "Upi Restore Verification", false, false );
+
+        }
+
         upiPage.clickOnConfirmPayment();
+
+        //2FA Validation Page Assertions
+
+        if(upiPage.is2FAPageDisplayed()){
+
+            upiPage.clickOnContinue2FAPage();
+            permissionHelper.permissionAllow();
+            Thread.sleep(4000);
+            mbReporter.verifyTrueWithLogging(true, "2FA Page Verification", false, false );
+
+        }
 
         mbkCommonControlsHelper.handleUpiPin(pin);
 
-        Thread.sleep(400);
+        Thread.sleep(4000);
 
-        mbkCommonControlsHelper.handleGullak();
 
-        mbReporter.verifyEqualsWithLogging(upiPage.getPaymentSuccessMessage(), "Your payment sent successfully", "Succes Message Validation", false, false);
+        mbReporter.verifyEqualsWithLogging(upiPage.getPaymentSuccessMessage(), "You Paid", "Succes Message Validation", false, false);
 
-        String actualTotalAmountPaid = upiPage.getAmountPaid().replace("X", "");
+        String actualTotalAmountPaid = upiPage.getAmountPaid().replace("₹", "");
 
         mbReporter.verifyEqualsWithLogging(actualTotalAmountPaid, amount, "Validate Amount", false, false);
 
-        mbkCommonControlsHelper.returnToHomePageFromP2MSuccessScreen();
+        String actualReceiverName = upiPage.getReceiverName().replace("to ", "");
 
-        mbkCommonControlsHelper.handleRatingsPopUp();
+        mbReporter.verifyEqualsWithLogging(actualReceiverName, expectedReceiverName, "Validate Receiver name", false, false);
+
+        upiPage.returnToHomePage();
 
     }
 
-    public void sendMoneyToBankViaUpi(String beneficiaryName, String accountNumber, String ifsc, String amount, String message, String pin) throws InterruptedException, IOException {
+    public void sendMoneyToBankViaUpi(String beneficiaryName, String accountNumber, String ifsc, String amount, String message,String amountPageTransferName, String pin, String expectedReceiverName) throws InterruptedException, IOException {
 
 
-        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+        upiPage = homePage.navigateAndSelectUpiSendToAccountNumber();
 
-        Thread.sleep(100);
-
-
-//            Element.waitForVisibility(driver, By.id("tx_upi_id"));
-
-        upiPage = homePage.clickOnUpiId();
-
-        upiPage.clickOnUpiSetupCta();
-
-        permissionHelper.permissionAllow();
-
-        permissionHelper.permissionAllow();
-
-        permissionHelper.permissionAllow();
-
-        Thread.sleep(400);
-
-//            Element.waitForVisibility(driver, By.id("qr_image"));
-
-        Boolean setup = Element.isElementPresent(driver, By.id("qr_image"));
-
-        mbReporter.verifyTrueWithLogging(setup, "Setup Done", true, true);
-
-        upiPage.clickSendMoney();
-
-        upiPage.selectTransfertoBank();
+//        upiPage.selectTransfertoBank();
 
         upiPage.enterBeneficiaryName(beneficiaryName);
 
@@ -164,41 +127,392 @@ public class UpiHelper {
 
         upiPage.clickConfirmBankDetails();
 
+        //Amount Page Assertions
+
+        mbReporter.verifyEqualsWithLogging(upiPage.getAmountPageTransferTo(), amountPageTransferName, "Verifying Fetched name", false, false);
+
+        upiPage.enterAmount(amount);
+
+        upiPage.enterMessage(message);
+
+        if(upiPage.isSetupMessageDisplayed()){
+
+            upiPage.clickOnConfirmPayment();
+            permissionHelper.permissionAllow();
+            permissionHelper.permissionAllow();
+            Thread.sleep(3000);
+            mbReporter.verifyTrueWithLogging(!upiPage.isSetupMessageDisplayed(), "Upi Restore Verification", false, false );
+
+        }
+
+        upiPage.clickOnConfirmPayment();
+
+        //2FA Validation Page Assertions
+
+        if(upiPage.is2FAPageDisplayed()){
+
+            upiPage.clickOnContinue2FAPage();
+            permissionHelper.permissionAllow();
+            Thread.sleep(4000);
+            mbReporter.verifyTrueWithLogging(true, "2FA Page Verification", false, false );
+
+        }
+
+        mbkCommonControlsHelper.handleUpiPin(pin);
+
+        Thread.sleep(4000);
+
+
+        mbReporter.verifyEqualsWithLogging(upiPage.getPaymentSuccessMessage(), "You Paid", "Succes Message Validation", false, false);
+
+        String actualTotalAmountPaid = upiPage.getAmountPaid().replace("₹", "");
+
+        mbReporter.verifyEqualsWithLogging(actualTotalAmountPaid, amount, "Validate Amount", false, false);
+
+        String actualReceiverName = upiPage.getReceiverName().replace("to ", "");
+
+        mbReporter.verifyEqualsWithLogging(actualReceiverName, expectedReceiverName, "Validate Receiver name", false, false);
+
+        upiPage.returnToHomePage();
+
+
+    }
+
+
+
+        public void checkAccountBalance(String pin) throws InterruptedException, IOException {
+
+
+        homePage.navigateAndSelectUpiCheckBalance();
+
+        Thread.sleep(2000);
+
+        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Link Your Bank Account']"));
+
+        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text= 'Link Your Bank Account']")), "Link you bank account bottomsheet shown", false, false);
+
+        upiPage = homePage.clickOnLinkBankAccount();
+
+        upiPage.clickOnUpiSetupCta();
+
+        permissionHelper.permissionAllow();
+
+        permissionHelper.permissionAllow();
+
+        permissionHelper.permissionAllow();
+
+        Thread.sleep(7000);
+
+        if(upiPage.is2FAPageDisplayed()){
+
+                upiPage.clickOnContinue2FAPage();
+                Thread.sleep(4000);
+                mbReporter.verifyTrueWithLogging(true, "2FA Page Verification", false, false );
+
+        }
+
+
+        mbkCommonControlsHelper.handleUpiPin(pin);
+
+        Boolean isBalanceVisible = Element.isElementPresent(driver, By.id("tv_check_balance"));
+
+        String balance = homePage.getAccountBalance();
+
+        mbReporter.verifyTrueWithLogging(isBalanceVisible, "Avalaible Balance is = " + balance, false, false);
+
+        driver.navigate().back();
+
+
+    }
+
+
+    public void requestMoneyViaUpi(String upiId, String amount, String message, String expectedSenderName, String amountPageName) throws InterruptedException, IOException {
+
+
+        homePage.clickOnAllServicesSection();
+
+        upiPage = homePage.clickOnUPIRequestMoney();
+
+        upiPage.selectEnterUPI();
+
+        upiPage.enterUpiId(upiId);
+
+        upiPage.selectResultUpi();
+
+
+        //Amount Page Assertions
+
+        mbReporter.verifyEqualsWithLogging(upiPage.getAmountPageTransferTo(), amountPageName, "Verifying Fetched name", false, false);
+
+        upiPage.enterAmount(amount);
+
+        upiPage.enterMessage(message);
+
+        if(upiPage.isSetupMessageDisplayed()){
+
+            upiPage.clickOnConfirmPayment();
+            permissionHelper.permissionAllow();
+            permissionHelper.permissionAllow();
+            Thread.sleep(3000);
+            mbReporter.verifyTrueWithLogging(!upiPage.isSetupMessageDisplayed(), "Upi Restore Verification", false, false );
+
+        }
+
+        upiPage.clickOnConfirmPayment();
+
+
+        Thread.sleep(6000);
+
+
+        mbReporter.verifyEqualsWithLogging(upiPage.getPaymentSuccessMessage(), "You Requested", "Succes Message Validation", false, false);
+
+        String actualTotalAmountAsked = upiPage.getAmountPaid().replace("₹", "");
+
+        mbReporter.verifyEqualsWithLogging(actualTotalAmountAsked, amount, "Validate Amount", false, false);
+
+        String actualSenderName = upiPage.getReceiverName().replace("from ", "");
+
+        mbReporter.verifyEqualsWithLogging(actualSenderName, expectedSenderName, "Validate Sender name", false, false);
+
+        upiPage.returnToHomePage();
+
+
+
+
+    }
+
+    public void viewUPIQR() throws InterruptedException, IOException {
+
+        homePage.navigateAndSelectMyQRCode();
+        mbReporter.verifyTrueWithLogging(!(homePage.getUpiBottomsheetTitle() ==null), "Bottomsheet Title Text : "+homePage.getUpiBottomsheetTitle(), false,false);
+
+        homePage.clickLinkNowUpiQRBottomsheet();
+
+        upiPage.clickOnUpiSetupCta();
+
+        permissionHelper.permissionAllow();
+
+        permissionHelper.permissionAllow();
+
+        permissionHelper.permissionAllow();
+
+        Thread.sleep(4000);
+
+        mbReporter.verifyTrueWithLogging(upiPage.isQRPresent(), "QR Present :"+upiPage.isQRPresent(), false, false);
+        mbReporter.verifyTrueWithLogging(!(upiPage.fetchUPIID()==null)," User UPI ID : "+upiPage.fetchUPIID(), false, false);
+
+        driver.navigate().back();
+
+    }
+
+    public void viewPocketUPIQR() throws InterruptedException, IOException {
+
+        homePage.navigateAndSelectMyQRCode();
+        mbReporter.verifyTrueWithLogging(!(homePage.getUpiBottomsheetTitle() ==null), "Bottomsheet Title Text : "+homePage.getUpiBottomsheetTitle(), false,false);
+
+        homePage.switchTabUpitoPocketUpi();
+
+        mbReporter.verifyTrueWithLogging(upiPage.isQRPresent(), "QR Present :"+upiPage.isQRPresent(), false, false);
+        mbReporter.verifyTrueWithLogging(!(upiPage.fetchUPIID()==null)," User UPI ID : "+upiPage.fetchUPIID(), false, false);
+
+        driver.navigate().back();
+
+    }
+
+    public void sendMoneyViaContact(String amount, String message, String amountPageTransferName, String pin, String expectedReceiverName) throws InterruptedException, IOException {
+
+
+        upiPage = homePage.navigateAndSelectUpiSearch();
+
+        Thread.sleep(4000);
+
+        driver.navigate().back();
+
+        upiPage.clickContinueForContacts1();
+
+        Thread.sleep(1000);
+
+        upiPage.clickContinueForContacts2();
+
+        permissionHelper.permissionAllow();
+
+        Log.info("Waiting for Toast to Disappear");
+        Thread.sleep(5000);
+
+        upiPage.selectFirstContactFromList();
+
+        vpaList=upiPage.getAllVpaList();
+
+        for(int i=0;i<vpaList.size();i++){
+
+            if(!(vpaList.get(i) ==null)) {
+                Log.info(vpaList.get(i));
+            }
+
+        }
+
+        upiPage.selectFirstVpaFromList();
+
+        //Amount Page Assertions
+
+        mbReporter.verifyEqualsWithLogging(upiPage.getAmountPageTransferTo(), amountPageTransferName, "Verifying Fetched name", false, false);
+
+        upiPage.enterAmount(amount);
+
+        upiPage.enterMessage(message);
+
+        if(upiPage.isSetupMessageDisplayed()){
+
+            upiPage.clickOnConfirmPayment();
+            permissionHelper.permissionAllow();
+            permissionHelper.permissionAllow();
+            Thread.sleep(3000);
+            mbReporter.verifyTrueWithLogging(!upiPage.isSetupMessageDisplayed(), "Upi Restore Verification", false, false );
+
+        }
+
+        upiPage.clickOnConfirmPayment();
+
+        //2FA Validation Page Assertions
+
+        if(upiPage.is2FAPageDisplayed()){
+
+            upiPage.clickOnContinue2FAPage();
+            permissionHelper.permissionAllow();
+            Thread.sleep(4000);
+            mbReporter.verifyTrueWithLogging(true, "2FA Page Verification", false, false );
+
+        }
+
+        mbkCommonControlsHelper.handleUpiPin(pin);
+
+        Thread.sleep(4000);
+
+
+        mbReporter.verifyEqualsWithLogging(upiPage.getPaymentSuccessMessage(), "You Paid", "Succes Message Validation", false, false);
+
+        String actualTotalAmountPaid = upiPage.getAmountPaid().replace("₹", "");
+
+        mbReporter.verifyEqualsWithLogging(actualTotalAmountPaid, amount, "Validate Amount", false, false);
+
+        String actualReceiverName = upiPage.getReceiverName().replace("to ", "");
+
+        mbReporter.verifyEqualsWithLogging(actualReceiverName, expectedReceiverName, "Validate Receiver name", false, false);
+
+        upiPage.returnToHomePage();
+
+    }
+
+
+    public void pocketUPITransferNow(String amount, String message, String expectedReceiverName, String upiId, String amountPageTransferName) throws InterruptedException, IOException{
+
+        upiPage = homePage.navigateAndSelectPocketUpi();
+
+        if(upiPage.isWalletNowPocketUpiBottomsheetPresent()){
+
+            Thread.sleep(1000);
+            mbReporter.verifyTrueWithLogging(true, "Wallet UPI is now Pocket Upi bottomsheet shown", false, false);
+            mbReporter.verifyTrueWithLogging(true, "Title : "+upiPage.getbottomsheetTitle(), false,false);
+            mbReporter.verifyTrueWithLogging(true, "Description : "+upiPage.getbottomsheetDescription(), false,false);
+            upiPage.selectContinueCta();
+
+        }
+
+        Element.waitForVisibility(driver, By.id("pocket_upi_header"));
+        mbReporter.verifyTrueWithLogging(!(upiPage.getPocketUpiId() ==null), upiPage.getPocketUpiId(), false,false);
+
+        upiPage.selectPocketUpiTransferNowCta();
+
+        upiPage.selectEnterUPI();
+
+        upiPage.enterUpiId(upiId);
+
+        upiPage.selectResultUpi();
+
+        //Amount Page Assertions
+
+        mbReporter.verifyEqualsWithLogging(upiPage.getAmountPageTransferTo(), amountPageTransferName, "Verifying Fetched name", false, false);
+
+
+
+
+
+
+        mbReporter.verifyTrueWithLogging(upiPage.isPocketUPIPreSelected(), "Validating if Pocket Upi is Pre-selected", false,true);
+
         upiPage.enterAmount(amount);
 
         upiPage.enterMessage(message);
 
         upiPage.clickOnConfirmPayment();
+        Thread.sleep(4000);
 
-        mbkCommonControlsHelper.handleUpiPin(pin);
+        permissionHelper.permissionAllow();
+        permissionHelper.permissionAllow();
+        permissionHelper.permissionAllow();
 
-        Thread.sleep(400);
+        Thread.sleep(4000);
 
-        mbkCommonControlsHelper.handleGullak();
 
-        mbReporter.verifyEqualsWithLogging(upiPage.getPaymentSuccessMessage(), "Your payment sent successfully", "Succes Message Validation", false, false);
+        mbReporter.verifyEqualsWithLogging(upiPage.getPaymentSuccessMessage(), "You Paid", "Success Message Validation", false, false);
 
-        String actualTotalAmountPaid = upiPage.getAmountPaid().replace("X", "");
+        String actualTotalAmountPaid = upiPage.getAmountPaid().replace("₹", "");
 
         mbReporter.verifyEqualsWithLogging(actualTotalAmountPaid, amount, "Validate Amount", false, false);
 
-        mbkCommonControlsHelper.returnToHomePageFromP2MSuccessScreen();
+        String actualReceiverName = upiPage.getReceiverName().replace("to ", "");
 
-        mbkCommonControlsHelper.handleRatingsPopUp();
+        mbReporter.verifyEqualsWithLogging(actualReceiverName, expectedReceiverName, "Validate Receiver name", false, false);
+
+        mbReporter.verifyTrueWithLogging(upiPage.isPayModeOnSuccessScreenPocketUPI(), "Validating if Pocket Upi is the Pay mode on Success Screen", false,true);
+
+
+        upiPage.returnToHomePage();
 
     }
 
-    public void requestMoneyViaUpi(String upiId, String amount, String message) throws InterruptedException, IOException {
+    public void pocketUPIHomePageShowMyQrCode() throws InterruptedException, IOException{
+
+        upiPage = homePage.navigateAndSelectPocketUpi();
+
+        if(upiPage.isWalletNowPocketUpiBottomsheetPresent()){
+
+            Thread.sleep(1000);
+            mbReporter.verifyTrueWithLogging(true, "Wallet UPI is now Pocket Upi bottomsheet shown", false, false);
+            mbReporter.verifyTrueWithLogging(true, "Title : "+upiPage.getbottomsheetTitle(), false,false);
+            mbReporter.verifyTrueWithLogging(true, "Description : "+upiPage.getbottomsheetDescription(), false,false);
+            upiPage.selectContinueCta();
+
+        }
+
+        Element.waitForVisibility(driver, By.id("pocket_upi_header"));
+        mbReporter.verifyTrueWithLogging(!(upiPage.getPocketUpiId() ==null), upiPage.getPocketUpiId(), false,false);
+
+        upiPage.selectPocketUpiShowMyQRCta();
+
+        mbReporter.verifyTrueWithLogging(!(upiPage.getbottomsheetTitle() ==null), "Pocket UPI Bottomsheet Title Text : "+upiPage.getbottomsheetTitle(), false,false);
 
 
-        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+        mbReporter.verifyTrueWithLogging(upiPage.isQRPresent(), "QR Present :"+upiPage.isQRPresent(), false, false);
+        mbReporter.verifyTrueWithLogging(!(upiPage.fetchUPIID()==null)," User UPI ID : "+upiPage.fetchUPIID(), false, false);
 
-        Thread.sleep(100);
+        driver.navigate().back();
 
 
-//            Element.waitForVisibility(driver, By.id("tx_upi_id"));
+    }
 
-        upiPage = homePage.clickOnUpiId();
+    public void manageUpi() throws InterruptedException, IOException {
+
+        homePage.clickOnAllServicesSection();
+        upiPage = homePage.clickOnUPITransfers();
+
+        Element.waitForVisibility(driver, By.id("transfer_own_account"));
+        upiPage.selectManageCta();
+
+        Element.waitForVisibility(driver, By.id("txtHowToUseUpi"));
+
+
+        upiPage.clickLinkAccount();
 
         upiPage.clickOnUpiSetupCta();
 
@@ -208,153 +522,194 @@ public class UpiHelper {
 
         permissionHelper.permissionAllow();
 
-        Thread.sleep(400);
+        Thread.sleep(4000);
 
-//            Element.waitForVisibility(driver, By.id("qr_image"));
+        mbReporter.verifyTrueWithLogging(upiPage.isQRPresent(), "QR Present :"+upiPage.isQRPresent(), false, false);
+        mbReporter.verifyTrueWithLogging(!(upiPage.fetchUPIIDManageSection()==null)," User UPI ID : "+upiPage.fetchUPIIDManageSection(), false, false);
+        mbReporter.verifyTrueWithLogging(!(upiPage.fetchUPINumberManageSection()==null)," User UPI Number : "+upiPage.fetchUPINumberManageSection(), false, false);
 
-        Boolean setup = Element.isElementPresent(driver, By.id("qr_image"));
+        //how to use upi
+        upiPage.clickHowToUseUpi();
+        upiPage.selectLanguage();
+        Thread.sleep(4000);
+        mbReporter.verifyTrueWithLogging(upiPage.isWebsiteOpened(), "Is Website Opened :"+upiPage.isWebsiteOpened(), false, false);
 
-        mbReporter.verifyTrueWithLogging(setup, "Setup Done", true, true);
+        driver.navigate().back();
 
-        upiPage.clickRequestMoney();
+        driver.navigate().back();
 
-        upiPage.selectEnterUPI();
+        //account primary
 
-        permissionHelper.permissionAllow();
+        upiPage.scrollToBankList();
+        mbReporter.verifyTrueWithLogging(upiPage.isPrimaryTagVisible(), "Primary Bank Account Tag Present : "+upiPage.isPrimaryTagVisible(), false, false);
 
-        upiPage.enterUpiId(upiId);
 
-        upiPage.clickConfrimUpi();
+        //upi autopay
 
-        upiPage.enterAmount(amount);
+        upiPage.clickOnManageUpiAutopay();
 
-        upiPage.enterMessage(message);
+        Element.waitForVisibility(driver, By.id("tab_layout"));
 
-        upiPage.clickOnConfirmRequest();
+        mbReporter.verifyTrueWithLogging(upiPage.verifyPageTitleUpiAutopay(), "is Upi Subscription Page Opened : "+upiPage.verifyPageTitleUpiAutopay(), false, false);
 
-        Element.waitForVisibility(driver, By.id("payment_success_msg"));
+        upiPage.clickOnBackButton();
 
-        mbReporter.verifyEqualsWithLogging(upiPage.getPaymentSuccessMessage(), "Your payment request sent successfully", "Request Message Validation", true, false);
-
-        String actualTotalAmountPaid = upiPage.getAmountPaid().replace("X", "");
-
-        mbReporter.verifyEqualsWithLogging(actualTotalAmountPaid, amount, "Validate Amount", false, false);
-
-        mbkCommonControlsHelper.returnToHomePageFromP2MSuccessScreen();
-
-        mbkCommonControlsHelper.handleRatingsPopUp();
-
-        mbkCommonControlsHelper.handleNPS();
 
     }
 
-    public void checkAccountBalance(String pin) throws InterruptedException, IOException {
 
-        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
+    public void addNewBankAccountAndCreditCard() throws InterruptedException, IOException {
 
-        Thread.sleep(100);
+        homePage.clickOnAllServicesSection();
+        upiPage = homePage.clickOnUPITransfers();
 
-        homePage.clickCheckBalance();
+        Element.waitForVisibility(driver, By.id("transfer_own_account"));
+        upiPage.selectManageCta();
 
-        Thread.sleep(200);
+        Element.waitForVisibility(driver, By.id("txtHowToUseUpi"));
 
-        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Link Your Bank Account']"));
+
+        upiPage.clickLinkAccount();
+
+        upiPage.clickOnUpiSetupCta();
+
+        permissionHelper.permissionAllow();
+
+        permissionHelper.permissionAllow();
+
+        permissionHelper.permissionAllow();
+
+        Thread.sleep(4000);
+
+        mbReporter.verifyTrueWithLogging(upiPage.isQRPresent(), "QR Present :"+upiPage.isQRPresent(), false, false);
+        mbReporter.verifyTrueWithLogging(!(upiPage.fetchUPIIDManageSection()==null)," User UPI ID : "+upiPage.fetchUPIIDManageSection(), false, false);
+        mbReporter.verifyTrueWithLogging(!(upiPage.fetchUPINumberManageSection()==null)," User UPI Number : "+upiPage.fetchUPINumberManageSection(), false, false);
+
+       upiPage.navigateToAddNewBankAccountAndSelect();
+       upiPage.selectHdfcBankFromList();
+
+       Thread.sleep(4000);
+
+       mbReporter.verifyTrueWithLogging(upiPage.validateErrorMessage().equals("You don’t seem to have an account in this bank"),"Validating Error Message", false, false);
+
+       upiPage.goBackAddFlow();
+       Thread.sleep(1000);
+       upiPage.goBackAddFlow();
+
+
+        upiPage.navigateToAddNewCreditCardAndSelect();
+
+        mbReporter.verifyTrueWithLogging(!(upiPage.getAddCreditCardLandingPageMessage() ==null),"Add Credit Card Landing Page Message : "+upiPage.getAddCreditCardLandingPageMessage(), false, false);
+
+
+        upiPage.selectHdfcBankCreditCardFromList();
+
+        Thread.sleep(4000);
+
+        mbReporter.verifyTrueWithLogging(upiPage.validateErrorMessage().equals("You don’t seem to have an account in this bank"),"Validating Error Message", false, false);
+
+        upiPage.goBackAddFlow();
+        Thread.sleep(1000);
+        upiPage.goBackAddFlow();
+
+    }
+
+    public void manageUpiNumber() throws InterruptedException, IOException {
+
+
+        homePage.clickOnAllServicesSection();
+        upiPage = homePage.clickOnUPITransfers();
+
+        Element.waitForVisibility(driver, By.id("transfer_own_account"));
+        upiPage.selectManageCta();
+
+        Element.waitForVisibility(driver, By.id("txtHowToUseUpi"));
+
+
+        upiPage.clickLinkAccount();
+
+        upiPage.clickOnUpiSetupCta();
+
+        permissionHelper.permissionAllow();
+
+        permissionHelper.permissionAllow();
+
+        permissionHelper.permissionAllow();
+
+        Thread.sleep(4000);
+
+        mbReporter.verifyTrueWithLogging(upiPage.isQRPresent(), "QR Present :"+upiPage.isQRPresent(), false, false);
+        mbReporter.verifyTrueWithLogging(!(upiPage.fetchUPIIDManageSection()==null)," User UPI ID : "+upiPage.fetchUPIIDManageSection(), false, false);
+        mbReporter.verifyTrueWithLogging(!(upiPage.fetchUPINumberManageSection()==null)," User UPI Number : "+upiPage.fetchUPINumberManageSection(), false, false);
+
+        upiPage.selectMenuIconManageUpiPage();
+
+        upiPage.selectManageUpiNumber();
+
+        mbReporter.verifyTrueWithLogging(true, "Primary Number Status : "+upiPage.getPrimaryNumberStatusCtaText(), false, false);
+
+//        mbReporter.verifyTrueWithLogging(true, "Secondary Number Status : "+upiPage.getSecondaryNumberStatusCtaText(), false, false);
+//
+//        mbReporter.verifyTrueWithLogging(true, "Secondary Number Deregistration Status : "+upiPage.getSecondaryNumberDeregisterStatusCtaText(), false, false);
+
+        if(upiPage.getPrimaryNumberStatusCtaText().equalsIgnoreCase("Deactivate")){
+            upiPage.primaryNumberActivateDeactivateCta();
+            mbReporter.verifyTrueWithLogging(!(upiPage.getDeactivateConfirmationPopUpTitleText() ==null), "Deactivate Pop UP Title Text Primary Number : "+upiPage.getDeactivateConfirmationPopUpTitleText(), false, false);
+            upiPage.deactivateConfirmationPopUpCta();
+            Thread.sleep(3000);
+        }
+
+//        if(upiPage.getSecondaryNumberStatusCtaText().equalsIgnoreCase("Deactivate")){
+//            upiPage.secondaryNumberActivateDeactivateCta();
+//            mbReporter.verifyTrueWithLogging(!(upiPage.getDeactivateConfirmationPopUpTitleText() ==null), "Deactivate Pop UP Title Text Secondary Number : "+upiPage.getDeactivateConfirmationPopUpTitleText(), false, false);
+//            upiPage.deactivateConfirmationPopUpCta();
+//            Thread.sleep(3000);
+//        }
 
         Thread.sleep(2000);
 
-        upiPage = homePage.clickOnLinkBankAccount();
+        upiPage.goBackNumberMapperPage();
 
-        upiPage.clickOnUpiSetupCta();
+        mbReporter.verifyTrueWithLogging(upiPage.isActivateCtaPresentUpiNumberManagePage(), "Activate Pop Up Present : "+ upiPage.isActivateCtaPresentUpiNumberManagePage(), false,false);
 
-        permissionHelper.permissionAllow();
+        if(upiPage.isActivateCtaPresentUpiNumberManagePage()){
+            upiPage.clickOnActivateCtaManagePage();
+            Thread.sleep(2000);
+        }
 
-        permissionHelper.permissionAllow();
+        upiPage.selectMenuIconManageUpiPage();
 
-        permissionHelper.permissionAllow();
+        upiPage.selectManageUpiNumber();
 
-        Thread.sleep(400);
+        mbReporter.verifyTrueWithLogging(upiPage.getPrimaryNumberStatusCtaText().equalsIgnoreCase("deactivate"), "Primary Number Status : "+upiPage.getPrimaryNumberStatusCtaText(), false, false);
 
-//            Element.waitForVisibility(driver, By.id("qr_image"));
+        upiPage.addNewUpiNumberCta();
 
-        Boolean setup = Element.isElementPresent(driver, By.id("qr_image"));
+        Thread.sleep(1000);
+        upiPage.enterNewMapperNumber("188698756");
 
-        mbReporter.verifyTrueWithLogging(setup, "Setup Done", true, true);
+        upiPage.checkAvaibilityCta();
 
-        homePage = upiPage.clickOnBackButton();
+        Thread.sleep(3000);
 
-        homePage.clickCheckBalance();
+        mbReporter.verifyTrueWithLogging(upiPage.isMapperNumberAvailable(), "Is new number available : "+upiPage.isMapperNumberAvailable(), false,false);
 
-        mbkCommonControlsHelper.handleUpiPin(pin);
-
-        Boolean isBalanceVisible = Element.isElementPresent(driver, By.id("balance"));
-
-        String balance = homePage.getAccountBalance();
-
-        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("balance")), "Avalaible Balance is =Rs " + balance, true, true);
-
-        homePage.dismissOverlay();
-
-
-    }
-
-    //Payment Successful
-    //Money added into your wallet successfully
-
-    public void addMoneyViaUpi(String pin, String amount, String successPageStatus, String successPageText) throws InterruptedException, IOException {
-
-        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
-
-        Thread.sleep(100);
-
-        balanceBefore = mbkCommonControlsHelper.getBalance();
-
-        homePage.clickOnAddMoneyButton();
-
-        addMoneyPage.clickOnAmountTextBox();
-
-        addMoneyPage.enterAmount(amount);
-
-        addMoneyPage.clickOnContinueButton();
-
-        addMoneyPage.chooseUpiOption();
-
-        addMoneyPage.restoreUpi();
-
-        permissionHelper.permissionAllow();
-
-        permissionHelper.permissionAllow();
-
-        addMoneyPage.chooseUpiBank();
-
-        mbkCommonControlsHelper.handleUpiPin(pin);
-
-        //Assertions
-        Double expectedMainBalance = (Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100) + Double.parseDouble(amount) * 100;
-        Double actualMainBalance = Double.parseDouble(addMoneyPage.getSuccessPageWalletBalance().replace("New Wallet Balance X", "").replace(",", "")) * 100;
-        mbReporter.verifyEqualsWithLogging(addMoneyPage.getSuccessPageStatus(), successPageStatus, "Success Screen | Verify Status", false, false);
-        mbReporter.verifyEqualsWithLogging(addMoneyPage.getSuccessPageText(), successPageText, "Success Screen | Verify Text", false, false);
-        mbReporter.verifyEqualsWithLogging(actualMainBalance, expectedMainBalance, "Success Screen | Verify Main Balance", false, false);
-
-        mbkCommonControlsHelper.returnToHomePageFromP2MSuccessScreen();
-
-        // POST TRX Assertions
-        balanceAfter = mbkCommonControlsHelper.getBalance();
-        Double actualMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100;
-        Double actualSuperCashBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceAfter, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
-        Double expectedMainBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.MAINBALANCE)) * 100 + Double.parseDouble(amount) * 100;
-        Double expectedSuperCashBalanceAfter = Double.parseDouble(mbkCommonControlsHelper.getBalance(balanceBefore, MBKCommonControlsHelper.BalanceType.SUPERCASH)) * 100;
-        mbReporter.verifyEqualsWithLogging(actualMainBalanceAfter, expectedMainBalanceAfter, "After TRX | Verify Wallet Main Balance", false, false);
-        mbReporter.verifyEqualsWithLogging(actualSuperCashBalanceAfter, expectedSuperCashBalanceAfter, "After TRX | Verify Supercash Balance", false, false);
 
     }
 
     public void deregisterUpi() throws InterruptedException, IOException {
 
-        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
 
-        Thread.sleep(100);
+        homePage.clickOnAllServicesSection();
+        upiPage = homePage.clickOnUPITransfers();
 
-        upiPage = homePage.clickOnUpiId();
+        Element.waitForVisibility(driver, By.id("transfer_own_account"));
+        upiPage.selectManageCta();
+
+        Element.waitForVisibility(driver, By.id("txtHowToUseUpi"));
+
+
+        upiPage.clickLinkAccount();
 
         upiPage.clickOnUpiSetupCta();
 
@@ -364,114 +719,25 @@ public class UpiHelper {
 
         permissionHelper.permissionAllow();
 
-        Thread.sleep(400);
+        Thread.sleep(4000);
 
+        mbReporter.verifyTrueWithLogging(upiPage.isQRPresent(), "QR Present :"+upiPage.isQRPresent(), false, false);
+        mbReporter.verifyTrueWithLogging(!(upiPage.fetchUPIIDManageSection()==null)," User UPI ID : "+upiPage.fetchUPIIDManageSection(), false, false);
+        mbReporter.verifyTrueWithLogging(!(upiPage.fetchUPINumberManageSection()==null)," User UPI Number : "+upiPage.fetchUPINumberManageSection(), false, false);
 
-        Boolean setup = Element.isElementPresent(driver, By.id("qr_image"));
+        upiPage.selectMenuIconManageUpiPage();
 
-        mbReporter.verifyTrueWithLogging(setup, "Setup Done", true, true);
+        upiPage.selectDeregisterUpi();
 
-        homePage = upiPage.clickOnBackButton();
+        mbReporter.verifyTrueWithLogging(!(upiPage.getDeregisterPopUpTitleText()==null),"Deregister Pop UP Title Text : "+upiPage.getDeregisterPopUpTitleText(), false, false);
 
-        sideDrawerPage = homePage.clickHamburgerIcon();
-
-        securitySettingsPage = sideDrawerPage.clickOnSecuritySettings();
-
-        securitySettingsPage.ClickSecurityOptions();
-
-        securitySettingsPage.ClickDeregisterFromOptions();
-
-        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Deregister Account']"));
-
-        securitySettingsPage.ClickYesDeregisterAccount();
-
-        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Deregister successful']"));
-
-        boolean deregisterRequest = Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text= 'Deregister successful']"));
-
-        mbReporter.verifyTrueWithLogging(deregisterRequest, "Deregister successful", true, true);
-
-        securitySettingsPage.ClickOk();
-
-        homePage = securitySettingsPage.clickBackButton();
-
-        Thread.sleep(100);
-
-        Boolean upiId = Element.isElementPresent(driver, By.id("tx_upi_id"));
-
-        mbReporter.verifyTrueWithLogging(!upiId, "Upi is Deregistered Succesfully", true, true);
+        upiPage.clickNoOnDeregisterUpiPopUp();
 
 
     }
 
-    public void registerUpi(String bankName) throws InterruptedException, IOException {
-
-
-        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
-
-        Thread.sleep(100);
-
-        if (Element.isElementPresent(driver, By.id("tx_bank_balance")) == false) {
-
-            sideDrawerPage= homePage.clickHamburgerIcon();
-            walletPage = sideDrawerPage.clickOnAccountsPage();
-
-            Thread.sleep(5000);
-            for (int i = 0; i < 2; i++) {
-                Screen.swipeDownMore(driver);
-            }
-
-            homePage.clickOnBottomBarHome();
-
-        }
-
-        homePage.clickCheckBalance();
-
-        upiPage = homePage.clickOnLinkBankAccount();
-
-        Element.waitForVisibility(driver, By.id("mkiv_image"));
-
-        upiPage.enterBankName(bankName);
-
-        upiPage.selectBankFromList();
-
-        permissionHelper.permissionAllow();
-
-        permissionHelper.permissionAllow();
-
-        permissionHelper.permissionAllow();
-
-        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Select the phone number linked with your Kotak Mahindra Bank Account. An SMS will be triggered from the number to verify your bank account.']"));
-
-        upiPage.selectSim1();
-
-        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Create New VPA']"));
-
-        String randomVpa = Helper.generateRandomAlphaNumericString(5).toLowerCase();
-
-//        Thread.sleep(5000);
-
-        upiPage.enterVpa(randomVpa);
-
-        upiPage.submitVpa();
-
-        Element.waitForVisibility(driver, By.id("upi_id_label"));
-
-        String upiId = upiPage.upiIdGenerated();
-
-        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("upi_id_text")), "Upi ID generated is:" + upiId, true, true);
-
-        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("account_number")), "Account Number is present", true, true);
-
-        homePage = upiPage.clickBackToHomeFromSetupSuccess();
-
-        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text= '" + upiId + "']")), "Upi Id is Reflected", true, true);
-
-
-    }
 
 
 }
 
 
- */
