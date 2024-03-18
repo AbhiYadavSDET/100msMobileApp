@@ -48,6 +48,19 @@ public class UpiPage {
     @AndroidFindBy(id = "cta")
     private AndroidElement cta_confirm_payment;
 
+    @AndroidFindBy(id = "cta_btn")
+    private AndroidElement cta_confirm_payment_choose_payment_mode_bottomsheet;
+
+    @AndroidFindBy(id="tv_title")
+    private AndroidElement choose_payment_mode_bottonsheet;
+
+    @AndroidFindBy(id="tv_state_title")
+    private AndroidElement restore_UPI_option;
+
+    @AndroidFindBy(id="start_button")
+    private AndroidElement start_upi_restore_journey;
+
+
 
     @AndroidFindBy(id = "status")
     private AndroidElement payment_succes_message;
@@ -418,8 +431,26 @@ public class UpiPage {
         return Elements.isElementPresent(driver,setup_message);
     }
 
+    public Boolean isChoosePaymentModeBottomsheetDisplayed() throws InterruptedException {
+        return Elements.isElementPresent(driver,choose_payment_mode_bottonsheet);
+    }
+
+    public void clickOnRestoreUpiInChoosePaymentModeBottomsheet() throws InterruptedException {
+        Element.selectElement(driver, restore_UPI_option, "Click on Restore Upi in Choose Payment Mode Bottomsheet");
+    }
+
+    public void clickStartUpiRestoreJourney() throws InterruptedException {
+        Element.selectElement(driver, start_upi_restore_journey, "Click start upi restore journey");
+    }
+
+
+
     public void clickOnConfirmPayment() throws InterruptedException {
         Element.selectElement(driver, cta_confirm_payment, "Click on Confirm Payment");
+    }
+
+    public void clickOnConfirmPaymentChoosePaymentModeBottomsheet() throws InterruptedException{
+        Element.selectElement(driver, cta_confirm_payment_choose_payment_mode_bottomsheet, "Click on Confirm Payment in bottomsheet");
     }
 
     public Boolean is2FAPageDisplayed() throws InterruptedException {
