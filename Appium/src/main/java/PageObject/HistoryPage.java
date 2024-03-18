@@ -78,7 +78,7 @@ public class HistoryPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@id='txt_transaction_summary'])[1]]")
     private AndroidElement second_byid_ontx;
 
-    @AndroidFindBy(xpath = "android.widget.Button[@text = 'Enable Now']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Enable secure login']")
     private AndroidElement secureLoginBottomSheet;
 
     public HistoryPage(AndroidDriver driver) {
