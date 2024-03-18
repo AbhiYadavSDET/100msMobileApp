@@ -7,6 +7,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import Logger.Log;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 import Utils.Element;
 import Utils.Elements;
@@ -214,6 +215,73 @@ public class UpiPage {
     //should be equal to "Pocket UPI"
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Payment Mode']/following-sibling::android.widget.TextView")
     private AndroidElement success_page_validation_payment_mode;
+
+//
+    @AndroidFindBy(id="ic_menu")
+    private AndroidElement menu_icon_manageUpi_page;
+
+    @AndroidFindBy(id="manage")
+    private AndroidElement manage_upi_number;
+
+    @AndroidFindBy(id="deregister")
+    private AndroidElement deregister_upi;
+
+
+    @AndroidFindBy(id="secondary_button")
+    private AndroidElement deregister_upi_number_cta;
+
+    @AndroidFindBy(id="fab_add_number")
+    private AndroidElement add_new_upi_number;
+
+    @AndroidFindBy(id="title_text")
+    private AndroidElement confirmation_pop_up_title;
+
+    @AndroidFindBy(xpath = "//android.widget.Button[@text='Deactivate']")
+    private AndroidElement bottomsheet_deactivate_cta;
+
+
+//    @AndroidFindBy(xpath = "(//android.widget.TextView[@text='Deactivate'])[1]")
+//    private AndroidElement deactivate_cta_1_primary_number;
+
+//    @AndroidFindBy(xpath = "(//android.widget.TextView[@text='Deactivate'])[2]")
+//    private AndroidElement deactivate_cta_2_secondary_number;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='9205299330']/following-sibling::android.widget.TextView")
+    private AndroidElement activate_cta_1_primary_number;
+
+    @AndroidFindBy(xpath = "(//android.widget.TextView[@text='Activate'])[2]")
+    private AndroidElement activate_cta_2_secondary_number;
+
+    @AndroidFindBy (id="btn_link")
+    private AndroidElement number_mapper_activate_cta_manage_page;
+
+    @AndroidFindBy(id="btn_check_availablity")
+    private AndroidElement check_avaibility_cta;
+
+
+    @AndroidFindBy(id="edit_text")
+    private AndroidElement mapper_number_enter_field;
+
+    @AndroidFindBy(id="tick")
+    private AndroidElement mapper_number_available;
+
+    //Deregister
+
+    @AndroidFindBy(id="title_text")
+    private AndroidElement deregister_pop_up_titleText;
+
+    @AndroidFindBy(xpath = "//android.widget.Button[@text='No']")
+    private AndroidElement deregister_popup_no_cta;
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -623,82 +691,111 @@ public class UpiPage {
 
 
 
+/////////
 
-
-
-
-
-
-
-
-
-
-
-
-
-    //////////////////////////////////////////////
-
-
-
-    public String verifySetupPopUp(String amount) throws InterruptedException {
-        return Element.getText(driver, text_header_upi_setup, "Get Header Text");
+    public void selectMenuIconManageUpiPage() throws InterruptedException {
+        Element.selectElement(driver, menu_icon_manageUpi_page, "Select Menu Icon Manage Upi Page");
     }
 
-    public void clickSendMoney() throws InterruptedException {
-        Element.selectElement(driver, cta_send_money, "Click on Send Money");
+    public void selectManageUpiNumber() throws InterruptedException {
+        Element.selectElement(driver, manage_upi_number, "Select Manage UPI Number");
     }
 
-    public void clickConfrimUpi() throws InterruptedException {
-        Element.selectElement(driver, cta_confirm_upi, "Click on Confirm UPI");
+    public void selectDeregisterUpi() throws InterruptedException {
+        Element.selectElement(driver, deregister_upi, "Select Deregister UPI");
     }
 
+    //Primary Number
 
 
-    public void clickRequestMoney() throws InterruptedException {
-        Element.selectElement(driver, cta_request_money, "Click on Request Money");
+
+    public String getSecondaryNumberDeregisterStatusCtaText() throws InterruptedException{
+        return Elements.getText(driver, deregister_upi_number_cta);
+    }
+    public void secondaryNumberDeregisterCta() throws InterruptedException {
+        Element.selectElement(driver, deregister_upi_number_cta, "Deregister Secondary Number Cta");
     }
 
-    public void clickOnConfirmRequest() throws InterruptedException {
-        Element.selectElement(driver, cta_confirm_request, "Click on Confirm Request");
+    public String getPrimaryNumberStatusCtaText() throws InterruptedException{
+
+        return Element.getText(driver, activate_cta_1_primary_number, " Fetch Cta text fro Primary Number");
+
+    }
+    public void primaryNumberActivateDeactivateCta() throws InterruptedException, NoSuchElementException {
+        Element.selectElement(driver, activate_cta_1_primary_number, "Tap on Activate cta for Primary Number" );
     }
 
+//    public String getSecondaryNumberStatusCtaText() throws InterruptedException{
+//        if(Elements.isElementPresent(driver,activate_cta_2_secondary_number)){
+//            return Elements.getText(driver, activate_cta_2_secondary_number);
+//        }else if(Elements.isElementPresent(driver,deactivate_cta_2_secondary_number)){
+//            return Elements.getText(driver, deactivate_cta_2_secondary_number);
+//        }else {
+//            return "NA";
+//        }
+//
+//    }
+//    public void secondaryNumberActivateDeactivateCta() throws InterruptedException, NoSuchElementException {
+//
+//        if(Elements.isElementPresent(driver,activate_cta_2_secondary_number)){
+//            Element.selectElement(driver, activate_cta_2_secondary_number, "Tap on Activate cta for Secondary Number" );
+//        }else if(Elements.isElementPresent(driver,deactivate_cta_2_secondary_number)){
+//            Element.selectElement(driver, deactivate_cta_2_secondary_number, "Tap on Deactivate cta for Secondary Number" );
+//        }else {
+//
+//            Log.info("Element not Present");
+//        }
+//    }
 
-
-    public void enterBankName(String bankName) throws InterruptedException {
-        Element.enterText(driver, enter_bank_name, bankName, "Enter Bank Name");
+    public void goBackNumberMapperPage() throws InterruptedException {
+        Element.selectElement(driver, back_button_errorPage, "Go Back");
     }
 
-    public void selectBankFromList() throws InterruptedException {
-        Element.selectElement(driver, select_bank_from_list, "Select Bank from List");
+    public String getDeactivateConfirmationPopUpTitleText() throws InterruptedException{
+        return Elements.getText(driver, confirmation_pop_up_title);
     }
 
-    public void selectSim1() throws InterruptedException {
-        Element.selectElement(driver, select_sim_1, "Select Sim 1");
+    public void deactivateConfirmationPopUpCta() throws InterruptedException {
+        Element.selectElement(driver, bottomsheet_deactivate_cta, "Deactivate Number Confirmation Pop UP CTA");
     }
 
-    public void enterVpa(String enterVpa) throws InterruptedException {
-        Element.enterText(driver, enter_vpa, enterVpa, "Enter Random VPA");
+    public Boolean isActivateCtaPresentUpiNumberManagePage() throws InterruptedException{
+        return Elements.isElementPresent(driver, number_mapper_activate_cta_manage_page);
     }
 
-    public void submitVpa() throws InterruptedException {
-        Element.selectElement(driver, submit_vpa, "Submit VPA");
+    public void clickOnActivateCtaManagePage() throws InterruptedException{
+        Elements.scrollToElement(driver, number_mapper_activate_cta_manage_page);
+         Element.selectElement(driver, number_mapper_activate_cta_manage_page, "Click on Activate Upi number Cta Manage Page");
     }
 
-    public String upiIdGenerated() throws InterruptedException {
-        return Element.getText(driver, get_upi_id, "Get Upi Id generated");
+    public void addNewUpiNumberCta() throws InterruptedException {
+        Element.selectElement(driver, add_new_upi_number, "Click on Add New Upi Number Cta");
     }
 
-    public HomePage clickBackToHomeFromSetupSuccess() throws InterruptedException {
-        Element.selectElement(driver, upi_setup_success_back_to_home_cta, "Click Back tom Home");
-        return new HomePage(driver);
+    public void checkAvaibilityCta() throws InterruptedException {
+        Element.selectElement(driver, check_avaibility_cta, "Click on Check Avaibility Cta");
     }
 
+    public void enterNewMapperNumber(String number) throws InterruptedException {
+        //188698756
+        Element.enterText(driver, mapper_number_enter_field, number, "Enter New Number for Mapping");
+    }
+
+    public Boolean isMapperNumberAvailable() throws InterruptedException{
+        return Elements.isElementPresent(driver, mapper_number_available);
+    }
+
+    //Deregister
 
 
 
+    public String getDeregisterPopUpTitleText() throws InterruptedException{
+        return Elements.getText(driver, deregister_pop_up_titleText);
+    }
 
-
-
+    public void clickNoOnDeregisterUpiPopUp() throws InterruptedException {
+        Element.selectElement(driver, deregister_popup_no_cta, "Click No on Deregister Pop Up");
+    }
 
 
 

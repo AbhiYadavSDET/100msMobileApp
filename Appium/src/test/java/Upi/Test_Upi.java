@@ -13,7 +13,7 @@ public class Test_Upi extends TestBase {
 
 
     @Test(groups = {"upiSendMoney", "upiSanity"}, priority = 0, description = "UPI Send Money to UPI ID test")
-    public void Test01_Upi_Send_Money_to_VPA() throws IOException, InterruptedException {
+    public void Test01_Upi_Send_Money_To_VPA() throws IOException, InterruptedException {
 
         Log.info("======= START : UPI Send Money to UPI ID test =======");
 
@@ -111,7 +111,7 @@ public class Test_Upi extends TestBase {
     }
 
     @Test(groups = {"upiSendMoney", "upiSanity"}, priority = 0, description = "UPI Send Money to Contact")
-    public void Test08_Upi_Send_Money_to_contact() throws IOException, InterruptedException {
+    public void Test08_Upi_Send_Money_To_Contact() throws IOException, InterruptedException {
 
         Log.info("======= START : UPI Send Money to Contact =======");
 
@@ -125,7 +125,7 @@ public class Test_Upi extends TestBase {
     }
 
     @Test(groups = {"pocketUpi", "upiSanity"}, priority = 0, description = "Pocket UPI Send Money via pocketUpi")
-    public void Test09_Upi_Send_Money_via_PocketUpi() throws IOException, InterruptedException {
+    public void Test09_Upi_Send_Money_Via_PocketUpi() throws IOException, InterruptedException {
 
         Log.info("======= START : Pocket UPI Send Money via pocketUpi =======");
 
@@ -138,7 +138,7 @@ public class Test_Upi extends TestBase {
     }
 
     @Test(groups = {"pocketUpi", "upiSanity"}, priority = 0, description = "Pocket UPI Show My QR from Pocket UPI Home Page")
-    public void Test10_Upi_PocketUpi_Show_my_QR() throws IOException, InterruptedException {
+    public void Test10_Upi_PocketUpi_Show_My_QR() throws IOException, InterruptedException {
 
         Log.info("======= START : Pocket UPI Show My QR from Pocket UPI Home Page =======");
 
@@ -151,7 +151,7 @@ public class Test_Upi extends TestBase {
     }
 
     @Test(groups = {"manageUpi", "upiSanity"}, priority = 0, description = "Manage UPI Section")
-    public void Test11_manage_UPI() throws IOException, InterruptedException {
+    public void Test11_Manage_UPI() throws IOException, InterruptedException {
 
         Log.info("======= START : Manage UPI Section =======");
 
@@ -164,7 +164,7 @@ public class Test_Upi extends TestBase {
     }
 
     @Test(groups = {"manageUpi", "upiSanity"}, priority = 0, description = "Add New Bank account and Credit Card flow")
-    public void Test12_add_account_creditCard() throws IOException, InterruptedException {
+    public void Test12_Add_Account_CreditCard() throws IOException, InterruptedException {
 
         Log.info("======= START : Add New Bank account and Credit Card flow =======");
 
@@ -176,33 +176,36 @@ public class Test_Upi extends TestBase {
         upiHelper.addNewBankAccountAndCreditCard();
     }
 
+    @Test(groups = {"numberMapper", "upiSanity"}, priority = 0, description = "Validate Manage UPI Number")
+    public void Test13_Manage_Upi_Number() throws IOException, InterruptedException {
 
-//
-//    @Test(groups = {"deregisterUpi"}, priority = 0, description = "Deregister UPI test")
-//    public void Upi_Deregister() throws IOException, InterruptedException {
-//
-//        Log.info("======= START : Deregister UPI test =======");
-//
-//        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-//        loginHelper.quickLoginViaOtp("9205299330", "547372");
-//
-//
-//        UpiHelper upiHelper = new UpiHelper(getAndroidDriver());
-//        upiHelper.deregisterUpi();
-//    }
-//
-//    @Test(groups = {"registerUpi"}, priority = 0, description = "Register UPI test")
-//    public void Upi_register() throws IOException, InterruptedException {
-//
-//        Log.info("======= START : Register UPI test =======");
-//
-//        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-//        loginHelper.quickLoginViaOtp("8216", "547372");
-//
-//
-//        UpiHelper upiHelper = new UpiHelper(getAndroidDriver());
-//        upiHelper.registerUpi("Kotak");
-//    }
+        Log.info("======= START : Validate Manage UPI Number =======");
+
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
+
+
+        UpiHelper upiHelper = new UpiHelper(getAndroidDriver());
+        upiHelper.manageUpiNumber();
+    }
+
+
+
+
+
+    @Test(groups = {"deregisterUpi", "upiSanity"}, priority = 0, description = "Validate Deregister UPI till confirmation")
+    public void Test14_Upi_Deregister() throws IOException, InterruptedException {
+
+        Log.info("======= START : Validate Deregister UPI till confirmation =======");
+
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
+
+
+        UpiHelper upiHelper = new UpiHelper(getAndroidDriver());
+        upiHelper.deregisterUpi();
+    }
+
 
 }
 

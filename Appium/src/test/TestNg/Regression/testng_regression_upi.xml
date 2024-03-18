@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Test Suite">
+
+        <listeners>
+            <listener class-name="Utils.Listeners.AnnotationTransformer"/>
+        </listeners>
+
+    <test preserve-order="true" name="UPI Regression TRX">
+        <parameter name="build" value="prod"/>
+        <parameter name="level" value="payments"/>
+        <parameter name="saucelabs" value="false"></parameter>
+        <parameter name="codeCoverage" value="false"></parameter>
+        <parameter name="androidOSVersion" value="10.0"></parameter>
+        <parameter name="deviceName" value="SamsungJ6"></parameter>
+        <parameter name="udId" value="52004880fc3c5565"></parameter>
+        <parameter name="portNo" value="4723"></parameter>
+
+        <groups>
+            <run>
+                <include name="setUp"/>
+                <include name="upiSanity"/>
+                <include name="tearDown"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="Utils.TestBase"/>
+            <class name="Upi.Test_Upi"/>
+        </classes>
+    </test>
+
+</suite>

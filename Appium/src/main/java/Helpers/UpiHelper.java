@@ -614,130 +614,128 @@ public class UpiHelper {
 
     }
 
+    public void manageUpiNumber() throws InterruptedException, IOException {
 
 
+        homePage.clickOnAllServicesSection();
+        upiPage = homePage.clickOnUPITransfers();
 
-//    public void deregisterUpi() throws InterruptedException, IOException {
-//
-//        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
-//
-//        Thread.sleep(100);
-//
-//        upiPage = homePage.clickOnUpiId();
-//
-//        upiPage.clickOnUpiSetupCta();
-//
-//        permissionHelper.permissionAllow();
-//
-//        permissionHelper.permissionAllow();
-//
-//        permissionHelper.permissionAllow();
-//
-//        Thread.sleep(400);
-//
-//
-//        Boolean setup = Element.isElementPresent(driver, By.id("qr_image"));
-//
-//        mbReporter.verifyTrueWithLogging(setup, "Setup Done", true, true);
-//
-//        homePage = upiPage.clickOnBackButton();
-//
-//        sideDrawerPage = homePage.clickHamburgerIcon();
-//
-//        securitySettingsPage = sideDrawerPage.clickOnSecuritySettings();
-//
-//        securitySettingsPage.ClickSecurityOptions();
-//
-//        securitySettingsPage.ClickDeregisterFromOptions();
-//
-//        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Deregister Account']"));
-//
-//        securitySettingsPage.ClickYesDeregisterAccount();
-//
-//        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Deregister successful']"));
-//
-//        boolean deregisterRequest = Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text= 'Deregister successful']"));
-//
-//        mbReporter.verifyTrueWithLogging(deregisterRequest, "Deregister successful", true, true);
-//
-//        securitySettingsPage.ClickOk();
-//
-//        homePage = securitySettingsPage.clickBackButton();
-//
-//        Thread.sleep(100);
-//
-//        Boolean upiId = Element.isElementPresent(driver, By.id("tx_upi_id"));
-//
-//        mbReporter.verifyTrueWithLogging(!upiId, "Upi is Deregistered Succesfully", true, true);
-//
-//
-//    }
+        Element.waitForVisibility(driver, By.id("transfer_own_account"));
+        upiPage.selectManageCta();
 
-//    public void registerUpi(String bankName) throws InterruptedException, IOException {
+        Element.waitForVisibility(driver, By.id("txtHowToUseUpi"));
+
+
+        upiPage.clickLinkAccount();
+
+        upiPage.clickOnUpiSetupCta();
+
+        permissionHelper.permissionAllow();
+
+        permissionHelper.permissionAllow();
+
+        permissionHelper.permissionAllow();
+
+        Thread.sleep(4000);
+
+        mbReporter.verifyTrueWithLogging(upiPage.isQRPresent(), "QR Present :"+upiPage.isQRPresent(), false, false);
+        mbReporter.verifyTrueWithLogging(!(upiPage.fetchUPIIDManageSection()==null)," User UPI ID : "+upiPage.fetchUPIIDManageSection(), false, false);
+        mbReporter.verifyTrueWithLogging(!(upiPage.fetchUPINumberManageSection()==null)," User UPI Number : "+upiPage.fetchUPINumberManageSection(), false, false);
+
+        upiPage.selectMenuIconManageUpiPage();
+
+        upiPage.selectManageUpiNumber();
+
+        mbReporter.verifyTrueWithLogging(true, "Primary Number Status : "+upiPage.getPrimaryNumberStatusCtaText(), false, false);
+
+//        mbReporter.verifyTrueWithLogging(true, "Secondary Number Status : "+upiPage.getSecondaryNumberStatusCtaText(), false, false);
 //
-//
-//        mbkCommonControlsHelper.dismissAllOnHomePage(driver);
-//
-//        Thread.sleep(100);
-//
-//        if (Element.isElementPresent(driver, By.id("tx_bank_balance")) == false) {
-//
-//            sideDrawerPage= homePage.clickHamburgerIcon();
-//            walletPage = sideDrawerPage.clickOnAccountsPage();
-//
-//            Thread.sleep(5000);
-//            for (int i = 0; i < 2; i++) {
-//                Screen.swipeDownMore(driver);
-//            }
-//
-//            homePage.clickOnBottomBarHome();
-//
+//        mbReporter.verifyTrueWithLogging(true, "Secondary Number Deregistration Status : "+upiPage.getSecondaryNumberDeregisterStatusCtaText(), false, false);
+
+        if(upiPage.getPrimaryNumberStatusCtaText().equalsIgnoreCase("Deactivate")){
+            upiPage.primaryNumberActivateDeactivateCta();
+            mbReporter.verifyTrueWithLogging(!(upiPage.getDeactivateConfirmationPopUpTitleText() ==null), "Deactivate Pop UP Title Text Primary Number : "+upiPage.getDeactivateConfirmationPopUpTitleText(), false, false);
+            upiPage.deactivateConfirmationPopUpCta();
+            Thread.sleep(3000);
+        }
+
+//        if(upiPage.getSecondaryNumberStatusCtaText().equalsIgnoreCase("Deactivate")){
+//            upiPage.secondaryNumberActivateDeactivateCta();
+//            mbReporter.verifyTrueWithLogging(!(upiPage.getDeactivateConfirmationPopUpTitleText() ==null), "Deactivate Pop UP Title Text Secondary Number : "+upiPage.getDeactivateConfirmationPopUpTitleText(), false, false);
+//            upiPage.deactivateConfirmationPopUpCta();
+//            Thread.sleep(3000);
 //        }
-//
-//        homePage.clickCheckBalance();
-//
-//        upiPage = homePage.clickOnLinkBankAccount();
-//
-//        Element.waitForVisibility(driver, By.id("mkiv_image"));
-//
-//        upiPage.enterBankName(bankName);
-//
-//        upiPage.selectBankFromList();
-//
-//        permissionHelper.permissionAllow();
-//
-//        permissionHelper.permissionAllow();
-//
-//        permissionHelper.permissionAllow();
-//
-//        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Select the phone number linked with your Kotak Mahindra Bank Account. An SMS will be triggered from the number to verify your bank account.']"));
-//
-//        upiPage.selectSim1();
-//
-//        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Create New VPA']"));
-//
-//        String randomVpa = Helper.generateRandomAlphaNumericString(5).toLowerCase();
-//
-////        Thread.sleep(5000);
-//
-//        upiPage.enterVpa(randomVpa);
-//
-//        upiPage.submitVpa();
-//
-//        Element.waitForVisibility(driver, By.id("upi_id_label"));
-//
-//        String upiId = upiPage.upiIdGenerated();
-//
-//        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("upi_id_text")), "Upi ID generated is:" + upiId, true, true);
-//
-//        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.id("account_number")), "Account Number is present", true, true);
-//
-//        homePage = upiPage.clickBackToHomeFromSetupSuccess();
-//
-//        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text= '" + upiId + "']")), "Upi Id is Reflected", true, true);
-//
-//
-//    }
+
+        Thread.sleep(2000);
+
+        upiPage.goBackNumberMapperPage();
+
+        mbReporter.verifyTrueWithLogging(upiPage.isActivateCtaPresentUpiNumberManagePage(), "Activate Pop Up Present : "+ upiPage.isActivateCtaPresentUpiNumberManagePage(), false,false);
+
+        if(upiPage.isActivateCtaPresentUpiNumberManagePage()){
+            upiPage.clickOnActivateCtaManagePage();
+            Thread.sleep(2000);
+        }
+
+        upiPage.selectMenuIconManageUpiPage();
+
+        upiPage.selectManageUpiNumber();
+
+        mbReporter.verifyTrueWithLogging(upiPage.getPrimaryNumberStatusCtaText().equalsIgnoreCase("deactivate"), "Primary Number Status : "+upiPage.getPrimaryNumberStatusCtaText(), false, false);
+
+        upiPage.addNewUpiNumberCta();
+
+        Thread.sleep(1000);
+        upiPage.enterNewMapperNumber("188698756");
+
+        upiPage.checkAvaibilityCta();
+
+        Thread.sleep(3000);
+
+        mbReporter.verifyTrueWithLogging(upiPage.isMapperNumberAvailable(), "Is new number available : "+upiPage.isMapperNumberAvailable(), false,false);
+
+
+    }
+
+    public void deregisterUpi() throws InterruptedException, IOException {
+
+
+        homePage.clickOnAllServicesSection();
+        upiPage = homePage.clickOnUPITransfers();
+
+        Element.waitForVisibility(driver, By.id("transfer_own_account"));
+        upiPage.selectManageCta();
+
+        Element.waitForVisibility(driver, By.id("txtHowToUseUpi"));
+
+
+        upiPage.clickLinkAccount();
+
+        upiPage.clickOnUpiSetupCta();
+
+        permissionHelper.permissionAllow();
+
+        permissionHelper.permissionAllow();
+
+        permissionHelper.permissionAllow();
+
+        Thread.sleep(4000);
+
+        mbReporter.verifyTrueWithLogging(upiPage.isQRPresent(), "QR Present :"+upiPage.isQRPresent(), false, false);
+        mbReporter.verifyTrueWithLogging(!(upiPage.fetchUPIIDManageSection()==null)," User UPI ID : "+upiPage.fetchUPIIDManageSection(), false, false);
+        mbReporter.verifyTrueWithLogging(!(upiPage.fetchUPINumberManageSection()==null)," User UPI Number : "+upiPage.fetchUPINumberManageSection(), false, false);
+
+        upiPage.selectMenuIconManageUpiPage();
+
+        upiPage.selectDeregisterUpi();
+
+        mbReporter.verifyTrueWithLogging(!(upiPage.getDeregisterPopUpTitleText()==null),"Deregister Pop UP Title Text : "+upiPage.getDeregisterPopUpTitleText(), false, false);
+
+        upiPage.clickNoOnDeregisterUpiPopUp();
+
+
+    }
+
 
 
 }
