@@ -78,6 +78,9 @@ public class HistoryPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@id='txt_transaction_summary'])[1]]")
     private AndroidElement second_byid_ontx;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Enable secure login']")
+    private AndroidElement secureLoginBottomSheet;
+
     public HistoryPage(AndroidDriver driver) {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -191,7 +194,9 @@ public class HistoryPage {
         Elements.selectElement(driver, second_byid_ontx, "click on second element");
     }
 
-
+    public boolean isSecureLoginBottomSheetPresent() throws InterruptedException {
+        return Elements.isElementPresent(driver, secureLoginBottomSheet);
+    }
 
 }
 
