@@ -89,6 +89,8 @@ import java.util.HashMap;
 
                 historyPage.clickonBackCTAOnInvoiceTxn();
 
+             Thread.sleep(2000);
+
                 if(historyPage.isSecureLoginBottomSheetPresent()){
                     mbkCommonControlsHelper.pressback();
                 }
