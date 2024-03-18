@@ -85,14 +85,16 @@ import java.util.HashMap;
 
             else {
                 Element.waitForVisibility(driver, By.id("mkab_icon_1"));
+            }
 
                 historyPage.clickonBackCTAOnInvoiceTxn();
-                if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Enable secure login']"))) {
-                    mbkCommonControlsHelper.handleSetupSecurityBottomSheet();
+
+                if(historyPage.isSecureLoginBottomSheetPresent()){
+                    mbkCommonControlsHelper.pressback();
                 }
                 historyPage.clickonAllCategories();
                 historyPage.clickonDoneCTAOnselectCategoryPage();
-            }
+
 
         }
         public void existingUserHistoryAAbottomSheet(String expselectYourBank,String expinsightTxt) throws InterruptedException, IOException
