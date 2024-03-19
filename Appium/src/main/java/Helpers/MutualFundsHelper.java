@@ -412,7 +412,88 @@ public class MutualFundsHelper {
 
         }
 
+    }
+    public void verifySort(String expReturnHeader) throws InterruptedException, IOException {
 
+        // Tap on See All Services
+        homePage.clickAllServices();
+
+        //Click on mutual funds
+        clickOnMutualFund();
+
+        // Click on get started button.
+        mutualFundPage.clickOnGetStarted();
+
+        // Swipe till the bottom
+        screen.swipeUpMore(driver);
+        screen.swipeUpMore(driver);
+        screen.swipeUpLess(driver);
+
+
+        // Click on explore mutual funds.
+        mutualFundPage.clickOnExploreMutualFunds();
+
+        Thread.sleep(1000);
+
+        mutualFundPage.clickOnSort();
+
+        mutualFundPage.selectFiveYears();
+
+        Thread.sleep(1000);
+
+        String actualReturnHeader = mutualFundPage.getReturnsHeader();
+        mbReporter.verifyEqualsWithLogging(actualReturnHeader, expReturnHeader, "Verify the mutual funds are appearing sorted based on selection", false, false, true);
+
+    }
+
+    public void verifySearchMF(String fundName, String expfundName, String expminInvestAmount, String expmfReturns, String expmfRating) throws InterruptedException, IOException {
+
+        // Tap on See All Services
+        homePage.clickAllServices();
+
+        //Click on mutual funds
+        clickOnMutualFund();
+
+        // Click on get started button.
+        mutualFundPage.clickOnGetStarted();
+
+        // Swipe till the bottom
+        screen.swipeUpMore(driver);
+        screen.swipeUpMore(driver);
+        screen.swipeUpLess(driver);
+
+
+        // Click on explore mutual funds.
+        mutualFundPage.clickOnExploreMutualFunds();
+
+        Thread.sleep(1000);
+
+        //Click on search
+        mutualFundPage.clickOnSearch();
+
+        //Click on search text field
+        mutualFundPage.clickOnSearchField();
+
+        //Enter fund name
+        mutualFundPage.enterMutualFundName(fundName);
+
+        // Getting mutual fund details.
+        String actualFundName = mutualFundPage.getMutualFundName();
+        String minimumInvestmentAmount = mutualFundPage.getMinimumInvestmentAmount();
+        String returns = mutualFundPage.getReturns();
+        String rating = mutualFundPage.getRating();
+
+        // Printing mutual fund details.
+        Log.info("Mutual Fund Name : " + actualFundName);
+        Log.info("Minimum Investment Amount : " + minimumInvestmentAmount);
+        Log.info("Mutual Fund Returns : " + returns);
+        Log.info("Mutual Fund Rating : " + rating);
+
+        // Add the assertions
+        mbReporter.verifyEqualsWithLogging(actualFundName, expfundName, "Verify MF Name", false, false, true);
+        mbReporter.verifyEqualsWithLogging(minimumInvestmentAmount, expminInvestAmount, "Verify MF Min Amount", false, false, true);
+        mbReporter.verifyEqualsWithLogging(returns, expmfReturns, "Verify MF Returns", false, false, true);
+        mbReporter.verifyEqualsWithLogging(rating, expmfRating, "Verify MF rating", false, false, true);
 
 
     }

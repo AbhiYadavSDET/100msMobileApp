@@ -219,6 +219,33 @@ public class MutualFundPage {
     @AndroidFindBy(id = "bigTitle")
     private AndroidElement title;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Sort']")
+    private AndroidElement sort;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = '6 Months']")
+    private AndroidElement sixMonths;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = '1 Year']")
+    private AndroidElement oneYear;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = '2 Years']")
+    private AndroidElement twoYears;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = '3 Years']")
+    private AndroidElement threeYears;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = '5 Years']")
+    private AndroidElement fiveYears;
+
+    @AndroidFindBy(id = "returns_tv_header")
+    private AndroidElement returnsHeader;
+
+    @AndroidFindBy(id = "mkab_icon_5")
+    private AndroidElement search;
+
+    @AndroidFindBy(id = "etSearch")
+    private AndroidElement searchField;
+
     public MutualFundPage(AndroidDriver driver) throws IOException {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -505,6 +532,43 @@ public class MutualFundPage {
         return Elements.getText(driver, title,"Get text from Explore mutual fund screen");
     }
 
+    public void clickOnSort(){
+        Elements.selectElement(driver, sort, "Click on sort");
+    }
 
+    public void selectOneYear(){
+        Elements.selectElement(driver, oneYear, "Select one Year");
+    }
 
+    public void selectSixMonths(){
+        Elements.selectElement(driver, sixMonths, "Select six months");
+    }
+
+    public void selectTwoYears(){
+        Elements.selectElement(driver, twoYears, "Select 2 years");
+    }
+
+    public void selectThreeYears(){
+        Elements.selectElement(driver, threeYears, "Select 3 years");
+    }
+
+    public void selectFiveYears(){
+        Elements.selectElement(driver, fiveYears, "Select 5 years");
+    }
+
+    public String getReturnsHeader() throws InterruptedException {
+        return Elements.getText(driver, returnsHeader);
+    }
+
+    public void clickOnSearch(){
+        Elements.selectElement(driver, search,"Click on search");
+    }
+
+    public void clickOnSearchField(){
+        Elements.selectElement(driver, searchField,"Click on search text field");
+    }
+
+    public void enterMutualFundName(String fundName){
+        Elements.enterToElement(driver, searchField, fundName, "Enter fund name");
+    }
 }
