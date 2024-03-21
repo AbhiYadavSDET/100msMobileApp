@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class RechargeTest extends TestBase {
 
-    @Test(groups = {"sanity", "rechargeSanity" , "regression" }, priority = 0, description = "mobile Recharge")
+    @Test(groups = {"sanity", "rechargeSanity" , "regression" }, priority = 1, description = "mobile Recharge")
     public void postpaid_Recharge() throws IOException, InterruptedException {
 
 
@@ -29,7 +29,7 @@ public class RechargeTest extends TestBase {
 
     }
 
-    @Test(groups = {"sanity", "regression"}, priority = 0, description = "mobile Recharge")
+    @Test(groups = {"sanity", "regression"}, priority = 1, description = "mobile Recharge")
     public void prepaid_Recharge() throws IOException, InterruptedException {
 
         // Login to the account
@@ -47,8 +47,8 @@ public class RechargeTest extends TestBase {
 
     }
 
-    @Test(groups = {"sanity", "rechargeSanity", "regression"}, priority = 0, description = "Verify change operator flow")
-    public void changeOperator() throws IOException, InterruptedException {
+    @Test(groups = {"sanity", "rechargeSanity", "regression"}, priority = 1, description = "Verify change operator flow")
+    public void changeOperatortest() throws IOException, InterruptedException {
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
@@ -65,7 +65,7 @@ public class RechargeTest extends TestBase {
 
     }
 
-    @Test(groups = {"sanity", "rechargeSanity", "regression"}, priority = 0, description = "Change prepaid to postpaid")
+    @Test(groups = {"sanity", "rechargeSanity", "regression"}, priority = 1, description = "Change prepaid to postpaid")
     public void changePrepaidToPostpaid() throws IOException, InterruptedException {
 
         // Login to the account
@@ -82,5 +82,40 @@ public class RechargeTest extends TestBase {
 
 
     }
+
+
+    @Test(groups = {"sanity", "rechargeSanity", "regression"}, priority = 1, description = "Coupon code handling")
+    public void couponCodeHandle() throws IOException, InterruptedException {
+
+        // Login to the account
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaOtp("7042338867", "547372");
+
+        Log.info("======= START : Postpaid Recharge =======");
+
+        // Execute the test
+        RechargeHelper rechargeHelper = new RechargeHelper(getAndroidDriver());
+        rechargeHelper.couponCodeHandling("100","Coupon code is invalid");
+        Log.info("======= END : Prepaid Recharge =======");
+
+    }
+
+
+    @Test(groups = {"sanity", "rechargeSanity", "regression"}, priority = 1, description = "Change Operator")
+    public void changeOperator() throws IOException, InterruptedException {
+
+        // Login to the account
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaOtp("7042338867", "547372");
+
+        Log.info("======= START : Change Operator =======");
+
+        // Execute the test
+        RechargeHelper rechargeHelper = new RechargeHelper(getAndroidDriver());
+        rechargeHelper.changeOperator("Select an operator","Select Circle");
+        Log.info("======= END : Change Operator =======");
+
+    }
+
 
 }

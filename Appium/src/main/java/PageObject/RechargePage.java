@@ -119,7 +119,38 @@ public class RechargePage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text='Reliance prepaid']")
     private AndroidElement relianceOperatorName;
 
+    @AndroidFindBy(id = "divider_description")
+    private AndroidElement supercash_txt;
 
+    @AndroidFindBy(id = "tv_apply")
+    private AndroidElement click_first_coupon;
+
+    @AndroidFindBy(id = "tv_detail_4")
+    private AndroidElement remove_cta;
+
+    @AndroidFindBy(xpath = "//*/android.widget.EditText[@text='Enter Coupon/Promocode']")
+    private AndroidElement enterCouponCode;
+
+    @AndroidFindBy(id = "textinput_suffix_text")
+    private AndroidElement coupon_enter_apply;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text ='Coupon code is invalid']")
+    private AndroidElement errorOnCouponEnter;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Change']")
+    private AndroidElement cta_change;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Bsnl']")
+    private AndroidElement cta_bsnl;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Andhra Pradesh']")
+    private AndroidElement dropdown_AP;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text ='Select Circle']")
+    private AndroidElement txt_selectcircle;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text ='Select an operator']")
+    private AndroidElement txt_selectoperator;
 
     public RechargePage(AndroidDriver driver){
         this.driver=driver;
@@ -284,6 +315,57 @@ public class RechargePage {
 
     public Boolean checkSwipeLeftBottom() throws InterruptedException {
         return Elements.isElementPresent(driver, swipeLeftBottomRemove);
+    }
+
+
+    public void clickOnApplyCoupon() throws InterruptedException {
+        Elements.selectElement(driver, supercash_txt, "Click On Apply Coupon");
+    }
+
+
+    public void clickOnfirstSupercash() throws InterruptedException {
+        Elements.selectElement(driver, click_first_coupon, "Click On first supercash");
+    }
+
+    public void clickOnRemoveButton() throws InterruptedException {
+        Elements.selectElement(driver, remove_cta, "Click On remove cta");
+    }
+
+    public void enterCouponCode(String code) {
+        Elements.enterToElement(driver, enterCouponCode, code,"Enter couponcode");
+    }
+
+
+    public void clickOnApplyButtonOnCoupon() throws InterruptedException {
+        Elements.selectElement(driver, coupon_enter_apply, "apply button on coupon code");
+    }
+
+    public String getErrorOnCouponEnter() throws InterruptedException {
+        return Elements.getText(driver, errorOnCouponEnter, "Error On Coupon Enter screen");
+    }
+
+    public void clickOnChnage()
+    {
+        Elements.selectElement(driver, cta_change, "click on Change");
+    }
+
+
+    public void clickOnBsnl()
+    {
+        Elements.selectElement(driver, cta_bsnl, "click on BSNL");
+    }
+
+    public void clickOnFirstDropDown()
+    {
+        Elements.selectElement(driver, dropdown_AP, "click on first List");
+    }
+
+    public String gettextOnSelectOperator() throws InterruptedException {
+        return Elements.getText(driver, txt_selectoperator, "Get txt Select operator");
+    }
+
+    public String gettextOnSelectCircle() throws InterruptedException {
+        return Elements.getText(driver, txt_selectcircle, "Get txt Select circle");
     }
 
 
