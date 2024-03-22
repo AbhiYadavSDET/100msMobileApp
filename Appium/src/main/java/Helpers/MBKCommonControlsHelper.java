@@ -525,6 +525,25 @@ public class MBKCommonControlsHelper {
         }
     }
 
+    public void handleHomePageLanding2() throws InterruptedException {
+        for (int i = 0; i < 2; i++) {
+            if (!Element.isElementPresentNoWait(driver, By.id("cl_root"))) {
+                driver.navigate().back();
+                Log.info("Pressed Back : Due to Pop UP interruption");
+                if (Element.isElementPresentNoWait(driver, By.id("alertTitle"))){
+                    driver.findElementByXPath("//android.widget.Button[@text='LATER']").click();
+                }
+            }else {
+                break;
+            }
+        }
+        if (Element.isElementPresentNoWait(driver, By.id("ic_close"))) {
+            driver.findElementById("ic_close").click();
+        }
+
+
+    }
+
     public void handleHomePage() throws InterruptedException {
         if (mbkCommonControlsPage.isWhitePopUpPresent()) {
             Log.info("White Popup is present --> Closing it");

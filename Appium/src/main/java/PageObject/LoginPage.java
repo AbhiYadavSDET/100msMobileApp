@@ -115,6 +115,7 @@ public class LoginPage {
         return Elements.getText(driver, loginSignupButton, "Get Text Login Signup");
     }
     public void enterOtp(String otp) throws InterruptedException {
+        Element.waitForVisibility(driver, textbox_enter_otp);
         if (otp.length() > 0) {
             Element.enterText(driver, textbox_enter_otp, otp, "Enter OTP");
         }
