@@ -48,7 +48,7 @@ public class RechargeTest extends TestBase {
     }
 
     @Test(groups = {"sanity", "rechargeSanity", "regression"}, priority = 1, description = "Verify change operator flow")
-    public void changeOperatortest() throws IOException, InterruptedException {
+    public void changeOperator() throws IOException, InterruptedException {
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
@@ -83,15 +83,14 @@ public class RechargeTest extends TestBase {
 
     }
 
-
-    @Test(groups = {"sanity", "rechargeSanity", "regression"}, priority = 1, description = "Coupon code handling")
+    @Test(groups = {"sanity", "rechargeSanity", "regression"}, priority = 0, description = "Coupon code handling")
     public void couponCodeHandle() throws IOException, InterruptedException {
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
         loginHelper.quickLoginViaOtp("7042338867", "547372");
 
-        Log.info("======= START : Postpaid Recharge =======");
+        Log.info("======= START : Coupon Code =======");
 
         // Execute the test
         RechargeHelper rechargeHelper = new RechargeHelper(getAndroidDriver());
@@ -99,23 +98,5 @@ public class RechargeTest extends TestBase {
         Log.info("======= END : Prepaid Recharge =======");
 
     }
-
-
-    @Test(groups = {"sanity", "rechargeSanity", "regression"}, priority = 1, description = "Change Operator")
-    public void changeOperator() throws IOException, InterruptedException {
-
-        // Login to the account
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("7042338867", "547372");
-
-        Log.info("======= START : Change Operator =======");
-
-        // Execute the test
-        RechargeHelper rechargeHelper = new RechargeHelper(getAndroidDriver());
-        rechargeHelper.changeOperator("Select an operator","Select Circle");
-        Log.info("======= END : Change Operator =======");
-
-    }
-
 
 }
