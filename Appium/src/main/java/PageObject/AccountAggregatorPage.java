@@ -7,6 +7,7 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
@@ -242,6 +243,21 @@ public class AccountAggregatorPage {
     @AndroidFindBy(id="cl_root")
     private AndroidElement  yourBankAccountonHomePage;
 
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text ='Connect Your Accounts']")
+    private AndroidElement connectyoueaccount_cta;
+
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'SKIP']")
+    private AndroidElement skip_cta;
+
+    @AndroidFindBy(id="txt_intro_title")
+    private AndroidElement  intro_txt;
+
+    @AndroidFindBy(id="et_phone_number")
+    private AndroidElement  enter_phone_no;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text ='Enter valid 10 digit number']")
+    private AndroidElement invalid_mobile_enter_error;
 
     public AccountAggregatorPage(AndroidDriver driver) throws IOException {
         this.driver = driver;
@@ -281,6 +297,11 @@ public class AccountAggregatorPage {
     }
 
     public void clickOnToAddAccountOnHomeScreen() throws InterruptedException{
+        Elements.selectElement(driver,addAccountTitle,"Click on Add Account");
+    }
+
+
+    public void clickOnToAddAccount() throws InterruptedException{
         Elements.selectElement(driver,addAccountTitle,"Click on Add Account");
     }
 
@@ -666,11 +687,39 @@ public class AccountAggregatorPage {
     public void applyFilter() throws InterruptedException{Elements.selectElement(driver,applyFilter, "Apply filter");}
     public void bankDetailsCTA() throws InterruptedException{Elements.selectElement(driver,bankDetailsCTA, "Click on bank details cta");}
 
+
     public String getuserDetails() throws InterruptedException
     {
         return Elements.getText(driver, userDetails, "Check for the details");
 
     }
+
+    public void clicktoConnectYourAccount() throws InterruptedException{
+        Elements.selectElement(driver,connectyoueaccount_cta,"Click on Connect Your Account");
+    }
+
+
+    public void enterMobileNo(String number){
+        Elements.enterToElement(driver, enter_phone_no,number, "Enter Mobile no");
+    }
+
+
+    public void skipCTA() throws InterruptedException{
+        Elements.selectElement(driver, skip_cta, "Click on Skip CTA");
+    }
+
+
+    public void ckickOnIntro() throws InterruptedException{
+        Elements.selectElement(driver, intro_txt, "Click on Intro CTA");
+    }
+
+
+    public String getinvalidMobileNoError() throws InterruptedException
+    {
+        return Elements.getText(driver, invalid_mobile_enter_error, "error message on invalid input");
+
+    }
+
 }
 
 

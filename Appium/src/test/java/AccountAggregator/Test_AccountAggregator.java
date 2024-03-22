@@ -73,7 +73,7 @@ public class Test_AccountAggregator extends TestBase {
     }
 
 
-    @Test(groups = {"AccountAggregator", "sanity", "regression"}, priority = 0, description = "Verify Add account")
+    @Test(groups = {"AccountAggregator", "sanity", "regression"}, priority = 1, description = "Verify Add account")
     public void Test05_AA_new_addaccount() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
@@ -82,6 +82,19 @@ public class Test_AccountAggregator extends TestBase {
         // Execute the test
         aaHelper.addAccountNewScreen();
         Log.info("======= Account Aggregator test =======");
+
+    }
+
+
+    @Test(groups = {"AccountAggregator", "sanity", "regression"}, priority = 0, description = "Verify Not set up add Account")
+    public void Test05_AA_notsetup_account_errorcase() throws IOException, InterruptedException {
+
+        LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
+        loginHelp.quickLoginViaOtp("9205299330", "547372");
+        AAHelper aaHelper = new AAHelper(getAndroidDriver());
+        // Execute the test
+        aaHelper.newUserAA("Enter valid 10 digit number");
+        Log.info("======= Account Aggregator Not set up Account =======");
 
     }
 
