@@ -27,7 +27,10 @@ public class RewardsPage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Check Rewards']")
     private AndroidElement ctaCheckRewards;
 
-    @AndroidFindBy(id = "tv_sub_title")
+    @AndroidFindBy(id = "tv_title")
+    private AndroidElement title;
+
+    @AndroidFindBy(xpath = "//android.view.ViewGroup[2]/android.widget.TextView[2]")
     private AndroidElement prizeTitle;
 
     @AndroidFindBy(id = "tv_sub_title_2")
@@ -41,6 +44,23 @@ public class RewardsPage {
 
     @AndroidFindBy(id = "tv_cta")
     private AndroidElement ctaNotifyMe;
+
+    @AndroidFindBy(id = "tv_cashback")
+    private AndroidElement cashback;
+
+
+    @AndroidFindBy(id = "tv_super_cash")
+    private AndroidElement supercash;
+
+
+    @AndroidFindBy(id = "tv_voucher")
+    private AndroidElement voucher;
+
+    @AndroidFindBy(id = "reward_title")
+    private AndroidElement rewardTitle;
+
+    @AndroidFindBy(id = "active_vouchers")
+    private AndroidElement activeVouchers;
 
 
     // ---------------------------------
@@ -65,6 +85,10 @@ public class RewardsPage {
 
     public boolean isSpinTheWheelPresent() throws InterruptedException {
         return Elements.isElementPresent(driver, ctaSpinTheWheel);
+    }
+
+    public boolean isCheckRewardsPresent() throws InterruptedException {
+        return Elements.isElementPresent(driver, ctaCheckRewards);
     }
 
     public boolean isTrophyIconPresent() throws InterruptedException {
@@ -99,5 +123,39 @@ public class RewardsPage {
         Elements.selectElement(driver, ctaNotifyMe, "Cross Button");
     }
 
+    public boolean isCheckTitlePresent() throws InterruptedException {
+      return  Elements.isElementPresent(driver, title);
+    }
 
+    public boolean isCashbackPresent() throws InterruptedException {
+        return Elements.isElementPresent(driver, cashback);
+    }
+
+    public void clickOnCashback(){
+        Elements.selectElement(driver, cashback, "Click on cashback");
+    }
+
+    public boolean isSupercashPresent() throws InterruptedException {
+        return Elements.isElementPresent(driver, supercash);
+    }
+
+    public void clickOnSuperCash(){
+        Elements.selectElement(driver, supercash, "Click on supercash");
+    }
+
+    public boolean isVoucherPresent() throws InterruptedException {
+        return Elements.isElementPresent(driver, voucher);
+    }
+
+    public void clickOnVoucher(){
+        Elements.selectElement(driver, voucher, "Click on voucher");
+    }
+
+    public String getCashbackTitle() throws InterruptedException {
+        return Elements.getText(driver, rewardTitle,"Title on cashback history");
+    }
+
+    public String getActiveVoucher() throws InterruptedException {
+        return Elements.getText(driver, activeVouchers,"Count of active vouchers");
+    }
 }
