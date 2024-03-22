@@ -41,6 +41,38 @@ public class Element {
         }
     }
 
+    public static boolean waitForVisibilityMultipleElements(AndroidDriver driver, MobileElement targetElement1, MobileElement targetElement2) {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, timeOut);
+            wait.until(ExpectedConditions.or(ExpectedConditions.visibilityOf(targetElement1),ExpectedConditions.visibilityOf(targetElement2)));
+            return true;
+        } catch (TimeoutException e) {
+            System.out.println("Both elements are not visible");
+            System.out.println("Element 1: " + targetElement1);
+            System.out.println("Element 2: " + targetElement2);
+            System.out.println();
+            System.out.println(e.getMessage());
+            throw e;
+
+        }
+    }
+
+    public static boolean waitForVisibilityMultipleElements(AndroidDriver driver, By targetElement1, By targetElement2) {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, timeOut);
+            wait.until(ExpectedConditions.or(ExpectedConditions.visibilityOfElementLocated(targetElement1),ExpectedConditions.visibilityOfElementLocated(targetElement2)));
+            return true;
+        } catch (TimeoutException e) {
+            System.out.println("Both elements are not visible");
+            System.out.println("Element 1: " + targetElement1);
+            System.out.println("Element 2: " + targetElement2);
+            System.out.println();
+            System.out.println(e.getMessage());
+            throw e;
+
+        }
+    }
+
     public static boolean waitForVisibility(AndroidDriver driver, By targetElement) {
         try {
             WebDriverWait wait = new WebDriverWait(driver, timeOut);
@@ -119,6 +151,11 @@ public class Element {
      */
     public static Boolean isElementPresent(AndroidDriver androidDriver, By targetElement) throws InterruptedException {
         Thread.sleep(2000);
+        Boolean isPresent = findElements(androidDriver, targetElement).size() > 0;
+        return isPresent;
+
+    }
+    public static Boolean isElementPresentNoWait(AndroidDriver androidDriver, By targetElement) throws InterruptedException {
         Boolean isPresent = findElements(androidDriver, targetElement).size() > 0;
         return isPresent;
 

@@ -40,70 +40,34 @@ public class LoginHelper {
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
-    public void loginViaOtp(String mobileNumber) throws InterruptedException, IOException {
-
-        if (permissionPage.isPermissionNotificationsPresent()) {
-            permissionPage.allowPermissionNotifications();
-        }
-        Thread.sleep(3000);
-        if (element.isElementPresent(driver, By.xpath("//*[@text='Get Started']"))) {
-            loginPage.clickGetstarted();
-        } else if (element.isElementPresent(driver, By.xpath("//*[@text='Login/Signup']"))) {
-            loginPage.clickLoginSignup();
-        }
-
-        if (element.isElementPresent(driver, By.xpath("//*[@text='NONE OF THE ABOVE']"))) {
-            loginPage.clickNoneOfAbove();
-        }
-
-
-        loginPage.enterMobileNum(mobileNumber);
-        loginPage.clickSendOtpbutton();
-
-        Thread.sleep(6000);
-        element.waitForVisibility(driver, By.xpath("//*[@text='History']"));
-
-        mbReporter.verifyTrueWithLogging(element.isElementPresent(driver, By.xpath("//*[@text='Balance']")), "Verify User is Logged In", true, true);
-
-        loginPage.clickHistoryTab();
-        loginPage.checkHistoryText();
-        loginPage.clickHomeTab();
-
-
-    }
 
     public void loginViaOtp(String mobileNumber, String otp) throws InterruptedException, IOException {
 
-        if (permissionPage.isPermissionNotificationsPresent()) {
-            permissionPage.allowPermissionNotifications();
-        }
 
-        Thread.sleep(3000);
-        if (element.isElementPresent(driver, By.xpath("//*[@text='Get Started']"))) {
-            loginPage.clickGetstarted();
-        } else if (element.isElementPresent(driver, By.xpath("//*[@text='Login/Signup']"))) {
-            loginPage.clickLoginSignup();
-        }
+        element.waitForVisibilityMultipleElements(driver, By.xpath("//*[@text='NONE OF THE ABOVE']"), By.id("et_phone_number"));
 
-        if (element.isElementPresent(driver, By.xpath("//*[@text='NONE OF THE ABOVE']"))) {
+        if (element.isElementPresentNoWait(driver, By.xpath("//*[@text='NONE OF THE ABOVE']"))) {
             loginPage.clickNoneOfAbove();
         }
 
         loginPage.enterMobileNum(mobileNumber);
         loginPage.clickSendOtpbutton();
 
+        if (element.isElementPresent(driver, By.id("error_view"))) {
+            loginPage.clickSendOtpbutton();
+        }
+
         loginPage.enterOtp(otp);
 
-        // Now it is auto submitted so click CTA not needed
-        //loginPage.clickSubmitOtpCta();
-
+        // If the error message is present --> resend OTP
+        if (element.isElementPresent(driver, By.id("error_view"))) {
+            Log.info(element.findElement(driver, By.id("error_view")).getText());
+            loginPage.clickResendOtp();
+            loginPage.enterOtp(otp);
+        }
         // Wait for 5000 ms for all the banners to load
-        Thread.sleep(2000);
-
-        mbkCommonControlsHelper.handleHomePage();
-
-        element.waitForVisibility(driver, By.xpath("//*[@text='History']"));
-
+        Thread.sleep(5000);
+        mbkCommonControlsHelper.handleHomePageLanding();
         mbReporter.verifyTrueWithLogging(element.isElementPresent(driver, By.id("tx_balance")), "Is User is Logged In", true, false);
 
 
@@ -111,98 +75,63 @@ public class LoginHelper {
 
     public void quickLoginViaOtp(String mobileNumber, String otp) throws InterruptedException {
 
-        if (permissionPage.isPermissionNotificationsPresent()) {
-            permissionPage.allowPermissionNotifications();
-        }
 
-        Thread.sleep(1000);
-        if (element.isElementPresent(driver, By.xpath("//*[@text='Get Started']"))) {
-            loginPage.clickGetstarted();
-        } else if (element.isElementPresent(driver, By.xpath("//*[@text='Login/Signup']"))) {
-            loginPage.clickLoginSignup();
-        }
+        element.waitForVisibilityMultipleElements(driver, By.xpath("//*[@text='NONE OF THE ABOVE']"), By.id("et_phone_number"));
 
-        if (element.isElementPresent(driver, By.xpath("//*[@text='NONE OF THE ABOVE']"))) {
+        if (element.isElementPresentNoWait(driver, By.xpath("//*[@text='NONE OF THE ABOVE']"))) {
             loginPage.clickNoneOfAbove();
         }
 
         loginPage.enterMobileNum(mobileNumber);
         loginPage.clickSendOtpbutton();
 
-        if (!element.isElementPresent(driver, By.id("et_otp"))) {
+        if (element.isElementPresent(driver, By.id("error_view"))) {
             loginPage.clickSendOtpbutton();
         }
 
-
         loginPage.enterOtp(otp);
 
-        // Now it is auto submitted so click CTA not needed
-        //loginPage.clickSubmitOtpCta();
-
-        // Wait for 3 sec
-        Thread.sleep(3000);
-
         // If the error message is present --> resend OTP
-        if (element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Please try again']"))) {
-
+        if (element.isElementPresent(driver, By.id("error_view"))) {
+            Log.info(element.findElement(driver, By.id("error_view")).getText());
             loginPage.clickResendOtp();
             loginPage.enterOtp(otp);
         }
-
-        if(homePage.checkKycScreen()) {
-            //  homePage.clickBackbtnOnKYCpage();
-            mbkCommonControlsHelper.pressback();
-            homePage.clickDonWantBenifitsBtn();
-            Thread.sleep(4000);
-        }
-
         // Wait for 5000 ms for all the banners to load
         Thread.sleep(5000);
-
         mbkCommonControlsHelper.handleHomePageLanding();
-
-        element.waitForVisibility(driver, By.xpath("//*[@text='History']"));
     }
+
 
 
     public void quickLoginViaOtpForNonKycUser(String mobileNumber, String otp) throws InterruptedException {
 
-        if (permissionPage.isPermissionNotificationsPresent()) {
-            permissionPage.allowPermissionNotifications();
-        }
 
-        Thread.sleep(1000);
-        if (element.isElementPresent(driver, By.xpath("//*[@text='Get Started']"))) {
-            loginPage.clickGetstarted();
-        } else if (element.isElementPresent(driver, By.xpath("//*[@text='Login/Signup']"))) {
-            loginPage.clickLoginSignup();
-        }
+        element.waitForVisibilityMultipleElements(driver, By.xpath("//*[@text='NONE OF THE ABOVE']"), By.id("et_phone_number"));
 
-        if (element.isElementPresent(driver, By.xpath("//*[@text='NONE OF THE ABOVE']"))) {
+        if (element.isElementPresentNoWait(driver, By.xpath("//*[@text='NONE OF THE ABOVE']"))) {
             loginPage.clickNoneOfAbove();
         }
 
         loginPage.enterMobileNum(mobileNumber);
         loginPage.clickSendOtpbutton();
 
-        if (!element.isElementPresent(driver, By.id("et_otp"))) {
+        if (element.isElementPresent(driver, By.id("error_view"))) {
             loginPage.clickSendOtpbutton();
         }
 
         loginPage.enterOtp(otp);
 
-        // Now it is auto submitted so click CTA not needed
-        //loginPage.clickSubmitOtpCta();
-
-        // Wait for 3 sec
-        Thread.sleep(3000);
-
         // If the error message is present --> resend OTP
-        if (element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text = 'Please try again']"))) {
-
+        if (element.isElementPresent(driver, By.id("error_view"))) {
+            Log.info(element.findElement(driver, By.id("error_view")).getText());
             loginPage.clickResendOtp();
             loginPage.enterOtp(otp);
         }
+        // Wait for 5000 ms for all the banners to load
+        Thread.sleep(2000);
+
+
 
     }
 
@@ -233,7 +162,34 @@ public class LoginHelper {
 
     }
 
+
     public void quickLoginViaOtpAutoRead(String mobileNumber, String otp) throws InterruptedException {
+
+        element.waitForVisibilityMultipleElements(driver, By.xpath("//*[@text='NONE OF THE ABOVE']"), By.id("et_phone_number"));
+
+        if (element.isElementPresentNoWait(driver, By.xpath("//*[@text='NONE OF THE ABOVE']"))) {
+            loginPage.clickNoneOfAbove();
+        }
+
+        loginPage.enterMobileNum(mobileNumber);
+        loginPage.clickSendOtpbutton();
+
+        if (element.isElementPresent(driver, By.id("error_view"))) {
+            loginPage.clickSendOtpbutton();
+        }
+
+        // If the error message is present --> resend OTP
+        if (element.isElementPresent(driver, By.id("error_view"))) {
+            Log.info(element.findElement(driver, By.id("error_view")).getText());
+            loginPage.clickResendOtp();
+        }
+
+        // Wait for 5000 ms for all the banners to load
+        Thread.sleep(5000);
+        mbkCommonControlsHelper.handleHomePageLanding();
+    }
+
+    public void quickLoginViaOtpAutoRead2(String mobileNumber, String otp) throws InterruptedException {
 
         if (permissionPage.isPermissionNotificationsPresent()) {
             permissionPage.allowPermissionNotifications();
