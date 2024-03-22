@@ -135,9 +135,54 @@ public class MutualFundsTest extends TestBase {
         loginHelper.quickLoginViaOtp("9205299330", "547372");
 
         MutualFundsHelper mutualFundsHelper = new MutualFundsHelper(getAndroidDriver());
-        mutualFundsHelper.updateProfile("AQXPJ9529K","12/10/2000","mkwik9330@gmail.com","1 to 5 Lacks");
+        mutualFundsHelper.updateProfile("AQXPJ9529K","12/10/2000","mkwik9330@gmail.com","1 to 5 Lacks","Balanced", "Get Rich Fund");
 
         Log.info("======= END : MF Profile update Flow test ======");
+    }
+
+    @Test(groups = {"MutualFunds", "sanity", "profileUpdate", "regression"}, priority = 0, description = "Verify Filters")
+    public void Test_MF_FilterOptions() throws InterruptedException, IOException {
+
+        Log.info("======= START : MF Filter test =======");
+
+        // Start the test
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaOtp("9205299330", "547372");
+
+        MutualFundsHelper mutualFundsHelper = new MutualFundsHelper(getAndroidDriver());
+        mutualFundsHelper.verifyFilter("icici","ICICI Pru Bluechip Dir Gr","₹100","+20.42%","5","No funds available");
+
+        Log.info("======= END : MF Filter test ======");
+    }
+
+    @Test(groups = {"MutualFunds", "sanity", "profileUpdate", "regression"}, priority = 0, description = "Verify Sorting of funds based on tenure")
+    public void Test_MF_Sort() throws InterruptedException, IOException {
+
+        Log.info("======= START : MF Sort test =======");
+
+        // Start the test
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaOtp("9205299330", "547372");
+
+        MutualFundsHelper mutualFundsHelper = new MutualFundsHelper(getAndroidDriver());
+        mutualFundsHelper.verifySort("5Y Returns");
+
+        Log.info("======= END : MF Sort test ======");
+    }
+
+    @Test(groups = {"MutualFunds", "sanity", "profileUpdate", "regression"}, priority = 0, description = "Verify Search MF")
+    public void Test_MF_SearchMF() throws InterruptedException, IOException {
+
+        Log.info("======= START : MF Search test =======");
+
+        // Start the test
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaOtp("9205299330", "547372");
+
+        MutualFundsHelper mutualFundsHelper = new MutualFundsHelper(getAndroidDriver());
+        mutualFundsHelper.verifySearchMF("Parag", "Parag Parikh Cnsv Hyb Dir Gr","₹5,000","+32.40%","N/A ");
+
+        Log.info("======= END : MF Search test ======");
     }
 }
 

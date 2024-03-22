@@ -2,11 +2,13 @@ package Helpers;
 
 import Logger.Log;
 import PageObject.*;
+import Utils.Element;
 import Utils.MBReporter;
 import Utils.Screen;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
@@ -372,5 +374,61 @@ public class RechargeHelper {
 
 
     }
+
+
+
+    public void couponCodeHandling(String amount,String exptitleErrorOnInvalidCoupon) throws InterruptedException, IOException {
+
+
+        // scroll to Recharge And PayBills
+        rechargePage.scrollToRechargeAndPayBills();
+
+        // Click on Recharge And PayBills
+        rechargePage.clickRechargeAndPayBills();
+
+        if (rechargePage.clickMobileRechargeAlert()) {
+            rechargePage.clickToCloseMobileRechargeAlert();
+        }
+
+        if(rechargePage.checkAutoPayBottomsheet()) {
+            rechargePage.clickSkipbtn();
+        }
+
+        // Click on outside Swipe Left Bottom Popup
+        if(rechargePage.checkSwipeLeftBottom()) {
+            rechargePage.clickSwipeLeftBottomRemove();
+        }
+
+        // Click on Mobile
+        rechargePage.clickOnMobile();
+
+        //Click on my number
+        rechargePage.clickOnMyNumber();
+
+        // Tap to search plan
+        rechargePage.tapToSearchPlan();
+
+        // Enter amount to search plan
+        rechargePage.searchPlanPrepaid(amount);
+
+        // Click to select plan
+        rechargePage.selectPlan();
+        Thread.sleep(3000);
+        rechargePage.clickOnApplyCoupon();
+        Thread.sleep(3000);
+        rechargePage.enterCouponCode("abcdf");
+        rechargePage.clickOnApplyButtonOnCoupon();
+        // Verification on the Success Screen
+        String titleErrorOnInvalidCoupon = rechargePage.getErrorOnCouponEnter();
+      ;
+        Log.info("Error on Invalid coupon code : " + titleErrorOnInvalidCoupon);
+
+        // Add the assertions
+        mbReporter.verifyEquals(titleErrorOnInvalidCoupon, exptitleErrorOnInvalidCoupon, "Error on Invalid coupon code", false, false);
+        rechargePage.clickOnfirstSupercash();
+
+    }
+
+
 
 }

@@ -3,12 +3,14 @@ package Helpers;
 import Logger.Log;
 import PageObject.GoldPage;
 import PageObject.SecurityPinPage;
+import Utils.Element;
 import Utils.Elements;
 import Utils.MBReporter;
 import Utils.Screen;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 import java.util.LinkedHashMap;
 import java.io.IOException;
@@ -196,4 +198,110 @@ public class GoldHelper {
 
     }
 
+
+    public void goldCoin(String exptitleGoldCoins,String exptitleKnowMore,String exptitleAboutSafeGold) throws InterruptedException, IOException {
+
+        // Tap on See All Services
+        goldPage.clickAllServices();
+
+        // Swipe till the bottom
+        goldPage.scrollToBuyGold();
+
+        // Click on 99% Buy Gold
+        goldPage.clickBuyGold();
+
+        if(goldPage.checkEXploreSipBottomsheet()){
+            mbkCommonControlsHelper.pressback();
+        }
+
+        goldPage.clickOnHistory();
+        Element.waitForVisibility(driver, By.id("mkab_icon_1"));
+        goldPage.clickUpIcon();
+
+        // Click on Buy Gold
+        goldPage.clickBuyCta();
+        goldPage.scrollToGoldCointXT();
+
+        // Verification on the Gold Coin Txt
+        String titleGoldCoins = goldPage.getGoldCoinTxt();
+        String titleKnowMore = goldPage.getKnowMoreTx();
+
+        // Display the values
+        Log.info("titleGoldCoins : " + titleGoldCoins);
+        Log.info("titleKnowMore : " + titleKnowMore);
+
+        // Add the assertions
+        mbReporter.verifyEqualsWithLogging(titleGoldCoins, exptitleGoldCoins, "Verify Gold Coins Title", false, false, true);
+        mbReporter.verifyEqualsWithLogging(titleKnowMore, exptitleKnowMore, "Verify Know More Titles", false, false, true);
+
+        goldPage.clickKnowMoretxt();
+        Element.waitForVisibility(driver, By.id("mkab_icon_1"));
+        String titleAboutSafeGold = goldPage.gettitleAboutSafeGold();
+
+        // Display the values in about safe Gold page
+        Log.info("titleAboutSafeGold : " + titleAboutSafeGold);
+
+        mbReporter.verifyEqualsWithLogging(titleAboutSafeGold, exptitleAboutSafeGold, "Title About safe gold", false, false, true);
+
+        goldPage.clickUpIcon();
+        goldPage.clickSafeGoldIcon();
+        goldPage.enterPincode("122004");
+
+        Element.waitForVisibility(driver, By.id("buy_now_button"));
+        goldPage.clickPayCta();
+
+    }
+
+
+
+    public void goldSip(String exptitlSipBannerTitle,String exptitlDaily,String exptitlMonthly,String exptitlMinAmountonDaily,String exptitlCalenderViewInsideScreen) throws InterruptedException, IOException {
+
+        // Tap on See All Services
+        goldPage.clickAllServices();
+
+        // Swipe till the bottom
+        goldPage.scrollToBuyGold();
+
+        // Click on 99% Buy Gold
+        goldPage.clickBuyGold();
+
+        if(goldPage.checkEXploreSipBottomsheet()){
+            mbkCommonControlsHelper.pressback();
+        }
+
+        // Verification on the Gold Home Page
+        String titlSipBannerTitle = goldPage.getGoldSIPBannerTitle();
+
+        // Display the values on Gold Home Page
+        Log.info("titlSipBannerTitle : " + titlSipBannerTitle);
+
+        mbReporter.verifyEqualsWithLogging(titlSipBannerTitle, exptitlSipBannerTitle, "Title Sip Banner", false, false, true);
+
+        goldPage.clickOnSIPBannerTitle();
+        // Verification on the Gold Home Page
+        String titlDaily = goldPage.getDailyTitleOnGoldSipPage();
+        String titlMonthly = goldPage.getMonthlyTitleOnGoldSipPage();
+        String titlMinAmountonDaily = goldPage.getMinAmountofInvestmentONDaily();
+
+        // Display the values
+        Log.info("titlDaily : " + titlDaily);
+        Log.info("titlMonthly : " + titlMonthly);
+        Log.info("titlMinAmountonDaily : " + titlMinAmountonDaily);
+
+        mbReporter.verifyEqualsWithLogging(titlDaily, exptitlDaily, "Title Daily", false, false, true);
+        mbReporter.verifyEqualsWithLogging(titlMonthly, exptitlMonthly, "Title Monthly", false, false, true);
+        mbReporter.verifyEqualsWithLogging(titlMinAmountonDaily, exptitlMinAmountonDaily, "Title Min amount onDaily tab", false, false, true);
+
+        goldPage.enterDailySip("5000");
+        goldPage.clickOnMonthlyTitle();
+        goldPage.clickOnCalender();
+
+        String titlCalenderViewInsideScreen = goldPage.getMHeadingOnCalenderView();
+        Log.info("titlCalenderViewInsideScreen : " + titlCalenderViewInsideScreen);
+        mbReporter.verifyEqualsWithLogging(titlCalenderViewInsideScreen, exptitlCalenderViewInsideScreen, "Calender view title inside the calender", false, false, true);
+        goldPage.clickOnCalenderDropdown();
+    }
+
 }
+
+
