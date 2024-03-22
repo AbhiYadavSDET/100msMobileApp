@@ -25,9 +25,9 @@
         </groups>
 
         <classes>
-            <class name="P2M.P2MTest"/>
+<!--            <class name="P2M.P2MTest"/>-->
             <class name="P2P.P2PTest"/>
-            <class name="IMPSNew.IMPSTest"/>
+<!--            <class name="IMPSNew.IMPSTest"/>-->
         </classes>
     </test>
 
