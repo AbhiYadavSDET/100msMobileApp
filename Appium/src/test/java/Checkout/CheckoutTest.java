@@ -18,7 +18,7 @@ public class CheckoutTest extends TestBase {
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("9205299330", "547372");
+        loginHelper.quickLoginViaOtp("7795709569", "547372");
 
         // Execute the test
         CheckoutHelper checkoutHelper = new CheckoutHelper(getAndroidDriver());
