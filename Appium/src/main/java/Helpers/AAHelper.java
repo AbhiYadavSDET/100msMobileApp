@@ -377,5 +377,30 @@ public class AAHelper {
 
 
 
+    public void newUserAA(String experrorMessageInvalidMobileno) throws InterruptedException, IOException {
+
+        aaPage.allServicesCTA();
+        aaPage.scrollToAAOnHomeScreen();
+        aaPage.clickOnAAOnHomeScreen();
+        Element.waitForVisibility(driver, By.id("txt_intro_title"));
+
+        aaPage.ckickOnIntro();
+        Element.waitForVisibility(driver, By.xpath("//*/android.widget.TextView[@text = 'SKIP']"));
+        Element.waitForVisibility(driver, By.xpath("//*/android.widget.TextView[@text = 'Watch Story']"));
+        aaPage.clicktoConnectYourAccount();
+        aaPage.enterMobileNo("00012119262");
+        aaPage.clickContinueOnbottomSheet();
+
+        String errorMessageInvalidMobileno = aaPage.getinvalidMobileNoError();
+
+        Log.info("error Message Invalid Mobileno" + errorMessageInvalidMobileno);
+
+        mbReporter.verifyEqualsWithLogging(errorMessageInvalidMobileno, experrorMessageInvalidMobileno, "Auto refresh Text on setting screen", false, false, true);
+
+
+    }
+
+
+
 }
 
