@@ -502,7 +502,7 @@ public class MBKCommonControlsHelper {
      */
 
 
-    public void handleHomePageLanding() throws InterruptedException {
+    public void handleHomePageLanding2() throws InterruptedException {
 
         Thread.sleep(3000);
         for (int i = 0; i < 5; i++) {
@@ -525,7 +525,7 @@ public class MBKCommonControlsHelper {
         }
     }
 
-    public void handleHomePageLanding2() throws InterruptedException {
+    public void handleHomePageLanding() throws InterruptedException {
         for (int i = 0; i < 2; i++) {
             if (!Element.isElementPresentNoWait(driver, By.id("cl_root"))) {
                 driver.navigate().back();
