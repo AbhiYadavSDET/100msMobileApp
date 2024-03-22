@@ -31,13 +31,10 @@
             <class name="HelpAndSupport.Test_HelpAndSupport"/>
             <class name="PayRent.PayRentTest"/>
             <class name="AccountAggregator.Test_AccountAggregator"/>
-            <class name="History.Test_History"/>
             <class name="CentralMapper.Test_CentralMapper"/>
             <class name="ViewElectricityBill.ViewElectricityBillTest"/>
             <class name="ViewPipedGasBill.ViewPipedGasBillTest"/>
-            <class name="Checkout.CheckoutTest"/>
             <class name="KYC.TestKYC"></class>
-            <class name="Search.SearchTest"></class>
         </classes>
     </test>
 

@@ -34,6 +34,9 @@
             <class name="FixedDeposit.Test_FixedDeposit"/>
             <class name="Login.LoginTest"/>
             <class name="Insurance.Test_Insurance"/>
+            <class name="History.Test_History"/>
+            <class name="Checkout.CheckoutTest"/>
+            <class name="Search.SearchTest"></class>
 
         </classes>
     </test>
