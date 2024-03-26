@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class ReferAndEarnTest extends TestBase {
 
-    @Test(groups = {"referInUpiWithoutEarnings"}, priority = 0, description = "Verify Refer & Earn UPI with NO Earnings")
+    @Test(groups = {"referInUpiWithoutEarnings","regression"}, priority = 0, description = "Verify Refer & Earn UPI with NO Earnings")
     public void Test01_Refer_And_Earn_UPI() throws InterruptedException, IOException {
 
         Log.info("======= START : Refer And Earn in UPI with no earnings=======");
@@ -27,7 +27,7 @@ public class ReferAndEarnTest extends TestBase {
     }
 
 
-    @Test(groups = {"referInUpiWithEarnings"}, priority = 1, description = "Verify Refer & Earn UPI with Earnings table")
+    @Test(groups = {"referInUpiWithEarnings","regression"}, priority = 1, description = "Verify Refer & Earn UPI with Earnings table")
     public void Test02_Refer_And_Earn_WithEarning_UPI() throws InterruptedException, IOException {
 
         Log.info("======= START : Refer And Earn in UPI with earnings=======");
@@ -43,7 +43,7 @@ public class ReferAndEarnTest extends TestBase {
     }
 
 
-    @Test(groups = {"referInCCBP"}, priority = 2, description = "Verify Refer & Earn in CCBP")
+    @Test(groups = {"referInCCBP","regression"}, priority = 2, description = "Verify Refer & Earn in CCBP")
     public void Test03_Refer_And_Earn_CCBP() throws InterruptedException, IOException {
 
         Log.info("======= START : Refer And Earn in CCBP =======");

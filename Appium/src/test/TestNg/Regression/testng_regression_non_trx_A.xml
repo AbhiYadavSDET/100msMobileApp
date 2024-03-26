@@ -37,6 +37,7 @@
             <class name="History.Test_History"/>
             <class name="Checkout.CheckoutTest"/>
             <class name="Search.SearchTest"></class>
+            <class name="ReferAndEarn.ReferAndEarnTest"></class>
 
         </classes>
     </test>
