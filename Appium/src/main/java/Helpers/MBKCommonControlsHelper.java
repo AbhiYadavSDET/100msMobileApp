@@ -9,11 +9,15 @@ import Utils.Element;
 import Utils.Elements;
 import Utils.Screen;
 import Utils.MBReporter;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class MBKCommonControlsHelper {
 

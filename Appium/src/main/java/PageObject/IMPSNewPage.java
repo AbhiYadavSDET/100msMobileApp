@@ -168,6 +168,7 @@ public class IMPSNewPage {
 
     }
     public void clickOnTransferToNewAccount() throws InterruptedException{
+        Element.waitForVisibility(driver,transfer_to_new_account);
         Elements.selectElement(driver,transfer_to_new_account,"Tapped on Transfer to New Account");
     }
 
@@ -187,9 +188,10 @@ public class IMPSNewPage {
     }
 
     public void setAmount(String amt) throws InterruptedException{
-    /*    Elements.clearText(driver,amount_field,"Clear if any");*/
+        Element.waitForVisibility(driver,amount_field);
         Elements.enterToElement(driver,amount_field,amt,"Amount set..");
     }
+
 
     public void clickOnSetAmount() throws InterruptedException{
         Element.waitForVisibility(driver, By.id("info_message"));
@@ -198,6 +200,7 @@ public class IMPSNewPage {
 
 
     public void clickOnContinueToPinCTA() throws  InterruptedException{
+        Element.waitForVisibility(driver,pin_continue_cta);
         Elements.selectElement(driver,pin_continue_cta,"Click on continue now to pay amount");
     }
 
@@ -230,6 +233,7 @@ public class IMPSNewPage {
     }
 
     public String getSuccessMessage() throws InterruptedException{
+        Element.waitForVisibility(driver,label_success_message);
         return Elements.getText(driver, label_success_message, "Success Message");
     }
 
@@ -256,16 +260,15 @@ public class IMPSNewPage {
         Elements.selectElement(driver,saved_vpa,comment);
     }*/
     public void clickOnSavedVPA() throws InterruptedException{
-
         if(Elements.isElementPresent(driver,saved_vpa)) {
             Elements.selectElement(driver, saved_vpa, "Click on first saved recipient");
-        }else {
+        }/*else {
            clickOnTransferToNewAccount();
            clickOnUPIRadioBtn();
             //Entering UPI ID
             setUPIID("7795709569@paytm");
             clickOnContinueToAmtCTA();
-        }
+        }*/
     }
 
 
@@ -330,6 +333,7 @@ public class IMPSNewPage {
     }
 
     public boolean isZeroState() throws InterruptedException {
+      //  Element.waitForVisibility(driver,transferNowOnZeroState);
         return Elements.isElementPresent(driver,transferNowOnZeroState);
     }
 
@@ -337,6 +341,7 @@ public class IMPSNewPage {
         return Elements.getText(driver, infoMessageOnAmountScreen, "Info message onAmount screen ");
     }
     public void clickOnMorePaymentOptions() throws InterruptedException{
+        Element.waitForVisibility(driver,morePaymentOption);
         Elements.selectElement(driver,morePaymentOption,"Tapped on more payment options on IMPS checkout ");
     }
     public void clickOnCheckBox() throws InterruptedException{
@@ -356,6 +361,7 @@ public class IMPSNewPage {
     }
 
     public void clickOnArrowButton() throws InterruptedException{
+        Element.waitForVisibility(driver,arrowButton);
         Elements.selectElement(driver,arrowButton,"Tapped on arrow continue button ");
     }
 

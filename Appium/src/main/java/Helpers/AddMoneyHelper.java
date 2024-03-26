@@ -188,7 +188,7 @@ public class AddMoneyHelper {
 
             mbkCommonControlsHelper.handleUpiPin(pin);
 
-            Thread.sleep(6000);
+           // Thread.sleep(6000);
 
             // Verification on the Success Screen
             String title = addMoneyPage.getTitleOnSuccess();

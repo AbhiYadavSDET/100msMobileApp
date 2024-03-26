@@ -169,7 +169,7 @@ public class KYCHelper {
 
         // click on via digilocker
         kycPage.clickOnViaDigiLocker();
-        Thread.sleep(2000);
+     //   Thread.sleep(2000);
 
         // set first 4 digits of adhaar card
         kycPage.setAdharCardFirstDigits(firstFourDigits);
@@ -427,7 +427,7 @@ public class KYCHelper {
             // check Profile Aadhaar Pop up
             if(kycPage.isProfileAadhaarPopUpPresent()) kycPage.removeProfileAadhaarPopUp();
 
-            Thread.sleep(3000);
+         //   Thread.sleep(3000);
 
             // Enter Aadhaar
             kycPage.enterProfileAadhaarTextBox(aadhaar);
@@ -448,7 +448,7 @@ public class KYCHelper {
             // Click Continue
             kycPage.clickPofileKycContinue();
 
-            Thread.sleep(2000);
+         //   Thread.sleep(2000);
 
             // Set first four digits
             kycPage.setAdharCardFirstDigits(aadhaar.substring(0,4));

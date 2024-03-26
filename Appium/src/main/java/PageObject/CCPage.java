@@ -277,7 +277,9 @@ public class CCPage {
 
     public void clickApplyCoupon(){ Elements.selectElement(driver, applyCoupon, "Click on Apply coupon"); }
 
-    public void enterEnterCouponCode(){ Elements.enterToElement(driver, enterCouponCode, "CCPAY" ,"Enter CCPAY as coupon code"); }
+    public void enterEnterCouponCode() {
+        Element.waitForVisibility(driver,enterCouponCode);
+        Elements.enterToElement(driver, enterCouponCode, "CCPAY" ,"Enter CCPAY as coupon code"); }
 
     public void clickApplyButton() { Elements.selectElement(driver, applyButton, "Click on Apply button"); }
 

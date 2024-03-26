@@ -195,7 +195,7 @@ public class CCBPHelper {
         //Click Apply coupon option
         ccPage.clickApplyCoupon();
 
-        Thread.sleep(5000);
+     //   Thread.sleep(5000);
 
         //Enter coupon code
         ccPage.enterEnterCouponCode();

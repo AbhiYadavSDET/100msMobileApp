@@ -29,7 +29,6 @@ public class CheckoutPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'Kotak Bank']")
     private AndroidElement kotakBankCta;
 
-
     @AndroidFindBy(id = "mkab_title")
     private AndroidElement bank_page_title;
 
