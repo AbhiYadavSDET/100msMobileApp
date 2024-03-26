@@ -285,8 +285,8 @@ public class HomePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Pocket UPI QR']")
     private AndroidElement switch_tab_upi_to_pocketupi;
 
-
-
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Credit Card Payment']")
+    private AndroidElement ccbp_cta;
 
 
 
@@ -672,6 +672,11 @@ public class HomePage {
         Element.selectElement(driver, upiTransfersCTA, "Select Transfers Flow");
         return new UpiPage(driver);
     }
+
+    public void clickCCPayment() {
+        Elements.selectElement(driver,ccbp_cta,"Click on Credit Card Payment");
+    }
+
 
 
     //############################ Old end ################################
