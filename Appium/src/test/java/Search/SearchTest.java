@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public class SearchTest extends TestBase {
 
-    @Test(groups = {"sanity","regression"}, priority = 0, description = "Search test")
+    @Test(groups = {"regression"}, priority = 0, description = "Search test")
     public void Test01_searchFlow() throws IOException, InterruptedException {
 
         Log.info("======= START : Xtra Checkout test =======");

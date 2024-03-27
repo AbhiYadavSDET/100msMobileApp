@@ -26,7 +26,7 @@ public class Test_FixedDeposit extends TestBase {
     }
 
 
-    @Test(groups = {"FixedDeposit", "sanity", "regression"}, priority = 0, description = "Verify Existing User book now")
+    @Test(groups = {"FixedDeposit", "sanity1", "regression"}, priority = 0, description = "Verify Existing User book now")
     public void Test02_book_fd_flow() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
@@ -38,7 +38,7 @@ public class Test_FixedDeposit extends TestBase {
 
     }
 
-    @Test(groups = {"FixedDeposit", "sanity", "regression"}, priority = 0, description = "Verify Edit profile")
+    @Test(groups = {"FixedDeposit", "sanity1", "regression"}, priority = 0, description = "Verify Edit profile")
     public void Test03_edit_profile() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
@@ -50,7 +50,7 @@ public class Test_FixedDeposit extends TestBase {
 
     }
 
-    @Test(groups = {"FixedDeposit", "sanity", "regression"}, priority = 0, description = "Verify Edit nominee")
+    @Test(groups = {"FixedDeposit", "sanity1", "regression"}, priority = 0, description = "Verify Edit nominee")
     public void Test04_edit_nominee() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
@@ -63,7 +63,7 @@ public class Test_FixedDeposit extends TestBase {
 
     }
 
-    @Test(groups = {"FixedDeposit", "sanity", "regression"}, priority = 0, description = "Verify Summary")
+    @Test(groups = {"FixedDeposit", "sanity1", "regression"}, priority = 0, description = "Verify Summary")
     public void Test05_summary_screen() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
@@ -76,7 +76,7 @@ public class Test_FixedDeposit extends TestBase {
 
     }
 
-    @Test(groups = {"FixedDeposit", "sanity", "regression"}, priority = 0, description = "Verify History")
+    @Test(groups = {"FixedDeposit", "sanity1", "regression"}, priority = 0, description = "Verify History")
     public void Test06_fd_history() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
@@ -89,7 +89,7 @@ public class Test_FixedDeposit extends TestBase {
 
     }
 
-    @Test(groups = {"FixedDeposit", "sanity", "regression"}, priority = 0, description = "Verify Edit profile error case")
+    @Test(groups = {"FixedDeposit", "sanity1", "regression"}, priority = 0, description = "Verify Edit profile error case")
     public void Test07_edit_profile_errorcase() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
@@ -101,7 +101,7 @@ public class Test_FixedDeposit extends TestBase {
 
     }
 
-    @Test(groups = {"FixedDeposit", "sanity", "regression"}, priority = 0, description = "Verify Custom filter")
+    @Test(groups = {"FixedDeposit", "sanity1", "regression"}, priority = 0, description = "Verify Custom filter")
     public void Test08_custom_filter() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());

@@ -27,7 +27,7 @@ public class ReferAndEarnTest extends TestBase {
     }
 
 
-    @Test(groups = {"referInUpiWithEarnings","regression"}, priority = 1, description = "Verify Refer & Earn UPI with Earnings table")
+    @Test(groups = {"sanity","referInUpiWithEarnings","regression"}, priority = 1, description = "Verify Refer & Earn UPI with Earnings table")
     public void Test02_Refer_And_Earn_WithEarning_UPI() throws InterruptedException, IOException {
 
         Log.info("======= START : Refer And Earn in UPI with earnings=======");
