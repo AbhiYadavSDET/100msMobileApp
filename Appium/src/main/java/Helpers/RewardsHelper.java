@@ -47,12 +47,12 @@ public class RewardsHelper {
         // Click the CTA - Get started
         rewardsPage.clickGetStarted();
 
-        if(!rewardsPage.isSpinTheWheelPresent() || !rewardsPage.isCheckRewardsPresent()) {
-            // Click the CTA - Swipe Up More
-            screen.swipeUpMore(driver);
-            screen.swipeUpMore(driver);
-        }
-        else if(rewardsPage.isSpinTheWheelPresent() ){
+//        if(!rewardsPage.isSpinTheWheelPresent() || !rewardsPage.isCheckRewardsPresent()) {
+//            // Click the CTA - Swipe Up More
+//            screen.swipeUpMore(driver);
+//            screen.swipeUpMore(driver);
+//        }
+        if(rewardsPage.isSpinTheWheelPresent() ){
 
             // Click the CTA - Spin the wheel
             rewardsPage.clickSpinTheWheel();
