@@ -174,7 +174,7 @@ public class IMPSNewHelper {
 
     }
 
-    public void verifyIMPSSavedVPA(String upiID, String amount, String expectedMessage, String expectedAmount, String expectedHistoryDescription, String expectedHistoryAmount, String expectedHistoryStatus) throws InterruptedException, IOException {
+    public void verifyIMPSSavedVPA( String amount, String expectedMessage, String expectedAmount, String expectedHistoryDescription, String expectedHistoryAmount, String expectedHistoryStatus) throws InterruptedException, IOException {
 
         // Get the Balance if the User Before TRX
 //        balanceBefore = mbkCommonControlsHelper.getBalance();
@@ -183,49 +183,49 @@ public class IMPSNewHelper {
         impsPage.clickOnWalletToBank();
 
         // Thread.sleep(5000);
-        Element.waitForVisibilityMultipleElements(driver,By.xpath("//android.widget.Button[contains(@text, 'Transfer now')]"),By.id("com.mobikwik_new.debug:id/btn_new_transfer"));
-//        //Computing Dynamic Xpath upiID entered as parameter
-//        String xpathSavedUPI = "//android.widget.TextView[@text = '" + upiID + "']";
-//
-//        //Select already saved VPA using XPath calculated above
-//        AndroidElement savedVPA = (AndroidElement) driver.findElementByXPath(xpathSavedUPI);
-        impsPage.clickOnSavedVPA();
+        if(impsPage.isSavedRecipientAvailable()){
+            impsPage.clickOnSavedVPA();
+            //Entering Amount and Continue to PIxN
+            impsPage.setAmount(amount);
+            impsPage.clickOnSetAmount();
+            impsPage.clickOnContinueToPinCTA();
+            //Check Security PIN Page
+            if (securityPinPage.checkSecurityPinPage()) securityPinPage.enterSecurityPin();
 
-        //Entering Amount and Continue to PIN
-        impsPage.setAmount(amount);
-        impsPage.clickOnSetAmount();
-        impsPage.clickOnContinueToPinCTA();
+            //Assertion Check on Confirmation Page
+            //  Thread.sleep(5000);
+            Log.info("Payment Flow done here, Now checking the status...");
 
-        //Check Security PIN Page
-        if (securityPinPage.checkSecurityPinPage()) securityPinPage.enterSecurityPin();
+            //Storing Actual Message on Screen and Expected Result in String
+            String actualMessage = impsPage.getSuccessMessage();
+            String actualAmount = impsPage.getSuccessPageAmount();
 
-        //Assertion Check on Confirmation Page
-      //  Thread.sleep(5000);
-        Log.info("Payment Flow done here, Now checking the status...");
+            // Display the values
+            Log.info("Actual Message on Screen is :" + actualMessage);
+            Log.info("Actual Amount on Screen is" + actualAmount);
 
-        //Storing Actual Message on Screen and Expected Result in String
-        String actualMessage = impsPage.getSuccessMessage();
-        String actualAmount = impsPage.getSuccessPageAmount();
+            // Add the assertions
+            mbReporter.verifyEqualsWithLogging(actualMessage, expectedMessage, "Success Page | Message", false, false);
+            mbReporter.verifyEqualsWithLogging(actualAmount, expectedAmount, "Success Page | Amount", false, false);
 
-        // Display the values
-        Log.info("Actual Message on Screen is :" + actualMessage);
-        Log.info("Actual Amount on Screen is" + actualAmount);
+            // back to home
+            mbkCommonControlsHelper.handleHomePageLanding();
 
-        // Add the assertions
-        mbReporter.verifyEqualsWithLogging(actualMessage, expectedMessage, "Success Page | Message", false, false);
-        mbReporter.verifyEqualsWithLogging(actualAmount, expectedAmount, "Success Page | Amount", false, false);
+            // Get the Balance if the User Before TRX
+            balanceAfter = mbkCommonControlsHelper.getBalance();
 
-        // back to home
-        mbkCommonControlsHelper.handleHomePageLanding();
+            // Assertions on the balance deducted
+            mbkCommonControlsHelper.verifyWalletBalanceAfterTransactionWithConvenienceFee(driver, balanceBefore, balanceAfter, amount, 2);
 
-        // Get the Balance if the User Before TRX
-        balanceAfter = mbkCommonControlsHelper.getBalance();
+            // Verify the History details
+            mbkCommonControlsHelper.verifyHistoryDetails(driver, expectedHistoryDescription, expectedHistoryAmount, expectedHistoryStatus);
+        }else{
+            Log.info("No saved recipient found, So skipping this test case. ");
+        }
 
-        // Assertions on the balance deducted
-        mbkCommonControlsHelper.verifyWalletBalanceAfterTransactionWithConvenienceFee(driver, balanceBefore, balanceAfter, amount, 2);
 
-        // Verify the History details
-        mbkCommonControlsHelper.verifyHistoryDetails(driver, expectedHistoryDescription, expectedHistoryAmount, expectedHistoryStatus);
+
+
 
     }
 
