@@ -217,10 +217,7 @@ public class IMPSNewHelper {
 
         // Verify the History details
         mbkCommonControlsHelper.verifyHistoryDetails(driver, expectedHistoryDescription, expectedHistoryAmount, expectedHistoryStatus);
-
     }
-
-
     public void verifyIMPSNewAccountWithAutoIfscCode(String accountName, String accountNo, String bankName, String amount) throws InterruptedException, IOException {
 
         //Going to IMPS Option

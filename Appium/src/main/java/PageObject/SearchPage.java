@@ -13,6 +13,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -48,40 +49,42 @@ public class SearchPage {
     public Boolean isSearchPageOpen() throws InterruptedException{
         return Elements.isElementPresent(driver, search_bar);
     }
+    public Map<String, String> getSearchResults() throws InterruptedException {
+        Map<String, String> results = new LinkedHashMap<>();
+        boolean isFirstIndexRight = false;
 
-    public Map<String , String> getTop8SearchResults() throws InterruptedException{
+        for (int scrollCount = 0; scrollCount < 7; scrollCount++) {
+            // Find all title and description elements after each scroll
+            List<AndroidElement> titles = Element.findElements(driver, By.id("title"));
+            List<AndroidElement> descriptions = Element.findElements(driver, By.id("description"));
+            String titleText,descriptionText;
 
+            // Ensure the size of titles and descriptions is the same
+            int size = Math.min(titles.size() , descriptions.size());
+           Log.info( results.toString());
 
-        Map<String, String> results = new HashMap<>();
+            for (int i = 0; i < size; i++) {
+                // Get text of title and description
 
-        List<AndroidElement> title = Element.findElements(driver, By.id("title"));
-        List<AndroidElement> description = Element.findElements(driver, By.id("description"));
+                if (!isFirstIndexRight){
+                     titleText = titles.get(i + 1).getText();
+                }else{
+                     titleText = titles.get(i ).getText();
+                }
 
-//        for(int k=0; k<5;k++) {
-//            Screen.swipeUpMoreFromRightSide(driver);
-//            title.addAll(Element.findElements(driver, By.id("title")));
-//            description.addAll(Element.findElements(driver, By.id("description")));
-//
-//        }
+                 descriptionText = descriptions.get(i).getText();
 
-        for(int i=0; i<8;i++) {
+                // Put them into results map
+                results.put(titleText, descriptionText);
+            }
 
-            results.put(title.get(i+1).getText(), description.get(i).getText());
-            Log.info(title.get(i+1).getText(), description.get(i).getText());
-
+            // Swipe to reveal more elements
+            Screen.swipeUpMoreFromRightSide(driver);
+            isFirstIndexRight = true;
         }
-
-
-
+Log.info(results.toString());
         return results;
-
     }
-
-
-
-
-
-
 }
 
 

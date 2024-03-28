@@ -12,6 +12,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.Map;
 
 public class SearchHelper {
@@ -43,14 +45,20 @@ public class SearchHelper {
 
         Element.waitForVisibility(driver, By.id("et_search"));
 
-        searchResult=searchPage.getTop8SearchResults();
+        searchResult=searchPage.getSearchResults();
 
-        for(int i=0;i<searchResult.size();i++){
+//        for(int i=0;i<searchResult.size();i++){
+//
+//            if(!(searchResult.get(i) ==null)) {
+//                Log.info(searchResult.get(i));
+//            }
+//
+//        }
 
-            if(!(searchResult.get(i) ==null)) {
-                Log.info(searchResult.get(i));
+        for (Map.Entry<String, String> entry : searchResult.entrySet()) {
+            if (entry.getValue() != null) {
+                Log.info(entry.getKey() + "=" + entry.getValue());
             }
-
         }
 
 

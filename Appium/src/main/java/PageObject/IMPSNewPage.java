@@ -220,11 +220,15 @@ public class IMPSNewPage {
     public void clickOnContinueToCheckoutCTA() throws  InterruptedException{
         Elements.selectElement(driver,checkoutContinueButton,"Now switching to Security PIN Windows");
     }
-
-   /* public void clickOnContinueToPinCTA() throws  InterruptedException{
-        Elements.selectElement(driver,continue_pin_cta,"Now switching to Security PIN Windows");
+    public void clickOnContinueText(){
+        Elements.selectElement(driver,continue_pin_cta,"Now clicking on continue text");
     }
-*/
+
+
+//  public void clickOnContinueToPinCTA() throws  InterruptedException{
+//        Elements.selectElement(driver,continue_pin_cta,"Now switching to Security PIN Windows");
+//    }
+
     public boolean checkSecurityPINPage() throws  InterruptedException{
         return Elements.isElementPresent(driver,security_pin_field);
     }
@@ -271,12 +275,14 @@ public class IMPSNewPage {
         }*/
     }
 
-
+    public  boolean isSavedRecipientAvailable() throws InterruptedException {
+        Element.waitForVisibility(driver,saved_vpa);
+        return  Elements.isElementPresent(driver,saved_vpa);
+    }
 
     public void clickOnReferAndEarn() throws InterruptedException{
         Elements.selectElement(driver,refer_Earn,"Tapped on Refer & Earn");
     }
-
     public void clickOnFindiFSC() throws InterruptedException{
         Elements.selectElement(driver,find_ifsc,"Tapped on find ifsc");
     }

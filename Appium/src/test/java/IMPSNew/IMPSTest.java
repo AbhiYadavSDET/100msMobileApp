@@ -56,7 +56,7 @@ public class IMPSTest extends TestBase {
 
 
         IMPSNewHelper impsHelper = new IMPSNewHelper(getAndroidDriver());
-        impsHelper.verifyIMPSSavedVPA("200", "Transfer Successful" , "5000","Bank transfer to  Ashish Kumar Pradhan (8882305453@paytm)","-₹51.18","Success");
+        impsHelper.verifyIMPSSavedVPA("7795709569@paytm","50", "Transfer Successful" , "5000","Bank transfer to  Ashish Kumar Pradhan (8882305453@paytm)","-₹51.18","Success");
 
 
         Log.info("======= END : IMPS to Saved VPA Test =======");
