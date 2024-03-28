@@ -12,7 +12,7 @@ import java.io.IOException;
 public class ZipTest extends TestBase {
 
 
-    @Test(groups = {"sanity", "verifyZipPage", "regression"}, priority = 0, description = "Verify Zip Page")
+    @Test(groups = { "verifyZipPage", "regression"}, priority = 0, description = "Verify Zip Page")
     public void Test_Zip_verifyZipPage() throws IOException, InterruptedException {
 
         Log.info("======= START : Zip Verify test =======");
@@ -50,7 +50,7 @@ public class ZipTest extends TestBase {
 
     }
 
-    @Test(groups = {"sanity", "verifyZipAutoPay", "regression"}, priority = 0, description = "Verify Zip Auto Pay")
+    @Test(groups = {"verifyZipAutoPay", "regression"}, priority = 0, description = "Verify Zip Auto Pay")
     public void Test_Zip_verifyZip_AutoPay() throws IOException, InterruptedException {
 
         Log.info("======= START : Zip Verify test for Zip Auto Pay =======");

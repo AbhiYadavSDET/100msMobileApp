@@ -50,7 +50,7 @@ public class RewardsTest extends TestBase {
 
     }
 
-    @Test(groups = {"sanity", "spinthewheel", "regression", "test"}, priority = 0, description = "Check cashback history")
+    @Test(groups = {"sanity1", "spinthewheel", "regression", "test"}, priority = 0, description = "Check cashback history")
     public void Test_Rewards_CashbackHistory() throws IOException, InterruptedException {
 
         Log.info("======= START : Check Cashback History Test =======");
@@ -68,7 +68,7 @@ public class RewardsTest extends TestBase {
 
     }
 
-    @Test(groups = {"sanity", "spinthewheel", "regression", "test"}, priority = 0, description = "Check supercash history")
+    @Test(groups = {"sanity1", "spinthewheel", "regression", "test"}, priority = 0, description = "Check supercash history")
     public void Test_Rewards_SupercashHistory() throws IOException, InterruptedException {
 
         Log.info("======= START : Check Supercash History Test =======");
@@ -86,7 +86,7 @@ public class RewardsTest extends TestBase {
 
     }
 
-    @Test(groups = {"sanity", "spinthewheel", "regression", "test"}, priority = 0, description = "Check voucher history")
+    @Test(groups = {"sanity1", "spinthewheel", "regression", "test"}, priority = 0, description = "Check voucher history")
     public void Test_Rewards_VoucherHistory() throws IOException, InterruptedException {
 
         Log.info("======= START : Check Voucher History Test =======");

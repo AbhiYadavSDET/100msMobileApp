@@ -28,7 +28,7 @@ public class MutualFundsTest extends TestBase {
 
     }
 
-    @Test(groups = {"MutualFunds", "sanity", "riskAnalyser", "regression"}, priority = 0, description = "Retake risk analyser ")
+    @Test(groups = {"MutualFunds", "sanity1", "riskAnalyser", "regression"}, priority = 0, description = "Retake risk analyser ")
     public void Test_MF_Retake_Risk_Analyser() throws InterruptedException, IOException {
 
         Log.info("======= START : Mutual Funds Risk analyser Flow test =======");
@@ -44,7 +44,7 @@ public class MutualFundsTest extends TestBase {
         Log.info("======= END : Mutual Funds Risk analyser Flow test =======");
     }
 
-    @Test(groups = {"MutualFunds", "sanity", "faq", "regression"}, priority = 0, description = "Retake risk analyser ")
+    @Test(groups = {"MutualFunds", "sanity1", "faq", "regression"}, priority = 0, description = "Retake risk analyser ")
     public void Test_MF_FAQ() throws InterruptedException, IOException {
 
         Log.info("======= START : Mutual Funds FAQ Flow test =======");
@@ -60,7 +60,7 @@ public class MutualFundsTest extends TestBase {
         Log.info("======= END : Mutual Funds FAQ Flow test =======");
     }
 
-    @Test(groups = {"MutualFunds", "sanity", "privacyPolicy", "regression"}, priority = 0, description = "Retake risk analyser ")
+    @Test(groups = {"MutualFunds", "sanity1", "privacyPolicy", "regression"}, priority = 0, description = "Retake risk analyser ")
     public void Test_MF_PrivacyPolicy() throws InterruptedException, IOException {
 
         Log.info("======= START : Mutual Funds privacy policy analyser Flow test =======");
@@ -78,7 +78,7 @@ public class MutualFundsTest extends TestBase {
 
 
 
-    @Test(groups = {"MutualFunds", "sanity", "mutlipleFDsOptions", "regression"}, priority = 0, description = "Retake risk analyser ")
+    @Test(groups = {"MutualFunds", "sanity1", "mutlipleFDsOptions", "regression"}, priority = 0, description = "Retake risk analyser ")
     public void Test_MF_multipleFdsOptions() throws InterruptedException, IOException {
 
         Log.info("======= START : Mutual Funds privacy policy analyser Flow test =======");
@@ -94,7 +94,7 @@ public class MutualFundsTest extends TestBase {
         Log.info("======= END : Mutual Funds privacy policy  Flow test =======");
     }
 
-    @Test(groups = {"MutualFunds", "sanity", "investCharter", "regression"}, priority = 0, description = "Invest charter on mutual funds ")
+    @Test(groups = {"MutualFunds", "sanity1", "investCharter", "regression"}, priority = 0, description = "Invest charter on mutual funds ")
     public void Test_MF_InvestCharter() throws InterruptedException, IOException {
 
         Log.info("======= START : Mutual Funds Invest charter Flow test =======");
@@ -108,7 +108,7 @@ public class MutualFundsTest extends TestBase {
 
         Log.info("======= END : Mutual Funds Invest charter Flow test =======");
     }
-    @Test(groups = {"MutualFunds", "sanity", "termsAndConditions", "regression"}, priority = 0, description = "Terms and conditions on MF ")
+    @Test(groups = {"MutualFunds", "sanity1", "termsAndConditions", "regression"}, priority = 0, description = "Terms and conditions on MF ")
     public void Test_MF_TermsAndConditions() throws InterruptedException, IOException {
 
         Log.info("======= START : Mutual Funds Terms and conditions Flow test =======");
@@ -124,7 +124,7 @@ public class MutualFundsTest extends TestBase {
         Log.info("======= END :Mutual Funds Terms and conditions Flow test======");
     }
 
-    @Test(groups = {"MutualFunds", "sanity", "profileUpdate", "regression"}, priority = 0, description = "Profile updation on MF ")
+    @Test(groups = {"MutualFunds", "sanity1", "profileUpdate", "regression"}, priority = 0, description = "Profile updation on MF ")
     public void Test_MF_ProfileUpdate() throws InterruptedException, IOException {
 
         Log.info("======= START : MF Profile update Flow test =======");
@@ -140,7 +140,7 @@ public class MutualFundsTest extends TestBase {
         Log.info("======= END : MF Profile update Flow test ======");
     }
 
-    @Test(groups = {"MutualFunds", "sanity", "profileUpdate", "regression"}, priority = 0, description = "Verify Filters")
+    @Test(groups = {"MutualFunds", "sanity1", "profileUpdate", "regression"}, priority = 0, description = "Verify Filters")
     public void Test_MF_FilterOptions() throws InterruptedException, IOException {
 
         Log.info("======= START : MF Filter test =======");
@@ -155,7 +155,7 @@ public class MutualFundsTest extends TestBase {
         Log.info("======= END : MF Filter test ======");
     }
 
-    @Test(groups = {"MutualFunds", "sanity", "profileUpdate", "regression"}, priority = 0, description = "Verify Sorting of funds based on tenure")
+    @Test(groups = {"MutualFunds", "sanity1", "profileUpdate", "regression"}, priority = 0, description = "Verify Sorting of funds based on tenure")
     public void Test_MF_Sort() throws InterruptedException, IOException {
 
         Log.info("======= START : MF Sort test =======");
@@ -170,7 +170,7 @@ public class MutualFundsTest extends TestBase {
         Log.info("======= END : MF Sort test ======");
     }
 
-    @Test(groups = {"MutualFunds", "sanity", "profileUpdate", "regression"}, priority = 0, description = "Verify Search MF")
+    @Test(groups = {"MutualFunds", "sanity1", "profileUpdate", "regression"}, priority = 0, description = "Verify Search MF")
     public void Test_MF_SearchMF() throws InterruptedException, IOException {
 
         Log.info("======= START : MF Search test =======");

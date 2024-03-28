@@ -36,7 +36,7 @@ public class Test_AccountAggregator extends TestBase {
 
     }
 
-    @Test(groups = {"AccountAggregator", "sanity", "regression"}, priority = 1, description = "Verify Analyser")
+    @Test(groups = {"AccountAggregator", "sanity1", "regression"}, priority = 1, description = "Verify Analyser")
     public void Test03_existing_User_Analyser() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
@@ -48,7 +48,7 @@ public class Test_AccountAggregator extends TestBase {
 
     }
 
-    @Test(groups = {"AccountAggregator", "sanity", "regression", "test"}, priority = 1, description = "Verify Manage Section")
+    @Test(groups = {"AccountAggregator", "sanity1", "regression", "test"}, priority = 1, description = "Verify Manage Section")
     public void Test04_existing_User_Manage() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
@@ -60,7 +60,7 @@ public class Test_AccountAggregator extends TestBase {
 
     }
 
-    @Test(groups = {"AccountAggregator", "sanity", "regression"}, priority = 1, description = "Verify Added Existing Users bank account")
+    @Test(groups = {"AccountAggregator", "sanity1", "regression"}, priority = 1, description = "Verify Added Existing Users bank account")
     public void Test05_existing_User_Added_BankAccount() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
@@ -73,7 +73,7 @@ public class Test_AccountAggregator extends TestBase {
     }
 
 
-    @Test(groups = {"AccountAggregator", "sanity", "regression"}, priority = 1, description = "Verify Add account")
+    @Test(groups = {"AccountAggregator", "sanity1", "regression"}, priority = 1, description = "Verify Add account")
     public void Test05_AA_new_addaccount() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
@@ -86,7 +86,7 @@ public class Test_AccountAggregator extends TestBase {
     }
 
 
-    @Test(groups = {"AccountAggregator", "sanity", "regression"}, priority = 0, description = "Verify Not set up add Account")
+    @Test(groups = {"AccountAggregator", "sanity1", "regression"}, priority = 0, description = "Verify Not set up add Account")
     public void Test05_AA_notsetup_account_errorcase() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());

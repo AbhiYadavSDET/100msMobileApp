@@ -16,7 +16,7 @@ import java.io.IOException;
 
 public class IMPSTest extends TestBase {
 
- @Test(groups = {"impsNewAccountNumber", "impsSanity"}, priority = 0, description = "IMPS on New Account Number")
+ @Test(groups = {"sanity","impsNewAccountNumber", "impsSanity"}, priority = 0, description = "IMPS on New Account Number")
     public void Test01_imps_new_account_number() throws IOException, InterruptedException {
 
         Log.info("======= START : IMPS to New Account Number Test =======");
@@ -31,7 +31,7 @@ public class IMPSTest extends TestBase {
 
     }
 
-  @Test(groups = {"impsNewUPIid", "impsSanity"}, priority =0, description = "IMPS on New UPI ID")
+  @Test(groups = {"sanity","impsNewUPIid", "impsSanity"}, priority =0, description = "IMPS on New UPI ID")
     public void Test02_imps_new_upi_id() throws IOException,InterruptedException{
 
         Log.info("======= START : IMPS to New UPI ID Test =======");
