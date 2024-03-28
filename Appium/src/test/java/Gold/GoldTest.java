@@ -51,7 +51,7 @@ public class GoldTest extends TestBase {
     }
 
 
-    @Test(groups = {"sanity", "goldCoin", "regression"}, priority = 1, description = "Verify Safe Gold Coin")
+    @Test(groups = {"sanity1", "goldCoin", "regression"}, priority = 1, description = "Verify Safe Gold Coin")
     public void Test03_SafeGoldCoin() throws IOException, InterruptedException {
 
         Log.info("======= START : Gold Coins Test =======");
@@ -70,7 +70,7 @@ public class GoldTest extends TestBase {
 
     }
 
-    @Test(groups = {"sanity", "goldCoin", "regression"}, priority = 1, description = "Verify Sip On Gold Page")
+    @Test(groups = {"sanity1", "goldCoin", "regression"}, priority = 1, description = "Verify Sip On Gold Page")
     public void Test03_Gold_Sip() throws IOException, InterruptedException {
 
         Log.info("======= START : Gold SIp test =======");

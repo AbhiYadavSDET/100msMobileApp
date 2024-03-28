@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class CheckoutTest extends TestBase {
 
-    @Test(groups = {"sanity", "xtraCheckout","regression"}, priority = 0, description = "Xtra Checkout test")
+    @Test(groups = {"sanity1", "xtraCheckout","regression"}, priority = 0, description = "Xtra Checkout test")
     public void Test01_xtraCheckoutFlow() throws IOException, InterruptedException {
 
         Log.info("======= START : Xtra Checkout test =======");
@@ -27,7 +27,7 @@ public class CheckoutTest extends TestBase {
 
     }
 
-    @Test(groups = {"sanity", "xtraCheckout","xtraCheckoutUpiMode","regression"}, priority = 0, description = "Xtra Checkout Upi Mode test")
+    @Test(groups = {"sanity1", "xtraCheckout","xtraCheckoutUpiMode","regression"}, priority = 0, description = "Xtra Checkout Upi Mode test")
     public void Test02_xtraCheckoutUpiModeFlow() throws IOException, InterruptedException {
 
         Log.info("======= START : Xtra Checkout test =======");
@@ -42,7 +42,7 @@ public class CheckoutTest extends TestBase {
 
     }
 
-    @Test(groups = {"sanity", "wapgCheckoutFlowCCBP","wapgCheckoutFlow","regression"}, priority = 0, description = "Wapg Checkout Flow CCBP test")
+    @Test(groups = {"sanity1", "wapgCheckoutFlowCCBP","wapgCheckoutFlow","regression"}, priority = 0, description = "Wapg Checkout Flow CCBP test")
     public void Test03_wapgCheckoutFlowCCBP() throws IOException, InterruptedException {
 
         Log.info("======= START : WAPG CCBP Checkout test =======");
@@ -72,7 +72,7 @@ public class CheckoutTest extends TestBase {
 
     }
 
-    @Test(groups = {"sanity", "addMoneyCardDetails","regression"}, priority = 0, description = "Add Money Checkout Flow Card Details")
+    @Test(groups = {"sanity1", "addMoneyCardDetails","regression"}, priority = 0, description = "Add Money Checkout Flow Card Details")
     public void Test05_addMoneyCardDetailsViewTest() throws IOException, InterruptedException {
 
         Log.info("======= START : Add Money Checkout Flow Card Details test =======");

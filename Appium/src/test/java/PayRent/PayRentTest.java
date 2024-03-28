@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class PayRentTest extends TestBase {
 
-    @Test(groups = {"regression", "PayRent", "addNewProperty"}, priority = 0, description = "Add New Property")
+    @Test(groups = {"sanity","regression", "PayRent", "addNewProperty"}, priority = 0, description = "Add New Property")
     public void PayRent_addNewProperty() throws InterruptedException, IOException {
 
         // Login to the account

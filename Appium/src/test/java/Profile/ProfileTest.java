@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class ProfileTest extends TestBase {
 
-    @Test(groups = {"profileFlow","regression"}, priority = 0, description = "Verify Profile Flow on android app")
+    @Test(groups = {"sanity","profileFlow","regression"}, priority = 0, description = "Verify Profile Flow on android app")
     public void Test_Profile_Flow() throws InterruptedException, IOException {
         // Start the test
         Log.info("======= START : Profile Section =======");
