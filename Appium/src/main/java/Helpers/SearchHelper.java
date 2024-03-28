@@ -47,14 +47,6 @@ public class SearchHelper {
 
         searchResult=searchPage.getSearchResults();
 
-//        for(int i=0;i<searchResult.size();i++){
-//
-//            if(!(searchResult.get(i) ==null)) {
-//                Log.info(searchResult.get(i));
-//            }
-//
-//        }
-
         for (Map.Entry<String, String> entry : searchResult.entrySet()) {
             if (entry.getValue() != null) {
                 Log.info(entry.getKey() + "=" + entry.getValue());
