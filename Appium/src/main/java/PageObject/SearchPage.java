@@ -61,7 +61,6 @@ public class SearchPage {
 
             // Ensure the size of titles and descriptions is the same
             int size = Math.min(titles.size() , descriptions.size());
-           Log.info( results.toString());
 
             for (int i = 0; i < size; i++) {
                 // Get text of title and description
@@ -82,7 +81,6 @@ public class SearchPage {
             Screen.swipeUpMoreFromRightSide(driver);
             isFirstIndexRight = true;
         }
-Log.info(results.toString());
         return results;
     }
 }
