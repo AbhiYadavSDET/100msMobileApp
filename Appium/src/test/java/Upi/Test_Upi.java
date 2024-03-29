@@ -12,7 +12,7 @@ import java.io.IOException;
 public class Test_Upi extends TestBase {
 
 
-    @Test(groups = {"upiSendMoney", "upiSanity"}, priority = 0, description = "UPI Send Money to UPI ID test")
+    @Test(groups = {"upiSendMoney", "upiSanity", "sanity"}, priority = 0, description = "UPI Send Money to UPI ID test")
     public void Test01_Upi_Send_Money_To_VPA() throws IOException, InterruptedException {
 
         Log.info("======= START : UPI Send Money to UPI ID test =======");
@@ -26,7 +26,7 @@ public class Test_Upi extends TestBase {
 
     }
 
-    @Test(groups = {"upiSendMoneyToBank", "upiSanity"}, priority = 0, description = "UPI Send Money to Bank test")
+    @Test(groups = {"upiSendMoneyToBank", "upiSanity", "sanity"}, priority = 0, description = "UPI Send Money to Bank test")
     public void Test02_Upi_Send_Money_To_Bank() throws IOException, InterruptedException {
 
         Log.info("======= START : UPI Send Money to Bank test =======");
@@ -40,7 +40,7 @@ public class Test_Upi extends TestBase {
 
     }
 
-    @Test(groups = {"upiCheckBalance", "upiSanity"}, priority = 0, description = "UPI Check Account Balance test")
+    @Test(groups = {"upiCheckBalance", "upiSanity", "sanity"}, priority = 0, description = "UPI Check Account Balance test")
     public void Test03_Upi_Check_Balance() throws IOException, InterruptedException {
 
         Log.info("======= START : UPI Check Account Balance test =======");
@@ -55,7 +55,7 @@ public class Test_Upi extends TestBase {
     }
 
 
-    @Test(groups = {"upiRequestMoney", "upiSanity"}, priority = 0, description = "UPI Request Money test")
+    @Test(groups = {"upiRequestMoney", "upiSanity", "sanity"}, priority = 0, description = "UPI Request Money test")
     public void Test04_Upi_Request_Money() throws IOException, InterruptedException {
 
         Log.info("======= START : UPI Request Money test =======");
@@ -72,7 +72,7 @@ public class Test_Upi extends TestBase {
 
 
 
-    @Test(groups = {"addMoneyViaUpi", "upiSanity"}, priority = 0, description = "Add Money via UPI test")
+    @Test(groups = {"addMoneyViaUpi", "upiSanity", "sanity"}, priority = 0, description = "Add Money via UPI test")
     public void Test05_Upi_Add_Money() throws IOException, InterruptedException {
 
         Log.info("======= START : Add Money via UPI test =======");
@@ -124,7 +124,7 @@ public class Test_Upi extends TestBase {
 
     }
 
-    @Test(groups = {"pocketUpi", "upiSanity"}, priority = 0, description = "Pocket UPI Send Money via pocketUpi")
+    @Test(groups = {"pocketUpi", "upiSanity", "sanity"}, priority = 0, description = "Pocket UPI Send Money via pocketUpi")
     public void Test09_Upi_Send_Money_Via_PocketUpi() throws IOException, InterruptedException {
 
         Log.info("======= START : Pocket UPI Send Money via pocketUpi =======");
@@ -163,7 +163,7 @@ public class Test_Upi extends TestBase {
         upiHelper.manageUpi();
     }
 
-    @Test(groups = {"manageUpi", "upiSanity"}, priority = 0, description = "Add New Bank account and Credit Card flow")
+    @Test(groups = {"manageUpi", "upiSanity", "sanity"}, priority = 0, description = "Add New Bank account and Credit Card flow")
     public void Test12_Add_Account_CreditCard() throws IOException, InterruptedException {
 
         Log.info("======= START : Add New Bank account and Credit Card flow =======");
@@ -176,7 +176,7 @@ public class Test_Upi extends TestBase {
         upiHelper.addNewBankAccountAndCreditCard();
     }
 
-    @Test(groups = {"numberMapper", "upiSanity"}, priority = 0, description = "Validate Manage UPI Number")
+    @Test(groups = {"numberMapper", "upiSanity", "sanity"}, priority = 0, description = "Validate Manage UPI Number")
     public void Test13_Manage_Upi_Number() throws IOException, InterruptedException {
 
         Log.info("======= START : Validate Manage UPI Number =======");

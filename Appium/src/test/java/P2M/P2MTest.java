@@ -31,7 +31,7 @@ public class P2MTest extends TestBase {
     }
 
 
-    @Test(groups = { "p2m", "p2mSend", "p2mSendMobikwikQr", "regression"}, priority = 1, description = "P2M Send test")
+    @Test(groups = { "sanity","p2m", "p2mSend", "p2mSendMobikwikQr", "regression"}, priority = 1, description = "P2M Send test")
     public void Test01_p2mSendMobikwikQr() throws IOException, InterruptedException {
 
         Log.info("======= START : P2M Send test =======");
@@ -51,7 +51,7 @@ public class P2MTest extends TestBase {
     }
 
 
-    @Test(groups = { "p2m", "p2mSend", "p2mSendRecentMerchant", "regression"}, priority = 2, description = "P2M Send test")
+    @Test(groups = { "sanity","p2m", "p2mSend", "p2mSendRecentMerchant", "regression"}, priority = 2, description = "P2M Send test")
     public void Test01_p2mSendRecentMerchant() throws IOException, InterruptedException {
 
         Log.info("======= START : P2M Send test =======");
@@ -69,7 +69,7 @@ public class P2MTest extends TestBase {
 
     }
 
-    @Test(groups = { "p2m", "p2mSend", "p2mSendSonuQr"}, priority = 3, description = "P2M Send test")
+    @Test(groups = {"sanity", "p2m", "p2mSend", "p2mSendSonuQr"}, priority = 3, description = "P2M Send test")
     public void Test01_p2mSendSonuQr() throws IOException, InterruptedException {
 
         Log.info("======= START : P2M Send test =======");
