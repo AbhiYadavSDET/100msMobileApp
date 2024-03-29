@@ -24,6 +24,12 @@ public class SearchPage {
     @AndroidFindBy (id="et_search")
     private AndroidElement search_bar;
 
+    @AndroidFindBy (id="no_search_results")
+    private AndroidElement noSearchResult;
+
+    @AndroidFindBy (id="mkab_icon_1")
+    private AndroidElement backButton;
+
 
 
 
@@ -49,6 +55,29 @@ public class SearchPage {
     public Boolean isSearchPageOpen() throws InterruptedException{
         return Elements.isElementPresent(driver, search_bar);
     }
+    public void enterText(String query){
+        Element.clearText(driver,search_bar,"Clearing old queries");
+        Element.enterText(driver,search_bar,query,"Entering query is search bar :"+query+ " ");
+    }
+
+
+    public  boolean isNoResultFoundPresent() throws InterruptedException {
+        return Elements.isElementPresent(driver, noSearchResult);
+    }
+
+    public  String noResultFoundText() throws InterruptedException {
+        return Elements.getText(driver, noSearchResult,"Getting no result found text :"+noSearchResult);
+    }
+
+    public  boolean isBackbuttonPresent() throws InterruptedException {
+        return Elements.isElementPresent(driver, backButton);
+    }
+
+    public void backFromSearchPage(){
+        Element.selectElement(driver,backButton, "Pressing back from search page");
+    }
+
+
     public Map<String, String> getSearchResults() throws InterruptedException {
         Map<String, String> results = new LinkedHashMap<>();
         boolean isFirstIndexRight = false;

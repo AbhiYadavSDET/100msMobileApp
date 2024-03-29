@@ -129,6 +129,13 @@ public class UpiPage {
     @AndroidFindBy(id="link_account_btn")
     private AndroidElement link_account_cta;
 
+    @AndroidFindBy(xpath="/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.Button[1]")
+    private AndroidElement allowContactPermission;
+
+    @AndroidFindBy(id="left_container")
+    private AndroidElement backButtonOnUPIPage;
+
+
 
 
 
@@ -828,6 +835,11 @@ public class UpiPage {
         Element.selectElement(driver, deregister_popup_no_cta, "Click No on Deregister Pop Up");
     }
 
+    public void clickOnAllowContact() throws InterruptedException {
+        Element.selectElement(driver, allowContactPermission, "Click On allow button on contact permission");
+    }
 
-
+    public void clickOnBackFromUPIpage() throws InterruptedException {
+        Element.selectElement(driver, backButtonOnUPIPage, "Click On back button from UPI page");
+    }
 }
