@@ -44,11 +44,11 @@ public class SearchTest extends TestBase {
         searchHelper.searchInvalidQuery("qwerty");
         Log.info("======= END :Search invalid name on search bar  =======");
     }
-    @Test(groups = {"regression","searchQueries"}, priority = 0, description = "Search test")
-    public void Test03_searchQueries() throws IOException, InterruptedException {
+    @Test(groups = {"regression","searchValidQueries"}, priority = 0, description = "Search test")
+    public void Test03_searchValidQueries() throws IOException, InterruptedException {
 
-        //Enter queries in camel case
-        String  queries []={"8860624421","Zomato","Pocket","Abhishek"};
+        //Enter mobile number that is not in contact list
+         String  queries []={"8860624421","zomato","Pocket","Abhishek"};
         Log.info("======= START : Search invalid name on search bar  =======");
 
         // Login to the account

@@ -135,10 +135,6 @@ public class UpiPage {
     @AndroidFindBy(id="left_container")
     private AndroidElement backButtonOnUPIPage;
 
-
-
-
-
     @AndroidFindBy(id="txtHowToUseUpi")
     private AndroidElement how_to_use_upi_cta;
 

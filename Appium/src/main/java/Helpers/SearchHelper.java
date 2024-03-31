@@ -68,7 +68,7 @@ public class SearchHelper {
         boolean isPermissionGiven = false;
 
         for(int i =0;i<length;i++){
-            product = validQueries[i];
+            product = validQueries[i].substring(0,1).toUpperCase().concat(validQueries[i].substring(1).toLowerCase());
 
             //Check if String is having only digits
           if(  containsOnlyNumbers(product)) {
