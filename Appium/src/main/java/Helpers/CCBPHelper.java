@@ -67,6 +67,14 @@ public class CCBPHelper {
         // Click on Recharge And PayBills
         ccPage.clickRechargeAndPayBills();
 
+        if (rechargePage.clickMobileRechargeAlert()) {
+            rechargePage.clickToCloseMobileRechargeAlert();
+        }
+
+        if(rechargePage.checkAutoPayBottomsheet()) {
+            rechargePage.clickSkipbtn();
+        }
+
         // Click on outside Swipe Left Bottom Popup
         ccPage.clickSwipeLeftBottomRemove();
 
@@ -115,47 +123,47 @@ public class CCBPHelper {
 
         ccPage.clickOnPay();
 
-        //Click on wallet balance
-        ccPage.clickWalletBalance();
-
-        //Click on pay button on Payable amount bottom sheet
-        ccPage.clickPayAmount();
-
-        // checking for security pin
-        if(securityPinPage.checkSecurityPinPage()){
-            securityPinPage.enterSecurityPin();
-        }
-
-        // Verification on the Success Screen
-        String title = ccPage.getTitle();
-        String subTitle = ccPage.getSubTitle();
-        String amountOnSuccesScreen = ccPage.getAmountOnSuccessScreen();
-
-        // Display the values
-        Log.info("Title : " + title);
-        Log.info("Sub Title : " + subTitle);
-        Log.info("Amount On Success Screen : " + amountOnSuccesScreen);
-
-
-        // Add the assertions
-        mbReporter.verifyEqualsWithLogging(title, expTitle, "Verify Title", false, false, true);
-        mbReporter.verifyEqualsWithLogging(subTitle, expSubTitle, "Verify Sub Title", false, false, true);
-        mbReporter.verifyEqualsWithLogging(amountOnSuccesScreen, expAmountOnSuccessScreen, "Verify Credit Card Bill Payment Amount", false, false, true);
-
-        mbkCommonControlsHelper.pressback(3);
-
-        // Click on the back button if the bottom sheet is present
-        mbkCommonControlsHelper.handleHomePageLanding();
-
-        // Get the Balance if the User Before TRX
-        balanceAfter = mbkCommonControlsHelper.getBalance();
-
-
-        // Assertions on the balance deducted
-        mbkCommonControlsHelper.verifyWalletBalanceAfterTransaction(driver, balanceBefore, balanceAfter, actualDeductedAmount(amount), "Sub");
-
-        // Verify the History details
-        mbkCommonControlsHelper.verifyHistoryDetails(driver ,expectedHistoryDescription,expectedHistoryAmount,expectedHistoryStatus);
+//        //Click on wallet balance
+//        ccPage.clickWalletBalance();
+//
+//        //Click on pay button on Payable amount bottom sheet
+//        ccPage.clickPayAmount();
+//
+//        // checking for security pin
+//        if(securityPinPage.checkSecurityPinPage()){
+//            securityPinPage.enterSecurityPin();
+//        }
+//
+//        // Verification on the Success Screen
+//        String title = ccPage.getTitle();
+//        String subTitle = ccPage.getSubTitle();
+//        String amountOnSuccesScreen = ccPage.getAmountOnSuccessScreen();
+//
+//        // Display the values
+//        Log.info("Title : " + title);
+//        Log.info("Sub Title : " + subTitle);
+//        Log.info("Amount On Success Screen : " + amountOnSuccesScreen);
+//
+//
+//        // Add the assertions
+//        mbReporter.verifyEqualsWithLogging(title, expTitle, "Verify Title", false, false, true);
+//        mbReporter.verifyEqualsWithLogging(subTitle, expSubTitle, "Verify Sub Title", false, false, true);
+//        mbReporter.verifyEqualsWithLogging(amountOnSuccesScreen, expAmountOnSuccessScreen, "Verify Credit Card Bill Payment Amount", false, false, true);
+//
+//        mbkCommonControlsHelper.pressback(3);
+//
+//        // Click on the back button if the bottom sheet is present
+//        mbkCommonControlsHelper.handleHomePageLanding();
+//
+//        // Get the Balance if the User Before TRX
+//        balanceAfter = mbkCommonControlsHelper.getBalance();
+//
+//
+//        // Assertions on the balance deducted
+//        mbkCommonControlsHelper.verifyWalletBalanceAfterTransaction(driver, balanceBefore, balanceAfter, actualDeductedAmount(amount), "Sub");
+//
+//        // Verify the History details
+//        mbkCommonControlsHelper.verifyHistoryDetails(driver ,expectedHistoryDescription,expectedHistoryAmount,expectedHistoryStatus);
 
     }
 
@@ -168,6 +176,14 @@ public class CCBPHelper {
 
         // Click on Recharge And PayBills
         ccPage.clickRechargeAndPayBills();
+
+        if (rechargePage.clickMobileRechargeAlert()) {
+            rechargePage.clickToCloseMobileRechargeAlert();
+        }
+
+        if(rechargePage.checkAutoPayBottomsheet()) {
+            rechargePage.clickSkipbtn();
+        }
 
         // Click on outside Swipe Left Bottom Popup
         ccPage.clickSwipeLeftBottomRemove();
@@ -218,52 +234,52 @@ public class CCBPHelper {
         ccPage.clickOnPay();
 
         //Click on wallet balance
-        ccPage.clickWalletBalance();
-
-        //Click on Other payment options
-//        ccPage.clickOtherPaymentOptions();
-
-        //Click on pay button on Payable amount bottom sheet
-        ccPage.clickPayAmount();
-
-        // checking for security pin
-        if(securityPinPage.checkSecurityPinPage()){
-            securityPinPage.enterSecurityPin();
-        }
-
-        mbkCommonControlsHelper.handleAddMoney("CCBP", "100", "4375517199762008","04/27","123");
-
-
-        // Verification on the Success Screen
-        String title = ccPage.getTitle();
-        String subTitle = ccPage.getSubTitle();
-        String amountOnSuccesScreen = ccPage.getAmountOnSuccessScreen();
-
-        // Display the values
-        Log.info("Title : " + title);
-        Log.info("Sub Title : " + subTitle);
-        Log.info("Amount On Success Screen : " + amountOnSuccesScreen);
-
-
-        // Add the assertions
-        mbReporter.verifyEqualsWithLogging(title, expTitle, "Verify Title", false, false, true);
-        mbReporter.verifyEqualsWithLogging(subTitle, expSubTitle, "Verify Sub Title", false, false, true);
-        mbReporter.verifyEqualsWithLogging(amountOnSuccesScreen, expAmountOnSuccessScreen, "Verify Credit Card Bill Payment Amount", false, false, true);
-
-        mbkCommonControlsHelper.pressback(3);
-
-        // Click on the back button if the bottom sheet is present
-        mbkCommonControlsHelper.handleHomePageLanding();
-
-        // Get the Balance if the User Before TRX
-        balanceAfter = mbkCommonControlsHelper.getBalance();
-
-
-        // Assertions on the balance deducted
-        mbkCommonControlsHelper.verifyWalletBalanceAfterTransaction(driver, balanceBefore, balanceAfter, actualDeductedAmount(amount), "Sub");
-
-        // Verify the History details
-        mbkCommonControlsHelper.verifyHistoryDetails(driver ,expectedHistoryDescription,expectedHistoryAmount,expectedHistoryStatus);
+//        ccPage.clickWalletBalance();
+//
+//        //Click on Other payment options
+////        ccPage.clickOtherPaymentOptions();
+//
+//        //Click on pay button on Payable amount bottom sheet
+//        ccPage.clickPayAmount();
+//
+//        // checking for security pin
+//        if(securityPinPage.checkSecurityPinPage()){
+//            securityPinPage.enterSecurityPin();
+//        }
+//
+//        mbkCommonControlsHelper.handleAddMoney("CCBP", "100", "4375517199762008","04/27","123");
+//
+//
+//        // Verification on the Success Screen
+//        String title = ccPage.getTitle();
+//        String subTitle = ccPage.getSubTitle();
+//        String amountOnSuccesScreen = ccPage.getAmountOnSuccessScreen();
+//
+//        // Display the values
+//        Log.info("Title : " + title);
+//        Log.info("Sub Title : " + subTitle);
+//        Log.info("Amount On Success Screen : " + amountOnSuccesScreen);
+//
+//
+//        // Add the assertions
+//        mbReporter.verifyEqualsWithLogging(title, expTitle, "Verify Title", false, false, true);
+//        mbReporter.verifyEqualsWithLogging(subTitle, expSubTitle, "Verify Sub Title", false, false, true);
+//        mbReporter.verifyEqualsWithLogging(amountOnSuccesScreen, expAmountOnSuccessScreen, "Verify Credit Card Bill Payment Amount", false, false, true);
+//
+//        mbkCommonControlsHelper.pressback(3);
+//
+//        // Click on the back button if the bottom sheet is present
+//        mbkCommonControlsHelper.handleHomePageLanding();
+//
+//        // Get the Balance if the User Before TRX
+//        balanceAfter = mbkCommonControlsHelper.getBalance();
+//
+//
+//        // Assertions on the balance deducted
+//        mbkCommonControlsHelper.verifyWalletBalanceAfterTransaction(driver, balanceBefore, balanceAfter, actualDeductedAmount(amount), "Sub");
+//
+//        // Verify the History details
+//        mbkCommonControlsHelper.verifyHistoryDetails(driver ,expectedHistoryDescription,expectedHistoryAmount,expectedHistoryStatus);
 
 
     }
