@@ -1,5 +1,6 @@
 package PageObject;
 
+import Utils.Element;
 import Utils.Elements;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
@@ -93,6 +94,7 @@ public class AddMoneyPage {
 
     // Success Screen methods
     public String getTitleOnSuccess() throws InterruptedException {
+        Element.waitForVisibility(driver,titleOnSuccess);
         return Elements.getText(driver, titleOnSuccess, "Base Title");
     }
 

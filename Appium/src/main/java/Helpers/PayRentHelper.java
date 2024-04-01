@@ -351,7 +351,6 @@ public class PayRentHelper {
         else {
 
             mbReporter.verifyTrueWithLogging(isSavedRecipientPresent, "Saved Recipient is not Present", false, false, true);
-
         }
 
     }

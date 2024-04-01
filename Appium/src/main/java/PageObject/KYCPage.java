@@ -1,5 +1,6 @@
 package PageObject;
 
+import Utils.Element;
 import Utils.Elements;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
@@ -66,7 +67,6 @@ public class KYCPage {
 
     @AndroidFindBy(id = "mkab_icon_1")
     private AndroidElement backButtonFromCompleteYourKycScreen;
-
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='I don’t want benefits']")
     private AndroidElement iDontWantbenefits;
@@ -154,7 +154,6 @@ public class KYCPage {
     @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.webkit.WebView/android.webkit.WebView/android.view.View[2]/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.widget.EditText[3]")
     private AndroidElement adharCardThirdDigits;
 
-
     @AndroidFindBy(xpath = "//android.widget.Button[@text='Next']")
     private AndroidElement nextButtonOnDigilockerAadharCard;
 
@@ -173,21 +172,18 @@ public class KYCPage {
     @AndroidFindBy(xpath = "//android.widget.EditText[@text='Aadhaar Number']")
     private AndroidElement adhaarNumberOptionOnAdhaarWebsite;
 
-
     @AndroidFindBy(id = "btn_submit")
     private AndroidElement arrowbuttonOnAdhaarWebsite;
 
-
-
     @AndroidFindBy(xpath = "//android.widget.EditText[@text='Enter security code']")
     private AndroidElement enterSecurityCodeOnAdhaarWebsite;
-
 
     @AndroidFindBy(xpath = "//android.widget.Button[@text='OK']")
     private AndroidElement okOnCaptchaFailurePopup;
 
     @AndroidFindBy(xpath = "//android.view.View[@text='Please enter a valid aadhaar number.']")
     private AndroidElement errorMessageOfAdhaarOnDigilocker;
+
     @AndroidFindBy(id = "edit_text_mket")
     private AndroidElement profileAadhaarEditText;
 
@@ -202,7 +198,6 @@ public class KYCPage {
 
     @AndroidFindBy(id = "tx_kyc_cond")
     private AndroidElement profileKycSubTitle;
-
 
     public void clickOnContinueButtonOnBoradingScreen() {
         Elements.selectElement(driver, continueButtonOnLendingScreen, "Click on continue button on lending page for KYC");
@@ -320,6 +315,7 @@ public class KYCPage {
     }
 
     public void setAdharCardFirstDigits(String digits) throws InterruptedException{
+        Element.waitForInvisibility(driver,adharCardFirstDigits);
         Elements.enterToElement(driver, adharCardFirstDigits,digits,"Set Adhar card first 4 digits ");
     }
 
@@ -435,6 +431,7 @@ public class KYCPage {
     }
 
     public void enterProfileAadhaarTextBox(String aadhaarNumber) throws InterruptedException{
+        Element.waitForVisibility(driver,profileAadhaarEditText);
         Elements.enterToElement(driver, profileAadhaarEditText, aadhaarNumber,"Enter Aadhaar Number");
     }
 

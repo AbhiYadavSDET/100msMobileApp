@@ -337,6 +337,7 @@ public class P2PExtraPage {
     }
 
     public void enterInvestmentAmount(String amount) throws InterruptedException {
+        Element.waitForVisibility(driver,investment_amount_box);
         Element.clearText(driver, investment_amount_box, "Clear Existing Text");
         Thread.sleep(1000);
         Elements.enterToElement(driver, investment_amount_box, amount, "Enter Investment Amount");

@@ -4,6 +4,7 @@ import Logger.Log;
 import PageObject.HomePage;
 import PageObject.IMPSNewPage;
 import PageObject.SecurityPinPage;
+import Utils.Element;
 import com.aventstack.extentreports.gherkin.model.And;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
@@ -55,7 +56,7 @@ public class IMPSNewHelper {
         //Going to IMPS Option
         impsPage.clickOnWalletToBank();
 
-        Thread.sleep(5000);
+        Element.waitForVisibilityMultipleElements(driver,By.xpath("//android.widget.Button[contains(@text, 'Transfer now')]"),By.id("com.mobikwik_new.debug:id/btn_new_transfer"));
         if (impsPage.isZeroState()) {
             impsPage.clickOnTransferNowOnZeroState();
         } else {
@@ -67,11 +68,9 @@ public class IMPSNewHelper {
         impsPage.setAccountNumber(accountNo);
         impsPage.setIFSC_Code(ifsc);
         impsPage.clickOnContinueCTA();
-        Thread.sleep(3000);
 
         //Entering Amount Page
         impsPage.setAmount(amount);
-        Thread.sleep(3000);
         impsPage.clickOnContinueToPinCTA();
         impsPage.clickOnContinueToCheckoutCTA();
 
@@ -80,7 +79,6 @@ public class IMPSNewHelper {
         if (securityPinPage.checkSecurityPinPage()) securityPinPage.enterSecurityPin();
 
         //Assertion Check on Confirmation Page
-        Thread.sleep(3000);
         Log.info("Security pin option is passed...");
 
     /*    //Storing Actual Message on Screen and Expected Result in String
@@ -117,8 +115,7 @@ public class IMPSNewHelper {
         //Going to IMPS Option
         impsPage.clickOnWalletToBank();
 
-        Thread.sleep(5000);
-
+        Element.waitForVisibilityMultipleElements(driver,By.xpath("//android.widget.Button[contains(@text, 'Transfer now')]"),By.id("com.mobikwik_new.debug:id/btn_new_transfer"));
         //Going to UPI Option
         if (impsPage.isZeroState()) {
             impsPage.clickOnTransferNowOnZeroState();
@@ -140,7 +137,6 @@ public class IMPSNewHelper {
         if (securityPinPage.checkSecurityPinPage()) securityPinPage.enterSecurityPin();
 
         //Assertion Check on Confirmation Page
-        Thread.sleep(3000);
         Log.info("Payment Flow done here, Now checking the status...");
 
         //Storing Actual Message on Screen and Expected Result in String
@@ -169,31 +165,29 @@ public class IMPSNewHelper {
         mbkCommonControlsHelper.verifyHistoryDetails(driver, expectedHistoryDescription, expectedHistoryAmount, expectedHistoryStatus);
 
     }
-
     public void verifyIMPSSavedVPA(String upiID, String amount, String expectedMessage, String expectedAmount, String expectedHistoryDescription, String expectedHistoryAmount, String expectedHistoryStatus) throws InterruptedException, IOException {
 
-        // Get the Balance if the User Before TRX
-//        balanceBefore = mbkCommonControlsHelper.getBalance();
+      //   Get the Balance if the User Before TRX
+        balanceBefore = mbkCommonControlsHelper.getBalance();
 
-        //Going to IMPS Option
+      //  Going to IMPS Option
         impsPage.clickOnWalletToBank();
 
-        Thread.sleep(5000);
+        //Computing Dynamic Xpath upiID entered as parameter
+        String xpathSavedUPI = "//android.widget.TextView[@text = '" + upiID + "']";
 
-
-//        //Computing Dynamic Xpath upiID entered as parameter
-//        String xpathSavedUPI = "//android.widget.TextView[@text = '" + upiID + "']";
-//
-//        //Select already saved VPA using XPath calculated above
-//        AndroidElement savedVPA = (AndroidElement) driver.findElementByXPath(xpathSavedUPI);
+        //Select already saved VPA using XPath calculated above
+        AndroidElement savedVPA = (AndroidElement) driver.findElementByXPath(xpathSavedUPI);
+        Element.waitForVisibility(driver,savedVPA);
         impsPage.clickOnSavedVPA();
 
         //Entering Amount and Continue to PIN
         impsPage.setAmount(amount);
-        impsPage.clickOnSetAmount();
+    //    impsPage.clickOnSetAmount();
         impsPage.clickOnContinueToPinCTA();
+        impsPage.clickOnContinueText();
 
-        //Check Security PIN Page
+       //Check Security PIN Page
         if (securityPinPage.checkSecurityPinPage()) securityPinPage.enterSecurityPin();
 
         //Assertion Check on Confirmation Page
@@ -223,15 +217,13 @@ public class IMPSNewHelper {
 
         // Verify the History details
         mbkCommonControlsHelper.verifyHistoryDetails(driver, expectedHistoryDescription, expectedHistoryAmount, expectedHistoryStatus);
-
     }
-
     public void verifyIMPSNewAccountWithAutoIfscCode(String accountName, String accountNo, String bankName, String amount) throws InterruptedException, IOException {
 
         //Going to IMPS Option
         impsPage.clickOnWalletToBank();
 
-        Thread.sleep(5000);
+        Element.waitForVisibilityMultipleElements(driver,By.xpath("//android.widget.Button[contains(@text, 'Transfer now')]"),By.id("com.mobikwik_new.debug:id/btn_new_transfer"));
         if (impsPage.isZeroState()) {
             impsPage.clickOnTransferNowOnZeroState();
         } else {
@@ -254,7 +246,7 @@ public class IMPSNewHelper {
         //Going to IMPS Option
         impsPage.clickOnWalletToBank();
 
-        Thread.sleep(5000);
+        Element.waitForVisibilityMultipleElements(driver,By.xpath("//android.widget.Button[contains(@text, 'Transfer now')]"),By.id("com.mobikwik_new.debug:id/btn_new_transfer"));
         if (impsPage.isZeroState()) {
             impsPage.clickOnTransferNowOnZeroState();
         } else {
@@ -299,7 +291,7 @@ public class IMPSNewHelper {
         //Going to IMPS Option
         impsPage.clickOnWalletToBank();
 
-        Thread.sleep(5000);
+        Element.waitForVisibilityMultipleElements(driver,By.xpath("//android.widget.Button[contains(@text, 'Transfer now')]"),By.id("com.mobikwik_new.debug:id/btn_new_transfer"));
 
         //Click on transfer new account
         if (impsPage.isZeroState()) {
@@ -358,7 +350,7 @@ public class IMPSNewHelper {
 
         impsPage.clickOnWalletToBank();
 
-        Thread.sleep(5000);
+        Element.waitForVisibilityMultipleElements(driver,By.xpath("//android.widget.Button[contains(@text, 'Transfer now')]"),By.id("com.mobikwik_new.debug:id/btn_new_transfer"));
         if (impsPage.isZeroState()) {
             impsPage.clickOnTransferNowOnZeroState();
         } else {
@@ -370,11 +362,9 @@ public class IMPSNewHelper {
         impsPage.setAccountNumber(accountNo);
         impsPage.setIFSC_Code(ifsc);
         impsPage.clickOnContinueCTA();
-        Thread.sleep(3000);
 
         //Entering Amount Page
         impsPage.setAmount(amount);
-        Thread.sleep(3000);
         impsPage.clickOnContinueToPinCTA();
         impsPage.clickOnContinueToCheckoutCTA();
 
@@ -383,7 +373,6 @@ public class IMPSNewHelper {
         if (securityPinPage.checkSecurityPinPage()) securityPinPage.enterSecurityPin();
 
         //Assertion Check on Confirmation Page
-        Thread.sleep(3000);
         Log.info("Security pin option is passed...");
 
             }
@@ -399,7 +388,7 @@ public class IMPSNewHelper {
         //Going to IMPS Option
         impsPage.clickOnWalletToBank();
 
-        Thread.sleep(5000);
+        Element.waitForVisibilityMultipleElements(driver,By.xpath("//android.widget.Button[contains(@text, 'Transfer now')]"),By.id("com.mobikwik_new.debug:id/btn_new_transfer"));
         if (impsPage.isZeroState()) {
             impsPage.clickOnTransferNowOnZeroState();
         } else {
@@ -428,10 +417,10 @@ public class IMPSNewHelper {
          message= impsPage.getInfoMessage();
 
         if(balance < Integer.parseInt(maxAmount)){
-            mbReporter.verifyEqualsWithLogging(impsPage.getInfoMessage(), "Convenience fee will be shown on next step", "Check Info message on Imps amount Page when wallet balance is low", false, false);
+            mbReporter.verifyEqualsWithLogging(message, "Convenience fee will be shown on next step", "Check Info message on Imps amount Page when wallet balance is low", false, false);
 
         }else{
-            mbReporter.verifyEqualsWithLogging(impsPage.getInfoMessage(), "No Additional charges for this transfer", "Check Info message on Imps amount Page when wallet balance is greater than amount", false, false);
+            mbReporter.verifyEqualsWithLogging(message, "No Additional charges for this transfer", "Check Info message on Imps amount Page when wallet balance is greater than amount", false, false);
 
         }
     }
@@ -443,7 +432,7 @@ public class IMPSNewHelper {
         //Going to IMPS Option
         impsPage.clickOnWalletToBank();
 
-        Thread.sleep(5000);
+        Element.waitForVisibilityMultipleElements(driver,By.xpath("//android.widget.Button[contains(@text, 'Transfer now')]"),By.id("com.mobikwik_new.debug:id/btn_new_transfer"));
         if (impsPage.isZeroState()) {
             impsPage.clickOnTransferNowOnZeroState();
         } else {
@@ -457,13 +446,11 @@ public class IMPSNewHelper {
 
         impsPage.clickOnContinueToAmtCTA();
         impsPage.setAmount(amount);
-        Thread.sleep(3000);
       impsPage.clickOnArrowButton();
       impsPage.clickOnContinueButtonOnFinalCheckout();
 
         //Check Security PIN Page
         if (securityPinPage.checkSecurityPinPage()) securityPinPage.enterSecurityPin();
-        Thread.sleep(2000);
         impsPage.clickOnMorePaymentOptions();
         impsPage.clickOnCheckBox();
         impsPage.clickOnContinueOnCheckout();
@@ -484,7 +471,4 @@ public class IMPSNewHelper {
         }
         return Integer.parseInt(val);
     }
-
-
-
 }

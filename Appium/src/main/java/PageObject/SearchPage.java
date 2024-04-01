@@ -13,6 +13,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,6 +23,12 @@ public class SearchPage {
 
     @AndroidFindBy (id="et_search")
     private AndroidElement search_bar;
+
+    @AndroidFindBy (id="no_search_results")
+    private AndroidElement noSearchResult;
+
+    @AndroidFindBy (id="mkab_icon_1")
+    private AndroidElement backButton;
 
 
 
@@ -48,40 +55,63 @@ public class SearchPage {
     public Boolean isSearchPageOpen() throws InterruptedException{
         return Elements.isElementPresent(driver, search_bar);
     }
-
-    public Map<String , String> getTop8SearchResults() throws InterruptedException{
-
-
-        Map<String, String> results = new HashMap<>();
-
-        List<AndroidElement> title = Element.findElements(driver, By.id("title"));
-        List<AndroidElement> description = Element.findElements(driver, By.id("description"));
-
-//        for(int k=0; k<5;k++) {
-//            Screen.swipeUpMoreFromRightSide(driver);
-//            title.addAll(Element.findElements(driver, By.id("title")));
-//            description.addAll(Element.findElements(driver, By.id("description")));
-//
-//        }
-
-        for(int i=0; i<8;i++) {
-
-            results.put(title.get(i+1).getText(), description.get(i).getText());
-            Log.info(title.get(i+1).getText(), description.get(i).getText());
-
-        }
-
-
-
-        return results;
-
+    public void enterText(String query){
+        Element.clearText(driver,search_bar,"Clearing old queries");
+        Element.enterText(driver,search_bar,query,"Entering query is search bar :"+query+ " ");
     }
 
 
+    public  boolean isNoResultFoundPresent() throws InterruptedException {
+        return Elements.isElementPresent(driver, noSearchResult);
+    }
+
+    public  String noResultFoundText() throws InterruptedException {
+        return Elements.getText(driver, noSearchResult,"Getting no result found text :"+noSearchResult);
+    }
+
+    public  boolean isBackbuttonPresent() throws InterruptedException {
+        return Elements.isElementPresent(driver, backButton);
+    }
+
+    public void backFromSearchPage(){
+        Element.selectElement(driver,backButton, "Pressing back from search page");
+    }
 
 
+    public Map<String, String> getSearchResults() throws InterruptedException {
+        Map<String, String> results = new LinkedHashMap<>();
+        boolean isFirstIndexRight = false;
 
+        for (int scrollCount = 0; scrollCount < 7; scrollCount++) {
+            // Find all title and description elements after each scroll
+            List<AndroidElement> titles = Element.findElements(driver, By.id("title"));
+            List<AndroidElement> descriptions = Element.findElements(driver, By.id("description"));
+            String titleText,descriptionText;
 
+            // Ensure the size of titles and descriptions is the same
+            int size = Math.min(titles.size() , descriptions.size());
+
+            for (int i = 0; i < size; i++) {
+                // Get text of title and description
+
+                if (!isFirstIndexRight){
+                     titleText = titles.get(i + 1).getText();
+                }else{
+                     titleText = titles.get(i ).getText();
+                }
+
+                 descriptionText = descriptions.get(i).getText();
+
+                // Put them into results map
+                results.put(titleText, descriptionText);
+            }
+
+            // Swipe to reveal more elements
+            Screen.swipeUpMoreFromRightSide(driver);
+            isFirstIndexRight = true;
+        }
+        return results;
+    }
 }
 
 
