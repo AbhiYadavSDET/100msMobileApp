@@ -24,7 +24,7 @@
 
         <classes>
             <class name="P2M.P2MTest"/>
-            <class name="ReferAndEarn.ReferAndEarnTest">
+            <class name="ReferAndEarn.ReferAndEarnTest"/>
         </classes>
     </test>
 
