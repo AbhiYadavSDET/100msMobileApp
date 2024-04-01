@@ -102,12 +102,11 @@ public class ReferAndEarnHelper {
 
         permissionHelper.permissionAllow();
 
-        referAndEarnPage.clickOnInvite();
-
-        Thread.sleep(1000);
-
-        mbkCommonControlsHelper.pressback(1);
-
+//        referAndEarnPage.clickOnInvite();
+//
+//        Thread.sleep(1000);
+//
+//        mbkCommonControlsHelper.pressback(1);
 
     }
 
