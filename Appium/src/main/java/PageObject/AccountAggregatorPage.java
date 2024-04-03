@@ -284,6 +284,14 @@ public class AccountAggregatorPage {
         Elements.selectElement(driver,TrackBankAccountsCTA,"Click on Track bank account lens icon");
     }
 
+    public boolean scrollTotrackBankAccounts() throws InterruptedException {
+        return Elements.scrollToElement(driver,TrackBankAccountsCTA);
+    }
+
+    public void clickOnTrackBankAccounts() throws InterruptedException{
+        Elements.selectElement(driver,TrackBankAccountsCTA,"Click on Track bank account");
+    }
+
     public void clickOnAAOnHomeScreen() throws InterruptedException{
         Elements.selectElement(driver,TrackBankAccountsCTA,"Track bank account");
     }
@@ -425,12 +433,28 @@ public class AccountAggregatorPage {
     public String accountTitle() throws InterruptedException {
         return Elements.getText(driver, accountTitle, "Dashboard Account Title");
     }
+
+    public boolean scrollToAccountTitle() throws InterruptedException {
+        return Elements.scrollToElement(driver, accountTitle);
+    }
+
+
     public String settingsTitle() throws InterruptedException {
         return Elements.getText(driver, settingsTitle, "Dashboard Setting Title");
     }
 
+    public boolean scrollToSettingsTitle() throws InterruptedException {
+        return Elements.scrollToElement(driver, settingsTitle);
+    }
+
+
     public String downloadStatementsTitle() throws InterruptedException {
         return Elements.getText(driver, downloadStatementsTitle, "Dashboard Download Title");
+    }
+
+
+    public boolean scrolltoDownloadStatementsTitle() throws InterruptedException {
+        return Elements.scrollToElement(driver, downloadStatementsTitle);
     }
 
     public String helpSupportTitle() throws InterruptedException {
