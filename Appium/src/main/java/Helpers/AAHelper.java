@@ -125,23 +125,20 @@ public class AAHelper {
             Log.info("Highlight Title on MainDashboard : " + expdashBoardHighlightTitle);
             mbReporter.verifyEqualsWithLogging(dashBoardHighlightTitle, expdashBoardHighlightTitle, "Verify Highlight Title on Main Dashboardd", false, false, true);
 
-            screen.swipeUpMore(driver);
-
-            screen.swipeUpMore(driver);
-//            if (aaPage.dashboardHighlightTitle() != null) {
-//                screen.swipeUpMore(driver);
-//            }
+            aaPage.scrollToAccountTitle();
 
             String accounTTitle = aaPage.accountTitle();
-            String settingsTitle = aaPage.settingsTitle();
 
             Log.info("Account Title on MainDashboard : " + expaccountTitle);
-            Log.info("Setting Title on MainDashboard : " + expsettingsTitle);
 
             mbReporter.verifyEqualsWithLogging(accounTTitle, expaccountTitle, "Verify Account Title on MainDashboard", false, false, true);
+
+            aaPage.scrollToSettingsTitle();
+            String settingsTitle = aaPage.settingsTitle();
+            Log.info("Setting Title on MainDashboard : " + expsettingsTitle);
             mbReporter.verifyEqualsWithLogging(settingsTitle, expsettingsTitle, "Verify Account settings Title on MainDashboard", false, false, true);
 
-            screen.swipeUpMore(driver);
+            aaPage.scrolltoDownloadStatementsTitle();
 
             String downloadStatementsTitle = aaPage.downloadStatementsTitle();
             String helpSupportTitle = aaPage.helpSupportTitle();
