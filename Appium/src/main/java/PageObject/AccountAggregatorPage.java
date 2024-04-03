@@ -284,6 +284,14 @@ public class AccountAggregatorPage {
         Elements.selectElement(driver,TrackBankAccountsCTA,"Click on Track bank account lens icon");
     }
 
+    public boolean scrollTotrackBankAccounts() throws InterruptedException {
+        return Elements.scrollToElement(driver,TrackBankAccountsCTA);
+    }
+
+    public void clickOnTrackBankAccounts() throws InterruptedException{
+        Elements.selectElement(driver,TrackBankAccountsCTA,"Click on Track bank account");
+    }
+
     public void clickOnAAOnHomeScreen() throws InterruptedException{
         Elements.selectElement(driver,TrackBankAccountsCTA,"Track bank account");
     }

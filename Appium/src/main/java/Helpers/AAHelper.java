@@ -51,17 +51,9 @@ public class AAHelper {
             Log.info("AA flow for existing user");
             Log.info("-------------------------------------");
 
-            // Swipe up for wealth dashboard
-            screen.swipeUpMore(driver);
-            screen.swipeUpMore(driver);
+            aaPage.scrollTotrackBankAccounts();
+            aaPage.clickOnTrackBankAccounts();
 
-            if(!aaPage.checkTrackbankAccountsCTA())
-            {
-                screen.swipeUpMedium(driver);
-            }
-
-            // click on money plus icon
-            aaPage.trackBankAccountsCTA();
             Thread.sleep(2000);
 
             // Verification on the Category Page
