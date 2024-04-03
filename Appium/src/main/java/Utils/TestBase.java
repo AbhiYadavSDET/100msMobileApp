@@ -4,7 +4,13 @@ import Logger.Log;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.remote.MobileCapabilityType;
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.*;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.io.FileHandler;
+import org.openqa.selenium.remote.Augmenter;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
@@ -22,6 +28,9 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -34,8 +43,8 @@ public class TestBase {
 
     String androidOSVersion = "13.0";
     String portNo = "4723";
-    String udId = "172.18.31.239:5555";
-    String deviceName = "RZ8W60BB9HB";
+    String udId = "2C161FDH200GLN";
+    String deviceName = "2C161FDH200GLN";
 
 
     Boolean cloudRun = false;
@@ -167,8 +176,8 @@ public class TestBase {
             if(codeCoverage){
                 cap.setCapability("androidCoverage", "com.mobikwik_new.debug/com.mobikwik_new.instrumentation.CodeCoverageInstrumentation");
             }
-//            cap.setCapability("app", app.getAbsolutePath());
-            cap.setCapability("app", "//Users//mayanksuneja//app//mobikwik.apk");
+            cap.setCapability("app", app.getAbsolutePath());
+//            cap.setCapability("app", "//Users//mayanksuneja//app//mobikwik.apk");
             AndroidDriver driver = new AndroidDriver(new URL("http://0.0.0.0:" + portNo + "/wd/hub"), cap);
             androidDriverThread.set(driver);
             return androidDriverThread.get();
@@ -233,7 +242,14 @@ public class TestBase {
     @Parameters({"udId", "codeCoverage"})
     @AfterMethod(groups = "tearDown", alwaysRun = true)
     public void teardown(ITestResult result, @Optional String udId, @Optional Boolean codeCoverage) {
+
         String testname = result.getMethod().getMethodName();
+
+        if (result.isSuccess() == false) {
+            captureScreenShot(testname);
+            Log.info(":::Capture Failure Screenshot:::");
+        }
+
         if (codeCoverage == null){
             codeCoverage = false;
         }
@@ -250,6 +266,24 @@ public class TestBase {
         Log.info("Shutting down driver");
         getAndroidDriver().quit();
     }
+
+
+    public void captureScreenShot(String testName) {
+        File srcFile = getAndroidDriver().getScreenshotAs(OutputType.FILE);
+        String filename = testName;
+        File targetFile = new File(System.getProperty("user.dir") + "/output/screenshots/" + filename + ".jpg");
+        try {
+            FileUtils.copyFile(srcFile, targetFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+
+
     public static void pullData(String udId, String sourcePath, String testname){
         try {
             Log.info("adb -s "+udId+" exec-out run-as com.mobikwik_new.debug cat "+sourcePath+" > coverage_"+testname+".ec");
