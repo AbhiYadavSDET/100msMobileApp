@@ -269,9 +269,10 @@ public class TestBase {
 
 
     public void captureScreenShot(String testName) {
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         File srcFile = getAndroidDriver().getScreenshotAs(OutputType.FILE);
         String filename = testName;
-        File targetFile = new File(System.getProperty("user.dir") + "/output/screenshots/" + filename + ".jpg");
+        File targetFile = new File(System.getProperty("user.dir") + "/output/screenshots/" + filename +timestamp.getMinutes()+ ".jpg");
         try {
             FileUtils.copyFile(srcFile, targetFile);
         } catch (IOException e) {
