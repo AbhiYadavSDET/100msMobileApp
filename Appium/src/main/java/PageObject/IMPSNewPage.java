@@ -200,8 +200,8 @@ public class IMPSNewPage {
 
 
     public void clickOnContinueToPinCTA() throws  InterruptedException{
-        Element.waitForVisibility(driver,pin_continue_cta);
-        Elements.selectElement(driver,pin_continue_cta,"Click on continue now to pay amount");
+        Element.waitForVisibility(driver,checkoutContinueButton);
+        Elements.selectElement(driver,checkoutContinueButton,"Click on continue now to pay amount");
     }
 
     public void clickOnAdvertisementCheckBox() throws  InterruptedException{

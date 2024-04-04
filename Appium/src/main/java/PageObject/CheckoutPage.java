@@ -343,6 +343,7 @@ public class CheckoutPage {
     }
 
     public void selectAddNewCreditCard() throws InterruptedException{
+        Elements.scrollToElement(driver, add_new_credit_card_cta);
         Elements.selectElement(driver, add_new_credit_card_cta, "Select Add New Credit card Cta");
     }
 

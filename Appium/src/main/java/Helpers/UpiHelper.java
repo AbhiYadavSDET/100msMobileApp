@@ -27,6 +27,8 @@ public class UpiHelper {
     AddMoneyPage addMoneyPage;
     MbkCommonControlsPage mbkCommonControlsPage;
 
+    SecurityPinPage securityPinPage;
+
     Map<String, String> vpaList;
 
     public static HashMap<String, String> map;
@@ -46,6 +48,7 @@ public class UpiHelper {
         homePage = new HomePage(driver);
         addMoneyPage = new AddMoneyPage(driver);
         mbkCommonControlsPage=new MbkCommonControlsPage(driver);
+        securityPinPage = new SecurityPinPage(driver);
         upiPage=new UpiPage(driver);
 
 
@@ -477,6 +480,12 @@ public class UpiHelper {
         upiPage.enterMessage(message);
 
         upiPage.clickOnConfirmPayment();
+
+
+        if(securityPinPage.checkSecurityPinPage()){
+            securityPinPage.enterSecurityPin("121212");
+        }
+
         Thread.sleep(4000);
 
         permissionHelper.permissionAllow();
