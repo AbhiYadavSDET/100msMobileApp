@@ -145,13 +145,13 @@ public class KYCPage {
     @AndroidFindBy(id = "eft_container")
     private AndroidElement backFromDigiLockerScreen;
 
-    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.webkit.WebView/android.webkit.WebView/android.view.View[2]/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.widget.EditText[1]")
+    @AndroidFindBy(xpath = "(//android.widget.EditText)[1]")
     private AndroidElement adharCardFirstDigits;
 
-    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.webkit.WebView/android.webkit.WebView/android.view.View[2]/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.widget.EditText[2]")
+    @AndroidFindBy(xpath = "(//android.widget.EditText)[2]")
     private AndroidElement adharCardSecondDigits;
 
-    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.webkit.WebView/android.webkit.WebView/android.view.View[2]/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.widget.EditText[3]")
+    @AndroidFindBy(xpath = "(//android.widget.EditText)[3]")
     private AndroidElement adharCardThirdDigits;
 
     @AndroidFindBy(xpath = "//android.widget.Button[@text='Next']")
@@ -315,7 +315,7 @@ public class KYCPage {
     }
 
     public void setAdharCardFirstDigits(String digits) throws InterruptedException{
-        Element.waitForInvisibility(driver,adharCardFirstDigits);
+        Element.waitForVisibility(driver,adharCardFirstDigits);
         Elements.enterToElement(driver, adharCardFirstDigits,digits,"Set Adhar card first 4 digits ");
     }
 
@@ -347,6 +347,7 @@ public class KYCPage {
     }
 
     public void setAdharNumberOnAdharWebsite(String adhaarNumber) throws InterruptedException{
+        Element.waitForVisibility(driver, adhaarNumberOptionOnAdhaarWebsite);
         Elements.enterToElement(driver, adhaarNumberOptionOnAdhaarWebsite,adhaarNumber,"Set adhar number on adhaar website ");
     }
 
