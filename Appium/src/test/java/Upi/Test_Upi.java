@@ -210,7 +210,7 @@ public class Test_Upi extends TestBase {
 
 
 
-    @Test(groups = {"deregisterUpi", "PocketUPIScanQRTxn"}, priority = 0, description = "Validate SonuQR txn via Pocket UPI ")
+    @Test(groups = {"upiSanity", "PocketUPIScanQRTxn"}, priority = 0, description = "Validate SonuQR txn via Pocket UPI ")
     public void Test15_PocketUpi_SonuQR() throws IOException, InterruptedException {
 
         Log.info("======= START : P2M flow Sonu QR =======");
