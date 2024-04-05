@@ -123,7 +123,9 @@ public class ReferAndEarnHelper {
 
         Thread.sleep(2000);
 
-        mbkCommonControlsHelper.pressback(1);
+        if(!referAndEarnPage.checkReferAndEarn()){
+            mbkCommonControlsHelper.pressback(1);
+        }
 
         referAndEarnPage.clickReferAndEarn();
 

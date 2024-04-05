@@ -26,8 +26,12 @@ public class UpiHelper {
     MBKCommonControlsHelper mbkCommonControlsHelper;
     AddMoneyPage addMoneyPage;
     MbkCommonControlsPage mbkCommonControlsPage;
-
     SecurityPinPage securityPinPage;
+
+    P2PPage p2PPage;
+
+    P2MPage p2mPage;
+
 
     Map<String, String> vpaList;
 
@@ -50,6 +54,8 @@ public class UpiHelper {
         mbkCommonControlsPage=new MbkCommonControlsPage(driver);
         securityPinPage = new SecurityPinPage(driver);
         upiPage=new UpiPage(driver);
+        p2PPage = new P2PPage(driver);
+        p2mPage = new P2MPage(driver);
 
 
     }
@@ -776,6 +782,90 @@ public class UpiHelper {
 
 
     }
+
+
+
+
+
+    public void pocketUPISonuQRTxn(String amount) throws InterruptedException, IOException{
+
+      //  balanceBefore = mbkCommonControlsHelper.getBalance();
+
+        // Tap on See All Services
+        p2PPage.clickAllServices();
+
+        // Click on Scan Any Qr
+        p2PPage.clickScanQrOptn();
+
+        // Allow Permission
+        if(p2mPage.checkWhileUsingAppPermission()){ p2mPage.allowPermissionWhileUsingApp();}
+
+        // Click on Gallery
+        p2mPage.clickOnGallery();
+
+        p2mPage.clickOnSonuQrCodeGallery();
+
+//        //Amount Page Assertions
+//        mbReporter.verifyEqualsWithLogging(upiPage.getAmountPageTransferTo(), amountPageTransferName, "Verifying Fetched name", false, false);
+//        mbReporter.verifyTrueWithLogging(upiPage.isPocketUPIPreSelected(), "Validating if Pocket Upi is Pre-selected", false,true);
+
+
+        // Enter the amount
+        upiPage.enterAmount(amount);
+
+       // Element.waitForVisibility(driver, By.id("cta"));
+
+        Thread.sleep(1500);
+
+        // Click on the Continue CTA
+        upiPage.clickOnConfirmPayment();
+
+        permissionHelper.permissionAllow();
+        permissionHelper.permissionAllow();
+        permissionHelper.permissionAllow();
+
+        // checking for security pin
+        if(securityPinPage.checkSecurityPinPage()){
+            securityPinPage.enterSecurityPin();
+        }
+
+        Thread.sleep(4000);
+
+        mbReporter.verifyEqualsWithLogging(upiPage.getPaymentSuccessMessage(), "You Paid", "Success Message Validation", false, false);
+
+        String actualTotalAmountPaid = upiPage.getAmountPaid().replace("₹", "");
+
+        mbReporter.verifyEqualsWithLogging(actualTotalAmountPaid, amount, "Validate Amount", false, false);
+
+        String actualReceiverName = upiPage.getReceiverName().replace("to ", "");
+
+     //   mbReporter.verifyEqualsWithLogging(actualReceiverName, expectedReceiverName, "Validate Receiver name", false, false);
+
+        mbReporter.verifyTrueWithLogging(upiPage.isPayModeOnSuccessScreenPocketUPI(), "Validating if Pocket Upi is the Pay mode on Success Screen", false,true);
+
+
+        upiPage.returnToHomePage();
+
+
+//        mbReporter.verifyEqualsWithLogging(upiPage.getPaymentSuccessMessage(), "You Paid", "Success Message Validation", false, false);
+//
+//        String actualTotalAmountPaid = upiPage.getAmountPaid().replace("₹", "");
+//
+//        mbReporter.verifyEqualsWithLogging(actualTotalAmountPaid, amount, "Validate Amount", false, false);
+//
+//        String actualReceiverName = upiPage.getReceiverName().replace("to ", "");
+//
+//        mbReporter.verifyEqualsWithLogging(actualReceiverName, expectedReceiverName, "Validate Receiver name", false, false);
+//
+//        mbReporter.verifyTrueWithLogging(upiPage.isPayModeOnSuccessScreenPocketUPI(), "Validating if Pocket Upi is the Pay mode on Success Screen", false,true);
+
+//        upiPage.returnToHomePage();
+
+    }
+
+
+
+
 
 
 

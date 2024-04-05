@@ -838,4 +838,11 @@ public class UpiPage {
     public void clickOnBackFromUPIpage() throws InterruptedException {
         Element.selectElement(driver, backButtonOnUPIPage, "Click On back button from UPI page");
     }
+
+
+    public void clickOnContinue() throws InterruptedException {
+        Element.selectElement(driver, backButtonOnUPIPage, "Click On back button from UPI page");
+    }
+
+
 }
