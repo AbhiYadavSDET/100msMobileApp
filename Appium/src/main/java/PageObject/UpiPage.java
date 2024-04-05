@@ -289,7 +289,8 @@ public class UpiPage {
     @AndroidFindBy(xpath = "//android.widget.Button[@text='No']")
     private AndroidElement deregister_popup_no_cta;
 
-
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Pocket']")
+    private AndroidElement interop_optn;
 
 
 
@@ -838,4 +839,15 @@ public class UpiPage {
     public void clickOnBackFromUPIpage() throws InterruptedException {
         Element.selectElement(driver, backButtonOnUPIPage, "Click On back button from UPI page");
     }
+
+
+    public void clickOnContinue() throws InterruptedException {
+        Element.selectElement(driver, backButtonOnUPIPage, "Click On back button from UPI page");
+    }
+
+    public void clickPocketUPIOptn() throws InterruptedException {
+        Element.selectElement(driver,interop_optn,"Click On Pocket UPI option");
+    }
+
+
 }

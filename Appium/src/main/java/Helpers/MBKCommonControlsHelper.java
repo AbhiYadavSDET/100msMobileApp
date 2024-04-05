@@ -355,6 +355,10 @@ public class MBKCommonControlsHelper {
                 if (Element.isElementPresentNoWait(driver, By.id("alertTitle"))){
                     driver.findElementByXPath("//android.widget.Button[@text='LATER']").click();
                 }
+                if (Element.isElementPresentNoWait(driver, By.id("tv_do_not_want_benefits"))){
+                    driver.findElementById("tv_do_not_want_benefits").click();
+                }
+
             }else {
                 break;
             }
