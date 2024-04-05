@@ -67,6 +67,11 @@ public class LoginHelper {
         }
         // Wait for 5000 ms for all the banners to load
         Thread.sleep(5000);
+        if (Element.isElementPresentNoWait(driver, By.id("tv_explore_home"))){
+            Log.info("Feature Assist Page Shown");
+            driver.findElementById("tv_explore_home").click();
+            Thread.sleep(3000);
+        }
         mbkCommonControlsHelper.handleHomePageLanding();
         mbReporter.verifyTrueWithLogging(element.isElementPresent(driver, By.id("tx_balance")), "Is User is Logged In", true, false);
 
@@ -99,6 +104,11 @@ public class LoginHelper {
         }
         // Wait for 5000 ms for all the banners to load
         Thread.sleep(5000);
+        if (Element.isElementPresentNoWait(driver, By.id("tv_explore_home"))){
+            Log.info("Feature Assist Page Shown");
+            driver.findElementById("tv_explore_home").click();
+            Thread.sleep(3000);
+        }
         mbkCommonControlsHelper.handleHomePageLanding();
     }
 
@@ -129,7 +139,12 @@ public class LoginHelper {
             loginPage.enterOtp(otp);
         }
         // Wait for 5000 ms for all the banners to load
-        Thread.sleep(2000);
+        Thread.sleep(3000);
+        if (Element.isElementPresentNoWait(driver, By.id("tv_explore_home"))){
+            Log.info("Feature Assist Page Shown");
+            driver.findElementById("tv_explore_home").click();
+            Thread.sleep(3000);
+        }
 
 
 
@@ -186,6 +201,11 @@ public class LoginHelper {
 
         // Wait for 5000 ms for all the banners to load
         Thread.sleep(5000);
+        if (Element.isElementPresentNoWait(driver, By.id("tv_explore_home"))){
+            Log.info("Feature Assist Page Shown");
+            driver.findElementById("tv_explore_home").click();
+            Thread.sleep(3000);
+        }
         mbkCommonControlsHelper.handleHomePageLanding();
     }
 
@@ -235,6 +255,12 @@ public class LoginHelper {
 
         // Wait for 5000 ms for all the banners to load
         Thread.sleep(5000);
+
+        if (Element.isElementPresentNoWait(driver, By.id("tv_explore_home"))){
+            Log.info("Feature Assist Page Shown");
+            driver.findElementById("tv_explore_home").click();
+            Thread.sleep(3000);
+        }
 
         mbkCommonControlsHelper.handleHomePageLanding();
 

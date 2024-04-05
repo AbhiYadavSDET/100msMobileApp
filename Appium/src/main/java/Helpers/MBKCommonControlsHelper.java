@@ -348,12 +348,6 @@ public class MBKCommonControlsHelper {
             Log.info("Waiting more due to Slow Phone");
         }
 
-        if (Element.isElementPresentNoWait(driver, By.id("tv_explore_home"))){
-            Log.info("Feature Assist Page Shown");
-            driver.findElementById("tv_explore_home").click();
-            Thread.sleep(2000);
-        }
-
         for (int i = 0; i < 2; i++) {
             if (!Element.isElementPresentNoWait(driver, By.id("cl_root"))) {
                 driver.navigate().back();
