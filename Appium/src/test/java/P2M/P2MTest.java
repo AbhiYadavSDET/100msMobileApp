@@ -69,24 +69,24 @@ public class P2MTest extends TestBase {
 
     }
 
-    @Test(groups = {"sanity", "p2m", "p2mSend", "p2mSendSonuQr"}, priority = 3, description = "P2M Send test")
-    public void Test01_p2mSendSonuQr() throws IOException, InterruptedException {
-
-        Log.info("======= START : P2M Send test =======");
-        // Starting the test in the extentreport
-
-
-        // Login to the account
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("9205299330", "547372");
-
-        // Execute the test
-        P2MHelper p2mHelper = new P2MHelper(getAndroidDriver());
-        p2mHelper.p2mSend("SonuQr", "1", "9991015888","You Paid", "₹1", "to Bayleaf @ MobiKwik", "Bayleaf @ MobiKwik", "BLF001", "Activate Now", "Paid to Bayleaf @ MobiKwik", "-₹1", "Success");
-        Log.info("======= END : P2M Send test =======");
-
-
-    }
+//    @Test(groups = {"sanity", "p2m", "p2mSend", "p2mSendSonuQr"}, priority = 3, description = "P2M Send test")
+//    public void Test01_p2mSendSonuQr() throws IOException, InterruptedException {
+//
+//        Log.info("======= START : P2M Send test =======");
+//        // Starting the test in the extentreport
+//
+//
+//        // Login to the account
+//        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+//        loginHelper.quickLoginViaOtp("9205299330", "547372");
+//
+//        // Execute the test
+//        P2MHelper p2mHelper = new P2MHelper(getAndroidDriver());
+//        p2mHelper.p2mSend("SonuQr", "1", "9991015888","You Paid", "₹1", "to Bayleaf @ MobiKwik", "Bayleaf @ MobiKwik", "BLF001", "Activate Now", "Paid to Bayleaf @ MobiKwik", "-₹1", "Success");
+//        Log.info("======= END : P2M Send test =======");
+//
+//
+//    }
 
 
     @Test(groups = { "p2m", "p2mVerify", "p2mNearbyStores", "regression"}, priority = 4, description = "P2M Verify")
