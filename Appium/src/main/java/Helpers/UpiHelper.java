@@ -797,13 +797,16 @@ public class UpiHelper {
         // Click on Scan Any Qr
         p2PPage.clickScanQrOptn();
 
+        //Element.waitForVisibility(driver,By.id("permission_allow_button"));
         // Allow Permission
-        if(p2mPage.checkWhileUsingAppPermission()){ p2mPage.allowPermissionWhileUsingApp();}
+        p2mPage.clickAllowBtn();
 
         // Click on Gallery
         p2mPage.clickOnGallery();
 
         p2mPage.clickOnSonuQrCodeGallery();
+
+        Thread.sleep(1000);
 
         //Amount Page Assertions
         mbReporter.verifyEqualsWithLogging(upiPage.getAmountPageTransferTo(), amountPageTransferName, "Verifying Fetched name", false, false);
@@ -811,14 +814,14 @@ public class UpiHelper {
         // Enter the amount
         upiPage.enterAmount(amount);
 
-        // Element.waitForVisibility(driver, By.id("cta"));
-
-        Thread.sleep(1500);
+        Thread.sleep(2000);
 
         // Click on the Continue CTA
         upiPage.clickOnConfirmPayment();
 
         upiPage.clickPocketUPIOptn();
+
+        upiPage.clickOnConfirmPaymentChoosePaymentModeBottomsheet();
 
         permissionHelper.permissionAllow();
         permissionHelper.permissionAllow();
@@ -841,8 +844,6 @@ public class UpiHelper {
         upiPage.returnToHomePage();
 
     }
-
-
 
 
 

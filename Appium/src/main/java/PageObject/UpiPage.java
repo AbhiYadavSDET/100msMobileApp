@@ -289,7 +289,7 @@ public class UpiPage {
     @AndroidFindBy(xpath = "//android.widget.Button[@text='No']")
     private AndroidElement deregister_popup_no_cta;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Pocket']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id=\"com.mobikwik_new.debug:id/tv_title\" and @text=\"Pocket\"]")
     private AndroidElement interop_optn;
 
 

@@ -116,8 +116,9 @@ public class P2MPage {
     @AndroidFindBy(id = "instructionText")
     public AndroidElement instruction_text;
 
-    @AndroidFindBy(xpath = "(//android.widget.ImageView[@resource-id=\"com.google.android.providers.media.module:id/icon_thumbnail\"])[1]")
+    @AndroidFindBy(xpath = "(//android.widget.ImageView[@resource-id=\"com.google.android.gms.optional_photopicker:id/icon_thumbnail\"])[1]")
     public AndroidElement galleryQrCode;
+
 
     @AndroidFindBy(xpath = "(//android.widget.ImageView[@resource-id=\"com.google.android.providers.media.module:id/icon_thumbnail\"])[2]")
     public AndroidElement galleryMbkQrCode;
@@ -133,6 +134,9 @@ public class P2MPage {
 
     @AndroidFindBy(id = "com.mobikwik_new.debug:id/pay_btn")
     private AndroidElement confirm_pay_btn;
+
+    @AndroidFindBy(id = "com.android.permissioncontroller:id/permission_allow_button")
+    private AndroidElement  allow_btn;
 
 
     public P2MPage(AndroidDriver driver) {
@@ -297,6 +301,10 @@ public class P2MPage {
 
     public void clickConfirmPaymentBtn() {
         Elements.selectElement(driver, confirm_pay_btn, "Click on Confirm Payment");
+    }
+
+    public void clickAllowBtn() {
+        Elements.selectElement(driver,allow_btn,"Click on Allow Button");
     }
 
 
