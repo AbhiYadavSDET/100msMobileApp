@@ -216,7 +216,7 @@ public class Test_Upi extends TestBase {
         Log.info("======= START : P2M flow Sonu QR =======");
 
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("9205299330", "547372");
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
 
         UpiHelper upiHelper = new UpiHelper(getAndroidDriver());
         upiHelper.pocketUPISonuQRTxn("1","Sonu Kumar");
