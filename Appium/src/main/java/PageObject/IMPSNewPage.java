@@ -17,6 +17,8 @@ import java.io.IOException;
 public class IMPSNewPage {
     AndroidDriver driver;
 
+    @AndroidFindBy(id="amount_screen_keyboard")
+    private AndroidElement amount_screen_keyboard;
     @AndroidFindBy(id = "right")
     private AndroidElement label_amount;
 
@@ -218,6 +220,7 @@ public class IMPSNewPage {
 
 
     public void clickOnContinueToCheckoutCTA() throws  InterruptedException{
+        Element.waitForInvisibility(driver, amount_screen_keyboard);
         Elements.selectElement(driver,checkoutContinueButton,"Now switching to Security PIN Windows");
     }
     public void clickOnContinueText(){
