@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 
 public class TestKYC extends TestBase {
-    @Test(groups = {"NoKYC", "kycSanity","regression","NonKyconboardingFlow", "sanity"}, priority = 0, description = "No kyc user - Full KYC flow from Onboarding")
+    @Test(groups = {"NoKYC", "kycSanity","regression","NonKyconboardingFlow", "sanity1"}, priority = 0, description = "No kyc user - Full KYC flow from Onboarding")
     public void Test01_NoKyc_user_full_KYC_FLOW_From_Onboarding() throws IOException, InterruptedException {
 
         Log.info("======= START : Full KYC flow from Onboarding =======");
@@ -38,7 +38,7 @@ public class TestKYC extends TestBase {
 
     }
 
-    @Test(groups = {"NoKYC", "NonKycFullKycViaCKYC","regression", "sanity"}, priority = 0, description = "No kyc user - Full kyc flow via CKYC")
+    @Test(groups = {"NoKYC", "NonKycFullKycViaCKYC","regression", "sanity1"}, priority = 0, description = "No kyc user - Full kyc flow via CKYC")
     public void Test03_NoKyc_user_fULL_KYC_FLOW_VIA_CKYC() throws IOException, InterruptedException {
 
         Log.info("======= START : Full KYC flow via CKYC =======");
@@ -52,7 +52,7 @@ public class TestKYC extends TestBase {
 
     }
 
-    @Test(groups = {"NoKYC", "NonKycFullKycViaDigilocker","regression", "sanity"}, priority = 0, description = "No kyc user - Full kyc flow via digilocker")
+    @Test(groups = {"NoKYC", "NonKycFullKycViaDigilocker","regression", "sanity1"}, priority = 0, description = "No kyc user - Full kyc flow via digilocker")
     public void Test04_NoKyc_user_fULL_KYC_FLOW_VIA_DIGILOCKER() throws IOException, InterruptedException {
 
         Log.info("======= START : Full KYC flow via DIGILOCKER =======");
@@ -68,7 +68,7 @@ public class TestKYC extends TestBase {
     }
 
 
-    @Test(groups = {"NoKYC", "NonKycFullKycViaAdhaarWebsite","regression", "sanity"}, priority = 0, description = "No kyc user - Full kyc flow via adhaar website")
+    @Test(groups = {"NoKYC", "NonKycFullKycViaAdhaarWebsite","regression", "sanity1"}, priority = 0, description = "No kyc user - Full kyc flow via adhaar website")
     public void Test05_NoKyc_user_fULL_KYC_FLOW_VIA_Adhaar_Website() throws IOException, InterruptedException {
 
         Log.info("======= START : Full KYC flow via Adhaar website =======");
