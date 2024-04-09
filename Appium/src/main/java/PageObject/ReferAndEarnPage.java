@@ -141,6 +141,10 @@ public class ReferAndEarnPage {
         Elements.selectElement(driver,refer_btn_on_widget,"Click on Refer and Earn Widget");
     }
 
+    public boolean checkReferAndEarn() throws InterruptedException {
+        return Elements.isElementPresent(driver,refer_btn_on_widget);
+    }
+
     public Boolean getTitleonCCPBPage() throws InterruptedException {
         String titleOnCCBP = Elements.getText(driver,title_on_ccbp_page);
         if(titleOnCCBP != null) {

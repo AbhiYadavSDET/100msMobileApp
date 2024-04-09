@@ -207,5 +207,25 @@ public class Test_Upi extends TestBase {
     }
 
 
+
+
+
+    @Test(groups = {"upiSanity", "PocketUPIScanQRTxn","sanity"}, priority = 0, description = "Validate SonuQR txn via Pocket UPI ")
+    public void Test15_PocketUpi_SonuQR() throws IOException, InterruptedException {
+
+        Log.info("======= START : P2M flow Sonu QR =======");
+
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
+
+        UpiHelper upiHelper = new UpiHelper(getAndroidDriver());
+        upiHelper.pocketUPISonuQRTxn("1","Sonu Kumar");
+
+        Log.info("======= END : P2M flow Sonu QR =======");
+
+
+    }
+
+
 }
 
