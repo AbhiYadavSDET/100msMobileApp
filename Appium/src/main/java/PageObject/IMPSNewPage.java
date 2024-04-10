@@ -220,7 +220,6 @@ public class IMPSNewPage {
 
 
     public void clickOnContinueToCheckoutCTA() throws  InterruptedException{
-        Element.waitForInvisibility(driver, amount_screen_keyboard);
         Elements.selectElement(driver,checkoutContinueButton,"Now switching to Security PIN Windows");
     }
     public void clickOnContinueText(){

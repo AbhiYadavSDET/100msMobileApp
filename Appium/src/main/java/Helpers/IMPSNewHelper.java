@@ -71,7 +71,8 @@ public class IMPSNewHelper {
 
         //Entering Amount Page
         impsPage.setAmount(amount);
-        impsPage.clickOnContinueToPinCTA();
+        impsPage.clickOnSetAmount();
+       // impsPage.clickOnContinueToPinCTA();
         impsPage.clickOnContinueToCheckoutCTA();
 
 
@@ -368,7 +369,7 @@ public class IMPSNewHelper {
 
         //Entering Amount Page
         impsPage.setAmount(amount);
-        impsPage.clickOnArrowButton();
+        impsPage.clickOnContinueToPinCTA();
         impsPage.clickOnContinueToCheckoutCTA();
 
 
