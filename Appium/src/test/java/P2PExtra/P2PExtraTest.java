@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class P2PExtraTest extends TestBase {
 
-    @Test(groups = {"p2pXtraWithdraw", "sanity", "sanityPrime", "regression"}, priority = 1, description = "Verify Withdraw Money")
+    @Test(groups = {"p2pXtraWithdraw"}, priority = 1, description = "Verify Withdraw Money")
     public void Test_Xtra_Withdraw_Money() throws InterruptedException, IOException {
 
         Log.info("======= START : p2p Xtra Withdraw test =======");
@@ -29,7 +29,7 @@ public class P2PExtraTest extends TestBase {
     }
 
 
-    @Test(groups = {"p2pXtraInvestInFlexi", "sanityPrime", "regression"}, priority = 1, description = "Verify Invest in Flexi flow")
+    @Test(groups = {"p2pXtraInvestInFlexi"}, priority = 1, description = "Verify Invest in Flexi flow")
     public void Test_Xtra_Invest_In_Flexi() throws InterruptedException, IOException {
 
         Log.info("======= START : p2p XTRA-FLEXI Invest test =======");

@@ -71,7 +71,8 @@ public class IMPSNewHelper {
 
         //Entering Amount Page
         impsPage.setAmount(amount);
-        impsPage.clickOnContinueToPinCTA();
+        impsPage.clickOnSetAmount();
+       // impsPage.clickOnContinueToPinCTA();
         impsPage.clickOnContinueToCheckoutCTA();
 
 
@@ -131,7 +132,10 @@ public class IMPSNewHelper {
         //Entering Amount and Continue to PIN
         impsPage.setAmount(amount);
         impsPage.clickOnSetAmount();
-        impsPage.clickOnContinueToPinCTA();
+//        impsPage.clickOnArrowButton();
+
+
+        impsPage.clickOnContinueToCheckoutCTA();
 
         //Check Security PIN Page
         if (securityPinPage.checkSecurityPinPage()) securityPinPage.enterSecurityPin();

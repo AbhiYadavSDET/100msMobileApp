@@ -17,6 +17,8 @@ import java.io.IOException;
 public class IMPSNewPage {
     AndroidDriver driver;
 
+    @AndroidFindBy(id="amount_screen_keyboard")
+    private AndroidElement amount_screen_keyboard;
     @AndroidFindBy(id = "right")
     private AndroidElement label_amount;
 

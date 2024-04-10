@@ -238,6 +238,12 @@ public class P2PExtraPage {
     @AndroidFindBy(id = "error_text")
     private AndroidElement errorOnExceedAmount;
 
+    @AndroidFindBy(id = "com.mobikwik_new.debug:id/txt_header_title")
+    private AndroidElement info_page_heading;
+
+    @AndroidFindBy(id = "com.mobikwik_new.debug:id/cta")
+    private AndroidElement got_it_cta;
+
 
 
 //    @AndroidFindBy(xpath = "//android.widget.TextView[contains(text(), 'Borrower Preferences']")
@@ -334,6 +340,10 @@ public class P2PExtraPage {
 
     public void selectFixedFromNavBar() throws InterruptedException {
         Element.selectElement(driver, sliderBtnFixed, "Select Fixed From Navbar");
+    }
+
+    public boolean checkNavbar() throws InterruptedException {
+        return Elements.isElementPresent(driver,sliderBtnFixed);
     }
 
     public void enterInvestmentAmount(String amount) throws InterruptedException {
@@ -621,6 +631,15 @@ public class P2PExtraPage {
 
     public void clickGotItCtaBorrowerMappingReport() {
         Elements.selectElement(driver, got_it_btn_mapping_report, "Click on Got It on Borrower Mapping Report");
+    }
+
+
+    public boolean checkInfoPageHeading() throws InterruptedException {
+       return Elements.isElementPresent(driver,info_page_heading);
+    }
+
+    public void clickGotIt() {
+        Elements.selectElement(driver,got_it_cta,"Click on Got It");
     }
 
 

@@ -45,6 +45,10 @@ public class P2PExtraHelper {
         // Click on xtra icon on home page.
         p2PExtraPage.selectXtra();
 
+        if(p2PExtraPage.checkInfoPageHeading()){
+            p2PExtraPage.clickGotIt();
+        }
+
         //if(mbkCommonControlsPage.isWhitePopUpPresent()){ mbkCommonControlsPage.closeWhitePopUp(); }
 
         // Click on Got it to remove referral bottom sheet.
@@ -152,8 +156,12 @@ public class P2PExtraHelper {
 //            mbkCommonControlsPage.closeWhitePopUp();
 //        }
 
-        // Click on Got it to remove referral bottom sheet.
         Thread.sleep(1000);
+        if(p2PExtraPage.checkInfoPageHeading()){
+            p2PExtraPage.clickGotIt();
+        }
+
+        // Click on Got it to remove referral bottom sheet.
         if (p2PExtraPage.isBottomSheetPresent()) p2PExtraPage.removeBottomSheet();
 
         // Click on screen to remove bottom sheet.
@@ -174,19 +182,28 @@ public class P2PExtraHelper {
             p2PExtraPage.selectOkfromPlusPopUp();
         }
 
-        // Click Flexi from slider
-        p2PExtraPage.selectFlexiFromNavBar();
+        if(!p2PExtraPage.checkNavbar()) {
+           Log.info("Currently FLexi Investments are closed");
+        }
+        else {
+            // Click Flexi from slider
+            p2PExtraPage.selectFlexiFromNavBar();
 
-        // CLick on Got it CTA on Borrower Mapping Report Bottomsheet
-        //pkchanges p2PExtraPage.clickGotItCtaBorrowerMappingReport();
+            // CLick on Got it CTA on Borrower Mapping Report Bottomsheet
+            //pkchanges p2PExtraPage.clickGotItCtaBorrowerMappingReport();
 
-        // Used to click Invest Now btn on Xtra FLEXI amount page
-        p2PExtraPage.selectInvestMore();
+            // Used to click Invest Now btn on Xtra FLEXI amount page
+            p2PExtraPage.selectInvestMore();
 
-        // Select NetBanking from XTRA checkout screen
-        p2PExtraPage.selectNBOnCheckoutScreen();
+            // Select NetBanking from XTRA checkout screen
+            p2PExtraPage.selectNBOnCheckoutScreen();
+        }
 
     }
+
+
+
+
 
     public void investInFixed(String expTitle) throws InterruptedException, IOException {
 
@@ -198,6 +215,11 @@ public class P2PExtraHelper {
 
         // Click on Got it to remove referral bottom sheet.
         Thread.sleep(1000);
+
+        if(p2PExtraPage.checkInfoPageHeading()){
+            p2PExtraPage.clickGotIt();
+        }
+
         if (p2PExtraPage.isBottomSheetPresent())
         {
             p2PExtraPage.removeBottomSheet();
@@ -210,20 +232,20 @@ public class P2PExtraHelper {
         p2PExtraPage.clickGotItCtaBorrowerMappingReport();
 
         // Click on the Tooltip
-
-
         if (p2PExtraPage.isselectOkfromPlusPopUp()) {
             p2PExtraPage.selectOkfromPlusPopUp();
         }
 
 
         // Click Flexi from slider
-        p2PExtraPage.selectFixedFromNavBar();
+        if(p2PExtraPage.checkNavbar()) {
+            p2PExtraPage.selectFixedFromNavBar();
+        }
 
         //Click on Proceed to pay Btn on Amount Summary Page
         p2PExtraPage.selectInvestMore();
 
-        //Click Invest Now btn on Xtra FLEXI amount page
+        //Click Invest Now btn on Xtra FIXED amount page
         p2PExtraPage.selectInvestMore();
 
 
@@ -473,6 +495,10 @@ public class P2PExtraHelper {
 
         // If notification alerts are present, then swipe up
         // if(p2PExtraPage.checkNotificationAlert()) screen.swipeUpMore(driver);
+
+        if(p2PExtraPage.checkInfoPageHeading()){
+            p2PExtraPage.clickGotIt();
+        }
 
         // Check for View All Button on the XTRA dashboard
         if (!p2PExtraPage.checkViewAllBtn()) {
