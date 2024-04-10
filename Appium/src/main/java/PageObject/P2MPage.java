@@ -89,6 +89,9 @@ public class P2MPage {
     @AndroidFindBy(id = "name_initial_text_view")
     public AndroidElement recent_merchant;
 
+    @AndroidFindBy(id = "com.mobikwik_new.debug:id/merchantName")
+    public AndroidElement merchant_name;
+
     @AndroidFindBy(id = "com.google.android.documentsui:id/icon_thumb")
     private AndroidElement mobikwik_qr;
 
@@ -307,6 +310,10 @@ public class P2MPage {
         Elements.selectElement(driver,allow_btn,"Click on Allow Button");
     }
 
+
+    public String getMerchantNameonQrScreen() throws InterruptedException{
+        return Elements.getText(driver,merchant_name,"Get Merchant Name");
+    }
 
 
 }

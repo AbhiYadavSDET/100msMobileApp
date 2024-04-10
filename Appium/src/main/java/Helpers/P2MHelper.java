@@ -28,6 +28,7 @@ public class P2MHelper {
     LinkedHashMap<String, String> balanceAfter;
     MBKCommonControlsHelper mbkCommonControlsHelper;
     P2PPage p2PPage;
+    UpiHelper upiHelper;
 
 
     public P2MHelper(AndroidDriver driver) throws IOException {
@@ -41,6 +42,7 @@ public class P2MHelper {
         mbReporter = new MBReporter(driver);
         mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
         p2PPage = new P2PPage(driver);
+        upiHelper = new UpiHelper(driver);
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
@@ -66,9 +68,16 @@ public class P2MHelper {
             return;
         }
 
-        if(merchant.equals("RecentMerchant") ){
+        if(merchant.equals("RecentMerchant")){
 
-            p2mPage.clickOnRecentMerchant();
+            if(p2mPage.getMerchantNameonQrScreen().equals("Sonu Kumar")) {
+                p2mPage.clickOnRecentMerchant();
+                upiHelper.pocketUPISonuQRTxn("1","Sonu Kumar");
+                return;
+            }
+            else {
+                p2mPage.clickOnRecentMerchant();
+            }
 
         }else{
 
@@ -90,7 +99,12 @@ public class P2MHelper {
         customKeyboardPage.enterAmount(amount);
 
         // Click on the Continue CTA
-        p2mPage.clickOnContinue();
+        if(merchant.equals("RecentMerchant")){
+            p2mPage.clickConfirmPayment();
+        }
+        else {
+            p2mPage.clickOnContinue();
+        }
 
         // Click on the Confirm Payment CTA
         p2mPage.clickConfirmPayment();
