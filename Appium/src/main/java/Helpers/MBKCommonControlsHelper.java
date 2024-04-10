@@ -358,6 +358,13 @@ public class MBKCommonControlsHelper {
                 if (Element.isElementPresentNoWait(driver, By.id("tv_do_not_want_benefits"))){
                     driver.findElementById("tv_do_not_want_benefits").click();
                 }
+                if (Element.isElementPresentNoWait(driver, By.id("com.mobikwik_new.debug:id/question_nps"))){
+                    driver.findElementById("com.mobikwik_new.debug:id/close_button").click();
+                }
+                if(Element.isElementPresentNoWait(driver, By.id("com.mobikwik_new.debug:id/btn_secure_now"))){
+                    driver.navigate().back();
+                }
+
 
             }else {
                 break;
