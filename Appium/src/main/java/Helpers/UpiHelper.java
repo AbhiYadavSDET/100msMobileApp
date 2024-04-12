@@ -787,26 +787,51 @@ public class UpiHelper {
 
 
 
-    public void pocketUPISonuQRTxn(String amount,String amountPageTransferName) throws InterruptedException, IOException{
+    public void pocketUPISonuQRTxn(String amount,String amountPageTransferName,String stepName) throws InterruptedException, IOException{
 
-      //  balanceBefore = mbkCommonControlsHelper.getBalance();
+        balanceBefore = mbkCommonControlsHelper.getBalance();
 
         // Tap on See All Services
         p2PPage.clickAllServices();
 
-        // Click on Scan Any Qr
-        p2PPage.clickScanQrOptn();
+        if(stepName.equals("Direct Txn")) {
 
-        //Element.waitForVisibility(driver,By.id("permission_allow_button"));
-        // Allow Permission
-        p2mPage.clickAllowBtn();
+           // Click on Scan Any Qr
+           p2PPage.clickScanQrOptn();
 
-        // Click on Gallery
-        p2mPage.clickOnGallery();
+           //Element.waitForVisibility(driver,By.id("permission_allow_button"));
+           // Allow Permission
+           p2mPage.clickAllowBtn();
 
-        p2mPage.clickOnSonuQrCodeGallery();
+           // Click on Gallery
+           p2mPage.clickOnGallery();
 
-        Thread.sleep(1000);
+           p2mPage.clickOnSonuQrCodeGallery();
+
+           Thread.sleep(1000);
+       }
+       else if (stepName.equals("RecentMerchant")) {
+
+           // Tap the QR code Icon on Homepage
+           // p2mPage.clickScanQR();
+
+           // Tap on See All Services
+           p2PPage.clickAllServices();
+
+           // Click on Scan Any Qr
+           p2PPage.clickScanQrOptn();
+
+            // Allow the Permission
+            if(p2mPage.checkWhileUsingAppPermission()){ p2mPage.allowPermissionWhileUsingApp();}
+
+            if(stepName.equals("RecentMerchant") && !p2mPage.checkRecentMerchant()){
+                Log.info("There are no recent Merchants Present for the user");
+                return;
+            }
+
+           Thread.sleep(1000);
+       }
+
 
         //Amount Page Assertions
         mbReporter.verifyEqualsWithLogging(upiPage.getAmountPageTransferTo(), amountPageTransferName, "Verifying Fetched name", false, false);
