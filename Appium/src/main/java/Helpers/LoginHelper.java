@@ -146,7 +146,7 @@ public class LoginHelper {
             Thread.sleep(3000);
         }
 
-
+        mbkCommonControlsHelper.handleHomePageLanding();
 
     }
 
@@ -176,6 +176,59 @@ public class LoginHelper {
 
 
     }
+
+    public void quickLogout() throws InterruptedException, IOException {
+
+        homePage.clickWalletBalanceDropDown();
+        loginPage.scrollToAccount();
+        loginPage.clickAccount();
+        loginPage.scrollToLogout();
+        loginPage.clickLogout();
+
+     Log.info("Logged out from app .. ");
+
+
+    }
+    public void quickLoginFromProfile(String mobileNumber,String otp) throws InterruptedException, IOException {
+
+        loginPage.clickLoginSignup();
+   loginPage.clickLoginButton();
+
+        Log.info("Logged into app from profile.. ");
+
+        element.waitForVisibilityMultipleElements(driver, By.xpath("//*[@text='NONE OF THE ABOVE']"), By.id("et_phone_number"));
+
+        if (element.isElementPresentNoWait(driver, By.xpath("//*[@text='NONE OF THE ABOVE']"))) {
+            loginPage.clickNoneOfAbove();
+        }
+
+        loginPage.enterMobileNum(mobileNumber);
+        loginPage.clickSendOtpbutton();
+
+        if (element.isElementPresent(driver, By.id("error_view"))) {
+            loginPage.clickSendOtpbutton();
+        }
+
+        loginPage.enterOtp(otp);
+
+        // If the error message is present --> resend OTP
+        if (element.isElementPresent(driver, By.id("error_view"))) {
+            Log.info(element.findElement(driver, By.id("error_view")).getText());
+            loginPage.clickResendOtp();
+            loginPage.enterOtp(otp);
+        }
+        // Wait for 5000 ms for all the banners to load
+        Thread.sleep(3000);
+        if (Element.isElementPresentNoWait(driver, By.id("tv_explore_home"))){
+            Log.info("Feature Assist Page Shown");
+            driver.findElementById("tv_explore_home").click();
+            Thread.sleep(3000);
+        }
+
+
+
+    }
+
 
 
     public void quickLoginViaOtpAutoRead(String mobileNumber, String otp) throws InterruptedException {

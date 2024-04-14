@@ -149,6 +149,9 @@ public class KYCPage {
     private AndroidElement adharCardFirstDigits;
 
     @AndroidFindBy(xpath = "(//android.widget.EditText)[2]")
+    private AndroidElement securityCode;
+
+    @AndroidFindBy(xpath = "(//android.widget.EditText)[2]")
     private AndroidElement adharCardSecondDigits;
 
     @AndroidFindBy(xpath = "(//android.widget.EditText)[3]")
@@ -466,6 +469,9 @@ public class KYCPage {
 
     public  boolean isOnboardingOptionsScreenPresent() throws InterruptedException {
         return Elements.isElementPresent(driver,bottomSheetFullKyc);
+    }
+    public void enterAadhaarPageSecurityCode(String code) throws InterruptedException{
+        Elements.enterToElement(driver, securityCode, code,"Enter Security code ");
     }
 
 }

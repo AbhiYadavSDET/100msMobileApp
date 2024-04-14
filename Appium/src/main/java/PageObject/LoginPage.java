@@ -44,6 +44,7 @@ public class LoginPage {
 
     @AndroidFindBy(xpath = "//*[@text='Login/Signup']")
     private AndroidElement loginSignupButton;
+
     @AndroidFindBy(xpath = "//*[@text='Login']")
     private AndroidElement loginButton;
 
@@ -61,6 +62,7 @@ public class LoginPage {
 
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Accounts']")
     private AndroidElement text_account;
+
 
 
 
@@ -149,5 +151,6 @@ public class LoginPage {
         return Element.isElementPresent(driver, By.id("otp_sent_to"));
 
     }
+
 
 }

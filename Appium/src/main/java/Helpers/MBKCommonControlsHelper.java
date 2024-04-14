@@ -364,6 +364,9 @@ public class MBKCommonControlsHelper {
                 if(Element.isElementPresentNoWait(driver, By.id("com.mobikwik_new.debug:id/btn_secure_now"))){
                     driver.navigate().back();
                 }
+                if(Element.isElementPresentNoWait(driver,By.xpath("//android.widget.TextView[@text='I don’t want benefits']"))){
+                    driver.findElement(By.xpath("//android.widget.TextView[@text='I don’t want benefits']")).click();
+                }
 
 
             }else {

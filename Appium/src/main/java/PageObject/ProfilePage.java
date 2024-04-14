@@ -97,6 +97,9 @@ public class ProfilePage {
     @AndroidFindBy(xpath = "//*[@text='Statement']")
     private AndroidElement super_cash_statement_cta;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Accounts']")
+    private AndroidElement accounts;
+
     @AndroidFindBy(id = "com.mobikwik_new.debug:id/mkab_icon_1")
     private AndroidElement supercash_back_btn;
 
@@ -167,6 +170,10 @@ public class ProfilePage {
 
     public void takePicture() {
         Elements.selectElement(driver, takePicture,"Take picture");
+    }
+
+    public void clickOnAccounts(){
+        Elements.selectElement(driver,accounts,"Tap on Accounts ");
     }
 
     public void clickOk() {
