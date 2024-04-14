@@ -317,18 +317,18 @@ public class KYCPage {
         Elements.selectElement(driver, backFromDigiLockerScreen, "Click on Back from DigiLocker screen");
     }
 
-    public void setAdharCardFirstDigits(String digits) throws InterruptedException{
+    public void setAdharCard(String digits) throws InterruptedException{
         Element.waitForVisibility(driver,adharCardFirstDigits);
-        Elements.enterToElement(driver, adharCardFirstDigits,digits,"Set Adhar card first 4 digits ");
+        Elements.enterToElement(driver, adharCardFirstDigits,digits,"Set Adhar card 12 digits ");
     }
 
-    public void setAdharCardSecondDigits(String digits) throws InterruptedException{
+  /*  public void setAdharCardSecondDigits(String digits) throws InterruptedException{
         Elements.enterToElement(driver, adharCardSecondDigits,digits,"Set Adhar card middle 4 digits  ");
     }
 
     public void setAdharCardThirdDigits(String digits) throws InterruptedException{
         Elements.enterToElement(driver, adharCardThirdDigits,digits,"Set Adhar card last 4 digits  ");
-    }
+    }*/
 
     public void clickOnNextButtonOnDigilocker(){
         Elements.selectElement(driver, nextButtonOnDigilockerAadharCard, "Click on next button from digilocker screem");
@@ -470,7 +470,7 @@ public class KYCPage {
     public  boolean isOnboardingOptionsScreenPresent() throws InterruptedException {
         return Elements.isElementPresent(driver,bottomSheetFullKyc);
     }
-    public void enterAadhaarPageSecurityCode(String code) throws InterruptedException{
+    public void enterDigilockerCaptchaCode(String code) throws InterruptedException{
         Elements.enterToElement(driver, securityCode, code,"Enter Security code ");
     }
 

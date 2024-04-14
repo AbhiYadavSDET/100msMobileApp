@@ -219,8 +219,8 @@ public class TestKYC extends TestBase {
     }
 
 
-
-    @Test(groups = {"minKYCFromProfile", "kycSanity","regression"}, priority = 0, description = "min KYC flow from Profile")
+// No number is present who is non kyc user.
+    @Test(groups = {"minKYCFromProfile", "kycSanity","regression"},enabled = false, priority = 0, description = "min KYC flow from Profile")
     public void Test51_min_KYC_FLOW_From_Profile() throws IOException, InterruptedException {
 
         Log.info("======= START : min KYC flow from Profile =======");
@@ -244,12 +244,12 @@ public class TestKYC extends TestBase {
         loginHelp.quickLoginViaOtpForNonKycUser("8216900006","547372");
 
         KYCHelper kycHelper = new KYCHelper(getAndroidDriver());
-        kycHelper.profileFullKycFlow("HTIPK7865L","585121567144","Abhishek", "Yadav", "CKYC", "NOKYC", "Complete your KYC ", "Upgrade your wallet limit for unlimited transactions");
+        kycHelper.profileFullKycFlow("HTIPK7865L","585121567144","Abhishek", "Yadav", "CKYC", "NOKYC", "Complete your KYC ", "Upgrade your wallet limit for unlimited transactions","585121567144","00000");
         Log.info("======= END : CKYC flow from Profile =======");
 
     }
-
-    @Test(groups = {"fullKYCProfile", "kycSanity","regression"}, priority = 0, description = "CKYC KYC flow from Profile for No Kyc User")
+    // No number is present who is non kyc user.
+    @Test(groups = {"fullKYCProfile", "kycSanity","regression"},enabled = false, priority = 0, description = "CKYC KYC flow from Profile for No Kyc User")
     public void Test53_Digilocker_FLOW_Profile_NoKyc() throws IOException, InterruptedException {
 
         Log.info("======= START : DIGILOCKER flow from Profile =======");
@@ -258,12 +258,12 @@ public class TestKYC extends TestBase {
         loginHelp.quickLoginViaOtpForNonKycUser("8216900006","547372");
 
         KYCHelper kycHelper = new KYCHelper(getAndroidDriver());
-        kycHelper.profileFullKycFlow("HTIPK7865L","585121567144","Abhishek", "Yadav", "DIGILOCKER", "NOKYC", "Complete your KYC ", "Upgrade your wallet limit for unlimited transactions");
+        kycHelper.profileFullKycFlow("HTIPK7865L","585121567144","Abhishek", "Yadav", "DIGILOCKER", "NOKYC", "Complete your KYC ", "Upgrade your wallet limit for unlimited transactions","585121567144","00000");
         Log.info("======= END : DIGILOCKER flow from Profile =======");
 
     }
-
-    @Test(groups = {"fullKYCProfile", "kycSanity","regression"}, priority = 0, description = "CKYC KYC flow from Profile for No Kyc User")
+    // No number is present who is non kyc user.
+    @Test(groups = {"fullKYCProfile", "kycSanity","regression"},enabled = false, priority = 0, description = "CKYC KYC flow from Profile for No Kyc User")
     public void Test54_OKYC_FLOW_Profile_NoKyc() throws IOException, InterruptedException {
 
         Log.info("======= START : OKYC flow from Profile =======");
@@ -272,7 +272,7 @@ public class TestKYC extends TestBase {
         loginHelp.quickLoginViaOtpForNonKycUser("8216900006","547372");
 
         KYCHelper kycHelper = new KYCHelper(getAndroidDriver());
-        kycHelper.profileFullKycFlow("HTIPK7865L","585121567144","Abhishek", "Yadav", "OKYC", "NOKYC", "Complete your KYC ", "Upgrade your wallet limit for unlimited transactions");
+        kycHelper.profileFullKycFlow("HTIPK7865L","585121567144","Abhishek", "Yadav", "OKYC", "NOKYC", "Complete your KYC ", "Upgrade your wallet limit for unlimited transactions","585121567144","00000");
         Log.info("======= END : OKYC flow from Profile =======");
 
     }
@@ -286,7 +286,7 @@ public class TestKYC extends TestBase {
         loginHelp.quickLoginViaOtpForNonKycUser("8216900001","547372");
 
         KYCHelper kycHelper = new KYCHelper(getAndroidDriver());
-        kycHelper.profileFullKycFlow("HTIPK7865L","585121567144","Abhishek", "Yadav", "CKYC", "MINKYC", "Complete your KYC ", "Upgrade your wallet limit for unlimited transactions");
+        kycHelper.profileFullKycFlow("HTIPK7865L","585121567144","Abhishek", "Yadav", "CKYC", "MINKYC", "Complete your KYC ", "Upgrade your wallet limit for unlimited transactions","585121567144","00000");
         Log.info("======= END : CKYC flow from Profile =======");
 
     }
@@ -300,7 +300,7 @@ public class TestKYC extends TestBase {
         loginHelp.quickLoginViaOtpForNonKycUser("8216900001","547372");
 
         KYCHelper kycHelper = new KYCHelper(getAndroidDriver());
-        kycHelper.profileFullKycFlow("HTIPK7865L","585121567144","Abhishek", "Yadav", "DIGILOCKER", "MINKYC", "Complete your KYC ", "Upgrade your wallet limit for unlimited transactions");
+        kycHelper.profileFullKycFlow("HTIPK7865L","585121567144","Abhishek", "Yadav", "DIGILOCKER", "MINKYC", "Complete your KYC ", "Upgrade your wallet limit for unlimited transactions","585121567144","00000");
         Log.info("======= END : DIGILOCKER flow from Profile =======");
 
     }
@@ -314,7 +314,7 @@ public class TestKYC extends TestBase {
         loginHelp.quickLoginViaOtpForNonKycUser("8216900001","547372");
 
         KYCHelper kycHelper = new KYCHelper(getAndroidDriver());
-        kycHelper.profileFullKycFlow("HTIPK7865L","585121567144","Abhishek", "Yadav", "OKYC", "MINKYC","Complete your KYC ", "Upgrade your wallet limit for unlimited transactions");
+        kycHelper.profileFullKycFlow("HTIPK7865L","585121567144","Abhishek", "Yadav", "OKYC", "MINKYC","Complete your KYC ", "Upgrade your wallet limit for unlimited transactions","585121567144","00000");
         Log.info("======= END : OKYC flow from Profile =======");
 
     }

@@ -199,8 +199,8 @@ public class KYCHelper {
         //   Thread.sleep(2000);
 
         // set 12  digits of adhaar card
-        kycPage.setAdharCardFirstDigits(twelveDigits);
-        kycPage.enterAadhaarPageSecurityCode(otp);
+        kycPage.setAdharCard(twelveDigits);
+        kycPage.enterDigilockerCaptchaCode(otp);
 
         //Now captcha is coming on digilocker page, so can't move further.
 
@@ -373,7 +373,7 @@ public class KYCHelper {
     }
 
 
-    public void profileFullKycFlow(String pan, String aadhaar, String firstName, String lastName, String kycType, String userType, String expTitle, String expSubTitle) throws InterruptedException, IOException {
+    public void profileFullKycFlow(String pan, String aadhaar, String firstName, String lastName, String kycType, String userType, String expTitle, String expSubTitle,String adhaarTweleveDigits,String captcha) throws InterruptedException, IOException {
 
         // Go to Home Page
         //  homePageLand();
@@ -476,19 +476,19 @@ public class KYCHelper {
             //   Thread.sleep(2000);
 
             // Set first four digits
-            kycPage.setAdharCardFirstDigits(aadhaar.substring(0, 4));
+           /* kycPage.setAdharCardFirstDigits(aadhaar.substring(0, 4));
 
             // Set middle four digits
             kycPage.setAdharCardSecondDigits(aadhaar.substring(4, 8));
 
             // Set last four digits
-            kycPage.setAdharCardThirdDigits(aadhaar.substring(8, 12));
+            kycPage.setAdharCardThirdDigits(aadhaar.substring(8, 12));*/
 
-            // click On Digilocker
-            kycPage.clickOnNextButtonOnDigilocker();
 
-            // set Otp
-            kycPage.setEnterOtpOnDigiLocker("00000");
+            kycPage.setAdharCard(adhaarTweleveDigits);
+            kycPage.enterDigilockerCaptchaCode(captcha);
+
+
         }
 
     }
