@@ -28,7 +28,6 @@ public class P2MHelper {
     LinkedHashMap<String, String> balanceAfter;
     MBKCommonControlsHelper mbkCommonControlsHelper;
     P2PPage p2PPage;
-    UpiHelper upiHelper;
 
 
     public P2MHelper(AndroidDriver driver) throws IOException {
@@ -42,7 +41,7 @@ public class P2MHelper {
         mbReporter = new MBReporter(driver);
         mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
         p2PPage = new P2PPage(driver);
-        upiHelper = new UpiHelper(driver);
+
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
@@ -62,24 +61,7 @@ public class P2MHelper {
 
         // Allow the Permission
         if(p2mPage.checkWhileUsingAppPermission()){ p2mPage.allowPermissionWhileUsingApp();}
-
-        if(merchant.equals("RecentMerchant") && !p2mPage.checkRecentMerchant()){
-            Log.info("There are no recent Merchants Present for the user");
-            return;
-        }
-
-        if(merchant.equals("RecentMerchant")){
-
-            if(p2mPage.getMerchantNameonQrScreen().equals("Sonu Kumar")) {
-                p2mPage.clickOnRecentMerchant();
-                upiHelper.pocketUPISonuQRTxn("1","Sonu Kumar");
-                return;
-            }
-            else {
-                p2mPage.clickOnRecentMerchant();
-            }
-
-        }else{
+        {
 
             // Click on merchant code text box
             p2mPage.clickOnGallery();

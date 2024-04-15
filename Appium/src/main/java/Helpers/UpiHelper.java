@@ -794,14 +794,14 @@ public class UpiHelper {
         // Tap on See All Services
         p2PPage.clickAllServices();
 
+        // Click on Scan Any Qr
+        p2PPage.clickScanQrOptn();
+
+        //Element.waitForVisibility(driver,By.id("permission_allow_button"));
+        // Allow Permission
+        p2mPage.clickAllowBtn();
+
         if(stepName.equals("Direct Txn")) {
-
-           // Click on Scan Any Qr
-           p2PPage.clickScanQrOptn();
-
-           //Element.waitForVisibility(driver,By.id("permission_allow_button"));
-           // Allow Permission
-           p2mPage.clickAllowBtn();
 
            // Click on Gallery
            p2mPage.clickOnGallery();
@@ -812,22 +812,15 @@ public class UpiHelper {
        }
        else if (stepName.equals("RecentMerchant")) {
 
-           // Tap the QR code Icon on Homepage
-           // p2mPage.clickScanQR();
-
-           // Tap on See All Services
-           p2PPage.clickAllServices();
-
-           // Click on Scan Any Qr
-           p2PPage.clickScanQrOptn();
-
-            // Allow the Permission
-            if(p2mPage.checkWhileUsingAppPermission()){ p2mPage.allowPermissionWhileUsingApp();}
-
             if(stepName.equals("RecentMerchant") && !p2mPage.checkRecentMerchant()){
                 Log.info("There are no recent Merchants Present for the user");
                 return;
             }
+
+            p2mPage.clickOnRecentMerchant();
+
+            // Allow the Permission
+            //if(p2mPage.checkWhileUsingAppPermission()){ p2mPage.allowPermissionWhileUsingApp();}
 
            Thread.sleep(1000);
        }

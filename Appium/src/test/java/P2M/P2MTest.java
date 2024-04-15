@@ -12,23 +12,23 @@ import java.io.IOException;
 
 public class P2MTest extends TestBase {
 
-    @Test(groups = {"p2mSend"}, priority = 0, description = "P2M Send test")
-    public void Test01_p2mSend() throws IOException, InterruptedException {
-
-        Log.info("======= START : P2M Send test =======");
-        // Starting the test in the extentreport
-
-
-        // Login to the account
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("9205299330", "547372");
-
-        // Execute the test
-        P2MHelper p2mHelper = new P2MHelper(getAndroidDriver());
-        p2mHelper.p2mSend("RecentMerchant", "1", "9991015888","You Paid", "₹1", "to dhdn", "dhdn", "9554807271", "Activate Now", "Paid to dhdn", "-₹1", "Success");
-        Log.info("======= END : P2M Send test =======");
-
-    }
+//    @Test(groups = {"p2mSend"}, priority = 0, description = "P2M Send test")
+//    public void Test01_p2mSend() throws IOException, InterruptedException {
+//
+//        Log.info("======= START : P2M Send test =======");
+//        // Starting the test in the extentreport
+//
+//
+//        // Login to the account
+//        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+//        loginHelper.quickLoginViaOtp("9205299330", "547372");
+//
+//        // Execute the test
+//        P2MHelper p2mHelper = new P2MHelper(getAndroidDriver());
+//        p2mHelper.p2mSend("RecentMerchant", "1", "9991015888","You Paid", "₹1", "to dhdn", "dhdn", "9554807271", "Activate Now", "Paid to dhdn", "-₹1", "Success");
+//        Log.info("======= END : P2M Send test =======");
+//
+//    }
 
 
     @Test(groups = { "sanity","p2m", "p2mSend", "p2mSendMobikwikQr", "regression"}, priority = 1, description = "P2M Send test")
