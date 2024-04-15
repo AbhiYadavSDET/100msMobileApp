@@ -376,6 +376,7 @@ public class CheckoutPage {
     }
 
     public void clickOnKnowMoreCta() throws InterruptedException{
+        Elements.scrollToElement(driver,know_more_cta);
         Elements.selectElement(driver, know_more_cta, "Click on Know More Cta");
     }
 
