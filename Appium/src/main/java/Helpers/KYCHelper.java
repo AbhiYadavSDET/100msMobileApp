@@ -25,6 +25,7 @@ public class KYCHelper {
     SecurityPinPage securityPinPage;
     KYCPage kycPage;
     PermissionPage permissionPage;
+    LoginHelper loginHelp;
 
     public KYCHelper(AndroidDriver driver) throws IOException {
         this.driver = driver;
@@ -37,15 +38,16 @@ public class KYCHelper {
         securityPinPage = new SecurityPinPage(driver);
         kycPage = new KYCPage(driver);
         permissionPage = new PermissionPage(driver);
+        loginHelp = new LoginHelper(driver);
     }
 
-    public void OnboardingNonKycFlow(String firstName, String lastName,String pan) throws InterruptedException {
+    public void OnboardingNonKycFlow(String firstName, String lastName, String pan) throws InterruptedException {
 
         // Full kyc flow from Onboarding
         kycPage.clickOnContinueButtonOnBoradingScreen();
         handelPopups();
 
-        if(kycPage.isOnboardingOptionsScreenPresent()){
+        if (kycPage.isOnboardingOptionsScreenPresent()) {
             kycPage.clickOnFullKyc();
         }
 
@@ -67,7 +69,7 @@ public class KYCHelper {
         //clcik on select date field
         kycPage.clickOnSelectDate();
 
-       // click on kyc consent checkbox
+        // click on kyc consent checkbox
         kycPage.clickOnKycConsent();
 
     }
@@ -78,7 +80,7 @@ public class KYCHelper {
         kycPage.clickOnContinueButtonOnBoradingScreen();
         handelPopups();
 
-        if(kycPage.isOnboardingOptionsScreenPresent()){
+        if (kycPage.isOnboardingOptionsScreenPresent()) {
             kycPage.clickOnFullKyc();
         }
 
@@ -91,7 +93,7 @@ public class KYCHelper {
         //click on proceed after entering name
         kycPage.clickOnProceedAfterName();
         String error = kycPage.getNameErrorMessage();
-        mbReporter.verifyEqualsWithLogging(error,"Please enter a valid name","Verifing error message on name",false,false);
+        mbReporter.verifyEqualsWithLogging(error, "Please enter a valid name", "Verifing error message on name", false, false);
 
         //Enter valid first name
         kycPage.setFirstNameWithErrorMessage("Abhishek");
@@ -99,7 +101,7 @@ public class KYCHelper {
         //enter invalid last name
         kycPage.setLastNameWithErrorMessage("Yadav123");
         kycPage.clickOnProceedAfterName();
-        mbReporter.verifyEqualsWithLogging(error,"Please enter a valid name","Verifing error message on name",false,false);
+        mbReporter.verifyEqualsWithLogging(error, "Please enter a valid name", "Verifing error message on name", false, false);
 
         //enter valid last name
         kycPage.setLastNameWithErrorMessage("Yadav");
@@ -123,7 +125,7 @@ public class KYCHelper {
     }
 
 
-    public void fullKycFromCKYC(String firstName, String lastName, String panNumber) throws InterruptedException {
+    public void fullKycFromOnboardingBackPress(String firstName, String lastName, String panNumber, String adhaarNumber, String otp, String adhaarforWebsite, String security) throws InterruptedException, IOException {
 
         // Full kyc VIA CKYC
 
@@ -157,9 +159,34 @@ public class KYCHelper {
         // click on kyc consent checkbox
         kycPage.clickOnKycConsent();
 
+        Log.info("====== CKYC Flow tested - Passed ======");
+
+        mbkCommonControlsHelper.handleHomePageLanding();
+
+        loginHelp.quickLogout();
+        loginHelp.quickLoginFromProfile("8216900006", "547372");
+
+        Log.info("====== Digilocker  Flow Started -  ======");
+        fullKycFromDigilocker(adhaarNumber, otp);
+
+        Log.info("====== Digilocker Flow tested - Passed ======");
+
+        mbkCommonControlsHelper.handleHomePageLanding();
+
+        loginHelp.quickLogout();
+
+        loginHelp.quickLoginFromProfile("8216900006", "547372");
+
+        Log.info("====== Adhaar website  Flow Started -  ======");
+
+        fullKycFromAdharWebsite("5851 2156 7144", "123456");
+
+        Log.info("====== Adhaar  Flow tested - Passed ======");
     }
-    public void fullKycFromDigilocker(String firstFourDigits,String secondFourDigits,String lastFourDigits,String otp) throws InterruptedException {
-     // Full kyc VIA Digi locker
+
+    public void fullKycFromDigilocker(String twelveDigits, String otp) throws InterruptedException {
+        // Full kyc VIA Digi locker
+
 
         // press back button from kyc sreen
         kycPage.clickOnBackButtonFromCompleteYourKycScreen();
@@ -169,22 +196,19 @@ public class KYCHelper {
 
         // click on via digilocker
         kycPage.clickOnViaDigiLocker();
-     //   Thread.sleep(2000);
+        //   Thread.sleep(2000);
 
-        // set first 4 digits of adhaar card
-        kycPage.setAdharCardFirstDigits(firstFourDigits);
+        // set 12  digits of adhaar card
+        kycPage.setAdharCard(twelveDigits);
+        kycPage.enterDigilockerCaptchaCode(otp);
 
-        // set middle 4 digits of adhaar card
-      kycPage.setAdharCardSecondDigits(secondFourDigits);
+        //Now captcha is coming on digilocker page, so can't move further.
 
-        // set last 4 digits of adhaar card
-      kycPage.setAdharCardThirdDigits(lastFourDigits);
+        // click on next button on digilocker
+        //  kycPage.clickOnNextButtonOnDigilocker();
 
-      // click on next button on digilocker
-      kycPage.clickOnNextButtonOnDigilocker();
-
-      // enter otp on digilocker
-      kycPage.setEnterOtpOnDigiLocker(otp);
+        // enter otp on digilocker
+        //     kycPage.setEnterOtpOnDigiLocker(otp);
     }
 
     public void fullKycFromAdharWebsite(String adharNumber, String securityCode) throws InterruptedException {
@@ -213,7 +237,7 @@ public class KYCHelper {
         kycPage.setSecurityCode(securityCode);
     }
 
-    public void fullKycFromCKYCOnFailureFromAdhaarWebsite(String adharNumber, String securityCode,String firstName,String lastName,String pan) throws InterruptedException {
+    public void fullKycFromCKYCOnFailureFromAdhaarWebsite(String adharNumber, String securityCode, String firstName, String lastName, String pan) throws InterruptedException {
 
         // String Full kyc VIA Adhaar website
         kycPage.clickOnBackButtonFromCompleteYourKycScreen();
@@ -267,6 +291,7 @@ public class KYCHelper {
         // click on kyc consent checkbox
         kycPage.clickOnKycConsent();
     }
+
     public void handelPopups() throws InterruptedException {
 
         if (kycPage.isPermissionScreenVisible()) {
@@ -292,13 +317,13 @@ public class KYCHelper {
         mbkCommonControlsHelper.pressback();
 
         // Check Onboarding Pop Up Present
-        if(kycPage.isOnboardingPopUpPresent()) kycPage.clickIDontWantBenefits();
+        if (kycPage.isOnboardingPopUpPresent()) kycPage.clickIDontWantBenefits();
 
         // Press Back
         mbkCommonControlsHelper.pressback();
 
         // Check Onboarding Pop Up Present
-        if(kycPage.isOnboardingPopUpPresent()) kycPage.clickIDontWantBenefits();
+        if (kycPage.isOnboardingPopUpPresent()) kycPage.clickIDontWantBenefits();
 
         // Go to Home Page
         mbkCommonControlsHelper.handleHomePageLanding();
@@ -307,7 +332,7 @@ public class KYCHelper {
     public void profileMinKycFlow(String pan, String fullName, String expTitle, String expSubTitle, String expScreenText) throws InterruptedException, IOException {
 
         // Go to Home Page
-        homePageLand();
+        //   homePageLand();
 
         // Click On Profile Button
         kycPage.clickOnProfileButton();
@@ -315,7 +340,7 @@ public class KYCHelper {
         Thread.sleep(2000);
 
         // Check CC Tool Tip Present
-        if(kycPage.isCCToolTipPresent()) {
+        if (kycPage.isCCToolTipPresent()) {
             screen.tapAtCentre(driver);
 //            screen.tapAtCentre(driver);
         }
@@ -348,18 +373,18 @@ public class KYCHelper {
     }
 
 
-    public void profileFullKycFlow(String pan, String aadhaar, String firstName, String lastName, String kycType, String userType, String expTitle, String expSubTitle) throws InterruptedException, IOException {
+    public void profileFullKycFlow(String pan, String aadhaar, String firstName, String lastName, String kycType, String userType, String expTitle, String expSubTitle,String adhaarTweleveDigits,String captcha) throws InterruptedException, IOException {
 
         // Go to Home Page
-        homePageLand();
+        //  homePageLand();
 
         // Click On Profile Button
         kycPage.clickOnProfileButton();
 
         Thread.sleep(2000);
 
-        // Check CC Tool Tip Present
-        if(kycPage.isCCToolTipPresent()) {
+        /* Check CC Tool Tip Present */
+        if (kycPage.isCCToolTipPresent()) {
             screen.tapAtCentre(driver);
 //            screen.tapAtCentre(driver);
         }
@@ -367,10 +392,12 @@ public class KYCHelper {
         // Click On Complete Your Kyc
         kycPage.clickOnCompleteYourKyc();
 
-        if(userType.equals("NOKYC")){
+
+        // 8219600006 is no longer no kyc user, it has been marked as min kyc user, So skippig this step for now.
+      /*  if(userType.equals("NOKYC")){
             // Click On Full Kyc
             kycPage.clickOnFullKyc();
-        }
+        }*/
 
         // Verification on the Success Screen
         String title = kycPage.getProfileKycScreenTitle();
@@ -390,7 +417,7 @@ public class KYCHelper {
         // select kyc Consent
         kycPage.clickOnKycConsent();
 
-        if(kycType.equals("CKYC")){
+        if (kycType.equals("CKYC")) {
 
             // Click Continue
             kycPage.clickPofileKycContinue();
@@ -415,8 +442,7 @@ public class KYCHelper {
 
             // select kyc Consent
             kycPage.clickOnKycConsent();
-        }
-        else if(kycType.equals("OKYC")){
+        } else if (kycType.equals("OKYC")) {
 
             // click Pofile Aadhaar
             kycPage.clickPofileAadhaar();
@@ -425,9 +451,9 @@ public class KYCHelper {
             kycPage.clickPofileKycContinue();
 
             // check Profile Aadhaar Pop up
-            if(kycPage.isProfileAadhaarPopUpPresent()) kycPage.removeProfileAadhaarPopUp();
+            if (kycPage.isProfileAadhaarPopUpPresent()) kycPage.removeProfileAadhaarPopUp();
 
-         //   Thread.sleep(3000);
+            //   Thread.sleep(3000);
 
             // Enter Aadhaar
             kycPage.enterProfileAadhaarTextBox(aadhaar);
@@ -439,8 +465,7 @@ public class KYCHelper {
             kycPage.enterAadhaarCaptcha("gcysd");
 
 
-        }
-        else {
+        } else {
 
             // click Profile
             kycPage.clickPofileDigilocker();
@@ -448,22 +473,22 @@ public class KYCHelper {
             // Click Continue
             kycPage.clickPofileKycContinue();
 
-         //   Thread.sleep(2000);
+            //   Thread.sleep(2000);
 
             // Set first four digits
-            kycPage.setAdharCardFirstDigits(aadhaar.substring(0,4));
+           /* kycPage.setAdharCardFirstDigits(aadhaar.substring(0, 4));
 
             // Set middle four digits
-            kycPage.setAdharCardSecondDigits(aadhaar.substring(4,8));
+            kycPage.setAdharCardSecondDigits(aadhaar.substring(4, 8));
 
             // Set last four digits
-            kycPage.setAdharCardThirdDigits(aadhaar.substring(8,12));
+            kycPage.setAdharCardThirdDigits(aadhaar.substring(8, 12));*/
 
-            // click On Digilocker
-            kycPage.clickOnNextButtonOnDigilocker();
 
-            // set Otp
-            kycPage.setEnterOtpOnDigiLocker("00000");
+            kycPage.setAdharCard(adhaarTweleveDigits);
+            kycPage.enterDigilockerCaptchaCode(captcha);
+
+
         }
 
     }
