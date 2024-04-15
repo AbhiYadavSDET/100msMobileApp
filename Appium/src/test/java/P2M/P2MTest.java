@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public class P2MTest extends TestBase {
 
-    @Test(groups = {"sanity", "p2mSend",}, priority = 0, description = "P2M Send test")
+    @Test(groups = {"p2mSend"}, priority = 0, description = "P2M Send test")
     public void Test01_p2mSend() throws IOException, InterruptedException {
 
         Log.info("======= START : P2M Send test =======");
@@ -51,7 +51,7 @@ public class P2MTest extends TestBase {
     }
 
 
-    @Test(groups = { "sanity","p2m", "p2mSend", "p2mSendRecentMerchant", "regression"}, priority = 6, description = "P2M Send test")
+    @Test(groups = { "p2m", "p2mSend", "p2mSendRecentMerchant"}, priority = 6, description = "P2M Send test")
     public void Test01_p2mSendRecentMerchant() throws IOException, InterruptedException {
 
         Log.info("======= START : P2M Send test =======");
@@ -68,6 +68,10 @@ public class P2MTest extends TestBase {
         Log.info("======= END : P2M Send test =======");
 
     }
+
+
+
+
 
 //    @Test(groups = {"sanity", "p2m", "p2mSend", "p2mSendSonuQr"}, priority = 3, description = "P2M Send test")
 //    public void Test01_p2mSendSonuQr() throws IOException, InterruptedException {
