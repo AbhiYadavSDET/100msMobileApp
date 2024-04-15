@@ -63,7 +63,7 @@ public class TestKYC extends TestBase {
 
     }
 
-    @Test(groups = {"NoKYC", "NonKycFullKycViaDigilocker","regression", "sanity"}, priority = 0, description = "No kyc user - Full kyc flow via digilocker")
+    @Test(groups = {"NoKYC", "NonKycFullKycViaDigilocker","regression"}, priority = 0, description = "No kyc user - Full kyc flow via digilocker")
     public void Test04_NoKyc_user_fULL_KYC_FLOW_VIA_DIGILOCKER() throws IOException, InterruptedException {
 
         Log.info("======= START : Full KYC flow via DIGILOCKER =======");
