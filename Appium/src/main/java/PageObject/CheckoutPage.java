@@ -165,6 +165,9 @@ public class CheckoutPage {
     @AndroidFindBy(id = "txt_checkbox_savecard")
     private AndroidElement save_card_consent;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Restore your UPI account']")
+    private AndroidElement full_checkout;
+
 
 
 
@@ -263,7 +266,7 @@ public class CheckoutPage {
     }
 
     public Boolean isZipModuleAvailable() throws InterruptedException{
-        Element.waitForVisibility(driver, zip_module);
+        Element.waitForVisibility(driver, full_checkout);
         return Elements.isElementPresent(driver, zip_module);
     }
 
