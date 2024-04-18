@@ -263,6 +263,7 @@ public class CheckoutPage {
     }
 
     public Boolean isZipModuleAvailable() throws InterruptedException{
+        Element.waitForVisibility(driver, zip_module);
         return Elements.isElementPresent(driver, zip_module);
     }
 
