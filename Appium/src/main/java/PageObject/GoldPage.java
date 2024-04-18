@@ -16,7 +16,7 @@ public class GoldPage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'All Services']")
     private AndroidElement allServicesButton;
 
-    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Buy 99.5% pure gold']")
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Gold']")
     private AndroidElement goldButton;
 
     @AndroidFindBy(id = "buy_gold_btn")
