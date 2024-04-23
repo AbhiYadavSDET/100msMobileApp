@@ -310,7 +310,7 @@ public class MutualFundsHelper {
 
     public void clickOnMutualFund() throws InterruptedException {
         for(int i=0;i<5;i++){
-            if(!Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text= 'Direct Mutual Funds']"))){
+            if(!Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text= 'Mutual Funds']"))){
                 // Swipe till the bottom
                 screen.swipeUpMore(driver);
             }else {
