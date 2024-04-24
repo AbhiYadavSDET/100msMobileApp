@@ -245,7 +245,15 @@ public class TestBase {
 
         String testname = result.getMethod().getMethodName();
 
+
         if (result.isSuccess() == false) {
+
+            if(result.getStatus()==ITestResult.FAILURE){
+                testname=testname+"-FAILURE";
+            }else if (result.getStatus()==ITestResult.SKIP){
+                testname=testname+"-SKIP";
+            }
+
             captureScreenShot(testname);
             Log.info(":::Capture Failure Screenshot:::");
         }
@@ -269,10 +277,9 @@ public class TestBase {
 
 
     public void captureScreenShot(String testName) {
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         File srcFile = getAndroidDriver().getScreenshotAs(OutputType.FILE);
         String filename = testName;
-        File targetFile = new File(System.getProperty("user.dir") + "/output/screenshots/" + filename +timestamp.getMinutes()+ ".jpg");
+        File targetFile = new File(System.getProperty("user.dir") + "/output/screenshots/" + filename+ ".jpg");
         try {
             FileUtils.copyFile(srcFile, targetFile);
         } catch (IOException e) {
