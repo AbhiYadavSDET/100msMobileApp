@@ -83,11 +83,23 @@ public class ZipHelper {
         Element.waitForVisibility(driver, By.id("tv_title"));
         mbReporter.verifyEqualsWithLogging(zipPage.getTitle(), expZipPageTitle, "Validating Zip Page Title", false, false);
 
-        Integer availableBalance = Integer.parseInt(zipPage.getAvailableBalance());
-        Integer amountUsed = Integer.parseInt(zipPage.getAmountUsed());
-        Integer amountTotal = Integer.parseInt(zipPage.getAmountTotal());
+        if(zipPage.isZipBillReminderPresent()){
+            //Zip Bill Generated
 
-        mbReporter.verifyEqualsWithLogging(amountTotal - amountUsed, availableBalance, "Validating amount calculation", false, false);
+            mbReporter.verifyTrueWithLogging(zipPage.isZipBillReminderPresent(), "Zip Bill Reminder Title : "+zipPage.getBillReminderTitle(), false, false);
+            mbReporter.verifyTrueWithLogging(zipPage.isZipBillReminderPresent(), "Zip Bill Reminder Sub Title : "+zipPage.getBillReminderSubTitle(), false, false);
+            mbReporter.verifyTrueWithLogging(zipPage.isZipBillReminderPresent(), "Zip Bill Reminder Pay Now Cta : "+zipPage.getBillReminderPayNowCtaText(), false, false);
+
+        } else {
+
+            Integer availableBalance = Integer.parseInt(zipPage.getAvailableBalance());
+            Integer amountUsed = Integer.parseInt(zipPage.getAmountUsed());
+            Integer amountTotal = Integer.parseInt(zipPage.getAmountTotal());
+
+            mbReporter.verifyEqualsWithLogging(amountTotal - amountUsed, availableBalance, "Validating amount calculation", false, false);
+
+        }
+
 
         Screen.swipeUpMore(driver);
 

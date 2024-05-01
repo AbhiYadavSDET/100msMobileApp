@@ -37,7 +37,7 @@ public class P2PExtraTest extends TestBase {
 
         // Start the test
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.quickLoginViaOtp("8076595767", "547372");
+        loginHelp.quickLoginViaOtp("7795709569", "547372");
 
         P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getAndroidDriver());
         p2PExtraHelper.investInFlexi("Select Your Bank");
@@ -55,7 +55,7 @@ public class P2PExtraTest extends TestBase {
 
         // Start the test
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.quickLoginViaOtp("8076595767", "547372");
+        loginHelp.quickLoginViaOtp("7795709569", "547372");
 
         P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getAndroidDriver());
         p2PExtraHelper.investInFixed("Select Your Bank");
@@ -107,7 +107,7 @@ public class P2PExtraTest extends TestBase {
 
         // Start the test
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.quickLoginViaOtp("8076595767", "547372");
+        loginHelp.quickLoginViaOtp("7795709569", "547372");
 
         P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getAndroidDriver());
         p2PExtraHelper.setDefaultBankAccountFlow("Default Bank Account");

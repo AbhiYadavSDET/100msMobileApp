@@ -218,15 +218,15 @@ public class FixedDepositPage {
         Elements.selectElement(driver,allServicesCTA,"Click on all services");
     }
 
-    public boolean scrollToFixedDeposit() throws InterruptedException {
-        return Elements.scrollToElement(driver, fixedDepositCTA);
+    public void scrollToFixedDeposit() throws InterruptedException {
+         Elements.scrollToElement(driver, fixedDepositCTA);
     }
     public void fixedDepositCTA() throws InterruptedException{
         Elements.selectElement(driver,fixedDepositCTA,"Fixed Deposit CTA");
     }
 
     public String getTitleViewInvestmetnSummary() throws InterruptedException {
-        return Elements.getText(driver,titleViewInvestmentSummary, "ViewInvestment Activity");
+        return Elements.getText(driver,titleViewInvestmentSummary, "View Investment Activity");
     }
 
     public String getTitleTopPlans() throws InterruptedException {

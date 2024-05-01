@@ -88,6 +88,20 @@ public class ZipPage {
     @AndroidFindBy(id = "edit_text")
     private AndroidElement mobileNumberEditText;
 
+    //Zip Bill Generated
+
+    @AndroidFindBy(id = "title")
+    private AndroidElement zipBillReminderTitle;
+
+    @AndroidFindBy(id = "sub_title")
+    private AndroidElement zipBillReminderSubTitle;
+
+    @AndroidFindBy(id = "blue_cta")
+    private AndroidElement zipBillReminderPayNowCta;
+
+
+
+
 
 
 
@@ -226,6 +240,24 @@ public class ZipPage {
     public void enterMobileNumber(String number) throws InterruptedException {
         Elements.enterToElement(driver, mobileNumberEditText, number, "Enter Mobile number");
     }
+
+    public String getBillReminderTitle() throws InterruptedException {
+        return Elements.getText(driver, zipBillReminderTitle);
+    }
+
+    public String getBillReminderSubTitle() throws InterruptedException {
+        return Elements.getText(driver, zipBillReminderSubTitle);
+    }
+
+    public String getBillReminderPayNowCtaText() throws InterruptedException {
+        return Elements.getText(driver, zipBillReminderPayNowCta);
+    }
+
+    public boolean isZipBillReminderPresent() throws InterruptedException {
+        return Elements.isElementPresent(driver, zipBillReminderTitle);
+    }
+
+
 
 
 

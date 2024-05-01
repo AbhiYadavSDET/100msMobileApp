@@ -259,13 +259,13 @@ public class InsurancePage {
     public void clickAllServices() {
         Elements.selectElement(driver, allServices, "All Services");
     }
-    public boolean scrollToInsurance() throws InterruptedException {
-        return Elements.scrollToElement(driver,insuranceCTA);
+    public void scrollToInsurance() throws InterruptedException {
+        Elements.scrollToElement(driver,insuranceCTA);
     }
 
 
-    public boolean scrollToContinueButton() throws InterruptedException {
-        return Elements.scrollToElement(driver,cta_continue_formfield);
+    public void scrollToContinueButton() throws InterruptedException {
+        Elements.scrollToElement(driver,cta_continue_formfield);
     }
 
     public void clickOnCommunicableDisesInsurance() throws InterruptedException{

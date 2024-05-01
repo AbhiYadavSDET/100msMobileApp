@@ -16,7 +16,7 @@ public class MutualFundPage {
     AndroidDriver driver;
 
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'Direct Mutual Funds']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text= 'Mutual Funds']")
     private AndroidElement directMutualFunds;
 
     @AndroidFindBy(id = "btn_get_started")

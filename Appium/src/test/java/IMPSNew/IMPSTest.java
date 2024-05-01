@@ -40,7 +40,7 @@ public class IMPSTest extends TestBase {
         loginHelp.quickLoginViaOtp("9205299330","547372");
 
         IMPSNewHelper impsHelper = new IMPSNewHelper(getAndroidDriver());
-        impsHelper.verifyIMPSNewVPA("7795709569@paytm","50", "Transfer Successful" , "50","Bank transfer to  Paraj Jain (7795709569@paytm)","-₹51.18","Success");
+        impsHelper.verifyIMPSNewVPA("7795709569@ptyes","50", "Transfer Successful" , "50","Bank transfer to  Paraj Jain (7795709569@paytm)","-₹51.18","Success");
 
         Log.info("======= END : IMPS to New Account Number Test =======");
     }
@@ -56,7 +56,7 @@ public class IMPSTest extends TestBase {
 
 
         IMPSNewHelper impsHelper = new IMPSNewHelper(getAndroidDriver());
-        impsHelper.verifyIMPSSavedVPA("7795709569@paytm","50", "Transfer Successful" , "50","Bank transfer to  Paraj Jain (7795709569@paytm)","-₹51.18","Success");
+        impsHelper.verifyIMPSSavedVPA("7795709569@ptyes","50", "Transfer Successful" , "50","Bank transfer to  Paraj Jain (7795709569@paytm)","-₹51.18","Success");
 
 
         Log.info("======= END : IMPS to Saved VPA Test =======");
@@ -86,7 +86,7 @@ public class IMPSTest extends TestBase {
         Log.info("======= START : Refer and earn on Imps Test =======");
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.quickLoginViaOtp("8076595767","547372");
+        loginHelp.quickLoginViaOtp("7795709569","547372");
 
         IMPSNewHelper impsHelper = new IMPSNewHelper(getAndroidDriver());
         impsHelper.verifyReferAndEarnOnImps();
@@ -177,7 +177,7 @@ public class IMPSTest extends TestBase {
         Log.info("======= START : IMPS to add new insurance at checkout page Test =======");
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.quickLoginViaOtp("8076595767","547372");
+        loginHelp.quickLoginViaOtp("7795709569","547372");
 
         IMPSNewHelper impsHelper = new IMPSNewHelper(getAndroidDriver());
         impsHelper.verifyIMPSWithInsuranceOption("Abhishek Kumar", "040801000080315", "ICIC0001401","200");

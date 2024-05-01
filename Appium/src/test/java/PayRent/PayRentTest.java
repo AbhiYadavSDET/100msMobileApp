@@ -21,7 +21,7 @@ public class PayRentTest extends TestBase {
 
         // Execute the test
         PayRentHelper payRentHelper = new PayRentHelper(getAndroidDriver());
-        payRentHelper.addNewProperty("040801000080315", "IOBA0000408", "Ashish Kumar Pradhan ", "50", "123");
+        payRentHelper.addNewProperty("218101502680", "ICIC0002181", "Paraj Jain", "50", "123");
 
         Log.info("======= END : Add New Property =======");
 
@@ -39,7 +39,7 @@ public class PayRentTest extends TestBase {
 
         // Execute the test
         PayRentHelper payRentHelper = new PayRentHelper(getAndroidDriver());
-        payRentHelper.payRentViaZIP("040801000080315", "IOBA0000408", "Ashish Kumar Pradhan","5000", "₹5,000", "₹88", "₹5,088");
+        payRentHelper.payRentViaZIP("218101502680", "ICIC0002181", "Paraj Jain","5000", "₹5,000", "₹88", "₹5,088");
 
         Log.info("======= END : Pay Rent via ZIP =======");
 
@@ -56,7 +56,7 @@ public class PayRentTest extends TestBase {
 
         // Execute the test
         PayRentHelper payRentHelper = new PayRentHelper(getAndroidDriver());
-        payRentHelper.payRentviaCard("040801000080315", "IOBA0000408", "Ashish Kumar Pradhan", "5,000","₹5,000", "₹88", "₹5,088");
+        payRentHelper.payRentviaCard("218101502680", "ICIC0002181", "Paraj Jain", "5,000","₹5,000", "₹88", "₹5,088");
 
         Log.info("======= END : Pay Rent via Card =======");
 
@@ -73,7 +73,7 @@ public class PayRentTest extends TestBase {
 
         // Execute the test
         PayRentHelper payRentHelper = new PayRentHelper(getAndroidDriver());
-        payRentHelper.payRentViaUpi("Ashish Kumar Pradhan ", "50");
+        payRentHelper.payRentViaUpi("Paraj Jain", "50");
 
         Log.info("======= END : Pay Rent via UPI =======");
 
@@ -102,7 +102,7 @@ public class PayRentTest extends TestBase {
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("8076595767", "547372");
+        loginHelper.quickLoginViaOtp("7795709569", "547372");
 
         Log.info("======= START : Verify Delete on pay rent =======");
 

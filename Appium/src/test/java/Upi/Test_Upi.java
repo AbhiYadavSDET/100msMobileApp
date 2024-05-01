@@ -22,7 +22,7 @@ public class Test_Upi extends TestBase {
 
 
         UpiHelper upiHelper = new UpiHelper(getAndroidDriver());
-        upiHelper.sendMoneyViaUpi("7795709569@paytm", "1", "Automation Transfer to VPA", "Paraj Jain", "121212","Paraj Jain" );
+        upiHelper.sendMoneyViaUpi("7795709569@ptyes", "1", "Automation Transfer to VPA", "Paraj Jain", "121212","Paraj Jain" );
 
     }
 
@@ -134,7 +134,7 @@ public class Test_Upi extends TestBase {
 
 
         UpiHelper upiHelper = new UpiHelper(getAndroidDriver());
-        upiHelper.pocketUPITransferNow("1", "Automation Transfer via Pocket UPI", "Paraj Jain","7795709569@paytm", "Paraj Jain");
+        upiHelper.pocketUPITransferNow("1", "Automation Transfer via Pocket UPI", "Paraj Jain","7795709569@ptyes", "Paraj Jain");
     }
 
     @Test(groups = {"pocketUpi", "upiSanity"}, priority = 0, description = "Pocket UPI Show My QR from Pocket UPI Home Page")
