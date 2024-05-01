@@ -82,8 +82,8 @@ public class P2PPage {
        return Elements.isElementPresent(driver, p2pButton);
     }
 
-    public boolean scrollToP2PButton() throws InterruptedException {
-        return Elements.scrollToElement(driver, p2pButton);
+    public void scrollToP2PButton() throws InterruptedException {
+        Elements.scrollToElement(driver, p2pButton);
     }
 
     public void enterMobileNo(String mobileNo) {

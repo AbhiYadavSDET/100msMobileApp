@@ -86,7 +86,7 @@ public class IMPSTest extends TestBase {
         Log.info("======= START : Refer and earn on Imps Test =======");
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.quickLoginViaOtp("8076595767","547372");
+        loginHelp.quickLoginViaOtp("7795709569","547372");
 
         IMPSNewHelper impsHelper = new IMPSNewHelper(getAndroidDriver());
         impsHelper.verifyReferAndEarnOnImps();
@@ -177,7 +177,7 @@ public class IMPSTest extends TestBase {
         Log.info("======= START : IMPS to add new insurance at checkout page Test =======");
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.quickLoginViaOtp("8076595767","547372");
+        loginHelp.quickLoginViaOtp("7795709569","547372");
 
         IMPSNewHelper impsHelper = new IMPSNewHelper(getAndroidDriver());
         impsHelper.verifyIMPSWithInsuranceOption("Abhishek Kumar", "040801000080315", "ICIC0001401","200");
