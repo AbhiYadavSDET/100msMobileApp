@@ -88,13 +88,19 @@ public class AccountAggregatorPage {
     @AndroidFindBy(id = "incoming_amount")
     private AndroidElement incoming;
 
-    @AndroidFindBy(xpath = "//*[@text='OUTGOING']")
-    private AndroidElement outgoingTitle;
+    @AndroidFindBy(xpath = "//*[@text='MONEY OUT']")
+    private AndroidElement moneyOutTitle;
 
-    @AndroidFindBy(xpath = "//*[@text='Others']")
+    @AndroidFindBy(id = "ll_root")
+    private AndroidElement tooltip_search;
+
+    @AndroidFindBy(xpath = "//*[@text='EMI']")
     private AndroidElement outgoingFirstSubTitle;
 
-    @AndroidFindBy(xpath = "//*[@text='Expenses']")
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Bank Accounts']")
+    private AndroidElement bankAccount;
+
+    @AndroidFindBy(xpath = "//*[@text='vs last month']")
     private AndroidElement outgoingSecondSubTitle;
 
     @AndroidFindBy(xpath = "//*[@text='EMI']")
@@ -112,17 +118,20 @@ public class AccountAggregatorPage {
     @AndroidFindBy(xpath = "//*[@text='HIGHLIGHTS']")
     private AndroidElement dashboardHighlightTitle;
 
-    @AndroidFindBy(xpath = "//*[@text='YOUR ACCOUNTS']")
-    private AndroidElement accountTitle;
+    @AndroidFindBy(xpath = "//*[@text='MONEY IN']")
+    private AndroidElement moneyInTitle;
 
     @AndroidFindBy(xpath = "//*[@text='Add Account']")
     private AndroidElement addAccountTitle;
 
-    @AndroidFindBy(xpath = "//*[@text='Settings']")
-    private AndroidElement settingsTitle;
+    @AndroidFindBy(xpath = "//*[@text='+ Add Account']")
+    private AndroidElement addAccountTitleonBankscreen;
 
-    @AndroidFindBy(xpath = "//*[@text='Download Statements']")
-    private AndroidElement downloadStatementsTitle;
+    @AndroidFindBy(xpath = "//*[@text='Refer Your Friends']")
+    private AndroidElement referTitle;
+
+    @AndroidFindBy(xpath = "//*[@text='Manage']")
+    private AndroidElement manageTitle;
 
 //text
     @AndroidFindBy(id = "mkab_left_icon")
@@ -139,6 +148,9 @@ public class AccountAggregatorPage {
 
     @AndroidFindBy(id = "cta")
     private AndroidElement downloadTitle;
+
+    @AndroidFindBy(id = "txt_masked_acc_no")
+    private AndroidElement maskedbankAccount;
 
 
     @AndroidFindBy(xpath = "//*[@text='Help & Support']")
@@ -190,7 +202,7 @@ public class AccountAggregatorPage {
     @AndroidFindBy(xpath = "//*[@text='Money Received']")
     private AndroidElement  moneyReceived;
 
-    @AndroidFindBy(xpath = "//*[@text='Analyser']")
+    @AndroidFindBy(xpath = "//*[@text='MONEY OUT']")
     private AndroidElement  anayseronAAhomepage;
 
     @AndroidFindBy(xpath = "//*[@text='DEBITS']")
@@ -237,6 +249,9 @@ public class AccountAggregatorPage {
     @AndroidFindBy(id="action_button")
     private AndroidElement  confirm_cta;
 
+    @AndroidFindBy(id="ic_arrow_down")
+    private AndroidElement  downArrow;
+
     @AndroidFindBy(id="et_search")
     private AndroidElement  bankname_enter;
 
@@ -249,6 +264,9 @@ public class AccountAggregatorPage {
 
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'SKIP']")
     private AndroidElement skip_cta;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'All Bank Balance']")
+    private AndroidElement allBankBalance;
 
     @AndroidFindBy(id="txt_intro_title")
     private AndroidElement  intro_txt;
@@ -284,8 +302,8 @@ public class AccountAggregatorPage {
         Elements.selectElement(driver,TrackBankAccountsCTA,"Click on Track bank account lens icon");
     }
 
-    public boolean scrollTotrackBankAccounts() throws InterruptedException {
-        return Elements.scrollToElement(driver,TrackBankAccountsCTA);
+    public void scrollTotrackBankAccounts() throws InterruptedException {
+         Elements.scrollToElement(driver,TrackBankAccountsCTA);
     }
 
     public void clickOnTrackBankAccounts() throws InterruptedException{
@@ -306,6 +324,10 @@ public class AccountAggregatorPage {
 
     public void clickOnToAddAccountOnHomeScreen() throws InterruptedException{
         Elements.selectElement(driver,addAccountTitle,"Click on Add Account");
+    }
+
+    public void clickOnToAddAccountOnBankListScreen() throws InterruptedException{
+        Elements.selectElement(driver,addAccountTitleonBankscreen,"Click on Add Account on bank list screen");
     }
 
 
@@ -330,6 +352,13 @@ public class AccountAggregatorPage {
     }
 
 
+    public void clickOnBankAccount() throws InterruptedException{
+        Elements.selectElement(driver,bankAccount, "click on bank account");
+    }
+
+    public void clickOndownArrowNexttoBankOnHomePage() throws InterruptedException{
+        Elements.selectElement(driver,downArrow, "click on down arrow next to bankpage");
+    }
     public boolean checkTrackbankAccountsCTA() throws InterruptedException {
         return Elements.isElementPresent(driver, TrackBankAccountsCTA);
     }
@@ -338,6 +367,8 @@ public class AccountAggregatorPage {
     public void trackInvestmentCTA() throws InterruptedException{
         Elements.selectElement(driver, trackInvestmentCTA, "Click on Track all your investment cta");
     }
+
+
 
     public String getTitle() throws InterruptedException {
         return Elements.getText(driver, title, "Base Title");
@@ -386,13 +417,18 @@ public class AccountAggregatorPage {
         }
     }
     public Boolean isOutgoingTitlePresent() throws InterruptedException {
-        return Elements.isElementPresent(driver, outgoingTitle);
+        return Elements.isElementPresent(driver, moneyOutTitle);
     }
 
 
     public String getOutgoingTitle() throws InterruptedException {
-        return Elements.getText(driver, outgoingTitle, "Outgoing Title");
+        return Elements.getText(driver, moneyOutTitle, "MONEY OUT TITLE");
     }
+
+    public String getAllBankBalanceText() throws InterruptedException {
+        return Elements.getText(driver, allBankBalance, "All Bank balance text");
+    }
+
 
 
     public String getOutgoingFirstSubTitle() throws InterruptedException {
@@ -430,31 +466,29 @@ public class AccountAggregatorPage {
         return Elements.isElementPresent(driver, dashboardHighlightTitle);
     }
 
-    public String accountTitle() throws InterruptedException {
-        return Elements.getText(driver, accountTitle, "Dashboard Account Title");
+    public String moneyinTitle() throws InterruptedException {
+        return Elements.getText(driver, moneyInTitle, "Scroll to money in title");
     }
 
-    public boolean scrollToAccountTitle() throws InterruptedException {
-        return Elements.scrollToElement(driver, accountTitle);
-    }
-
-
-    public String settingsTitle() throws InterruptedException {
-        return Elements.getText(driver, settingsTitle, "Dashboard Setting Title");
-    }
-
-    public boolean scrollToSettingsTitle() throws InterruptedException {
-        return Elements.scrollToElement(driver, settingsTitle);
+    public void scrollTomoneyinTitle() throws InterruptedException {
+         Elements.scrollToElement(driver, moneyInTitle);
     }
 
 
-    public String downloadStatementsTitle() throws InterruptedException {
-        return Elements.getText(driver, downloadStatementsTitle, "Dashboard Download Title");
+    public String ReferTitle() throws InterruptedException {
+        return Elements.getText(driver, referTitle, "Dashboard Refer Title");
     }
 
+    public void scrollToReferYourFriend() throws InterruptedException {
+         Elements.scrollToElement(driver, referTitle);
+    }
 
-    public boolean scrolltoDownloadStatementsTitle() throws InterruptedException {
-        return Elements.scrollToElement(driver, downloadStatementsTitle);
+    public void scrolltoManage() throws InterruptedException {
+        Elements.scrollToElement(driver, manageTitle);
+    }
+
+    public String manageTitle() throws InterruptedException {
+        return Elements.getText(driver, manageTitle, "Manage Title");
     }
 
     public String helpSupportTitle() throws InterruptedException {
@@ -525,6 +559,7 @@ public class AccountAggregatorPage {
     public Boolean IsInvestedtextOnMonthlySummaryVisible() throws InterruptedException {
         return Elements.isElementPresent(driver, investedonmonthlysummery);
     }
+
     public String getRemaingtextOnMonthlySummary() throws InterruptedException {
         if(Elements.isElementPresent(driver,remainingonmonthlysummery)){
         return Elements.getText(driver, remainingonmonthlysummery);
@@ -622,18 +657,6 @@ public class AccountAggregatorPage {
         return Elements.getText(driver, yearTextOnAnlyser);
     }
 
-    public void selectSetting() throws InterruptedException {
-        Elements.selectElement(driver,settingsTitle,"Click on Setting");
-    }
-
-    public boolean scrollToSetting() throws InterruptedException {
-        return Elements.scrollToElement(driver, settingsTitle);
-    }
-
-    public Boolean checkSettingCta() throws InterruptedException{
-        return Elements.isElementPresent(driver, settingsTitle);
-    }
-
     public String autoRefreshext() throws InterruptedException {
         return Elements.getText(driver, autoRefreshFrequently);
     }
@@ -690,14 +713,6 @@ public class AccountAggregatorPage {
         Elements.selectElement(driver,helpSupportTitle,"Click on Help and support");
     }
 
-    public void selectDownloadStatement() throws InterruptedException{
-        Elements.selectElement(driver,downloadStatementsTitle,"Click on Download Statements");
-    }
-
-    public void clickDownload() throws InterruptedException {
-        Elements.selectElement(driver,downloadTitle,"Click on Download Statements");
-    }
-
     public void clickOnYourSavedBankAccount() throws InterruptedException{
         Elements.selectElement(driver,yourBankAccountonHomePage,"Click on Your Account");
     }
@@ -706,6 +721,10 @@ public class AccountAggregatorPage {
         return Elements.isElementPresent(driver, yourBankAccountonHomePage);
     }
 
+
+    public Boolean isBankAccoutPresent() throws InterruptedException {
+        return Elements.isElementPresent(driver, maskedbankAccount);
+    }
     public void userDetails() throws InterruptedException{Elements.selectElement(driver, userDetails, "Check the user details");}
 
     public void applyFilter() throws InterruptedException{Elements.selectElement(driver,applyFilter, "Apply filter");}
@@ -732,6 +751,10 @@ public class AccountAggregatorPage {
         Elements.selectElement(driver, skip_cta, "Click on Skip CTA");
     }
 
+
+    public void clickOntooltip() throws InterruptedException{
+        Elements.selectElement(driver,tooltip_search,"Click on tooltip");
+    }
 
     public void ckickOnIntro() throws InterruptedException{
         Elements.selectElement(driver, intro_txt, "Click on Intro CTA");
