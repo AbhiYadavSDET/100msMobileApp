@@ -254,7 +254,7 @@ public class ZipPage {
     }
 
     public boolean isZipBillReminderPresent() throws InterruptedException {
-        return Elements.isElementPresent(driver, zipBillReminderTitle);
+        return Elements.isElementPresent(driver, zipBillReminderPayNowCta);
     }
 
 
