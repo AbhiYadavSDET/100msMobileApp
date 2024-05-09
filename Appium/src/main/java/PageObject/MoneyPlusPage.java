@@ -88,7 +88,7 @@ public class MoneyPlusPage {
         Elements.selectElement(driver, allServices,"Click on All Services");
     }
 
-    @AndroidFindBy(id = "buy_gold_btn")
+    @AndroidFindBy(id = "btn_buy")
     private AndroidElement buyGoldButton;
 
     public boolean scrollToMoneyPlus() throws InterruptedException {
