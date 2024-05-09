@@ -76,7 +76,9 @@ public class PayRentHelper {
         payRentPage.clickContinueButton();
 
         //Enter Landlord Name
-        payRentPage.enterLandlordName(Name);
+//        payRentPage.enterLandlordName(Name);
+        Name= payRentPage.validateLandlordNamePrefilled();
+        mbReporter.verifyTrueWithLogging(!(payRentPage.validateLandlordNamePrefilled() ==null), "Prefilled Name : "+  payRentPage.validateLandlordNamePrefilled(), false,false );
 
         //Enter Rent Amount
         payRentPage.enterRentAmount(Amount);
@@ -164,7 +166,10 @@ public class PayRentHelper {
         payRentPage.clickContinueButton();
 
         //Enter Landlord Name
-        payRentPage.enterLandlordName(Name);
+//        payRentPage.enterLandlordName(Name);
+
+        Name= payRentPage.validateLandlordNamePrefilled();
+        mbReporter.verifyTrueWithLogging(!(payRentPage.validateLandlordNamePrefilled() ==null), "Prefilled Name : "+  payRentPage.validateLandlordNamePrefilled(), false,false );
 
         //Enter Rent Amount
         payRentPage.enterRentAmount(Amount);
@@ -221,7 +226,9 @@ public class PayRentHelper {
         payRentPage.clickContinueButton();
 
         //Enter Landlord Name
-        payRentPage.enterLandlordName(Name);
+//        payRentPage.enterLandlordName(Name);
+        Name= payRentPage.validateLandlordNamePrefilled();
+        mbReporter.verifyTrueWithLogging(!(payRentPage.validateLandlordNamePrefilled() ==null), "Prefilled Name : "+  payRentPage.validateLandlordNamePrefilled(), false,false );
 
         //Enter Rent Amount
         payRentPage.enterRentAmount(Amount);

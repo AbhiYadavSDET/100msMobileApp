@@ -19,10 +19,10 @@ public class GoldPage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Gold']")
     private AndroidElement goldButton;
 
-    @AndroidFindBy(id = "buy_gold_btn")
+    @AndroidFindBy(id = "btn_buy")
     private AndroidElement buyGoldButton;
 
-    @AndroidFindBy(id = "sell_gold_btn")
+    @AndroidFindBy(id = "iv_gold_balance_arrow_right")
     private AndroidElement sellGoldButton;
 
     @AndroidFindBy(xpath = "//*/android.widget.EditText[@text = 'In Rupees']")

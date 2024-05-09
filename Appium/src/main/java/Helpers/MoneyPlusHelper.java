@@ -61,9 +61,19 @@ public class MoneyPlusHelper {
 
         moneyPlusPage.clickOnAccountAggregatorCard();
 
-        Element.waitForVisibility(driver, By.id("txt_tap_to_explore"));
+        if(Element.isElementPresent(driver, By.id("cta_watch_again"))){
 
-        moneyPlusPage.clickOnBckIconOnFirstPage();
+            moneyPlusPage.clickOnBckIconOnFirstPage();
+
+        }else {
+
+            Element.waitForVisibility(driver, By.id("txt_tap_to_explore"));
+
+            moneyPlusPage.clickOnBckIconOnFirstPage();
+
+        }
+
+
 
         Element.waitForVisibility(driver, By.id("tvNetWorth"));
 
@@ -81,13 +91,13 @@ public class MoneyPlusHelper {
         moneyPlusPage.clickToGoldScreen();
         //moneyPlusPage.tapOutsideBottomSheet();
 
-        while(!moneyPlusPage.isBuyGoldPresent()){
+        if(!moneyPlusPage.isBuyGoldPresent()){
             mbkCommonControlsHelper.pressback();
         }
 
         Double goldCurrentValue=Double.parseDouble(moneyPlusPage.fetchGoldCurrentValue());
 
-        mbReporter.verifyTrueWithLogging(goldCurrentValue>0,"Checking Gold Current Value", false,false);
+        mbReporter.verifyTrueWithLogging(goldCurrentValue>0,"Checking Gold Current Value : "+goldCurrentValue, false,false);
 
         moneyPlusPage.navigateBack();
 
