@@ -32,6 +32,9 @@ public class PayRentPage {
     @AndroidFindBy(xpath = "//*/android.widget.EditText[@text = 'Landlord Name']")
     private AndroidElement landlordName;
 
+    @AndroidFindBy(xpath = "(//android.widget.EditText)[1]")
+    private AndroidElement landlordNameField;
+
     @AndroidFindBy(xpath = "//*/android.widget.EditText[@text = 'Enter Rent Amount']")
     private AndroidElement rentAmount;
 
@@ -144,6 +147,10 @@ public class PayRentPage {
 
     public void enterLandlordName(String Name ){
         Elements.enterToElement(driver, landlordName, Name, "Enter Landlord Name");
+    }
+
+    public String validateLandlordNamePrefilled() throws InterruptedException {
+        return Elements.getText(driver, landlordNameField, "Fetch Landlord Name");
     }
 
     public void enterRentAmount(String Amount){
