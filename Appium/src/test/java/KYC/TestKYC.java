@@ -164,7 +164,7 @@ public class TestKYC extends TestBase {
         loginHelp.quickLoginFromProfile("8216900006","547372");
 
         KYCHelper kycHelper = new KYCHelper(getAndroidDriver());
-        kycHelper.fullKycFromOnboardingBackPress("Abhishek","yadav","HTIPK7865M","585121567144","000000","5851 2156 7144","qwerty");
+        kycHelper.fullKycFromOnboardingBackPress("Abhishek","yadav","HTIPK7865M","5851 2156 7144","000000","5851 2156 7144","qwerty");
         Log.info("======= END :  min kyc user - Full KYC flow via CKYC ======");
 
     }
