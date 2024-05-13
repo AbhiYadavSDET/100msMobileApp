@@ -147,6 +147,13 @@ public class LoginHelper {
         }
 
         mbkCommonControlsHelper.handleHomePageLanding();
+        Thread.sleep(3000);
+     /*   if (Element.isElementPresentNoWait(driver, By.id("tv_explore_home"))){
+            Log.info("Feature Assist Page Shown");
+            driver.findElementById("tv_explore_home").click();
+            Thread.sleep(3000);
+        }*/
+      //  mbkCommonControlsHelper.handleHomePageLanding();
 
     }
 
@@ -173,8 +180,6 @@ public class LoginHelper {
 
         mbReporter.verifyEqualsWithLogging(titleContinue, exptitleContinue, "Title Continue ", false, false, true);
 
-
-
     }
 
     public void quickLogout() throws InterruptedException, IOException {
@@ -192,7 +197,7 @@ public class LoginHelper {
     public void quickLoginFromProfile(String mobileNumber,String otp) throws InterruptedException, IOException {
 
         loginPage.clickLoginSignup();
-   loginPage.clickLoginButton();
+        loginPage.clickLoginButton();
 
         Log.info("Logged into app from profile.. ");
 
@@ -208,7 +213,6 @@ public class LoginHelper {
         if (element.isElementPresent(driver, By.id("error_view"))) {
             loginPage.clickSendOtpbutton();
         }
-
         loginPage.enterOtp(otp);
 
         // If the error message is present --> resend OTP
@@ -217,16 +221,9 @@ public class LoginHelper {
             loginPage.clickResendOtp();
             loginPage.enterOtp(otp);
         }
-        // Wait for 5000 ms for all the banners to load
-        Thread.sleep(3000);
-        if (Element.isElementPresentNoWait(driver, By.id("tv_explore_home"))){
-            Log.info("Feature Assist Page Shown");
-            driver.findElementById("tv_explore_home").click();
-            Thread.sleep(3000);
+               if (element.isElementPresent(driver, By.id("txt_setup_upi"))){
+                   driver.navigate().back();
         }
-
-
-
     }
 
 

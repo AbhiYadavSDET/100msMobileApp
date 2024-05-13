@@ -161,25 +161,45 @@ public class KYCHelper {
 
         Log.info("====== CKYC Flow tested - Passed ======");
 
-        mbkCommonControlsHelper.handleHomePageLanding();
-
-        loginHelp.quickLogout();
-        loginHelp.quickLoginFromProfile("8216900006", "547372");
+        driver.navigate().back();
+        kycPage.clickOnCompleteUsingOtherOptions();
 
         Log.info("====== Digilocker  Flow Started -  ======");
-        fullKycFromDigilocker(adhaarNumber, otp);
+
+        // click on via digilocker
+        kycPage.clickOnViaDigiLocker();
+        //   Thread.sleep(2000);
+
+        // set 12  digits of adhaar card
+        kycPage.setAdharCard(adhaarNumber);
+        kycPage.enterDigilockerCaptchaCode(otp);
+
 
         Log.info("====== Digilocker Flow tested - Passed ======");
 
-        mbkCommonControlsHelper.handleHomePageLanding();
-
-        loginHelp.quickLogout();
-
-        loginHelp.quickLoginFromProfile("8216900006", "547372");
-
         Log.info("====== Adhaar website  Flow Started -  ======");
 
-        fullKycFromAdharWebsite("5851 2156 7144", "123456");
+        driver.navigate().back();
+        kycPage.clickOnCompleteUsingOtherOptions();
+
+        // click on via adhaar website
+        kycPage.clickOnViaAadharWebsite();
+        Log.info("====== Adhaar website  Flow Started -  ======");
+
+        //handeled permission popup
+        handelPopups();
+
+        // Enter adhaar number
+        kycPage.setAdharNumberOnAdharWebsite(adhaarNumber.substring(0,4)+ " "+adhaarNumber.substring(4,8)+ " "+adhaarNumber.substring(8,12));
+
+        // click on kyc consent checkbox
+        kycPage.clickOnKycConsent();
+
+        // click on arrow button
+        kycPage.clickOnArrowButtonOnAdhaarWebsite();
+
+        //enter security code
+        kycPage.setSecurityCode(security);
 
         Log.info("====== Adhaar  Flow tested - Passed ======");
     }
@@ -202,13 +222,6 @@ public class KYCHelper {
         kycPage.setAdharCard(twelveDigits);
         kycPage.enterDigilockerCaptchaCode(otp);
 
-        //Now captcha is coming on digilocker page, so can't move further.
-
-        // click on next button on digilocker
-        //  kycPage.clickOnNextButtonOnDigilocker();
-
-        // enter otp on digilocker
-        //     kycPage.setEnterOtpOnDigiLocker(otp);
     }
 
     public void fullKycFromAdharWebsite(String adharNumber, String securityCode) throws InterruptedException {

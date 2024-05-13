@@ -367,6 +367,11 @@ public class MBKCommonControlsHelper {
                 if(Element.isElementPresentNoWait(driver,By.xpath("//android.widget.TextView[@text='I don’t want benefits']"))){
                     driver.findElement(By.xpath("//android.widget.TextView[@text='I don’t want benefits']")).click();
                 }
+                if (Element.isElementPresentNoWait(driver, By.id("tv_explore_home"))){
+                    Log.info("Feature Assist Page Shown");
+                    driver.findElementById("tv_explore_home").click();
+                    Thread.sleep(3000);
+                }
 
 
             }else {
