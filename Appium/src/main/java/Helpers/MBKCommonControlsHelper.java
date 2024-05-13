@@ -344,7 +344,7 @@ public class MBKCommonControlsHelper {
     public void handleHomePageLanding() throws InterruptedException {
 
         if(Element.isElementPresentNoWait(driver, By.id("container"))){
-            Thread.sleep(5000);
+            Thread.sleep(7000);
             Log.info("Waiting more due to Slow Phone");
         }
 
