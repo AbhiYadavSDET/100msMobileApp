@@ -78,10 +78,10 @@ public class UpiPage {
     @AndroidFindBy(xpath = "(//android.widget.EditText)[1]")
     private AndroidElement enter_beneficiary_name;
 
-    @AndroidFindBy(xpath = "(//android.widget.EditText)[2]")
+    @AndroidFindBy(xpath = "(//android.widget.EditText)[1]")
     private AndroidElement enter_account_number;
 
-    @AndroidFindBy(xpath = "(//android.widget.EditText)[3]")
+    @AndroidFindBy(xpath = "(//android.widget.EditText)[2]")
     private AndroidElement enter_ifsc;
 
     @AndroidFindBy(id = "continue_button")
@@ -214,7 +214,7 @@ public class UpiPage {
     @AndroidFindBy(id="pocket_upi_id")
     private AndroidElement pocket_upi_id;
 
-    @AndroidFindBy (xpath = "//android.widget.TextView[@text='Transfer Now']")
+    @AndroidFindBy (xpath = "//android.widget.TextView[@text='See All']")
     private AndroidElement pocketUpi_homePage_transferNow_cta;
 
     @AndroidFindBy (xpath = "//android.widget.TextView[@text='Scan any QR code']")

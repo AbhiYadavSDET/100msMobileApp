@@ -138,7 +138,7 @@ public class UpiHelper {
 
 //        upiPage.selectTransfertoBank();
 
-        upiPage.enterBeneficiaryName(beneficiaryName);
+//        upiPage.enterBeneficiaryName(beneficiaryName);
 
         upiPage.enterAccountNumber(accountNumber);
 
@@ -147,6 +147,8 @@ public class UpiHelper {
         upiPage.clickConfirmBankDetails();
 
         //Amount Page Assertions
+
+        beneficiaryName=upiPage.getAmountPageTransferTo();
 
         mbReporter.verifyEqualsWithLogging(upiPage.getAmountPageTransferTo(), amountPageTransferName, "Verifying Fetched name", false, false);
 
@@ -200,7 +202,7 @@ public class UpiHelper {
 
         String actualReceiverName = upiPage.getReceiverName().replace("to ", "");
 
-        mbReporter.verifyEqualsWithLogging(actualReceiverName, expectedReceiverName, "Validate Receiver name", false, false);
+        mbReporter.verifyEqualsWithLogging(actualReceiverName, beneficiaryName, "Validate Receiver name", false, false);
 
         upiPage.returnToHomePage();
 
@@ -840,6 +842,12 @@ public class UpiHelper {
         upiPage.clickPocketUPIOptn();
 
         upiPage.clickOnConfirmPaymentChoosePaymentModeBottomsheet();
+
+
+        if(securityPinPage.checkSecurityPinPage()){
+            securityPinPage.enterSecurityPin("121212");
+        }
+
 
         permissionHelper.permissionAllow();
         permissionHelper.permissionAllow();
