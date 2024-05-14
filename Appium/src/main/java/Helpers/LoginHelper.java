@@ -106,6 +106,7 @@ public class LoginHelper {
         Thread.sleep(5000);
         if (Element.isElementPresentNoWait(driver, By.id("tv_explore_home"))){
             Log.info("Feature Assist Page Shown");
+            Thread.sleep(1500);
             driver.findElementById("tv_explore_home").click();
             Thread.sleep(3000);
         }
