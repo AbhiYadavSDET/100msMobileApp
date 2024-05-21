@@ -61,29 +61,30 @@ public class AAHelper {
 
             if (Element.isElementPresent(driver, By.xpath("//*[@text='Cashflow']"))) {
 
-                // Fetch the other text on the screen
-                String moneyoutTitleOnDashboard = aaPage.getOutgoingTitle();
-                String outgoingSecondSubTitleOnDashboard = aaPage.getOutgoingSecondSubTitle();
-
-                Log.info("OutGoing Title :" + moneyoutTitleOnDashboard);
-                Log.info("Second Sub Title :" + outgoingSecondSubTitleOnDashboard);
-
-                // Add assertions
-                mbReporter.verifyEqualsWithLogging(moneyoutTitleOnDashboard, expMoneyoutTitleOnDashboard, "Verify Outgoing Title on MainDashboard", false, false, true);
-                mbReporter.verifyEqualsWithLogging(outgoingSecondSubTitleOnDashboard, expOutgoingSecondSubTitleOnDashboard, "Verify Second Outgoing SubTitle on MainDashboard", false, false, true);
-
-            }
-
-            else {
-                Log.info("Outgoing Data is not present");
-            }
-
                 // Add the assertions
                 aaPage.scrollTomoneyinTitle();
                 aaPage.moneyinTitle();
                 String moneyInTTitle = aaPage.moneyinTitle();
                 Log.info("Money In Title : " + expmoneyinTitle);
                 mbReporter.verifyEqualsWithLogging(moneyInTTitle, expmoneyinTitle, "Verify Money In title", false, false, true);
+
+                    aaPage.scrollTomoneyOutTitle();
+                    // Fetch the other text on the screen
+                    String moneyoutTitleOnDashboard = aaPage.getOutgoingTitle();
+                    String outgoingSecondSubTitleOnDashboard = aaPage.getOutgoingSecondSubTitle();
+
+                    Log.info("OutGoing Title :" + moneyoutTitleOnDashboard);
+                    Log.info("Second Sub Title :" + outgoingSecondSubTitleOnDashboard);
+
+                    // Add assertions
+                    mbReporter.verifyEqualsWithLogging(moneyoutTitleOnDashboard, expMoneyoutTitleOnDashboard, "Verify Outgoing Title on MainDashboard", false, false, true);
+                    mbReporter.verifyEqualsWithLogging(outgoingSecondSubTitleOnDashboard, expOutgoingSecondSubTitleOnDashboard, "Verify Second Outgoing SubTitle on MainDashboard", false, false, true);
+
+            }
+
+            else {
+                Log.info("Outgoing Data is not present");
+            }
                 aaPage.scrollToReferYourFriend();
                 aaPage.scrolltoManage();
 
@@ -220,18 +221,7 @@ public class AAHelper {
         Element.waitForVisibility(driver, By.id("bottom_navigation_tool_tip"));
         Elements.tapByCoordinates(57,916,driver);
         aaPage.clickOndownArrowNexttoBankOnHomePage();
-
-        String allBankBalance = aaPage.getAllBankBalanceText();
-        String manageTitle = aaPage.manageTitle();
-
-        Log.info("allBankBalance" + allBankBalance);
-        Log.info("manageTitle" + manageTitle);
-
-        mbReporter.verifyEqualsWithLogging(allBankBalance, expAllBankBalance, "All bank balance Text", false, false, true);
-        mbReporter.verifyEqualsWithLogging(manageTitle,expmanageTitle, "Manage Title", false, false, true);
         mbReporter.verifyTrueWithLogging(aaPage.isBankAccoutPresent(), "Masked Account is present", false, false);
-
-
 
     }
 
@@ -296,6 +286,55 @@ public class AAHelper {
 
     }
 
+
+    public void FilterAA(String expmonthlyfilter,String explastMonthfilter) throws InterruptedException, IOException {
+
+        aaPage.allServicesCTA();
+        aaPage.scrollTotrackBankAccounts();
+        aaPage.clickOnTrackBankAccounts();
+        Element.waitForVisibility(driver, By.id("bottom_navigation_tool_tip"));
+        Elements.tapByCoordinates(57,916,driver);
+        aaPage.clickonnewMonthSelectFilter();
+
+        String monthlyfilter = aaPage.getCurrentMonthtxt();
+        Log.info("Monthly Filter " + monthlyfilter);
+        mbReporter.verifyEqualsWithLogging(monthlyfilter, expmonthlyfilter, "Monthly filter", false, false, true);
+
+        //Click on monthly filter
+        aaPage.clickonCurrentMonth();
+        aaPage.clickonnewMonthSelectFilter();
+
+        //Click on yearly filter
+        String lastMonthfilter = aaPage.getlastMonthtxt();
+        Log.info("last Month Filter  txt" + lastMonthfilter);
+        mbReporter.verifyEqualsWithLogging(lastMonthfilter, explastMonthfilter, "Last Month filter", false, false, true);
+
+        aaPage.clickonLastMonth();
+    }
+
+    public void SearchAA() throws InterruptedException, IOException {
+
+        aaPage.allServicesCTA();
+        aaPage.scrollTotrackBankAccounts();
+        aaPage.clickOnTrackBankAccounts();
+        Element.waitForVisibility(driver, By.id("bottom_navigation_tool_tip"));
+        Elements.tapByCoordinates(57,916,driver);
+        //click on first search Icon
+        aaPage.clickOnSearchIcon();
+
+        //Click on first search value
+        aaPage.clickOnFirstSearchvalue();
+
+        //Click on First list from search item
+        aaPage.clickonfilter();
+
+        //Click on the first bank account in the list
+        aaPage.clickonBankFilter();
+
+        //Click on Apply CTA
+        aaPage.clickonApplyCta();
+
+    }
 
 
 

@@ -61,5 +61,30 @@ public class Test_AccountAggregator extends TestBase {
 
     }
 
+    @Test(groups = {"AccountAggregator", "sanity1", "regression"}, priority = 7, description = "Verify Month filter on AA")
+    public void Test05_AA_Month_Filter() throws IOException, InterruptedException {
+
+        LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
+        loginHelp.quickLoginViaOtp("7042338867", "547372");
+        AAHelper aaHelper = new AAHelper(getAndroidDriver());
+        // Execute the test
+        aaHelper.FilterAA("Current Month","Last Month");
+        Log.info("======= Account Aggregator test =======");
+
+    }
+
+
+    @Test(groups = {"AccountAggregator", "sanity1", "regression"}, priority = 7, description = "Verify Month filter on AA")
+    public void Test05_AA_Search_Filter() throws IOException, InterruptedException {
+
+        LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
+        loginHelp.quickLoginViaOtp("7042338867", "547372");
+        AAHelper aaHelper = new AAHelper(getAndroidDriver());
+        // Execute the test
+        aaHelper.SearchAA();
+        Log.info("======= Account Aggregator test =======");
+
+    }
+
 
 }

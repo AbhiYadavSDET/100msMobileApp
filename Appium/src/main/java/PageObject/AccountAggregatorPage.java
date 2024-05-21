@@ -133,6 +133,13 @@ public class AccountAggregatorPage {
     @AndroidFindBy(xpath = "//*[@text='Manage']")
     private AndroidElement manageTitle;
 
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Current Month']")
+    private AndroidElement currentmonthSelectFilter;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Last Month']")
+    private AndroidElement lastmonthSelectFilter;
+
 //text
     @AndroidFindBy(id = "mkab_left_icon")
     private AndroidElement cross_click;
@@ -152,6 +159,8 @@ public class AccountAggregatorPage {
     @AndroidFindBy(id = "txt_masked_acc_no")
     private AndroidElement maskedbankAccount;
 
+    @AndroidFindBy(id = "txt_filter")
+    private AndroidElement monthSelectFilter;
 
     @AndroidFindBy(xpath = "//*[@text='Help & Support']")
     private AndroidElement  helpSupportTitle;
@@ -196,13 +205,16 @@ public class AccountAggregatorPage {
     @AndroidFindBy(xpath = "//*[@text='Highest Spend']")
     private AndroidElement  highestSpend;
 
+    @AndroidFindBy(xpath = "//*[@text='HDFC Bank XX0088']")
+    private AndroidElement  bankNo;
+
     @AndroidFindBy(xpath = "//*[@text='Top Category']")
     private AndroidElement  topCategory;
 
     @AndroidFindBy(xpath = "//*[@text='Money Received']")
     private AndroidElement  moneyReceived;
 
-    @AndroidFindBy(xpath = "//*[@text='MONEY OUT']")
+    @AndroidFindBy(xpath = "//*[@text='MONEY IN']")
     private AndroidElement  anayseronAAhomepage;
 
     @AndroidFindBy(xpath = "//*[@text='DEBITS']")
@@ -227,6 +239,9 @@ public class AccountAggregatorPage {
 
     @AndroidFindBy(xpath = "//*[@text='Year']")
     private AndroidElement  yearTextOnAnlyser;
+
+    @AndroidFindBy(id="ctaApply")
+    private AndroidElement apply_cta;
 
     @AndroidFindBy(xpath = "//*[@text='Auto Refresh Frequency']")
     private AndroidElement  autoRefreshFrequently;
@@ -265,6 +280,12 @@ public class AccountAggregatorPage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'SKIP']")
     private AndroidElement skip_cta;
 
+    @AndroidFindBy(xpath = "//*[@text='Sort']")
+    private AndroidElement  sortFilter;
+
+    @AndroidFindBy(xpath = "//*[@text='High To Low']")
+    private AndroidElement  highToLowFilter;
+
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'All Bank Balance']")
     private AndroidElement allBankBalance;
 
@@ -277,11 +298,41 @@ public class AccountAggregatorPage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text ='Enter valid 10 digit number']")
     private AndroidElement invalid_mobile_enter_error;
 
+    @AndroidFindBy(id = "mkiv_image")
+    private AndroidElement SearchIcon;
+
+    @AndroidFindBy(xpath="//*[contains(@text,'Food')]")
+    private AndroidElement firstSearchTxt;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Filter']")
+    private AndroidElement txtFilter;
+
     public AccountAggregatorPage(AndroidDriver driver) throws IOException {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
         Log.info("***** Account Aggregator *****");
 
+    }
+
+    public void clickonfilter() throws InterruptedException{
+        Elements.selectElement(driver,txtFilter, " Click on Filter");
+    }
+
+
+    public void clickonApplyCta() throws InterruptedException{
+        Elements.selectElement(driver,apply_cta, " Click on Apply");
+    }
+
+    public void clickonBankFilter() throws InterruptedException{
+        Elements.selectElement(driver,bankNo, " Click on Bank from list");
+    }
+
+    public void clickonSort() throws InterruptedException{
+        Elements.selectElement(driver,sortFilter, " Click on sort filter ");
+    }
+
+    public void clickonHighToLowFilter() throws InterruptedException{
+        Elements.selectElement(driver,highToLowFilter, " Click on sort filter ");
     }
 
     public void userLoggedIn() throws InterruptedException{
@@ -330,6 +381,9 @@ public class AccountAggregatorPage {
         Elements.selectElement(driver,addAccountTitleonBankscreen,"Click on Add Account on bank list screen");
     }
 
+    public void clickOnSearchIcon() throws InterruptedException{
+        Elements.selectElement(driver,SearchIcon,"Click on Search Icon");
+    }
 
     public void clickOnToAddAccount() throws InterruptedException{
         Elements.selectElement(driver,addAccountTitle,"Click on Add Account");
@@ -474,6 +528,9 @@ public class AccountAggregatorPage {
          Elements.scrollToElement(driver, moneyInTitle);
     }
 
+    public void scrollTomoneyOutTitle() throws InterruptedException {
+        Elements.scrollToElement(driver, moneyOutTitle);
+    }
 
     public String ReferTitle() throws InterruptedException {
         return Elements.getText(driver, referTitle, "Dashboard Refer Title");
@@ -704,7 +761,6 @@ public class AccountAggregatorPage {
     }
 
 
-
     public void clickBackButtonOnManageConsentInside() throws InterruptedException{
         Elements.selectElement(driver,backbuttonOnManageConsentInside,"Click on back button on ManageConsent Inside");
     }
@@ -766,6 +822,30 @@ public class AccountAggregatorPage {
         return Elements.getText(driver, invalid_mobile_enter_error, "error message on invalid input");
 
     }
+
+    public void clickonnewMonthSelectFilter() throws InterruptedException{
+        Elements.selectElement(driver,monthSelectFilter,"Click on Month select filter");
+    }
+
+    public void clickonCurrentMonth() throws InterruptedException{
+        Elements.selectElement(driver,currentmonthSelectFilter,"Click on current Month from filter");
+    }
+    public String getCurrentMonthtxt() throws InterruptedException {
+        return Elements.getText(driver, currentmonthSelectFilter);
+    }
+
+    public void clickonLastMonth() throws InterruptedException{
+        Elements.selectElement(driver,lastmonthSelectFilter,"Click on last month from filter");
+    }
+
+    public String getlastMonthtxt() throws InterruptedException {
+        return Elements.getText(driver, lastmonthSelectFilter);
+    }
+
+    public void clickOnFirstSearchvalue() throws InterruptedException{
+        Elements.selectElement(driver,firstSearchTxt,"Click on first search text");
+    }
+
 
 }
 
