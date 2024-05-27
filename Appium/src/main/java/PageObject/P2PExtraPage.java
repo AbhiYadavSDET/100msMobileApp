@@ -49,6 +49,9 @@ public class P2PExtraPage {
     @AndroidFindBy(id = "cta")
     private AndroidElement cta_invest;
 
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Review and pay']")
+    private AndroidElement review_and_pay_btn;
+
     @AndroidFindBy(id = "tvOk")
     private AndroidElement plus_ok_popup;
 
@@ -243,6 +246,15 @@ public class P2PExtraPage {
 
     @AndroidFindBy(id = "com.mobikwik_new.debug:id/cta")
     private AndroidElement got_it_cta;
+
+    @AndroidFindBy(id = "com.mobikwik_new.debug:id/tv_amount")
+    private AndroidElement investment_amount;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Borrower preferences')]")
+    private AndroidElement borrower_preference;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Pay')]")
+    private AndroidElement pay_cta;
 
 
 
@@ -640,6 +652,26 @@ public class P2PExtraPage {
 
     public void clickGotIt() {
         Elements.selectElement(driver,got_it_cta,"Click on Got It");
+    }
+
+    public void clickReviewPayBtn() {
+         Elements.selectElement(driver, review_and_pay_btn, "Click on Review and Pay");
+    }
+
+    public String getAmountOnSummaryPage() throws InterruptedException {
+        return Elements.getText(driver,investment_amount,"Get the Investment Amount");
+    }
+
+    public void clickBorrowerPreferenceOnSummaryPage() {
+        Elements.selectElement(driver,borrower_preference,"Click on Borrower Preference");
+    }
+
+    public String getAmountOnCTA() throws InterruptedException {
+        return Elements.getText(driver,pay_cta,"Get Amount on Pay Button");
+    }
+
+    public void clickPayBtn() {
+        Elements.selectElement(driver,pay_cta,"Click on Pay");
     }
 
 

@@ -58,7 +58,7 @@ public class P2PExtraTest extends TestBase {
         loginHelp.quickLoginViaOtp("7795709569", "547372");
 
         P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getAndroidDriver());
-        p2PExtraHelper.investInFixed("Select Your Bank");
+        p2PExtraHelper.investInFixed("Select Your Bank","1,000");
 
         Log.info("======= END : p2p XTRA-FIXED Invest test =======");
 

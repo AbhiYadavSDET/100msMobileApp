@@ -5,6 +5,7 @@ import PageObject.HomePage;
 import PageObject.MbkCommonControlsPage;
 import PageObject.P2PExtraPage;
 import Utils.Element;
+import Utils.Elements;
 import Utils.MBReporter;
 import Utils.Screen;
 import io.appium.java_client.android.AndroidDriver;
@@ -205,7 +206,7 @@ public class P2PExtraHelper {
 
 
 
-    public void investInFixed(String expTitle) throws InterruptedException, IOException {
+    public void investInFixed(String expTitle,String expectedAmount) throws InterruptedException, IOException {
 
         Log.info("----------- Arguments ---------------");
         Log.info("expTitle : " + expTitle);
@@ -227,7 +228,7 @@ public class P2PExtraHelper {
 
         //Click on Invest More button on XTRA dashboard
         p2PExtraPage.selectInvestMore();
-
+/*
         // CLick on Got it CTA on Borrower Mapping Report Bottomsheet
         p2PExtraPage.clickGotItCtaBorrowerMappingReport();
 
@@ -241,12 +242,33 @@ public class P2PExtraHelper {
         if(p2PExtraPage.checkNavbar()) {
             p2PExtraPage.selectFixedFromNavBar();
         }
+  */
 
-        //Click on Proceed to pay Btn on Amount Summary Page
-        p2PExtraPage.selectInvestMore();
+
+        //Click on Review & Pay Btn on Amount Summary Page
+        p2PExtraPage.clickReviewPayBtn();
+
+        String actualAmount = p2PExtraPage.getAmountOnSummaryPage();
+
+        Log.info("Amount on Summary Screen : " + actualAmount);
+
+        mbReporter.verifyEqualsWithLogging(actualAmount,expectedAmount,"Verify Amount",false,false,true);
+
+        //p2PExtraPage.clickBorrowerPreferenceOnSummaryPage();
+
+        //driver.navigate().back();
+
+        String amountOnCTA = p2PExtraPage.getAmountOnCTA().substring(5);
+
+        Log.info("Amount on Pay button: " + amountOnCTA);
+
+        mbReporter.verifyEquals(actualAmount,amountOnCTA,"Check for the Amount on CTA",false,false);
 
         //Click Invest Now btn on Xtra FIXED amount page
-        p2PExtraPage.selectInvestMore();
+        p2PExtraPage.clickPayBtn();
+
+        // Select NetBanking from XTRA checkout screen
+        p2PExtraPage.selectNBOnCheckoutScreen();
 
 
     }
