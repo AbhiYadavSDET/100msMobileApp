@@ -344,41 +344,53 @@ public class MBKCommonControlsHelper {
     public void handleHomePageLanding() throws InterruptedException {
 
         if(Element.isElementPresentNoWait(driver, By.id("container"))){
-            Thread.sleep(7000);
+            Log.info("Home Page pop interruption Locator  : container");
+            Thread.sleep(3000);
             Log.info("Waiting more due to Slow Phone");
         }
 
-        for (int i = 0; i < 2; i++) {
+//        for (int i = 0; i < 2; i++) {
             if (!Element.isElementPresentNoWait(driver, By.id("cl_root"))) {
-                driver.navigate().back();
-                Log.info("Pressed Back : Due to Pop UP interruption");
+//                driver.navigate().back();
+//                Log.info("Pressed Back : Due to Pop UP interruption");
                 if (Element.isElementPresentNoWait(driver, By.id("alertTitle"))){
+                    Log.info("Home Page pop interruption Locator  : alertTitle");
                     driver.findElementByXPath("//android.widget.Button[@text='LATER']").click();
                 }
-                if (Element.isElementPresentNoWait(driver, By.id("tv_do_not_want_benefits"))){
+                else if (Element.isElementPresentNoWait(driver, By.id("tv_do_not_want_benefits"))){
+                    Log.info("Home Page pop interruption Locator  : tv_do_not_want_benefits");
                     driver.findElementById("tv_do_not_want_benefits").click();
                 }
-                if (Element.isElementPresentNoWait(driver, By.id("com.mobikwik_new.debug:id/question_nps"))){
+                else if (Element.isElementPresentNoWait(driver, By.id("com.mobikwik_new.debug:id/question_nps"))){
+                    Log.info("Home Page pop interruption Locator  : question_nps");
                     driver.findElementById("com.mobikwik_new.debug:id/close_button").click();
                 }
-                if(Element.isElementPresentNoWait(driver, By.id("com.mobikwik_new.debug:id/btn_secure_now"))){
+                else if(Element.isElementPresentNoWait(driver, By.id("com.mobikwik_new.debug:id/btn_secure_now"))){
+                    Log.info("Home Page pop interruption Locator  : btn_secure_now");
                     driver.navigate().back();
                 }
-                if(Element.isElementPresentNoWait(driver,By.xpath("//android.widget.TextView[@text='I don’t want benefits']"))){
+                else if(Element.isElementPresentNoWait(driver,By.xpath("//android.widget.TextView[@text='I don’t want benefits']"))){
+                    Log.info("Home Page pop interruption Locator  : I don’t want benefits");
                     driver.findElement(By.xpath("//android.widget.TextView[@text='I don’t want benefits']")).click();
                 }
-                if (Element.isElementPresentNoWait(driver, By.id("tv_explore_home"))){
-                    Log.info("Feature Assist Page Shown");
+                else if (Element.isElementPresentNoWait(driver, By.id("tv_explore_home"))){
+                    Log.info("Home Page pop interruption Locator  : Feature Assist Page Shown");
                     driver.findElementById("tv_explore_home").click();
                     Thread.sleep(3000);
+                }else {
+                    Log.info("Home Page pop interruption Locator  : New Type Pop Up Detected");
+                    Log.info("-----------------Page Source Start----------------");
+                    Log.info(driver.getPageSource());
+                    Log.info("-----------------Page Source End----------------");
+                    driver.navigate().back();
                 }
 
-
-            }else {
-                break;
-            }
+//            }else {
+//                break;
+//            }
         }
         if (Element.isElementPresentNoWait(driver, By.id("ic_close"))) {
+            Log.info("Home Page pop interruption Locator  : ic_close");
             driver.findElementById("ic_close").click();
         }
 
