@@ -6,7 +6,6 @@ import Utils.Element;
 import Utils.Elements;
 import Utils.MBReporter;
 import Utils.Screen;
-import com.mongodb.annotations.NotThreadSafe;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import org.openqa.selenium.By;

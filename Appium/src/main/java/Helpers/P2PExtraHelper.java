@@ -556,13 +556,13 @@ public class P2PExtraHelper {
             //Wait for 1 second
             Thread.sleep(1000);
 
-            //Change to Transfer to Flexi Option
-            p2PExtraPage.selectTransferToFlexioption();
+            //Change to Transfer to Bank Option
+            p2PExtraPage.selectTransferToBankOption();
 
             //Wait for 1 second
             Thread.sleep(1000);
 
-            String actualStatus1 = p2PExtraPage.getTransferToFlexiBtn();
+            String actualStatus1 = p2PExtraPage.getTransferToBankBtn();
             Log.info("Check text :" + actualStatus1);
 
             // Assertion
