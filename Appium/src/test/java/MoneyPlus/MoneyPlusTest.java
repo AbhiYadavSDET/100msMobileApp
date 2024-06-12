@@ -24,7 +24,7 @@ public class MoneyPlusTest extends TestBase {
 
         // Execute the test
         MoneyPlusHelper moneyPlusHelper= new MoneyPlusHelper(getAndroidDriver());
-        moneyPlusHelper.verifyMoneyPlusFlow("Track your bank accounts with 100% accuracy","Watch your money grow", "Get Started", "Track your PF accounts at one place");
+        moneyPlusHelper.verifyMoneyPlusFlow("Track your bank accounts with 100% accuracy","Watch your money grow", "Get Started", "Track your Employee Provident Fund");
 
         Log.info("======= END : Money Plus Verify test =======");
 
