@@ -77,6 +77,9 @@ public class MoneyPlusPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='gold_title']")
     private AndroidElement gold_bal_text;
 
+    @AndroidFindBy(id = "com.mobikwik_new.debug:id/tvSubHeading")
+    private AndroidElement xtra_pitch_page_sub_heading;
+
 
 
     public MoneyPlusPage(AndroidDriver driver) {
@@ -165,7 +168,7 @@ public class MoneyPlusPage {
     }
 
     public String fetchXtraIntroText() throws InterruptedException{
-        return Elements.getText(driver, xtra_page_title);
+        return Elements.getText(driver, xtra_pitch_page_sub_heading);
 
     }
 
