@@ -25,7 +25,7 @@ public class Test_AccountAggregator extends TestBase {
     }
 
     @Test(groups = {"AccountAggregator", "sanity1", "regression"}, priority = 7, description = "Verify Analyser")
-    public void Test03_existing_User_Analyser() throws IOException, InterruptedException {
+    public void Test02_existing_User_Analyser() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
         loginHelp.quickLoginViaOtp("7042338867", "547372");
@@ -37,7 +37,7 @@ public class Test_AccountAggregator extends TestBase {
     }
 
     @Test(groups = {"AccountAggregator", "sanity1", "regression", "test"}, priority = 7, description = "Verify Manage Section")
-    public void Test04_existing_User_Manage() throws IOException, InterruptedException {
+    public void Test03_existing_User_Manage() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
         loginHelp.quickLoginViaOtp("7042338867", "547372");
@@ -50,7 +50,7 @@ public class Test_AccountAggregator extends TestBase {
 
 
     @Test(groups = {"AccountAggregator", "sanity1", "regression"}, priority = 7, description = "Verify Add account")
-    public void Test05_AA_new_addaccount() throws IOException, InterruptedException {
+    public void Test04_AA_new_addaccount() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
         loginHelp.quickLoginViaOtp("7042338867", "547372");
@@ -60,6 +60,46 @@ public class Test_AccountAggregator extends TestBase {
         Log.info("======= Account Aggregator test =======");
 
     }
+
+    @Test(groups = {"AccountAggregator", "sanity1", "regression"}, priority = 7, description = "Verify Month filter on AA")
+    public void Test05_AA_Month_Filter() throws IOException, InterruptedException {
+
+        LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
+        loginHelp.quickLoginViaOtp("7042338867", "547372");
+        AAHelper aaHelper = new AAHelper(getAndroidDriver());
+        // Execute the test
+        aaHelper.FilterAA("Current Month","Last Month");
+        Log.info("======= Account Aggregator test =======");
+
+    }
+
+
+    @Test(groups = {"AccountAggregator", "sanity1", "regression"}, priority = 7, description = "Verify Month filter on AA")
+    public void Test06_AA_Search_Filter() throws IOException, InterruptedException {
+
+        LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
+        loginHelp.quickLoginViaOtp("7042338867", "547372");
+        AAHelper aaHelper = new AAHelper(getAndroidDriver());
+        // Execute the test
+        aaHelper.SearchAA();
+        Log.info("======= Account Aggregator test =======");
+
+    }
+
+
+    @Test(groups = {"AccountAggregator", "sanity1", "regression"}, priority = 7, description = "Verify Retagging")
+    public void Test07_AA_New_Retagging() throws IOException, InterruptedException {
+
+        LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
+        loginHelp.quickLoginViaOtp("7042338867", "547372");
+        AAHelper aaHelper = new AAHelper(getAndroidDriver());
+        // Execute the test
+        aaHelper.AAretagging("Nickname","Category","Sub Category","Payment Mode");
+        Log.info("======= Account Aggregator test =======");
+
+    }
+
+
 
 
 }

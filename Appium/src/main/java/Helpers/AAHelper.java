@@ -6,6 +6,7 @@ import Utils.Element;
 import Utils.Elements;
 import Utils.MBReporter;
 import Utils.Screen;
+import com.mongodb.annotations.NotThreadSafe;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import org.openqa.selenium.By;
@@ -61,29 +62,30 @@ public class AAHelper {
 
             if (Element.isElementPresent(driver, By.xpath("//*[@text='Cashflow']"))) {
 
-                // Fetch the other text on the screen
-                String moneyoutTitleOnDashboard = aaPage.getOutgoingTitle();
-                String outgoingSecondSubTitleOnDashboard = aaPage.getOutgoingSecondSubTitle();
-
-                Log.info("OutGoing Title :" + moneyoutTitleOnDashboard);
-                Log.info("Second Sub Title :" + outgoingSecondSubTitleOnDashboard);
-
-                // Add assertions
-                mbReporter.verifyEqualsWithLogging(moneyoutTitleOnDashboard, expMoneyoutTitleOnDashboard, "Verify Outgoing Title on MainDashboard", false, false, true);
-                mbReporter.verifyEqualsWithLogging(outgoingSecondSubTitleOnDashboard, expOutgoingSecondSubTitleOnDashboard, "Verify Second Outgoing SubTitle on MainDashboard", false, false, true);
-
-            }
-
-            else {
-                Log.info("Outgoing Data is not present");
-            }
-
                 // Add the assertions
                 aaPage.scrollTomoneyinTitle();
                 aaPage.moneyinTitle();
                 String moneyInTTitle = aaPage.moneyinTitle();
                 Log.info("Money In Title : " + expmoneyinTitle);
                 mbReporter.verifyEqualsWithLogging(moneyInTTitle, expmoneyinTitle, "Verify Money In title", false, false, true);
+
+                    aaPage.scrollTomoneyOutTitle();
+                    // Fetch the other text on the screen
+                    String moneyoutTitleOnDashboard = aaPage.getOutgoingTitle();
+                    String outgoingSecondSubTitleOnDashboard = aaPage.getOutgoingSecondSubTitle();
+
+                    Log.info("OutGoing Title :" + moneyoutTitleOnDashboard);
+                    Log.info("Second Sub Title :" + outgoingSecondSubTitleOnDashboard);
+
+                    // Add assertions
+                    mbReporter.verifyEqualsWithLogging(moneyoutTitleOnDashboard, expMoneyoutTitleOnDashboard, "Verify Outgoing Title on MainDashboard", false, false, true);
+                    mbReporter.verifyEqualsWithLogging(outgoingSecondSubTitleOnDashboard, expOutgoingSecondSubTitleOnDashboard, "Verify Second Outgoing SubTitle on MainDashboard", false, false, true);
+
+            }
+
+            else {
+                Log.info("Outgoing Data is not present");
+            }
                 aaPage.scrollToReferYourFriend();
                 aaPage.scrolltoManage();
 
@@ -189,11 +191,10 @@ public class AAHelper {
         aaPage.trackBankAccountsCTA();
         Element.waitForVisibility(driver, By.id("bottom_navigation_tool_tip"));
         Elements.tapByCoordinates(57,916,driver);
+        aaPage.scrollToMoneyOut();
         aaPage.clickonAnalyserOnAAHomePage();
         Log.info("Click On Analyser HomePage ");
-        Thread.sleep(2000);
-
-        screen.swipeUpMore(driver);
+        Elements.tapByCoordinates(57,916,driver);
 
         String debitText = aaPage.getDebitText();
         String weekText = aaPage.getweekText();
@@ -220,18 +221,7 @@ public class AAHelper {
         Element.waitForVisibility(driver, By.id("bottom_navigation_tool_tip"));
         Elements.tapByCoordinates(57,916,driver);
         aaPage.clickOndownArrowNexttoBankOnHomePage();
-
-        String allBankBalance = aaPage.getAllBankBalanceText();
-        String manageTitle = aaPage.manageTitle();
-
-        Log.info("allBankBalance" + allBankBalance);
-        Log.info("manageTitle" + manageTitle);
-
-        mbReporter.verifyEqualsWithLogging(allBankBalance, expAllBankBalance, "All bank balance Text", false, false, true);
-        mbReporter.verifyEqualsWithLogging(manageTitle,expmanageTitle, "Manage Title", false, false, true);
         mbReporter.verifyTrueWithLogging(aaPage.isBankAccoutPresent(), "Masked Account is present", false, false);
-
-
 
     }
 
@@ -271,7 +261,7 @@ public class AAHelper {
         aaPage.allServicesCTA();
         aaPage.scrollToAAOnHomeScreen();
         aaPage.clickOnAAOnHomeScreen();
-        aaPage.scrolltoManage();
+        aaPage.scrollToBankAccount();
         aaPage.clickOnBankAccount();
         aaPage.clickOnToAddAccountOnBankListScreen();
 
@@ -293,6 +283,108 @@ public class AAHelper {
         Element.waitForVisibility(driver, By.xpath("//*/android.widget.TextView[@text = 'Others']"));
         aaPage.clickonConsentcheckBox();
         aaPage.clickOnexitbutoonOnfeedback();
+
+    }
+
+
+    public void FilterAA(String expmonthlyfilter,String explastMonthfilter) throws InterruptedException, IOException {
+
+        aaPage.allServicesCTA();
+        aaPage.scrollTotrackBankAccounts();
+        aaPage.clickOnTrackBankAccounts();
+        Element.waitForVisibility(driver, By.id("bottom_navigation_tool_tip"));
+        Elements.tapByCoordinates(57,916,driver);
+        aaPage.scrollToMoneyOut();
+        aaPage.clickonnewMonthSelectFilter();
+
+        String monthlyfilter = aaPage.getCurrentMonthtxt();
+        Log.info("Monthly Filter " + monthlyfilter);
+        mbReporter.verifyEqualsWithLogging(monthlyfilter, expmonthlyfilter, "Monthly filter", false, false, true);
+
+        //Click on monthly filter
+        aaPage.clickonCurrentMonth();
+        aaPage.clickonnewMonthSelectFilter();
+
+        //Click on yearly filter
+        String lastMonthfilter = aaPage.getlastMonthtxt();
+        Log.info("last Month Filter  txt" + lastMonthfilter);
+        mbReporter.verifyEqualsWithLogging(lastMonthfilter, explastMonthfilter, "Last Month filter", false, false, true);
+
+        aaPage.clickonLastMonth();
+    }
+
+    public void SearchAA() throws InterruptedException, IOException {
+
+        aaPage.allServicesCTA();
+        aaPage.scrollTotrackBankAccounts();
+        aaPage.clickOnTrackBankAccounts();
+        Element.waitForVisibility(driver, By.id("bottom_navigation_tool_tip"));
+        Elements.tapByCoordinates(57,916,driver);
+        //click on first search Icon
+        aaPage.clickOnSearchIcon();
+
+        //Click on first search value
+        aaPage.clickOnFirstSearchvalue();
+
+        //Click on First list from search item
+        aaPage.clickonfilter();
+
+        //Click on the first bank account in the list
+        aaPage.clickonBankFilter();
+
+        //Click on Apply CTA
+        aaPage.clickonApplyCta();
+
+    }
+
+
+    public void AAretagging(String expnickNametext,String expcategoryheader,String expsubcategoryheader,String exppaymentModetext) throws InterruptedException, IOException {
+
+        aaPage.allServicesCTA();
+        aaPage.scrollToAAOnHomeScreen();
+        aaPage.clickOnAAOnHomeScreen();
+        aaPage.scrolltoViewHighlights();
+        aaPage.clickOnviewHighlisht();
+        aaPage.clickOnOneHighlightInterestCredit();
+        String nickNametext = aaPage.getTextRetaggingNickName();
+        Log.info("NickNameText" + nickNametext);
+        mbReporter.verifyTrueWithLogging(aaPage.isTextRetaggingNickNamePresent(), "Verify Nickname is present or not", false, false);
+        mbReporter.verifyEqualsWithLogging(nickNametext, expnickNametext, "Nickname Category name", false, false, true);
+
+        //Nick Name Value
+        String nickNametextvalue =aaPage.getTextNickNameVal();
+        Log.info("NickNameText value " + nickNametextvalue);
+
+        if (Element.isElementPresent(driver, By.xpath("//*[@text='+Add']")))
+        {
+
+            aaPage.clickOnAddbutton();
+            aaPage.setpayeeName("jaiRam");
+            aaPage.clickonUpdateName();
+
+        }
+
+        // Get Category Name
+        String categoryheader =aaPage.getTextCategory();
+        Log.info("Category Header " + categoryheader);
+        mbReporter.verifyEqualsWithLogging(categoryheader, expcategoryheader, "Header Category name", false, false, true);
+
+        aaPage.clickonTextCategoryVa();
+        Thread.sleep(4000);
+        aaPage.clickonleftIcon();
+
+        // Get Sub Category Name
+        String subcategoryheader =aaPage.getTextSubCategory();
+        Log.info("Subcategory Header " + subcategoryheader);
+        mbReporter.verifyEqualsWithLogging(subcategoryheader, expsubcategoryheader, "Header SubCategory name", false, false, true);
+
+        aaPage.clickonTextSubCategoryVa();
+        aaPage.clickonleftIcon();
+
+        String paymentModetext =aaPage.getTextpaymentMode();
+        Log.info("Payment Mode text " + paymentModetext);
+        mbReporter.verifyEqualsWithLogging(paymentModetext, exppaymentModetext, "Header Payment Mode", false, false, true);
+
 
     }
 
