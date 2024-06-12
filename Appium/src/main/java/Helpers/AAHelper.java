@@ -6,6 +6,7 @@ import Utils.Element;
 import Utils.Elements;
 import Utils.MBReporter;
 import Utils.Screen;
+import com.mongodb.annotations.NotThreadSafe;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import org.openqa.selenium.By;
@@ -190,11 +191,10 @@ public class AAHelper {
         aaPage.trackBankAccountsCTA();
         Element.waitForVisibility(driver, By.id("bottom_navigation_tool_tip"));
         Elements.tapByCoordinates(57,916,driver);
+        aaPage.scrollToMoneyOut();
         aaPage.clickonAnalyserOnAAHomePage();
         Log.info("Click On Analyser HomePage ");
-        Thread.sleep(2000);
-
-        screen.swipeUpMore(driver);
+        Elements.tapByCoordinates(57,916,driver);
 
         String debitText = aaPage.getDebitText();
         String weekText = aaPage.getweekText();
@@ -261,7 +261,7 @@ public class AAHelper {
         aaPage.allServicesCTA();
         aaPage.scrollToAAOnHomeScreen();
         aaPage.clickOnAAOnHomeScreen();
-        aaPage.scrolltoManage();
+        aaPage.scrollToBankAccount();
         aaPage.clickOnBankAccount();
         aaPage.clickOnToAddAccountOnBankListScreen();
 
@@ -294,6 +294,7 @@ public class AAHelper {
         aaPage.clickOnTrackBankAccounts();
         Element.waitForVisibility(driver, By.id("bottom_navigation_tool_tip"));
         Elements.tapByCoordinates(57,916,driver);
+        aaPage.scrollToMoneyOut();
         aaPage.clickonnewMonthSelectFilter();
 
         String monthlyfilter = aaPage.getCurrentMonthtxt();
@@ -335,6 +336,58 @@ public class AAHelper {
         aaPage.clickonApplyCta();
 
     }
+
+
+    public void AAretagging(String expnickNametext,String expcategoryheader,String expsubcategoryheader,String exppaymentModetext) throws InterruptedException, IOException {
+
+        aaPage.allServicesCTA();
+        aaPage.scrollToAAOnHomeScreen();
+        aaPage.clickOnAAOnHomeScreen();
+        aaPage.scrolltoViewHighlights();
+        aaPage.clickOnviewHighlisht();
+        aaPage.clickOnOneHighlightInterestCredit();
+        String nickNametext = aaPage.getTextRetaggingNickName();
+        Log.info("NickNameText" + nickNametext);
+        mbReporter.verifyTrueWithLogging(aaPage.isTextRetaggingNickNamePresent(), "Verify Nickname is present or not", false, false);
+        mbReporter.verifyEqualsWithLogging(nickNametext, expnickNametext, "Nickname Category name", false, false, true);
+
+        //Nick Name Value
+        String nickNametextvalue =aaPage.getTextNickNameVal();
+        Log.info("NickNameText value " + nickNametextvalue);
+
+        if (Element.isElementPresent(driver, By.xpath("//*[@text='+Add']")))
+        {
+
+            aaPage.clickOnAddbutton();
+            aaPage.setpayeeName("jaiRam");
+            aaPage.clickonUpdateName();
+
+        }
+
+        // Get Category Name
+        String categoryheader =aaPage.getTextCategory();
+        Log.info("Category Header " + categoryheader);
+        mbReporter.verifyEqualsWithLogging(categoryheader, expcategoryheader, "Header Category name", false, false, true);
+
+        aaPage.clickonTextCategoryVa();
+        Thread.sleep(4000);
+        aaPage.clickonleftIcon();
+
+        // Get Sub Category Name
+        String subcategoryheader =aaPage.getTextSubCategory();
+        Log.info("Subcategory Header " + subcategoryheader);
+        mbReporter.verifyEqualsWithLogging(subcategoryheader, expsubcategoryheader, "Header SubCategory name", false, false, true);
+
+        aaPage.clickonTextSubCategoryVa();
+        aaPage.clickonleftIcon();
+
+        String paymentModetext =aaPage.getTextpaymentMode();
+        Log.info("Payment Mode text " + paymentModetext);
+        mbReporter.verifyEqualsWithLogging(paymentModetext, exppaymentModetext, "Header Payment Mode", false, false, true);
+
+
+    }
+
 
 
 
