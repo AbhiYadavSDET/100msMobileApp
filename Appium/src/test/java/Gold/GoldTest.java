@@ -70,7 +70,7 @@ public class GoldTest extends TestBase {
 
     }
 
-    @Test(groups = {"sanity1", "goldCoin", "regression"}, priority = 1, description = "Verify Sip On Gold Page")
+    @Test(groups = {"sanity", "goldBuy", "regression"}, priority = 0, description = "Verify Sip On Gold Page")
     public void Test03_Gold_Sip() throws IOException, InterruptedException {
 
         Log.info("======= START : Gold SIp test =======");
@@ -82,11 +82,12 @@ public class GoldTest extends TestBase {
 
         // Execute the test
         GoldHelper goldHelper = new GoldHelper(getAndroidDriver());
-        goldHelper.goldSip("Start Saving with Gold SIP","Daily","Monthly","Min ₹10","Select a day for monthly purchase");
+        goldHelper.goldSip("Start Saving with Gold SIP","Daily","Monthly","Select a day for monthly purchase");
 
         Log.info("======= END : Gold SIp test =======");
 
 
     }
+
 
 }

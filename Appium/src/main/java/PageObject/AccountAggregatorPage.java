@@ -284,9 +284,35 @@ public class AccountAggregatorPage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text ='Connect Your Accounts']")
     private AndroidElement connectyoueaccount_cta;
 
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text ='View Statement']")
+    private AndroidElement viewStatement;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text ='Download Statement']")
+    private AndroidElement downloadStatement;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text ='Download Smart Statement']")
+    private AndroidElement downloadsmartStatement;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text ='Last 7 Days']")
+    private AndroidElement txtLast7Days;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text ='Last 30 Days']")
+    private AndroidElement txtLast30Days;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text ='Last 6 Months']")
+    private AndroidElement Last6Months;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text ='Last 12 Months']")
+    private AndroidElement Last12Months;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text ='This Year']")
+    private AndroidElement txtThisYear;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text ='Financial Year']")
+    private AndroidElement txtFinancialYear;
+
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text ='Update Name']")
     private AndroidElement update_name;
-
 
     @AndroidFindBy(xpath = "//*/android.widget.EditText[@text ='Payee Name']")
     private AndroidElement enterPayeeName;
@@ -472,10 +498,32 @@ public class AccountAggregatorPage {
         Elements.selectElement(driver, trackInvestmentCTA, "Click on Track all your investment cta");
     }
 
-
-
     public String getTitle() throws InterruptedException {
         return Elements.getText(driver, title, "Base Title");
+    }
+
+    public String getLast7daysTxt() throws InterruptedException {
+        return Elements.getText(driver, txtLast7Days, "txt Last 7 Days");
+    }
+
+    public String getLast30daysTxt() throws InterruptedException {
+        return Elements.getText(driver, txtLast30Days, "txt Last 30 Days");
+    }
+
+    public String getLast6monthTxt() throws InterruptedException {
+        return Elements.getText(driver, Last6Months, "txt Last 6 Months");
+    }
+
+    public String getLast12monthTxt() throws InterruptedException {
+        return Elements.getText(driver, Last12Months, "txt Last 12 Months");
+    }
+
+    public String getThisYearTxt() throws InterruptedException {
+        return Elements.getText(driver, txtThisYear, "txt this Year");
+    }
+
+    public String getFinanacialYearTxt() throws InterruptedException {
+        return Elements.getText(driver, txtFinancialYear, "txt financial Year");
     }
 
     public Boolean getCalender() throws InterruptedException {
@@ -642,6 +690,22 @@ public class AccountAggregatorPage {
 
     public void scrolltoViewHighlights() throws InterruptedException {
         Elements.scrollToElement(driver, viewHighlighttext);
+    }
+
+    public void scrolltoViewStatement() throws InterruptedException {
+        Elements.scrollToElement(driver, viewStatement);
+    }
+
+    public void clickOnViewStatement() throws InterruptedException{
+        Elements.selectElement(driver,viewStatement, "click on View Statement");
+    }
+
+    public void clickOnDownloadStatement() throws InterruptedException{
+        Elements.selectElement(driver,downloadStatement, "click on Download statement");
+    }
+
+    public void clickOnDownloadSmartStatement() throws InterruptedException{
+        Elements.selectElement(driver,downloadsmartStatement, "click on Download smart statement");
     }
 
     public void clickOnviewHighlisht() throws InterruptedException{

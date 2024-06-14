@@ -100,6 +100,19 @@ public class Test_AccountAggregator extends TestBase {
     }
 
 
+    @Test(groups = {"AccountAggregator", "sanity1", "regression"}, priority = 1, description = "Verify Retagging")
+    public void Test08_AA_DownloadStatement() throws IOException, InterruptedException {
+
+        LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
+        loginHelp.quickLoginViaOtp("7042338867", "547372");
+        AAHelper aaHelper = new AAHelper(getAndroidDriver());
+        // Execute the test
+        aaHelper.AADownloadStatement("Last 7 Days","Last 30 Days","Last 6 Months","Last 12 Months","This Year","Financial Year");
+        Log.info("======= Account Aggregator test =======");
+
+    }
+
+
 
 
 }
