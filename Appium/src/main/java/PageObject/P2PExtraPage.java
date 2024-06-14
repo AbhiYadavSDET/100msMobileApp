@@ -169,14 +169,14 @@ public class P2PExtraPage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Re-invest']")
     private AndroidElement reinvest_btn;
 
-    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Transfer to Flexi']")
-    private AndroidElement transfer_flexi_btn;
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Transfer to Bank']")
+    private AndroidElement transfer_bank_btn;
 
     @AndroidFindBy(xpath = "//*/android.widget.RelativeLayout[@index = 0]")
     private AndroidElement select_reinvest;
 
     @AndroidFindBy(xpath = "//*/android.widget.RelativeLayout[@index = 1]")
-    private AndroidElement select_transfer_to_flexi;
+    private AndroidElement select_transfer_to_bank;
 
     @AndroidFindBy(id = "tvSubHeading")
     private AndroidElement add_nominee_page_title;
@@ -526,7 +526,7 @@ public class P2PExtraPage {
     }
 
     public void selectTransferToFlexiBtn() throws InterruptedException {
-        Element.selectElement(driver, transfer_flexi_btn, "Tap on Transfer To Flexi Button");
+        Element.selectElement(driver, transfer_bank_btn, "Tap on Transfer To Bank Button");
     }
 
     public void selectReinvestoption() throws InterruptedException {
@@ -535,9 +535,9 @@ public class P2PExtraPage {
         Element.selectElement(driver, select_reinvest, "Change option to Re-invest");
     }
 
-    public void selectTransferToFlexioption() throws InterruptedException {
+    public void selectTransferToBankOption() throws InterruptedException {
         Elements.tapByCoordinates(0, 0, driver);
-        Element.selectElement(driver, select_transfer_to_flexi, "Change option to Transfer to Flexi");
+        Element.selectElement(driver, select_transfer_to_bank, "Change option to Transfer to Bank");
     }
 
     public String getNomineeTitle() throws InterruptedException {
@@ -561,8 +561,8 @@ public class P2PExtraPage {
         return Elements.getText(driver, reinvest_btn, "Check option Re-invest");
     }
 
-    public String getTransferToFlexiBtn() throws InterruptedException {
-        return Element.getText(driver, transfer_flexi_btn, "Get Transfer To Flexi Button");
+    public String getTransferToBankBtn() throws InterruptedException {
+        return Element.getText(driver, transfer_bank_btn, "Get Transfer To Bank Button");
     }
 
     public void selectTransferToPlusBtn() throws InterruptedException {
