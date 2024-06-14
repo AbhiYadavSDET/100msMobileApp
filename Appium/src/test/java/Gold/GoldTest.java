@@ -36,7 +36,6 @@ public class GoldTest extends TestBase {
 
         Log.info("======= START : Gold Sell test =======");
 
-
         // Login to the account
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
         loginHelp.quickLoginViaOtp("9205299330", "547372");
