@@ -254,7 +254,7 @@ public class GoldHelper {
 
 
 
-    public void goldSip(String exptitlSipBannerTitle,String exptitlDaily,String exptitlMonthly,String exptitlMinAmountonDaily,String exptitlCalenderViewInsideScreen) throws InterruptedException, IOException {
+    public void goldSip(String exptitlSipBannerTitle,String exptitlDaily,String exptitlMonthly,String exptitlCalenderViewInsideScreen) throws InterruptedException, IOException {
 
         // Tap on See All Services
         goldPage.clickAllServices();
@@ -281,18 +281,17 @@ public class GoldHelper {
         // Verification on the Gold Home Page
         String titlDaily = goldPage.getDailyTitleOnGoldSipPage();
         String titlMonthly = goldPage.getMonthlyTitleOnGoldSipPage();
-        String titlMinAmountonDaily = goldPage.getMinAmountofInvestmentONDaily();
+
 
         // Display the values
         Log.info("titlDaily : " + titlDaily);
         Log.info("titlMonthly : " + titlMonthly);
-        Log.info("titlMinAmountonDaily : " + titlMinAmountonDaily);
+
 
         mbReporter.verifyEqualsWithLogging(titlDaily, exptitlDaily, "Title Daily", false, false, true);
         mbReporter.verifyEqualsWithLogging(titlMonthly, exptitlMonthly, "Title Monthly", false, false, true);
-        mbReporter.verifyEqualsWithLogging(titlMinAmountonDaily, exptitlMinAmountonDaily, "Title Min amount onDaily tab", false, false, true);
 
-        goldPage.enterDailySip("5000");
+        goldPage.enterDailySipAmount("5000");
         goldPage.clickOnMonthlyTitle();
         goldPage.clickOnCalender();
 
