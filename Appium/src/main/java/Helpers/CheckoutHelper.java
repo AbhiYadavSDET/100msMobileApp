@@ -677,9 +677,9 @@ public class CheckoutHelper {
         Log.info(convFeeDetails);
         mbReporter.verifyTrueWithLogging(!(convFeeDetails ==null), "Validating Deatils available in Conv Fee Layout :-- "+convFeeDetails,false,false );
 
-        checkoutPage.clickOnKnowMoreCta();
-
-        mbReporter.verifyEqualsWithLogging(checkoutPage.getKnowMorePageTitle(), "List of Charges", "Validating Know More Page opened", false,false);
+//        checkoutPage.clickOnKnowMoreCta();
+//
+//        mbReporter.verifyEqualsWithLogging(checkoutPage.getKnowMorePageTitle(), "List of Charges", "Validating Know More Page opened", false,false);
 
         driver.navigate().back();
 

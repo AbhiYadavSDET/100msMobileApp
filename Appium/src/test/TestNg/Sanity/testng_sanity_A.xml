@@ -51,6 +51,7 @@
             <class name="Profile.ProfileTest"/>
             <class name="MutualFunds.MutualFundsTest"/>
             <class name="PayRent.PayRentTest"/>
+            <class name="Insurance.Test_Insurance"/>
 
         </classes>
     </test>

@@ -375,6 +375,10 @@ public class P2PExtraPage {
         Element.selectElement(driver, selectNBOnCheckoutScreen, "Select NetBanking From Checkout Screen");
     }
 
+    public boolean isNBOnCheckoutScreenPresent() throws InterruptedException {
+        return Elements.isElementPresent(driver, selectNBOnCheckoutScreen);
+    }
+
     public void selectAxisBankInNB() throws InterruptedException {
         Element.selectElement(driver, selectAxisBankFromBankList, "Select Axis Bank NetBanking option");
     }

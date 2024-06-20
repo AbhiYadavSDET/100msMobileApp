@@ -1,6 +1,7 @@
 package PageObject;
 
 import Logger.Log;
+import Utils.Element;
 import Utils.Elements;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
@@ -93,6 +94,10 @@ public class SecurityPinPage {
         Elements.selectElement(driver, securitySettingButton, "click on Security Settings");
     }
 
+    public Boolean isSecuritySettingsProfileVisible() throws InterruptedException {
+       return Elements.isElementPresent(driver, securitySettingButton);
+    }
+
     public void clickOnSecurityPin() {
         Elements.selectElement(driver, securityPinEnable, "click on Security Pin Enable");
     }
@@ -178,6 +183,10 @@ public class SecurityPinPage {
 
     public boolean checkSecurityPinPage() throws InterruptedException {
         return Elements.isElementPresent(driver, securityPin);
+    }
+
+    public void navigateBackToProfile() throws InterruptedException{
+        Elements.selectElement(driver, backToHome, "Navigating Back to Profile Dashboard");
     }
 
 }

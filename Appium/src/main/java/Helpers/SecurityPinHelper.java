@@ -84,8 +84,12 @@ public class SecurityPinHelper {
             securityPinPage.enterSecurityPin(pin);
 
         }
-
         // Going back to home
+        securityPinPage.navigateBackToProfile();
+        if (securityPinPage.isSecuritySettingsProfileVisible()){
+            driver.navigate().back();
+        }
+
         mbkCommonControlsHelper.handleHomePageLanding();
 
     }
