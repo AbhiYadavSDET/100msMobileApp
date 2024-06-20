@@ -47,7 +47,7 @@ public class P2PExtraTest extends TestBase {
     }
 
 
-    @Test(groups = {"p2pXtraInvestInFixed", "sanity", "sanityPrime", "regression"}, priority = 1, description = "Verify Invest in Fixed flow")
+    @Test(groups = {"p2pXtraInvestInFixed","sanity", "sanityPrime", "regression"}, priority = 1, description = "Verify Invest in Fixed flow")
     public void Test_Xtra_Invest_In_Fixed() throws InterruptedException, IOException {
 
         Log.info("======= START : p2p XTRA-FIXED Invest test =======");
@@ -161,7 +161,7 @@ public class P2PExtraTest extends TestBase {
 
 
         P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getAndroidDriver());
-        p2PExtraHelper.reinvestFixed("Transfer to Flexi", "Re-invest");
+        p2PExtraHelper.reinvestFixed("Transfer to Bank", "Re-invest");
 
         Log.info("======= END : XTRA - Re-Invest in Fixed =======");
 

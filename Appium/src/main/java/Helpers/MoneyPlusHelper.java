@@ -49,7 +49,6 @@ public class MoneyPlusHelper {
         moneyPlusPage.scrollToMoneyPlus();
 
         moneyPlusPage.clickOnMoneyPlus();
-        
 
         Element.waitForVisibility(driver,By.id("lineChart"));
 
@@ -81,11 +80,11 @@ public class MoneyPlusHelper {
 
         moneyPlusPage.clickOnXtraCard();
 
-        Element.waitForVisibility(driver, By.id("description"));
+        Element.waitForVisibility(driver, By.id("com.mobikwik_new.debug:id/cta"));
 
         mbReporter.verifyEqualsWithLogging(moneyPlusPage.fetchXtraIntroText(), xtraIntroText, " Validating Xtra Intro Text", false,false);
 
-        moneyPlusPage.navigateBack();
+        driver.navigate().back();
 
         moneyPlusPage.scrollToGoldScreen();
         moneyPlusPage.clickToGoldScreen();

@@ -84,7 +84,7 @@ public class GoldPage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'History']")
     private AndroidElement ctaHistory;
 
-    @AndroidFindBy(id = "tv_gold_sip_heading")
+    @AndroidFindBy(id = "btn_start_sip")
     private AndroidElement tv_gold_sip_heading;
 
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Gold SIP']")
@@ -99,11 +99,14 @@ public class GoldPage {
     @AndroidFindBy(xpath = "//*/android.widget.EditText[@text = 'Min ₹10']")
     private AndroidElement txt_daily_mininvestment_amt;
 
+    @AndroidFindBy(id = "text_view_label")
+    private AndroidElement select_date_calender;
+
     @AndroidFindBy(xpath = "//*/android.widget.EditText[@text = 'Min ₹100']")
     private AndroidElement txt_monthly_mininvestment_amt;
 
-    @AndroidFindBy(id = "text_view_label")
-    private AndroidElement select_date_calender;
+    @AndroidFindBy(id = "et_gold_sip_amount")
+    private AndroidElement et_gold_sip_amount;
 
     @AndroidFindBy(id = "heading")
     private AndroidElement heading_calender;
@@ -258,6 +261,10 @@ public class GoldPage {
 
     public String getMinAmountofInvestmentOnMonthly() throws InterruptedException {
         return Elements.getText(driver, txt_monthly_mininvestment_amt, "Text Min Amount of Investment on Monthly");
+    }
+
+    public String enterDailySipAmount(String amount) throws InterruptedException {
+        return Elements.getText(driver, et_gold_sip_amount, "enter daily amount  for sip");
     }
 
     public void enterDailySip(String amount) {
