@@ -89,6 +89,8 @@ public class PayRentHelper {
         // check for Security Pin Page
         if(securityPinPage.checkSecurityPinPage()) { securityPinPage.enterSecurityPin();}
 
+        mbkCommonControlsHelper.handle2FADeviceBindingFlow();
+
         //Press Back 6 times to go to home screen
         mbkCommonControlsHelper.pressback(3);
 

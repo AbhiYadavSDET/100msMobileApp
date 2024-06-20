@@ -79,7 +79,7 @@ public class CheckoutTest extends TestBase {
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("9205299330", "547372");
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
 
         // Execute the test
         CheckoutHelper checkoutHelper = new CheckoutHelper(getAndroidDriver());
@@ -93,7 +93,7 @@ public class CheckoutTest extends TestBase {
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("9205299330", "547372");
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
 
         // Execute the test
         CheckoutHelper checkoutHelper = new CheckoutHelper(getAndroidDriver());

@@ -20,7 +20,7 @@ public class OfferTest extends TestBase {
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("9205299330", "547372");
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
 
         // Execute the test
         OfferHelper offerHelper = new OfferHelper(getAndroidDriver());

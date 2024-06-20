@@ -82,6 +82,8 @@ public class IMPSNewHelper {
         //Assertion Check on Confirmation Page
         Log.info("Security pin option is passed...");
 
+        mbkCommonControlsHelper.handle2FADeviceBindingFlow();
+
     /*    //Storing Actual Message on Screen and Expected Result in String
         String actualMessage = impsPage.getSuccessMessage();
         String actualAmount = impsPage.getSuccessPageAmount();
@@ -139,6 +141,8 @@ public class IMPSNewHelper {
 
         //Check Security PIN Page
         if (securityPinPage.checkSecurityPinPage()) securityPinPage.enterSecurityPin();
+
+        mbkCommonControlsHelper.handle2FADeviceBindingFlow();
 
         //Assertion Check on Confirmation Page
         Log.info("Payment Flow done here, Now checking the status...");

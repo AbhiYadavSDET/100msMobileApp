@@ -18,7 +18,7 @@ public class ViewPipedGasBillTest extends TestBase {
         Log.info("======= START : Login Test =======");
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("9205299330", "547372");
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
 
         Log.info("======= START : View Piped Gas Bill =======");
 

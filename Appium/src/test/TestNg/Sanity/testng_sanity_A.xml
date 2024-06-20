@@ -26,18 +26,31 @@
 
         <classes>
 
-            <class name="P2PExtra.P2PExtraTest"/>
-            <class name="Loan.LoanTest"/>
-            <class name="P2M.P2MTest"/>
-            <class name="Checkout.CheckoutTest"/>
-            <class name="IMPSNew.IMPSTest"/>
-            <class name="Zip.ZipTest"/>
-            <class name="MoneyPlus.MoneyPlusTest"/>
-            <class name="FixedDeposit.Test_FixedDeposit"/>
-            <class name="ReferAndEarn.ReferAndEarnTest"/>
-            <class name="HelpAndSupport.Test_HelpAndSupport"/>
+            <class name="Recharge.RechargeTest">
+                <methods>
+                    <exclude name="prepaid_Recharge"/>
+                </methods>
+            </class>
             <class name="ViewElectricityBill.ViewElectricityBillTest"/>
             <class name="ViewPipedGasBill.ViewPipedGasBillTest"/>
+            <class name="HelpAndSupport.Test_HelpAndSupport"/>
+            <class name="P2P.P2PTest"/>
+            <class name="P2M.P2MTest"/>
+            <class name="Checkout.CheckoutTest">
+            <methods>
+                <exclude name="Test04_zipAutoPayCheckoutElectricityBillPayment"/>
+            </methods>
+            </class>
+            <class name="IMPSNew.IMPSTest"/>
+            <class name="Gold.GoldTest"/>
+            <class name="SecurityPin.SecurityPinTest"/>
+            <class name="Loan.LoanTest"/>
+            <class name="MoneyPlus.MoneyPlusTest"/>
+            <class name="Rewards.RewardsTest"/>
+            <class name="Offers.OfferTest"/>
+            <class name="Profile.ProfileTest"/>
+            <class name="MutualFunds.MutualFundsTest"/>
+            <class name="PayRent.PayRentTest"/>
 
         </classes>
     </test>
