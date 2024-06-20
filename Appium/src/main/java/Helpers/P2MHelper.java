@@ -102,6 +102,8 @@ public class P2MHelper {
             securityPinPage.enterSecurityPin();
         }
 
+        mbkCommonControlsHelper.handle2FADeviceBindingFlow();
+
         // Verification on the Success Screen
         String actualStatus = p2mPage.getStatus();
         String actualAmount = p2mPage.getAmount();

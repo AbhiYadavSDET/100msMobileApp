@@ -16,7 +16,7 @@ public class ViewElectricityBillTest extends TestBase {
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("9205299330", "547372");
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
 
         Log.info("======= START : View Electricity Bill =======");
 

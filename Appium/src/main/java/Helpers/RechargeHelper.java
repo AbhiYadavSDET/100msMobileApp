@@ -102,6 +102,8 @@ public class RechargeHelper {
             securityPinPage.enterSecurityPin();
         }
 
+        mbkCommonControlsHelper.handle2FADeviceBindingFlow();
+
         // Verification on the Success Screen
         String title = rechargePage.getTitle();
         String subTitle = rechargePage.getSubTitle();

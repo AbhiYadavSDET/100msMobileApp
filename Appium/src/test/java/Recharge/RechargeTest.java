@@ -16,7 +16,7 @@ public class RechargeTest extends TestBase {
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("9205299330", "547372");
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
 
         Log.info("======= START : Postpaid Recharge =======");
 
@@ -34,7 +34,7 @@ public class RechargeTest extends TestBase {
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("9205299330", "547372");
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
 
         Log.info("======= START : Prepaid Recharge =======");
 
@@ -52,7 +52,7 @@ public class RechargeTest extends TestBase {
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("9205299330", "547372");
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
 
         Log.info("======= START : Change Operator Flow test  =======");
 
@@ -70,7 +70,7 @@ public class RechargeTest extends TestBase {
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("9205299330", "547372");
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
 
         Log.info("======= START : Postpaid Recharge =======");
 
@@ -88,7 +88,7 @@ public class RechargeTest extends TestBase {
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("7042338867", "547372");
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
 
         Log.info("======= START : Coupon Code =======");
 

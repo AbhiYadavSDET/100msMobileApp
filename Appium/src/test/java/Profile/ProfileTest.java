@@ -15,8 +15,8 @@ public class ProfileTest extends TestBase {
         // Start the test
         Log.info("======= START : Profile Section =======");
 
-        LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.quickLoginViaOtp("9205299330","547372");
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
 
         ProfileHelper profileHelp = new ProfileHelper(getAndroidDriver());
         profileHelp.profileView("9205299330" ,"Test MobiKwik", "mkwik9330@gmail.com","UPI ID: 9205299330@mbk");

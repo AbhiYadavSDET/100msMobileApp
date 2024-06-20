@@ -77,6 +77,8 @@ public class P2PHelper {
             p2PPage.clickOnNoBtn();
         }
 
+        mbkCommonControlsHelper.handle2FADeviceBindingFlow();
+
         // Verification on the Success Screen
         String actualStatus = p2PPage.getStatus();
         String actualAmount = p2PPage.getAmount();

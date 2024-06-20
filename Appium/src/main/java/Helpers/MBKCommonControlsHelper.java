@@ -33,6 +33,8 @@ public class MBKCommonControlsHelper {
     AddMoneyPage addMoneyPage;
     MBReporter mbReporter;
 
+    PermissionHelper permissionHelper;
+
     enum BalanceType {
         MAINBALANCE,
         FOODBALANCE,
@@ -129,6 +131,7 @@ public class MBKCommonControlsHelper {
         sideDrawerPage = new SideDrawerPage(driver);
         homePage = new HomePage(driver);
         mbReporter = new MBReporter(driver);
+        permissionHelper=new PermissionHelper(driver);
 
     }
 
@@ -349,6 +352,7 @@ public class MBKCommonControlsHelper {
             Log.info("Waiting more due to Slow Phone");
         }
 
+
 //        for (int i = 0; i < 2; i++) {
             if (!Element.isElementPresentNoWait(driver, By.id("cl_root"))) {
 //                driver.navigate().back();
@@ -459,6 +463,57 @@ public class MBKCommonControlsHelper {
 
 
     }
+
+    public void handle2FADeviceBindingFlow() throws InterruptedException, IOException {
+        Thread.sleep(3000);
+        if(Element.isElementPresentNoWait(driver, By.id("btn_verify"))) {
+
+                Log.info("Binding Device with Sim Card");
+                mbReporter.verifyTrueWithLogging(!(mbkCommonControlsPage.get2FAPageTile() ==null), "2FA Page Title : "+mbkCommonControlsPage.get2FAPageTile(), false, false);
+                mbReporter.verifyTrueWithLogging(!(mbkCommonControlsPage.get2FAPageSubTile() ==null), "2FA Page SubTitle : "+mbkCommonControlsPage.get2FAPageSubTile(), false, false);
+                mbReporter.verifyTrueWithLogging(!(mbkCommonControlsPage.get2FAPageNoteDescription() ==null), "2FA Page Note Description : "+mbkCommonControlsPage.get2FAPageNoteDescription(), false, false);
+
+                mbkCommonControlsPage.clickVerifyNumberCta();
+                permissionHelper.permissionAllow();
+
+                element.waitForVisibility(driver, By.id("progress_bar"));
+                element.waitForInvisibility(driver, By.id("progress_bar"));
+
+                if(mbkCommonControlsPage.isSmsVerificationFailed()){
+
+                    mbkCommonControlsPage.clickRetryNumberVerificationCta();
+                    element.waitForVisibility(driver, By.id("progress_bar"));
+                    element.waitForInvisibility(driver, By.id("progress_bar"));
+
+                }
+
+
+        }else {
+            Log.info("2FA Flow Not Displayed");
+        }
+    }
+
+    public Boolean is2FADeviceBindingFlowDisplayed() throws InterruptedException, IOException {
+        Thread.sleep(3000);
+        if(Element.isElementPresentNoWait(driver, By.id("btn_verify"))) {
+            mbReporter.verifyTrueWithLogging(!(mbkCommonControlsPage.get2FAPageTile() == null), "------------Assertion : 2FA Flow Shown-----------", false, false);
+            mbReporter.verifyTrueWithLogging(!(mbkCommonControlsPage.get2FAPageTile() == null), "2FA Page Title : " + mbkCommonControlsPage.get2FAPageTile(), false, false);
+            mbReporter.verifyTrueWithLogging(!(mbkCommonControlsPage.get2FAPageSubTile() == null), "2FA Page SubTitle : " + mbkCommonControlsPage.get2FAPageSubTile(), false, false);
+            mbReporter.verifyTrueWithLogging(!(mbkCommonControlsPage.get2FAPageNoteDescription() == null), "2FA Page Note Description : " + mbkCommonControlsPage.get2FAPageNoteDescription(), false, false);
+
+            return true;
+        }else {
+            return false;
+        }
+
+    }
+
+
+
+
+
+
+
 
 }
 
