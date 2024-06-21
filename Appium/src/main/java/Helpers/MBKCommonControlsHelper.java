@@ -382,21 +382,18 @@ public class MBKCommonControlsHelper {
                     Log.info("Home Page pop interruption Locator  : Location popup shown");
                     driver.findElementByXPath("//android.widget.Button[contains(@text, 'While using the app')]").click();
                     Thread.sleep(2000);
-                    if (Element.isElementPresent(driver, By.xpath("//android.widget.Button[contains(@text, 'Allow')]"))) {
+                    if (Element.isElementPresent(driver, By.id("com.android.permissioncontroller:id/permission_deny_button"))) {
                         Log.info("Home Page pop interruption Locator  : Notification popup shown");
-                        driver.findElementByXPath("//android.widget.Button[contains(@text, 'Allow')]").click();
+                        driver.findElementById("com.android.permissioncontroller:id/permission_deny_button").click();
 
-                } }else if (Element.isElementPresent(driver, By.xpath("//android.widget.Button[contains(@text, 'Allow')]"))) {
-                    Log.info("Home Page pop interruption Locator  : Notification popup shown");
-                    driver.findElementByXPath("//android.widget.Button[contains(@text, 'Allow')]").click();
-                    Thread.sleep(2000);
-
-                } }else {
-                Log.info("Home Page pop interruption Locator  : New Type Pop Up Detected");
-                Log.info("-----------------Page Source Start----------------");
-                Log.info(driver.getPageSource());
-                Log.info("-----------------Page Source End----------------");
-                driver.navigate().back();
+                    }
+                } else {
+                    Log.info("Home Page pop interruption Locator  : New Type Pop Up Detected");
+                    Log.info("-----------------Page Source Start----------------");
+                    Log.info(driver.getPageSource());
+                    Log.info("-----------------Page Source End----------------");
+                    driver.navigate().back();
+                }
             }
 
 
