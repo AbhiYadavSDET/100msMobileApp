@@ -351,8 +351,6 @@ public class MBKCommonControlsHelper {
             Thread.sleep(3000);
             Log.info("Waiting more due to Slow Phone");
         }
-
-
             if (!Element.isElementPresentNoWait(driver, By.id("cl_root"))) {
 
                 if (Element.isElementPresentNoWait(driver, By.id("alertTitle"))) {
