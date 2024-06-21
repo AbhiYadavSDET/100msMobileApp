@@ -18,7 +18,7 @@ public class MutualFundsTest extends TestBase {
 
         // Start the test
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("9205299330", "547372");
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
 
         MutualFundsHelper mutualFundsHelper = new MutualFundsHelper(getAndroidDriver());
         mutualFundsHelper.mutualFundsCheck("ICICI Pru Commodities Dir Gr", "₹5,000", "+48.25%", "N/A ", "KYC pending", "You need a KYC to invest in Mutual Funds. Please provide your details to complete your KYC", "Complete KYC");
@@ -36,7 +36,7 @@ public class MutualFundsTest extends TestBase {
 
         // Start the test
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("9205299330", "547372");
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
 
         MutualFundsHelper mutualFundsHelper = new MutualFundsHelper(getAndroidDriver());
         mutualFundsHelper.retakeRiskAnalyser();
@@ -52,7 +52,7 @@ public class MutualFundsTest extends TestBase {
 
         // Start the test
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("9205299330", "547372");
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
 
         MutualFundsHelper mutualFundsHelper = new MutualFundsHelper(getAndroidDriver());
         mutualFundsHelper.faq();
@@ -68,7 +68,7 @@ public class MutualFundsTest extends TestBase {
 
         // Start the test
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("9205299330", "547372");
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
 
         MutualFundsHelper mutualFundsHelper = new MutualFundsHelper(getAndroidDriver());
         mutualFundsHelper.privacyPolicy();
@@ -86,7 +86,7 @@ public class MutualFundsTest extends TestBase {
 
         // Start the test
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("9205299330", "547372");
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
 
         MutualFundsHelper mutualFundsHelper = new MutualFundsHelper(getAndroidDriver());
         mutualFundsHelper.multipleFDsOptions();
@@ -101,7 +101,7 @@ public class MutualFundsTest extends TestBase {
 
         // Start the test
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("9205299330", "547372");
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
 
         MutualFundsHelper mutualFundsHelper = new MutualFundsHelper(getAndroidDriver());
         mutualFundsHelper.investCharter();
@@ -116,7 +116,7 @@ public class MutualFundsTest extends TestBase {
 
         // Start the test
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("9205299330", "547372");
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
 
         MutualFundsHelper mutualFundsHelper = new MutualFundsHelper(getAndroidDriver());
         mutualFundsHelper.termsAndConditions();
@@ -132,7 +132,7 @@ public class MutualFundsTest extends TestBase {
 
         // Start the test
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("9205299330", "547372");
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
 
         MutualFundsHelper mutualFundsHelper = new MutualFundsHelper(getAndroidDriver());
         mutualFundsHelper.updateProfile("AQXPJ9529K","12/10/2000","mkwik9330@gmail.com","1 to 5 Lacks","Balanced", "Get Rich Fund");
@@ -147,7 +147,7 @@ public class MutualFundsTest extends TestBase {
 
         // Start the test
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("9205299330", "547372");
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
 
         MutualFundsHelper mutualFundsHelper = new MutualFundsHelper(getAndroidDriver());
         mutualFundsHelper.verifyFilter("icici","ICICI Pru Bluechip Dir Gr","₹100","+20.42%","5","No funds available");
@@ -162,7 +162,7 @@ public class MutualFundsTest extends TestBase {
 
         // Start the test
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("9205299330", "547372");
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
 
         MutualFundsHelper mutualFundsHelper = new MutualFundsHelper(getAndroidDriver());
         mutualFundsHelper.verifySort("5Y Returns");
@@ -177,7 +177,7 @@ public class MutualFundsTest extends TestBase {
 
         // Start the test
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("9205299330", "547372");
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
 
         MutualFundsHelper mutualFundsHelper = new MutualFundsHelper(getAndroidDriver());
         mutualFundsHelper.verifySearchMF("Parag", "Parag Parikh Cnsv Hyb Dir Gr","₹5,000","+32.40%","N/A ");

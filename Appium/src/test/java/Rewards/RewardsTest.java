@@ -19,7 +19,7 @@ public class RewardsTest extends TestBase {
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("9205299330", "547372");
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
         //loginHelper.quickLoginViaOtp("9953138474", "");
 
         // Execute the test
@@ -38,7 +38,7 @@ public class RewardsTest extends TestBase {
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("9205299330", "547372");
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
         //loginHelper.quickLoginViaOtp("9953138474", "");
 
         // Execute the test
@@ -57,7 +57,7 @@ public class RewardsTest extends TestBase {
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("9205299330", "547372");
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
         //loginHelper.quickLoginViaOtp("9953138474", "");
 
         // Execute the test
@@ -75,7 +75,7 @@ public class RewardsTest extends TestBase {
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("9205299330", "547372");
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
         //loginHelper.quickLoginViaOtp("9953138474", "");
 
         // Execute the test
@@ -93,7 +93,7 @@ public class RewardsTest extends TestBase {
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("9205299330", "547372");
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
         //loginHelper.quickLoginViaOtp("9953138474", "");
 
         // Execute the test

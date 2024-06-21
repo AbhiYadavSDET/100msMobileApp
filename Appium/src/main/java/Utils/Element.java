@@ -93,6 +93,20 @@ public class Element {
      * @param targetElement element to be invisible
      * @return true if element gets invisible else throws TimeoutException
      */
+    public static boolean waitForInvisibility(AndroidDriver driver, By targetElement) {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, timeOut);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(targetElement));
+            return true;
+        } catch (TimeoutException e) {
+            System.out.println("Element is still visible: " + targetElement);
+            System.out.println();
+            System.out.println(e.getMessage());
+            throw e;
+
+        }
+    }
+
     public static boolean waitForInvisibility(AndroidDriver driver, AndroidElement targetElement) {
         try {
             WebDriverWait wait = new WebDriverWait(driver, timeOut);

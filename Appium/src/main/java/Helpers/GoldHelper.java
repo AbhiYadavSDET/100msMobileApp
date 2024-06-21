@@ -78,6 +78,8 @@ public class GoldHelper {
                 securityPinPage.enterSecurityPin();
             }
 
+            mbkCommonControlsHelper.handle2FADeviceBindingFlow();
+
             // Verification on the Success Screen
             String title = goldPage.getTitle();
             String subTitle = goldPage.getSubTitle();

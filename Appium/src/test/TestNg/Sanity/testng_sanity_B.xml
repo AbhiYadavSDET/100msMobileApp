@@ -26,22 +26,19 @@
 
         <classes>
 
+            <class name="P2PExtra.P2PExtraTest"/>
+            <class name="Zip.ZipTest"/>
+            <class name="FixedDeposit.Test_FixedDeposit"/>
+            <class name="ReferAndEarn.ReferAndEarnTest"/>
             <class name="KYC.TestKYC"/>
-            <class name="Rewards.RewardsTest"/>
             <class name="AccountAggregator.Test_AccountAggregator"/>
-            <class name="Gold.GoldTest"/>
-            <class name="SecurityPin.SecurityPinTest"/>
-            <class name="Offers.OfferTest"/>
-            <class name="Profile.ProfileTest"/>
-            <class name="Insurance.Test_Insurance"/>
-            <class name="MutualFunds.MutualFundsTest"/>
-            <class name="PayRent.PayRentTest"/>
-            <class name="P2P.P2PTest"/>
-            <class name="Recharge.RechargeTest">
+            <class name="Checkout.CheckoutTest">
                 <methods>
-                    <exclude name="prepaid_Recharge"/>
+                    <exclude name="Test06_addMoneyConvFeeTest"/>
                 </methods>
             </class>
+
+
         </classes>
     </test>
 

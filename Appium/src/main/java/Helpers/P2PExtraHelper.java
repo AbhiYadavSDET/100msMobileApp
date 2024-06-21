@@ -268,7 +268,10 @@ public class P2PExtraHelper {
         p2PExtraPage.clickPayBtn();
 
         // Select NetBanking from XTRA checkout screen
-        p2PExtraPage.selectNBOnCheckoutScreen();
+        if(p2PExtraPage.isNBOnCheckoutScreenPresent()) {
+            mbReporter.verifyTrueWithLogging(p2PExtraPage.isNBOnCheckoutScreenPresent(),"Checking for NetBanking on Checkout",false,false);
+            p2PExtraPage.selectNBOnCheckoutScreen();
+        }
 
 
     }

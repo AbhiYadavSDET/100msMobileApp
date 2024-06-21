@@ -89,6 +89,37 @@ public class MbkCommonControlsPage {
     @AndroidFindBy(id = "android:id/button2")
     private AndroidElement close_pop_up;
 
+    //2FA
+
+    @AndroidFindBy(id="btn_verify")
+    private AndroidElement verify_number_cta;
+
+    @AndroidFindBy(id="tv_title")
+    private AndroidElement twoFA_page_title;
+
+    @AndroidFindBy(id="tv_sub_title")
+    private AndroidElement twoFA_page_subtitle;
+
+    @AndroidFindBy(id="tv_note")
+    private AndroidElement twoFA_page_description;
+
+    //permission sms (permission_allow_button)
+
+    @AndroidFindBy(id="progress_bar")
+    private AndroidElement twoFA_page_sms_verification_bottomsheet;
+
+    @AndroidFindBy(id="cl_error_note")
+    private AndroidElement twoFA_page_sms_verification_failure_bottomsheet;
+
+    @AndroidFindBy(id="tv_btn_retry")
+    private AndroidElement twoFA_page_sms_verification_retry_cta;
+
+
+
+
+
+
+
 
 
     public MbkCommonControlsPage(AndroidDriver driver) throws IOException {
@@ -223,4 +254,53 @@ public class MbkCommonControlsPage {
     public void closeWhitePopUp() {
         Element.selectElement(driver, close_pop_up, "Close Pop Up");
     }
+
+
+
+
+
+    public void clickVerifyNumberCta() {
+        Element.selectElement(driver, verify_number_cta, "Click on Verify number Cta");
+
+    }
+
+    public String get2FAPageTile() {
+        return Element.getText(driver, twoFA_page_title, "Fetch 2FA Page Title");
+    }
+
+    public String get2FAPageSubTile() {
+        return Element.getText(driver, twoFA_page_subtitle, "Fetch 2FA Page SubTitle");
+    }
+
+    public String get2FAPageNoteDescription() {
+        return Element.getText(driver, twoFA_page_description, "Fetch 2FA Page Note Description");
+    }
+
+
+    //permission sms (permission_allow_button)
+
+    public Boolean isSmsVerificationInProgress() throws InterruptedException {
+       return Elements.isElementPresent(driver,twoFA_page_sms_verification_bottomsheet );
+    }
+
+    public Boolean isSmsVerificationFailed() throws InterruptedException {
+        return Elements.isElementPresent(driver,twoFA_page_sms_verification_failure_bottomsheet );
+    }
+
+
+    public void clickRetryNumberVerificationCta() {
+        Element.selectElement(driver, twoFA_page_sms_verification_retry_cta, "Click on Retry Cta");
+
+    }
+
+
+
+
+
+
+
+
+
+
+
 }

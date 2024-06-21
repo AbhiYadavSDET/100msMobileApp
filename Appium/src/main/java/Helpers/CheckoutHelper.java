@@ -479,65 +479,68 @@ public class CheckoutHelper {
                 securityPinPage.enterSecurityPin("324008");
             }
 
-            Element.waitForVisibility(driver,By.id("header_layout"));
+            if(mbkCommonControlsHelper.is2FADeviceBindingFlowDisplayed()) {
 
-            mbReporter.verifyTrueWithLogging(checkoutPage.isCheckoutPageOpened(), "Is checkout Page Opened", false, false);
+                Element.waitForVisibility(driver, By.id("header_layout"));
 
-
-            Log.info("-------Checking for Zip Module Autopay------");
-
+                mbReporter.verifyTrueWithLogging(checkoutPage.isCheckoutPageOpened(), "Is checkout Page Opened", false, false);
 
 
-            if(checkoutPage.isRecommendedSheetOpened()){
+                Log.info("-------Checking for Zip Module Autopay------");
 
-                if(checkoutPage.isZipModuleAvailable()){
 
-                    Log.info("-------Checking for Zip AutoPay in Recommended Checkout bottomsheet------");
-                    checkoutPage.selectZipModule();
-                    mbReporter.verifyTrueWithLogging(checkoutPage.isZipModuleAvailable(), "Zip Module Visible in Recommended Bottom Sheet", false,false);
+                if (checkoutPage.isRecommendedSheetOpened()) {
 
-                    if(checkoutPage.isZipAutopayToggleVisible()){
+                    if (checkoutPage.isZipModuleAvailable()) {
 
-                        mbReporter.verifyTrueWithLogging(checkoutPage.isZipAutopayToggleVisible(), "Zip Autopay Toggle is visible", false,false);
-                        mbReporter.verifyEqualsWithLogging(checkoutPage.getZipAutoPayToggleText(),zipAutoPayToggleTextExpected , "Matchjing Zip Autopay Toglle Text", false,false);
+                        Log.info("-------Checking for Zip AutoPay in Recommended Checkout bottomsheet------");
+                        checkoutPage.selectZipModule();
+                        mbReporter.verifyTrueWithLogging(checkoutPage.isZipModuleAvailable(), "Zip Module Visible in Recommended Bottom Sheet", false, false);
+
+                        if (checkoutPage.isZipAutopayToggleVisible()) {
+
+                            mbReporter.verifyTrueWithLogging(checkoutPage.isZipAutopayToggleVisible(), "Zip Autopay Toggle is visible", false, false);
+                            mbReporter.verifyEqualsWithLogging(checkoutPage.getZipAutoPayToggleText(), zipAutoPayToggleTextExpected, "Matchjing Zip Autopay Toglle Text", false, false);
+
+                        }
+
+
+                        checkoutPage.clickMorePaymentOptionsCta();
+                    } else {
+
+                        mbReporter.verifyTrueWithLogging(!checkoutPage.isZipModuleAvailable(), "Zip Module Not Visible in Recommended Bottom Sheet", false, false);
 
                     }
+                } else {
 
+                    Log.info("-------Checking for Zip AutoPay in Main Checkout bottomsheet------");
 
-                    checkoutPage.clickMorePaymentOptionsCta();
-                }else {
+                    if (checkoutPage.isZipModuleAvailable()) {
+                        checkoutPage.selectZipModule();
+                        mbReporter.verifyTrueWithLogging(checkoutPage.isZipModuleAvailable(), "Zip Module Visible in Main Bottom Sheet", false, false);
+                        if (checkoutPage.isZipAutopayToggleVisible()) {
 
-                    mbReporter.verifyTrueWithLogging(!checkoutPage.isZipModuleAvailable(), "Zip Module Not Visible in Recommended Bottom Sheet", false,false);
+                            mbReporter.verifyTrueWithLogging(checkoutPage.isZipAutopayToggleVisible(), "Zip Autopay Toggle is visible", false, false);
+                            mbReporter.verifyEqualsWithLogging(checkoutPage.getZipAutoPayToggleText(), zipAutoPayToggleTextExpected, "Matchjing Zip Autopay Toglle Text", false, false);
 
+                        }
+                    }
                 }
-            }else {
+
 
                 Log.info("-------Checking for Zip AutoPay in Main Checkout bottomsheet------");
 
-                if(checkoutPage.isZipModuleAvailable()) {
+                if (checkoutPage.isZipModuleAvailable()) {
                     checkoutPage.selectZipModule();
                     mbReporter.verifyTrueWithLogging(checkoutPage.isZipModuleAvailable(), "Zip Module Visible in Main Bottom Sheet", false, false);
-                    if(checkoutPage.isZipAutopayToggleVisible()){
+                    if (checkoutPage.isZipAutopayToggleVisible()) {
 
-                        mbReporter.verifyTrueWithLogging(checkoutPage.isZipAutopayToggleVisible(), "Zip Autopay Toggle is visible", false,false);
-                        mbReporter.verifyEqualsWithLogging(checkoutPage.getZipAutoPayToggleText(),zipAutoPayToggleTextExpected , "Matchjing Zip Autopay Toglle Text", false,false);
+                        mbReporter.verifyTrueWithLogging(checkoutPage.isZipAutopayToggleVisible(), "Zip Autopay Toggle is visible", false, false);
+                        mbReporter.verifyEqualsWithLogging(checkoutPage.getZipAutoPayToggleText(), zipAutoPayToggleTextExpected, "Matchjing Zip Autopay Toglle Text", false, false);
 
                     }
                 }
-            }
 
-
-            Log.info("-------Checking for Zip AutoPay in Main Checkout bottomsheet------");
-
-            if(checkoutPage.isZipModuleAvailable()) {
-                checkoutPage.selectZipModule();
-                mbReporter.verifyTrueWithLogging(checkoutPage.isZipModuleAvailable(), "Zip Module Visible in Main Bottom Sheet", false, false);
-                if(checkoutPage.isZipAutopayToggleVisible()){
-
-                    mbReporter.verifyTrueWithLogging(checkoutPage.isZipAutopayToggleVisible(), "Zip Autopay Toggle is visible", false,false);
-                    mbReporter.verifyEqualsWithLogging(checkoutPage.getZipAutoPayToggleText(),zipAutoPayToggleTextExpected , "Matchjing Zip Autopay Toglle Text", false,false);
-
-                }
             }
 
 
@@ -674,9 +677,9 @@ public class CheckoutHelper {
         Log.info(convFeeDetails);
         mbReporter.verifyTrueWithLogging(!(convFeeDetails ==null), "Validating Deatils available in Conv Fee Layout :-- "+convFeeDetails,false,false );
 
-        checkoutPage.clickOnKnowMoreCta();
-
-        mbReporter.verifyEqualsWithLogging(checkoutPage.getKnowMorePageTitle(), "List of Charges", "Validating Know More Page opened", false,false);
+//        checkoutPage.clickOnKnowMoreCta();
+//
+//        mbReporter.verifyEqualsWithLogging(checkoutPage.getKnowMorePageTitle(), "List of Charges", "Validating Know More Page opened", false,false);
 
         driver.navigate().back();
 

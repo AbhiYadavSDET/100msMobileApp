@@ -20,7 +20,7 @@ public class GoldTest extends TestBase {
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("9205299330", "547372");
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
 
         // Execute the test
         GoldHelper goldHelper = new GoldHelper(getAndroidDriver());
@@ -37,8 +37,8 @@ public class GoldTest extends TestBase {
         Log.info("======= START : Gold Sell test =======");
 
         // Login to the account
-        LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.quickLoginViaOtp("9205299330", "547372");
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+         loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372"); 
 
         // Execute the test
         GoldHelper goldHelper = new GoldHelper(getAndroidDriver());
@@ -57,8 +57,8 @@ public class GoldTest extends TestBase {
 
 
         // Login to the account
-        LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.quickLoginViaOtp("9205299330", "547372");
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+         loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372"); 
 
         // Execute the test
         GoldHelper goldHelper = new GoldHelper(getAndroidDriver());
@@ -70,14 +70,14 @@ public class GoldTest extends TestBase {
     }
 
     @Test(groups = {"sanity", "goldBuy", "regression"}, priority = 0, description = "Verify Sip On Gold Page")
-    public void Test03_Gold_Sip() throws IOException, InterruptedException {
+    public void Test04_Gold_Sip() throws IOException, InterruptedException {
 
         Log.info("======= START : Gold SIp test =======");
 
 
         // Login to the account
-        LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.quickLoginViaOtp("9205299330", "547372");
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+         loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372"); 
 
         // Execute the test
         GoldHelper goldHelper = new GoldHelper(getAndroidDriver());

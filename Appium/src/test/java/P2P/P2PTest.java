@@ -20,7 +20,7 @@ public class P2PTest extends TestBase {
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("9205299330", "547372");
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
 
         // Execute the test
         P2PHelper p2PHelper = new P2PHelper(getAndroidDriver());

@@ -144,13 +144,13 @@ public class CheckoutPage {
     @AndroidFindBy(id="info_help")
     private AndroidElement conv_fee_help_icon;
 
-    @AndroidFindBy(id="convenience_fee_info_layout")
+    @AndroidFindBy(id="convenience_fee_info_container")
     private AndroidElement conv_fee_info_layout;
 
-    @AndroidFindBy(id = "key")
+    @AndroidFindBy(id = "question")
     private AndroidElement details_key;
 
-    @AndroidFindBy(id = "value")
+    @AndroidFindBy(id = "answer")
     private AndroidElement details_value;
 
     @AndroidFindBy(id="know_more_button")

@@ -24,10 +24,13 @@ public class InsuranceHelper {
     Dimension dimension;
     MBReporter mbReporter;
 
+    MBKCommonControlsHelper mbkCommonControlsHelper;
+
     public InsuranceHelper(AndroidDriver driver) throws IOException {
         this.driver = driver;
         insurancePage = new InsurancePage(driver);
         mbReporter = new MBReporter(driver);
+        mbkCommonControlsHelper = new MBKCommonControlsHelper(driver);
     }
 
     public void insuranceHomePage(String expheaderTextInurance, String expsubheaderFirstTab, String expsubheaderSecondTab, String expheadingLossOfjob, String expheadingPersonalAccident, String expheadingWalletProtectInsurance, String expheadinggetHealthInsurance, String expheadingDocAssure, String expheadingPayyourPremium) throws InterruptedException, IOException {
@@ -485,6 +488,8 @@ public class InsuranceHelper {
             insurancePage.clickOncheckBox();
             insurancePage.clickOnsumassured20button();
             insurancePage.clickOnMakePayment();
+
+            mbkCommonControlsHelper.handle2FADeviceBindingFlow();
 
             String textfullname = insurancePage.gettextfullName();
             String textGender = insurancePage.gettextSelectGender();
