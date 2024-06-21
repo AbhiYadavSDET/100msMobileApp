@@ -349,6 +349,8 @@ public class MBKCommonControlsHelper {
             Log.info("Waiting more due to Slow Phone");
         }
 
+        //NEED TO HANDEL OFFER SCREEN - BACK BUTTON
+
 //        for (int i = 0; i < 2; i++) {
             if (!Element.isElementPresentNoWait(driver, By.id("cl_root"))) {
 //                driver.navigate().back();
@@ -377,6 +379,14 @@ public class MBKCommonControlsHelper {
                     Log.info("Home Page pop interruption Locator  : Feature Assist Page Shown");
                     driver.findElementById("tv_explore_home").click();
                     Thread.sleep(3000);
+                }else if(Element.isElementPresentNoWait(driver, By.xpath("//android.widget.Button[contains(@text, 'While using the app')]"))){
+                    Log.info("Home Page pop interruption Locator  : Location popup shown");
+                    driver.findElementByXPath("//android.widget.Button[contains(@text, 'While using the app')]").click();
+                    Thread.sleep(2000);
+                    driver.navigate().back();
+
+
+
                 }else {
                     Log.info("Home Page pop interruption Locator  : New Type Pop Up Detected");
                     Log.info("-----------------Page Source Start----------------");

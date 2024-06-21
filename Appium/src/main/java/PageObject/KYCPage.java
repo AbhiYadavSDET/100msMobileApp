@@ -172,7 +172,7 @@ public class KYCPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Other Banks']")
     private AndroidElement otherBanksOptionOnSetup;
 
-    @AndroidFindBy(xpath = "//android.widget.EditText[@text='Aadhaar Number']")
+    @AndroidFindBy(xpath = "//android.widget.EditText[@text='Your Aadhaar Number']")
     private AndroidElement adhaarNumberOptionOnAdhaarWebsite;
 
     @AndroidFindBy(id = "btn_submit")
@@ -201,6 +201,45 @@ public class KYCPage {
 
     @AndroidFindBy(id = "tx_kyc_cond")
     private AndroidElement profileKycSubTitle;
+
+    //new fixes
+
+    @AndroidFindBy (xpath = "//android.widget.TextView[@text='Return to MobiKwik']")
+    private AndroidElement returnToMobikwik;
+
+    @AndroidFindBy (xpath = "//android.widget.Button[@text='Yes']")
+    private AndroidElement yesReturnToMobikwik;
+
+    @AndroidFindBy (xpath = "//android.widget.Button[@text='OK']")
+    private AndroidElement okDigilockerAccessNoProvided;
+
+    @AndroidFindBy (xpath = "//android.widget.TextView[contains(@text, 'We could not process the request. Please retry.')]")
+    private AndroidElement errormessageOnEkycScreen;
+
+    @AndroidFindBy (xpath = "//android.widget.Button[contains(@text, 'No Thanks')]")
+    private AndroidElement noThanksOnEkycFailure;
+
+
+    @AndroidFindBy (xpath = "//android.widget.Button[contains(@text, 'Retry')]")
+    private AndroidElement retryButtonOnEkycFailure;
+
+    @AndroidFindBy (xpath = "//android.widget.EditText[contains(@text, 'Your Aadhaar Number')]")
+    private AndroidElement adhaarNuberOnWebsite;
+
+    @AndroidFindBy (id = "btn_continue")
+    private AndroidElement continuebuttonOnCKyc;
+
+
+
+
+
+
+
+
+
+
+
+
 
     public void clickOnContinueButtonOnBoradingScreen() {
         Elements.selectElement(driver, continueButtonOnLendingScreen, "Click on continue button on lending page for KYC");
@@ -473,5 +512,57 @@ public class KYCPage {
     public void enterDigilockerCaptchaCode(String code) throws InterruptedException{
         Elements.enterToElement(driver, securityCode, code,"Enter Security code ");
     }
+
+    // new fixes
+
+    public  boolean isDigiLockerScreenOpened() throws InterruptedException {
+        return Elements.isElementPresent(driver,returnToMobikwik);
+    }
+
+    public void clickOnReturnToMobikwik(){
+        Elements.selectElement(driver, returnToMobikwik, "Click on return to mobikwik");
+    }
+
+    public void clickOnYesReturnToMobikwik(){
+        Elements.selectElement(driver, yesReturnToMobikwik, "Click on yes return to mobikwik");
+    }
+
+    public  boolean isErrorBottomsheetOnEkyc() throws InterruptedException {
+        return Elements.isElementPresent(driver,errormessageOnEkycScreen);
+    }
+
+
+    public void clickOnNoThanks(){
+        Elements.selectElement(driver, noThanksOnEkycFailure, "Click on noThanks On Ekyc Failure");
+    }
+
+    public void clickOnRetryOnEkyc(){
+        Elements.selectElement(driver, retryButtonOnEkycFailure, "Click on retry button ");
+    }
+
+    public  boolean isEkycScreenOpened() throws InterruptedException {
+        Thread.sleep(5000);
+        return Elements.isElementPresent(driver,adhaarNumberOptionOnAdhaarWebsite);
+    }
+
+    public void clickOkDigilockAcessNotProvided(){
+        Elements.selectElement(driver, okDigilockerAccessNoProvided, "Click on ok digilocker access not provided");
+    }
+
+    public  boolean isContinueButtonPresent() throws InterruptedException {
+        return Elements.isElementPresent(driver,continuebuttonOnCKyc);
+    }
+
+    public void clickOkcontinueOnCkyc(){
+        Elements.selectElement(driver, continuebuttonOnCKyc, "Click on continue on ckyc");
+    }
+
+
+
+
+
+
+
+
 
 }

@@ -2,12 +2,10 @@ package Helpers;
 
 import Logger.Log;
 import PageObject.*;
-import Utils.Element;
 import Utils.Elements;
 import Utils.MBReporter;
 import Utils.Screen;
 import io.appium.java_client.android.AndroidDriver;
-import org.openqa.selenium.By;
 
 import java.io.IOException;
 
@@ -40,39 +38,101 @@ public class KYCHelper {
         permissionPage = new PermissionPage(driver);
         loginHelp = new LoginHelper(driver);
     }
-
-    public void OnboardingNonKycFlow(String firstName, String lastName, String pan) throws InterruptedException {
+    public void OnboardingFullKycFlow(String firstName, String lastName, String pan,String adhaarTweleveDigits,String captcha,boolean onlyCkyc) throws InterruptedException {
 
         // Full kyc flow from Onboarding
         kycPage.clickOnContinueButtonOnBoradingScreen();
         handelPopups();
 
-        if (kycPage.isOnboardingOptionsScreenPresent()) {
-            kycPage.clickOnFullKyc();
+        if(onlyCkyc) {
+
+            if (!kycPage.isDigiLockerScreenOpened()) {
+
+                Log.info("============ CKYC screen opened =======");
+
+                kycPage.setFirstName(firstName);
+
+                //enter last name
+                kycPage.setLastName(lastName);
+
+                //click on proceed after entering name
+                kycPage.clickOnProceedAfterName();
+
+                //enter pan card number
+                kycPage.setPanNumber(pan);
+
+                //click on date optin
+                kycPage.clickOnDateOption();
+
+                //clcik on select date field
+                kycPage.clickOnSelectDate();
+
+                // click on kyc consent checkbox
+                kycPage.clickOnKycConsent();
+                Log.info("=======================CKYC test passed ======================== ");
+            }
+        }else{
+            if(!kycPage.isDigiLockerScreenOpened()){
+
+                Log.info("============ CKYC screen opened =======");
+
+                kycPage.setFirstName(firstName);
+
+                //enter last name
+                kycPage.setLastName(lastName);
+
+                //click on proceed after entering name
+                kycPage.clickOnProceedAfterName();
+
+                //enter pan card number
+                kycPage.setPanNumber(pan);
+
+                //click on date optin
+                kycPage.clickOnDateOption();
+
+                //clcik on select date field
+                kycPage.clickOnSelectDate();
+
+                // click on kyc consent checkbox
+                kycPage.clickOnKycConsent();
+
+                kycPage.clickOkcontinueOnCkyc();
+                Thread.sleep(3000);
+            }else if(kycPage.isDigiLockerScreenOpened()){
+
+                Log.info("============ Digilocker screen opened =======");
+                kycPage.setAdharCard(adhaarTweleveDigits);
+                kycPage.enterDigilockerCaptchaCode(captcha);
+
+                // click on return to mobikwik
+                kycPage.clickOnReturnToMobikwik();
+                kycPage.clickOnYesReturnToMobikwik();
+
+                kycPage.clickOkDigilockAcessNotProvided();
+
+                Thread.sleep(5000);
+
+
+                if( kycPage.isEkycScreenOpened()){
+
+                    Log.info("===========Ekyc screen opened after failure from digilocker===========");
+                }else{
+
+                    for(int i =0;i<2;i++){
+                        kycPage.clickOnRetryOnEkyc();
+                        if(kycPage.isEkycScreenOpened()){
+                            Log.info(("Ekyc screen opened after failure from digilocker after trying :"+i+2 + "time/s"));
+                            break;
+                        }else{
+                            Log.info("=========== ISSUE - > Ekyc screen not opened after trying :"+i+2 + "time/s");
+                        }
+                    }
+                }
+            }
         }
-
-        //Enter first name
-        kycPage.setFirstName(firstName);
-
-        //enter last name
-        kycPage.setLastName(lastName);
-
-        //click on proceed after entering name
-        kycPage.clickOnProceedAfterName();
-
-        //enter pan card number
-        kycPage.setPanNumber(pan);
-
-        //click on date optin
-        kycPage.clickOnDateOption();
-
-        //clcik on select date field
-        kycPage.clickOnSelectDate();
-
-        // click on kyc consent checkbox
-        kycPage.clickOnKycConsent();
-
     }
+
+
 
     public void ErrorMessageOnNonKycFlow() throws InterruptedException, IOException {
 
@@ -124,224 +184,6 @@ public class KYCHelper {
         kycPage.setPanNumberWithErrorMessage("HTIPK7865M");
     }
 
-
-    public void fullKycFromOnboardingBackPress(String firstName, String lastName, String panNumber, String adhaarNumber, String otp, String adhaarforWebsite, String security) throws InterruptedException, IOException {
-
-        // Full kyc VIA CKYC
-
-        //Back button from complete your kyc screen
-        kycPage.clickOnBackButtonFromCompleteYourKycScreen();
-
-        // click on complete using other options
-        kycPage.clickOnCompleteUsingOtherOptions();
-
-        //click on fetch from ckyc
-        kycPage.clickOnFetchFromCKYC();
-
-        //enter invalid first name
-        kycPage.setFirstName(firstName);
-
-        //enter invalid last name
-        kycPage.setLastName(lastName);
-
-        //click on proceed after entering name
-        kycPage.clickOnProceedAfterName();
-
-        // enter valid pan card
-        kycPage.setPanNumber(panNumber);
-
-        //click on date option
-        kycPage.clickOnDateOption();
-
-        // click on select date
-        kycPage.clickOnSelectDate();
-
-        // click on kyc consent checkbox
-        kycPage.clickOnKycConsent();
-
-        Log.info("====== CKYC Flow tested - Passed ======");
-
-        driver.navigate().back();
-        kycPage.clickOnCompleteUsingOtherOptions();
-
-        Log.info("====== Digilocker  Flow Started -  ======");
-
-        // click on via digilocker
-        kycPage.clickOnViaDigiLocker();
-        //   Thread.sleep(2000);
-
-        // set 12  digits of adhaar card
-        kycPage.setAdharCard(adhaarNumber);
-        kycPage.enterDigilockerCaptchaCode(otp);
-
-
-        Log.info("====== Digilocker Flow tested - Passed ======");
-
-        Log.info("====== Adhaar website  Flow Started -  ======");
-
-        driver.navigate().back();
-        kycPage.clickOnCompleteUsingOtherOptions();
-
-        // click on via adhaar website
-        kycPage.clickOnViaAadharWebsite();
-        Log.info("====== Adhaar website  Flow Started -  ======");
-
-        //handeled permission popup
-        handelPopups();
-
-        // Enter adhaar number
-        kycPage.setAdharNumberOnAdharWebsite(adhaarNumber.substring(0,4)+ " "+adhaarNumber.substring(4,8)+ " "+adhaarNumber.substring(8,12));
-
-        // click on kyc consent checkbox
-        kycPage.clickOnKycConsent();
-
-        // click on arrow button
-        kycPage.clickOnArrowButtonOnAdhaarWebsite();
-
-        //enter security code
-        kycPage.setSecurityCode(security);
-
-        Log.info("====== Adhaar  Flow tested - Passed ======");
-    }
-
-    public void fullKycFromDigilocker(String twelveDigits, String otp) throws InterruptedException {
-        // Full kyc VIA Digi locker
-
-
-        // press back button from kyc sreen
-        kycPage.clickOnBackButtonFromCompleteYourKycScreen();
-
-        // click on complete using other options
-        kycPage.clickOnCompleteUsingOtherOptions();
-
-        // click on via digilocker
-        kycPage.clickOnViaDigiLocker();
-        //   Thread.sleep(2000);
-
-        // set 12  digits of adhaar card
-        kycPage.setAdharCard(twelveDigits);
-        kycPage.enterDigilockerCaptchaCode(otp);
-
-    }
-
-    public void fullKycFromAdharWebsite(String adharNumber, String securityCode) throws InterruptedException {
-        // Full kyc VIA Adhaar website
-        kycPage.clickOnBackButtonFromCompleteYourKycScreen();
-
-        // click on complete using other options
-        kycPage.clickOnCompleteUsingOtherOptions();
-
-        // click on via adhaar website
-        kycPage.clickOnViaAadharWebsite();
-
-        //handeled permission popup
-        handelPopups();
-
-        // Enter adhaar number
-        kycPage.setAdharNumberOnAdharWebsite(adharNumber);
-
-        // click on kyc consent checkbox
-        kycPage.clickOnKycConsent();
-
-        // click on arrow button
-        kycPage.clickOnArrowButtonOnAdhaarWebsite();
-
-        //enter security code
-        kycPage.setSecurityCode(securityCode);
-    }
-
-    public void fullKycFromCKYCOnFailureFromAdhaarWebsite(String adharNumber, String securityCode, String firstName, String lastName, String pan) throws InterruptedException {
-
-        // String Full kyc VIA Adhaar website
-        kycPage.clickOnBackButtonFromCompleteYourKycScreen();
-
-        // click on complete using other options
-        kycPage.clickOnCompleteUsingOtherOptions();
-
-        // click on via adhaar website
-        kycPage.clickOnViaAadharWebsite();
-
-        //handeled permission popup
-        handelPopups();
-
-        // enter adhaar number
-        kycPage.setAdharNumberOnAdharWebsite(adharNumber);
-
-        // click on kyc consent checkbox
-        kycPage.clickOnKycConsent();
-
-        // click on arror button on adhaar website
-        kycPage.clickOnArrowButtonOnAdhaarWebsite();
-
-        // enter security code
-        kycPage.setSecurityCode(securityCode);
-
-        // click on arrow button on adhaar website
-        kycPage.clickOnArrowButtonOnAdhaarWebsite();
-
-        // click ok on captcha failure
-        kycPage.clickOkOnCaptcaFailure();
-
-        // On failire VIA adhar website, user should  be redircted to CKYC flow
-        //enter invalid first name
-        kycPage.setFirstName(firstName);
-
-        //enter invalid last name
-        kycPage.setLastName(lastName);
-
-        //click on proceed after entering name
-        kycPage.clickOnProceedAfterName();
-
-        // enter valid pan card
-        kycPage.setPanNumber(pan);
-
-        //click on date option
-        kycPage.clickOnDateOption();
-
-        // click on select date
-        kycPage.clickOnSelectDate();
-
-        // click on kyc consent checkbox
-        kycPage.clickOnKycConsent();
-    }
-
-    public void handelPopups() throws InterruptedException {
-
-        if (kycPage.isPermissionScreenVisible()) {
-
-            // click allow on in app permission
-            kycPage.clickOnPermissionScreen();
-
-            // click on while using app
-            kycPage.clickOnWhileUsingApp();
-
-            // click on allow button
-            kycPage.clickOnAllowButton();
-
-            // click on allow button
-            kycPage.clickOnAllowButton();
-
-        }
-    }
-
-    public void homePageLand() throws InterruptedException {
-
-        // Press Back
-        mbkCommonControlsHelper.pressback();
-
-        // Check Onboarding Pop Up Present
-        if (kycPage.isOnboardingPopUpPresent()) kycPage.clickIDontWantBenefits();
-
-        // Press Back
-        mbkCommonControlsHelper.pressback();
-
-        // Check Onboarding Pop Up Present
-        if (kycPage.isOnboardingPopUpPresent()) kycPage.clickIDontWantBenefits();
-
-        // Go to Home Page
-        mbkCommonControlsHelper.handleHomePageLanding();
-    }
-
     public void profileMinKycFlow(String pan, String fullName, String expTitle, String expSubTitle, String expScreenText) throws InterruptedException, IOException {
 
         // Go to Home Page
@@ -386,10 +228,7 @@ public class KYCHelper {
     }
 
 
-    public void profileFullKycFlow(String pan, String aadhaar, String firstName, String lastName, String kycType, String userType, String expTitle, String expSubTitle,String adhaarTweleveDigits,String captcha) throws InterruptedException, IOException {
-
-        // Go to Home Page
-        //  homePageLand();
+    public void profileFullKycFlow(String pan, String firstName, String lastName, String expTitle, String expSubTitle,String adhaarTweleveDigits,String captcha,boolean onlyCkyc) throws InterruptedException, IOException {
 
         // Click On Profile Button
         kycPage.clickOnProfileButton();
@@ -399,111 +238,142 @@ public class KYCHelper {
         /* Check CC Tool Tip Present */
         if (kycPage.isCCToolTipPresent()) {
             screen.tapAtCentre(driver);
-//            screen.tapAtCentre(driver);
+
         }
 
         // Click On Complete Your Kyc
         kycPage.clickOnCompleteYourKyc();
 
+        if(onlyCkyc) {
 
-        // 8219600006 is no longer no kyc user, it has been marked as min kyc user, So skippig this step for now.
-      /*  if(userType.equals("NOKYC")){
-            // Click On Full Kyc
-            kycPage.clickOnFullKyc();
-        }*/
+            if (!kycPage.isDigiLockerScreenOpened()) {
 
-        // Verification on the Success Screen
-        String title = kycPage.getProfileKycScreenTitle();
-        String subTitle = kycPage.getProfileKycScreenSubTitle();
-        String screenText = kycPage.getProfileKycScreenText();
+                Log.info("============ CKYC screen opened =======");
 
-        // Display the values
-        Log.info("Title : " + title);
-        Log.info("Sub Title : " + subTitle);
-        Log.info("Screen Text : " + screenText);
+                kycPage.setFirstName(firstName);
 
-        // Add the assertions
-        mbReporter.verifyEqualsWithLogging(title, expTitle, "Verify Title", false, false, true);
-        mbReporter.verifyEqualsWithLogging(subTitle, expSubTitle, "Verify Sub Title", false, false, true);
+                //enter last name
+                kycPage.setLastName(lastName);
 
+                //click on proceed after entering name
+                kycPage.clickOnProceedAfterName();
 
-        // select kyc Consent
-        kycPage.clickOnKycConsent();
+                //enter pan card number
+                kycPage.setPanNumber(pan);
 
-        if (kycType.equals("CKYC")) {
+                //click on date optin
+                kycPage.clickOnDateOption();
 
-            // Click Continue
-            kycPage.clickPofileKycContinue();
+                //clcik on select date field
+                kycPage.clickOnSelectDate();
 
-            // Set First Name
-            kycPage.setFirstName(firstName);
+                // click on kyc consent checkbox
+                kycPage.clickOnKycConsent();
+                Log.info("=======================CKYC test passed ======================== ");
+            }
+        }else{
+            if(!kycPage.isDigiLockerScreenOpened()){
 
-            // Set Last Name
-            kycPage.setLastName(lastName);
+                Log.info("============ CKYC screen opened =======");
 
-            // Click On Proceed
-            kycPage.clickOnProceedAfterName();
+                kycPage.setFirstName(firstName);
 
-            // Set Pan
-            kycPage.setPanNumber(pan);
+                //enter last name
+                kycPage.setLastName(lastName);
 
-            // click On Date
-            kycPage.clickOnDateOption();
+                //click on proceed after entering name
+                kycPage.clickOnProceedAfterName();
 
-            // Select Date
-            kycPage.clickOnSelectDate();
+                //enter pan card number
+                kycPage.setPanNumber(pan);
 
-            // select kyc Consent
-            kycPage.clickOnKycConsent();
-        } else if (kycType.equals("OKYC")) {
+                //click on date optin
+                kycPage.clickOnDateOption();
 
-            // click Pofile Aadhaar
-            kycPage.clickPofileAadhaar();
+                //clcik on select date field
+                kycPage.clickOnSelectDate();
 
-            // Click Continue
-            kycPage.clickPofileKycContinue();
+                // click on kyc consent checkbox
+                kycPage.clickOnKycConsent();
 
-            // check Profile Aadhaar Pop up
-            if (kycPage.isProfileAadhaarPopUpPresent()) kycPage.removeProfileAadhaarPopUp();
+                kycPage.clickOkcontinueOnCkyc();
+                Thread.sleep(3000);
 
-            //   Thread.sleep(3000);
+            }else if
+            (kycPage.isDigiLockerScreenOpened()){
 
-            // Enter Aadhaar
-            kycPage.enterProfileAadhaarTextBox(aadhaar);
+                Log.info("============ Digilocker screen opened =======");
+                kycPage.setAdharCard(adhaarTweleveDigits);
+                kycPage.enterDigilockerCaptchaCode(captcha);
 
-            // Submit Aadhaar
-            kycPage.clickPofileAadhaarSubmit();
+                // click on return to mobikwik
+                kycPage.clickOnReturnToMobikwik();
+                kycPage.clickOnYesReturnToMobikwik();
 
-            // Enter captcha
-            kycPage.enterAadhaarCaptcha("gcysd");
+                kycPage.clickOkDigilockAcessNotProvided();
+
+                Thread.sleep(5000);
 
 
-        } else {
+                if( kycPage.isEkycScreenOpened()){
 
-            // click Profile
-            kycPage.clickPofileDigilocker();
+                    Log.info("===========Ekyc screen opened after failure from digilocker===========");
+                }else{
 
-            // Click Continue
-            kycPage.clickPofileKycContinue();
-
-            //   Thread.sleep(2000);
-
-            // Set first four digits
-           /* kycPage.setAdharCardFirstDigits(aadhaar.substring(0, 4));
-
-            // Set middle four digits
-            kycPage.setAdharCardSecondDigits(aadhaar.substring(4, 8));
-
-            // Set last four digits
-            kycPage.setAdharCardThirdDigits(aadhaar.substring(8, 12));*/
-
-
-            kycPage.setAdharCard(adhaarTweleveDigits);
-            kycPage.enterDigilockerCaptchaCode(captcha);
-
-
+                    for(int i =0;i<2;i++){
+                        kycPage.clickOnRetryOnEkyc();
+                        if(kycPage.isEkycScreenOpened()){
+                            Log.info(("Ekyc screen opened after failure from digilocker after trying :"+i+2 + "time/s"));
+                            break;
+                        }else{
+                            Log.info("=========== ISSUE - > Ekyc screen not opened after trying :"+i+2 + "time/s");
+                        }
+                    }
+                }
+            }
         }
 
     }
+
+
+    public void homePageLand() throws InterruptedException {
+
+        // Press Back
+        mbkCommonControlsHelper.pressback();
+
+        // Check Onboarding Pop Up Present
+        if (kycPage.isOnboardingPopUpPresent()) kycPage.clickIDontWantBenefits();
+
+        // Press Back
+        mbkCommonControlsHelper.pressback();
+
+        // Check Onboarding Pop Up Present
+        if (kycPage.isOnboardingPopUpPresent()) kycPage.clickIDontWantBenefits();
+
+        // Go to Home Page
+        mbkCommonControlsHelper.handleHomePageLanding();
+    }
+
+    public void handelPopups() throws InterruptedException {
+
+        if (kycPage.isPermissionScreenVisible()) {
+
+            // click allow on in app permission
+            kycPage.clickOnPermissionScreen();
+
+            // click on while using app
+            kycPage.clickOnWhileUsingApp();
+
+            // click on allow button
+            kycPage.clickOnAllowButton();
+
+            // click on allow button
+            kycPage.clickOnAllowButton();
+
+        }
+    }
+
+
+
 
 }
