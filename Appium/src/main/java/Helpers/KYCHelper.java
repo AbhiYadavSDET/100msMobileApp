@@ -134,15 +134,23 @@ public class KYCHelper {
 
 
 
-    public void ErrorMessageOnNonKycFlow() throws InterruptedException, IOException {
+    public void ErrorMessageOnCKycFlow() throws InterruptedException, IOException {
 
         //Error message validation on full kyc flow from Onboarding
-        kycPage.clickOnContinueButtonOnBoradingScreen();
-        handelPopups();
 
-        if (kycPage.isOnboardingOptionsScreenPresent()) {
-            kycPage.clickOnFullKyc();
+        // Click On Profile Button
+        kycPage.clickOnProfileButton();
+
+        Thread.sleep(2000);
+
+        // Check CC Tool Tip Present
+        if (kycPage.isCCToolTipPresent()) {
+            screen.tapAtCentre(driver);
+//            screen.tapAtCentre(driver);
         }
+
+        // Click On Complete Your Kyc
+        kycPage.clickOnCompleteYourKyc();
 
         //enter invalid last name
         kycPage.setFirstName("Abhishek123");
