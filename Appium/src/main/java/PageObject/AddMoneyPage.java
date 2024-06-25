@@ -64,7 +64,12 @@ public class AddMoneyPage {
         Elements.selectElement(driver, add_Money, "Add Money Button");
     }
     public void clickOnAdd() throws InterruptedException {
-        Elements.selectElement(driver, button_add, "Continue Button");
+        if(driver.findElementById("btn_continue").isEnabled()) {
+            Elements.selectElement(driver, button_add, "Continue Button");
+        }else {
+            Thread.sleep(1000);
+            Elements.selectElement(driver, button_add, "Continue Button");
+        }
     }
 
     public void selectBank() throws InterruptedException {
