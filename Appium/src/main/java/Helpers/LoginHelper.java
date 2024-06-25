@@ -139,6 +139,18 @@ public class LoginHelper {
             loginPage.clickResendOtp();
             loginPage.enterOtp(otp);
         }
+
+        //need to add click on skip - upi page
+
+
+        if (Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text='Skip']"))){
+            Log.info("UPI setup screen shown");
+            driver.findElementByXPath("//android.widget.TextView[@text='Skip']").click();
+            Thread.sleep(3000);
+        }
+
+
+
         // Wait for 5000 ms for all the banners to load
         Thread.sleep(3000);
         if (Element.isElementPresentNoWait(driver, By.id("tv_explore_home"))){
@@ -146,6 +158,14 @@ public class LoginHelper {
             driver.findElementById("tv_explore_home").click();
             Thread.sleep(3000);
         }
+
+
+        if (Element.isElementPresentNoWait(driver, By.id("apply_referral_code"))){
+            Log.info("Offer page shown");
+            driver.navigate().back();
+        }
+
+
 
         mbkCommonControlsHelper.handleHomePageLanding();
         Thread.sleep(3000);
