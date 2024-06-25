@@ -357,6 +357,10 @@ public class MBKCommonControlsHelper {
                     Log.info("Home Page pop interruption Locator  : alertTitle");
                     driver.findElementByXPath("//android.widget.Button[@text='LATER']").click();
 
+                } else if (Element.isElementPresentNoWait(driver, By.id("ic_close"))) {
+                    Log.info("Home Page pop interruption Locator  : ic_close");
+                    driver.findElementById("ic_close").click();
+
                 } else if (Element.isElementPresentNoWait(driver, By.id("tv_do_not_want_benefits"))) {
                     Log.info("Home Page pop interruption Locator  : tv_do_not_want_benefits");
                     driver.findElementById("tv_do_not_want_benefits").click();
