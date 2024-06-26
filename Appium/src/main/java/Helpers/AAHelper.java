@@ -59,7 +59,21 @@ public class AAHelper {
 
             Elements.tapByCoordinates(57,916,driver);
 
+            aaPage.scrollToCashflow();
             if (Element.isElementPresent(driver, By.xpath("//*[@text='Cashflow']"))) {
+
+
+                aaPage.scrollTomoneyOutTitle();
+                // Fetch the other text on the screen
+                String moneyoutTitleOnDashboard = aaPage.getOutgoingTitle();
+                String outgoingSecondSubTitleOnDashboard = aaPage.getOutgoingSecondSubTitle();
+
+                Log.info("OutGoing Title :" + moneyoutTitleOnDashboard);
+                Log.info("Second Sub Title :" + outgoingSecondSubTitleOnDashboard);
+
+                // Add assertions
+                mbReporter.verifyEqualsWithLogging(moneyoutTitleOnDashboard, expMoneyoutTitleOnDashboard, "Verify Outgoing Title on MainDashboard", false, false, true);
+                mbReporter.verifyEqualsWithLogging(outgoingSecondSubTitleOnDashboard, expOutgoingSecondSubTitleOnDashboard, "Verify Second Outgoing SubTitle on MainDashboard", false, false, true);
 
                 // Add the assertions
                 aaPage.scrollTomoneyinTitle();
@@ -68,17 +82,6 @@ public class AAHelper {
                 Log.info("Money In Title : " + expmoneyinTitle);
                 mbReporter.verifyEqualsWithLogging(moneyInTTitle, expmoneyinTitle, "Verify Money In title", false, false, true);
 
-                    aaPage.scrollTomoneyOutTitle();
-                    // Fetch the other text on the screen
-                    String moneyoutTitleOnDashboard = aaPage.getOutgoingTitle();
-                    String outgoingSecondSubTitleOnDashboard = aaPage.getOutgoingSecondSubTitle();
-
-                    Log.info("OutGoing Title :" + moneyoutTitleOnDashboard);
-                    Log.info("Second Sub Title :" + outgoingSecondSubTitleOnDashboard);
-
-                    // Add assertions
-                    mbReporter.verifyEqualsWithLogging(moneyoutTitleOnDashboard, expMoneyoutTitleOnDashboard, "Verify Outgoing Title on MainDashboard", false, false, true);
-                    mbReporter.verifyEqualsWithLogging(outgoingSecondSubTitleOnDashboard, expOutgoingSecondSubTitleOnDashboard, "Verify Second Outgoing SubTitle on MainDashboard", false, false, true);
 
             }
 
