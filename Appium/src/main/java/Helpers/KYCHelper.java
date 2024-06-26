@@ -369,8 +369,10 @@ public class KYCHelper {
             // click allow on in app permission
             kycPage.clickOnPermissionScreen();
 
-            // click on while using app
-        //    kycPage.clickOnWhileUsingApp();
+            if(kycPage.isWhileUsingTheAppPresent()){
+                // click on while using app
+                kycPage.clickOnWhileUsingApp();
+            }
 
             // click on allow button
             kycPage.clickOnAllowButton();

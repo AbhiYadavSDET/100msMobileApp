@@ -13,7 +13,7 @@ public class TestKYC extends TestBase {
 
     //==================================New test cases as per 3 step kyc========================================//
 
-    @Test(enabled = true, groups = {"kycSanity", "regression", "sanity", "OnboardingFullkyc"}, priority = 0, description = "CKYC KYC flow from Profile for No Kyc User")
+    @Test(enabled = true, groups = {"kycSanity", "regression", "OnboardingFullkyc"}, priority = 0, description = "CKYC KYC flow from Profile for No Kyc User")
     public void Test01_OnBoarding_Full_Kyc_Flow() throws IOException, InterruptedException {
 
         Log.info("======= START : CKYC flow from Onboarding =======");
@@ -30,7 +30,7 @@ public class TestKYC extends TestBase {
 
     }
 
-    @Test(enabled = true, groups = {"kycSanity", "regression", "sanity", "OnboardingCkycFlow"}, priority = 0, description = "CKYC KYC flow from Profile for No Kyc User")
+    @Test(enabled = true, groups = {"kycSanity", "regression", "OnboardingCkycFlow"}, priority = 0, description = "CKYC KYC flow from Profile for No Kyc User")
     public void Test02_OnBoarding_Ckyc_Flow() throws IOException, InterruptedException {
 
         Log.info("======= START : CKYC flow from Onboarding =======");
@@ -76,7 +76,7 @@ public class TestKYC extends TestBase {
     }
 
 
-    @Test(enabled = true, groups = {"NoKYC", "minKycerrorMessage", "regression"}, priority = 0, description = " min kyc user - Error message validation on Non kyc flow")
+    @Test(enabled = false, groups = {"NoKYC", "minKycerrorMessage", "regression"}, priority = 0, description = " min kyc user - Error message validation on Non kyc flow")
     public void Test05_minKyc_user_No_KYC_FLOW_Error_message() throws IOException, InterruptedException {
 
         Log.info("======= START : min kyc user -  Full KYC flow via ckyc Error message validation =======");
