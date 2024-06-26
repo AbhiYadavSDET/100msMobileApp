@@ -164,7 +164,7 @@ public class Test_Insurance extends TestBase {
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("7795709569", "547372");
+        loginHelper.quickLoginViaOtp("7042338867", "547372");
 
         // Execute the test
         InsuranceHelper insuranceHelper = new InsuranceHelper(getAndroidDriver());
