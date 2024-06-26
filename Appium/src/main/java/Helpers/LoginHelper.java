@@ -168,6 +168,13 @@ public class LoginHelper {
 
 
         mbkCommonControlsHelper.handleHomePageLanding();
+
+        if (Element.isElementPresentNoWait(driver, By.id("apply_referral_code"))){
+            Log.info("Offer page shown");
+            driver.navigate().back();
+        }
+        permissionHelper.permissionAllow();
+
         Thread.sleep(3000);
      /*   if (Element.isElementPresentNoWait(driver, By.id("tv_explore_home"))){
             Log.info("Feature Assist Page Shown");

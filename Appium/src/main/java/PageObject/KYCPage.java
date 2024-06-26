@@ -557,6 +557,10 @@ public class KYCPage {
         Elements.selectElement(driver, continuebuttonOnCKyc, "Click on continue on ckyc");
     }
 
+    public  boolean isWhileUsingTheAppPresent() throws InterruptedException {
+        return Elements.isElementPresent(driver,whileUsingTheApp);
+    }
+
 
 
 
