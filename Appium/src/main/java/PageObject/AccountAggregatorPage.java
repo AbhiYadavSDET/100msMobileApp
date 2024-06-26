@@ -91,6 +91,9 @@ public class AccountAggregatorPage {
     @AndroidFindBy(xpath = "//*[@text='MONEY OUT']")
     private AndroidElement moneyOutTitle;
 
+    @AndroidFindBy(xpath = "//*[@text='Cashflow']")
+    private AndroidElement cashFlow;
+
     @AndroidFindBy(id = "ll_root")
     private AndroidElement tooltip_search;
 
@@ -670,6 +673,9 @@ public class AccountAggregatorPage {
 
     public void scrollTomoneyinTitle() throws InterruptedException {
          Elements.scrollToElement(driver, moneyInTitle);
+    }
+    public void scrollToCashflow() throws InterruptedException {
+        Elements.scrollToElement(driver, cashFlow);
     }
 
     public void scrollTomoneyOutTitle() throws InterruptedException {
