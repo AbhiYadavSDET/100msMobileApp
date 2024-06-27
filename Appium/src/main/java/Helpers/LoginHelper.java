@@ -280,12 +280,13 @@ public class LoginHelper {
             loginPage.clickResendOtp();
         }
 
-        if(simAvailableInDevice){
+        if(!simAvailableInDevice){
 
             if(element.isElementPresent(driver, By.id("et_otp"))) {
             Log.info("If Otp page is still present, and otp is not recieved : Entering Otp Manually ");
             loginPage.enterOtp("547372");
             Thread.sleep(2000);
+
             }
 
         }else {
