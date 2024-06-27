@@ -121,6 +121,7 @@ public class LoginPage {
         if (otp.length() > 0) {
             Element.enterText(driver, textbox_enter_otp, otp, "Enter OTP");
         }
+        Element.waitForInvisibility(driver, By.id("btn_loader"));
     }
 
     public void clickSubmitOtpCta() {

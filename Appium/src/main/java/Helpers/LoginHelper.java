@@ -66,7 +66,7 @@ public class LoginHelper {
             loginPage.enterOtp(otp);
         }
         // Wait for 5000 ms for all the banners to load
-        Thread.sleep(5000);
+        Thread.sleep(2000);
         if (Element.isElementPresentNoWait(driver, By.id("tv_explore_home"))){
             Log.info("Feature Assist Page Shown");
             driver.findElementById("tv_explore_home").click();
@@ -103,7 +103,7 @@ public class LoginHelper {
             loginPage.enterOtp(otp);
         }
         // Wait for 5000 ms for all the banners to load
-        Thread.sleep(5000);
+        Thread.sleep(2000);
         if (Element.isElementPresentNoWait(driver, By.id("tv_explore_home"))){
             Log.info("Feature Assist Page Shown");
             Thread.sleep(1500);
@@ -251,10 +251,13 @@ public class LoginHelper {
 
     public void quickLoginViaOtpAutoRead(String mobileNumber, String otp) throws InterruptedException {
 
+        boolean simAvailableInDevice=false;
+
         element.waitForVisibilityMultipleElements(driver, By.xpath("//*[@text='NONE OF THE ABOVE']"), By.id("et_phone_number"));
 
         if (element.isElementPresentNoWait(driver, By.xpath("//*[@text='NONE OF THE ABOVE']"))) {
             loginPage.clickNoneOfAbove();
+            simAvailableInDevice=true;
         }
 
         loginPage.enterMobileNum(mobileNumber);
@@ -270,8 +273,21 @@ public class LoginHelper {
             loginPage.clickResendOtp();
         }
 
-        // Wait for 5000 ms for all the banners to load
-        Thread.sleep(5000);
+        if(simAvailableInDevice){
+
+            if(element.isElementPresent(driver, By.id("et_otp"))) {
+            Log.info("If Otp page is still present, and otp is not recieved : Entering Otp Manually ");
+            loginPage.enterOtp("547372");
+            Thread.sleep(2000);
+            }
+
+        }else {
+            // Wait for 5000 ms for all the banners to load
+            Thread.sleep(5000);
+        }
+
+
+
         if (Element.isElementPresentNoWait(driver, By.id("tv_explore_home"))){
             Log.info("Feature Assist Page Shown");
             driver.findElementById("tv_explore_home").click();
@@ -325,7 +341,7 @@ public class LoginHelper {
         }
 
         // Wait for 5000 ms for all the banners to load
-        Thread.sleep(5000);
+        Thread.sleep(2000);
 
         if (Element.isElementPresentNoWait(driver, By.id("tv_explore_home"))){
             Log.info("Feature Assist Page Shown");

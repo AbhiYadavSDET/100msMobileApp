@@ -96,8 +96,11 @@ public class Element {
     public static boolean waitForInvisibility(AndroidDriver driver, By targetElement) {
         try {
             WebDriverWait wait = new WebDriverWait(driver, timeOut);
+            Log.info("Waiting for Invisibility of : "+targetElement);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(targetElement));
+            Log.info(targetElement +" Is Invisible now");
             return true;
+
         } catch (TimeoutException e) {
             System.out.println("Element is still visible: " + targetElement);
             System.out.println();
