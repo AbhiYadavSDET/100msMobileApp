@@ -7,6 +7,7 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
@@ -587,6 +588,11 @@ public class P2PExtraPage {
 
     public boolean checkViewAllBtn() throws InterruptedException {
         return Elements.isElementPresent(driver, view_all_btn);
+    }
+
+    public void scrollToViewAllBtn() throws InterruptedException {
+        Log.info("Scroll to View All Button");
+        Elements.scrollToElement(driver, view_all_btn);
     }
 
     public void selectMaturityOptn() throws InterruptedException {

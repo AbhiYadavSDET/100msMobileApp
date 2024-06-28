@@ -381,6 +381,8 @@ public class MBKCommonControlsHelper {
                     Log.info("Home Page pop interruption Locator  : Feature Assist Page Shown");
                     driver.findElementById("tv_explore_home").click();
                     Thread.sleep(3000);
+                    Log.info("As Feature Assist page handled via handleHomePageLanding(), recalling handleHomePageLanding() for other popups");
+                    handleHomePageLanding();
 
                 } else if (Element.isElementPresentNoWait(driver, By.xpath("//android.widget.Button[contains(@text, 'While using the app')]"))) {
                     Log.info("Home Page pop interruption Locator  : Location popup shown");

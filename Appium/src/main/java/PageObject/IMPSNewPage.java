@@ -1,4 +1,5 @@
 package PageObject;
+import Helpers.MBKCommonControlsHelper;
 import Utils.Element;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
@@ -152,6 +153,9 @@ public class IMPSNewPage {
 
     @AndroidFindBy(id = "btn_check_out_pay")
     private AndroidElement continueOnCheckoutPage ;
+
+    @AndroidFindBy(id="back_icon")
+    private AndroidElement success_page_back_button;
 
 
     public IMPSNewPage(AndroidDriver driver) throws IOException {
@@ -375,6 +379,17 @@ public class IMPSNewPage {
 
     public void clickOnContinueOnCheckout() throws InterruptedException{
         Elements.selectElement(driver,continueOnCheckoutPage,"Tapped on pay button on checkout page ");
+    }
+
+    public void navigateBackFromSuccessPage() throws InterruptedException, IOException {
+        Element.selectElement(driver,success_page_back_button, "Navigate back from Success Page");
+        MBKCommonControlsHelper mbkCommonControlsHelper= new MBKCommonControlsHelper(driver);
+        Thread.sleep(1000);
+        if(Element.isElementPresent(driver, By.id("rating_seekbar"))) {
+            mbkCommonControlsHelper.handleNPS();
+            Element.selectElement(driver,success_page_back_button, "Navigating back again due to NPS");
+        }
+
     }
 
 

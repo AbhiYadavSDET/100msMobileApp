@@ -1,11 +1,16 @@
 package PageObject;
 
+import Helpers.MBKCommonControlsHelper;
+import Utils.Element;
 import Utils.Elements;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
+
+import java.io.IOException;
 
 public class P2MPage {
 
@@ -188,8 +193,14 @@ public class P2MPage {
         Elements.selectElement(driver, ctaConfirmPayment, "Confirm Payment");
     }
 
-    public void clickUpButton() {
-        Elements.selectElement(driver, upButtom, "Up Button");
+    public void clickSuccessPageBackButton() throws IOException, InterruptedException {
+        Elements.selectElement(driver, upButtom, "Success Page Back Button");
+        MBKCommonControlsHelper mbkCommonControlsHelper= new MBKCommonControlsHelper(driver);
+        Thread.sleep(1000);
+        if(Element.isElementPresent(driver, By.id("rating_seekbar"))) {
+            mbkCommonControlsHelper.handleNPS();
+            Elements.selectElement(driver, upButtom, "Navigating back again due to NPS");
+        }
     }
 
     public void clickBackButtonOnStatusScreen() {
