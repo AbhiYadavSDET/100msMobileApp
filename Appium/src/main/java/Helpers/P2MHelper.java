@@ -131,20 +131,7 @@ public class P2MHelper {
 
 
         // Click on the up Icon
-        p2mPage.clickUpButton();
-
-        // Click Cross Buttonm
-        if (p2mPage.checkBackButton()) p2mPage.clickBackButton();
-
-        // Click on the up Icon
-        // p2mPage.clickUpButton();
-        //if (p2mPage.checkBackButton()) p2mPage.clickBackButton();
-
-        // Click on the back button if the bottom sheet is present
-        Thread.sleep(3000);
-        if (Elements.isElementPresent(driver, p2mPage.upiBottomSheetCta)) {
-            Elements.back(driver, "Navigate Back");
-        }
+        p2mPage.clickSuccessPageBackButton();
 
         // Handle home page pop-up after transaction
         mbkCommonControlsHelper.handleHomePageLanding();
