@@ -23,13 +23,13 @@ public class UpiPage {
 
 
 
-    @AndroidFindBy(id = "search_upi")
+    @AndroidFindBy(id = "search_edit_text")
     private AndroidElement cta_enter_upi_id;
 
-    @AndroidFindBy(id = "search_upi")
+    @AndroidFindBy(id = "search_edit_text")
     private AndroidElement enter_upi_id_or_number;
 
-    @AndroidFindBy(id = "send_money")
+    @AndroidFindBy(id = "contact_name")
     private AndroidElement result_upi_id;
 
     @AndroidFindBy(id="transfer_to")
@@ -185,9 +185,15 @@ public class UpiPage {
 
 
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Bank Transfer']")
+    private AndroidElement transfer_to_bank_optn;
 
 
 
+
+
+    @AndroidFindBy(id = "add_bank_account")
+    private AndroidElement restore_bank_account_option;
 
 
 
@@ -215,6 +221,9 @@ public class UpiPage {
     private AndroidElement pocket_upi_id;
 
     @AndroidFindBy (xpath = "//android.widget.TextView[@text='See All']")
+    private AndroidElement pocketUpi_homePage_seeAll_cta;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Transfer Now']")
     private AndroidElement pocketUpi_homePage_transferNow_cta;
 
     @AndroidFindBy (xpath = "//android.widget.TextView[@text='Scan any QR code']")
@@ -386,6 +395,9 @@ public class UpiPage {
 
     @AndroidFindBy(id="masked_account_number")
     private AndroidElement checkout_upi_account;
+
+    @AndroidFindBy(id="upi_manage_settings")
+    private AndroidElement upi_settings_optn;
 
 
 
@@ -594,6 +606,14 @@ public class UpiPage {
 
     public void selectPocketUpiTransferNowCta() throws InterruptedException{
         Element.selectElement(driver,pocketUpi_homePage_transferNow_cta, "Select PocketUpi Transfer Now cta");
+    }
+
+    public boolean checkPocketUpiTransferNowCta() throws InterruptedException{
+      return Element.isElementPresent(driver,By.xpath("//android.widget.TextView[@text='Transfer Now']"));
+    }
+
+    public void selectPocketUpiSeeAllCta() throws InterruptedException{
+        Element.selectElement(driver,pocketUpi_homePage_seeAll_cta, "Select PocketUpi See Allcta");
     }
 
     public void selectPocketUpiScanAnyQRCta() throws InterruptedException{
@@ -850,4 +870,16 @@ public class UpiPage {
     }
 
 
+    public void selectTransferToBankOption() {
+        Element.selectElement(driver,transfer_to_bank_optn,"Click on Transfer to Bank");
+    }
+
+    public void clickUPISettingsOptn() throws InterruptedException {
+        Elements.scrollToElement(driver,upi_settings_optn);
+    }
+
+
+    public void clickRestoreOptn() {
+        Elements.selectElement(driver,restore_bank_account_option,"Click on Restore Option");
+    }
 }

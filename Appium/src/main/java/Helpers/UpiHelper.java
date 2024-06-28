@@ -102,15 +102,7 @@ public class UpiHelper {
         }
 
         //2FA Validation Page Assertions
-
-        if(upiPage.is2FAPageDisplayed()){
-
-            upiPage.clickOnContinue2FAPage();
-            permissionHelper.permissionAllow();
-            Thread.sleep(4000);
-            mbReporter.verifyTrueWithLogging(true, "2FA Page Verification", false, false );
-
-        }
+        mbkCommonControlsHelper.handle2FADeviceBindingFlow();
 
         mbkCommonControlsHelper.handleUpiPin(pin);
 
@@ -139,6 +131,7 @@ public class UpiHelper {
 //        upiPage.selectTransfertoBank();
 
 //        upiPage.enterBeneficiaryName(beneficiaryName);
+    //    upiPage.selectTransferToBankOption();
 
         upiPage.enterAccountNumber(accountNumber);
 
@@ -179,15 +172,7 @@ public class UpiHelper {
         }
 
         //2FA Validation Page Assertions
-
-        if(upiPage.is2FAPageDisplayed()){
-
-            upiPage.clickOnContinue2FAPage();
-            permissionHelper.permissionAllow();
-            Thread.sleep(4000);
-            mbReporter.verifyTrueWithLogging(true, "2FA Page Verification", false, false );
-
-        }
+        mbkCommonControlsHelper.handle2FADeviceBindingFlow();
 
         mbkCommonControlsHelper.handleUpiPin(pin);
 
@@ -216,7 +201,7 @@ public class UpiHelper {
 
         homePage.navigateAndSelectUpiCheckBalance();
 
-        Thread.sleep(2000);
+        Thread.sleep(3000);
 
         Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Link Your Bank Account']"));
 
@@ -234,14 +219,8 @@ public class UpiHelper {
 
         Thread.sleep(7000);
 
-        if(upiPage.is2FAPageDisplayed()){
-
-                upiPage.clickOnContinue2FAPage();
-                Thread.sleep(4000);
-                mbReporter.verifyTrueWithLogging(true, "2FA Page Verification", false, false );
-
-        }
-
+        //2FA verification
+        mbkCommonControlsHelper.handle2FADeviceBindingFlow();
 
         mbkCommonControlsHelper.handleUpiPin(pin);
 
@@ -417,15 +396,7 @@ public class UpiHelper {
         }
 
         //2FA Validation Page Assertions
-
-        if(upiPage.is2FAPageDisplayed()){
-
-            upiPage.clickOnContinue2FAPage();
-            permissionHelper.permissionAllow();
-            Thread.sleep(4000);
-            mbReporter.verifyTrueWithLogging(true, "2FA Page Verification", false, false );
-
-        }
+        mbkCommonControlsHelper.handle2FADeviceBindingFlow();
 
         mbkCommonControlsHelper.handleUpiPin(pin);
 
@@ -464,7 +435,12 @@ public class UpiHelper {
         Element.waitForVisibility(driver, By.id("pocket_upi_header"));
         mbReporter.verifyTrueWithLogging(!(upiPage.getPocketUpiId() ==null), upiPage.getPocketUpiId(), false,false);
 
-        upiPage.selectPocketUpiTransferNowCta();
+        //Check for If frequent transfer contacts are present
+        if(upiPage.checkPocketUpiTransferNowCta()){
+            upiPage.selectPocketUpiTransferNowCta();
+        } else {
+            upiPage.selectPocketUpiSeeAllCta();
+        }
 
         upiPage.selectEnterUPI();
 
@@ -554,12 +530,13 @@ public class UpiHelper {
 
         homePage.clickOnAllServicesSection();
         upiPage = homePage.clickOnUPITransfers();
+//
+//        Element.waitForVisibility(driver, By.id("transfer_own_account"));
+//        upiPage.selectManageCta();
+//
+//        Element.waitForVisibility(driver, By.id("txtHowToUseUpi"));
 
-        Element.waitForVisibility(driver, By.id("transfer_own_account"));
-        upiPage.selectManageCta();
-
-        Element.waitForVisibility(driver, By.id("txtHowToUseUpi"));
-
+        upiPage.clickUPISettingsOptn();
 
         upiPage.clickLinkAccount();
 
@@ -612,11 +589,15 @@ public class UpiHelper {
         homePage.clickOnAllServicesSection();
         upiPage = homePage.clickOnUPITransfers();
 
-        Element.waitForVisibility(driver, By.id("transfer_own_account"));
-        upiPage.selectManageCta();
+        upiPage.clickUPISettingsOptn();
 
-        Element.waitForVisibility(driver, By.id("txtHowToUseUpi"));
+//        Element.waitForVisibility(driver, By.id("transfer_own_account"));
+//        upiPage.selectManageCta();
+//
+//        Element.waitForVisibility(driver, By.id("txtHowToUseUpi"));
 
+
+        upiPage.clickRestoreOptn();
 
         upiPage.clickLinkAccount();
 
@@ -669,11 +650,15 @@ public class UpiHelper {
         homePage.clickOnAllServicesSection();
         upiPage = homePage.clickOnUPITransfers();
 
-        Element.waitForVisibility(driver, By.id("transfer_own_account"));
-        upiPage.selectManageCta();
+        upiPage.clickUPISettingsOptn();
 
-        Element.waitForVisibility(driver, By.id("txtHowToUseUpi"));
+//        Element.waitForVisibility(driver, By.id("transfer_own_account"));
+//        upiPage.selectManageCta();
+//
+//        Element.waitForVisibility(driver, By.id("txtHowToUseUpi"));
 
+
+        upiPage.clickRestoreOptn();
 
         upiPage.clickLinkAccount();
 
@@ -752,13 +737,13 @@ public class UpiHelper {
         homePage.clickOnAllServicesSection();
         upiPage = homePage.clickOnUPITransfers();
 
-        Element.waitForVisibility(driver, By.id("transfer_own_account"));
-        upiPage.selectManageCta();
+//        Element.waitForVisibility(driver, By.id("transfer_own_account"));
+//        upiPage.selectManageCta();
+//
+//        Element.waitForVisibility(driver, By.id("txtHowToUseUpi"));
 
-        Element.waitForVisibility(driver, By.id("txtHowToUseUpi"));
 
-
-        upiPage.clickLinkAccount();
+        upiPage.clickRestoreOptn();
 
         upiPage.clickOnUpiSetupCta();
 
