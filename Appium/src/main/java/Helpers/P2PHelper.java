@@ -106,21 +106,7 @@ public class P2PHelper {
         mbReporter.verifyEqualsWithLogging(actualZipCtaText, expZipCtaText, "Verify Amount", false, false,true);
 
         // Click on the up Icon
-        p2MPage.clickUpButton();
-
-        // Click Cross Buttonm
-        if (p2MPage.checkBackButton()) p2MPage.clickBackButton();
-
-        // Click on the up Icon
-        //p2MPage.clickUpButton();
-
-        //p2MPage.tapOuside();
-
-        // Click on the back button if the bottom sheet is present
-        Thread.sleep(3000);
-        if (Elements.isElementPresent(driver, p2MPage.upiBottomSheetCta)) {
-            Elements.back(driver, "Navigate Back");
-        }
+        p2MPage.clickSuccessPageBackButton();
 
         // Handel home page pop-up after transaction
         mbkCommonControlsHelper.handleHomePageLanding();

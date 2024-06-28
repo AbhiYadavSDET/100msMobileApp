@@ -9,6 +9,7 @@ import Utils.Elements;
 import Utils.MBReporter;
 import Utils.Screen;
 import io.appium.java_client.android.AndroidDriver;
+import org.openqa.selenium.By;
 
 import java.io.IOException;
 
@@ -533,9 +534,11 @@ public class P2PExtraHelper {
             }
 
             // Click on Got it to remove referral bottom sheet.
-            if (p2PExtraPage.isBottomSheetPresent()) p2PExtraPage.removeBottomSheet();
+            if (p2PExtraPage.isBottomSheetPresent()){
+                p2PExtraPage.removeBottomSheet();
+            }
 
-            screen.swipeUpMore(driver);
+            p2PExtraPage.scrollToViewAllBtn();
         }
 
         //Click on View All button

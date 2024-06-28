@@ -160,6 +160,9 @@ public class IMPSNewHelper {
         mbReporter.verifyEqualsWithLogging(actualAmount, expectedAmount, "Success Page | Amount", false, false);
 
         // back to home
+
+        impsPage.navigateBackFromSuccessPage();
+
         mbkCommonControlsHelper.handleHomePageLanding();
 
 
