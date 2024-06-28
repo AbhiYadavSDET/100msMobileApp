@@ -163,7 +163,7 @@ public class Test_Upi extends TestBase {
         upiHelper.manageUpi();
     }
 
-    @Test(groups = {"manageUpi", "upiSanity", "sanity","test"}, priority = 0, description = "Add New Bank account and Credit Card flow")
+    @Test(groups = {"manageUpi", "upiSanity", "sanity"}, priority = 0, description = "Add New Bank account and Credit Card flow")
     public void Test12_Add_Account_CreditCard() throws IOException, InterruptedException {
 
         Log.info("======= START : Add New Bank account and Credit Card flow =======");
