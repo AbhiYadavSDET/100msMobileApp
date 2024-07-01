@@ -288,6 +288,9 @@ public class HomePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Credit Card Payment']")
     private AndroidElement ccbp_cta;
 
+    @AndroidFindBy(id = "title")
+    private AndroidElement linkBankAccount_bottomsheet_title;
+
 
 
 
@@ -677,6 +680,9 @@ public class HomePage {
         Elements.selectElement(driver,ccbp_cta,"Click on Credit Card Payment");
     }
 
+    public String getLinkAccountBottomsheetTitle() {
+        return Element.getText(driver,linkBankAccount_bottomsheet_title,"Get Bottomsheet Title");
+    }
 
 
     //############################ Old end ################################

@@ -177,14 +177,7 @@ public class AddMoneyHelper {
             Thread.sleep(5000);
 
             //2FA Validation Page Assertions
-
-            if(upiPage.is2FAPageDisplayed()){
-
-                upiPage.clickOnContinue2FAPage();
-                Thread.sleep(3000);
-                mbReporter.verifyTrueWithLogging(true, "2FA Page Verification Done", false, false );
-
-            }
+            mbkCommonControlsHelper.handle2FADeviceBindingFlow();
 
             mbkCommonControlsHelper.handleUpiPin(pin);
 
