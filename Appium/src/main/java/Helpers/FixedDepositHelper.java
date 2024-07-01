@@ -126,8 +126,6 @@ public class FixedDepositHelper {
         //CTA click for next screen
         fixedDepositPage.ctaNext();
 
-        //CTA click for next screen where payment page will come
-        fixedDepositPage.ctaProceedToPay();
 
     }
 
@@ -174,15 +172,15 @@ public class FixedDepositHelper {
         fixedDepositPage.ctaDropdownOccupationTypeSelect();
 
         // Click on  proceed page
-        fixedDepositPage.ctaProceed();
+        fixedDepositPage.ctasaveAndContinue();
         Thread.sleep(2000);
         fixedDepositPage.clickBankAccount();
         Thread.sleep(2000);
         fixedDepositPage.clickBankAccountHDFC();
         Thread.sleep(2000);
         fixedDepositPage.ctaProceed();
-        fixedDepositPage.ctaProceedtoPay();
-        fixedDepositPage.ctaProceed();
+        fixedDepositPage.ctasContinue();
+
 
     }
 
@@ -377,7 +375,7 @@ public class FixedDepositHelper {
         fixedDepositPage.ctaDropdownOccupationTypeSelect();
 
         // Click on  proceed page
-        fixedDepositPage.ctaProceed();
+       fixedDepositPage.ctasContinue();
 
     }
 

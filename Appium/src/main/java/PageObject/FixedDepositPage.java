@@ -95,6 +95,12 @@ public class FixedDepositPage {
     @AndroidFindBy(xpath = "//*[@text = 'Proceed']")
     private AndroidElement ctaProceed;
 
+    @AndroidFindBy(xpath = "//*[@text = 'Save and Continue']")
+    private AndroidElement saveAndContinue;
+
+    @AndroidFindBy(xpath = "//*[@text = 'Continue']")
+    private AndroidElement ctaContinue;
+
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Nominee']/../android.view.ViewGroup/android.widget.TextView")
     private AndroidElement ctaNomineeName;
 
@@ -382,6 +388,14 @@ public class FixedDepositPage {
 
     public void ctaProceedtoPay() throws InterruptedException{
         Elements.selectElement(driver,ctaProceedtoPay,"Select Proceed to pay");
+    }
+
+    public void ctasaveAndContinue() throws InterruptedException{
+        Elements.selectElement(driver,saveAndContinue,"save and continue");
+    }
+
+    public void ctasContinue() throws InterruptedException{
+        Elements.selectElement(driver,ctaContinue,"save and continue");
     }
 
     public void ctaNomineeName() throws InterruptedException{
