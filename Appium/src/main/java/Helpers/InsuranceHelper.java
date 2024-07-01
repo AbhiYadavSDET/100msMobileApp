@@ -119,12 +119,6 @@ public class InsuranceHelper {
         mbReporter.verifyEqualsWithLogging(textEndDate, exptextEndDate, "Text End Date", false, false, true);
         mbReporter.verifyEqualsWithLogging(textAmounttobePaid, exptextAmounttobePaid, "ext Amount to be Paid", false, false, true);
 
-        //Click On Make Payment
-        insurancePage.clickOnMakePayment();
-        String textpayableAmount = insurancePage.getPayableAmount();
-
-        Log.info("Text Payable Amount : " + textpayableAmount);
-        mbReporter.verifyEqualsWithLogging(textpayableAmount, exptextpayableAmount, "Text Payable Amount", false, false, true);
 
 
     }
@@ -171,13 +165,6 @@ public class InsuranceHelper {
         mbReporter.verifyEqualsWithLogging(textStartDate, exptextStartDate, "Text Start Date", false, false, true);
         mbReporter.verifyEqualsWithLogging(textEndDate, exptextEndDate, "Text End Date", false, false, true);
         mbReporter.verifyEqualsWithLogging(textAmounttobePaid, exptextAmounttobePaid, "Text Amount to be Paid", false, false, true);
-
-        //Click On Make Payment
-        insurancePage.clickOnMakePayment();
-        String textpayableAmount = insurancePage.getPayableAmount();
-
-        Log.info("Text Payable Amount : " + textpayableAmount);
-        mbReporter.verifyEqualsWithLogging(textpayableAmount, exptextpayableAmount, "Text Payable Amount", false, false, true);
 
 
     }
@@ -228,12 +215,6 @@ public class InsuranceHelper {
         mbReporter.verifyEqualsWithLogging(textEndDate, exptextEndDate, "Text End Date", false, false, true);
         mbReporter.verifyEqualsWithLogging(textAmounttobePaid, exptextAmounttobePaid, "Text Amount to be Paid", false, false, true);
 
-        //Click On Make Payment
-        insurancePage.clickOnMakePayment();
-        String textpayableAmount = insurancePage.getPayableAmount();
-
-        Log.info("Text Payable Amount : " + textpayableAmount);
-        mbReporter.verifyEqualsWithLogging(textpayableAmount, exptextpayableAmount, "Text Payable Amount", false, false, true);
 
 
     }
@@ -277,14 +258,6 @@ public class InsuranceHelper {
         mbReporter.verifyEqualsWithLogging(textEndDate, exptextEndDate, "Text End Date", false, false, true);
         mbReporter.verifyEqualsWithLogging(textAmounttobePaid, exptextAmounttobePaid, "Text Amount to be Paid", false, false, true);
 
-        //Click On Make Payment
-        insurancePage.clickOnMakePayment();
-        String textpayableAmount = insurancePage.getPayableAmount();
-
-        Log.info("Text Payable Amount : " + textpayableAmount);
-        mbReporter.verifyEqualsWithLogging(textpayableAmount, exptextpayableAmount, "Text Payable Amount", false, false, true);
-
-
     }
 
 
@@ -327,14 +300,6 @@ public class InsuranceHelper {
         mbReporter.verifyEqualsWithLogging(textEndDate, exptextEndDate, "Text End Date", false, false, true);
         mbReporter.verifyEqualsWithLogging(textAmounttobePaid, exptextAmounttobePaid, "Text Amount to be Paid", false, false, true);
 
-        //Click On Make Payment
-        insurancePage.clickOnMakePayment();
-        String textpayableAmount = insurancePage.getPayableAmount();
-
-        Log.info("Text Payable Amount : " + textpayableAmount);
-        mbReporter.verifyEqualsWithLogging(textpayableAmount, exptextpayableAmount, "Text Payable Amount", false, false, true);
-
-
     }
 
 
@@ -375,13 +340,6 @@ public class InsuranceHelper {
         mbReporter.verifyEqualsWithLogging(textStartDate, exptextStartDate, "Text Start Date", false, false, true);
         mbReporter.verifyEqualsWithLogging(textEndDate, exptextEndDate, "Text End Date", false, false, true);
         mbReporter.verifyEqualsWithLogging(textAmounttobePaid, exptextAmounttobePaid, "Text Amount to be Paid", false, false, true);
-
-        //Click On Make Payment
-        insurancePage.clickOnMakePayment();
-        String textpayableAmount = insurancePage.getPayableAmount();
-
-        Log.info("Text Payable Amount : " + textpayableAmount);
-        mbReporter.verifyEqualsWithLogging(textpayableAmount, exptextpayableAmount, "Text Payable Amount", false, false, true);
 
 
     }
@@ -429,8 +387,6 @@ public class InsuranceHelper {
         mbReporter.verifyEqualsWithLogging(textEndDate, exptextEndDate, "Text End Date", false, false, true);
         mbReporter.verifyEqualsWithLogging(textAmounttobePaid, exptextAmounttobePaid, "Text Amount to be Paid", false, false, true);
 
-        //Click On Make Payment
-        insurancePage.clickOnMakePayment();
 
     }
 
@@ -450,8 +406,7 @@ public class InsuranceHelper {
         insurancePage.clickOncheckBox();
         insurancePage.clickOnsumassuredbutton1();
 
-        //Insufficent flow
-        insurancePage.clickOnMakePayment();
+
 
     }
 

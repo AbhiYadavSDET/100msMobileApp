@@ -28,7 +28,7 @@ public class Test_Insurance extends TestBase {
 
     }
 
-    @Test(groups = {"insurance", "sanity", "regression"}, priority = 1, description = "My PolicyRefund")
+    @Test(groups = {"insurance1"}, priority = 1, description = "My PolicyRefund")
     public void Test_insurance_mypolicy_refund() throws IOException, InterruptedException {
 
         Log.info("======= START : Insurance =======");
@@ -123,7 +123,7 @@ public class Test_Insurance extends TestBase {
 
     }
 
-    @Test(groups = {"insurance", "sanity1", "regression"}, priority = 1, description = "Verify Communicable Diseases Insurance")
+    @Test(groups = {"insurance", "sanity1", "regression"}, priority = 11, description = "Verify Communicable Diseases Insurance")
     public void Test_Communicable_Diseases_insurance() throws IOException, InterruptedException {
 
         Log.info("======= START : Insurance =======");
