@@ -12,7 +12,7 @@ import java.io.IOException;
 public class Test_Upi extends TestBase {
 
 
-    @Test(groups = {"upiSendMoney", "upiSanity", "sanity"}, priority = 0, description = "UPI Send Money to UPI ID test")
+    @Test(groups = {"upiSendMoney", "upiSanity", "sanity","test"}, priority = 0, description = "UPI Send Money to UPI ID test")
     public void Test01_Upi_Send_Money_To_VPA() throws IOException, InterruptedException {
 
         Log.info("======= START : UPI Send Money to UPI ID test =======");

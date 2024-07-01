@@ -160,7 +160,7 @@ public class UpiPage {
     @AndroidFindBy(id="mkab_icon_1")
     private AndroidElement back_button;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Add New Bank Account']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Add Bank Account']")
     private AndroidElement add_new_bank_account;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Hdfc Bank']")
@@ -876,6 +876,7 @@ public class UpiPage {
 
     public void clickUPISettingsOptn() throws InterruptedException {
         Elements.scrollToElement(driver,upi_settings_optn);
+        Elements.selectElement(driver,upi_settings_optn,"Click on UPI manage settings");
     }
 
 

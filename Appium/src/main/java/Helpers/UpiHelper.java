@@ -203,9 +203,17 @@ public class UpiHelper {
 
         Thread.sleep(3000);
 
-        Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Link Your Bank Account']"));
+       // Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Link Your Bank Account']"));
 
-        mbReporter.verifyTrueWithLogging(Element.isElementPresent(driver, By.xpath("//android.widget.TextView[@text= 'Link Your Bank Account']")), "Link you bank account bottomsheet shown", false, false);
+        Element.waitForVisibility(driver, By.id("title"));
+
+       if(Element.isElementPresent(driver,By.id("title"))){
+
+           String actualTitle = homePage.getLinkAccountBottomsheetTitle();
+
+           mbReporter.verifyEqualsWithLogging(actualTitle,"Link Your Bank Account","Link you bank account bottomsheet shown",false,false,false);
+
+       }
 
         upiPage = homePage.clickOnLinkBankAccount();
 
