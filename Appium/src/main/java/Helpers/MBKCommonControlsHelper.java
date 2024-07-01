@@ -384,15 +384,22 @@ public class MBKCommonControlsHelper {
                     Log.info("As Feature Assist page handled via handleHomePageLanding(), recalling handleHomePageLanding() for other popups");
                     handleHomePageLanding();
 
-                } else if (Element.isElementPresentNoWait(driver, By.xpath("//android.widget.Button[contains(@text, 'While using the app')]"))) {
-                    Log.info("Home Page pop interruption Locator  : Location popup shown");
-                    driver.findElementByXPath("//android.widget.Button[contains(@text, 'While using the app')]").click();
-                    Thread.sleep(2000);
-                    if (Element.isElementPresent(driver, By.id("com.android.permissioncontroller:id/permission_deny_button"))) {
+                } else if (Element.isElementPresentNoWait(driver, By.id("com.android.permissioncontroller:id/content_container"))) {
+
+                    Log.info("Home Page pop interruption Locator  : Permission popup shown");
+
+                    if (Element.isElementPresentNoWait(driver, By.id("com.android.permissioncontroller:id/permission_deny_button"))) {
                         Log.info("Home Page pop interruption Locator  : Notification popup shown");
                         driver.findElementById("com.android.permissioncontroller:id/permission_deny_button").click();
-
                     }
+                    WebDriverWait wait = new WebDriverWait(driver,10);
+                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.android.permissioncontroller:id/permission_allow_foreground_only_button")));
+
+                    if (Element.isElementPresentNoWait(driver, By.id("com.android.permissioncontroller:id/permission_allow_foreground_only_button"))) {
+                        Log.info("Home Page pop interruption Locator  : Location popup shown");
+                        driver.findElementById("com.android.permissioncontroller:id/permission_allow_foreground_only_button").click();
+                    }
+
                 } else {
                     Log.info("Home Page pop interruption Locator  : New Type Pop Up Detected");
                     Log.info("-----------------Page Source Start----------------");
