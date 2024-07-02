@@ -6,6 +6,7 @@ import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import Logger.Log;
+import net.bytebuddy.asm.Advice;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
@@ -105,7 +106,10 @@ public class UpiPage {
     @AndroidFindBy(id="upi_id_view")
     private AndroidElement qr_bottomsheet_upi_id;
 
-    @AndroidFindBy(id="upi_id")
+//    @AndroidFindBy(id="upi_id")
+//    private AndroidElement manage_section_upi_id;
+
+    @AndroidFindBy(xpath="//android.widget.TextView['usertestdevice@ikwik']")
     private AndroidElement manage_section_upi_id;
 
     @AndroidFindBy(id="upi_number")
@@ -128,6 +132,9 @@ public class UpiPage {
 
     @AndroidFindBy(id="link_account_btn")
     private AndroidElement link_account_cta;
+
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='Add Bank Account']")
+    private AndroidElement add_bank_account;
 
     @AndroidFindBy(xpath="/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.Button[1]")
     private AndroidElement allowContactPermission;
@@ -271,7 +278,10 @@ public class UpiPage {
 //    @AndroidFindBy(xpath = "(//android.widget.TextView[@text='Deactivate'])[2]")
 //    private AndroidElement deactivate_cta_2_secondary_number;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='9205299330']/following-sibling::android.widget.TextView")
+//    @AndroidFindBy(xpath = "//android.widget.TextView[@text='9205299330']/following-sibling::android.widget.TextView")
+//    private AndroidElement activate_cta_1_primary_number;
+
+    @AndroidFindBy(id="number_text")
     private AndroidElement activate_cta_1_primary_number;
 
     @AndroidFindBy(xpath = "(//android.widget.TextView[@text='Activate'])[2]")
@@ -645,16 +655,22 @@ public class UpiPage {
 
 
     public void clickLinkAccount() throws InterruptedException {
-        Element.selectElement(driver, link_account_cta, "Click on Link Account");
+        Elements.scrollToElement(driver,link_account_cta);
+        Elements.selectElement(driver, link_account_cta, "Click on Link Account");
+    }
+
+    public void addBankAccount() throws InterruptedException {
+        Elements.scrollToElement(driver,add_bank_account);
+        Elements.selectElement(driver, add_bank_account, "Click on Add Bank Account");
     }
 
     public String fetchUPIIDManageSection() throws InterruptedException{
-        return Elements.getText(driver, manage_section_upi_id, " Fetch UPi ID in Manage Section").replace("UPI ID : ", "");
+        return Elements.getText(driver, manage_section_upi_id, " Fetch UPi ID in Manage Section");
     }
 
 
     public String fetchUPINumberManageSection() throws InterruptedException{
-        return Elements.getText(driver, manage_section_upi_number, " Fetch UPi Number in Manage Section").replace("UPI ID : ", "");
+        return Elements.getText(driver, manage_section_upi_number, " Fetch UPi Number in Manage Section");
     }
 
 
