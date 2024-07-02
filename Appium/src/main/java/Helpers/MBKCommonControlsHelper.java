@@ -263,8 +263,9 @@ public class MBKCommonControlsHelper {
         // Swipe Up if supercash balance card is not present
         if (!homePage.isSuperCashBalancePresent()) {
 
-            screen.swipeUpMore(driver);
+            homePage.scrollToSupercashBalance();
         }
+
 
         // Get the "Supercash" Balance
         String supercash = homePage.getSuperCashBalance().replace("₹", "");
