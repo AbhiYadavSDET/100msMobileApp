@@ -124,7 +124,7 @@ public class IMPSNewPage {
     private AndroidElement closeCheckLimit ;
 
 
-    @AndroidFindBy(xpath = "//android.widget.Button[contains(@text, 'Transfer now')]")
+    @AndroidFindBy(id = "btn_continue")
     private AndroidElement transferNowOnZeroState ;
 
     @AndroidFindBy(id = "info_message")
@@ -341,6 +341,7 @@ public class IMPSNewPage {
         Elements.selectElement(driver,closeCheckLimit,"Tapped on close check limits ");
     }
     public void clickOnTransferNowOnZeroState() throws InterruptedException{
+        Thread.sleep(2000);
         Elements.selectElement(driver,transferNowOnZeroState,"Tapped on transfer now on zero state on IMPS ");
     }
 
