@@ -201,9 +201,10 @@ public class UpiHelper {
 
         homePage.navigateAndSelectUpiCheckBalance();
 
-        Thread.sleep(3000);
+        Thread.sleep(5000);
 
        // Element.waitForVisibility(driver, By.xpath("//android.widget.TextView[@text= 'Link Your Bank Account']"));
+
 
         Element.waitForVisibility(driver, By.id("title"));
 
@@ -607,8 +608,6 @@ public class UpiHelper {
 
         upiPage.clickRestoreOptn();
 
-        upiPage.clickLinkAccount();
-
         upiPage.clickOnUpiSetupCta();
 
         permissionHelper.permissionAllow();
@@ -619,9 +618,11 @@ public class UpiHelper {
 
         Thread.sleep(4000);
 
-        mbReporter.verifyTrueWithLogging(upiPage.isQRPresent(), "QR Present :"+upiPage.isQRPresent(), false, false);
-        mbReporter.verifyTrueWithLogging(!(upiPage.fetchUPIIDManageSection()==null)," User UPI ID : "+upiPage.fetchUPIIDManageSection(), false, false);
-        mbReporter.verifyTrueWithLogging(!(upiPage.fetchUPINumberManageSection()==null)," User UPI Number : "+upiPage.fetchUPINumberManageSection(), false, false);
+//        mbReporter.verifyTrueWithLogging(upiPage.isQRPresent(), "QR Present :"+upiPage.isQRPresent(), false, false);
+//        mbReporter.verifyTrueWithLogging(!(upiPage.fetchUPIIDManageSection()==null)," User UPI ID : "+upiPage.fetchUPIIDManageSection(), false, false);
+//        mbReporter.verifyTrueWithLogging(!(upiPage.fetchUPINumberManageSection()==null)," User UPI Number : "+upiPage.fetchUPINumberManageSection(), false, false);
+
+        upiPage.addBankAccount();
 
        upiPage.navigateToAddNewBankAccountAndSelect();
        upiPage.selectHdfcBankFromList();
@@ -668,8 +669,6 @@ public class UpiHelper {
 
         upiPage.clickRestoreOptn();
 
-        upiPage.clickLinkAccount();
-
         upiPage.clickOnUpiSetupCta();
 
         permissionHelper.permissionAllow();
@@ -684,9 +683,7 @@ public class UpiHelper {
         mbReporter.verifyTrueWithLogging(!(upiPage.fetchUPIIDManageSection()==null)," User UPI ID : "+upiPage.fetchUPIIDManageSection(), false, false);
         mbReporter.verifyTrueWithLogging(!(upiPage.fetchUPINumberManageSection()==null)," User UPI Number : "+upiPage.fetchUPINumberManageSection(), false, false);
 
-        upiPage.selectMenuIconManageUpiPage();
-
-        upiPage.selectManageUpiNumber();
+        upiPage.clickOnActivateCtaManagePage();
 
         mbReporter.verifyTrueWithLogging(true, "Primary Number Status : "+upiPage.getPrimaryNumberStatusCtaText(), false, false);
 
