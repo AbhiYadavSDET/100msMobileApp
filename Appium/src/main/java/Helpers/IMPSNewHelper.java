@@ -56,7 +56,8 @@ public class IMPSNewHelper {
         //Going to IMPS Option
         impsPage.clickOnWalletToBank();
 
-        Element.waitForVisibilityMultipleElements(driver,By.xpath("//android.widget.Button[contains(@text, 'Transfer now')]"),By.id("com.mobikwik_new.debug:id/btn_new_transfer"));
+        Element.waitForInvisibility(driver, By.id("prv_progress_bar"));
+        Element.waitForVisibilityMultipleElements(driver,By.id("btn_continue"),By.id("btn_new_transfer"));
         if (impsPage.isZeroState()) {
             impsPage.clickOnTransferNowOnZeroState();
         } else {
