@@ -16,7 +16,7 @@ public class RechargeTest extends TestBase {
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
+        loginHelper.quickLoginViaOtpAutoRead("7042338867", "547372");
 
         Log.info("======= START : Postpaid Recharge =======");
 
@@ -94,7 +94,7 @@ public class RechargeTest extends TestBase {
 
         // Execute the test
         RechargeHelper rechargeHelper = new RechargeHelper(getAndroidDriver());
-        rechargeHelper.couponCodeHandling("100","Coupon code is invalid");
+        rechargeHelper.couponCodeHandling("10","Coupon code is invalid","7042338867");
         Log.info("======= END : Prepaid Recharge =======");
 
     }

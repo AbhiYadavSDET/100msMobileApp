@@ -259,12 +259,15 @@ public class MBKCommonControlsHelper {
         String addmoney = homePage.getAddMoney().replace("₹", "");
         walletBalance.put("AddMoney", addmoney);
 
-
         // Swipe Up if supercash balance card is not present
-        if (!homePage.isSuperCashBalancePresent()) {
-
+        Log.info("Trying to find supercash");
+        Boolean isSupercashPresent = homePage.isSuperCashPresent();
+        Log.info(isSupercashPresent.toString());
+        if(!isSupercashPresent) {
+            Log.info("supercash not found, scrolling to find supercash");
             homePage.scrollToSupercashBalance();
         }
+
 
 
         // Get the "Supercash" Balance

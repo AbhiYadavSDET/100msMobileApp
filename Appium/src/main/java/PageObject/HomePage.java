@@ -649,6 +649,9 @@ public class HomePage {
         Elements.scrollToElement(driver, supercashBalance);
     }
 
+    public Boolean isSuperCashPresent() throws InterruptedException {
+        return Elements.isElementPresent(driver, supercashBalance);
+    }
     public String getAddMoney() throws InterruptedException {
         return Elements.getText(driver, addmoneyBalance, "Add Money");
     }

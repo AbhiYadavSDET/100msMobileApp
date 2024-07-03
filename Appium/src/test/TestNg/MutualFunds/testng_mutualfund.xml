@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Mutual Funds Flow">
 
-    <parameter name="build" value="prod"/>
+    <parameter name="build" value="debug"/>
     <parameter name="level" value="payments"/>
     <parameter name="saucelabs" value="false"></parameter>
     <parameter name="codeCoverage" value="false"></parameter>
