@@ -40,7 +40,7 @@ public class Test_Upi extends TestBase {
 
     }
 
-    @Test(groups = {"upiCheckBalance", "upiSanity", "sanity"}, priority = 0, description = "UPI Check Account Balance test")
+    @Test(groups = {"upiCheckBalance", "upiSanity", "sanity","test"}, priority = 0, description = "UPI Check Account Balance test")
     public void Test03_Upi_Check_Balance() throws IOException, InterruptedException {
 
         Log.info("======= START : UPI Check Account Balance test =======");
@@ -78,7 +78,7 @@ public class Test_Upi extends TestBase {
         Log.info("======= START : Add Money via UPI test =======");
 
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("9205299330", "547372");
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
 
 
         AddMoneyHelper addMoneyHelper = new AddMoneyHelper(getAndroidDriver());
@@ -92,7 +92,7 @@ public class Test_Upi extends TestBase {
         Log.info("======= START : View UPI QR test=======");
 
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("9205299330", "547372");
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
 
         UpiHelper upiHelper = new UpiHelper(getAndroidDriver());
         upiHelper.viewUPIQR();
@@ -104,7 +104,7 @@ public class Test_Upi extends TestBase {
         Log.info("======= START : View Pocket UPI QR test=======");
 
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtp("9205299330", "547372");
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
 
         UpiHelper upiHelper = new UpiHelper(getAndroidDriver());
         upiHelper.viewPocketUPIQR();
