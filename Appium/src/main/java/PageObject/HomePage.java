@@ -267,6 +267,9 @@ public class HomePage {
     @AndroidFindBy(id="option4")
     private AndroidElement home_page_upi_option4_check_bank_balance;
 
+    @AndroidFindBy(xpath="//android.widget.TextView[@text='All Categories']")
+    private AndroidElement all_categories_recharge_section;
+
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='My QR Code']")
     private AndroidElement home_page_upi_widget_myQR;
 
@@ -540,7 +543,7 @@ public class HomePage {
     }
 
     public void navigateAndSelectUpiCheckBalance() throws IOException, InterruptedException {
-        Elements.scrollToElement(driver, home_page_upi_option4_check_bank_balance);
+        Elements.scrollToElement(driver, all_categories_recharge_section);
         Element.selectElement(driver, home_page_upi_option4_check_bank_balance, "Navigate to UPI Page via HomePage Upi widget Check Balance");
     }
 
@@ -566,7 +569,7 @@ public class HomePage {
 
 
     public UpiPage navigateAndSelectUpiSendToAccountNumber () throws IOException, InterruptedException {
-        Elements.scrollToElement(driver, home_page_upi_option3_send_to_bank);
+        Elements.scrollToElement(driver, all_categories_recharge_section);
         Element.selectElement(driver, home_page_upi_option3_send_to_bank, "Navigate to UPI Page via HomePage Upi widget Send via Bank Account Number");
         return new UpiPage(driver);
     }
