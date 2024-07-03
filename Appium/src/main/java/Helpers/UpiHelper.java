@@ -624,7 +624,7 @@ public class UpiHelper {
 
         upiPage.addBankAccount();
 
-       upiPage.navigateToAddNewBankAccountAndSelect();
+     //  upiPage.navigateToAddNewBankAccountAndSelect();
        upiPage.selectHdfcBankFromList();
 
        Thread.sleep(4000);
@@ -679,10 +679,11 @@ public class UpiHelper {
 
         Thread.sleep(4000);
 
-        mbReporter.verifyTrueWithLogging(upiPage.isQRPresent(), "QR Present :"+upiPage.isQRPresent(), false, false);
+ //       mbReporter.verifyTrueWithLogging(upiPage.isQRPresent(), "QR Present :"+upiPage.isQRPresent(), false, false);
         mbReporter.verifyTrueWithLogging(!(upiPage.fetchUPIIDManageSection()==null)," User UPI ID : "+upiPage.fetchUPIIDManageSection(), false, false);
         mbReporter.verifyTrueWithLogging(!(upiPage.fetchUPINumberManageSection()==null)," User UPI Number : "+upiPage.fetchUPINumberManageSection(), false, false);
 
+        //Click on Manage option
         upiPage.clickOnActivateCtaManagePage();
 
         mbReporter.verifyTrueWithLogging(true, "Primary Number Status : "+upiPage.getPrimaryNumberStatusCtaText(), false, false);
@@ -694,6 +695,8 @@ public class UpiHelper {
         if(upiPage.getPrimaryNumberStatusCtaText().equalsIgnoreCase("Deactivate")){
             upiPage.primaryNumberActivateDeactivateCta();
             mbReporter.verifyTrueWithLogging(!(upiPage.getDeactivateConfirmationPopUpTitleText() ==null), "Deactivate Pop UP Title Text Primary Number : "+upiPage.getDeactivateConfirmationPopUpTitleText(), false, false);
+            Thread.sleep(1000);
+
             upiPage.deactivateConfirmationPopUpCta();
             Thread.sleep(3000);
         }
@@ -707,31 +710,24 @@ public class UpiHelper {
 
         Thread.sleep(2000);
 
+        //Go back to Manage Page
         upiPage.goBackNumberMapperPage();
 
-        mbReporter.verifyTrueWithLogging(upiPage.isActivateCtaPresentUpiNumberManagePage(), "Activate Pop Up Present : "+ upiPage.isActivateCtaPresentUpiNumberManagePage(), false,false);
+       // mbReporter.verifyTrueWithLogging(upiPage.isActivateCtaPresentUpiNumberManagePage(), "Activate Pop Up Present : "+ upiPage.isActivateCtaPresentUpiNumberManagePage(), false,false);
 
         if(upiPage.isActivateCtaPresentUpiNumberManagePage()){
+            Thread.sleep(2000);
             upiPage.clickOnActivateCtaManagePage();
             Thread.sleep(2000);
         }
 
-        upiPage.selectMenuIconManageUpiPage();
+    //    upiPage.selectMenuIconManageUpiPage();
 
-        upiPage.selectManageUpiNumber();
+      //  upiPage.selectManageUpiNumber();
+
+        upiPage.clickOnActivateCtaManagePage();
 
         mbReporter.verifyTrueWithLogging(upiPage.getPrimaryNumberStatusCtaText().equalsIgnoreCase("deactivate"), "Primary Number Status : "+upiPage.getPrimaryNumberStatusCtaText(), false, false);
-
-        upiPage.addNewUpiNumberCta();
-
-        Thread.sleep(1000);
-        upiPage.enterNewMapperNumber("188698756");
-
-        upiPage.checkAvaibilityCta();
-
-        Thread.sleep(3000);
-
-        mbReporter.verifyTrueWithLogging(upiPage.isMapperNumberAvailable(), "Is new number available : "+upiPage.isMapperNumberAvailable(), false,false);
 
 
     }

@@ -180,7 +180,7 @@ public class UpiPage {
     @AndroidFindBy(id="mkab_left_icon")
     private AndroidElement back_button_errorPage;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Add New Credit Card']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Add Rupay Credit Card']")
     private AndroidElement add_new_bank_credit_card;
 
     @AndroidFindBy(id="subtitle")
@@ -268,7 +268,7 @@ public class UpiPage {
     @AndroidFindBy(id="title_text")
     private AndroidElement confirmation_pop_up_title;
 
-    @AndroidFindBy(xpath = "//android.widget.Button[@text='Deactivate']")
+    @AndroidFindBy(id="primary_button")
     private AndroidElement bottomsheet_deactivate_cta;
 
 
@@ -281,7 +281,7 @@ public class UpiPage {
 //    @AndroidFindBy(xpath = "//android.widget.TextView[@text='9205299330']/following-sibling::android.widget.TextView")
 //    private AndroidElement activate_cta_1_primary_number;
 
-    @AndroidFindBy(id="number_text")
+    @AndroidFindBy(xpath="(//android.widget.TextView[@text='Deactivate'])[1]")
     private AndroidElement activate_cta_1_primary_number;
 
     @AndroidFindBy(xpath = "(//android.widget.TextView[@text='Activate'])[2]")
@@ -728,7 +728,7 @@ public class UpiPage {
 
 
     public void selectHdfcBankFromList() throws InterruptedException {
-        Element.waitForVisibility(driver,hdfc_bank );
+        Element.waitForVisibility(driver,hdfc_bank);
         Element.selectElement(driver, hdfc_bank, "Select HDFC Bank Account");
     }
 
@@ -827,6 +827,7 @@ public class UpiPage {
     }
 
     public void deactivateConfirmationPopUpCta() throws InterruptedException {
+        Element.waitForVisibility(driver,bottomsheet_deactivate_cta);
         Element.selectElement(driver, bottomsheet_deactivate_cta, "Deactivate Number Confirmation Pop UP CTA");
     }
 
