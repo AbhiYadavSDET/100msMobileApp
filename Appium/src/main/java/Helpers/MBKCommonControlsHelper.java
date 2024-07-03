@@ -262,8 +262,10 @@ public class MBKCommonControlsHelper {
         Thread.sleep(5000);
         // Swipe Up if supercash balance card is not present
         try{
+            Log.info("Trying to find supercash");
             homePage.isSuperCashBalancePresent();
         }catch(Exception e){
+            Log.info("catched exception, scrolling to find supercash");
             homePage.scrollToSupercashBalance();
         }
 
