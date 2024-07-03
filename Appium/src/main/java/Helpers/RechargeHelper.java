@@ -379,7 +379,7 @@ public class RechargeHelper {
 
 
 
-    public void couponCodeHandling(String amount,String exptitleErrorOnInvalidCoupon) throws InterruptedException, IOException {
+    public void couponCodeHandling(String amount,String exptitleErrorOnInvalidCoupon,String mobileno) throws InterruptedException, IOException {
 
 
         // scroll to Recharge And PayBills
@@ -404,15 +404,24 @@ public class RechargeHelper {
         // Click on Mobile
         rechargePage.clickOnMobile();
 
-        //Click on my number
-        rechargePage.clickOnMyNumber();
+        rechargePage.clickOnSearchMobileNoField();
+
+        if(permissionsPage.isPermissionContactsPresent()){
+
+            permissionsPage.allowPermissionContacts();
+        }
+
+        //Enter mobile no.
+        rechargePage.enterMobileNo(mobileno);
+        rechargePage.selectNumber1();
 
         // Tap to search plan
         rechargePage.tapToSearchPlan();
-
+        //rechargePage.clickToSearchPlan();
         // Enter amount to search plan
+        Thread.sleep(5000);
         rechargePage.searchPlanPrepaid(amount);
-
+        Thread.sleep(5000);
         // Click to select plan
         rechargePage.selectPlan();
         Thread.sleep(3000);

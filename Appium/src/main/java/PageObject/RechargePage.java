@@ -1,5 +1,6 @@
 package PageObject;
 
+import Utils.Element;
 import Utils.Elements;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
@@ -106,6 +107,9 @@ public class RechargePage {
 
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text='9311878235']")
     private AndroidElement selectNumber;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text='7042338867']")
+    private AndroidElement selectNumber1;
 
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Switch to Postpaid']")
     private AndroidElement switchToPostpaid;
@@ -215,11 +219,17 @@ public class RechargePage {
     }
 
     public void tapToSearchPlan() {
+        Elements.waitForElementToVisibleOnPage(driver, tapToSearchPlan, 3);
         Elements.selectElement(driver,tapToSearchPlan , "Tap To Search Plan");
     }
 
+    public void clickToSearchPlan() {
+        Elements.selectElement(driver, enterPlanAmountToSearch, "click on Select Plan");
+    }
+
     public void searchPlanPrepaid(String amount) {
-        Elements.enterToElement(driver, enterPlanAmountToSearch, amount,"Enter amount to search plan");
+        //Element.enterText(driver, enterPlanAmountToSearch, amount, "Enter amount to search plan");
+        driver.getKeyboard().sendKeys(amount);
     }
 
     public void selectPlan() {
@@ -273,6 +283,10 @@ public class RechargePage {
 
     public void selectNumber(){
         Elements.selectElement(driver, selectNumber,"Select mobile no.");
+    }
+
+    public void selectNumber1(){
+        Elements.selectElement(driver, selectNumber1,"Select mobile no.");
     }
 
     public void clickOnSwitchToPostpaid(){
