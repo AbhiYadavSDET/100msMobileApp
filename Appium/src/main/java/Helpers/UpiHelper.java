@@ -102,7 +102,7 @@ public class UpiHelper {
         }
 
         //2FA Validation Page Assertions
-        mbkCommonControlsHelper.handle2FADeviceBindingFlow();
+        mbkCommonControlsHelper.handle2FADeviceBindingFlow(true);
 
         mbkCommonControlsHelper.handleUpiPin(pin);
 
@@ -172,7 +172,7 @@ public class UpiHelper {
         }
 
         //2FA Validation Page Assertions
-        mbkCommonControlsHelper.handle2FADeviceBindingFlow();
+        mbkCommonControlsHelper.handle2FADeviceBindingFlow(true);
 
         mbkCommonControlsHelper.handleUpiPin(pin);
 
@@ -229,7 +229,7 @@ public class UpiHelper {
         Thread.sleep(7000);
 
         //2FA verification
-        mbkCommonControlsHelper.handle2FADeviceBindingFlow();
+        mbkCommonControlsHelper.handle2FADeviceBindingFlow(true);
 
         mbkCommonControlsHelper.handleUpiPin(pin);
 
@@ -405,7 +405,7 @@ public class UpiHelper {
         }
 
         //2FA Validation Page Assertions
-        mbkCommonControlsHelper.handle2FADeviceBindingFlow();
+        mbkCommonControlsHelper.handle2FADeviceBindingFlow(true);
 
         mbkCommonControlsHelper.handleUpiPin(pin);
 

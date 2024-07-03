@@ -511,6 +511,24 @@ public class MBKCommonControlsHelper {
         }
     }
 
+
+    public void handle2FADeviceBindingFlow(Boolean isUPIFlow) throws InterruptedException, IOException {
+        Thread.sleep(3000);
+        if(Element.isElementPresentNoWait(driver, By.id("btn_verify"))) {
+
+            Log.info("Binding Device with Sim Card");
+            mbReporter.verifyTrueWithLogging(!(mbkCommonControlsPage.get2FAPageTile() ==null), "2FA Page Title : "+mbkCommonControlsPage.get2FAPageTile(), false, false);
+            mbReporter.verifyTrueWithLogging(!(mbkCommonControlsPage.get2FAPageSubTile() ==null), "2FA Page SubTitle : "+mbkCommonControlsPage.get2FAPageSubTile(), false, false);
+            mbReporter.verifyTrueWithLogging(!(mbkCommonControlsPage.get2FAPageNoteDescription() ==null), "2FA Page Note Description : "+mbkCommonControlsPage.get2FAPageNoteDescription(), false, false);
+
+            mbkCommonControlsPage.clickVerifyNumberCta();
+            permissionHelper.permissionAllow();
+
+        }else {
+            Log.info("2FA Flow Not Displayed");
+        }
+    }
+
     public Boolean is2FADeviceBindingFlowDisplayed() throws InterruptedException, IOException {
         Thread.sleep(3000);
         if(Element.isElementPresentNoWait(driver, By.id("btn_verify"))) {
