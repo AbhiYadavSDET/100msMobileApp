@@ -2,10 +2,13 @@ package Helpers;
 
 import PageObject.*;
 import Helpers.IndusindBankPaymentPageHelper;
+import Utils.Element;
+import Utils.Elements;
 import io.appium.java_client.android.AndroidDriver;
 import Logger.Log;
 import Utils.MBReporter;
 import Utils.Screen;
+import org.openqa.selenium.By;
 
 import java.io.IOException;
 
@@ -174,9 +177,10 @@ public class AddMoneyHelper {
 
             addMoneyPage.clickOnPay();
 
-            Thread.sleep(5000);
+            //Thread.sleep(6000);
 
             //2FA Validation Page Assertions
+           // Element.waitForVisibility(driver, By.id("btn_verify"));
             mbkCommonControlsHelper.handle2FADeviceBindingFlow();
 
             mbkCommonControlsHelper.handleUpiPin(pin);
