@@ -86,6 +86,8 @@ public class SecurityPinHelper {
         }
         // Going back to home
         securityPinPage.navigateBackToProfile();
+
+
         if (securityPinPage.isSecuritySettingsProfileVisible()){
             driver.navigate().back();
         }
