@@ -40,7 +40,7 @@ public class Test_Upi extends TestBase {
 
     }
 
-    @Test(groups = {"upiCheckBalance", "upiSanity", "sanity","test"}, priority = 0, description = "UPI Check Account Balance test")
+    @Test(groups = {"upiCheckBalance", "upiSanity", "sanity"}, priority = 0, description = "UPI Check Account Balance test")
     public void Test03_Upi_Check_Balance() throws IOException, InterruptedException {
 
         Log.info("======= START : UPI Check Account Balance test =======");
