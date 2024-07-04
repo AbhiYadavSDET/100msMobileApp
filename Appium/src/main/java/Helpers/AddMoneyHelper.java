@@ -181,7 +181,7 @@ public class AddMoneyHelper {
 
             //2FA Validation Page Assertions
            // Element.waitForVisibility(driver, By.id("btn_verify"));
-            mbkCommonControlsHelper.handle2FADeviceBindingFlow();
+            mbkCommonControlsHelper.handle2FADeviceBindingFlow(true);
 
             mbkCommonControlsHelper.handleUpiPin(pin);
 
