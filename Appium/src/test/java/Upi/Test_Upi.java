@@ -72,7 +72,7 @@ public class Test_Upi extends TestBase {
 
 
 
-    @Test(groups = {"addMoneyViaUpi", "upiSanity", "sanity","test"}, priority = 0, description = "Add Money via UPI test")
+    @Test(groups = {"addMoneyViaUpi", "upiSanity", "sanity"}, priority = 0, description = "Add Money via UPI test")
     public void Test05_Upi_Add_Money() throws IOException, InterruptedException {
 
         Log.info("======= START : Add Money via UPI test =======");
