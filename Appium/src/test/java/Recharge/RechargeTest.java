@@ -16,7 +16,7 @@ public class RechargeTest extends TestBase {
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-        loginHelper.quickLoginViaOtpAutoRead("7042338867", "547372");
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
 
         Log.info("======= START : Postpaid Recharge =======");
 
