@@ -21,7 +21,7 @@ public class PayRentTest extends TestBase {
 
         // Execute the test
         PayRentHelper payRentHelper = new PayRentHelper(getAndroidDriver());
-        payRentHelper.addNewProperty("218101502680", "ICIC0002181", "Paraj Jain", "50", "123");
+        payRentHelper.addNewProperty("218101502680", "ICIC0002181", "Paraj Jain", "5000", "123");
 
         Log.info("======= END : Add New Property =======");
 
