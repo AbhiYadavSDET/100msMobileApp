@@ -177,7 +177,7 @@ public class AddMoneyHelper {
 
             addMoneyPage.clickOnPay();
 
-            //Thread.sleep(6000);
+            Thread.sleep(3000);
 
             //2FA Validation Page Assertions
            // Element.waitForVisibility(driver, By.id("btn_verify"));
