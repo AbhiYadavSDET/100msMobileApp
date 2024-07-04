@@ -186,7 +186,10 @@ public class SecurityPinPage {
     }
 
     public void navigateBackToProfile() throws InterruptedException{
-        Elements.selectElement(driver, backToHome, "Navigating Back to Profile Dashboard");
+        Thread.sleep(2000);
+        if(Elements.isElementPresent(driver, backToHome)) {
+            Elements.selectElement(driver, backToHome, "Navigating Back to Profile Dashboard");
+        }
     }
 
 }
