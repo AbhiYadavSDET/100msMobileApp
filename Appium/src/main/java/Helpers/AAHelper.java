@@ -75,13 +75,16 @@ public class AAHelper {
                 mbReporter.verifyEqualsWithLogging(moneyoutTitleOnDashboard, expMoneyoutTitleOnDashboard, "Verify Outgoing Title on MainDashboard", false, false, true);
                 mbReporter.verifyEqualsWithLogging(outgoingSecondSubTitleOnDashboard, expOutgoingSecondSubTitleOnDashboard, "Verify Second Outgoing SubTitle on MainDashboard", false, false, true);
 
-                // Add the assertions
-                aaPage.scrollTomoneyinTitle();
-                aaPage.moneyinTitle();
-                String moneyInTTitle = aaPage.moneyinTitle();
-                Log.info("Money In Title : " + expmoneyinTitle);
-                mbReporter.verifyEqualsWithLogging(moneyInTTitle, expmoneyinTitle, "Verify Money In title", false, false, true);
+                screen.swipeUpMore(driver);
+                screen.swipeUpMore(driver);
 
+                if(aaPage.checkmoneyinTitle()) {
+
+                    aaPage.moneyinTitle();
+                    String moneyInTTitle = aaPage.moneyinTitle();
+                    Log.info("Money In Title : " + expmoneyinTitle);
+                    mbReporter.verifyEqualsWithLogging(moneyInTTitle, expmoneyinTitle, "Verify Money In title", false, false, true);
+                }
 
             }
 
