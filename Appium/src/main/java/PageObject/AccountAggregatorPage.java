@@ -671,6 +671,10 @@ public class AccountAggregatorPage {
         return Elements.getText(driver, moneyInTitle, "Scroll to money in title");
     }
 
+    public boolean checkmoneyinTitle() throws InterruptedException {
+        return Elements.isElementPresent(driver, moneyInTitle);
+    }
+
     public void scrollTomoneyinTitle() throws InterruptedException {
          Elements.scrollToElement(driver, moneyInTitle);
     }
