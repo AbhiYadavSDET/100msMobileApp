@@ -83,6 +83,8 @@ public class ZipHelper {
         Element.waitForVisibility(driver, By.id("tv_title"));
         mbReporter.verifyEqualsWithLogging(zipPage.getTitle(), expZipPageTitle, "Validating Zip Page Title", false, false);
 
+        zipPage.handleZipAlertTitle();
+
         if(zipPage.isZipBillReminderPresent()){
             //Zip Bill Generated
 

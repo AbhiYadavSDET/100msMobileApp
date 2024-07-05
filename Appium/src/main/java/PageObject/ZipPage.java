@@ -42,13 +42,13 @@ public class ZipPage {
     @AndroidFindBy(id = "tv_label")
     private AndroidElement label;
 
-    @AndroidFindBy(id="balance")
+    @AndroidFindBy(id="tv_balance")
     private AndroidElement available_balance;
 
-    @AndroidFindBy(id="amount_used")
+    @AndroidFindBy(id="tv_used_limit")
     private AndroidElement amount_used;
 
-    @AndroidFindBy(id="amount_total")
+    @AndroidFindBy(id="tv_total_limit")
     private AndroidElement amount_total;
 
     @AndroidFindBy(id="tv_credit_value")
@@ -98,6 +98,13 @@ public class ZipPage {
 
     @AndroidFindBy(id = "blue_cta")
     private AndroidElement zipBillReminderPayNowCta;
+
+    @AndroidFindBy(id="alertTitle")
+    private AndroidElement zipLimitAlertTitle;
+
+    @AndroidFindBy(id="button1")
+    private AndroidElement zipLimitAlertTitleClose;
+
 
 
 
@@ -164,7 +171,7 @@ public class ZipPage {
     }
 
     public String getAvailableBalance() throws InterruptedException {
-        return Elements.getText(driver, available_balance).replace("Available Balance : ₹", "").replace(",","");
+        return Elements.getText(driver, available_balance).replace("₹", "").replace(",","");
     }
 
     public String getAmountUsed() throws InterruptedException {
@@ -255,6 +262,15 @@ public class ZipPage {
 
     public boolean isZipBillReminderPresent() throws InterruptedException {
         return Elements.isElementPresent(driver, zipBillReminderPayNowCta);
+    }
+
+    public void handleZipAlertTitle() throws InterruptedException{
+
+        if (!(Elements.isElementPresent(driver, zipBillReminderPayNowCta) || Elements.isElementPresent(driver, available_balance))){
+            if(Element.isElementPresentNoWait(driver, By.id("alertTitle"))){
+                Elements.selectElement(driver, zipLimitAlertTitleClose, "Close Zip Alert Title");
+            }
+        }
     }
 
 
