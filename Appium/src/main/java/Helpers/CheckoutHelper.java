@@ -479,7 +479,7 @@ public class CheckoutHelper {
                 securityPinPage.enterSecurityPin("324008");
             }
 
-            if(mbkCommonControlsHelper.is2FADeviceBindingFlowDisplayed()) {
+            if(!mbkCommonControlsHelper.is2FADeviceBindingFlowDisplayed()) {
 
                 Element.waitForVisibility(driver, By.id("header_layout"));
 
