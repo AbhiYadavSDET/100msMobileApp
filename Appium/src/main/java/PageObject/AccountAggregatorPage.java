@@ -33,6 +33,8 @@ public class AccountAggregatorPage {
     @AndroidFindBy(xpath = "//*[@text = 'Track investments']")
     private AndroidElement trackInvestmentCTA;
 
+    @AndroidFindBy(xpath = "//*[@text = 'View Insights & Highlights']")
+    private AndroidElement highlightCta;
 
     @AndroidFindBy(xpath = "//*[@text='Bank Accounts']")
     private AndroidElement accountAggregatorCard;
@@ -123,6 +125,12 @@ public class AccountAggregatorPage {
 
     @AndroidFindBy(xpath = "//*[@text='MONEY IN']")
     private AndroidElement moneyInTitle;
+
+    @AndroidFindBy(xpath = "//*[@text='Lifestyle']")
+    private AndroidElement firstHeadingLifestyle;
+
+    @AndroidFindBy(xpath = "//*[@text='Tax Savings']")
+    private AndroidElement secondHeadingTaxSaving;
 
     @AndroidFindBy(xpath = "//*[@text='Add Account']")
     private AndroidElement addAccountTitle;
@@ -378,6 +386,15 @@ public class AccountAggregatorPage {
     @AndroidFindBy(id="left_container")
     private AndroidElement  left_container;
 
+    @AndroidFindBy(xpath="//*[contains(@text,'Financial')]")
+    private AndroidElement financialYearCTA;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'FY 2024-25']")
+    private AndroidElement finaxncialYearFirstFilterCTA;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Tax Progress']")
+    private AndroidElement getFirstTaxCarsTxt;
+
     public AccountAggregatorPage(AndroidDriver driver) throws IOException {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -393,7 +410,17 @@ public class AccountAggregatorPage {
         Elements.selectElement(driver,left_container, " Click on left icon");
     }
 
+    public void clickonFinancialYearFilter() throws InterruptedException{
+        Elements.selectElement(driver,financialYearCTA, " Click on Financial year filter");
+    }
 
+    public void clickonFinancialYearFirstFilter() throws InterruptedException{
+        Elements.selectElement(driver,finaxncialYearFirstFilterCTA, " Click on Financial year first filter on Bottomsheet filter");
+    }
+
+    public String getTaxProgressTxt() throws InterruptedException {
+        return Elements.getText(driver, getFirstTaxCarsTxt, "First Card Tax progress Txt");
+    }
     public void clickonApplyCta() throws InterruptedException{
         Elements.selectElement(driver,apply_cta, " Click on Apply");
     }
@@ -495,6 +522,8 @@ public class AccountAggregatorPage {
     public boolean checkTrackbankAccountsCTA() throws InterruptedException {
         return Elements.isElementPresent(driver, TrackBankAccountsCTA);
     }
+
+
 
     //for Entry from track all investment cta ---
     public void trackInvestmentCTA() throws InterruptedException{
@@ -669,6 +698,18 @@ public class AccountAggregatorPage {
 
     public String moneyinTitle() throws InterruptedException {
         return Elements.getText(driver, moneyInTitle, "Scroll to money in title");
+    }
+
+    public String firsttabLifeStyleHeading() throws InterruptedException {
+        return Elements.getText(driver, firstHeadingLifestyle, "First Heading Lifestyle");
+    }
+
+    public String secondttabTaxSavingHeading() throws InterruptedException {
+        return Elements.getText(driver, secondHeadingTaxSaving, "Second Heading Tax Saving");
+    }
+
+    public void clickonTaxSavingHeading() throws InterruptedException{
+        Elements.selectElement(driver,secondHeadingTaxSaving,"click on Second Heading Tax Saving");
     }
 
     public boolean checkmoneyinTitle() throws InterruptedException {
