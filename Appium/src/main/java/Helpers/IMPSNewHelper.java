@@ -17,6 +17,7 @@ import Utils.Screen;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 
 //Author - HarshTyagiOMK2165
@@ -56,16 +57,50 @@ public class IMPSNewHelper {
         //Going to IMPS Option
         impsPage.clickOnWalletToBank();
 
-        Element.waitForInvisibility(driver, By.id("prv_progress_bar"));
-        Element.waitForVisibilityMultipleElements(driver,By.id("btn_continue"),By.id("btn_new_transfer"));
-        if (impsPage.isZeroState()) {
-            impsPage.clickOnTransferNowOnZeroState();
-        } else {
-            impsPage.clickOnTransferToNewAccount();
+        try {
+
+            Element.waitForInvisibility(driver, By.id("prv_progress_bar"));
+            Element.waitForVisibilityMultipleElements(driver, By.id("btn_continue"), By.id("btn_new_transfer"));
+
+
+            if (impsPage.isZeroState()) {
+                impsPage.clickOnTransferNowOnZeroState();
+            } else {
+                impsPage.clickOnTransferToNewAccount();
+            }
+
+            // Enter the bank details
+            impsPage.setBeneficiaryName(accountName);
+
+        }catch (NoSuchElementException e) {
+            System.out.println("Element not found: " + e.getMessage());
+
+            driver.navigate().back();
+
+            if(Element.isElementPresent(driver, By.id("design_bottom_sheet"))){
+                driver.navigate().back();
+                Log.info("Closed Feedback bottomSheet");
+                driver.navigate().back();
+            }
+            mbkCommonControlsHelper.handleHomePageLanding();
+            impsPage.clickOnWalletToBank();
+
+            Element.waitForInvisibility(driver, By.id("prv_progress_bar"));
+            Element.waitForVisibilityMultipleElements(driver, By.id("btn_continue"), By.id("btn_new_transfer"));
+
+
+            if (impsPage.isZeroState()) {
+                impsPage.clickOnTransferNowOnZeroState();
+            } else {
+                impsPage.clickOnTransferToNewAccount();
+            }
+
+            // Enter the bank details
+            impsPage.setBeneficiaryName(accountName);
+
         }
 
-        // Enter the bank details
-        impsPage.setBeneficiaryName(accountName);
+
         impsPage.setAccountNumber(accountNo);
         impsPage.setIFSC_Code(ifsc);
         impsPage.clickOnContinueCTA();
