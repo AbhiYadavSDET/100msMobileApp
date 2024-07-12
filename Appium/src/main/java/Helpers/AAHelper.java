@@ -428,6 +428,36 @@ public class AAHelper {
 
     }
 
+    public void aaHighlight(String expfirstHeadingTxt, String expsecondHeadingTxt,String expfirstTaxCardHeadingTxt) throws InterruptedException, IOException {
+
+        aaPage.allServicesCTA();
+        aaPage.scrollTotrackBankAccounts();
+        aaPage.clickOnTrackBankAccounts();
+        Element.waitForVisibility(driver, By.id("bottom_navigation_tool_tip"));
+        Elements.tapByCoordinates(57,916,driver);
+        aaPage.scrolltoViewHighlights();
+        aaPage.clickOnviewHighlisht();
+
+        //Get text Tax Highlight
+        String firstHeadingTxt =aaPage.firsttabLifeStyleHeading();
+        String secondHeadingTxt =aaPage.secondttabTaxSavingHeading();
+
+        Log.info("first Heading Txt inside the Highlight" + firstHeadingTxt);
+        Log.info("Second Heading Txt inside the Highlight" + secondHeadingTxt);
+
+        mbReporter.verifyEqualsWithLogging(firstHeadingTxt, expfirstHeadingTxt, "first Heading Txt inside the Highlight", false, false, true);
+        mbReporter.verifyEqualsWithLogging(secondHeadingTxt, expsecondHeadingTxt, "Second Heading Txt inside the Highlight", false, false, true);
+
+        aaPage.clickonTaxSavingHeading();
+        aaPage.clickonFinancialYearFilter();
+        aaPage.clickonFinancialYearFirstFilter();
+
+        //Get text Tax Highlight first Tax card text
+        String firstTaxCardHeadingTxt =aaPage.getTaxProgressTxt();
+        Log.info("first Tax Card Text inside the Highlight" + firstTaxCardHeadingTxt);
+        mbReporter.verifyEqualsWithLogging(firstTaxCardHeadingTxt, expfirstTaxCardHeadingTxt, "Second Heading Txt inside the Highlight", false, false, true);
+
+    }
 
 
 
