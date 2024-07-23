@@ -212,6 +212,13 @@ public class UpiPage {
     @AndroidFindBy(id = "pocket_upi_title")
     private AndroidElement pocketUpi_bottomsheet;
 
+    @AndroidFindBy(id = "tv_tooltip")
+    private AndroidElement tooltip;
+
+    @AndroidFindBy(id="iv_balance_info")
+    private AndroidElement info_icon;
+
+
     @AndroidFindBy(id = "title")
     private AndroidElement pocketUpi_bottomsheet_title;
     @AndroidFindBy(id = "desc")
@@ -899,5 +906,14 @@ public class UpiPage {
 
     public void clickRestoreOptn() {
         Elements.selectElement(driver,restore_bank_account_option,"Click on Restore Option");
+    }
+
+    public void handleTooltip() throws InterruptedException {
+        if(Element.isElementPresent(driver,By.id("tv_tooltip"))){
+
+            Elements.selectElement(driver,info_icon,"Click on info Icon to close ToolTip");
+
+        }
+
     }
 }

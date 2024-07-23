@@ -431,6 +431,8 @@ public class UpiHelper {
 
         upiPage = homePage.navigateAndSelectPocketUpi();
 
+        upiPage.handleTooltip();
+
         if(upiPage.isWalletNowPocketUpiBottomsheetPresent()){
 
             Thread.sleep(1000);
@@ -441,7 +443,7 @@ public class UpiHelper {
 
         }
 
-        Element.waitForVisibility(driver, By.id("pocket_upi_header"));
+        Element.waitForVisibility(driver, By.id("wallet_upi_setup_layout"));
         mbReporter.verifyTrueWithLogging(!(upiPage.getPocketUpiId() ==null), upiPage.getPocketUpiId(), false,false);
 
         //Check for If frequent transfer contacts are present
