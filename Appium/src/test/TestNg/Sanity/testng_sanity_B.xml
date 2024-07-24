@@ -32,6 +32,7 @@
             <class name="ReferAndEarn.ReferAndEarnTest"/>
             <class name="KYC.TestKYC"/>
             <class name="AccountAggregator.Test_AccountAggregator"/>
+            <class name="Epfo.Test_Epfo"/>
             <class name="Checkout.CheckoutTest">
                 <methods>
                     <exclude name="Test06_addMoneyConvFeeTest"/>
