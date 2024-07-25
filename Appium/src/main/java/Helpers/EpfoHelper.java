@@ -47,8 +47,8 @@ public class EpfoHelper {
         mbReporter.verifyEqualsWithLogging(getRecentContributionCTA, expgetRecentContributionCTA, "get Recent Contribution CTA", false, false, true);
         mbReporter.verifyEqualsWithLogging(getViewFullStatementCTA, expgetViewFullStatementCTA, "get View Full Statement CTA", false, false, true);
 
-        epfoPage.clickOnInfoIcon();
-        driver.navigate().back();
+        //epfoPage.clickOnInfoIcon();
+        // driver.navigate().back();
 
         //Scroll till retirement fund
         epfoPage.scrollToTotalBalanceCTA();
@@ -71,7 +71,6 @@ public class EpfoHelper {
         mbReporter.verifyEqualsWithLogging(getContactUsCTA, expgetContactUsCTA, "get Contact Us Cta", false, false, true);
 
     }
-
 
     public void epfoDashBoardNewUser(String expgetTrackYourEmpoProvidentFund,String expgetInutyourUANtxt,String expgetknowMoreActivation,String expgetProceedTxt,String expgetFindyourUAN) throws InterruptedException, IOException {
 
@@ -110,5 +109,21 @@ public class EpfoHelper {
 
     }
 
+    public void epfoDashBoardBalanceBreakup() throws InterruptedException, IOException {
+
+        epfoPage.clickAllServices();
+        epfoPage.scrollToTrackEpfBalance();
+        epfoPage.clickTrackEpfBalance();
+
+        //Click On Info icon present next to balance
+        epfoPage.clickOnInfoIcon();
+        epfoPage.clickOnInfoIconextToInterestEarned();
+
+        driver.navigate().back();
+
+
     }
+
+
+}
 
