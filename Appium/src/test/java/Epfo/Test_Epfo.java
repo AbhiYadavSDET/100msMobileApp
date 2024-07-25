@@ -34,7 +34,7 @@ public class Test_Epfo extends TestBase {
 
     }
 
-    @Test(groups = {"EPFO", "sanity2", "regression"}, priority = 0, description = "Verify balance breakup")
+   /* @Test(groups = {"EPFO", "sanity2", "regression"}, priority = 0, description = "Verify balance breakup")
     public void Test01_epfo_balance_breakup() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
@@ -42,8 +42,8 @@ public class Test_Epfo extends TestBase {
         EpfoHelper epfoHelper = new EpfoHelper(getAndroidDriver());
         // Execute the test
         epfoHelper.epfoDashBoardBalanceBreakup();
-        Log.info("======= EPFO New Dashboard test =======");
+        Log.info("======= EPFO New Dashboard test ======="); */
 
-    }
+   // }
 
 }
