@@ -22,11 +22,11 @@ public class Test_Epfo extends TestBase {
 
     }
 
-    @Test(groups = {"EPFO", "sanity", "regression"}, priority = 1, description = "Verify New User flow in Epfo")
+    @Test(groups = {"EPFO", "sanity", "regression"}, priority = 0, description = "Verify New User flow in Epfo")
     public void Test01_epfo_New_User_Dashboard() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.quickLoginViaOtp("9205299330", "547372");
+        loginHelp.quickLoginViaOtp("8216900006", "547372");
         EpfoHelper epfoHelper = new EpfoHelper(getAndroidDriver());
         // Execute the test
         epfoHelper.epfoDashBoardNewUser("rack your Employee Provident Fund","Input your UAN","Know more about activation","Proceed","Find your UAN");
