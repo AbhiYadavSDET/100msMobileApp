@@ -369,11 +369,30 @@ public class MBKCommonControlsHelper {
                     Log.info("Home Page pop interruption Locator  : tv_do_not_want_benefits");
                     driver.findElementById("tv_do_not_want_benefits").click();
 
-                } else if (Element.isElementPresentNoWait(driver, By.id("com.mobikwik_new.debug:id/question_nps"))) {
+                }else if(Element.isElementPresentNoWait(driver, By.id("txt_setup_upi"))){
+                    Log.info("New User Flow: Onboarding UPI Setup Flow");
+                    driver.findElementById("right_container").click();
+
+                    if(Element.isElementPresentNoWait(driver, By.id("tv_explore_home"))){
+                        Log.info("New User Flow : Feature Assist Page Shown");
+                        driver.findElementById("tv_explore_home").click();
+                        Thread.sleep(3000);
+                    }
+
+                    if(Element.isElementPresentNoWait(driver, By.id("email_referral_layout"))){
+                        Log.info("New User Flow : Email Referral Page Shown");
+                        driver.findElementById("continue_button").click();
+                        Thread.sleep(3000);
+                    }
+
+                    Log.info("New User Flow : Calling again to handle permission or any other pop up on Home Page");
+                    handleHomePageLanding();
+
+                }else if (Element.isElementPresentNoWait(driver, By.id("question_nps"))) {
                     Log.info("Home Page pop interruption Locator  : question_nps");
                     driver.findElementById("com.mobikwik_new.debug:id/close_button").click();
 
-                } else if (Element.isElementPresentNoWait(driver, By.id("com.mobikwik_new.debug:id/btn_secure_now"))) {
+                } else if (Element.isElementPresentNoWait(driver, By.id("btn_secure_now"))) {
                     Log.info("Home Page pop interruption Locator  : btn_secure_now");
                     driver.navigate().back();
 
@@ -410,6 +429,7 @@ public class MBKCommonControlsHelper {
                     Log.info(driver.getPageSource());
                     Log.info("-----------------Page Source End----------------");
                     driver.navigate().back();
+                    handleHomePageLanding();
                 }
             }
 

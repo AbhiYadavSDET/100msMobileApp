@@ -87,9 +87,17 @@ public class EpfoPage {
     @AndroidFindBy(id = "icon_info")
     private AndroidElement icfoIcon;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Interest Earned']/following::android.widget.FrameLayout[id='ic_key']")
+    private AndroidElement icfoIcon_interestEarned;
+
     public void clickOnInfoIcon() {
         Elements.selectElement(driver, icfoIcon, "click On Info Icon");
     }
+
+    public void clickOnInfoIconextToInterestEarned() {
+        Elements.selectElement(driver, icfoIcon_interestEarned, "click On Info Icon next to interest i");
+    }
+
     public void clickAllServices() {
         Elements.selectElement(driver, allServicesButton, "All Services");
     }
