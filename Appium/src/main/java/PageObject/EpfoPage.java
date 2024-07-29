@@ -87,15 +87,68 @@ public class EpfoPage {
     @AndroidFindBy(id = "icon_info")
     private AndroidElement icfoIcon;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Interest Earned']/following::android.widget.FrameLayout[id='ic_key']")
-    private AndroidElement icfoIcon_interestEarned;
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Interest Earned']")
+    private AndroidElement interestEarned_txt;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Name']")
+    private AndroidElement name_txt;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Active since']")
+    private AndroidElement activesince_txt;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Work experience']")
+    private AndroidElement workexperience_txt;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Employee’s Share']")
+    private AndroidElement EmployeesShare_txt;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Employer’s Share']")
+    private AndroidElement employersShare_txt;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Pension Share (EPS)']")
+    private AndroidElement pensionShare_txt;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Total EPF Balance']")
+    private AndroidElement totalEPFBalance_txt;
+
 
     public void clickOnInfoIcon() {
         Elements.selectElement(driver, icfoIcon, "click On Info Icon");
     }
 
-    public void clickOnInfoIconextToInterestEarned() {
-        Elements.selectElement(driver, icfoIcon_interestEarned, "click On Info Icon next to interest i");
+    public void clickOnInterestEarned() {
+        Elements.selectElement(driver, interestEarned_txt, "click On Info Icon next to interest i");
+    }
+
+    public String getInterestEarned() throws InterruptedException {
+        return Elements.getText(driver, interestEarned_txt, "Get ifo Icon interest");
+    }
+
+    public String getNametxt() throws InterruptedException {
+        return Elements.getText(driver, name_txt, "Get Name");
+    }
+
+    public String getActivesince() throws InterruptedException {
+        return Elements.getText(driver,activesince_txt, "Get Active since");
+    }
+
+    public String getWorkexperience() throws InterruptedException {
+        return Elements.getText(driver,workexperience_txt, "Get Work experience");
+    }
+
+    public String getemployeeShare() throws InterruptedException {
+        return Elements.getText(driver, EmployeesShare_txt, "Get Employee’s Share");
+    }
+    public String getemployersShare() throws InterruptedException {
+        return Elements.getText(driver, employersShare_txt, "Get Employer’s Share");
+    }
+
+    public String getPensionShare() throws InterruptedException {
+        return Elements.getText(driver, pensionShare_txt, "Get Pension Share");
+    }
+
+    public String getTotalEPFBalance() throws InterruptedException {
+        return Elements.getText(driver, totalEPFBalance_txt, "Get Total EPF Balance");
     }
 
     public void clickAllServices() {

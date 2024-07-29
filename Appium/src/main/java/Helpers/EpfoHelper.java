@@ -109,7 +109,7 @@ public class EpfoHelper {
 
     }
 
-    public void epfoDashBoardBalanceBreakup() throws InterruptedException, IOException {
+    public void epfoDashBoardBalanceBreakup(String expgetNametxt,String expgetActivesince,String expgetWorkexperience,String expgetemployeeShare,String expgetemployersShare,String expgetPensionShare,String expgetTotalEPFBalance) throws InterruptedException, IOException {
 
         epfoPage.clickAllServices();
         epfoPage.scrollToTrackEpfBalance();
@@ -117,9 +117,41 @@ public class EpfoHelper {
 
         //Click On Info icon present next to balance
         epfoPage.clickOnInfoIcon();
-        epfoPage.clickOnInfoIconextToInterestEarned();
+        String getInterestEarned = epfoPage.getInterestEarned();
+        Log.info("get Interest Earned:" + getInterestEarned);
 
+        String getNametxt = epfoPage.getNametxt();
+        Log.info("get get Name txt:" + getNametxt);
+
+        String getActivesince = epfoPage.getActivesince();
+        Log.info("get  Active since:" + getActivesince);
+
+        String getWorkexperience = epfoPage.getWorkexperience();
+        Log.info("get  Work experience:" + getWorkexperience);
+
+        String getemployeeShare = epfoPage.getemployeeShare();
+        Log.info("get employee Share:" + getemployeeShare);
+
+        String getemployersShare = epfoPage.getemployersShare();
+        Log.info("get employer Share:" + getemployersShare);
+
+        String getPensionShare = epfoPage.getPensionShare();
+        Log.info("get Pension Share:" + getPensionShare);
+
+        String getTotalEPFBalance = epfoPage.getTotalEPFBalance();
+        Log.info("get Tota EPF Balance:" + getTotalEPFBalance);
+
+        mbReporter.verifyEqualsWithLogging(getNametxt, expgetNametxt, "get Name txt", false, false, true);
+        mbReporter.verifyEqualsWithLogging(getActivesince, expgetActivesince, "get Active since", false, false, true);
+        mbReporter.verifyEqualsWithLogging(getWorkexperience, expgetWorkexperience, "get work exp", false, false, true);
+        mbReporter.verifyEqualsWithLogging(getemployeeShare, expgetemployeeShare, "get employee Share", false, false, true);
+        mbReporter.verifyEqualsWithLogging(getemployersShare, expgetemployersShare, "get employers Share", false, false, true);
+        mbReporter.verifyEqualsWithLogging(getPensionShare, expgetPensionShare, "exp get Pension Share", false, false, true);
+        mbReporter.verifyEqualsWithLogging(getTotalEPFBalance, expgetTotalEPFBalance, "get Total EPF Balance", false, false, true);
+
+        epfoPage.clickOnInterestEarned();
         driver.navigate().back();
+
 
 
     }
