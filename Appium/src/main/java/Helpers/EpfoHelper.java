@@ -6,7 +6,9 @@ import Utils.Element;
 import Utils.Elements;
 import Utils.MBReporter;
 import Utils.Screen;
+import com.mongodb.annotations.NotThreadSafe;
 import io.appium.java_client.android.AndroidDriver;
+import org.openqa.selenium.By;
 
 import java.io.IOException;
 
@@ -109,7 +111,7 @@ public class EpfoHelper {
 
     }
 
-    public void epfoDashBoardBalanceBreakup() throws InterruptedException, IOException {
+    public void epfoDashBoardBalanceBreakup(String expgetNametxt,String expgetActivesince,String expgetWorkexperience,String expgetemployeeShare,String expgetemployersShare,String expgetPensionShare,String expgetTotalEPFBalance) throws InterruptedException, IOException {
 
         epfoPage.clickAllServices();
         epfoPage.scrollToTrackEpfBalance();
@@ -117,12 +119,83 @@ public class EpfoHelper {
 
         //Click On Info icon present next to balance
         epfoPage.clickOnInfoIcon();
-        epfoPage.clickOnInfoIconextToInterestEarned();
+        String getInterestEarned = epfoPage.getInterestEarned();
+        Log.info("get Interest Earned:" + getInterestEarned);
 
+        String getNametxt = epfoPage.getNametxt();
+        Log.info("get get Name txt:" + getNametxt);
+
+        String getActivesince = epfoPage.getActivesince();
+        Log.info("get  Active since:" + getActivesince);
+
+        String getWorkexperience = epfoPage.getWorkexperience();
+        Log.info("get  Work experience:" + getWorkexperience);
+
+        String getemployeeShare = epfoPage.getemployeeShare();
+        Log.info("get employee Share:" + getemployeeShare);
+
+        String getemployersShare = epfoPage.getemployersShare();
+        Log.info("get employer Share:" + getemployersShare);
+
+        String getPensionShare = epfoPage.getPensionShare();
+        Log.info("get Pension Share:" + getPensionShare);
+
+        String getTotalEPFBalance = epfoPage.getTotalEPFBalance();
+        Log.info("get Tota EPF Balance:" + getTotalEPFBalance);
+
+        mbReporter.verifyEqualsWithLogging(getNametxt, expgetNametxt, "get Name txt", false, false, true);
+        mbReporter.verifyEqualsWithLogging(getActivesince, expgetActivesince, "get Active since", false, false, true);
+        mbReporter.verifyEqualsWithLogging(getWorkexperience, expgetWorkexperience, "get work exp", false, false, true);
+        mbReporter.verifyEqualsWithLogging(getemployeeShare, expgetemployeeShare, "get employee Share", false, false, true);
+        mbReporter.verifyEqualsWithLogging(getemployersShare, expgetemployersShare, "get employers Share", false, false, true);
+        mbReporter.verifyEqualsWithLogging(getPensionShare, expgetPensionShare, "exp get Pension Share", false, false, true);
+        mbReporter.verifyEqualsWithLogging(getTotalEPFBalance, expgetTotalEPFBalance, "get Total EPF Balance", false, false, true);
+
+        Thread.sleep(1000);
+        epfoPage.clickOnInterestEarned();
+        Thread.sleep(1000);
         driver.navigate().back();
-
+        Thread.sleep(5000);
+        epfoPage.clickPensionShare();
 
     }
+
+    public void epfoDashBoardViewStatementWithFilter(String expgetemployeeShare,String expgetemployersShare,String expgetPensionShare) throws InterruptedException, IOException {
+
+        epfoPage.clickAllServices();
+        epfoPage.scrollToTrackEpfBalance();
+        epfoPage.clickTrackEpfBalance();
+        epfoPage.clickOnViewFullStatementCTA();
+
+        Element.waitForVisibility(driver, By.xpath("//*/android.widget.TextView[@text = 'EPF Statement']"));
+        epfoPage.clickOnFiscalYear();
+        Thread.sleep(1000);
+        driver.navigate().back();
+        epfoPage.clickOnDeposit();
+        Thread.sleep(3000);
+        epfoPage.clickOnDepositfirstArrayItem();
+        Thread.sleep(5000);
+        Element.waitForVisibility(driver, By.xpath("//*/android.widget.TextView[@text = 'Employee Share']"));
+
+        String getemployeeShare = epfoPage.getemployeeSharebottomsheet();
+        Log.info("get employee Share:" + getemployeeShare);
+
+        String getemployersShare = epfoPage.getemployerSharebottomsheet();
+        Log.info("get employer Share:" + getemployersShare);
+
+        String getPensionShare = epfoPage.getPensionShare();
+        Log.info("get Pension Share:" + getPensionShare);
+
+        mbReporter.verifyEqualsWithLogging(getemployeeShare, expgetemployeeShare, "get employee Share", false, false, true);
+        mbReporter.verifyEqualsWithLogging(getemployersShare, expgetemployersShare, "get employers Share", false, false, true);
+        mbReporter.verifyEqualsWithLogging(getPensionShare, expgetPensionShare, "exp get Pension Share", false, false, true);
+        Thread.sleep(1000);
+        driver.navigate().back();
+        Thread.sleep(5000);
+        screen.swipeUpMoreFromRightSide(driver);
+
+    }
+
 
 
 }

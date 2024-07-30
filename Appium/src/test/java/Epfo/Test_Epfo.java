@@ -22,7 +22,7 @@ public class Test_Epfo extends TestBase {
 
     }
 
-    @Test(groups = {"EPFO", "sanity", "regression"}, priority = 0, description = "Verify New User flow in Epfo")
+    @Test(groups = {"EPFO", "sanity", "regression"}, priority = 1, description = "Verify New User flow in Epfo")
     public void Test01_epfo_New_User_Dashboard() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
@@ -34,17 +34,28 @@ public class Test_Epfo extends TestBase {
 
     }
 
-
-   /* @Test(groups = {"EPFO", "sanity2", "regression"}, priority = 0, description = "Verify balance breakup")
+   @Test(groups = {"EPFO", "sanity1", "regression"}, priority = 1, description = "Verify balance breakup")
     public void Test01_epfo_balance_breakup() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
         loginHelp.quickLoginViaOtp("7042338867", "547372");
         EpfoHelper epfoHelper = new EpfoHelper(getAndroidDriver());
         // Execute the test
-        epfoHelper.epfoDashBoardBalanceBreakup();
-        Log.info("======= EPFO New Dashboard test ======="); */
+        epfoHelper.epfoDashBoardBalanceBreakup("Name","Active since","Work experience","Employee’s Share","Employer’s Share","Pension Share (EPS)","Total EPF Balance");
+        Log.info("======= EPFO New Dashboard test =======");
 
-   // }
+    }
+
+    @Test(groups = {"EPFO", "sanity1", "regression"}, priority = 0, description = "Verify balance breakup")
+    public void Test01_epfo_viewStatement_withFilter() throws IOException, InterruptedException {
+
+        LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
+        loginHelp.quickLoginViaOtp("7042338867", "547372");
+        EpfoHelper epfoHelper = new EpfoHelper(getAndroidDriver());
+        // Execute the test
+        epfoHelper.epfoDashBoardViewStatementWithFilter("Employee Share","Employer Share","Pension Share (EPS)");
+        Log.info("======= EPFO View Statement with Filter =======");
+
+    }
 
 }
