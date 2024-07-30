@@ -99,6 +99,12 @@ public class EpfoPage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Work experience']")
     private AndroidElement workexperience_txt;
 
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Employee Share']")
+    private AndroidElement employeesShare_txt_bottomsheet;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Employer Share']")
+    private AndroidElement employersShare_txt_bottomsheet;
+
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Employee’s Share']")
     private AndroidElement EmployeesShare_txt;
 
@@ -111,6 +117,17 @@ public class EpfoPage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Total EPF Balance']")
     private AndroidElement totalEPFBalance_txt;
 
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Fiscal Year']")
+    private AndroidElement fiscalYear;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Fiscal Year']")
+    private AndroidElement fy201112;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Deposit']")
+    private AndroidElement deposit;
+
+    @AndroidFindBy(id = "txtType")
+    private AndroidElement desposit_array_1st;
 
     public void clickOnInfoIcon() {
         Elements.selectElement(driver, icfoIcon, "click On Info Icon");
@@ -143,8 +160,20 @@ public class EpfoPage {
         return Elements.getText(driver, employersShare_txt, "Get Employer’s Share");
     }
 
+    public String getemployeeSharebottomsheet() throws InterruptedException {
+        return Elements.getText(driver, employeesShare_txt_bottomsheet, "Get Employee’s Share");
+    }
+
+    public String getemployerSharebottomsheet() throws InterruptedException {
+        return Elements.getText(driver, employersShare_txt_bottomsheet, "Get Employer Share");
+    }
+
     public String getPensionShare() throws InterruptedException {
         return Elements.getText(driver, pensionShare_txt, "Get Pension Share");
+    }
+
+    public void clickPensionShare() {
+        Elements.selectElement(driver, pensionShare_txt, "click on pension Share");
     }
 
     public String getTotalEPFBalance() throws InterruptedException {
@@ -173,6 +202,11 @@ public class EpfoPage {
 
     public String getViewFullStatementCTA() throws InterruptedException {
         return Elements.getText(driver, viewFullStatementCTA, "View Full Statement");
+    }
+
+    public void clickOnViewFullStatementCTA() {
+        Elements.selectElement(driver, viewFullStatementCTA, "View Full Statement");
+
     }
 
     public void scrollToTotalBalanceCTA() throws InterruptedException {
@@ -239,5 +273,18 @@ public class EpfoPage {
     public String getProceedTxt() throws InterruptedException {
         return Elements.getText(driver, proceedCTA, "ProceedCTA");
     }
+
+    public void clickOnDeposit() {
+        Elements.selectElement(driver, deposit, "click On Deposit");
+    }
+
+    public void clickOnDepositfirstArrayItem() {
+        Elements.selectElement(driver, desposit_array_1st, "click On Deposit first array items");
+    }
+
+    public void clickOnFiscalYear() {
+        Elements.selectElement(driver, fiscalYear, "click On Fiscal Year");
+    }
+
 
 }
