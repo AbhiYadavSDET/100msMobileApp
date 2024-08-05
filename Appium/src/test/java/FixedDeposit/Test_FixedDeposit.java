@@ -63,7 +63,7 @@ public class Test_FixedDeposit extends TestBase {
 
     }
 
-    @Test(groups = {"FixedDeposit", "sanity1", "regression"}, priority = 1, description = "Verify Summary")
+    @Test(groups = {"FixedDeposit", "sanity1", "regression"}, priority = 0, description = "Verify Summary")
     public void Test05_summary_screen() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());

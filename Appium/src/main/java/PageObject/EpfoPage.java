@@ -102,8 +102,14 @@ public class EpfoPage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Employee Share']")
     private AndroidElement employeesShare_txt_bottomsheet;
 
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Employee share']")
+    private AndroidElement employeesshare_txt_bottomsheet;
+
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Employer Share']")
     private AndroidElement employersShare_txt_bottomsheet;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Employer share']")
+    private AndroidElement employersshare_txt_bottomsheet;
 
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Employee’s Share']")
     private AndroidElement EmployeesShare_txt;
@@ -120,11 +126,32 @@ public class EpfoPage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Fiscal Year']")
     private AndroidElement fiscalYear;
 
-    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Fiscal Year']")
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'FY 2017-18']")
     private AndroidElement fy201112;
 
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Deposit']")
     private AndroidElement deposit;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'CURRENT EMPLOYER']")
+    private AndroidElement current_employer;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'One Mobikwik Systems Limited']")
+    private AndroidElement gettext_mobikwik;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Account Details']")
+    private AndroidElement account_details;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'View All Employers (4)']")
+    private AndroidElement view_all_employer;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'All Transactions']")
+    private AndroidElement all_transactions;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'TRANSACTIONS']")
+    private AndroidElement gettext_transaction;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Account Holder’s Name']")
+    private AndroidElement gettext_account_holder_name;
 
     @AndroidFindBy(id = "txtType")
     private AndroidElement desposit_array_1st;
@@ -164,8 +191,16 @@ public class EpfoPage {
         return Elements.getText(driver, employeesShare_txt_bottomsheet, "Get Employee’s Share");
     }
 
+    public String getemployeesharebottomsheet() throws InterruptedException {
+        return Elements.getText(driver, employeesshare_txt_bottomsheet, "Get Employee’s Share");
+    }
+
     public String getemployerSharebottomsheet() throws InterruptedException {
         return Elements.getText(driver, employersShare_txt_bottomsheet, "Get Employer Share");
+    }
+
+    public String getemployersharebottomsheet() throws InterruptedException {
+        return Elements.getText(driver, employersshare_txt_bottomsheet, "Get Employer Share");
     }
 
     public String getPensionShare() throws InterruptedException {
@@ -285,6 +320,48 @@ public class EpfoPage {
     public void clickOnFiscalYear() {
         Elements.selectElement(driver, fiscalYear, "click On Fiscal Year");
     }
+
+
+    public void clickOnCurrentEmp() {
+        Elements.selectElement(driver, current_employer, "Click on current employee");
+    }
+
+    public String gettxtMobikwik() throws InterruptedException {
+        return Elements.getText(driver, gettext_mobikwik, "Get Text Mobikwik");
+    }
+
+    public void clickOnAccountDetails() {
+        Elements.selectElement(driver, account_details, "Click on Account details");
+    }
+
+    public void clickOnViewAllEmployer() {
+        Elements.selectElement(driver, view_all_employer, "Click on current employer");
+    }
+
+    public String gettxtAccountHolderName() throws InterruptedException {
+        return Elements.getText(driver, gettext_account_holder_name, "Get Text Account Holder Name");
+    }
+
+    public String gettxtTransaction() throws InterruptedException {
+        return Elements.getText(driver, gettext_transaction, "Get Text Transaction");
+    }
+
+    public void clickOnAllTransaction() {
+        Elements.selectElement(driver, all_transactions, "click on all Transactions");
+    }
+
+    public void scrollToOneMobikwikSystem() throws InterruptedException {
+        Elements.scrollToElement(driver,gettext_mobikwik);
+    }
+
+    public void clickOnOneMobikwikSystem() {
+        Elements.selectElement(driver, gettext_mobikwik, "Click on Mobikwik");
+    }
+
+    public void clickOnFy201112() {
+        Elements.selectElement(driver, fy201112, "Click on fy 2011-12");
+    }
+
 
 
 }

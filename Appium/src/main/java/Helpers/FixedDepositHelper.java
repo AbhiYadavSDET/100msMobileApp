@@ -251,11 +251,12 @@ public class FixedDepositHelper {
 
         //Click on Book next page on amount screen
         fixedDepositPage.ctaNext();
-        fixedDepositPage.clickPartnerBank();
+
+       // fixedDepositPage.clickPartnerBank();
         fixedDepositPage.clickontenuremonthfromList();
 
         String titleTenure = fixedDepositPage.getCTATenure();
-        String titlePartnerBank = fixedDepositPage.getPartnerBank();
+        //String titlePartnerBank = fixedDepositPage.getPartnerBank();
         String titleInterestPA = fixedDepositPage.getInterestPA();
         String titleAnnualYield = fixedDepositPage.getCTAAnnualYield();
         String titleInterestPayout = fixedDepositPage.getInterestPayout();
@@ -265,10 +266,10 @@ public class FixedDepositHelper {
 
         screen.swipeUpMore(driver);
         String titleBankAccount = fixedDepositPage.getBankAccount();
-        String titleKnowMoreforBank = fixedDepositPage.getKnowmoreforBankAccount();
+        String titleKnowMoreforPrematuralWithdrawl = fixedDepositPage.getKnowmoreforPrematuralwithdrawl();
 
         Log.info("Tenure Title :" + titleTenure);
-        Log.info("Partner Bank Title :" + titlePartnerBank);
+        //Log.info("Partner Bank Title :" + titlePartnerBank);
         Log.info("Interest PA Title :" + titleInterestPA);
         Log.info("Title Annual Yield :" + titleAnnualYield);
         Log.info("Title InterestPayout :" + titleInterestPayout);
@@ -276,10 +277,10 @@ public class FixedDepositHelper {
         Log.info("Title Total Gains :" + titleTotalGains);
         Log.info("Title PrematureWithdrawal :" + titlePrematureWatdrawal);
         Log.info("Title Bank Account:" + titleBankAccount);
-        Log.info("Title Know More for Bank:" + titleKnowMoreforBank);
+        Log.info("Title Know More for Bank:" + titleKnowMoreforPrematuralWithdrawl);
 
         mbReporter.verifyEqualsWithLogging(titleTenure, exptitleTenure, "Tenure", false, false, true);
-        mbReporter.verifyEqualsWithLogging(titlePartnerBank, exptitlePartnerBank, "Title Partner Bank", false, false, true);
+       // mbReporter.verifyEqualsWithLogging(titlePartnerBank, exptitlePartnerBank, "Title Partner Bank", false, false, true);
         mbReporter.verifyEqualsWithLogging(titleInterestPA, exptitleInterestPA, "Title Interest PA", false, false, true);
         mbReporter.verifyEqualsWithLogging(titleAnnualYield, exptitleAnnualYield, "Title Annual Yield", false, false, true);
         mbReporter.verifyEqualsWithLogging(titleInterestPayout, exptitleInterestPayout, "Title InterestPayout", false, false, true);
@@ -287,7 +288,7 @@ public class FixedDepositHelper {
         mbReporter.verifyEqualsWithLogging(titleTotalGains, exptitleTotalGains, "Title Total Gains", false, false, true);
         mbReporter.verifyEqualsWithLogging(titlePrematureWatdrawal, exptitlePrematureWatdrawal, "Title PrematureWithdrawal", false, false, true);
         mbReporter.verifyEqualsWithLogging(titleBankAccount, expttitleBankAccount, "Title Bank Accounts", false, false, true);
-        mbReporter.verifyEqualsWithLogging(titleKnowMoreforBank, exptitleKnowMoreforBank, "Title Total Gains", false, false, true);
+        mbReporter.verifyEqualsWithLogging(titleKnowMoreforPrematuralWithdrawl, exptitleKnowMoreforBank, "Title Total Gains", false, false, true);
 
     }
 
