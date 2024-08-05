@@ -151,6 +151,8 @@ public class FixedDepositPage {
     @AndroidFindBy(id="tv_hint_know_more")
     private AndroidElement ctaKnowmoreforBankAccount;
 
+    @AndroidFindBy(id="tv_pre_know_more")
+    private AndroidElement txtKnowMore;
 
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'HDFC BANK']")
     private AndroidElement clickOnHdfcBank;
@@ -482,6 +484,11 @@ public class FixedDepositPage {
 
     public String getKnowmoreforBankAccount() throws InterruptedException{
         return Elements.getText(driver,ctaKnowmoreforBankAccount,"Know more for bank on bottom sheet");
+
+    }
+
+    public String getKnowmoreforPrematuralwithdrawl() throws InterruptedException{
+        return Elements.getText(driver,txtKnowMore,"Know more for bank on bottom sheet");
 
     }
 
