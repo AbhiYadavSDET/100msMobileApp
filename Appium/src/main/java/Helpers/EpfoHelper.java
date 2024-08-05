@@ -197,6 +197,61 @@ public class EpfoHelper {
     }
 
 
+    public void epfoDashBoardCurrentEmp(String expgetemployeeShare,String expgetemployersShare,String expgetPensionShare,String expgetAccountHolderName,String expgetTransactionTxt) throws InterruptedException, IOException {
+
+        epfoPage.clickAllServices();
+        epfoPage.scrollToTrackEpfBalance();
+        epfoPage.clickTrackEpfBalance();
+        epfoPage.scrollToOneMobikwikSystem();
+        epfoPage.clickOnOneMobikwikSystem();
+        Thread.sleep(6000);
+        String getemployeeShare = epfoPage.getemployeesharebottomsheet();
+        Log.info("get employee Share:" + getemployeeShare);
+
+        String getemployersShare = epfoPage.getemployersharebottomsheet();
+        Log.info("get employer Share:" + getemployersShare);
+
+        String getPensionShare = epfoPage.getPensionShare();
+        Log.info("get Pension Share:" + getPensionShare);
+
+        String getTransactionTxt = epfoPage.gettxtTransaction();
+        Log.info("get Pension Share:" + getTransactionTxt);
+
+        mbReporter.verifyEqualsWithLogging(getemployeeShare, expgetemployeeShare, "get employee Share", false, false, true);
+        mbReporter.verifyEqualsWithLogging(getemployersShare, expgetemployersShare, "get employers Share", false, false, true);
+        mbReporter.verifyEqualsWithLogging(getPensionShare, expgetPensionShare, "exp get Pension Share", false, false, true);
+        mbReporter.verifyEqualsWithLogging(getTransactionTxt, expgetTransactionTxt, "exp gTxn text", false, false, true);
+
+        Thread.sleep(1000);
+        epfoPage.clickOnAccountDetails();
+        Thread.sleep(1000);
+
+        String getAccountHolderName = epfoPage.gettxtAccountHolderName();
+        Log.info("get employee Share:" + getAccountHolderName);
+        mbReporter.verifyEqualsWithLogging(getAccountHolderName, expgetAccountHolderName, "get Account Holder name", false, false, true);
+
+        Thread.sleep(1000);
+        driver.navigate().back();
+        Thread.sleep(3000);
+
+        //Click on all Transactions
+        epfoPage.clickOnAllTransaction();
+        Thread.sleep(4000);
+
+        // Select FY 2011-12
+        epfoPage.clickOnFy201112();
+        Thread.sleep(3000);
+        driver.navigate().back();
+        Thread.sleep(5000);
+
+        //Verify Multiple previous account is added or not
+        epfoPage.clickOnViewAllEmployer();
+
+        epfoPage.clickOnOneMobikwikSystem();
+
+    }
+
+
 
 }
 

@@ -29,7 +29,7 @@ public class Test_Epfo extends TestBase {
         loginHelp.quickLoginViaOtp("8216900006", "547372");
         EpfoHelper epfoHelper = new EpfoHelper(getAndroidDriver());
         // Execute the test
-        epfoHelper.epfoDashBoardNewUser("rack your Employee Provident Fund","Input your UAN","Know more about activation","Proceed","Find your UAN");
+        epfoHelper.epfoDashBoardNewUser("Track your Employee Provident Fund","Input your UAN","Know more about activation","Proceed","Find your UAN");
         Log.info("======= EPFO New Dashboard test =======");
 
     }
@@ -46,7 +46,7 @@ public class Test_Epfo extends TestBase {
 
     }
 
-    @Test(groups = {"EPFO", "sanity1", "regression"}, priority = 0, description = "Verify balance breakup")
+    @Test(groups = {"EPFO", "sanity1", "regression"}, priority = 1, description = "Verify View Statement with Filter")
     public void Test01_epfo_viewStatement_withFilter() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
@@ -55,7 +55,17 @@ public class Test_Epfo extends TestBase {
         // Execute the test
         epfoHelper.epfoDashBoardViewStatementWithFilter("Employee Share","Employer Share","Pension Share (EPS)");
         Log.info("======= EPFO View Statement with Filter =======");
+    }
 
+    @Test(groups = {"EPFO", "sanity1", "regression"}, priority = 0, description = "Verify View all employer")
+    public void Test01_epfo_viewall_employer() throws IOException, InterruptedException {
+
+        LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
+        loginHelp.quickLoginViaOtp("7042338867", "547372");
+        EpfoHelper epfoHelper = new EpfoHelper(getAndroidDriver());
+        // Execute the test
+        epfoHelper.epfoDashBoardCurrentEmp("Employee share","Employer share","Pension Share (EPS)","Account Holder’s Name","TRANSACTIONS");
+        Log.info("======= EPFO Verify View all employer =======");
     }
 
 }
