@@ -27,7 +27,7 @@ public class LoginPage {
     @AndroidFindBy(xpath = "//*[@text='Get Started']")
     private AndroidElement getStartedButton;
 
-    @AndroidFindBy(xpath = "//*[@text='NONE OF THE ABOVE']")
+    @AndroidFindBy(id = "com.google.android.gms:id/cancel")
     private AndroidElement noneOfAboveButton;
 
     @AndroidFindBy(id = "et_phone_number")
@@ -76,7 +76,7 @@ public class LoginPage {
     }
 
     public void clickNoneOfAbove() {
-        Elements.selectElement(driver, noneOfAboveButton, "Click None of the Above button");
+        Elements.selectElement(driver, noneOfAboveButton, "Closing the Phone Number Suggestion Bottomsheet");
     }
 
     public void enterMobileNum(String mobileNumber) {
