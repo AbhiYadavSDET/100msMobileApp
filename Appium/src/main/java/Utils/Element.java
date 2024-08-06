@@ -73,6 +73,23 @@ public class Element {
         }
     }
 
+    public static boolean waitForVisibilityMultipleElements(AndroidDriver driver, By targetElement1, By targetElement2, By targetElement3 ) {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, timeOut);
+            wait.until(ExpectedConditions.or(ExpectedConditions.visibilityOfElementLocated(targetElement1),ExpectedConditions.visibilityOfElementLocated(targetElement2),ExpectedConditions.visibilityOfElementLocated(targetElement3)));
+            return true;
+        } catch (TimeoutException e) {
+            System.out.println("Both elements are not visible");
+            System.out.println("Element 1: " + targetElement1);
+            System.out.println("Element 2: " + targetElement2);
+            System.out.println("Element 2: " + targetElement3);
+            System.out.println();
+            System.out.println(e.getMessage());
+            throw e;
+
+        }
+    }
+
     public static boolean waitForVisibility(AndroidDriver driver, By targetElement) {
         try {
             WebDriverWait wait = new WebDriverWait(driver, timeOut);

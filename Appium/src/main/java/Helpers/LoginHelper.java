@@ -44,9 +44,9 @@ public class LoginHelper {
     public void loginViaOtp(String mobileNumber, String otp) throws InterruptedException, IOException {
 
 
-        element.waitForVisibilityMultipleElements(driver, By.id("com.google.android.gms:id/phone_number"), By.id("et_phone_number"));
+        element.waitForVisibilityMultipleElements(driver, By.id("com.google.android.gms:id/phone_number"), By.xpath("//*[@text='NONE OF THE ABOVE']"), By.id("et_phone_number"));
 
-        if (element.isElementPresentNoWait(driver, By.id("com.google.android.gms:id/phone_number"))) {
+        if (element.isElementPresentNoWait(driver, By.xpath("//*[@text='NONE OF THE ABOVE']")) || element.isElementPresentNoWait(driver, By.id("com.google.android.gms:id/phone_number"))) {
             loginPage.clickNoneOfAbove();
         }
 
@@ -81,9 +81,9 @@ public class LoginHelper {
     public void quickLoginViaOtp(String mobileNumber, String otp) throws InterruptedException {
 
 
-        element.waitForVisibilityMultipleElements(driver, By.id("com.google.android.gms:id/phone_number"), By.id("et_phone_number"));
+        element.waitForVisibilityMultipleElements(driver, By.id("com.google.android.gms:id/phone_number"), By.xpath("//*[@text='NONE OF THE ABOVE']"), By.id("et_phone_number"));
 
-        if (element.isElementPresentNoWait(driver, By.id("com.google.android.gms:id/phone_number"))) {
+        if (element.isElementPresentNoWait(driver, By.xpath("//*[@text='NONE OF THE ABOVE']")) || element.isElementPresentNoWait(driver, By.id("com.google.android.gms:id/phone_number"))) {
             loginPage.clickNoneOfAbove();
         }
 
@@ -118,9 +118,9 @@ public class LoginHelper {
     public void quickLoginViaOtpForNonKycUser(String mobileNumber, String otp) throws InterruptedException {
 
 
-        element.waitForVisibilityMultipleElements(driver, By.id("com.google.android.gms:id/phone_number"), By.id("et_phone_number"));
+        element.waitForVisibilityMultipleElements(driver, By.id("com.google.android.gms:id/phone_number"), By.xpath("//*[@text='NONE OF THE ABOVE']"), By.id("et_phone_number"));
 
-        if (element.isElementPresentNoWait(driver, By.id("com.google.android.gms:id/phone_number"))) {
+        if (element.isElementPresentNoWait(driver, By.xpath("//*[@text='NONE OF THE ABOVE']")) || element.isElementPresentNoWait(driver, By.id("com.google.android.gms:id/phone_number"))) {
             loginPage.clickNoneOfAbove();
         }
 
@@ -229,9 +229,9 @@ public class LoginHelper {
 
         Log.info("Logged into app from profile.. ");
 
-        element.waitForVisibilityMultipleElements(driver, By.id("com.google.android.gms:id/phone_number"), By.id("et_phone_number"));
+        element.waitForVisibilityMultipleElements(driver, By.id("com.google.android.gms:id/phone_number"), By.xpath("//*[@text='NONE OF THE ABOVE']"), By.id("et_phone_number"));
 
-        if (element.isElementPresentNoWait(driver, By.id("com.google.android.gms:id/phone_number"))) {
+        if (element.isElementPresentNoWait(driver, By.xpath("//*[@text='NONE OF THE ABOVE']")) || element.isElementPresentNoWait(driver, By.id("com.google.android.gms:id/phone_number"))) {
             loginPage.clickNoneOfAbove();
         }
 
@@ -260,9 +260,9 @@ public class LoginHelper {
 
         boolean simAvailableInDevice=false;
 
-        element.waitForVisibilityMultipleElements(driver, By.id("com.google.android.gms:id/phone_number"), By.id("et_phone_number"));
+        element.waitForVisibilityMultipleElements(driver, By.id("com.google.android.gms:id/phone_number"), By.xpath("//*[@text='NONE OF THE ABOVE']"), By.id("et_phone_number"));
 
-        if (element.isElementPresentNoWait(driver, By.id("com.google.android.gms:id/phone_number"))) {
+        if (element.isElementPresentNoWait(driver, By.xpath("//*[@text='NONE OF THE ABOVE']")) || element.isElementPresentNoWait(driver, By.id("com.google.android.gms:id/phone_number"))) {
             loginPage.clickNoneOfAbove();
             simAvailableInDevice=true;
         }

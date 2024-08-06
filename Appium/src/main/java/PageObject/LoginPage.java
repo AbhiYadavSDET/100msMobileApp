@@ -27,8 +27,14 @@ public class LoginPage {
     @AndroidFindBy(xpath = "//*[@text='Get Started']")
     private AndroidElement getStartedButton;
 
-    @AndroidFindBy(id = "com.google.android.gms:id/cancel")
+    @AndroidFindBy(xpath = "//*[@text='NONE OF THE ABOVE']")
     private AndroidElement noneOfAboveButton;
+
+    @AndroidFindBy(id = "com.google.android.gms:id/cancel")
+    private AndroidElement noneOfAboveButton2;
+
+    @AndroidFindBy(id = "com.google.android.gms:id/phone_number")
+    private AndroidElement newHintBottomSheet;
 
     @AndroidFindBy(id = "et_phone_number")
     private AndroidElement editTextField;
@@ -75,8 +81,13 @@ public class LoginPage {
         Elements.selectElement(driver, getStartedButton, "Click Get Started button");
     }
 
-    public void clickNoneOfAbove() {
-        Elements.selectElement(driver, noneOfAboveButton, "Closing the Phone Number Suggestion Bottomsheet");
+    public void clickNoneOfAbove() throws InterruptedException {
+        if(Element.isElementPresentNoWait(driver, By.id("com.google.android.gms:id/phone_number"))){
+            Elements.selectElement(driver, noneOfAboveButton2, "Close Mobile Number hint Bottomsheet");
+        }else {
+            Elements.selectElement(driver, noneOfAboveButton, "Click None of the Above button");
+        }
+
     }
 
     public void enterMobileNum(String mobileNumber) {
