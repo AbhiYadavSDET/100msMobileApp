@@ -98,7 +98,6 @@ public class FixedDepositHelper {
 
     }
 
-
     public void fdBooking(String exptitleTenure,String exptitleAnnualYield,String exptitleInterestRate,String exptitleSelectDepositAmount) throws InterruptedException, IOException {
 
         fixedDepositPage.allServicesCTA();
@@ -403,6 +402,41 @@ public class FixedDepositHelper {
 
         // Click on  month filter from the list
         fixedDepositPage.clickontenuremonthfromList();
+
+
+    }
+
+    public void partnerChangesfromTopOnSummeryScreen(String exptitlePartnerBank,String exptitleBank,String exptitleInterestPA) throws InterruptedException, IOException {
+
+        fixedDepositPage.allServicesCTA();
+
+        Log.info("-----Fixed Deposit-----");
+
+        //Click on Fixed deposit CTA
+        fixedDepositPage.scrollToFixedDeposit();
+        fixedDepositPage.fixedDepositCTA();
+
+        //Click on Book button on Fd home screen
+        fixedDepositPage.bookCTA();
+
+        //Click on Book next page on amount screen
+        fixedDepositPage.ctaNext();
+
+        //Click on change on summery screen
+        fixedDepositPage.clickonChange();
+
+        //Title of Partner Bank Bank Interest PA
+        String titlePartnerBank = fixedDepositPage.getPartnerBank();
+        String titleBank = fixedDepositPage.getBankTxt();
+        String titleInterestPA = fixedDepositPage.getInterestPA();
+
+        Log.info("Partner Bank Title :" + titlePartnerBank);
+        Log.info("Bank Title :" + titleBank);
+        Log.info("Title Interest PA:" + titleInterestPA);
+
+        mbReporter.verifyEqualsWithLogging(titlePartnerBank, exptitlePartnerBank, "Title Partner Bank", false, false, true);
+        mbReporter.verifyEqualsWithLogging(titleBank, exptitleBank, "Title  Bank", false, false, true);
+        mbReporter.verifyEqualsWithLogging(titleInterestPA, exptitleInterestPA, "Title  Interest PA", false, false, true);
 
 
     }
