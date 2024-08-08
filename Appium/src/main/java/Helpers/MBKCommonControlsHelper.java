@@ -429,7 +429,6 @@ public class MBKCommonControlsHelper {
                     Log.info(driver.getPageSource());
                     Log.info("-----------------Page Source End----------------");
                     driver.navigate().back();
-                    handleHomePageLanding();
                 }
             }
 
