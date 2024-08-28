@@ -12,7 +12,7 @@ public class ViewElectricityBillTest extends TestBase {
 
     @Test(groups = {"sanity", "rechargeSanity", "regression"}, priority = 0, description = "view electricity bill")
 
-    public void viewElectricityBill() throws InterruptedException, IOException {
+    public void viewElectricityBill_Test01() throws InterruptedException, IOException {
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());

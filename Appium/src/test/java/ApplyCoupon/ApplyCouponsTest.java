@@ -11,7 +11,7 @@ import java.io.IOException;
 public class ApplyCouponsTest extends TestBase {
 
     @Test(groups = {"sanity", "applyCoupons"}, priority = 1, description = "apply coupons")
-    public void applyCoupon() throws IOException, InterruptedException {
+    public void ApplyCoupon_Test01_applyCoupon() throws IOException, InterruptedException {
 
 
         // Login to the account
@@ -29,7 +29,7 @@ public class ApplyCouponsTest extends TestBase {
 
     }
     @Test(groups = {"sanity", "applyCoupons"}, priority = 0, description = "apply coupons")
-    public void applySuperCash() throws IOException, InterruptedException {
+    public void ApplyCoupon_Test02_applySuperCash() throws IOException, InterruptedException {
 
 
         // Login to the account

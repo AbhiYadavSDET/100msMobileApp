@@ -12,7 +12,7 @@ public class ViewPipedGasBillTest extends TestBase {
 
     @Test(groups = {"sanity", "rechargeSanity", "regression"}, priority = 0, description = "View Piped Gas Bill")
 
-    public void viewPipedGasBill() throws InterruptedException, IOException {
+    public void viewPipedGasBill_Test01() throws InterruptedException, IOException {
 
 
         Log.info("======= START : Login Test =======");

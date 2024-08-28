@@ -13,7 +13,7 @@ public class SecurityPinTest extends TestBase {
 
 
     @Test(groups = {"sanity", "enableDisablePin", "regression"}, priority = 0, description = "Verify Security Pin")
-    public void securitySettings_EnableDisablePin() throws IOException, InterruptedException {
+    public void SecurityPin_Test01_EnableDisablePin() throws IOException, InterruptedException {
 
         Log.info("======= START : Security Pin Test =======");
 
@@ -32,7 +32,7 @@ public class SecurityPinTest extends TestBase {
     }
 
     @Test(groups = {"sanity", "changeSecurityPin", "regression"}, priority = 0, description = "Verify Security Pin")
-    public void securitySettings_ChangeSecurityPin() throws IOException, InterruptedException {
+    public void SecurityPin_Test02_ChangeSecurityPin() throws IOException, InterruptedException {
 
         Log.info("======= START : Change Security Pin Test =======");
 

@@ -12,7 +12,7 @@ import java.io.IOException;
 public class Test_HelpAndSupport extends TestBase {
 
     @Test(groups = {"sanity", "helpAndSupport", "regression"}, priority = 0, description = "Verify Help And Support")
-    public void Test_Help_Raise_Ticket() throws IOException, InterruptedException {
+    public void HelpAndSupport_Test01_Help_Raise_Ticket() throws IOException, InterruptedException {
 
 
         // Login to the account

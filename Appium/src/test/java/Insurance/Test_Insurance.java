@@ -13,7 +13,7 @@ public class Test_Insurance extends TestBase {
 
 
     @Test(groups = {"insurance", "sanity1", "regression"}, priority = 1, description = "Verify Personal Accident Insurance payment success screen")
-    public void Test_payment_of_PersonalAccident_insurance() throws IOException, InterruptedException {
+    public void Insurance_Test01_payment_of_PersonalAccident_insurance() throws IOException, InterruptedException {
 
         Log.info("======= START : Insurance =======");
         // Starting the test in the extent report
@@ -29,7 +29,7 @@ public class Test_Insurance extends TestBase {
     }
 
     @Test(groups = {"insurance1"}, priority = 1, description = "My PolicyRefund")
-    public void Test_insurance_mypolicy_refund() throws IOException, InterruptedException {
+    public void Insurance_Test02_insurance_mypolicy_refund() throws IOException, InterruptedException {
 
         Log.info("======= START : Insurance =======");
         // Starting the test in the extent report
@@ -45,7 +45,7 @@ public class Test_Insurance extends TestBase {
     }
 
     @Test(groups = {"insurance", "sanity1", "regression"}, priority = 1, description = "Insurance Home Screen")
-    public void Test_Insurance_Homescreen() throws IOException, InterruptedException {
+    public void Insurance_Test03_Insurance_Homescreen() throws IOException, InterruptedException {
         Log.info("======= START : Insurance =======");
         // Starting the test in the extent report
 
@@ -60,7 +60,7 @@ public class Test_Insurance extends TestBase {
     }
 
     @Test(groups = {"insurance", "sanity1", "regression"}, priority = 1, description = "Verify Doc Assure")
-    public void Test_DocAssure_insurance() throws IOException, InterruptedException {
+    public void Insurance_Test04_DocAssure_insurance() throws IOException, InterruptedException {
 
         Log.info("======= START : Insurance =======");
         // Starting the test in the extent report
@@ -76,7 +76,7 @@ public class Test_Insurance extends TestBase {
     }
 
     @Test(groups = {"insurance", "sanity1", "regression"}, priority = 1, description = "Verify Wallet Protect")
-    public void Test_WalletProtect_insurance() throws IOException, InterruptedException {
+    public void Insurance_Test05_WalletProtect_insurance() throws IOException, InterruptedException {
 
         Log.info("======= START : Insurance =======");
         // Starting the test in the extent report
@@ -92,7 +92,7 @@ public class Test_Insurance extends TestBase {
     }
 
     @Test(groups = {"insurance", "sanity1", "regression"}, priority = 1, description = "Verify Hospicash Protect")
-    public void Test_Hospicash_insurance() throws IOException, InterruptedException {
+    public void Insurance_Test06_Hospicash_insurance() throws IOException, InterruptedException {
 
         Log.info("======= START : Insurance =======");
         // Starting the test in the extent report
@@ -108,7 +108,7 @@ public class Test_Insurance extends TestBase {
     }
 
     @Test(groups = {"insurance", "sanity1", "regression"}, priority = 1, description = "Verify Dengue Insurance")
-    public void Test_Dengue_insurance() throws IOException, InterruptedException {
+    public void Insurance_Test07_Dengue_insurance() throws IOException, InterruptedException {
 
         Log.info("======= START : Insurance =======");
         // Starting the test in the extent report
@@ -124,7 +124,7 @@ public class Test_Insurance extends TestBase {
     }
 
     @Test(groups = {"insurance", "sanity1", "regression"}, priority = 11, description = "Verify Communicable Diseases Insurance")
-    public void Test_Communicable_Diseases_insurance() throws IOException, InterruptedException {
+    public void Insurance_Test08_Communicable_Diseases_insurance() throws IOException, InterruptedException {
 
         Log.info("======= START : Insurance =======");
         // Starting the test in the extent report
@@ -140,7 +140,7 @@ public class Test_Insurance extends TestBase {
     }
 
     @Test(groups = {"insurance", "sanity1", "regression"}, priority = 1, description = "Verify Personal Accident Insurance")
-    public void Test_Personal_Accident_insurance() throws IOException, InterruptedException {
+    public void Insurance_Test09_Personal_Accident_insurance() throws IOException, InterruptedException {
 
         Log.info("======= START : Insurance =======");
         // Starting the test in the extent report
@@ -155,9 +155,8 @@ public class Test_Insurance extends TestBase {
 
     }
 
-
     @Test(groups = {"insurance", "sanity1", "regression"}, priority = 1, description = "Verify Personal Accident Insurance")
-    public void Test_Loss_of_Job_insurance() throws IOException, InterruptedException {
+    public void Insurance_Test10_Loss_of_Job_insurance() throws IOException, InterruptedException {
 
         Log.info("======= START : Insurance =======");
         // Starting the test in the extent report
@@ -171,8 +170,4 @@ public class Test_Insurance extends TestBase {
         insuranceHelper.lossOfJobInsurance("Loss of Job","Select Sum Insured","Insured By","Start Date","End Date","Amount to be paid","Payable Amount");
 
     }
-
-
-
-
 }

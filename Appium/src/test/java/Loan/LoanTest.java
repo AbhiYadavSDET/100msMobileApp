@@ -13,7 +13,7 @@ public class LoanTest extends TestBase {
 
 
     @Test(groups = {"sanity", "verifyLoanPage", "regression"}, priority = 0, description = "Wallet To Wallet transfer")
-    public void Test_EMI_verifyLoanPage() throws IOException, InterruptedException {
+    public void Loan_Test01_EMI_verifyLoanPage() throws IOException, InterruptedException {
 
         Log.info("======= START : Loan Verify test =======");
 

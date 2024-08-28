@@ -14,7 +14,7 @@ public class TestKYC extends TestBase {
     //==================================New test cases as per 3 step kyc========================================//
 
     @Test(enabled = true, groups = {"kycSanity", "regression", "OnboardingFullkyc"}, priority = 0, description = "CKYC KYC flow from Profile for No Kyc User")
-    public void Test01_OnBoarding_Full_Kyc_Flow() throws IOException, InterruptedException {
+    public void KYC_Test01_OnBoarding_Full_Kyc_Flow() throws IOException, InterruptedException {
 
         Log.info("======= START : CKYC flow from Onboarding =======");
 
@@ -31,7 +31,7 @@ public class TestKYC extends TestBase {
     }
 
     @Test(enabled = true, groups = {"kycSanity", "regression", "OnboardingCkycFlow"}, priority = 0, description = "CKYC KYC flow from Profile for No Kyc User")
-    public void Test02_OnBoarding_Ckyc_Flow() throws IOException, InterruptedException {
+    public void KYC_Test02_OnBoarding_Ckyc_Flow() throws IOException, InterruptedException {
 
         Log.info("======= START : CKYC flow from Onboarding =======");
 
@@ -48,7 +48,7 @@ public class TestKYC extends TestBase {
     }
 
     @Test(enabled = true, groups = {"kycSanity", "regression", "sanity", "ProfileFullLKycFlow"}, priority = 0, description = "CKYC KYC flow from Profile for No Kyc User")
-    public void Test03_Profile_Full_Kyc_Flow() throws IOException, InterruptedException {
+    public void KYC_Test03_Profile_Full_Kyc_Flow() throws IOException, InterruptedException {
 
         Log.info("======= START : Full flow from Profile =======");
 
@@ -62,7 +62,7 @@ public class TestKYC extends TestBase {
     }
 
     @Test(enabled = true, groups = {"kycSanity", "regression", "sanity", "ProfileCKYCFlow"}, priority = 0, description = "CKYC KYC flow from Profile for No Kyc User")
-    public void Test04_Profile_Ckyc_Flow() throws IOException, InterruptedException {
+    public void KYC_Test04_Profile_Ckyc_Flow() throws IOException, InterruptedException {
 
         Log.info("======= START : CKYC flow from Profile =======");
 
@@ -77,7 +77,7 @@ public class TestKYC extends TestBase {
 
 
     @Test(enabled = false, groups = {"NoKYC", "minKycerrorMessage", "regression"}, priority = 0, description = " min kyc user - Error message validation on Non kyc flow")
-    public void Test05_minKyc_user_No_KYC_FLOW_Error_message() throws IOException, InterruptedException {
+    public void KYC_Test05_minKyc_user_No_KYC_FLOW_Error_message() throws IOException, InterruptedException {
 
         Log.info("======= START : min kyc user -  Full KYC flow via ckyc Error message validation =======");
 
@@ -93,7 +93,7 @@ public class TestKYC extends TestBase {
 
     // No number is present who is non kyc user.
     @Test(enabled = false, groups = {"minKYCFromProfile", "kycSanity", "regression"}, priority = 0, description = "min KYC flow from Profile")
-    public void Test06_min_KYC_FLOW_From_Profile() throws IOException, InterruptedException {
+    public void KYC_Test06_min_KYC_FLOW_From_Profile() throws IOException, InterruptedException {
 
         Log.info("======= START : min KYC flow from Profile =======");
 

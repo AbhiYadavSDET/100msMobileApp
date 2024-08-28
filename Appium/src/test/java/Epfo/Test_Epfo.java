@@ -11,7 +11,7 @@ public class Test_Epfo extends TestBase {
 
 
     @Test(groups = {"EPFO", "sanity", "regression"}, priority = 1, description = "Verify Existing User flow in Epfo")
-    public void Test01_epfo_existing_User_Dashboard() throws IOException, InterruptedException {
+    public void Epfo_Test01_epfo_existing_User_Dashboard() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
         loginHelp.quickLoginViaOtp("7042338867", "547372");
@@ -23,7 +23,7 @@ public class Test_Epfo extends TestBase {
     }
 
     @Test(groups = {"EPFO", "sanity", "regression"}, priority = 1, description = "Verify New User flow in Epfo")
-    public void Test01_epfo_New_User_Dashboard() throws IOException, InterruptedException {
+    public void Epfo_Test01_epfo_New_User_Dashboard() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
         loginHelp.quickLoginViaOtp("8216900006", "547372");
@@ -35,7 +35,7 @@ public class Test_Epfo extends TestBase {
     }
 
    @Test(groups = {"EPFO", "sanity1", "regression"}, priority = 1, description = "Verify balance breakup")
-    public void Test01_epfo_balance_breakup() throws IOException, InterruptedException {
+    public void Epfo_Test01_epfo_balance_breakup() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
         loginHelp.quickLoginViaOtp("7042338867", "547372");
@@ -47,7 +47,7 @@ public class Test_Epfo extends TestBase {
     }
 
     @Test(groups = {"EPFO", "sanity1", "regression"}, priority = 1, description = "Verify View Statement with Filter")
-    public void Test01_epfo_viewStatement_withFilter() throws IOException, InterruptedException {
+    public void Epfo_Test01_epfo_viewStatement_withFilter() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
         loginHelp.quickLoginViaOtp("7042338867", "547372");
@@ -58,7 +58,7 @@ public class Test_Epfo extends TestBase {
     }
 
     @Test(groups = {"EPFO", "sanity1", "regression"}, priority = 0, description = "Verify View all employer")
-    public void Test01_epfo_viewall_employer() throws IOException, InterruptedException {
+    public void Epfo_Test01_epfo_viewall_employer() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
         loginHelp.quickLoginViaOtp("7042338867", "547372");

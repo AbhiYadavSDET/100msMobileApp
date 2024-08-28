@@ -32,7 +32,7 @@ public class P2MTest extends TestBase {
 
 
     @Test(groups = { "sanity","p2m", "p2mSend", "p2mSendMobikwikQr", "regression"}, priority = 1, description = "P2M Send test")
-    public void Test01_p2mSendMobikwikQr() throws IOException, InterruptedException {
+    public void P2M_Test01_p2mSendMobikwikQr() throws IOException, InterruptedException {
 
         Log.info("======= START : P2M Send test =======");
         // Starting the test in the extentreport
@@ -52,7 +52,7 @@ public class P2MTest extends TestBase {
 
 
     @Test(groups = { "p2m", "p2mSend", "p2mSendRecentMerchant"}, priority = 6, description = "P2M Send test")
-    public void Test01_p2mSendRecentMerchant() throws IOException, InterruptedException {
+    public void P2M_Test01_p2mSendRecentMerchant() throws IOException, InterruptedException {
 
         Log.info("======= START : P2M Send test =======");
         // Starting the test in the extentreport
@@ -94,7 +94,7 @@ public class P2MTest extends TestBase {
 
 
     @Test(groups = { "p2m", "p2mVerify", "p2mNearbyStores", "regression"}, priority = 4, description = "P2M Verify")
-    public void Test04_p2mNearbyStores() throws IOException, InterruptedException {
+    public void P2M_Test04_p2mNearbyStores() throws IOException, InterruptedException {
 
         Log.info("======= START : P2M Verify test =======");
         // Starting the test in the extentreport
@@ -113,7 +113,7 @@ public class P2MTest extends TestBase {
     }
 
     @Test(groups = { "p2m", "p2mVerify", "p2mOfflinePaymentCode", "regression"}, priority = 5, description = "P2M Verify")
-    public void Test05_p2mOfflinePaymentCode() throws IOException, InterruptedException {
+    public void P2M_Test05_p2mOfflinePaymentCode() throws IOException, InterruptedException {
 
         Log.info("======= START : P2M Verify test =======");
         // Starting the test in the extentreport

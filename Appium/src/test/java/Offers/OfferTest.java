@@ -13,7 +13,7 @@ public class OfferTest extends TestBase {
 
 
     @Test(groups = {"sanity", "offerSearch", "regression"}, priority = 0, description = "Offer Search")
-    public void Test_Offers_Search() throws IOException, InterruptedException {
+    public void Offers_Test01_Offers_Search() throws IOException, InterruptedException {
 
         Log.info("======= START : Offer Search test =======");
 

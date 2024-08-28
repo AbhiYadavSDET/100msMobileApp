@@ -17,7 +17,7 @@ import java.io.IOException;
 public class IMPSTest extends TestBase {
 
  @Test(groups = {"sanity","impsNewAccountNumber", "impsSanity"}, priority = 0, description = "IMPS on New Account Number")
-    public void Test01_imps_new_account_number() throws IOException, InterruptedException {
+    public void IMPS_Test01_imps_new_account_number() throws IOException, InterruptedException {
 
         Log.info("======= START : IMPS to New Account Number Test =======");
 
@@ -32,7 +32,7 @@ public class IMPSTest extends TestBase {
     }
 
   @Test(groups = {"sanity","impsNewUPIid", "impsSanity"}, priority =0, description = "IMPS on New UPI ID")
-    public void Test02_imps_new_upi_id() throws IOException,InterruptedException{
+    public void IMPS_Test02_imps_new_upi_id() throws IOException,InterruptedException{
 
         Log.info("======= START : IMPS to New UPI ID Test =======");
 
@@ -47,7 +47,7 @@ public class IMPSTest extends TestBase {
 
 
   @Test(groups = {"impsSavedVPA", "impsSanity"}, priority = 0, description = "IMPS on Saved VPA")
-    public void Test03_imps_to_saved_vpa() throws  IOException,InterruptedException{
+    public void IMPS_Test03_imps_to_saved_vpa() throws  IOException,InterruptedException{
 
         Log.info("======= START : IMPS to Saved VPA Test =======");
 
@@ -66,7 +66,7 @@ public class IMPSTest extends TestBase {
 //Non transactions tests
 
  @Test(groups = {"impsSanity","ipmsAutoIfscCode", "regression"}, priority = 0, description = "IMPS on New Account Number with auto ifsc code")
-    public void Test04_imps_new_account_numberWithAutoIfscCode() throws IOException, InterruptedException {
+    public void IMPS_Test04_imps_new_account_numberWithAutoIfscCode() throws IOException, InterruptedException {
 
         Log.info("======= START : IMPS to New Account Number with auto ifsc code Test =======");
 
@@ -96,7 +96,7 @@ public class IMPSTest extends TestBase {
 */
 
     @Test(groups = {"impsErrorMessage", "impsSanity", "regression"}, priority = 0, description = "Error messages on Imps")
-    public void Test06_imps_new_account_numberWithErrorMessage() throws IOException, InterruptedException {
+    public void IMPS_Test06_imps_new_account_numberWithErrorMessage() throws IOException, InterruptedException {
 
         Log.info("======= START : Error message on add new property on Imps Test =======");
 
@@ -110,7 +110,7 @@ public class IMPSTest extends TestBase {
     }
 
     @Test(groups = {"impsCheckLimits", "impsSanity", "regression"}, priority = 0, description = "Check limit option on IMPS")
-    public void Test07_imps_checkLimits() throws IOException, InterruptedException {
+    public void IMPS_Test07_imps_checkLimits() throws IOException, InterruptedException {
 
         Log.info("======= START : check limits on Imps Test =======");
 
@@ -124,7 +124,7 @@ public class IMPSTest extends TestBase {
     }
 
     @Test(groups = {"impsNewAccountNumberManualIfscCode", "impsSanity","regression"}, priority = 0, description = "IMPS on New Account Number with manual ifsc code")
-    public void Test01_imps_new_account_number_Manual_IfscCode() throws IOException, InterruptedException {
+    public void IMPS_Test01_imps_new_account_number_Manual_IfscCode() throws IOException, InterruptedException {
 
         Log.info("======= START : IMPS to New Account Number manual IFC code Test =======");
 
@@ -140,7 +140,7 @@ public class IMPSTest extends TestBase {
 
 
     @Test(groups = {"impsInfoMessage", "impsSanity", "regression"}, priority = 0, description = "Info messages on amount screen on Imps")
-    public void Test06_imps_new_account_Info_Messages() throws IOException, InterruptedException {
+    public void IMPS_Test06_imps_new_account_Info_Messages() throws IOException, InterruptedException {
 
         Log.info("======= START : Info message on add new property on Amount page  =======");
 
@@ -155,7 +155,7 @@ public class IMPSTest extends TestBase {
 
 
     @Test(groups = {"impsCheckout", "impsSanity","regression"}, priority = 0, description = "Checkout options on Imps")
-    public void Test06_imps_new_account_checkout_option() throws IOException, InterruptedException {
+    public void IMPS_Test06_imps_new_account_checkout_option() throws IOException, InterruptedException {
 
         Log.info("======= START : Checkout option on IMPS page  =======");
 
