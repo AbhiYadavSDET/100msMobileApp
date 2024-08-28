@@ -95,8 +95,13 @@ public class LoginPage {
         Elements.enterToElement(driver, editTextField, mobileNumber, "Enter mobile number");
     }
 
-    public void clickSendOtpbutton() {
+    public void clickSendOtpbutton() throws InterruptedException {
         Elements.selectElement(driver, sendOtpButton, "Click Send OTP button");
+        Thread.sleep(1000);
+        if(Elements.isElementPresent(driver, sendOtpButton)){
+            Elements.selectElement(driver, sendOtpButton, "Click Send OTP button: 2nd Attempt");
+        }
+
     }
 
     public String getTextSendOtpbutton() throws InterruptedException {
