@@ -29,6 +29,9 @@ public class HomePage {
     @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[2]/android.widget.TextView[1]")
     private AndroidElement superCashBalanceText;
 
+    @AndroidFindBy(id = "title_text")
+    private AndroidElement supercashTotalSavingsText;
+
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'SuperCash Balance']/following-sibling::android.widget.TextView[1]")
     private AndroidElement supercashBalance;
 
@@ -649,11 +652,11 @@ public class HomePage {
     }
 
     public void scrollToSupercashBalance() throws InterruptedException {
-        Elements.scrollToElement(driver, supercashBalance);
+        Elements.scrollToElement(driver, supercashTotalSavingsText);
     }
 
     public Boolean isSuperCashPresent() throws InterruptedException {
-        return Elements.isElementPresent(driver, supercashBalance);
+        return Elements.isElementPresent(driver, supercashTotalSavingsText);
     }
     public String getAddMoney() throws InterruptedException {
         return Elements.getText(driver, addmoneyBalance, "Add Money");
