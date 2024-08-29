@@ -15,6 +15,9 @@ public class ZipPage {
 
     AndroidDriver driver;
 
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'All Services']")
+    private AndroidElement allServices;
+
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='PayLater']")
     private AndroidElement zipButton;
 
@@ -118,7 +121,9 @@ public class ZipPage {
     }
 
 
-    public void clickZipIcon() {
+    public void clickZipIcon() throws InterruptedException {
+        Elements.selectElement(driver, allServices,"Click on All Services");
+        Elements.scrollToElement(driver,zipButton);
         Elements.selectElement(driver, zipButton, "Zip Icon");
     }
 

@@ -78,6 +78,7 @@ public class ZipHelper {
     //"ZIP Dashboard","Your Credit Score"
     public void verifyZipActiveUser(String expZipPageTitle, String expCreditScorePageTitle) throws InterruptedException, IOException {
         // Tap on Zip Page
+
         zipPage.clickZipIcon();
 
         Element.waitForVisibility(driver, By.id("tv_title"));
