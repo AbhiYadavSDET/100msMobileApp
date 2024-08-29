@@ -13,7 +13,7 @@ import java.io.IOException;
 public class SearchTest extends TestBase {
 
     @Test(groups = {"regression"}, priority = 0, description = "Search test")
-    public void Test01_searchFlow() throws IOException, InterruptedException {
+    public void Search_Test01_searchFlow() throws IOException, InterruptedException {
 
         Log.info("======= START : Search home page all options available =======");
 
@@ -29,7 +29,7 @@ public class SearchTest extends TestBase {
     }
 
     @Test(groups = {"regression","invalidQuery"}, priority = 0, description = "Search test")
-    public void Test02_searchInvalidQuery() throws IOException, InterruptedException {
+    public void Search_Test02_searchInvalidQuery() throws IOException, InterruptedException {
 
         Log.info("======= START : Search invalid name on search bar  =======");
 
@@ -45,7 +45,7 @@ public class SearchTest extends TestBase {
         Log.info("======= END :Search invalid name on search bar  =======");
     }
     @Test(groups = {"regression","searchValidQueries"}, priority = 0, description = "Search test")
-    public void Test03_searchValidQueries() throws IOException, InterruptedException {
+    public void Search_Test03_searchValidQueries() throws IOException, InterruptedException {
 
         //Enter mobile number that is not in contact list
          String  queries []={"8860624421","zomato","Pocket","Abhishek"};

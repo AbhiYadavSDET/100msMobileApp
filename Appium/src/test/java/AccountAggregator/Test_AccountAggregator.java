@@ -12,7 +12,7 @@ public class Test_AccountAggregator extends TestBase {
 
 
     @Test(groups = {"AccountAggregator", "sanity", "regression"}, priority = 7, description = "Verify Existing User flow in AA")
-    public void Test01_existing_User_AA_Dashboard() throws IOException, InterruptedException {
+    public void AccountAggregator_Test01_existing_User_AA_Dashboard() throws IOException, InterruptedException {
 
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
@@ -25,7 +25,7 @@ public class Test_AccountAggregator extends TestBase {
     }
 
     @Test(groups = {"AccountAggregator", "sanity1", "regression"}, priority = 7, description = "Verify Analyser")
-    public void Test02_existing_User_Analyser() throws IOException, InterruptedException {
+    public void AccountAggregator_Test02_existing_User_Analyser() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
         loginHelp.quickLoginViaOtp("7042338867", "547372");
@@ -37,7 +37,7 @@ public class Test_AccountAggregator extends TestBase {
     }
 
     @Test(groups = {"AccountAggregator", "sanity1", "regression", "test"}, priority = 7, description = "Verify Manage Section")
-    public void Test03_existing_User_Manage() throws IOException, InterruptedException {
+    public void AccountAggregator_Test03_existing_User_Manage() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
         loginHelp.quickLoginViaOtp("7042338867", "547372");
@@ -50,7 +50,7 @@ public class Test_AccountAggregator extends TestBase {
 
 
     @Test(groups = {"AccountAggregator", "sanity1", "regression"}, priority = 7, description = "Verify Add account")
-    public void Test04_AA_new_addaccount() throws IOException, InterruptedException {
+    public void AccountAggregator_Test04_AA_new_addaccount() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
         loginHelp.quickLoginViaOtp("7042338867", "547372");
@@ -62,7 +62,7 @@ public class Test_AccountAggregator extends TestBase {
     }
 
     @Test(groups = {"AccountAggregator", "sanity1", "regression"}, priority = 7, description = "Verify Month filter on AA")
-    public void Test05_AA_Month_Filter() throws IOException, InterruptedException {
+    public void AccountAggregator_Test05_AA_Month_Filter() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
         loginHelp.quickLoginViaOtp("7042338867", "547372");
@@ -75,7 +75,7 @@ public class Test_AccountAggregator extends TestBase {
 
 
     @Test(groups = {"AccountAggregator", "sanity1", "regression"}, priority = 7, description = "Verify Month filter on AA")
-    public void Test06_AA_Search_Filter() throws IOException, InterruptedException {
+    public void AccountAggregator_Test06_AA_Search_Filter() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
         loginHelp.quickLoginViaOtp("7042338867", "547372");
@@ -86,9 +86,8 @@ public class Test_AccountAggregator extends TestBase {
 
     }
 
-
     @Test(groups = {"AccountAggregator", "sanity1", "regression"}, priority = 7, description = "Verify Retagging")
-    public void Test07_AA_New_Retagging() throws IOException, InterruptedException {
+    public void AccountAggregator_Test07_AA_New_Retagging() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
         loginHelp.quickLoginViaOtp("7042338867", "547372");
@@ -101,7 +100,7 @@ public class Test_AccountAggregator extends TestBase {
 
 
     @Test(groups = {"AccountAggregator", "sanity1", "regression"}, priority = 7, description = "Verify Retagging")
-    public void Test08_AA_DownloadStatement() throws IOException, InterruptedException {
+    public void AccountAggregator_Test08_AA_DownloadStatement() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
         loginHelp.quickLoginViaOtp("7042338867", "547372");
@@ -113,7 +112,7 @@ public class Test_AccountAggregator extends TestBase {
     }
 
     @Test(groups = {"AccountAggregator", "sanity1", "regression"}, priority = 7, description = "Verify Retagging")
-    public void Test09_AA_Highlight() throws IOException, InterruptedException {
+    public void AccountAggregator_Test09_AA_Highlight() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
         loginHelp.quickLoginViaOtp("7042338867", "547372");
@@ -123,7 +122,4 @@ public class Test_AccountAggregator extends TestBase {
         Log.info("======= Account Aggregator test =======");
 
     }
-
-
-
 }

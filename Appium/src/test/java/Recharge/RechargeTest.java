@@ -11,7 +11,7 @@ import java.io.IOException;
 public class RechargeTest extends TestBase {
 
     @Test(groups = {"sanity", "rechargeSanity" , "regression" }, priority = 1, description = "mobile Recharge")
-    public void postpaid_Recharge() throws IOException, InterruptedException {
+    public void Recharge_Test01_postpaid_Recharge() throws IOException, InterruptedException {
 
 
         // Login to the account
@@ -30,7 +30,7 @@ public class RechargeTest extends TestBase {
     }
 
     @Test(groups = {"sanity1", "regression"}, priority = 1, description = "mobile Recharge")
-    public void prepaid_Recharge() throws IOException, InterruptedException {
+    public void Recharge_Test02_prepaid_Recharge() throws IOException, InterruptedException {
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
@@ -48,7 +48,7 @@ public class RechargeTest extends TestBase {
     }
 
     @Test(groups = {"sanity1", "rechargeSanity", "regression"}, priority = 1, description = "Verify change operator flow")
-    public void changeOperator() throws IOException, InterruptedException {
+    public void Recharge_Test03_changeOperator() throws IOException, InterruptedException {
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
@@ -66,7 +66,7 @@ public class RechargeTest extends TestBase {
     }
 
     @Test(groups = {"sanity1", "rechargeSanity", "regression"}, priority = 1, description = "Change prepaid to postpaid")
-    public void changePrepaidToPostpaid() throws IOException, InterruptedException {
+    public void Recharge_Test04_changePrepaidToPostpaid() throws IOException, InterruptedException {
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
@@ -84,7 +84,7 @@ public class RechargeTest extends TestBase {
     }
 
     @Test(groups = {"sanity1", "rechargeSanity", "regression"}, priority = 0, description = "Coupon code handling")
-    public void couponCodeHandle() throws IOException, InterruptedException {
+    public void Recharge_Test05_couponCodeHandle() throws IOException, InterruptedException {
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());

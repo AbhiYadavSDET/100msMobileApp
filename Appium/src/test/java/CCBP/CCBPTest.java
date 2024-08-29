@@ -13,7 +13,7 @@ public class CCBPTest extends TestBase {
 
     @Test(groups = {"sanity", "rechargeSanity"}, priority = 0, description = "ccbp Payment")
 
-    public void creditCardBill_Payment() throws InterruptedException, IOException {
+    public void CCBP_Test01_creditCardBill_Payment() throws InterruptedException, IOException {
 
 
         Log.info("======= START : P2M Send test =======");
@@ -35,7 +35,7 @@ public class CCBPTest extends TestBase {
 
     @Test(groups = {"sanity", "rechargeSanity"}, priority = 0, description = "existing user ccbp Payment")
 
-    public void existingUserCreditCardBill_Payment() throws InterruptedException, IOException {
+    public void CCBP_Test02_existingUserCreditCardBill_Payment() throws InterruptedException, IOException {
 
 
         Log.info("======= START : P2M Send test =======");

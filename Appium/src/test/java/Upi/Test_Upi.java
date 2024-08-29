@@ -13,7 +13,7 @@ public class Test_Upi extends TestBase {
 
 
     @Test(groups = {"upiSendMoney", "upiSanity", "sanity"}, priority = 0, description = "UPI Send Money to UPI ID test")
-    public void Test01_Upi_Send_Money_To_VPA() throws IOException, InterruptedException {
+    public void UPI_Test01_Upi_Send_Money_To_VPA() throws IOException, InterruptedException {
 
         Log.info("======= START : UPI Send Money to UPI ID test =======");
 
@@ -27,7 +27,7 @@ public class Test_Upi extends TestBase {
     }
 
     @Test(groups = {"upiSendMoneyToBank", "upiSanity", "sanity"}, priority = 0, description = "UPI Send Money to Bank test")
-    public void Test02_Upi_Send_Money_To_Bank() throws IOException, InterruptedException {
+    public void UPI_Test02_Upi_Send_Money_To_Bank() throws IOException, InterruptedException {
 
         Log.info("======= START : UPI Send Money to Bank test =======");
 
@@ -41,7 +41,7 @@ public class Test_Upi extends TestBase {
     }
 
     @Test(groups = {"upiCheckBalance", "upiSanity", "sanity"}, priority = 0, description = "UPI Check Account Balance test")
-    public void Test03_Upi_Check_Balance() throws IOException, InterruptedException {
+    public void UPI_Test03_Upi_Check_Balance() throws IOException, InterruptedException {
 
         Log.info("======= START : UPI Check Account Balance test =======");
 
@@ -56,7 +56,7 @@ public class Test_Upi extends TestBase {
 
 
     @Test(groups = {"upiRequestMoney", "upiSanity", "sanity"}, priority = 0, description = "UPI Request Money test")
-    public void Test04_Upi_Request_Money() throws IOException, InterruptedException {
+    public void UPI_Test04_Upi_Request_Money() throws IOException, InterruptedException {
 
         Log.info("======= START : UPI Request Money test =======");
 
@@ -73,7 +73,7 @@ public class Test_Upi extends TestBase {
 
 
     @Test(groups = {"addMoneyViaUpi", "upiSanity", "sanity"}, priority = 0, description = "Add Money via UPI test")
-    public void Test05_Upi_Add_Money() throws IOException, InterruptedException {
+    public void UPI_Test05_Upi_Add_Money() throws IOException, InterruptedException {
 
         Log.info("======= START : Add Money via UPI test =======");
 
@@ -99,7 +99,7 @@ public class Test_Upi extends TestBase {
     }
 
     @Test(groups = {"upiViewQr", "upiSanity"}, priority = 0, description = "View Pocket UPI QR test")
-    public void Test07_View_Pocket_UPI_QR() throws IOException, InterruptedException {
+    public void UPI_Test07_View_Pocket_UPI_QR() throws IOException, InterruptedException {
 
         Log.info("======= START : View Pocket UPI QR test=======");
 
@@ -111,7 +111,7 @@ public class Test_Upi extends TestBase {
     }
 
     @Test(groups = {"upiSendMoney", "upiSanity"}, priority = 0, description = "UPI Send Money to Contact")
-    public void Test08_Upi_Send_Money_To_Contact() throws IOException, InterruptedException {
+    public void UPI_Test08_Upi_Send_Money_To_Contact() throws IOException, InterruptedException {
 
         Log.info("======= START : UPI Send Money to Contact =======");
 
@@ -125,7 +125,7 @@ public class Test_Upi extends TestBase {
     }
 
     @Test(groups = {"pocketUpi", "upiSanity", "sanity"}, priority = 0, description = "Pocket UPI Send Money via pocketUpi")
-    public void Test09_Upi_Send_Money_Via_PocketUpi() throws IOException, InterruptedException {
+    public void UPI_Test09_Upi_Send_Money_Via_PocketUpi() throws IOException, InterruptedException {
 
         Log.info("======= START : Pocket UPI Send Money via pocketUpi =======");
 
@@ -138,7 +138,7 @@ public class Test_Upi extends TestBase {
     }
 
     @Test(groups = {"pocketUpi", "upiSanity"}, priority = 0, description = "Pocket UPI Show My QR from Pocket UPI Home Page")
-    public void Test10_Upi_PocketUpi_Show_My_QR() throws IOException, InterruptedException {
+    public void UPI_Test10_Upi_PocketUpi_Show_My_QR() throws IOException, InterruptedException {
 
         Log.info("======= START : Pocket UPI Show My QR from Pocket UPI Home Page =======");
 
@@ -151,7 +151,7 @@ public class Test_Upi extends TestBase {
     }
 
     @Test(groups = {"manageUpi", "upiSanity"}, priority = 0, description = "Manage UPI Section")
-    public void Test11_Manage_UPI() throws IOException, InterruptedException {
+    public void UPI_Test11_Manage_UPI() throws IOException, InterruptedException {
 
         Log.info("======= START : Manage UPI Section =======");
 
@@ -164,7 +164,7 @@ public class Test_Upi extends TestBase {
     }
 
     @Test(groups = {"manageUpi", "upiSanity", "sanity"}, priority = 0, description = "Add New Bank account and Credit Card flow")
-    public void Test12_Add_Account_CreditCard() throws IOException, InterruptedException {
+    public void UPI_Test12_Add_Account_CreditCard() throws IOException, InterruptedException {
 
         Log.info("======= START : Add New Bank account and Credit Card flow =======");
 
@@ -177,7 +177,7 @@ public class Test_Upi extends TestBase {
     }
 
     @Test(groups = {"numberMapper", "upiSanity", "sanity"}, priority = 0, description = "Validate Manage UPI Number")
-    public void Test13_Manage_Upi_Number() throws IOException, InterruptedException {
+    public void UPI_Test13_Manage_Upi_Number() throws IOException, InterruptedException {
 
         Log.info("======= START : Validate Manage UPI Number =======");
 
@@ -194,7 +194,7 @@ public class Test_Upi extends TestBase {
 
 
     @Test(groups = {"deregisterUpi", "upiSanity"}, priority = 0, description = "Validate Deregister UPI till confirmation")
-    public void Test14_Upi_Deregister() throws IOException, InterruptedException {
+    public void UPI_Test14_Upi_Deregister() throws IOException, InterruptedException {
 
         Log.info("======= START : Validate Deregister UPI till confirmation =======");
 
@@ -211,7 +211,7 @@ public class Test_Upi extends TestBase {
 
 
     @Test(groups = {"upiSanity","PocketUPIScanQRTxn","sanity"}, priority = 0, description = "Validate SonuQR txn via Pocket UPI ")
-    public void Test15_PocketUpi_SonuQR() throws IOException, InterruptedException {
+    public void UPI_Test15_PocketUpi_SonuQR() throws IOException, InterruptedException {
 
         Log.info("======= START : P2M flow Sonu QR =======");
 
@@ -228,7 +228,7 @@ public class Test_Upi extends TestBase {
 
 
     @Test(groups = {"upiSanity", "RecentMerchantSonu","sanity"}, priority = 0, description = "Validate Recent Merchant Txn ")
-    public void Test16_RecentMerchant_PocketUPI_Sonu() throws IOException, InterruptedException {
+    public void UPI_Test16_RecentMerchant_PocketUPI_Sonu() throws IOException, InterruptedException {
 
         Log.info("======= START : P2M Recent Merchant Txn =======");
 

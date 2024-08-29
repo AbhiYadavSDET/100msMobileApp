@@ -13,7 +13,7 @@ public class MoneyPlusTest extends TestBase {
 
 
     @Test(groups = {"sanity", "verifyMoneyPlusPage", "regression"}, priority = 0, description = "Verify Money Plus Page")
-    public void Test_MoneyPlusFlow() throws IOException, InterruptedException {
+    public void MoneyPlus_Test01_MoneyPlusFlow() throws IOException, InterruptedException {
 
         Log.info("======= START : Money Plus Verify test =======");
 

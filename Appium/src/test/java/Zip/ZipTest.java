@@ -13,7 +13,7 @@ public class ZipTest extends TestBase {
 
 
     @Test(groups = { "verifyZipPage", "regression"}, priority = 0, description = "Verify Zip Page")
-    public void Test_Zip_verifyZipPage() throws IOException, InterruptedException {
+    public void Zip_Test01_verifyZipPage() throws IOException, InterruptedException {
 
         Log.info("======= START : Zip Verify test =======");
 
@@ -32,7 +32,7 @@ public class ZipTest extends TestBase {
     }
 
     @Test(groups = {"sanity", "verifyZipPageActiveUser", "regression"}, priority = 0, description = "Verify Zip Page for Active User")
-    public void Test_Zip_verifyZipPage_activeUser() throws IOException, InterruptedException {
+    public void Zip_Test02_verifyZipPage_activeUser() throws IOException, InterruptedException {
 
         Log.info("======= START : Zip Verify test for active User =======");
 
@@ -51,7 +51,7 @@ public class ZipTest extends TestBase {
     }
 
     @Test(groups = {"verifyZipAutoPay", "regression"}, priority = 0, description = "Verify Zip Auto Pay")
-    public void Test_Zip_verifyZip_AutoPay() throws IOException, InterruptedException {
+    public void Zip_Test03_verifyZip_AutoPay() throws IOException, InterruptedException {
 
         Log.info("======= START : Zip Verify test for Zip Auto Pay =======");
 

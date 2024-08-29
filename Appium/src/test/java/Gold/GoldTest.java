@@ -13,7 +13,7 @@ public class GoldTest extends TestBase {
 
 
     @Test(groups = {"sanity", "goldBuy", "regression"}, priority = 1, description = "Verify Gold Buy")
-    public void Test01_buyGold() throws IOException, InterruptedException {
+    public void Gold_Test01_buyGold() throws IOException, InterruptedException {
 
         Log.info("======= START : Gold Buy test =======");
 
@@ -32,7 +32,7 @@ public class GoldTest extends TestBase {
     }
 
         @Test(groups = {"sanity", "goldSell", "regression"}, priority = 1, description = "Verify Safe Gold Coins data")
-    public void Test02_buySell() throws IOException, InterruptedException {
+    public void Gold_Test02_buySell() throws IOException, InterruptedException {
 
         Log.info("======= START : Gold Sell test =======");
 
@@ -51,7 +51,7 @@ public class GoldTest extends TestBase {
 
 
     @Test(groups = {"sanity1", "goldCoin", "regression"}, priority = 1, description = "Verify Safe Gold Coin")
-    public void Test03_SafeGoldCoin() throws IOException, InterruptedException {
+    public void Gold_Test03_SafeGoldCoin() throws IOException, InterruptedException {
 
         Log.info("======= START : Gold Coins Test =======");
 
@@ -70,7 +70,7 @@ public class GoldTest extends TestBase {
     }
 
     @Test(groups = {"sanity", "goldBuy", "regression"}, priority = 0, description = "Verify Sip On Gold Page")
-    public void Test04_Gold_Sip() throws IOException, InterruptedException {
+    public void Gold_Test04_Gold_Sip() throws IOException, InterruptedException {
 
         Log.info("======= START : Gold SIp test =======");
 

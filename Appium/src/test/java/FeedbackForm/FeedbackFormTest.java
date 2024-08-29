@@ -13,7 +13,7 @@ public class FeedbackFormTest extends TestBase {
 
     @Test(groups = {"sanity", "Submit Feedback Form"}, priority = 0, description = "Submit Feedback Form")
 
-    public void submitFeedbackForm()throws InterruptedException, IOException {
+    public void FeedbackForm_Test01_submitFeedbackForm()throws InterruptedException, IOException {
 
 
         Log.info("======= START : Login Test =======");

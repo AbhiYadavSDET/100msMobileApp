@@ -11,7 +11,7 @@ import java.io.IOException;
 public class PayRentTest extends TestBase {
 
     @Test(groups = {"sanity","regression", "PayRent", "addNewProperty"}, priority = 0, description = "Add New Property")
-    public void PayRent_addNewProperty() throws InterruptedException, IOException {
+    public void PayRent_Test01_addNewProperty() throws InterruptedException, IOException {
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
@@ -29,7 +29,7 @@ public class PayRentTest extends TestBase {
 
     @Test(groups = {"regression", "PayRent", "payRentviaZip"}, priority = 0, description = "Verify pay rent via ZIP")
 
-    public void PayRent_payRentviaZip() throws InterruptedException, IOException {
+    public void PayRent_Test02_payRentviaZip() throws InterruptedException, IOException {
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
@@ -46,7 +46,7 @@ public class PayRentTest extends TestBase {
     }
 
     @Test(groups = {"regression", "PayRent", "payRentviaCard"}, priority = 0, description = "Verify pay rent via Card")
-    public void PayRent_payRentviaCard() throws InterruptedException, IOException {
+    public void PayRent_Test03_payRentviaCard() throws InterruptedException, IOException {
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
@@ -63,7 +63,7 @@ public class PayRentTest extends TestBase {
     }
 
     @Test(groups = {"regression", "PayRent", "payRentViaUPI"}, priority = 0, description = "Verify pay rent via UPI")
-    public void PayRent_payRentViaUPI() throws InterruptedException, IOException {
+    public void PayRent_Test04_payRentViaUPI() throws InterruptedException, IOException {
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
@@ -81,7 +81,7 @@ public class PayRentTest extends TestBase {
 
 
     @Test(groups = {"regression", "PayRent"}, priority = 0, description = "Verify FAQ Screen")
-    public void PayRent_verifyFaqScreen() throws InterruptedException, IOException {
+    public void PayRent_Test05_verifyFaqScreen() throws InterruptedException, IOException {
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
@@ -98,7 +98,7 @@ public class PayRentTest extends TestBase {
     }
 
     @Test(groups = {"regression", "PayRent"}, priority = 0, description = "Delete property")
-    public void deleteRentDetails() throws InterruptedException, IOException {
+    public void PayRent_Test06_deleteRentDetails() throws InterruptedException, IOException {
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());

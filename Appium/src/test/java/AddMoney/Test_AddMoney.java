@@ -18,7 +18,7 @@ public class Test_AddMoney extends TestBase {
 
     @Parameters({"deviceID"})
     @Test(groups = {"addMoney", "sanity", "regression"}, priority = 0,description = "Stand Alone Add money Testing from home page via Saved Card")
-    public void Test02_addmoney_via_Savedcard(@Optional String deviceID) throws IOException, InterruptedException {
+    public void AddMoney_Test01_addmoney_via_Savedcard(@Optional String deviceID) throws IOException, InterruptedException {
 
         if (deviceID == null) {
             deviceID = this.deviceID;
