@@ -134,9 +134,23 @@ public class Elements extends TestBase {
 
     }
 
+    public static boolean isElementPresentNoWait(AndroidDriver driver, AndroidElement element) throws InterruptedException {
+        try {
+            waitForElementToVisibleOnPage(driver, element, 1);
+            element.isDisplayed();
+            Config.logComment(element + "- element is displayed");
+            return true;
+
+        } catch (NoSuchElementException e) {
+            Config.logComment(element + "- element is not displayed");
+            return false;
+        }
+
+    }
+
     public static boolean scrollToElement(AndroidDriver driver, AndroidElement element) throws InterruptedException {
         int i = 0;
-        while(!isElementPresent(driver, element)){
+        while(!isElementPresentNoWait(driver, element)){
             screen.swipeUpMore(driver);
             i++;
             if(i > 6){
