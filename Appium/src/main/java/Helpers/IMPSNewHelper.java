@@ -176,6 +176,7 @@ public class IMPSNewHelper {
 
         //Entering Amount and Continue to PIN
         impsPage.setAmount(amount);
+        Thread.sleep(2000);
         impsPage.clickOnSetAmount();
 //        impsPage.clickOnArrowButton();
 
