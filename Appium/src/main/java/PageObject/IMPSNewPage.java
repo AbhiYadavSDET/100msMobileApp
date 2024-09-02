@@ -196,12 +196,14 @@ public class IMPSNewPage {
     public void setAmount(String amt) throws InterruptedException{
         Element.waitForVisibility(driver,amount_field);
         Elements.enterToElement(driver,amount_field,amt,"Amount set..");
+        Thread.sleep(2000);
     }
 
 
     public void clickOnSetAmount() throws InterruptedException{
         Element.waitForVisibility(driver, By.id("info_message"));
         Elements.selectElement(driver,btn_set_amount,"Amount is correct. Go !!!");
+
     }
 
 
@@ -261,6 +263,7 @@ public class IMPSNewPage {
 
     public void clickOnContinueToAmtCTA() throws InterruptedException{
         Elements.selectElement(driver, upi_continue_cta,"Tapped on Continue to Amt Page CTA");
+        Thread.sleep(2000);
     }
 
  /*   public void clickOnSavedVPA(AndroidElement saved_vpa) throws InterruptedException{
