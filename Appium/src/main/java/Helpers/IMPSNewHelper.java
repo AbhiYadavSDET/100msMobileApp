@@ -176,7 +176,6 @@ public class IMPSNewHelper {
 
         //Entering Amount and Continue to PIN
         impsPage.setAmount(amount);
-        Thread.sleep(2000);
         impsPage.clickOnSetAmount();
 //        impsPage.clickOnArrowButton();
 
@@ -193,7 +192,7 @@ public class IMPSNewHelper {
 
         //Storing Actual Message on Screen and Expected Result in String
         String actualMessage = impsPage.getSuccessMessage();
-        String actualAmount = impsPage.getSuccessPageAmount();
+        String actualAmount = impsPage.getSuccessPageAmount().replace("₹", "");
 
         // Display the values
         Log.info("Actual Message on Screen is :" + actualMessage);
