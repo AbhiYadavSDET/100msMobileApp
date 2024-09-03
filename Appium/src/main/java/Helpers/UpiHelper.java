@@ -235,6 +235,13 @@ public class UpiHelper {
 
         Boolean isBalanceVisible = Element.isElementPresent(driver, By.id("tv_check_balance"));
 
+        if(!isBalanceVisible){
+            driver.navigate().back();
+            Thread.sleep(1500);
+        }
+
+        isBalanceVisible = Element.isElementPresent(driver, By.id("tv_check_balance"));
+
         String balance = homePage.getAccountBalance();
 
         mbReporter.verifyTrueWithLogging(isBalanceVisible, "Avalaible Balance is = " + balance, false, false);
