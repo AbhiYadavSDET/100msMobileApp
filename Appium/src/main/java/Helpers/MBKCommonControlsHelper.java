@@ -268,6 +268,12 @@ public class MBKCommonControlsHelper {
             homePage.scrollToSupercashBalance();
         }
 
+        Boolean isUpiSetup = homePage.isUpiSetup();
+        if(isUpiSetup) {
+            Log.info("Upi Card Visible");
+            screen.swipeDownLess(driver);
+
+        }
 
 
         // Get the "Supercash" Balance
@@ -372,6 +378,7 @@ public class MBKCommonControlsHelper {
                 }else if(Element.isElementPresentNoWait(driver, By.id("txt_setup_upi"))){
                     Log.info("New User Flow: Onboarding UPI Setup Flow");
                     driver.findElementById("right_container").click();
+                    Thread.sleep(3000);
 
                     if(Element.isElementPresentNoWait(driver, By.id("tv_explore_home"))){
                         Log.info("New User Flow : Feature Assist Page Shown");
