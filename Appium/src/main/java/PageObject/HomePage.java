@@ -32,6 +32,10 @@ public class HomePage {
     @AndroidFindBy(id = "title_text")
     private AndroidElement supercashTotalSavingsText;
 
+    @AndroidFindBy(id = "txtCta")
+    private AndroidElement upiSetupCard;
+
+
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'SuperCash Balance']/following-sibling::android.widget.TextView[1]")
     private AndroidElement supercashBalance;
 
@@ -657,6 +661,10 @@ public class HomePage {
 
     public Boolean isSuperCashPresent() throws InterruptedException {
         return Elements.isElementPresent(driver, supercashTotalSavingsText);
+    }
+
+    public Boolean isUpiSetup() throws InterruptedException {
+        return Elements.isElementPresent(driver, upiSetupCard);
     }
     public String getAddMoney() throws InterruptedException {
         return Elements.getText(driver, addmoneyBalance, "Add Money");
