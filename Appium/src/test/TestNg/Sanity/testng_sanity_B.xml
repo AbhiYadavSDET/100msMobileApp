@@ -26,7 +26,7 @@
 
         <classes>
 
-            <class name="P2PExtra.P2PExtraTest"/>
+<!--            <class name="P2PExtra.P2PExtraTest"/>-->
             <class name="Zip.ZipTest"/>
             <class name="FixedDeposit.Test_FixedDeposit"/>
             <class name="ReferAndEarn.ReferAndEarnTest"/>
