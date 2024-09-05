@@ -173,9 +173,12 @@ public class Screen {
             int heightEnd = screenHeightEnd.intValue();
             //Log.info("End : " + heightEnd);
 
+            Double screenRightOffsetEnd = dimension.getWidth() * 0.5; //20
+            int rightOffsetEnd = screenRightOffsetEnd.intValue();
+
 
             Log.info("SWIPE", "Down Less");
-            touchAction.press(PointOption.point(5, heightStart)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1500))).moveTo(PointOption.point(5 , heightEnd)).release().perform();
+            touchAction.press(PointOption.point(rightOffsetEnd, heightStart)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1500))).moveTo(PointOption.point(rightOffsetEnd , heightEnd)).release().perform();
 
         } catch (NullPointerException e) {
             Log.info("Screen is not Swipable");
