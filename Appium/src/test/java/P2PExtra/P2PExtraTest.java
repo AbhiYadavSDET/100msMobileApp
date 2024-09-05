@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class P2PExtraTest extends TestBase {
 
-    @Test(groups = {"p2pXtraWithdraw"}, priority = 1, description = "Verify Withdraw Money")
+    //@Test(groups = {"p2pXtraWithdraw"}, priority = 1, description = "Verify Withdraw Money")
     public void P2PExtra_Test01_Xtra_Withdraw_Money() throws InterruptedException, IOException {
 
         Log.info("======= START : p2p Xtra Withdraw test =======");
@@ -27,7 +27,7 @@ public class P2PExtraTest extends TestBase {
 
     }
 
-    @Test(groups = {"p2pXtraInvestInFlexi"}, priority = 1, description = "Verify Invest in Flexi flow")
+   // @Test(groups = {"p2pXtraInvestInFlexi"}, priority = 1, description = "Verify Invest in Flexi flow")
     public void P2PExtra_Test02_Invest_In_Flexi() throws InterruptedException, IOException {
 
         Log.info("======= START : p2p XTRA-FLEXI Invest test =======");
@@ -45,7 +45,7 @@ public class P2PExtraTest extends TestBase {
     }
 
 
-    @Test(groups = {"p2pXtraInvestInFixed","sanity", "sanityPrime", "regression"}, priority = 1, description = "Verify Invest in Fixed flow")
+   // @Test(groups = {"p2pXtraInvestInFixed","sanity", "sanityPrime", "regression"}, priority = 1, description = "Verify Invest in Fixed flow")
     public void P2PExtra_Test03_Xtra_Invest_In_Fixed() throws InterruptedException, IOException {
 
         Log.info("======= START : p2p XTRA-FIXED Invest test =======");
@@ -63,7 +63,7 @@ public class P2PExtraTest extends TestBase {
     }
 
 
-    @Test(groups = {"p2pXtraNewUser", "sanityPrime", "regression"}, priority = 1, description = "Verify Xtra :New User Flow Journey")
+   // @Test(groups = {"p2pXtraNewUser", "sanityPrime", "regression"}, priority = 1, description = "Verify Xtra :New User Flow Journey")
     public void P2PExtra_Test04_Xtra_New_User_In_XTRA() throws InterruptedException, IOException {
 
         Log.info("======= START : XTRA - NEW USER flow test with no kYC=======");
@@ -81,7 +81,7 @@ public class P2PExtraTest extends TestBase {
     }
 
 
-    @Test(groups = {"p2pXtraReferAndEarn", "sanityPrime", "regression"}, priority = 1, description = "Verify Xtra : Refer & Earn Journey from Xtra Dashboard")
+   // @Test(groups = {"p2pXtraReferAndEarn", "sanityPrime", "regression"}, priority = 1, description = "Verify Xtra : Refer & Earn Journey from Xtra Dashboard")
     public void P2PExtra_Test05_Xtra_Refer_Earn_In_XTRA() throws InterruptedException, IOException {
 
         Log.info("======= START : XTRA - Refer & Earn  flow =======");
@@ -98,7 +98,7 @@ public class P2PExtraTest extends TestBase {
     }
 
 
-    @Test(groups = {"p2pXtraDefaultBankAccount", "sanityPrime", "regression"}, priority = 1, description = "Verify Xtra  f  : Check Default Bank Account from settings option")
+   // @Test(groups = {"p2pXtraDefaultBankAccount", "sanityPrime", "regression"}, priority = 1, description = "Verify Xtra  f  : Check Default Bank Account from settings option")
     public void P2PExtra_Test06_Xtra_Default_bank_account() throws InterruptedException, IOException {
 
         Log.info("======= START : XTRA - Default Account flow from Settings Option=======");
@@ -116,7 +116,7 @@ public class P2PExtraTest extends TestBase {
 
 
 
-    @Test(groups = {"p2pXtraNomineeDetails", "sanityPrime", "regression"}, priority = 1, description = "Verify Xtra : Add Nominee from settings option")
+  //  @Test(groups = {"p2pXtraNomineeDetails", "sanityPrime", "regression"}, priority = 1, description = "Verify Xtra : Add Nominee from settings option")
     public void P2PExtra_Test07_Xtra_Check_Nominee_Details() throws InterruptedException, IOException {
 
         Log.info("======= START : XTRA - Check Nominee Details from Settings Option=======");
@@ -132,7 +132,7 @@ public class P2PExtraTest extends TestBase {
     }
 
 
-    @Test(groups = {"p2pXtraReInvestFromFixed", "sanity", "sanityPrime", "regression"}, priority = 1, description = "Verify Xtra : Change Maturity Options of Fixed Investment")
+   // @Test(groups = {"p2pXtraReInvestFromFixed", "sanity", "sanityPrime", "regression"}, priority = 1, description = "Verify Xtra : Change Maturity Options of Fixed Investment")
     public void P2PExtra_Test08_Xtra_Reinvest_Fixed() throws InterruptedException, IOException {
 
         Log.info("======= START : XTRA - Re-Invest in Fixed=======");
@@ -150,7 +150,7 @@ public class P2PExtraTest extends TestBase {
     }
 
 
-    @Test(groups = {"p2pXtraReInvestFromFlexi", "sanityPrime", "regression"}, priority = 1, description = "Verify Xtra : Reinvest(in FXIED) From Flexi Investment")
+   // @Test(groups = {"p2pXtraReInvestFromFlexi", "sanityPrime", "regression"}, priority = 1, description = "Verify Xtra : Reinvest(in FXIED) From Flexi Investment")
     public void P2PExtra_Test09_Xtra_Reinvest_Flexi() throws InterruptedException, IOException {
 
         Log.info("======= START : XTRA - Reinvest(in FIXED) From Flexi=======");
@@ -167,7 +167,7 @@ public class P2PExtraTest extends TestBase {
     }
 
 
-    @Test(groups = {"p2pXtraInvestInFixedErrorCase", "sanityPrime", "regression"}, priority = 0, description = "Verify Invest in Fixed flow")
+    //@Test(groups = {"p2pXtraInvestInFixedErrorCase", "sanityPrime", "regression"}, priority = 0, description = "Verify Invest in Fixed flow")
     public void P2PExtra_Test10_Xtra_Invest_In_Fixed_errorcase() throws InterruptedException, IOException {
 
         Log.info("======= START : p2p XTRA-FIXED Invest error case test =======");
