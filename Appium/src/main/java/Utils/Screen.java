@@ -174,7 +174,7 @@ public class Screen {
 
 
             Log.info("SWIPE", "Down Less");
-            touchAction.press(PointOption.point(5, heightStart)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1500))).moveTo(PointOption.point(5, heightEnd)).release().perform();
+            touchAction.press(PointOption.point(10, heightStart)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1500))).moveTo(PointOption.point(10 , heightEnd)).release().perform();
 
         } catch (NullPointerException e) {
             Log.info("Screen is not Swipable");
