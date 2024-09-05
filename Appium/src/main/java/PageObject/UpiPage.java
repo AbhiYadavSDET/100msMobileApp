@@ -899,6 +899,11 @@ public class UpiPage {
     }
 
     public void clickUPISettingsOptn() throws InterruptedException {
+
+        Thread.sleep(1000);
+        if(Element.isElementPresentNoWait(driver, By.xpath("//*[@text='Link Now']"))){
+            driver.navigate().back();
+        }
         Elements.scrollToElement(driver,upi_settings_optn);
         Elements.selectElement(driver,upi_settings_optn,"Click on UPI manage settings");
     }
