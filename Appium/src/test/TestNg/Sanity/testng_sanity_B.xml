@@ -34,6 +34,7 @@
             <class name="AccountAggregator.Test_AccountAggregator"/>
             <class name="Epfo.Test_Epfo"/>
             <class name="Checkout.CheckoutTest">
+            <class name="P2PExtra.P2PExtraTest">
                 <methods>
                     <exclude name="Test06_addMoneyConvFeeTest"/>
                 </methods>
