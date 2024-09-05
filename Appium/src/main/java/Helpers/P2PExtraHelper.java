@@ -8,6 +8,7 @@ import Utils.Element;
 import Utils.Elements;
 import Utils.MBReporter;
 import Utils.Screen;
+import com.mongodb.annotations.NotThreadSafe;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 
@@ -692,8 +693,74 @@ public class P2PExtraHelper {
 
         mbReporter.verifyEqualsWithLogging(erorMessage, expErrormessage, "Error message", false, false, true);
 
+    }
+
+
+    public void xtraLoanCreation(String expPortfoliotxt,String expnextRepaymenttxt,String expstatus,String expestimatedInterest) throws InterruptedException, IOException {
+
+        Log.info("----------- Arguments ---------------");
+
+
+        // Click on xtra icon on home page.
+        p2PExtraPage.selectXtra();
+        Element.waitForVisibility(driver, By.xpath("//*/android.widget.TextView[@text = 'History']"));
+        p2PExtraPage.letterToInvestor();
+        p2PExtraPage.iUnderstand();
+
+        //Your Portfolio for invested users
+        String portfoliotxt = p2PExtraPage.getPortfoliotxt();
+        Log.info("Portfolio txt :" + portfoliotxt);
+
+        //Next repayment txt
+        String nextRepaymenttxt = p2PExtraPage.getnextRepaymenttxt();
+        Log.info("next Repayment txt  :" + nextRepaymenttxt);
+
+        // Assertion
+        mbReporter.verifyEqualsWithLogging(portfoliotxt, expPortfoliotxt, "Portfolio txt", false, false, true);
+        mbReporter.verifyEqualsWithLogging(nextRepaymenttxt, expnextRepaymenttxt, "Next repayment txt", false, false, true);
+
+        //Click on first loan section
+        p2PExtraPage.clickOnInvestedAmt();
+
+       //Verify text on Perticular loan section when we click on any loan
+        String status = p2PExtraPage.getStatus();
+        Log.info("next Status txt  :" + status);
+
+        String estimatedInterest = p2PExtraPage.getEstimatedInterest();
+        Log.info("next estimated Interest txt  :" + estimatedInterest);
+        // Assertion
+        mbReporter.verifyEqualsWithLogging(status, expstatus, "status", false, false, true);
+        mbReporter.verifyEqualsWithLogging(estimatedInterest, expestimatedInterest, "estimatedInterest", false, false, true);
+
+        Thread.sleep(1000);
+        driver.navigate().back();
+        Thread.sleep(1000);
+
+        p2PExtraPage.scrollToViewAllDisbursedLoan();
+        p2PExtraPage.clickOnViewAllDisbursedLoan();
+
+        mbReporter.verifyEqualsWithLogging(nextRepaymenttxt, expnextRepaymenttxt, "Next repayment txt", false, false, true);
+        Thread.sleep(1000);
+        driver.navigate().back();
+        Thread.sleep(1000);
+        p2PExtraPage.scrollToSetting();
+        p2PExtraPage.clickonSetting();
+        Thread.sleep(1000);
+        driver.navigate().back();
+        Thread.sleep(1000);
+
+        p2PExtraPage.scrollToReportAndStatement();
+        p2PExtraPage.clickOnReportAndStatement();
+        Thread.sleep(1000);
+        driver.navigate().back();
+        Thread.sleep(1000);
+
+
 
     }
+
+
+
 
 }
 
