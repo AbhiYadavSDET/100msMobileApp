@@ -19,7 +19,7 @@
         <groups>
             <run>
                 <include name="setUp"/>
-                <include name="sanity"/>
+                <include name="sanity2"/>
                 <include name="tearDown"/>
             </run>
         </groups>
