@@ -234,7 +234,7 @@ public class UpiPage {
     @AndroidFindBy(id="pocket_upi_id")
     private AndroidElement pocket_upi_id;
 
-    @AndroidFindBy (xpath = "//android.widget.TextView[@text='See All']")
+    @AndroidFindBy (xpath = "//android.widget.TextView[@text='View More']")
     private AndroidElement pocketUpi_homePage_seeAll_cta;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Transfer Now']")
