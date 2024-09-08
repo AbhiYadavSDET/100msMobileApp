@@ -28,7 +28,7 @@
 
             <class name="Recharge.RechargeTest">
                 <methods>
-                    <exclude name="prepaid_Recharge"/>
+                    <exclude name="Recharge_Test02_prepaid_Recharge"/>
                 </methods>
             </class>
             <class name="ViewElectricityBill.ViewElectricityBillTest"/>
@@ -38,7 +38,7 @@
             <class name="P2M.P2MTest"/>
             <class name="Checkout.CheckoutTest">
             <methods>
-                <exclude name="Test04_zipAutoPayCheckoutElectricityBillPayment"/>
+                <exclude name="Checkout_Test04_zipAutoPayCheckoutElectricityBillPayment"/>
             </methods>
             </class>
             <class name="IMPSNew.IMPSTest"/>

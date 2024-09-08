@@ -35,7 +35,7 @@
             <class name="Epfo.Test_Epfo"/>
             <class name="Checkout.CheckoutTest">
                 <methods>
-                    <exclude name="Test06_addMoneyConvFeeTest"/>
+                    <exclude name="Checkout_Test06_addMoneyConvFeeTest"/>
                 </methods>
             </class>
 
