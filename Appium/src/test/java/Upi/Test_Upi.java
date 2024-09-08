@@ -26,7 +26,7 @@ public class Test_Upi extends TestBase {
 
     }
 
-    @Test(groups = {"upiSendMoneyToBank", "upiSanity", "sanity2"}, priority = 0, description = "UPI Send Money to Bank test")
+    @Test(groups = {"upiSendMoneyToBank", "upiSanity", "sanity"}, priority = 0, description = "UPI Send Money to Bank test")
     public void UPI_Test02_Upi_Send_Money_To_Bank() throws IOException, InterruptedException {
 
         Log.info("======= START : UPI Send Money to Bank test =======");
