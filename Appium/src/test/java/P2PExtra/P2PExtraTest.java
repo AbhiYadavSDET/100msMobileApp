@@ -230,7 +230,7 @@ public class P2PExtraTest extends TestBase {
         P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getAndroidDriver());
         p2PExtraHelper.settingFlow("In case you don't login for a period of at least 2 years, we will reach out to you and your nominee","Email","Primary Bank Account");
 
-        Log.info("======= END : p2p XTRA Manage section report and statement =======");
+        Log.info("======= END : p2p Settings =======");
 
     }
 
