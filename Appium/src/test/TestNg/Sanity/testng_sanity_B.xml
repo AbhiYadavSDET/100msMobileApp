@@ -26,7 +26,7 @@
 
         <classes>
 
-<!--            <class name="P2PExtra.P2PExtraTest"/>-->
+            <class name="P2PExtra.P2PExtraTest"/>
             <class name="Zip.ZipTest"/>
             <class name="FixedDeposit.Test_FixedDeposit"/>
             <class name="ReferAndEarn.ReferAndEarnTest"/>
@@ -34,12 +34,10 @@
             <class name="AccountAggregator.Test_AccountAggregator"/>
             <class name="Epfo.Test_Epfo"/>
             <class name="Checkout.CheckoutTest">
-            <class name="P2PExtra.P2PExtraTest">
                 <methods>
                     <exclude name="Checkout_Test06_addMoneyConvFeeTest"/>
                 </methods>
             </class>
-
 
         </classes>
     </test>
