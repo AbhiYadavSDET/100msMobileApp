@@ -10,11 +10,11 @@ import java.io.IOException;
 
 public class P2PExtraTest extends TestBase {
 
+
     @Test(groups = {"p2pXtraWithdraw"}, priority = 1, description = "Verify Withdraw Money")
     public void P2PExtra_Test01_Xtra_Withdraw_Money() throws InterruptedException, IOException {
 
         Log.info("======= START : p2p Xtra Withdraw test =======");
-
 
         // Start the test
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
@@ -45,7 +45,7 @@ public class P2PExtraTest extends TestBase {
     }
 
 
-    @Test(groups = {"p2pXtraInvestInFixed","sanity", "sanityPrime", "regression"}, priority = 1, description = "Verify Invest in Fixed flow")
+    @Test(groups = {"p2pXtraInvestInFixed","sanityPrime", "regression"}, priority = 1, description = "Verify Invest in Fixed flow")
     public void P2PExtra_Test03_Xtra_Invest_In_Fixed() throws InterruptedException, IOException {
 
         Log.info("======= START : p2p XTRA-FIXED Invest test =======");
@@ -63,7 +63,7 @@ public class P2PExtraTest extends TestBase {
     }
 
 
-    @Test(groups = {"p2pXtraNewUser", "sanityPrime", "regression"}, priority = 1, description = "Verify Xtra :New User Flow Journey")
+    @Test(groups = {"p2pXtraNewUser","sanity"}, priority = 1, description = "Verify Xtra :New User Flow Journey")
     public void P2PExtra_Test04_Xtra_New_User_In_XTRA() throws InterruptedException, IOException {
 
         Log.info("======= START : XTRA - NEW USER flow test with no kYC=======");
@@ -116,7 +116,7 @@ public class P2PExtraTest extends TestBase {
 
 
 
-    @Test(groups = {"p2pXtraNomineeDetails", "sanityPrime", "regression"}, priority = 1, description = "Verify Xtra : Add Nominee from settings option")
+    @Test(groups = {"p2pXtraNewUser","sanity1"}, priority = 0, description = "Verify Xtra : Add Nominee from settings option")
     public void P2PExtra_Test07_Xtra_Check_Nominee_Details() throws InterruptedException, IOException {
 
         Log.info("======= START : XTRA - Check Nominee Details from Settings Option=======");
@@ -132,7 +132,7 @@ public class P2PExtraTest extends TestBase {
     }
 
 
-    @Test(groups = {"p2pXtraReInvestFromFixed", "sanity", "sanityPrime", "regression"}, priority = 1, description = "Verify Xtra : Change Maturity Options of Fixed Investment")
+    @Test(groups = {"p2pXtraReInvestFromFixed", "sanityPrime", "regression"}, priority = 1, description = "Verify Xtra : Change Maturity Options of Fixed Investment")
     public void P2PExtra_Test08_Xtra_Reinvest_Fixed() throws InterruptedException, IOException {
 
         Log.info("======= START : XTRA - Re-Invest in Fixed=======");
@@ -167,7 +167,7 @@ public class P2PExtraTest extends TestBase {
     }
 
 
-    @Test(groups = {"p2pXtraInvestInFixedErrorCase", "sanityPrime", "regression"}, priority = 0, description = "Verify Invest in Fixed flow")
+    @Test(groups = {"p2pXtraInvestInFixedErrorCase", "sanityPrime", "regression"}, priority = 1, description = "Verify Invest in Fixed flow")
     public void P2PExtra_Test10_Xtra_Invest_In_Fixed_errorcase() throws InterruptedException, IOException {
 
         Log.info("======= START : p2p XTRA-FIXED Invest error case test =======");
@@ -184,7 +184,8 @@ public class P2PExtraTest extends TestBase {
 
     }
 
-    @Test(groups = {"p2pXtraNewUser","sanity"}, priority = 0, description = "Verify Invest in Flexi flow")
+
+    @Test(groups = {"p2pXtraNewUser","sanity"}, priority = 1, description = "Verify Invest new xtar Revamp")
     public void P2PExtra_Test02_Invest_Loancreation() throws InterruptedException, IOException {
 
         Log.info("======= START : p2p XTRA loan creation Test =======");
@@ -197,6 +198,39 @@ public class P2PExtraTest extends TestBase {
         p2PExtraHelper.xtraLoanCreation("Your Portfolio","Next Repayment","Status","Estimated Interest");
 
         Log.info("======= END : p2p XTRA loan creation Test =======");
+
+    }
+
+    @Test(groups = {"p2pXtraNewUser","sanity"}, priority = 1, description = "Verify p2p XTRA Manage section report and statement")
+    public void P2PExtra_Test03_Manage_Report_and_Statement() throws InterruptedException, IOException {
+
+        Log.info("======= START : p2p XTRA Manage section report and statement =======");
+
+        // Start the test
+        LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
+        loginHelp.quickLoginViaOtp("7042338867", "547372");
+
+        P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getAndroidDriver());
+        p2PExtraHelper.checkManageFlow("Interest Certificate","Transaction Statements");
+
+        Log.info("======= END : p2p XTRA Manage section report and statement =======");
+
+    }
+
+
+    @Test(groups = {"p2pXtraNewUser","sanity"}, priority = 1, description = "Verify p2p Xtra setting")
+    public void P2PExtra_Test03_Setting() throws InterruptedException, IOException {
+
+        Log.info("======= START :  p2p Xtra setting =======");
+
+        // Start the test
+        LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
+        loginHelp.quickLoginViaOtp("7042338867", "547372");
+
+        P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getAndroidDriver());
+        p2PExtraHelper.settingFlow("In case you don't login for a period of at least 2 years, we will reach out to you and your nominee","Email","Primary Bank Account");
+
+        Log.info("======= END : p2p Settings =======");
 
     }
 

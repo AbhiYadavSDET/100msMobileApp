@@ -11,6 +11,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
+import java.sql.Statement;
 
 public class P2PExtraPage {
 
@@ -142,8 +143,17 @@ public class P2PExtraPage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Settings']")
     private AndroidElement settings_option;
 
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Email']")
+    private AndroidElement email_title;
+
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Default Bank Account']")
     private AndroidElement default_bank_account_option;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Primary Bank Account']")
+    private AndroidElement primary_bank_account_title;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Cancel']")
+    private AndroidElement cancel_btn_txt;
 
     @AndroidFindBy(id = "ctaEscape")
     private AndroidElement cancel_btn;
@@ -181,6 +191,24 @@ public class P2PExtraPage {
 
     @AndroidFindBy(id = "tvSubHeading")
     private AndroidElement add_nominee_page_title;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Interest Certificate']")
+    private AndroidElement interest_certificate;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = '2022-23']")
+    private AndroidElement firstdate_interest_certificate;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Download']")
+    private AndroidElement download_cta;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Transaction Statements']")
+    private AndroidElement transaction_ststement_txt;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'This month']")
+    private AndroidElement this_month;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Borrower List Report']")
+    private AndroidElement borrower_list_report_txt;
 
     @AndroidFindBy(id = "tvValue")
     private AndroidElement click_onMaturity_option;
@@ -578,6 +606,54 @@ public class P2PExtraPage {
 
     public String getNomineeTitle() throws InterruptedException {
         return Elements.getText(driver, add_nominee_page_title, "Get Sub-Heading on Add Nominee Page");
+    }
+
+    public String getEmailTitle() throws InterruptedException {
+        return Elements.getText(driver, email_title, "Get Sub-Heading on Add Nominee Page");
+    }
+
+    public String getDefaultBankAccountTitle() throws InterruptedException {
+        return Elements.getText(driver, default_bank_account_option, "Get get fault bamk account");
+    }
+
+    public void selectDefaultBankAccountTitle() throws InterruptedException {
+        Element.selectElement(driver, default_bank_account_option, "Click on  default bamk account");
+    }
+
+    public String getPrimaryBankAccountTitle() throws InterruptedException {
+        return Elements.getText(driver, primary_bank_account_title, "Get Primary bank account title");
+    }
+
+    public String getInterestCertificate() throws InterruptedException {
+        return Elements.getText(driver, interest_certificate, "Get Interest Certificate");
+    }
+
+    public void selectInterestCertificate() throws InterruptedException {
+        Element.selectElement(driver, interest_certificate, "Click on Interest Certificate");
+    }
+
+    public void select22to23InterestCertificate() throws InterruptedException {
+        Element.selectElement(driver, firstdate_interest_certificate, "Click on 22 to 23 Interest Certificate");
+    }
+
+    public void selectDownload() throws InterruptedException {
+        Element.selectElement(driver, download_cta, "Click on downloadcta");
+    }
+
+    public String getTransactionStatement() throws InterruptedException {
+        return Elements.getText(driver, transaction_ststement_txt, "Get Transaction statements");
+    }
+
+    public void selectTransactionStatement() throws InterruptedException {
+        Element.selectElement(driver, transaction_ststement_txt, "Click on transaction ststement txt");
+    }
+
+    public void selectThisMonthStatement() throws InterruptedException {
+        Element.selectElement(driver, this_month, "Click on this month");
+    }
+
+    public String getBorrowerListReport() throws InterruptedException {
+        return Elements.getText(driver, borrower_list_report_txt, "Get Borrower List Report");
     }
 
     public String getDefaultBankAccTitle() throws InterruptedException {
