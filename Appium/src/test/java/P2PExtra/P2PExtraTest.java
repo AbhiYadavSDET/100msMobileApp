@@ -16,7 +16,6 @@ public class P2PExtraTest extends TestBase {
 
         Log.info("======= START : p2p Xtra Withdraw test =======");
 
-
         // Start the test
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
         loginHelp.quickLoginViaOtp("7042338867", "547372");
@@ -46,7 +45,7 @@ public class P2PExtraTest extends TestBase {
     }
 
 
-    @Test(groups = {"p2pXtraInvestInFixed","sanity", "sanityPrime", "regression"}, priority = 1, description = "Verify Invest in Fixed flow")
+    @Test(groups = {"p2pXtraInvestInFixed","sanityPrime", "regression"}, priority = 1, description = "Verify Invest in Fixed flow")
     public void P2PExtra_Test03_Xtra_Invest_In_Fixed() throws InterruptedException, IOException {
 
         Log.info("======= START : p2p XTRA-FIXED Invest test =======");
@@ -117,7 +116,7 @@ public class P2PExtraTest extends TestBase {
 
 
 
-    @Test(groups = {"p2pXtraNewUser","sanity"}, priority = 0, description = "Verify Xtra : Add Nominee from settings option")
+    @Test(groups = {"p2pXtraNewUser","sanity1"}, priority = 0, description = "Verify Xtra : Add Nominee from settings option")
     public void P2PExtra_Test07_Xtra_Check_Nominee_Details() throws InterruptedException, IOException {
 
         Log.info("======= START : XTRA - Check Nominee Details from Settings Option=======");
@@ -133,7 +132,7 @@ public class P2PExtraTest extends TestBase {
     }
 
 
-    @Test(groups = {"p2pXtraReInvestFromFixed", "sanity", "sanityPrime", "regression"}, priority = 1, description = "Verify Xtra : Change Maturity Options of Fixed Investment")
+    @Test(groups = {"p2pXtraReInvestFromFixed", "sanityPrime", "regression"}, priority = 1, description = "Verify Xtra : Change Maturity Options of Fixed Investment")
     public void P2PExtra_Test08_Xtra_Reinvest_Fixed() throws InterruptedException, IOException {
 
         Log.info("======= START : XTRA - Re-Invest in Fixed=======");
