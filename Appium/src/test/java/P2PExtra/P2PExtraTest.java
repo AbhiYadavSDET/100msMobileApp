@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class P2PExtraTest extends TestBase {
 
-    /*
+
     @Test(groups = {"p2pXtraWithdraw"}, priority = 1, description = "Verify Withdraw Money")
     public void P2PExtra_Test01_Xtra_Withdraw_Money() throws InterruptedException, IOException {
 
@@ -184,7 +184,7 @@ public class P2PExtraTest extends TestBase {
         Log.info("======= END : p2p XTRA-FIXED Invest Error Case test =======");
 
     }
-    */
+
 
     @Test(groups = {"p2pXtraNewUser","sanity"}, priority = 1, description = "Verify Invest new xtar Revamp")
     public void P2PExtra_Test02_Invest_Loancreation() throws InterruptedException, IOException {
