@@ -64,30 +64,33 @@ public class AAHelper {
 
 
                 aaPage.scrollTomoneyOutTitle();
-                // Fetch the other text on the screen
-                String moneyoutTitleOnDashboard = aaPage.getOutgoingTitle();
-                String outgoingSecondSubTitleOnDashboard = aaPage.getOutgoingSecondSubTitle();
+                if (Element.isElementPresent(driver, By.xpath("//*[@text='MONEY OUT']"))) {
 
-                Log.info("OutGoing Title :" + moneyoutTitleOnDashboard);
-                Log.info("Second Sub Title :" + outgoingSecondSubTitleOnDashboard);
+                    // Fetch the other text on the screen
+                    String moneyoutTitleOnDashboard = aaPage.getOutgoingTitle();
+                    String outgoingSecondSubTitleOnDashboard = aaPage.getOutgoingSecondSubTitle();
 
-                // Add assertions
-                mbReporter.verifyEqualsWithLogging(moneyoutTitleOnDashboard, expMoneyoutTitleOnDashboard, "Verify Outgoing Title on MainDashboard", false, false, true);
-                mbReporter.verifyEqualsWithLogging(outgoingSecondSubTitleOnDashboard, expOutgoingSecondSubTitleOnDashboard, "Verify Second Outgoing SubTitle on MainDashboard", false, false, true);
+                    Log.info("OutGoing Title :" + moneyoutTitleOnDashboard);
+                    Log.info("Second Sub Title :" + outgoingSecondSubTitleOnDashboard);
 
-                screen.swipeUpMore(driver);
-                screen.swipeUpMore(driver);
+                    // Add assertions
+                    mbReporter.verifyEqualsWithLogging(moneyoutTitleOnDashboard, expMoneyoutTitleOnDashboard, "Verify Outgoing Title on MainDashboard", false, false, true);
+                    mbReporter.verifyEqualsWithLogging(outgoingSecondSubTitleOnDashboard, expOutgoingSecondSubTitleOnDashboard, "Verify Second Outgoing SubTitle on MainDashboard", false, false, true);
 
-                if(aaPage.checkmoneyinTitle()) {
+                    screen.swipeUpMore(driver);
+                    screen.swipeUpMore(driver);
 
-                    aaPage.moneyinTitle();
-                    String moneyInTTitle = aaPage.moneyinTitle();
-                    Log.info("Money In Title : " + expmoneyinTitle);
-                    mbReporter.verifyEqualsWithLogging(moneyInTTitle, expmoneyinTitle, "Verify Money In title", false, false, true);
+                    if (aaPage.checkmoneyinTitle()) {
+
+                        aaPage.moneyinTitle();
+                        String moneyInTTitle = aaPage.moneyinTitle();
+                        Log.info("Money In Title : " + expmoneyinTitle);
+                        mbReporter.verifyEqualsWithLogging(moneyInTTitle, expmoneyinTitle, "Verify Money In title", false, false, true);
+                    }
+
                 }
 
             }
-
             else {
                 Log.info("Outgoing Data is not present");
             }

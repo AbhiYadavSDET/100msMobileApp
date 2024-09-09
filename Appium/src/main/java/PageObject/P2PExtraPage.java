@@ -257,9 +257,39 @@ public class P2PExtraPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Pay')]")
     private AndroidElement pay_cta;
 
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text ='Read Again']")
+    private AndroidElement read_again_cta;
 
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'I Understand']")
+    private AndroidElement i_understand_cta;
 
-//    @AndroidFindBy(xpath = "//android.widget.TextView[contains(text(), 'Borrower Preferences']")
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Your Portfolio']")
+    private AndroidElement portfolio_txt;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Next Repayment']")
+    private AndroidElement nextRepayment_txt;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Invested amount']")
+    private AndroidElement investeed_amt;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Status']")
+    private AndroidElement status_txt;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Estimated Interest']")
+    private AndroidElement estimated_interest_txt;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'View All Disbursed')]")
+    private AndroidElement viewll_disbursedloan_cta;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'MANAGE']")
+    private AndroidElement manage_txt;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Settings']")
+    private AndroidElement setting_cta;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Reports & Statements']")
+    private AndroidElement reportstatement_txt;
+
     @AndroidFindBy(id = "rv_main")
     private AndroidElement borrower_preference_bottomsheet;
 
@@ -281,6 +311,7 @@ public class P2PExtraPage {
     public void selectXtra() throws InterruptedException {
         Element.selectElement(driver, xtra_icon, "Tap on xtra icon");
     }
+
 
     public String getPortfolioValue() throws InterruptedException {
         return Element.getText(driver, portfolio_value, "Get User Portfolio Value");
@@ -684,6 +715,61 @@ public class P2PExtraPage {
         Elements.selectElement(driver,pay_cta,"Click on Pay");
     }
 
+    public void letterToInvestor() {
+        Elements.selectElement(driver,read_again_cta,"Click on Read Again");
+    }
+
+    public void iUnderstand() {
+        Elements.selectElement(driver,i_understand_cta,"Click on I understand");
+    }
+
+    public String getPortfoliotxt() throws InterruptedException {
+        return Elements.getText(driver,portfolio_txt,"Get Portfolio text");
+    }
+
+    public String getnextRepaymenttxt() throws InterruptedException {
+        return Elements.getText(driver,nextRepayment_txt,"Get Next Repayment text");
+    }
+
+    public String getInvestedAmt() throws InterruptedException {
+        return Elements.getText(driver,investeed_amt,"Get investment amount text");
+    }
+
+    public void clickOnInvestedAmt() {
+        Elements.selectElement(driver,investeed_amt,"Click on Investes amount");
+    }
+
+    public String getStatus() throws InterruptedException {
+        return Elements.getText(driver,status_txt,"Get status text");
+    }
+
+    public String getEstimatedInterest() throws InterruptedException {
+        return Elements.getText(driver,estimated_interest_txt,"Get estimated interset text");
+    }
+
+    public void scrollToViewAllDisbursedLoan() throws InterruptedException {
+        Elements.scrollToElement(driver,viewll_disbursedloan_cta);
+    }
+
+    public void clickOnViewAllDisbursedLoan() {
+        Elements.selectElement(driver,viewll_disbursedloan_cta,"Click on view all disbursed loan");
+    }
+
+    public void scrollToSetting() throws InterruptedException {
+        Elements.scrollToElement(driver,setting_cta);
+    }
+
+    public void clickonSetting() {
+        Elements.selectElement(driver,setting_cta,"Click on setting cta");
+    }
+
+    public void scrollToReportAndStatement() throws InterruptedException {
+        Elements.scrollToElement(driver,reportstatement_txt);
+    }
+
+    public void clickOnReportAndStatement() {
+        Elements.selectElement(driver,reportstatement_txt,"Click on report and statement");
+    }
 
 }
 

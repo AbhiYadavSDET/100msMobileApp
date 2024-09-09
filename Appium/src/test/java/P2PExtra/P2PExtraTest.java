@@ -114,22 +114,6 @@ public class P2PExtraTest extends TestBase {
 
     }
 
-/* Function to Check Add Nominee Flow
-    @Test(groups = {"p2pXtraAddNominee", "sanity", "sanityPrime"}, priority = 0, description = "Verify Xtra : Add Nominee from settings option")
-    public void Test_Add_Nominee_Account() throws InterruptedException, IOException {
-
-        Log.info("======= START : XTRA - Add Nominee flow from Settings Option=======");
-
-        // Start the test
-        LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.quickLoginViaOtp("7042338867", "547372");
-
-        P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getAndroidDriver());
-        p2PExtraHelper.setNomineeFlow("Add Nominee Flow","In case you don't login for a period of at least 2 years, we will reach out to you and your nominee");
-        Log.info("======= END : XTRA - Add Nominee flow from Settings Option  =======");
-
-    }
-*/
 
 
     @Test(groups = {"p2pXtraNomineeDetails", "sanityPrime", "regression"}, priority = 1, description = "Verify Xtra : Add Nominee from settings option")
@@ -199,6 +183,24 @@ public class P2PExtraTest extends TestBase {
         Log.info("======= END : p2p XTRA-FIXED Invest Error Case test =======");
 
     }
+
+    @Test(groups = {"p2pXtraNewUser","sanity"}, priority = 0, description = "Verify Invest in Flexi flow")
+    public void P2PExtra_Test02_Invest_Loancreation() throws InterruptedException, IOException {
+
+        Log.info("======= START : p2p XTRA loan creation Test =======");
+
+        // Start the test
+        LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
+        loginHelp.quickLoginViaOtp("7042338867", "547372");
+
+        P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getAndroidDriver());
+        p2PExtraHelper.xtraLoanCreation("Your Portfolio","Next Repayment","Status","Estimated Interest");
+
+        Log.info("======= END : p2p XTRA loan creation Test =======");
+
+    }
+
+
 
 
 }
