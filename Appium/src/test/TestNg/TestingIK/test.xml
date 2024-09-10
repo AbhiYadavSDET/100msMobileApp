@@ -1,29 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="P2PExtra Flow">
+<suite name="Sanity Suite A">
 
-    <parameter name="build" value="prod"/>
-    <parameter name="level" value="payments"/>
-    <parameter name="saucelabs" value="false"></parameter>
-    <parameter name="androidOSVersion" value="12.0"></parameter>
-    <parameter name="deviceName" value="deviceName"></parameter>
-    <parameter name="udId" value="172.20.10.5:42363"></parameter>
-    <parameter name="portNo" value="4723"></parameter>
+    <listeners>
+        <listener class-name="Utils.Listeners.AnnotationTransformer"/>
+    </listeners>
 
-    <test verbose="2" preserve-order="true" name="Testing For Failrue cases">
+    <test preserve-order="true" name="Sanity Suite A">
+        <parameter name="build" value="prod"/>
+        <parameter name="level" value="payments"/>
+        <parameter name="saucelabs" value="false"></parameter>
+        <parameter name="codeCoverage" value="false"></parameter>
+        <parameter name="androidOSVersion" value="12.0"></parameter>
+        <parameter name="deviceName" value="deviceName"></parameter>
+        <parameter name="udId" value="2C161FDH200GLN"></parameter>
+        <parameter name="portNo" value="4723"></parameter>
+
         <groups>
             <run>
                 <include name="setUp"/>
-                <include name="instantiateHelpers"/>
-                <include name="p2mSendMobikwikQr"/>
-                <include name="p2mSendRecentMerchant"/>
+                <include name="sanity"/>
                 <include name="tearDown"/>
             </run>
         </groups>
 
-
         <classes>
-            <class name="P2M.P2MTest"/>
+
+            <class name="Recharge.RechargeTest"/>
+
         </classes>
     </test>
 
