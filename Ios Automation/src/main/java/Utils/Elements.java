@@ -3,6 +3,8 @@ package Utils;
 import Logger.Log;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.IOSElement;
 import org.openqa.selenium.By;
@@ -22,9 +24,12 @@ import static java.time.Duration.ofSeconds;
 public class Elements extends TestBase {
 
     IOSDriver driver;
+    private static Screen screen;
 
     public Elements(IOSDriver driver) {
+
         this.driver = driver;
+        screen = new Screen(driver);
     }
 
     public static void selectElement(IOSDriver driver, IOSElement element, String comments) {
@@ -161,6 +166,19 @@ public class Elements extends TestBase {
 
     }
 
+    public static Boolean isElementPresentNoWait(IOSDriver<IOSElement> iosDriver, By targetElement, String variableName) throws InterruptedException {
+        Config.logComment("--------------isElementPresent-----------------");
+        Boolean isPresent = findElements(iosDriver, targetElement).size() > 0;
+        if (isPresent) {
+            Config.logComment(variableName + "- Element is displayed");
+        }else {
+            Config.logComment(variableName + "- Element is not displayed");
+        }
+
+        return isPresent;
+
+    }
+
     public static boolean isElementPresent(IOSDriver driver, String element) throws InterruptedException {
         Config.logComment("--------------isElementPresent-----------------");
         Thread.sleep(1000);
@@ -269,6 +287,19 @@ public class Elements extends TestBase {
                 .waitAction(waitOptions(ofSeconds(seconds)))
                 .release()
                 .perform();
+    }
+
+    public static boolean scrollToElement(IOSDriver driver, IOSElement element, String variableName) throws InterruptedException {
+        int i = 0;
+        while(!isElementPresent(driver, element, variableName)){
+            Config.logComment("Swipe Up More");
+            screen.swipeUpMore(driver);
+            i++;
+            if(i > 6){
+                return false;
+            }
+        }
+        return true;
     }
 
 }

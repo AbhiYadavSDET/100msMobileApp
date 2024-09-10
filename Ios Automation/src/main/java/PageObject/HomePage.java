@@ -62,7 +62,7 @@ public class HomePage {
 
 
     public void closeFloatingWidgit() {
-        Elements.click(driver, floating_widgit ,"Flowting Widgit");
+        Elements.click(driver, floating_widgit ,"Floating Widgit");
     }
 
     public void clickOnOffers() {

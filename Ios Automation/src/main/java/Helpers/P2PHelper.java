@@ -46,15 +46,16 @@ public class P2PHelper {
         // Tap on See All Services
         p2PPage.clickAllServices();
 
-        // Swipe till the bottom
-        screen.swipeUpMore(driver);
-        screen.swipeUpMore(driver);
-        //screen.swipeUpMore(driver);
-
         // Click on Wallet to Wallet Transfer
-        if(!p2PPage.checkP2PButton()) {
-            screen.swipeUpMore(driver);
-        }
+//        while(!p2PPage.checkP2PButton()) {
+
+        screen.swipeUpMore(driver);
+        screen.swipeUpMore(driver);
+        screen.swipeUpMore(driver);
+        screen.swipeUpMore(driver);
+        screen.swipeUpMore(driver);
+
+//        }
 
         p2PPage.clickP2PButton();
 
