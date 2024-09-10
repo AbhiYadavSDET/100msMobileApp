@@ -324,17 +324,22 @@ public class KYCHelper {
 
 
                 if( kycPage.isEkycScreenOpened()){
+                    mbReporter.verifyTrueWithLogging(kycPage.isEkycScreenOpened(),
+                            "Verifying Ekyc screen is opened or not",
+                            false,false,false);
 
                     Log.info("===========Ekyc screen opened after failure from digilocker===========");
                 }else{
 
                     for(int i =0;i<2;i++){
-                        kycPage.clickOnRetryOnEkyc();
-                        if(kycPage.isEkycScreenOpened()){
-                            Log.info(("Ekyc screen opened after failure from digilocker after trying :"+i+2 +" "+ "time/s"));
-                            break;
+                        if(kycPage.isRetryButtonPresent()){
+                            kycPage.clickOnRetryOnEkyc();
+                            if(kycPage.isEkycScreenOpened()){
+                                Log.info(("Ekyc screen opened after failure from digilocker after trying :"+i+2 +" "+ "time/s"));
+                                break;
+                        }
                         }else{
-                            Log.info("=========== ISSUE - > Ekyc screen not opened after trying :"+i+2 +" "+ "time/s");
+                            Log.info("=========== ISSUE - > Ekyc screen not opened and retry button is also not present: ");
                         }
                     }
                 }

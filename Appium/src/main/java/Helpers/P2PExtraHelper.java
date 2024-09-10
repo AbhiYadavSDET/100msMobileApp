@@ -204,10 +204,6 @@ public class P2PExtraHelper {
 
     }
 
-
-
-
-
     public void investInFixed(String expTitle,String expectedAmount) throws InterruptedException, IOException {
 
         Log.info("----------- Arguments ---------------");
@@ -760,7 +756,102 @@ public class P2PExtraHelper {
     }
 
 
+    public void checkManageFlow(String expinterestCertificate, String exptransactionStatement) throws InterruptedException, IOException {
 
+        Log.info("----------- Manage Section report and download  ---------------");
+
+        // Click on xtra icon on home page.
+        p2PExtraPage.selectXtra();
+
+        //Click on Settings option on XTRA dashboard
+        p2PExtraPage.scrollToReportAndStatement();
+
+        //cLICK ON REPORT AND STATEMENT ON XTRA HOME PAGE UNDER MANAGE
+        p2PExtraPage.clickOnReportAndStatement();
+
+
+        String interestCertificate = p2PExtraPage.getInterestCertificate();
+        Log.info("interest Certificate : " + interestCertificate);
+
+        String transactionStatement = p2PExtraPage.getTransactionStatement();
+        Log.info("Transaction Statement : " + transactionStatement);
+
+        // Add the assertions
+        mbReporter.verifyEqualsWithLogging(interestCertificate, expinterestCertificate, "interest Certificate", false, false, true);
+        mbReporter.verifyEqualsWithLogging(transactionStatement, exptransactionStatement, "Transaction Statement", false, false, true);
+
+        // select Interest certificate on Manage section
+        p2PExtraPage.selectInterestCertificate();
+
+        // select Fist date from financial year
+        p2PExtraPage.selectDownload();
+        Thread.sleep(1000);
+        driver.navigate().back();
+        Thread.sleep(1000);
+
+        p2PExtraPage.clickOnReportAndStatement();
+
+        // select Transaction Statement on Manage section
+        p2PExtraPage.selectTransactionStatement();
+
+        //Seletc first duration on the bottomsheet of select duration
+        p2PExtraPage.selectThisMonthStatement();
+
+    }
+
+
+    public void settingFlow(String expSubTitleNominee, String expEmailTitle,String expPrimaryBankAccountTitle) throws InterruptedException, IOException {
+
+        Log.info("----------- Manage Setting Flow ---------------");
+
+        // Click on xtra icon on home page.
+        p2PExtraPage.selectXtra();
+
+        //Click on Settings option on XTRA dashboard
+        p2PExtraPage.scrollToReportAndStatement();
+
+        //Click on Settings option on XTRA dashboard
+        p2PExtraPage.clickSettings();
+
+        //Click on Add Nominee Option
+        p2PExtraPage.clickNominee();
+
+        //Wait for 2 seconds
+        Thread.sleep(2000);
+
+        //Nominee tititle on Setting screen
+        String subTitleNominee = p2PExtraPage.getNomineeTitle();
+
+        Log.info("Sub-Title : " + subTitleNominee);
+
+        // Add the assertions
+        mbReporter.verifyEqualsWithLogging(subTitleNominee, expSubTitleNominee, "Verify Title", false, false, true);
+
+        Thread.sleep(1000);
+        driver.navigate().back();
+        Thread.sleep(1000);
+
+        //Email title on Setting screen
+
+        String emailTitle = p2PExtraPage.getEmailTitle();
+
+        Log.info("emailTitle : " + emailTitle);
+
+        // Add the assertions
+        mbReporter.verifyEqualsWithLogging(emailTitle, expEmailTitle, "Verify Email Title", false, false, true);
+
+        //Click on default bank account
+        p2PExtraPage.clickDefaultBankAccount();
+
+        //Primary Bank account title on Bottomsheet after clicking on default bank on setting screen
+
+        String primaryBankAccountTitle = p2PExtraPage.getPrimaryBankAccountTitle();
+
+        Log.info("primaryBankAccountTitle : " + primaryBankAccountTitle);
+
+        mbReporter.verifyEqualsWithLogging(primaryBankAccountTitle, expPrimaryBankAccountTitle, "Verify primary Bank Account Title", false, false, true);
+
+    }
 
 }
 

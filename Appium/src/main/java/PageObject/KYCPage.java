@@ -540,8 +540,14 @@ public class KYCPage {
         Elements.selectElement(driver, retryButtonOnEkycFailure, "Click on retry button ");
     }
 
+    public boolean isRetryButtonPresent()throws InterruptedException {
+        Element.waitForVisibility(driver,retryButtonOnEkycFailure);
+        return Elements.isElementPresent(driver,retryButtonOnEkycFailure);
+    }
+
     public  boolean isEkycScreenOpened() throws InterruptedException {
-        Thread.sleep(5000);
+
+        Element.waitForVisibility(driver,adhaarNumberOptionOnAdhaarWebsite);
         return Elements.isElementPresent(driver,adhaarNumberOptionOnAdhaarWebsite);
     }
 
