@@ -147,7 +147,7 @@ public class AccountAggregatorPage {
     @AndroidFindBy(xpath = "//*[@text='View Insights & Highlights']")
     private AndroidElement viewHighlighttext;
 
-    @AndroidFindBy(xpath = "//*[@text='Interest Credit']")
+    @AndroidFindBy(xpath = "//*[@text='Lifestyle']")
     private AndroidElement interestCreditviewHighlight;
 
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Current Month']")
@@ -224,7 +224,10 @@ public class AccountAggregatorPage {
     @AndroidFindBy(xpath = "//*[@text='Highest Spend']")
     private AndroidElement  highestSpend;
 
-    @AndroidFindBy(xpath = "//*[@text='HDFC Bank XX0088']")
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text ='Bank']")
+    private AndroidElement bank_list_txt;
+
+    @AndroidFindBy(xpath = "//*[@text='HDFC Bank xx 0088']")
     private AndroidElement  bankNo;
 
     @AndroidFindBy(xpath = "//*[@text='Top Category']")
@@ -319,8 +322,12 @@ public class AccountAggregatorPage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text ='This Year']")
     private AndroidElement txtThisYear;
 
-    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text ='Financial Year']")
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text ='This Financial Year']")
     private AndroidElement txtFinancialYear;
+
+    @AndroidFindBy(id="tv_icon_with_bg")
+    private AndroidElement  firstICon;
+
 
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text ='Update Name']")
     private AndroidElement update_name;
@@ -423,6 +430,10 @@ public class AccountAggregatorPage {
     }
     public void clickonApplyCta() throws InterruptedException{
         Elements.selectElement(driver,apply_cta, " Click on Apply");
+    }
+
+    public void clickonBankTXtfromFilter() throws InterruptedException{
+        Elements.selectElement(driver,bank_list_txt, " Click on Bank text from Filter list");
     }
 
     public void clickonBankFilter() throws InterruptedException{
@@ -552,6 +563,10 @@ public class AccountAggregatorPage {
 
     public String getThisYearTxt() throws InterruptedException {
         return Elements.getText(driver, txtThisYear, "txt this Year");
+    }
+
+    public void clickonfirstIcon() throws InterruptedException{
+        Elements.selectElement(driver,firstICon,"click on firstICOn name");
     }
 
     public String getFinanacialYearTxt() throws InterruptedException {

@@ -11,7 +11,7 @@ import java.io.IOException;
 public class Test_AccountAggregator extends TestBase {
 
 
-    @Test(groups = {"AccountAggregator", "sanity", "regression"}, priority = 0, description = "Verify Existing User flow in AA")
+    @Test(groups = {"AccountAggregator", "sanity", "regression"}, priority = 7, description = "Verify Existing User flow in AA")
     public void AccountAggregator_Test01_existing_User_AA_Dashboard() throws IOException, InterruptedException {
 
 
@@ -74,7 +74,7 @@ public class Test_AccountAggregator extends TestBase {
     }
 
 
-    @Test(groups = {"AccountAggregator", "sanity1", "regression"}, priority = 7, description = "Verify Month filter on AA")
+    @Test(groups = {"AccountAggregator", "sanity1", "regression"}, priority = 0, description = "Verify Month filter on AA")
     public void AccountAggregator_Test06_AA_Search_Filter() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
@@ -98,15 +98,14 @@ public class Test_AccountAggregator extends TestBase {
 
     }
 
-
-    @Test(groups = {"AccountAggregator", "sanity1", "regression"}, priority = 7, description = "Verify Retagging")
+    @Test(groups = {"AccountAggregator", "sanity1", "regression"}, priority = 1, description = "Verify Retagging")
     public void AccountAggregator_Test08_AA_DownloadStatement() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
         loginHelp.quickLoginViaOtp("7042338867", "547372");
         AAHelper aaHelper = new AAHelper(getAndroidDriver());
         // Execute the test
-        aaHelper.AADownloadStatement("Last 7 Days","Last 30 Days","Last 6 Months","Last 12 Months","This Year","Financial Year");
+        aaHelper.AADownloadStatement("Last 7 Days","Last 30 Days","Last 6 Months","Last 12 Months","This Year","This Financial Year");
         Log.info("======= Account Aggregator test =======");
 
     }
