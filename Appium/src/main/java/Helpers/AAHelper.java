@@ -202,7 +202,9 @@ public class AAHelper {
         aaPage.scrollToMoneyOut();
         aaPage.clickonAnalyserOnAAHomePage();
         Log.info("Click On Analyser HomePage ");
+        Thread.sleep(2000);
         Elements.tapByCoordinates(57,916,driver);
+        Element.waitForVisibility(driver, By.xpath("//*/android.widget.TextView[@text = 'DEBITS']"));
 
         String debitText = aaPage.getDebitText();
         String weekText = aaPage.getweekText();
