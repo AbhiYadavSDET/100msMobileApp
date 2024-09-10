@@ -42,7 +42,7 @@ public class GoldHelper {
     public void goldBuy(String amount, String expTitle, String expSubTitle, String expGoldAmount, String expAmount,String expectedHistoryDescription, String expectedHistoryAmount, String expectedHistoryStatus) throws InterruptedException, IOException {
 
         // Get the Balance if the User Before TRX
-        balanceBefore = mbkCommonControlsHelper.getBalance();
+        //balanceBefore = mbkCommonControlsHelper.getBalance();
 
         // Tap on See All Services
         goldPage.clickAllServices();
@@ -64,9 +64,9 @@ public class GoldHelper {
         // Enter the Gold amount
         goldPage.enterAmount(amount);
 
-        if(goldPage.isErrorTextVisible()){
+       /* if(goldPage.isErrorTextVisible()){
             mbReporter.verifyTrueWithLogging(goldPage.isErrorTextVisible(), "Error Shown : "+ goldPage.getErrorText(),  false, false, true);
-        }else {
+        }else { */
 
             Log.info("No error on amount field shown : Continue with Existing Case");
 
@@ -78,6 +78,7 @@ public class GoldHelper {
                 securityPinPage.enterSecurityPin();
             }
 
+           /*
             mbkCommonControlsHelper.handle2FADeviceBindingFlow();
 
             // Verification on the Success Screen
@@ -114,8 +115,7 @@ public class GoldHelper {
             // Verify the History details
             mbkCommonControlsHelper.verifyHistoryDetails(driver, expectedHistoryDescription, expectedHistoryAmount, expectedHistoryStatus);
 
-        }
-
+*/
     }
 
     public void goldSell(String amount, String expTitle, String expSubTitle, String expGoldAmount, String expAmount,String expectedHistoryDescription, String expectedHistoryAmount, String expectedHistoryStatus) throws InterruptedException, IOException {

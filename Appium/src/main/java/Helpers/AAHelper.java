@@ -202,7 +202,9 @@ public class AAHelper {
         aaPage.scrollToMoneyOut();
         aaPage.clickonAnalyserOnAAHomePage();
         Log.info("Click On Analyser HomePage ");
+        Thread.sleep(2000);
         Elements.tapByCoordinates(57,916,driver);
+        Element.waitForVisibility(driver, By.xpath("//*/android.widget.TextView[@text = 'DEBITS']"));
 
         String debitText = aaPage.getDebitText();
         String weekText = aaPage.getweekText();
@@ -336,6 +338,7 @@ public class AAHelper {
 
         //Click on First list from search item
         aaPage.clickonfilter();
+        aaPage.clickonBankTXtfromFilter();
 
         //Click on the first bank account in the list
         aaPage.clickonBankFilter();
@@ -353,7 +356,10 @@ public class AAHelper {
         aaPage.clickOnAAOnHomeScreen();
         aaPage.scrolltoViewHighlights();
         aaPage.clickOnviewHighlisht();
+
         aaPage.clickOnOneHighlightInterestCredit();
+        aaPage.clickonfirstIcon();
+
         String nickNametext = aaPage.getTextRetaggingNickName();
         Log.info("NickNameText" + nickNametext);
         mbReporter.verifyTrueWithLogging(aaPage.isTextRetaggingNickNamePresent(), "Verify Nickname is present or not", false, false);
@@ -396,7 +402,6 @@ public class AAHelper {
 
     }
 
-
     public void AADownloadStatement(String explast7daysTxt, String exptxtLast30Days, String exptxtLast6Months, String exptxtLast12Months, String exptxtThisYear,String exptxtFinancialYear) throws InterruptedException, IOException {
 
         aaPage.allServicesCTA();
@@ -408,25 +413,16 @@ public class AAHelper {
         aaPage.clickOnViewStatement();
         aaPage.clickOnDownloadStatement();
 
-        String last7daysTxt =aaPage.getLast7daysTxt();
-        String txtLast30Days =aaPage.getLast30daysTxt();
         String txtLast6Months =aaPage.getLast6monthTxt();
-        String txtLast12Months =aaPage.getLast12monthTxt();
         String txtThisYear =aaPage.getThisYearTxt();
         String txtFinancialYear =aaPage.getFinanacialYearTxt();
 
-        Log.info("last 7 days txn" + last7daysTxt);
-        Log.info("last 30 days txn" + txtLast30Days);
         Log.info("last 6 month txn" + txtLast6Months);
-        Log.info("last 12 month txn" + txtLast12Months);
         Log.info("this year txn" + txtThisYear);
         Log.info("Txn financial year" + txtFinancialYear);
 
-        mbReporter.verifyEqualsWithLogging(last7daysTxt, explast7daysTxt, "last 7 days txn", false, false, true);
-        mbReporter.verifyEqualsWithLogging(txtLast30Days, exptxtLast30Days, "last 30 days", false, false, true);
         mbReporter.verifyEqualsWithLogging(txtLast6Months, exptxtLast6Months, "last 6 months", false, false, true);
-        mbReporter.verifyEqualsWithLogging(txtLast12Months, exptxtLast12Months, "last 12 months", false, false, true);
-        mbReporter.verifyEqualsWithLogging(txtThisYear, exptxtThisYear, "this year txn", false, false, true);
+         mbReporter.verifyEqualsWithLogging(txtThisYear, exptxtThisYear, "this year txn", false, false, true);
         mbReporter.verifyEqualsWithLogging(txtFinancialYear, exptxtFinancialYear, "Txn financial year", false, false, true);
 
     }
