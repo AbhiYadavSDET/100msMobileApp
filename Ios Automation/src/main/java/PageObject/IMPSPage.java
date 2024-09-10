@@ -144,7 +144,7 @@ public class IMPSPage {
     }
 
     public boolean isTransferNowPagePresent() throws InterruptedException{
-        return Elements.isElementPresent(driver, transferNowPage);
+        return Elements.isElementPresent(driver, transferNowPage, "isTransferNowPagePresent");
     }
 
     public void clickOnTransferNowButton() {

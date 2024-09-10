@@ -57,17 +57,17 @@ public class PipedGasPage {
     public void clickSeeMore() { Elements.click(driver, seeMore,"Click on see More");}
 
     public boolean isSeeMorePresent() throws InterruptedException {
-        return Elements.isElementPresent(driver, seeMore);
+        return Elements.isElementPresent(driver, seeMore, "isSeeMorePresent");
     }
 
     public boolean isSavedPipedGasConnectionPresent() throws InterruptedException {
-        return Elements.isElementPresent(driver, savedPipedGasConnection);
+        return Elements.isElementPresent(driver, savedPipedGasConnection, "isSavedPipedGasConnectionPresent");
     }
 
     public void clickSavedPipedGasConnection() { Elements.click(driver, savedPipedGasConnection, "Click on saved connection"); }
 
     public boolean isBillFetched() throws InterruptedException {
-        return Elements.isElementPresent(driver, payButton);
+        return Elements.isElementPresent(driver, payButton, "isBillFetched");
     }
 
     public String getUserName() throws InterruptedException {

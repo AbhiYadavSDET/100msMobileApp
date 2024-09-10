@@ -65,7 +65,7 @@ public class SecurityPinPage {
     }
 
     public boolean isSecurityPinPageShown() throws InterruptedException {
-        return Elements.isElementPresent(driver, title);
+        return Elements.isElementPresent(driver, title, "isSecurityPinPageShown");
     }
 
     public String getCurrentState() throws InterruptedException{

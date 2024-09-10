@@ -5,7 +5,6 @@ import PageObject.HomePage;
 import PageObject.PayRentPage;
 import PageObject.PermissionPage;
 import PageObject.SecurityPinPage;
-import Utils.Element;
 import Utils.MBReporter;
 import Utils.Screen;
 import io.appium.java_client.ios.IOSDriver;

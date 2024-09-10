@@ -38,11 +38,11 @@ public class PermissionPage {
     }
 
     public boolean isPermissionPopUpPresent() throws InterruptedException {
-        return Elements.isElementPresent(driver, allow);
+        return Elements.isElementPresent(driver, allow, "isPermissionPopUpPresent");
     }
 
     public boolean isEnablePasscodePopUpPresent() throws InterruptedException {
-        return Elements.isElementPresent(driver, later);
+        return Elements.isElementPresent(driver, later, "isEnablePasscodePopUpPresent");
     }
 
     public void clickOnAllow() {
@@ -54,23 +54,23 @@ public class PermissionPage {
     }
 
     public boolean isEnablePermissionPopupPresent() throws InterruptedException{
-        return Elements.isElementPresent(driver, allowWhileUsingApp);
+        return Elements.isElementPresent(driver, allowWhileUsingApp, "isEnablePermissionPopupPresent");
     }
 
     public void clickAllowWhileUsingApp() { Elements.selectElement(driver, allowWhileUsingApp, "Click Allow while using app Button");}
 
     public boolean isZipBottomSheetShown() throws InterruptedException {
-        return Elements.isElementPresent(driver, zipBottomSheet);
+        return Elements.isElementPresent(driver, zipBottomSheet, "isZipBottomSheetShown");
     }
 
     public void clickAllowContactPermission() { Elements.click(driver, allowContactPermission,"Click OK on contact permission popup"); }
 
     public boolean isContactsPermissionPopupPresent() throws InterruptedException {
-        return Elements.isElementPresent(driver, contactPermissionPopup);
+        return Elements.isElementPresent(driver, contactPermissionPopup, "isContactsPermissionPopupPresent");
     }
 
     public boolean isCameraPermissionPopupPresent() throws InterruptedException {
-        return Elements.isElementPresent(driver, cameraPermissionPopup);
+        return Elements.isElementPresent(driver, cameraPermissionPopup, "isCameraPermissionPopupPresent");
     }
 
     public void clickAllowCameraPermission() { Elements.click(driver, allowContactPermission,"Click OK on camera permission popup"); }

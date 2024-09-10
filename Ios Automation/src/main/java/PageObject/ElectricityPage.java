@@ -1,6 +1,6 @@
 package PageObject;
 
-import Utils.Element;
+
 import Utils.Elements;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.IOSElement;
@@ -58,17 +58,17 @@ public class ElectricityPage {
     public void clickSeeMore() { Elements.click(driver, seeMore,"Click on see More");}
 
     public boolean isSeeMorePresent() throws InterruptedException {
-        return Elements.isElementPresent(driver, seeMore);
+        return Elements.isElementPresent(driver, seeMore, "isSeeMorePresent");
     }
 
     public boolean isSavedConnectionPresent() throws InterruptedException {
-        return Elements.isElementPresent(driver, savedElectricityConnection);
+        return Elements.isElementPresent(driver, savedElectricityConnection, "isSavedConnectionPresent");
     }
 
     public void clickSavedElectricityConnection() { Elements.click(driver, savedElectricityConnection, "Click on saved connection"); }
 
     public boolean isBillFetched() throws InterruptedException {
-        return Elements.isElementPresent(driver, billFetched);
+        return Elements.isElementPresent(driver, billFetched, "isBillFetched" );
     }
 
     public String getUserName() throws InterruptedException {
@@ -96,7 +96,7 @@ public class ElectricityPage {
     }
 
     public void enterSearchElectricityBrand(String brandName) throws InterruptedException {
-        //Elements.isElementPresent(driver, searchElectricityBrand);
+//        Elements.isElementPresent(driver, searchElectricityBrand, "enterSearchElectricityBrand");
         Elements.enterToElement(driver, searchElectricityBrand, brandName,"Enter Brand Name");
     }
 
@@ -113,7 +113,7 @@ public class ElectricityPage {
     }
 
     public void enterCaNumber(String CA_Number) throws InterruptedException {
-        //Elements.isElementPresent(driver, caNumber);
+        //Elements.isElementPresent(driver, caNumber, "enterCaNumber);
         Elements.enterToElement(driver, caNumber, CA_Number, "Enter CA number");
     }
 

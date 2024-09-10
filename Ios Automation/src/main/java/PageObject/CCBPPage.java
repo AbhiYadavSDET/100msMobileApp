@@ -104,11 +104,11 @@ public class CCBPPage {
     }
 
     public boolean isCCBPHomeBottomSheetShown() throws InterruptedException {
-        return Elements.isElementPresent(driver, ccbpHomeBottomSheet);
+        return Elements.isElementPresent(driver, ccbpHomeBottomSheet, "isCCBPHomeBottomSheetShown");
     }
 
     public boolean isEmailAccessBottomSheetShown() throws  InterruptedException {
-        return Elements.isElementPresent(driver, emailAccessBottomSheet);
+        return Elements.isElementPresent(driver, emailAccessBottomSheet, "isEmailAccessBottomSheetShown");
     }
 
     public void closeEmailAccessBottomSheet() { Elements.click(driver, cross,"Click cross to close email access bottom sheet"); }
@@ -116,12 +116,12 @@ public class CCBPPage {
     public void clickAddNewCreditCard() { Elements.click(driver, addNewCreditCard, "Click on Add new Credit card"); }
 
     public boolean isAddNewCreditCardShown() throws InterruptedException {
-        return Elements.isElementPresent(driver, addNewCreditCard);
+        return Elements.isElementPresent(driver, addNewCreditCard, "isAddNewCreditCardShown");
     }
 
 
     public boolean isAddCardButtonShown() throws InterruptedException {
-        return Elements.isElementPresent(driver, addCard);
+        return Elements.isElementPresent(driver, addCard, "isAddCardButtonShown");
     }
 
     public void clickAddCard() { Elements.click(driver,addCard,"add card");}
@@ -239,7 +239,7 @@ public class CCBPPage {
     public void clickOnPayButton() { Elements.click(driver, payButton,"Click on Pay");  }
 
     public boolean isEmailOptionScreenPresent() throws InterruptedException {
-        return Elements.isElementPresent(driver, emailOptionScreen);
+        return Elements.isElementPresent(driver, emailOptionScreen, "isEmailOptionScreenPresent");
     }
 
     public void clickOnCardSetting() { Elements.click(driver, cardSettings,"Click on card settings");  }

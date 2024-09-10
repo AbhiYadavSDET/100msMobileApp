@@ -51,11 +51,11 @@ public class HomePage {
     }
 
     public boolean isFloatingWidgitPresent() throws InterruptedException {
-        return Elements.isElementPresent(driver, floating_widgit);
+        return Elements.isElementPresent(driver, floating_widgit, "isFloatingWidgitPresent");
     }
 
     public boolean isBillReminderPresent() throws InterruptedException {
-        return Elements.isElementPresent(driver, billReminderBottomSheet);
+        return Elements.isElementPresent(driver, billReminderBottomSheet, "isBillReminderPresent");
     }
 
 
@@ -74,7 +74,7 @@ public class HomePage {
     }
 
     public boolean isXtraIconPresent() throws InterruptedException {
-       return Elements.isElementPresent(driver, xtra_icon);
+       return Elements.isElementPresent(driver, xtra_icon, "isXtraIconPresent");
     }
 
     public void clickRechargeAndPayBills() {

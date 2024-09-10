@@ -50,7 +50,7 @@ public class LoginPage {
     }
 
     public boolean isKycScreenPresent() throws InterruptedException{
-        return Elements.isElementPresent(driver, kycScreen);
+        return Elements.isElementPresent(driver, kycScreen, "isKycScreenPresent");
     }
 
     public void clickSkip(){

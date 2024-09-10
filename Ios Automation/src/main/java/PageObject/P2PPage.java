@@ -66,7 +66,7 @@ public class P2PPage {
     }
 
     public boolean checkP2PButton() throws InterruptedException {
-       return Elements.isElementPresent(driver, p2pButton);
+       return Elements.isElementPresent(driver, p2pButton, "checkP2PButton");
     }
 
     public void enterMobileNo(String mobileNo) {
@@ -103,7 +103,7 @@ public class P2PPage {
     }
 
     public Boolean isZipWidgetPresent() throws InterruptedException {
-        return Elements.isElementPresent(driver, successScreenZipCta);
+        return Elements.isElementPresent(driver, successScreenZipCta, "isZipWidgetPresent");
     }
 
     public void clickBackButton() {
