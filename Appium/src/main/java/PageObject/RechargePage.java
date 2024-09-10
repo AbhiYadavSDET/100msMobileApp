@@ -108,7 +108,7 @@ public class RechargePage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text='9311878235']")
     private AndroidElement selectNumber;
 
-    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text='7042338867']")
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text='70423 38867']")
     private AndroidElement selectNumber1;
 
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Switch to Postpaid']")
