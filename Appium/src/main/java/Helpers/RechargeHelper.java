@@ -139,7 +139,7 @@ public class RechargeHelper {
     }
 
 
-    public void prepaidRecharge(String amount, String expAmountOnPaymentScreen, String expTitle, String expSubTitle, String expAmountOnSuccessScreen, String expectedHistoryDescription, String expectedHistoryAmount, String expectedHistoryStatus) throws InterruptedException, IOException {
+    public void prepaidRecharge(String amount, String expAmountOnPaymentScreen, String expTitle, String expSubTitle, String expAmountOnSuccessScreen, String expectedHistoryDescription, String expectedHistoryAmount, String expectedHistoryStatus,String mobileno) throws InterruptedException, IOException {
 
         // Get the Balance if the User Before TRX
         balanceBefore = mbkCommonControlsHelper.getBalance();
@@ -170,20 +170,45 @@ public class RechargeHelper {
             rechargePage.clickSwipeLeftBottomRemove();
         }
 
+//        // Click on Mobile
+//        rechargePage.clickOnMobile();
+//
+//        //Click on my number
+//        rechargePage.clickOnMyNumber();
+//
+//        // Tap to search plan
+//        rechargePage.tapToSearchPlan();
+//
+//        // Enter amount to search plan
+//        rechargePage.searchPlanPrepaid(amount);
+//
+//        driver.navigate().back();
+
         // Click on Mobile
         rechargePage.clickOnMobile();
 
-        //Click on my number
-        rechargePage.clickOnMyNumber();
+        rechargePage.clickOnSearchMobileNoField();
+
+        if(permissionsPage.isPermissionContactsPresent()){
+
+            permissionsPage.allowPermissionContacts();
+        }
+
+        //Enter mobile no.
+        rechargePage.enterMobileNo(mobileno);
+        rechargePage.selectNumber2();
 
         // Tap to search plan
         rechargePage.tapToSearchPlan();
-
+        //rechargePage.clickToSearchPlan();
         // Enter amount to search plan
+        Thread.sleep(5000);
         rechargePage.searchPlanPrepaid(amount);
 
+        driver.navigate().back();
+
         // Click to select plan
-        rechargePage.selectPlan();
+        rechargePage.select10RsPlan();
 
 
         // Verification on the Payment Screen
@@ -422,6 +447,8 @@ public class RechargeHelper {
         Thread.sleep(5000);
         rechargePage.searchPlanPrepaid(amount);
         Thread.sleep(5000);
+
+        driver.navigate().back();
         // Click to select plan
         rechargePage.selectPlan();
         Thread.sleep(3000);
