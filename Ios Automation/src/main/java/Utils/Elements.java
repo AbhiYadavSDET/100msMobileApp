@@ -107,6 +107,23 @@ public class Elements extends TestBase {
 
     }
 
+    public static boolean waitForInvisibility(IOSDriver driver, By targetElement) {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, 10);
+            Log.info("Waiting for Invisibility of : "+targetElement);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(targetElement));
+            Log.info(targetElement +" Is Invisible now");
+            return true;
+
+        } catch (TimeoutException e) {
+            System.out.println("Element is still visible: " + targetElement);
+            System.out.println();
+            System.out.println(e.getMessage());
+            throw e;
+
+        }
+    }
+
     public static void waitForElementToVisibleOnPageUsingText(IOSDriver driver, String element, int totalTimeToWaitInSeconds) {
         Config.logComment("--------------waitForElementToVisibleOnPage-----------------");
         try {

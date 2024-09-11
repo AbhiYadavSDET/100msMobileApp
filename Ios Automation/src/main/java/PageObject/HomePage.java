@@ -42,7 +42,7 @@ public class HomePage {
     private IOSElement scanQR;
 
 
-    @iOSXCUITFindBy(id = "Wallet to Bank Transfer")
+    @iOSXCUITFindBy(id = "Wallet to Bank")
     private IOSElement imps;
 
     public HomePage(IOSDriver driver) {

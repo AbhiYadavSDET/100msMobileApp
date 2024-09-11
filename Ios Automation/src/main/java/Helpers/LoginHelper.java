@@ -4,6 +4,7 @@ import Logger.Log;
 import PageObject.LoginPage;
 import PageObject.PermissionPage;
 import Utils.Elements;
+import io.appium.java_client.internal.ElementMap;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.IOSElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -53,7 +54,9 @@ public class LoginHelper{
 //            loginPage.enterOtp(otp);
 //        }
         // Wait for 2000 ms for all the banners to load
-        Thread.sleep(5000);
+//        Thread.sleep(5000);
+        element.waitForInvisibility(driver, By.id("Enter OTP to verify your number"));
+        Thread.sleep(2000);
 
         if (element.isElementPresentNoWait(driver, By.id("Explore the app"),"Feature Assist Page")){
             Log.info("Feature Assist Page Shown");
