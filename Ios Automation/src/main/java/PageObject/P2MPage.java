@@ -14,7 +14,7 @@ public class P2MPage {
 
     IOSDriver driver;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='Scan any QR']")
+    @iOSXCUITFindBy(id = "Tab-Center-Part")
     private IOSElement scanQrButton;
 
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='“MobiKwik” Would Like to Access the Camera']")

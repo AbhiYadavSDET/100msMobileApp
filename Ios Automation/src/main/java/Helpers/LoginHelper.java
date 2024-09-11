@@ -53,7 +53,7 @@ public class LoginHelper{
 //            loginPage.enterOtp(otp);
 //        }
         // Wait for 2000 ms for all the banners to load
-        Thread.sleep(4000);
+        Thread.sleep(5000);
 
         if (element.isElementPresentNoWait(driver, By.id("Explore the app"),"Feature Assist Page")){
             Log.info("Feature Assist Page Shown");

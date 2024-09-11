@@ -289,15 +289,37 @@ public class Elements extends TestBase {
                 .perform();
     }
 
+//    public static boolean scrollToElement(IOSDriver driver, IOSElement element, String variableName) throws InterruptedException {
+//        int i = 0;
+//        while(!isElementPresent(driver, element, variableName)){
+//            Config.logComment("Swipe Up More");
+//            screen.swipeUpMore(driver);
+//            i++;
+//            if(i > 6){
+//                return false;
+//            }
+//        }
+//        return true;
+//    }
+
     public static boolean scrollToElement(IOSDriver driver, IOSElement element, String variableName) throws InterruptedException {
         int i = 0;
-        while(!isElementPresent(driver, element, variableName)){
+        int MAX_SCROLL_LIMIT = 6;
+        while (!isElementPresent(driver, element, variableName)) {
             Config.logComment("Swipe Up More");
-            screen.swipeUpMore(driver);
-            i++;
-            if(i > 6){
+            try {
+                screen.swipeUpMore(driver);
+                Thread.sleep(1000); // Wait for UI to update
+            } catch (Exception e) {
+                Config.logComment("Swipe failed: " + e.getMessage());
                 return false;
             }
+            i++;
+            if (i > MAX_SCROLL_LIMIT) {
+                return false;
+            }
+            // Re-fetch the element to avoid stale element reference
+//            element = driver.findElement(driver, element);
         }
         return true;
     }

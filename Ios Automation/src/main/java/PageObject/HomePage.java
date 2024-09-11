@@ -20,7 +20,7 @@ public class HomePage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"M\"]")
     private IOSElement floating_widgit;
 
-    @iOSXCUITFindBy(id = "Recharge & Pay Bills")
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name=\"Recharge & Bills\"])[1]")
     private IOSElement rechargeAndPayBills;
 
     @iOSXCUITFindBy(id = "Xtra")
