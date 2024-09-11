@@ -66,6 +66,9 @@ public class RechargePage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Talktime']")
     private AndroidElement selectPlan;
 
+    @AndroidFindBy(xpath="//*/android.widget.TextView[@text = '7.47']")
+    private AndroidElement select10RsPlan;
+
     @AndroidFindBy(id = "title")
     private AndroidElement title;
 
@@ -108,8 +111,11 @@ public class RechargePage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text='9311878235']")
     private AndroidElement selectNumber;
 
-    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text='7042338867']")
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text='70423 38867']")
     private AndroidElement selectNumber1;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text='99910 15888']")
+    private AndroidElement selectNumber2;
 
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Switch to Postpaid']")
     private AndroidElement switchToPostpaid;
@@ -232,8 +238,15 @@ public class RechargePage {
         driver.getKeyboard().sendKeys(amount);
     }
 
-    public void selectPlan() {
+    public void selectPlan() throws InterruptedException {
+        Elements.scrollToElement(driver,selectPlan);
         Elements.selectElement(driver, selectPlan, "Tap To Select Plan");
+    }
+
+
+    public void select10RsPlan() throws InterruptedException {
+        Elements.scrollToElement(driver,select10RsPlan);
+        Elements.selectElement(driver, select10RsPlan, "Tap To Select Rs.10 Plan");
     }
 
     public void clickOnPay() {
@@ -382,5 +395,7 @@ public class RechargePage {
         return Elements.getText(driver, txt_selectcircle, "Get txt Select circle");
     }
 
-
+    public void selectNumber2(){
+        Elements.selectElement(driver, selectNumber2,"Select mobile no.");
+    }
 }
