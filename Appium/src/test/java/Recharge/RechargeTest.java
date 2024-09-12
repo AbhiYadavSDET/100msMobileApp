@@ -40,7 +40,7 @@ public class RechargeTest extends TestBase {
 
         // Execute the test
         RechargeHelper rechargeHelper = new RechargeHelper(getAndroidDriver());
-        rechargeHelper.prepaidRecharge("10","₹10","Recharge Successful","for Vi 7795709569 ","₹10","Vi Recharge", "-₹10", "Success");
+        rechargeHelper.prepaidRecharge("10","₹10","Recharge Successful","for Vi 7795709569 ","₹10","Vi Recharge", "-₹10", "Success","9991015888");
 
         Log.info("======= END : Prepaid Recharge =======");
 
