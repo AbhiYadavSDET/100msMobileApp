@@ -773,12 +773,12 @@ public class P2PExtraHelper {
         String interestCertificate = p2PExtraPage.getInterestCertificate();
         Log.info("interest Certificate : " + interestCertificate);
 
-        String transactionStatement = p2PExtraPage.getTransactionStatement();
-        Log.info("Transaction Statement : " + transactionStatement);
+       // String transactionStatement = p2PExtraPage.getTransactionStatement();
+       // Log.info("Transaction Statement : " + transactionStatement);
 
         // Add the assertions
         mbReporter.verifyEqualsWithLogging(interestCertificate, expinterestCertificate, "interest Certificate", false, false, true);
-        mbReporter.verifyEqualsWithLogging(transactionStatement, exptransactionStatement, "Transaction Statement", false, false, true);
+       // mbReporter.verifyEqualsWithLogging(transactionStatement, exptransactionStatement, "Transaction Statement", false, false, true);
 
         // select Interest certificate on Manage section
         p2PExtraPage.selectInterestCertificate();

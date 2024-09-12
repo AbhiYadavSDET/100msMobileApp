@@ -201,7 +201,7 @@ public class P2PExtraTest extends TestBase {
 
     }
 
-    @Test(groups = {"p2pXtraNewUser","sanity","regression"}, priority = 1, description = "Verify p2p XTRA Manage section report and statement")
+    @Test(groups = {"p2pXtraNewUser","sanity","regression"}, priority = 0, description = "Verify p2p XTRA Manage section report and statement")
     public void P2PExtra_Test03_Manage_Report_and_Statement() throws InterruptedException, IOException {
 
         Log.info("======= START : p2p XTRA Manage section report and statement =======");

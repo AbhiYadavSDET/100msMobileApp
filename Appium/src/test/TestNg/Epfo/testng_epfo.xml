@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Epfo Flow">
 
-    <parameter name="build" value="debug"/>
+    <parameter name="build" value="prod"/>
     <parameter name="level" value="wealth"/>
     <parameter name="saucelabs" value="false"></parameter>
     <parameter name="androidOSVersion" value="11.0"></parameter>
