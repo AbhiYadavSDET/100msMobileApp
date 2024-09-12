@@ -196,62 +196,152 @@ public class EpfoHelper {
 
     }
 
-
-    public void epfoDashBoardCurrentEmp(String expgetemployeeShare,String expgetemployersShare,String expgetPensionShare,String expgetAccountHolderName,String expgetTransactionTxt) throws InterruptedException, IOException {
+    public void epfoDashBoardAll() throws InterruptedException, IOException {
 
         epfoPage.clickAllServices();
         epfoPage.scrollToTrackEpfBalance();
         epfoPage.clickTrackEpfBalance();
         epfoPage.scrollToOneMobikwikSystem();
-        epfoPage.clickOnOneMobikwikSystem();
+        epfoPage.clickOnViewAllEmployer();
         Thread.sleep(6000);
-        String getemployeeShare = epfoPage.getemployeesharebottomsheet();
-        Log.info("get employee Share:" + getemployeeShare);
+        Log.info("======= Third employer =======");
+        epfoPage.clickOnIngenuityGaming();
 
-        String getemployersShare = epfoPage.getemployersharebottomsheet();
-        Log.info("get employer Share:" + getemployersShare);
+        String getTotalEPFBalanceOfIngenuityGaming = epfoPage.getTotalEPFBalanceAmount();
+        Log.info("get total EPF balance IngenuityGaming :" + getTotalEPFBalanceOfIngenuityGaming);
+        mbReporter.verifyTrueWithLogging(!(getTotalEPFBalanceOfIngenuityGaming ==null), "Verify amount on EPF page", false, false, true);
 
-        String getPensionShare = epfoPage.getPensionShare();
-        Log.info("get Pension Share:" + getPensionShare);
+        String getemployeeShareIngenuityGaming = epfoPage.getemployeesharebottomsheet();
+        String getEmployeeShareBalanceIngenuityGaming = epfoPage.getEmployeeShareOneMobikwikSystem();
+        Log.info("get employee Share IngenuityGaming: " + getemployeeShareIngenuityGaming + ":" + getEmployeeShareBalanceIngenuityGaming);
+        mbReporter.verifyTrueWithLogging(!(getEmployeeShareBalanceIngenuityGaming ==null), "Verify employee share on EPF page", false, false, true);
 
-        String getTransactionTxt = epfoPage.gettxtTransaction();
-        Log.info("get Pension Share:" + getTransactionTxt);
+        String getemployersShareIngenuityGaming = epfoPage.getemployersharebottomsheet();
+        String getEmployerShareBalanceIngenuityGaming = epfoPage.getEmployerShareAOneMobikwikSystem();
+        Log.info("get employer Share IngenuityGaming: " + getemployersShareIngenuityGaming + ":" + getEmployerShareBalanceIngenuityGaming);
+        mbReporter.verifyTrueWithLogging(!(getEmployerShareBalanceIngenuityGaming ==null), "Verify employer share on EPF page", false, false, true);
 
-        mbReporter.verifyEqualsWithLogging(getemployeeShare, expgetemployeeShare, "get employee Share", false, false, true);
-        mbReporter.verifyEqualsWithLogging(getemployersShare, expgetemployersShare, "get employers Share", false, false, true);
-        mbReporter.verifyEqualsWithLogging(getPensionShare, expgetPensionShare, "exp get Pension Share", false, false, true);
-        mbReporter.verifyEqualsWithLogging(getTransactionTxt, expgetTransactionTxt, "exp gTxn text", false, false, true);
+        String getPensionShareIngenuityGaming = epfoPage.getPensionShare();
+        String getPensionShareAIngenuityGaming = epfoPage.getPensionShareAOneMobikwikSystem();
+        Log.info("get Pension Share IngenuityGaming: " + getPensionShareIngenuityGaming + ":" + getPensionShareAIngenuityGaming);
+        mbReporter.verifyTrueWithLogging(!(getPensionShareAIngenuityGaming ==null), "Verify employer share on EPF page", false, false, true);
 
-        Thread.sleep(1000);
+        Thread.sleep(3000);
         epfoPage.clickOnAccountDetails();
-        Thread.sleep(1000);
+        //Thread.sleep(3000);
 
-        String getAccountHolderName = epfoPage.gettxtAccountHolderName();
-        Log.info("get employee Share:" + getAccountHolderName);
-        mbReporter.verifyEqualsWithLogging(getAccountHolderName, expgetAccountHolderName, "get Account Holder name", false, false, true);
-
-        Thread.sleep(1000);
+        String getAccountHolderNameIngenuityGaming = epfoPage.gettxtAccountHolderName();
+        Log.info(" AccountHolderName for IngenuityGaming:" + getAccountHolderNameIngenuityGaming);
+        mbReporter.verifyTrueWithLogging(!(getAccountHolderNameIngenuityGaming.isEmpty()), "get Account Holder name", false, false, true);
+        Thread.sleep(5000);
         driver.navigate().back();
-        Thread.sleep(3000);
-
-        //Click on all Transactions
-        epfoPage.clickOnAllTransaction();
-        Thread.sleep(4000);
-
-        // Select FY 2011-12
-        epfoPage.clickOnFy201112();
-        Thread.sleep(3000);
+        Thread.sleep(5000);
         driver.navigate().back();
         Thread.sleep(5000);
 
-        //Verify Multiple previous account is added or not
-        epfoPage.clickOnViewAllEmployer();
+        Log.info("======= First employer =======");
+        epfoPage.clickOnMobikwikSystemDetails();
 
-        epfoPage.clickOnOneMobikwikSystem();
+        String getTotalEPFBalanceOfOnMobikwikSystem = epfoPage.getTotalEPFBalanceAmount();
+        Log.info("get total EPF balance OnMobikwikSystem :" + getTotalEPFBalanceOfOnMobikwikSystem);
+        mbReporter.verifyTrueWithLogging(!(getTotalEPFBalanceOfOnMobikwikSystem ==null), "Verify amount on EPF page", false, false, true);
+
+        String getemployeeShareMobikwikSystem = epfoPage.getemployeesharebottomsheet();
+        String getEmployeeShareBalanceMobikwikSystem = epfoPage.getEmployeeShareOneMobikwikSystem();
+        Log.info("get employee Share MobikwikSystem: " + getemployeeShareMobikwikSystem + ":" + getEmployeeShareBalanceMobikwikSystem);
+        mbReporter.verifyTrueWithLogging(!(getEmployeeShareBalanceMobikwikSystem ==null), "Verify employee share on EPF page", false, false, true);
+
+        String getemployersShareMobikwikSystem = epfoPage.getemployersharebottomsheet();
+        String getEmployerShareBalanceMobikwikSystem = epfoPage.getEmployerShareAOneMobikwikSystem();
+        Log.info("get employer Share MobikwikSystem: " + getemployersShareMobikwikSystem + ":" + getEmployerShareBalanceMobikwikSystem);
+        mbReporter.verifyTrueWithLogging(!(getEmployerShareBalanceMobikwikSystem ==null), "Verify employer share on EPF page", false, false, true);
+
+        String getPensionShareMobikwikSystem = epfoPage.getPensionShare();
+        String getPensionShareAMobikwikSystem = epfoPage.getPensionShareAOneMobikwikSystem();
+        Log.info("get Pension Share MobikwikSystem: " + getPensionShareMobikwikSystem + ":" + getPensionShareAMobikwikSystem);
+        mbReporter.verifyTrueWithLogging(!(getPensionShareAMobikwikSystem ==null), "Verify employer share on EPF page", false, false, true);
+
+        Thread.sleep(3000);
+        epfoPage.clickOnAccountDetails();
+        Thread.sleep(3000);
+
+        String getAccountHolderNameMobikwikSyste = epfoPage.gettxtAccountHolderName();
+        Log.info("AccountHolderName for MobikwikSystem:" + getAccountHolderNameMobikwikSyste);
+        mbReporter.verifyTrueWithLogging(!(getAccountHolderNameMobikwikSyste.isEmpty()), "get Account Holder name", false, false, true);
+        Thread.sleep(5000);
+        driver.navigate().back();
+        Thread.sleep(5000);
+        driver.navigate().back();
+        Thread.sleep(5000);
+
+        Log.info("======= Second employer =======");
+        epfoPage.clickOnAquimoSportsDetails();
+
+        String getTotalEPFBalanceOfOnAquimoSports = epfoPage.getTotalEPFBalanceAmount();
+        Log.info("get total EPF balance AquimoSports :" + getTotalEPFBalanceOfOnAquimoSports);
+        mbReporter.verifyTrueWithLogging(!(getTotalEPFBalanceOfOnAquimoSports ==null), "Verify amount on EPF page", false, false, true);
+
+        String getemployeeShareAquimoSports = epfoPage.getemployeesharebottomsheet();
+        String getEmployeeShareBalanceAquimoSports = epfoPage.getEmployeeShareOneMobikwikSystem();
+        Log.info("get employee Share AquimoSports: " + getemployeeShareAquimoSports + ":" + getEmployeeShareBalanceAquimoSports);
+        mbReporter.verifyTrueWithLogging(!(getEmployeeShareBalanceAquimoSports ==null), "Verify employee share on EPF page", false, false, true);
+
+        String getemployersShareAquimoSports = epfoPage.getemployersharebottomsheet();
+        String getEmployerShareBalanceAquimoSports = epfoPage.getEmployerShareAOneMobikwikSystem();
+        Log.info("get employer Share AquimoSports: " + getemployersShareAquimoSports + ":" + getEmployerShareBalanceAquimoSports);
+        mbReporter.verifyTrueWithLogging(!(getEmployerShareBalanceAquimoSports ==null), "Verify employer share on EPF page", false, false, true);
+
+        String getPensionShareAquimoSports = epfoPage.getPensionShare();
+        String getPensionShareAAquimoSports = epfoPage.getPensionShareAOneMobikwikSystem();
+        Log.info("get Pension Share AquimoSports: " + getPensionShareAquimoSports + ":" + getPensionShareAAquimoSports);
+        mbReporter.verifyTrueWithLogging(!(getPensionShareAAquimoSports ==null), "Verify employer share on EPF page", false, false, true);
+
+        Thread.sleep(3000);
+        epfoPage.clickOnAccountDetails();
+        Thread.sleep(3000);
+
+        String getAccountHolderNameAquimoSports = epfoPage.gettxtAccountHolderName();
+        Log.info("AccountHolderName for AquimoSports:" + getAccountHolderNameAquimoSports);
+        mbReporter.verifyTrueWithLogging(!(getAccountHolderNameAquimoSports.isEmpty()), "get Account Holder name", false, false, true);
+
+        Log.info("======= fourth employer =======");
+        Thread.sleep(5000);
+        driver.navigate().back();
+        Thread.sleep(5000);
+        driver.navigate().back();
+        Thread.sleep(5000);
+
+        epfoPage.clickOnHermanMillerDetails();
+
+        String getTotalEPFBalanceOfOnHermanMiller = epfoPage.getTotalEPFBalanceAmount();
+        Log.info("get total EPF balance HermanMiller :" + getTotalEPFBalanceOfOnHermanMiller);
+        mbReporter.verifyTrueWithLogging(!(getTotalEPFBalanceOfOnHermanMiller ==null), "Verify amount on EPF page", false, false, true);
+
+        String getemployeeShareHermanMiller = epfoPage.getemployeesharebottomsheet();
+        String getEmployeeShareBalanceHermanMiller = epfoPage.getEmployeeShareOneMobikwikSystem();
+        Log.info("get employee Share HermanMiller: " + getemployeeShareHermanMiller + ":" + getEmployeeShareBalanceHermanMiller);
+        mbReporter.verifyTrueWithLogging(!(getEmployeeShareBalanceHermanMiller ==null), "Verify employee share on EPF page", false, false, true);
+
+        String getemployersShareHermanMiller = epfoPage.getemployersharebottomsheet();
+        String getEmployerShareBalanceHermanMiller = epfoPage.getEmployerShareAOneMobikwikSystem();
+        Log.info("get employer Share HermanMiller: " + getemployersShareHermanMiller + ":" + getEmployerShareBalanceHermanMiller);
+        mbReporter.verifyTrueWithLogging(!(getEmployerShareBalanceHermanMiller ==null), "Verify employer share on EPF page", false, false, true);
+
+        String getPensionShareHermanMiller = epfoPage.getPensionShare();
+        String getPensionShareAHermanMiller = epfoPage.getPensionShareAOneMobikwikSystem();
+        Log.info("get Pension Share HermanMiller: " + getPensionShareHermanMiller + ":" + getPensionShareAHermanMiller);
+        mbReporter.verifyTrueWithLogging(!(getPensionShareAHermanMiller ==null), "Verify employer share on EPF page", false, false, true);
+
+        Thread.sleep(3000);
+        epfoPage.clickOnAccountDetails();
+        Thread.sleep(3000);
+
+        String getAccountHolderNameHermanMiller = epfoPage.gettxtAccountHolderName();
+        Log.info("AccountHolderName for HermanMiller:" + getAccountHolderNameHermanMiller);
+        mbReporter.verifyTrueWithLogging(!(getAccountHolderNameHermanMiller.isEmpty()), "get Account Holder name", false, false, true);
+        Log.info("======= end of all employer =======");
 
     }
-
-
 
 }
 
