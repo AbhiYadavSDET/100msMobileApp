@@ -29,6 +29,7 @@
             <class name="Gold.GoldTest"/>
             <class name="AccountAggregator.Test_AccountAggregator"/>
             <class name="FixedDeposit.Test_FixedDeposit"/>
+            <class name="Epfo.Test_Epfo"/>
         </classes>
     </test>
 </suite>
