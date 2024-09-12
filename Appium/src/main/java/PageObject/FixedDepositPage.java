@@ -134,7 +134,7 @@ public class FixedDepositPage {
     @AndroidFindBy(xpath = "//*[@text = 'Partner Bank/NBFC']")
     private AndroidElement ctaPartnerBank;
 
-    @AndroidFindBy(xpath = "//*[@text = 'Interest p.a']")
+    @AndroidFindBy(xpath = "//*[@text = 'Interest p.a.']")
     private AndroidElement ctaInterestPA;
 
     @AndroidFindBy(xpath = "//*[@text = 'Interest Payout']")
@@ -204,7 +204,7 @@ public class FixedDepositPage {
     @AndroidFindBy(id="tvInterest")
     private AndroidElement click_interest_pa;
 
-    @AndroidFindBy(id="tv_key")
+    @AndroidFindBy(id="tvValue")
     private AndroidElement tenure_filter_list;
 
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Help & Support']")
@@ -236,7 +236,7 @@ public class FixedDepositPage {
     }
 
     public void scrollToFixedDeposit() throws InterruptedException {
-         Elements.scrollToElement(driver, fixedDepositCTA);
+        Elements.scrollToElement(driver, fixedDepositCTA);
     }
     public void fixedDepositCTA() throws InterruptedException{
         Elements.selectElement(driver,fixedDepositCTA,"Fixed Deposit CTA");
@@ -272,6 +272,12 @@ public class FixedDepositPage {
 
     public String getCTAChooseCustomTenure() throws InterruptedException {
         return Elements.getText(driver,ctaChooseCustomTenure, "Choose Custom Tenure");
+    }
+
+
+
+    public boolean scrollOnChooseCustomTenure() throws InterruptedException {
+        return Elements.scrollToElement(driver, ctaChooseCustomTenure);
     }
 
     public void clickOnChooseCustomTenure() throws InterruptedException{
@@ -491,10 +497,15 @@ public class FixedDepositPage {
         return  Elements.getText(driver,ctaPrematurewithdrawals,"Premature withdrawals");
 
     }
+
+    public void scrollToBankAccount() throws InterruptedException {
+        Elements.scrollToElement(driver, ctaBankAccount);
+    }
     public String getBankAccount() throws InterruptedException{
         return Elements.getText(driver,ctaBankAccount,"Bank Account");
 
     }
+
 
     public String getKnowmoreforBankAccount() throws InterruptedException{
         return Elements.getText(driver,ctaKnowmoreforBankAccount,"Know more for bank on bottom sheet");
@@ -586,25 +597,4 @@ public class FixedDepositPage {
         Elements.selectElement(driver,change_cta,"Click on change ");
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
