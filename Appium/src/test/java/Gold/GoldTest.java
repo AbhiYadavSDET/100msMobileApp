@@ -50,7 +50,7 @@ public class GoldTest extends TestBase {
     }
 
 
-    @Test(groups = {"sanity", "goldCoin", "regression"}, priority = 0, description = "Verify Safe Gold Coin")
+    @Test(groups = {"sanity1", "goldCoin", "regression"}, priority = 0, description = "Verify Safe Gold Coin")
     public void Gold_Test03_SafeGoldCoin() throws IOException, InterruptedException {
 
         Log.info("======= START : Gold Coins Test =======");
