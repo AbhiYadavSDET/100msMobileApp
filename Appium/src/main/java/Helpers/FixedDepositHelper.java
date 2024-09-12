@@ -251,11 +251,10 @@ public class FixedDepositHelper {
         //Click on Book next page on amount screen
         fixedDepositPage.ctaNext();
 
-       // fixedDepositPage.clickPartnerBank();
-        fixedDepositPage.clickontenuremonthfromList();
+        // fixedDepositPage.clickPartnerBank();
+        // fixedDepositPage.clickontenuremonthfromList();
 
         String titleTenure = fixedDepositPage.getCTATenure();
-        //String titlePartnerBank = fixedDepositPage.getPartnerBank();
         String titleInterestPA = fixedDepositPage.getInterestPA();
         String titleAnnualYield = fixedDepositPage.getCTAAnnualYield();
         String titleInterestPayout = fixedDepositPage.getInterestPayout();
@@ -263,23 +262,25 @@ public class FixedDepositHelper {
         String titleTotalGains = fixedDepositPage.getTotalGains();
         String titlePrematureWatdrawal = fixedDepositPage.getPrematurewithdrawals();
 
-        screen.swipeUpMore(driver);
-        String titleBankAccount = fixedDepositPage.getBankAccount();
-        String titleKnowMoreforPrematuralWithdrawl = fixedDepositPage.getKnowmoreforPrematuralwithdrawl();
 
         Log.info("Tenure Title :" + titleTenure);
-        //Log.info("Partner Bank Title :" + titlePartnerBank);
         Log.info("Interest PA Title :" + titleInterestPA);
         Log.info("Title Annual Yield :" + titleAnnualYield);
         Log.info("Title InterestPayout :" + titleInterestPayout);
         Log.info("Maturity Amount Title :" + titleMaturityAmount);
         Log.info("Title Total Gains :" + titleTotalGains);
         Log.info("Title PrematureWithdrawal :" + titlePrematureWatdrawal);
+
+        fixedDepositPage.scrollToBankAccount();
+        String titleBankAccount = fixedDepositPage.getBankAccount();
+        String titleKnowMoreforPrematuralWithdrawl = fixedDepositPage.getKnowmoreforPrematuralwithdrawl();
+
+
         Log.info("Title Bank Account:" + titleBankAccount);
         Log.info("Title Know More for Bank:" + titleKnowMoreforPrematuralWithdrawl);
 
         mbReporter.verifyEqualsWithLogging(titleTenure, exptitleTenure, "Tenure", false, false, true);
-       // mbReporter.verifyEqualsWithLogging(titlePartnerBank, exptitlePartnerBank, "Title Partner Bank", false, false, true);
+        // mbReporter.verifyEqualsWithLogging(titlePartnerBank, exptitlePartnerBank, "Title Partner Bank", false, false, true);
         mbReporter.verifyEqualsWithLogging(titleInterestPA, exptitleInterestPA, "Title Interest PA", false, false, true);
         mbReporter.verifyEqualsWithLogging(titleAnnualYield, exptitleAnnualYield, "Title Annual Yield", false, false, true);
         mbReporter.verifyEqualsWithLogging(titleInterestPayout, exptitleInterestPayout, "Title InterestPayout", false, false, true);
@@ -290,7 +291,6 @@ public class FixedDepositHelper {
         mbReporter.verifyEqualsWithLogging(titleKnowMoreforPrematuralWithdrawl, exptitleKnowMoreforBank, "Title Total Gains", false, false, true);
 
     }
-
 
     public void fixeddepositHistory(String exptitleInvestedAmount,String exptitleMaturesOn,String exptitlematurityAmount,String exptitleGains) throws InterruptedException, IOException {
 
@@ -375,7 +375,7 @@ public class FixedDepositHelper {
         fixedDepositPage.ctaDropdownOccupationTypeSelect();
 
         // Click on  proceed page
-       fixedDepositPage.ctasContinue();
+        fixedDepositPage.ctasContinue();
 
     }
 
@@ -384,6 +384,7 @@ public class FixedDepositHelper {
         fixedDepositPage.allServicesCTA();
         fixedDepositPage.scrollToFixedDeposit();
         fixedDepositPage.fixedDepositCTA();
+        fixedDepositPage.scrollOnChooseCustomTenure();
 
         // Click on  Choose Custom filter
         fixedDepositPage.clickOnChooseCustomTenure();
@@ -400,8 +401,6 @@ public class FixedDepositHelper {
         // Click on  tenure filter from the list
         fixedDepositPage.clickonInterestpa();
 
-        // Click on  month filter from the list
-        fixedDepositPage.clickontenuremonthfromList();
 
 
     }
@@ -443,4 +442,3 @@ public class FixedDepositHelper {
 
 
 }
-

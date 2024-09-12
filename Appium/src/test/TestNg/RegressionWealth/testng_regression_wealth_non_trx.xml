@@ -7,7 +7,7 @@
     </listeners>
 
     <test preserve-order="true" name="Regression Wealth Non TRX">
-        <parameter name="build" value="debug"/>
+        <parameter name="build" value="prod"/>
         <parameter name="level" value="payments"/>
         <parameter name="saucelabs" value="false"></parameter>
         <parameter name="codeCoverage" value="false"></parameter>
@@ -28,6 +28,8 @@
             <class name="P2PExtra.P2PExtraTest"/>
             <class name="Gold.GoldTest"/>
             <class name="AccountAggregator.Test_AccountAggregator"/>
+            <class name="FixedDeposit.Test_FixedDeposit"/>
+            <class name="Epfo.Test_Epfo"/>
         </classes>
     </test>
 </suite>

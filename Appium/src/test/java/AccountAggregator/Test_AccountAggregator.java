@@ -12,7 +12,7 @@ public class Test_AccountAggregator extends TestBase {
 
 
 
-    @Test(groups = {"AccountAggregator", "sanity1", "regression"}, priority = 0, description = "Verify Analyser")
+    @Test(groups = {"AccountAggregator", "sanity1", "regression"}, priority = 3, description = "Verify Analyser")
     public void AccountAggregator_Test02_existing_User_Analyser() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
@@ -25,7 +25,7 @@ public class Test_AccountAggregator extends TestBase {
     }
 
 
-    @Test(groups = {"AccountAggregator", "sanity", "regression"}, priority = 0, description = "Verify Existing User flow in AA")
+    @Test(groups = {"AccountAggregator", "sanity", "regression"}, priority = 3, description = "Verify Existing User flow in AA")
     public void AccountAggregator_Test01_existing_User_AA_Dashboard() throws IOException, InterruptedException {
 
 
@@ -40,7 +40,7 @@ public class Test_AccountAggregator extends TestBase {
 
 
 
-    @Test(groups = {"AccountAggregator", "sanity1", "regression", "test"}, priority = 0, description = "Verify Manage Section")
+    @Test(groups = {"AccountAggregator", "sanity1", "regression", "test"}, priority = 3, description = "Verify Manage Section")
     public void AccountAggregator_Test03_existing_User_Manage() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
@@ -53,7 +53,7 @@ public class Test_AccountAggregator extends TestBase {
     }
 
 
-    @Test(groups = {"AccountAggregator", "sanity1", "regression"}, priority = 0, description = "Verify Add account")
+    @Test(groups = {"AccountAggregator", "sanity1", "regression"}, priority = 3, description = "Verify Add account")
     public void AccountAggregator_Test04_AA_new_addaccount() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
@@ -65,7 +65,7 @@ public class Test_AccountAggregator extends TestBase {
 
     }
 
-    @Test(groups = {"AccountAggregator", "sanity1", "regression"}, priority = 0, description = "Verify Month filter on AA")
+    @Test(groups = {"AccountAggregator", "sanity1", "regression"}, priority = 3, description = "Verify Month filter on AA")
     public void AccountAggregator_Test05_AA_Month_Filter() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
@@ -78,7 +78,7 @@ public class Test_AccountAggregator extends TestBase {
     }
 
 
-    @Test(groups = {"AccountAggregator", "sanity1", "regression"}, priority = 0, description = "Verify Month filter on AA")
+    @Test(groups = {"AccountAggregator", "sanity1", "regression"}, priority = 3, description = "Verify Month filter on AA")
     public void AccountAggregator_Test06_AA_Search_Filter() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
@@ -90,7 +90,7 @@ public class Test_AccountAggregator extends TestBase {
 
     }
 
-    @Test(groups = {"AccountAggregator", "sanity1", "regression"}, priority = 0, description = "Verify Retagging")
+    @Test(groups = {"AccountAggregator", "sanity1", "regression"}, priority = 3, description = "Verify Retagging")
     public void AccountAggregator_Test07_AA_New_Retagging() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
@@ -102,7 +102,7 @@ public class Test_AccountAggregator extends TestBase {
 
     }
 
-    @Test(groups = {"AccountAggregator", "sanity1", "regression"}, priority = 0, description = "Verify Retagging")
+    @Test(groups = {"AccountAggregator", "sanity1", "regression"}, priority = 3, description = "Verify Retagging")
     public void AccountAggregator_Test08_AA_DownloadStatement() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
@@ -114,7 +114,7 @@ public class Test_AccountAggregator extends TestBase {
 
     }
 
-    @Test(groups = {"AccountAggregator", "sanity1", "regression"}, priority = 0, description = "Verify Retagging")
+    @Test(groups = {"AccountAggregator", "sanity1", "regression"}, priority = 3, description = "Verify Retagging")
     public void AccountAggregator_Test09_AA_Highlight() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
