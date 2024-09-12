@@ -7,7 +7,7 @@
     </listeners>
 
     <test preserve-order="true" name="Regression Wealth Non TRX">
-        <parameter name="build" value="debug"/>
+        <parameter name="build" value="prod"/>
         <parameter name="level" value="payments"/>
         <parameter name="saucelabs" value="false"></parameter>
         <parameter name="codeCoverage" value="false"></parameter>
