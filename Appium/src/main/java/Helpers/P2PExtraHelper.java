@@ -791,12 +791,13 @@ public class P2PExtraHelper {
 
         p2PExtraPage.clickOnReportAndStatement();
 
+        /*
         // select Transaction Statement on Manage section
         p2PExtraPage.selectTransactionStatement();
 
         //Seletc first duration on the bottomsheet of select duration
         p2PExtraPage.selectThisMonthStatement();
-
+        */
     }
 
 

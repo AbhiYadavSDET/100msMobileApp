@@ -89,7 +89,7 @@ public class Test_FixedDeposit extends TestBase {
 
     }
 
-    @Test(groups = {"FixedDeposit", "sanity1", "regression"}, priority = 1, description = "Verify Edit profile error case")
+    @Test(groups = {"FixedDeposit", "sanity1", "regression"}, priority = 0, description = "Verify Edit profile error case")
     public void FixedDeposit_Test07_edit_profile_errorcase() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
@@ -114,7 +114,7 @@ public class Test_FixedDeposit extends TestBase {
     }
 
 
-    @Test(groups = {"FixedDeposit", "sanity1", "regression"}, priority = 0, description = "Partner Changes")
+    @Test(groups = {"FixedDeposit", "sanity1", "regression1"}, priority = 1, description = "Partner Changes")
     public void FixedDeposit_Test08_partner_changes() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());

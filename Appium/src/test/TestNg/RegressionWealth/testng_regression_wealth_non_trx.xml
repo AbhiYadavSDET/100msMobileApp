@@ -28,6 +28,7 @@
             <class name="P2PExtra.P2PExtraTest"/>
             <class name="Gold.GoldTest"/>
             <class name="AccountAggregator.Test_AccountAggregator"/>
+            <class name="FixedDeposit.Test_FixedDeposit"/>
         </classes>
     </test>
 </suite>
