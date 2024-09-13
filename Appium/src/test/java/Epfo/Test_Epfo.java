@@ -58,14 +58,14 @@ public class Test_Epfo extends TestBase {
     }
 
     @Test(groups = {"EPFO", "sanity1", "regression"}, priority = 0, description = "Verify View all employer")
-    public void Epfo_Test01_epfo_viewall_employer() throws IOException, InterruptedException {
+    public void Test01_epfo_viewALL() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
         loginHelp.quickLoginViaOtp("7042338867", "547372");
         EpfoHelper epfoHelper = new EpfoHelper(getAndroidDriver());
         // Execute the test
-        epfoHelper.epfoDashBoardCurrentEmp("Employee share","Employer share","Pension Share (EPS)","Account Holder’s Name","TRANSACTIONS");
-        Log.info("======= EPFO Verify View all employer =======");
+        epfoHelper.epfoDashBoardAll();
+        Log.info("======= EPFO Verify View ALL employer =======");
     }
 
 }
