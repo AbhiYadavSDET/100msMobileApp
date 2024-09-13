@@ -1,4 +1,5 @@
 package PageObject;
+import Utils.Element;
 import Utils.Elements;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
@@ -156,7 +157,7 @@ public class EpfoPage {
     @AndroidFindBy(id = "txtType")
     private AndroidElement desposit_array_1st;
 
-    @AndroidFindBy(xpath = "(//android.view.ViewGroup[@resource-id='com.mobikwik_new.debug:id/cl_root'])[2]")
+    @AndroidFindBy(xpath = "(//android.view.ViewGroup[contains(@resource-id, 'cl_root')])[2]")
     private AndroidElement get_mobikwikDetails;
 
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Aquimo Sports Private Limited']")
@@ -168,17 +169,20 @@ public class EpfoPage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Ingenuity Gaming Private Limited']")
     private AndroidElement gettext_IngenuityGamin;
 
-    @AndroidFindBy(xpath = "(//*[@resource-id='com.mobikwik_new.debug:id/txt_amount'])[6]")
+    @AndroidFindBy(xpath = "(//android.widget.TextView[contains(@resource-id, 'txt_amount')])[6]")
     private AndroidElement getTotalEPFBalanceIngenuityGaming;
 
-    @AndroidFindBy(xpath = "(//*[@resource-id='com.mobikwik_new.debug:id/txt_value'])[1]")
+    @AndroidFindBy(xpath = "(//android.widget.TextView[contains(@resource-id, 'txt_value')])[1]")
     private AndroidElement getEmployeeShareOneMobikwikSystem;
 
-    @AndroidFindBy(xpath = "(//*[@resource-id='com.mobikwik_new.debug:id/txt_value'])[2]")
+    @AndroidFindBy(xpath = "(//android.widget.TextView[contains(@resource-id, 'txt_value')])[2]")
     private AndroidElement getEmployerShareAmountOneMobikwikSystem;
 
-    @AndroidFindBy(xpath = "(//*[@resource-id='com.mobikwik_new.debug:id/txt_value'])[3]")
+    @AndroidFindBy(xpath = "(//android.widget.TextView[contains(@resource-id, 'txt_value')])[1]")
     private AndroidElement getPensionShareAmountOneMobikwikSystem;
+
+    @AndroidFindBy(xpath = "(//android.widget.ImageView[contains(@resource-id, 'toolbar')])")
+    private AndroidElement backIconElement;
 
     public void clickOnInfoIcon() {
         Elements.selectElement(driver, icfoIcon, "click On Info Icon");
@@ -415,5 +419,9 @@ public class EpfoPage {
 
     public String getPensionShareAOneMobikwikSystem() throws InterruptedException {
         return Elements.getText(driver, getPensionShareAmountOneMobikwikSystem, "Get Employee pension Share Amount");
+    }
+    public void clickBackIcon() {
+        Element.waitForVisibility(driver,backIconElement);
+        Elements.selectElement(driver, backIconElement, "Click on back icon");
     }
 }

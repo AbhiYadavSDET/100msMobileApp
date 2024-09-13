@@ -203,7 +203,6 @@ public class EpfoHelper {
         epfoPage.clickTrackEpfBalance();
         epfoPage.scrollToOneMobikwikSystem();
         epfoPage.clickOnViewAllEmployer();
-        Thread.sleep(6000);
         Log.info("======= Third employer =======");
         epfoPage.clickOnIngenuityGaming();
 
@@ -226,18 +225,13 @@ public class EpfoHelper {
         Log.info("get Pension Share IngenuityGaming: " + getPensionShareIngenuityGaming + ":" + getPensionShareAIngenuityGaming);
         mbReporter.verifyTrueWithLogging(!(getPensionShareAIngenuityGaming ==null), "Verify employer share on EPF page", false, false, true);
 
-        Thread.sleep(3000);
         epfoPage.clickOnAccountDetails();
-        //Thread.sleep(3000);
 
         String getAccountHolderNameIngenuityGaming = epfoPage.gettxtAccountHolderName();
         Log.info(" AccountHolderName for IngenuityGaming:" + getAccountHolderNameIngenuityGaming);
         mbReporter.verifyTrueWithLogging(!(getAccountHolderNameIngenuityGaming.isEmpty()), "get Account Holder name", false, false, true);
-        Thread.sleep(5000);
         driver.navigate().back();
-        Thread.sleep(5000);
-        driver.navigate().back();
-        Thread.sleep(5000);
+        epfoPage.clickBackIcon();
 
         Log.info("======= First employer =======");
         epfoPage.clickOnMobikwikSystemDetails();
@@ -261,18 +255,13 @@ public class EpfoHelper {
         Log.info("get Pension Share MobikwikSystem: " + getPensionShareMobikwikSystem + ":" + getPensionShareAMobikwikSystem);
         mbReporter.verifyTrueWithLogging(!(getPensionShareAMobikwikSystem ==null), "Verify employer share on EPF page", false, false, true);
 
-        Thread.sleep(3000);
         epfoPage.clickOnAccountDetails();
-        Thread.sleep(3000);
 
         String getAccountHolderNameMobikwikSyste = epfoPage.gettxtAccountHolderName();
         Log.info("AccountHolderName for MobikwikSystem:" + getAccountHolderNameMobikwikSyste);
         mbReporter.verifyTrueWithLogging(!(getAccountHolderNameMobikwikSyste.isEmpty()), "get Account Holder name", false, false, true);
-        Thread.sleep(5000);
         driver.navigate().back();
-        Thread.sleep(5000);
-        driver.navigate().back();
-        Thread.sleep(5000);
+        epfoPage.clickBackIcon();
 
         Log.info("======= Second employer =======");
         epfoPage.clickOnAquimoSportsDetails();
@@ -296,20 +285,15 @@ public class EpfoHelper {
         Log.info("get Pension Share AquimoSports: " + getPensionShareAquimoSports + ":" + getPensionShareAAquimoSports);
         mbReporter.verifyTrueWithLogging(!(getPensionShareAAquimoSports ==null), "Verify employer share on EPF page", false, false, true);
 
-        Thread.sleep(3000);
         epfoPage.clickOnAccountDetails();
-        Thread.sleep(3000);
 
         String getAccountHolderNameAquimoSports = epfoPage.gettxtAccountHolderName();
         Log.info("AccountHolderName for AquimoSports:" + getAccountHolderNameAquimoSports);
         mbReporter.verifyTrueWithLogging(!(getAccountHolderNameAquimoSports.isEmpty()), "get Account Holder name", false, false, true);
 
         Log.info("======= fourth employer =======");
-        Thread.sleep(5000);
         driver.navigate().back();
-        Thread.sleep(5000);
-        driver.navigate().back();
-        Thread.sleep(5000);
+        epfoPage.clickBackIcon();
 
         epfoPage.clickOnHermanMillerDetails();
 
@@ -332,9 +316,7 @@ public class EpfoHelper {
         Log.info("get Pension Share HermanMiller: " + getPensionShareHermanMiller + ":" + getPensionShareAHermanMiller);
         mbReporter.verifyTrueWithLogging(!(getPensionShareAHermanMiller ==null), "Verify employer share on EPF page", false, false, true);
 
-        Thread.sleep(3000);
         epfoPage.clickOnAccountDetails();
-        Thread.sleep(3000);
 
         String getAccountHolderNameHermanMiller = epfoPage.gettxtAccountHolderName();
         Log.info("AccountHolderName for HermanMiller:" + getAccountHolderNameHermanMiller);
