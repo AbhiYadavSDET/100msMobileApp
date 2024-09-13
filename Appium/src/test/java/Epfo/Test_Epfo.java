@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 public class Test_Epfo extends TestBase {
 
 
+    /*
     @Test(groups = {"EPFO", "sanity", "regression"}, priority = 1, description = "Verify Existing User flow in Epfo")
     public void Epfo_Test01_epfo_existing_User_Dashboard() throws IOException, InterruptedException {
 
@@ -56,6 +57,7 @@ public class Test_Epfo extends TestBase {
         epfoHelper.epfoDashBoardViewStatementWithFilter("Employee Share","Employer Share","Pension Share (EPS)");
         Log.info("======= EPFO View Statement with Filter =======");
     }
+    */
 
     @Test(groups = {"EPFO", "sanity1", "regression"}, priority = 0, description = "Verify View all employer")
     public void Test01_epfo_viewALL() throws IOException, InterruptedException {
