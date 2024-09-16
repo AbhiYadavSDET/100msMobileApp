@@ -700,8 +700,11 @@ public class P2PExtraHelper {
         // Click on xtra icon on home page.
         p2PExtraPage.selectXtra();
         Element.waitForVisibility(driver, By.xpath("//*/android.widget.TextView[@text = 'History']"));
-        p2PExtraPage.letterToInvestor();
-        p2PExtraPage.iUnderstand();
+
+        if(p2PExtraPage.IsletterToInvestor()) {
+            p2PExtraPage.letterToInvestor();
+            p2PExtraPage.iUnderstand();
+        }
 
         //Your Portfolio for invested users
         String portfoliotxt = p2PExtraPage.getPortfoliotxt();
