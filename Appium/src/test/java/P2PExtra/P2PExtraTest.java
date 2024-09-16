@@ -116,7 +116,7 @@ public class P2PExtraTest extends TestBase {
 
 
 
-    @Test(groups = {"p2pXtraNewUser","sanity1"}, priority = 0, description = "Verify Xtra : Add Nominee from settings option")
+    @Test(groups = {"p2pXtraNewUser","sanity1"}, priority = 1, description = "Verify Xtra : Add Nominee from settings option")
     public void P2PExtra_Test07_Xtra_Check_Nominee_Details() throws InterruptedException, IOException {
 
         Log.info("======= START : XTRA - Check Nominee Details from Settings Option=======");
@@ -185,7 +185,7 @@ public class P2PExtraTest extends TestBase {
     }
 
 
-    @Test(groups = {"p2pXtraNewUser","sanity","regression"}, priority = 1, description = "Verify Invest new xtar Revamp")
+    @Test(groups = {"p2pXtraNewUser","sanity","regression"}, priority = 0, description = "Verify Invest new xtar Revamp")
     public void P2PExtra_Test02_Invest_Loancreation() throws InterruptedException, IOException {
 
         Log.info("======= START : p2p XTRA loan creation Test =======");
@@ -201,7 +201,7 @@ public class P2PExtraTest extends TestBase {
 
     }
 
-    @Test(groups = {"p2pXtraNewUser","sanity","regression"}, priority = 0, description = "Verify p2p XTRA Manage section report and statement")
+    @Test(groups = {"p2pXtraNewUser","sanity","regression"}, priority = 1, description = "Verify p2p XTRA Manage section report and statement")
     public void P2PExtra_Test03_Manage_Report_and_Statement() throws InterruptedException, IOException {
 
         Log.info("======= START : p2p XTRA Manage section report and statement =======");

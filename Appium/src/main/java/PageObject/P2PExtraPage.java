@@ -795,6 +795,11 @@ public class P2PExtraPage {
         Elements.selectElement(driver,read_again_cta,"Click on Read Again");
     }
 
+
+    public Boolean IsletterToInvestor() throws InterruptedException {
+        return Elements.isElementPresent(driver, read_again_cta);
+    }
+
     public void iUnderstand() {
         Elements.selectElement(driver,i_understand_cta,"Click on I understand");
     }
