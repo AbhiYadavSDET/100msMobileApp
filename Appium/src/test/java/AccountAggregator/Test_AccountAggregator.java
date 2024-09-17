@@ -24,7 +24,7 @@ public class Test_AccountAggregator extends TestBase {
 
     }
 
-/*
+
     @Test(groups = {"AccountAggregator", "sanity", "regression"}, priority = 3, description = "Verify Existing User flow in AA")
     public void AccountAggregator_Test01_existing_User_AA_Dashboard() throws IOException, InterruptedException {
 
@@ -126,6 +126,5 @@ public class Test_AccountAggregator extends TestBase {
 
     }
 
-*/
 
 }
