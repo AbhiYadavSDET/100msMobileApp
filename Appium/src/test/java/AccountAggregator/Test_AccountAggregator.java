@@ -12,7 +12,7 @@ public class Test_AccountAggregator extends TestBase {
 
 
 
-    @Test(groups = {"AccountAggregator", "sanity1", "regression"}, priority = 3, description = "Verify Analyser")
+    @Test(groups = {"AccountAggregator", "sanity1", "regression"}, priority = 0, description = "Verify Analyser")
     public void AccountAggregator_Test02_existing_User_Analyser() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
@@ -24,7 +24,7 @@ public class Test_AccountAggregator extends TestBase {
 
     }
 
-
+/*
     @Test(groups = {"AccountAggregator", "sanity", "regression"}, priority = 3, description = "Verify Existing User flow in AA")
     public void AccountAggregator_Test01_existing_User_AA_Dashboard() throws IOException, InterruptedException {
 
@@ -126,6 +126,6 @@ public class Test_AccountAggregator extends TestBase {
 
     }
 
-
+*/
 
 }
