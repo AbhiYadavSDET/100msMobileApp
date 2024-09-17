@@ -204,6 +204,7 @@ public class AAHelper {
         Log.info("Click On Analyser HomePage ");
         Thread.sleep(2000);
         Elements.tapByCoordinates(57,916,driver);
+        Thread.sleep(4000);
         Element.waitForVisibility(driver, By.xpath("//*/android.widget.TextView[@text = 'DEBITS']"));
 
         String debitText = aaPage.getDebitText();
