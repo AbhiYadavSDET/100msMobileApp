@@ -942,6 +942,10 @@ public class AccountAggregatorPage {
         return Elements.getText(driver, debitTextOnAnlyser);
     }
 
+    public boolean isDebitTextPresent() throws InterruptedException {
+        return Elements.isElementPresent(driver, debitTextOnAnlyser);
+    }
+
     public String getCreditText() throws InterruptedException {
         return Elements.getText(driver, creditTextOnAnlyser);
     }

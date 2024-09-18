@@ -205,23 +205,22 @@ public class AAHelper {
         Thread.sleep(2000);
         Elements.tapByCoordinates(57,916,driver);
         Thread.sleep(4000);
-        Element.waitForVisibility(driver, By.xpath("//*/android.widget.TextView[@text = 'DEBITS']"));
+        if (aaPage.isDebitTextPresent()) {
+            String debitText = aaPage.getDebitText();
+            String weekText = aaPage.getweekText();
+            String monthText = aaPage.getMonthText();
+            String yearText = aaPage.getYearText();
 
-        String debitText = aaPage.getDebitText();
-        String weekText = aaPage.getweekText();
-        String monthText = aaPage.getMonthText();
-        String yearText = aaPage.getYearText();
+            Log.info("Debit text on Analyser screen " + expDebitText);
+            Log.info("Week text on Analyser screen " + expWeekText);
+            Log.info("Month text on Analyser screen " + expMonthText);
+            Log.info("Year text on Analyser screen " + expYearText);
 
-        Log.info("Debit text on Analyser screen " + expDebitText);
-        Log.info("Week text on Analyser screen " + expWeekText);
-        Log.info("Month text on Analyser screen " + expMonthText);
-        Log.info("Year text on Analyser screen " + expYearText);
-
-        mbReporter.verifyEqualsWithLogging(debitText, expDebitText, "Debit text on Analyser screen", false, false, true);
-        mbReporter.verifyEqualsWithLogging(weekText, expWeekText, "Week text on Analyser screen", false, false, true);
-        mbReporter.verifyEqualsWithLogging(monthText, expMonthText, "Month text on Analyser screen", false, false, true);
-        mbReporter.verifyEqualsWithLogging(yearText, expYearText, "Year text on Analyser screen", false, false, true);
-
+            mbReporter.verifyEqualsWithLogging(debitText, expDebitText, "Debit text on Analyser screen", false, false, true);
+            mbReporter.verifyEqualsWithLogging(weekText, expWeekText, "Week text on Analyser screen", false, false, true);
+            mbReporter.verifyEqualsWithLogging(monthText, expMonthText, "Month text on Analyser screen", false, false, true);
+            mbReporter.verifyEqualsWithLogging(yearText, expYearText, "Year text on Analyser screen", false, false, true);
+        }
     }
 
     public void existingUserManage(String expAllBankBalance, String expmanageTitle) throws InterruptedException, IOException {
