@@ -291,7 +291,7 @@ public class P2PExtraPage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'I Understand']")
     private AndroidElement i_understand_cta;
 
-    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Your Portfolio']")
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'YOUR LOAN PORTFOLIO']")
     private AndroidElement portfolio_txt;
 
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Next Repayment']")
