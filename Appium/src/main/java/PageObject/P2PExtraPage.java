@@ -21,7 +21,7 @@ public class P2PExtraPage {
     // Xtra Main Page.
 
 
-    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Earn 14%']")
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Xtra']")
     private AndroidElement xtra_icon;
 
     @AndroidFindBy(id = "non_focusing_scroll")
