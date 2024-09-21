@@ -321,6 +321,8 @@ public class P2PExtraPage {
     @AndroidFindBy(id = "rv_main")
     private AndroidElement borrower_preference_bottomsheet;
 
+    @AndroidFindBy(xpath = "//*[@text = 'All Services']")
+    private AndroidElement allServicesCTA;
 
     public P2PExtraPage(AndroidDriver driver) throws IOException {
 
@@ -336,9 +338,17 @@ public class P2PExtraPage {
         Log.info("*****All Services Page*****");
     }
 
+    public void allServicesCTA() throws InterruptedException{
+        Elements.selectElement(driver,allServicesCTA,"Click on all services");
+    }
+
+    public void scrollToXtra() throws InterruptedException {
+        Elements.scrollToElement(driver,xtra_icon);
+    }
     public void selectXtra() throws InterruptedException {
         Element.selectElement(driver, xtra_icon, "Tap on xtra icon");
     }
+
 
 
     public String getPortfolioValue() throws InterruptedException {

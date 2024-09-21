@@ -46,6 +46,8 @@ public class P2PExtraHelper {
         Log.info("amount : " + amount);
 
         // Click on xtra icon on home page.
+        p2PExtraPage.allServicesCTA();
+        p2PExtraPage.scrollToXtra();
         p2PExtraPage.selectXtra();
 
         if(p2PExtraPage.checkInfoPageHeading()){
@@ -152,6 +154,8 @@ public class P2PExtraHelper {
         Log.info("expTitle : " + expTitle);
 
         // Click on xtra icon on home page.
+        p2PExtraPage.allServicesCTA();
+        p2PExtraPage.scrollToXtra();
         p2PExtraPage.selectXtra();
 
 
@@ -210,6 +214,8 @@ public class P2PExtraHelper {
         Log.info("expTitle : " + expTitle);
 
         // Click on xtra icon on home page.
+        p2PExtraPage.allServicesCTA();
+        p2PExtraPage.scrollToXtra();
         p2PExtraPage.selectXtra();
 
         // Click on Got it to remove referral bottom sheet.
@@ -281,6 +287,8 @@ public class P2PExtraHelper {
         Log.info("expTitle : " + expTitle);
 
         // Click on xtra icon on home page.
+        p2PExtraPage.allServicesCTA();
+        p2PExtraPage.scrollToXtra();
         p2PExtraPage.selectXtra();
 
         // Click on Got it to remove referral bottom sheet.
@@ -313,6 +321,8 @@ public class P2PExtraHelper {
         Log.info("----------- Arguments ---------------");
 
         // Click on xtra icon on home page.
+        p2PExtraPage.allServicesCTA();
+        p2PExtraPage.scrollToXtra();
         p2PExtraPage.selectXtra();
 
         if (mbkCommonControlsPage.isWhitePopUpPresent()) {
@@ -371,6 +381,8 @@ public class P2PExtraHelper {
         Log.info("----------- Arguments ---------------");
 
         // Click on xtra icon on home page.
+        p2PExtraPage.allServicesCTA();
+        p2PExtraPage.scrollToXtra();
         p2PExtraPage.selectXtra();
 
         if (mbkCommonControlsPage.isWhitePopUpPresent()) {
@@ -467,6 +479,8 @@ public class P2PExtraHelper {
         Log.info("----------- Arguments ---------------");
 
         // Click on xtra icon on home page.
+        p2PExtraPage.allServicesCTA();
+        p2PExtraPage.scrollToXtra();
         p2PExtraPage.selectXtra();
 
         if (mbkCommonControlsPage.isWhitePopUpPresent()) {
@@ -511,6 +525,8 @@ public class P2PExtraHelper {
 
 
         // Click on xtra icon on home page.
+        p2PExtraPage.allServicesCTA();
+        p2PExtraPage.scrollToXtra();
         p2PExtraPage.selectXtra();
 
         // Click on screen to remove bottom sheet.
@@ -605,6 +621,8 @@ public class P2PExtraHelper {
         Log.info("----------- Arguments ---------------");
 
         // Click on xtra icon on home page.
+        p2PExtraPage.allServicesCTA();
+        p2PExtraPage.scrollToXtra();
         p2PExtraPage.selectXtra();
 
         if (mbkCommonControlsPage.isWhitePopUpPresent()) {
@@ -663,6 +681,8 @@ public class P2PExtraHelper {
         Log.info("expTitle : " + expTitle);
 
         // Click on xtra icon on home page.
+        p2PExtraPage.allServicesCTA();
+        p2PExtraPage.scrollToXtra();
         p2PExtraPage.selectXtra();
 
         // Click on Got it to remove referral bottom sheet.
@@ -698,6 +718,8 @@ public class P2PExtraHelper {
 
 
         // Click on xtra icon on home page.
+        p2PExtraPage.allServicesCTA();
+        p2PExtraPage.scrollToXtra();
         p2PExtraPage.selectXtra();
         Element.waitForVisibility(driver, By.xpath("//*/android.widget.TextView[@text = 'History']"));
 
@@ -764,6 +786,8 @@ public class P2PExtraHelper {
         Log.info("----------- Manage Section report and download  ---------------");
 
         // Click on xtra icon on home page.
+        p2PExtraPage.allServicesCTA();
+        p2PExtraPage.scrollToXtra();
         p2PExtraPage.selectXtra();
 
         //Click on Settings option on XTRA dashboard
@@ -809,6 +833,8 @@ public class P2PExtraHelper {
         Log.info("----------- Manage Setting Flow ---------------");
 
         // Click on xtra icon on home page.
+        p2PExtraPage.allServicesCTA();
+        p2PExtraPage.scrollToXtra();
         p2PExtraPage.selectXtra();
 
         //Click on Settings option on XTRA dashboard

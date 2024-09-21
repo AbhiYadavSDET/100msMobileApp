@@ -168,7 +168,7 @@ public class P2PExtraTest extends TestBase {
 
 
     @Test(groups = {"p2pXtraInvestInFixedErrorCase", "sanityPrime"}, priority = 1, description = "Verify Invest in Fixed flow")
-    public void P2PExtra_Test10_Xtra_Invest_In_Fixed_errorcase() throws InterruptedException, IOException {
+    public void P2PExtra_Test1_Xtra_Invest_In_Fixed_errorcase() throws InterruptedException, IOException {
 
         Log.info("======= START : p2p XTRA-FIXED Invest error case test =======");
 
@@ -186,7 +186,7 @@ public class P2PExtraTest extends TestBase {
 
 
     @Test(groups = {"p2pXtraNewUser","sanity","regression"}, priority = 0, description = "Verify Invest new xtar Revamp")
-    public void P2PExtra_Test02_Invest_Loancreation() throws InterruptedException, IOException {
+    public void P2PExtra_Test01_Invest_Loancreation() throws InterruptedException, IOException {
 
         Log.info("======= START : p2p XTRA loan creation Test =======");
 
@@ -202,7 +202,7 @@ public class P2PExtraTest extends TestBase {
     }
 
     @Test(groups = {"p2pXtraNewUser","sanity","regression"}, priority = 1, description = "Verify p2p XTRA Manage section report and statement")
-    public void P2PExtra_Test03_Manage_Report_and_Statement() throws InterruptedException, IOException {
+    public void P2PExtra_Test02_Manage_Report_and_Statement() throws InterruptedException, IOException {
 
         Log.info("======= START : p2p XTRA Manage section report and statement =======");
 
