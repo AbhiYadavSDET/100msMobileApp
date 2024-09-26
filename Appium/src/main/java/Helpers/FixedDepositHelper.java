@@ -80,10 +80,10 @@ public class FixedDepositHelper {
         mbReporter.verifyEqualsWithLogging(titleMaximizeYourFDReturn, exptitleMaximizeYourFDReturn, "Choose maximize Your FD Return", false, false, true);
 
         fixedDepositPage.scrollFrequentlyAskedQuestion();
-        screen.swipeUpMore(driver);
         String titleFAQ = fixedDepositPage.getCTAFAQ();
         Log.info("FAQ :" + titleFAQ);
         mbReporter.verifyEqualsWithLogging(titleFAQ, expttitleFAQ, "FAQ", false, false, true);
+        screen.swipeUpMore(driver);
         fixedDepositPage.clickonfirstfaq();
 
         fixedDepositPage.scrolltoNeedHelp();
