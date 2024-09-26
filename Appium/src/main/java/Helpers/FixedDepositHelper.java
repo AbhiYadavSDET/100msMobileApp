@@ -83,6 +83,7 @@ public class FixedDepositHelper {
         String titleFAQ = fixedDepositPage.getCTAFAQ();
         Log.info("FAQ :" + titleFAQ);
         mbReporter.verifyEqualsWithLogging(titleFAQ, expttitleFAQ, "FAQ", false, false, true);
+
         screen.swipeUpMore(driver);
         fixedDepositPage.clickonfirstfaq();
 
