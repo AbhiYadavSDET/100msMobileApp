@@ -26,7 +26,7 @@ public class Test_FixedDeposit extends TestBase {
     }
 
 
-    /*@Test(groups = {"FixedDeposit", "sanity1", "regression"}, priority = 2, description = "Verify Existing User book now")
+    @Test(groups = {"FixedDeposit", "sanity1", "regression"}, priority = 2, description = "Verify Existing User book now")
     public void FixedDeposit_Test02_book_fd_flow() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
@@ -125,5 +125,5 @@ public class Test_FixedDeposit extends TestBase {
         fixedDepositHelper.partnerChangesfromTopOnSummeryScreen("Partner Bank/NBFC", "Bank", "Interest p.a.");
         Log.info("======= Fixed Deposit test =======");
 
-    }*/
+    }
 }
