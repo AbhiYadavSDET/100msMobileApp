@@ -54,8 +54,10 @@ public class AAHelper {
 
             aaPage.scrollTotrackBankAccounts();
             aaPage.clickOnTrackBankAccounts();
-
             Element.waitForVisibility(driver, By.id("bottom_navigation_tool_tip"));
+
+            screen.tapAtCentre(driver);
+            aaPage.clickOnUnhideIcon();
 
             Elements.tapByCoordinates(57,916,driver);
 

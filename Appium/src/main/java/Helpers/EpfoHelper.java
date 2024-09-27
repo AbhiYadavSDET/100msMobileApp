@@ -156,6 +156,7 @@ public class EpfoHelper {
         Thread.sleep(1000);
         driver.navigate().back();
         Thread.sleep(5000);
+        epfoPage.clickOnInfoIcon();
         epfoPage.clickPensionShare();
 
     }
