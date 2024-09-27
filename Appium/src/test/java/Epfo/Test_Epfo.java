@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 public class Test_Epfo extends TestBase {
 
 
-    /*@Test(groups = {"EPFO", "sanity", "regression"}, priority = 1, description = "Verify Existing User flow in Epfo")
+    @Test(groups = {"EPFO", "sanity", "regression"}, priority = 1, description = "Verify Existing User flow in Epfo")
     public void Epfo_Test01_epfo_existing_User_Dashboard() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
@@ -32,7 +32,7 @@ public class Test_Epfo extends TestBase {
         epfoHelper.epfoDashBoardNewUser("Track your Employee Provident Fund","Input your UAN","Know more about activation","Proceed","Find your UAN");
         Log.info("======= EPFO New Dashboard test =======");
 
-    }*/
+    }
 
    @Test(groups = {"EPFO", "sanity1", "regression"}, priority = 1, description = "Verify balance breakup")
     public void Epfo_Test01_epfo_balance_breakup() throws IOException, InterruptedException {
@@ -46,7 +46,7 @@ public class Test_Epfo extends TestBase {
 
     }
 
-    /*@Test(groups = {"EPFO", "sanity1", "regression"}, priority = 1, description = "Verify View Statement with Filter")
+    @Test(groups = {"EPFO", "sanity1", "regression"}, priority = 1, description = "Verify View Statement with Filter")
     public void Epfo_Test01_epfo_viewStatement_withFilter() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
@@ -67,5 +67,5 @@ public class Test_Epfo extends TestBase {
         epfoHelper.epfoDashBoardAll();
         Log.info("======= EPFO Verify View ALL employer =======");
     }
-*/
+
 }
