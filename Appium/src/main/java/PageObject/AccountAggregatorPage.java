@@ -402,6 +402,14 @@ public class AccountAggregatorPage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Tax Progress']")
     private AndroidElement getFirstTaxCarsTxt;
 
+    @AndroidFindBy(id = "tip_cross_btn")
+    private AndroidElement hideUhideEyeIcon;
+
+    @AndroidFindBy(id = "tv_tip")
+    private AndroidElement toolTip;
+
+
+
     public AccountAggregatorPage(AndroidDriver driver) throws IOException {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -1093,8 +1101,13 @@ public class AccountAggregatorPage {
     public void clickOnFirstSearchvalue() throws InterruptedException{
         Elements.selectElement(driver,firstSearchTxt,"Click on first search text");
     }
+    public void clickOnUnhideIcon() throws InterruptedException{
 
-
+        if(Elements.isElementPresent(driver,toolTip)){
+            Elements.selectElement(driver,toolTip,"Clicking to close the tooltip");
+        }
+        Elements.selectElement(driver,hideUhideEyeIcon,"Click on unhide eye icon");
+    }
 }
 
 

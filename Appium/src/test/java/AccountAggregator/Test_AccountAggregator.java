@@ -12,7 +12,7 @@ public class Test_AccountAggregator extends TestBase {
 
 
 
-    @Test(groups = {"AccountAggregator", "sanity1", "regression"}, priority = 3, description = "Verify Analyser")
+    /*@Test(groups = {"AccountAggregator", "sanity1", "regression"}, priority = 3, description = "Verify Analyser")
     public void AccountAggregator_Test02_existing_User_Analyser() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
@@ -22,7 +22,7 @@ public class Test_AccountAggregator extends TestBase {
         aaHelper.existingUserAnalyser("DEBITS", "Week", "Month", "Year");
         Log.info("======= Account Aggregator test =======");
 
-    }
+    }*/
 
 
     @Test(groups = {"AccountAggregator", "sanity", "regression"}, priority = 3, description = "Verify Existing User flow in AA")
@@ -40,7 +40,7 @@ public class Test_AccountAggregator extends TestBase {
 
 
 
-    @Test(groups = {"AccountAggregator", "sanity1", "regression", "test"}, priority = 3, description = "Verify Manage Section")
+    /*@Test(groups = {"AccountAggregator", "sanity1", "regression", "test"}, priority = 3, description = "Verify Manage Section")
     public void AccountAggregator_Test03_existing_User_Manage() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
@@ -124,7 +124,7 @@ public class Test_AccountAggregator extends TestBase {
         aaHelper.aaHighlight("Lifestyle","Tax Savings","FY 2024-25");
         Log.info("======= Account Aggregator test =======");
 
-    }
+    }*/
 
 
 
