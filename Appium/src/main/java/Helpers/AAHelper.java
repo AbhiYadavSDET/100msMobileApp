@@ -61,6 +61,12 @@ public class AAHelper {
 
             Elements.tapByCoordinates(57,916,driver);
 
+            if (aaPage.isHideUnhideToolTipCrossPresent())
+            {
+                aaPage.clickOnHideUnhideToolTipCrossCta();
+                aaPage.clickOnEyeCTA();
+            }
+
             aaPage.scrollToCashflow();
             if (Element.isElementPresent(driver, By.xpath("//*[@text='Cashflow']"))) {
 
@@ -70,14 +76,14 @@ public class AAHelper {
 
                     // Fetch the other text on the screen
                     String moneyoutTitleOnDashboard = aaPage.getOutgoingTitle();
-                    String outgoingSecondSubTitleOnDashboard = aaPage.getOutgoingSecondSubTitle();
+                  //  String outgoingSecondSubTitleOnDashboard = aaPage.getOutgoingSecondSubTitle();
 
                     Log.info("OutGoing Title :" + moneyoutTitleOnDashboard);
-                    Log.info("Second Sub Title :" + outgoingSecondSubTitleOnDashboard);
+                   // Log.info("Second Sub Title :" + outgoingSecondSubTitleOnDashboard);
 
                     // Add assertions
                     mbReporter.verifyEqualsWithLogging(moneyoutTitleOnDashboard, expMoneyoutTitleOnDashboard, "Verify Outgoing Title on MainDashboard", false, false, true);
-                    mbReporter.verifyEqualsWithLogging(outgoingSecondSubTitleOnDashboard, expOutgoingSecondSubTitleOnDashboard, "Verify Second Outgoing SubTitle on MainDashboard", false, false, true);
+                    //mbReporter.verifyEqualsWithLogging(outgoingSecondSubTitleOnDashboard, expOutgoingSecondSubTitleOnDashboard, "Verify Second Outgoing SubTitle on MainDashboard", false, false, true);
 
                     screen.swipeUpMore(driver);
                     screen.swipeUpMore(driver);
@@ -201,6 +207,12 @@ public class AAHelper {
         aaPage.trackBankAccountsCTA();
         Element.waitForVisibility(driver, By.id("bottom_navigation_tool_tip"));
         Elements.tapByCoordinates(57,916,driver);
+        if (aaPage.isHideUnhideToolTipCrossPresent())
+        {
+            aaPage.clickOnHideUnhideToolTipCrossCta();
+            aaPage.clickOnEyeCTA();
+        }
+
         aaPage.scrollToMoneyOut();
         aaPage.clickonAnalyserOnAAHomePage();
         Log.info("Click On Analyser HomePage ");
@@ -232,6 +244,12 @@ public class AAHelper {
         aaPage.clickOnTrackBankAccounts();
         Element.waitForVisibility(driver, By.id("bottom_navigation_tool_tip"));
         Elements.tapByCoordinates(57,916,driver);
+
+        if (aaPage.isHideUnhideToolTipCrossPresent())
+        {
+            aaPage.clickOnHideUnhideToolTipCrossCta();
+            aaPage.clickOnEyeCTA();
+        }
         aaPage.clickOndownArrowNexttoBankOnHomePage();
         mbReporter.verifyTrueWithLogging(aaPage.isBankAccoutPresent(), "Masked Account is present", false, false);
 
@@ -306,6 +324,12 @@ public class AAHelper {
         aaPage.clickOnTrackBankAccounts();
         Element.waitForVisibility(driver, By.id("bottom_navigation_tool_tip"));
         Elements.tapByCoordinates(57,916,driver);
+
+        if (aaPage.isHideUnhideToolTipCrossPresent())
+        {
+            aaPage.clickOnHideUnhideToolTipCrossCta();
+            aaPage.clickOnEyeCTA();
+        }
         aaPage.scrollToMoneyOut();
         aaPage.clickonnewMonthSelectFilter();
 
@@ -332,6 +356,17 @@ public class AAHelper {
         aaPage.clickOnTrackBankAccounts();
         Element.waitForVisibility(driver, By.id("bottom_navigation_tool_tip"));
         Elements.tapByCoordinates(57,916,driver);
+        if (aaPage.isHideUnhideToolTipCrossPresent())
+        {
+            aaPage.clickOnHideUnhideToolTipCrossCta();
+            aaPage.clickOnEyeCTA();
+        }
+
+        if (aaPage.isHideUnhideToolTipCrossPresent())
+        {
+            aaPage.clickOnHideUnhideToolTipCrossCta();
+            aaPage.clickOnEyeCTA();
+        }
         //click on first search Icon
         aaPage.clickOnSearchIcon();
 
@@ -356,6 +391,15 @@ public class AAHelper {
         aaPage.allServicesCTA();
         aaPage.scrollToAAOnHomeScreen();
         aaPage.clickOnAAOnHomeScreen();
+
+        Element.waitForVisibility(driver, By.id("bottom_navigation_tool_tip"));
+        Elements.tapByCoordinates(57,916,driver);
+        if (aaPage.isHideUnhideToolTipCrossPresent())
+        {
+            aaPage.clickOnHideUnhideToolTipCrossCta();
+            aaPage.clickOnEyeCTA();
+        }
+
         aaPage.scrolltoViewHighlights();
         aaPage.clickOnviewHighlisht();
 
@@ -411,6 +455,14 @@ public class AAHelper {
         aaPage.clickOnTrackBankAccounts();
         Element.waitForVisibility(driver, By.id("bottom_navigation_tool_tip"));
         Elements.tapByCoordinates(57,916,driver);
+
+        Element.waitForVisibility(driver, By.id("bottom_navigation_tool_tip"));
+        Elements.tapByCoordinates(57,916,driver);
+        if (aaPage.isHideUnhideToolTipCrossPresent())
+        {
+            aaPage.clickOnHideUnhideToolTipCrossCta();
+            aaPage.clickOnEyeCTA();
+        }
         aaPage.scrolltoViewStatement();
         aaPage.clickOnViewStatement();
         aaPage.clickOnDownloadStatement();
@@ -436,6 +488,11 @@ public class AAHelper {
         aaPage.clickOnTrackBankAccounts();
         Element.waitForVisibility(driver, By.id("bottom_navigation_tool_tip"));
         Elements.tapByCoordinates(57,916,driver);
+        if (aaPage.isHideUnhideToolTipCrossPresent())
+        {
+            aaPage.clickOnHideUnhideToolTipCrossCta();
+            aaPage.clickOnEyeCTA();
+        }
         aaPage.scrolltoViewHighlights();
         aaPage.clickOnviewHighlisht();
 

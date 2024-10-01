@@ -410,6 +410,15 @@ public class AccountAggregatorPage {
 
 
 
+    @AndroidFindBy(id = "bottom_navigation_tool_tip")
+    private AndroidElement searchToolTip;
+
+    @AndroidFindBy(id = "tip_cross_btn")
+    private AndroidElement hideUnhideToolTipCrossCta;
+
+    @AndroidFindBy(id = "eye_btn")
+    private AndroidElement eyeCta;
+
     public AccountAggregatorPage(AndroidDriver driver) throws IOException {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -1074,6 +1083,32 @@ public class AccountAggregatorPage {
 
     public void ckickOnIntro() throws InterruptedException{
         Elements.selectElement(driver, intro_txt, "Click on Intro CTA");
+    }
+
+    //Tooltip for search or chat bot
+
+    public void clickOnSearchToolTip() throws InterruptedException{
+        Elements.selectElement(driver,searchToolTip,"Click on first search tool tip");
+    }
+
+    public boolean isSearchToolTipPresent() throws InterruptedException {
+        return Elements.isElementPresent(driver, searchToolTip);
+    }
+
+    public void clickOnHideUnhideToolTipCrossCta() throws InterruptedException{
+        Elements.selectElement(driver,hideUnhideToolTipCrossCta,"Click on Hide Unhide Tool Tip Cross Cta");
+    }
+
+    public boolean isHideUnhideToolTipCrossPresent() throws InterruptedException {
+        return Elements.isElementPresent(driver, hideUnhideToolTipCrossCta);
+    }
+
+    public void clickOnEyeCTA() throws InterruptedException{
+        Elements.selectElement(driver,eyeCta,"Click on Eye CTA");
+    }
+
+    public boolean isOnEyeCTA() throws InterruptedException {
+        return Elements.isElementPresent(driver, eyeCta);
     }
 
 

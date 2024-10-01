@@ -69,7 +69,7 @@ public class CCPage {
     @AndroidFindBy(id = "btn_submit")
     private AndroidElement continueCTA;
 
-    @AndroidFindBy(id = "cl_amt_manual")
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Enter Amount Manually']")
     private AndroidElement enterAmountManually;
 
     @AndroidFindBy(id = "cl_coupon_view")
@@ -215,7 +215,7 @@ public class CCPage {
     }
 
     public void clickEnterAmountField(){
-        Elements.selectElement(driver, enterText, "click on Enter amount manually text box");
+        Elements.selectElement(driver, enterAmountManually, "click on Enter amount manually text box");
     }
 
 
