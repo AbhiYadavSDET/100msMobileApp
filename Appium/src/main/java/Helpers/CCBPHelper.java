@@ -81,7 +81,6 @@ public class CCBPHelper {
         // Click on Credit card payment option
         ccPage.clickOnCreditCardPayment();
 
-
         //Close Email Sync Bottom sheet
         if(syncEmailBottomSheet.checkEmailSyncBottomSheet())
         {
@@ -98,12 +97,12 @@ public class CCBPHelper {
 
         //Click on Enter card number text box
         ccPage.clickEnterCardNumber();
-
         ccPage.enterCardNumber(cardNumber);
 
         //Click Continue CTA
         ccPage.clickContinueCTA();
 
+        //yaha failure
         //click on enter amount manually
         ccPage.clickEnterAmountManually();
 
