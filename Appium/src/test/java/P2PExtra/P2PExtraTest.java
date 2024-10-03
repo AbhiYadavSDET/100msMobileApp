@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class P2PExtraTest extends TestBase {
 
-/*
+
     @Test(groups = {"p2pXtraWithdraw"}, priority = 1, description = "Verify Withdraw Money")
     public void P2PExtra_Test01_Xtra_Withdraw_Money() throws InterruptedException, IOException {
 
@@ -233,22 +233,5 @@ public class P2PExtraTest extends TestBase {
         Log.info("======= END : p2p Settings =======");
 
     }
-*/
-
-    @Test(groups = {"p2pXtraNewUser","sanity","regression"}, priority = 1, description = "Verify p2p XTRA Manage section report and statement")
-    public void P2PExtra_Test02_Manage_Report_and_Statement() throws InterruptedException, IOException {
-
-        Log.info("======= START : p2p XTRA Manage section report and statement =======");
-
-        // Start the test
-        LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
-        loginHelp.quickLoginViaOtp("7042338867", "547372");
-
-        P2PExtraHelper p2PExtraHelper = new P2PExtraHelper(getAndroidDriver());
-        p2PExtraHelper.checkManageFlow("Interest Certificate","Transaction Statements");
-        Log.info("======= END : p2p XTRA Manage section report and statement =======");
-
-    }
-
 
 }
