@@ -455,9 +455,6 @@ public class AAHelper {
         aaPage.clickOnTrackBankAccounts();
         Element.waitForVisibility(driver, By.id("bottom_navigation_tool_tip"));
         Elements.tapByCoordinates(57,916,driver);
-
-        Element.waitForVisibility(driver, By.id("bottom_navigation_tool_tip"));
-        Elements.tapByCoordinates(57,916,driver);
         if (aaPage.isHideUnhideToolTipCrossPresent())
         {
             aaPage.clickOnHideUnhideToolTipCrossCta();

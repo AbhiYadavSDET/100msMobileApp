@@ -769,14 +769,11 @@ public class P2PExtraHelper {
         Thread.sleep(1000);
         driver.navigate().back();
         Thread.sleep(1000);
-
         p2PExtraPage.scrollToReportAndStatement();
         p2PExtraPage.clickOnReportAndStatement();
         Thread.sleep(1000);
         driver.navigate().back();
         Thread.sleep(1000);
-
-
 
     }
 
@@ -791,21 +788,20 @@ public class P2PExtraHelper {
         p2PExtraPage.selectXtra();
 
         //Click on Settings option on XTRA dashboard
-        p2PExtraPage.scrollToReportAndStatement();
-
+       // p2PExtraPage.scrollToReportAndStatement();
+        p2PExtraPage.scrollToFAQ();
         //cLICK ON REPORT AND STATEMENT ON XTRA HOME PAGE UNDER MANAGE
         p2PExtraPage.clickOnReportAndStatement();
-
 
         String interestCertificate = p2PExtraPage.getInterestCertificate();
         Log.info("interest Certificate : " + interestCertificate);
 
-       // String transactionStatement = p2PExtraPage.getTransactionStatement();
+        // String transactionStatement = p2PExtraPage.getTransactionStatement();
        // Log.info("Transaction Statement : " + transactionStatement);
 
         // Add the assertions
         mbReporter.verifyEqualsWithLogging(interestCertificate, expinterestCertificate, "interest Certificate", false, false, true);
-       // mbReporter.verifyEqualsWithLogging(transactionStatement, exptransactionStatement, "Transaction Statement", false, false, true);
+        //mbReporter.verifyEqualsWithLogging(transactionStatement, exptransactionStatement, "Transaction Statement", false, false, true);
 
         // select Interest certificate on Manage section
         p2PExtraPage.selectInterestCertificate();
