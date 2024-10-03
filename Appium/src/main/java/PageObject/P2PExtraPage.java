@@ -318,6 +318,9 @@ public class P2PExtraPage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Reports & Statements']")
     private AndroidElement reportstatement_txt;
 
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'FAQs']")
+    private AndroidElement faqs;
+
     @AndroidFindBy(id = "rv_main")
     private AndroidElement borrower_preference_bottomsheet;
 
@@ -860,6 +863,14 @@ public class P2PExtraPage {
 
     public void clickOnReportAndStatement() {
         Elements.selectElement(driver,reportstatement_txt,"Click on report and statement");
+    }
+
+    public void scrollToFAQ() throws InterruptedException {
+        Elements.scrollToElement(driver,faqs);
+    }
+
+    public void clickOnFAQ() {
+        Elements.selectElement(driver,faqs,"Click on faq");
     }
 
 }
