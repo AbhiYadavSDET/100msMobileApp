@@ -87,8 +87,6 @@ public class ElectricityHelper {
             Log.info("User name electricity bill : " + userName);
             mbReporter.verifyEqualsWithLogging(userName, expUserName, "Verify username on Bill", false, false, true);
 
-            //Click on Pay button
-            electricityPage.clickPay();
 
             //Verification on Payment confirmation screen
             String title = electricityPage.getTitle();
@@ -102,6 +100,9 @@ public class ElectricityHelper {
             String amount = electricityPage.getBillPayment();
             Log.info("Amount on the Bill: " + amount);
             //mbReporter.verifyEqualsWithLogging(amount, expAmount, "Verify amount on Bill", false, false, true);
+
+            //Click on Pay button
+            electricityPage.clickPay();
 
 
         }else{

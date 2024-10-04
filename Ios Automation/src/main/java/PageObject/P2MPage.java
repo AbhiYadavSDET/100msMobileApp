@@ -14,7 +14,7 @@ public class P2MPage {
 
     IOSDriver driver;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='Scan any QR']")
+    @iOSXCUITFindBy(id = "Tab-Center-Part")
     private IOSElement scanQrButton;
 
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='“MobiKwik” Would Like to Access the Camera']")
@@ -126,7 +126,7 @@ public class P2MPage {
     }
 
     public boolean checkIfCameraPermissionNeeded() throws InterruptedException {
-        return Elements.isElementPresent(driver, cameraPermissionNative);
+        return Elements.isElementPresent(driver, cameraPermissionNative, "checkIfCameraPermissionNeeded");
     }
 
     public void allowPermissionWhileUsingApp() {
@@ -134,7 +134,7 @@ public class P2MPage {
     }
 
     public boolean checkIfLocationPermissionNeeded() throws InterruptedException {
-        return Elements.isElementPresent(driver, locationPermissionNativePresent);
+        return Elements.isElementPresent(driver, locationPermissionNativePresent, "checkIfLocationPermissionNeeded");
     }
     public void allowLocationPermissionWhileUsingApp() {
         Elements.selectElement(driver, locationPermissionNativeAllowWhileUsingAppCta, "Allow While using app for Location Permission");
@@ -150,7 +150,7 @@ public class P2MPage {
 
 
     public boolean checkAllowPermissionForGallery() throws InterruptedException {
-        return Elements.isElementPresent(driver, photosPermissionNative);
+        return Elements.isElementPresent(driver, photosPermissionNative, "checkAllowPermissionForGallery");
     }
     public void allowPermissionAllow() {
         Elements.selectElement(driver, photosPermissionNativeAllowAllCta, "Permission : Allow");
@@ -173,12 +173,12 @@ public class P2MPage {
     }
 
     public void enterAmount(String amount) {
-        Elements.waitForElementToVisibleOnPage(driver, amountField, 4);
+        Elements.waitForElementToVisibleOnPage(driver, amountField, 4, "enterAmount");
         Elements.selectElement(driver, (IOSElement) driver.findElement(By.xpath("//XCUIElementTypeButton[@name='"+amount+"']")),"Select Amount from Keyboard");
     }
 
     public void clickOnContinue() throws InterruptedException {
-        if(Elements.isElementEnabled(driver, continueCtaAmountPage )){
+        if(Elements.isElementEnabled(driver, continueCtaAmountPage, "continueCtaAmountPage")){
             Elements.selectElement(driver, continueCtaAmountPage, "Continue");
         }else {
             Thread.sleep(2000);
@@ -188,7 +188,7 @@ public class P2MPage {
     }
 
     public void clickConfirmPayment() {
-        Elements.waitForElementToVisibleOnPage(driver,ctaConfirmPayment, 2);
+        Elements.waitForElementToVisibleOnPage(driver,ctaConfirmPayment, 2, "clickConfirmPayment");
         Elements.selectElement(driver, ctaConfirmPayment, "Confirm Payment");
     }
 
@@ -210,7 +210,7 @@ public class P2MPage {
     }
 
     public boolean checkBackButton() throws InterruptedException {
-        return Elements.isElementPresent(driver, backButton);
+        return Elements.isElementPresent(driver, backButton, "checkBackButton");
     }
 
     public void clickBackButton() {
@@ -244,7 +244,7 @@ public class P2MPage {
     }
 
     public boolean isEnterDetailsBottomSheetPresent() throws InterruptedException{
-        return Elements.isElementPresent(driver, enterNumber);
+        return Elements.isElementPresent(driver, enterNumber, "isEnterDetailsBottomSheetPresent");
     }
 
     public void clickDeliveryPersonPhNoField(){

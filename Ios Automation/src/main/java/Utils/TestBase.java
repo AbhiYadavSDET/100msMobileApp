@@ -22,9 +22,9 @@ public class TestBase {
 
     String IOSVersion = "13.0";
     String portNo = "4723";
-    String udId = "auto";
-    String deviceName = "Iphone 7";
-    String buildPath = "/Users/ashishkumarpradhan/Downloads/mobi.ipa";
+    String udId = "00008101-001C75181AE3001E";
+    String deviceName = "Iphone 12";
+    String buildPath = "/Users/parajjain/Documents/IpaFile/Mobikwik_IOS.ipa";
 
     Boolean cloudRun = false;
 

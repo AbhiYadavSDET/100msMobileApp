@@ -89,7 +89,7 @@ public class RechargePage {
     }
 
     public boolean isMobileOptionPresent() throws InterruptedException {
-        return Elements.isElementPresent(driver, mobile);
+        return Elements.isElementPresent(driver, mobile, "isMobileOptionPresent");
     }
 
     public void clickMobile() { Elements.click(driver, mobile, "Click on Mobile option");   }

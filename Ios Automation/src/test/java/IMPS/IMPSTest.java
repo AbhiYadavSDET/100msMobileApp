@@ -25,7 +25,7 @@ public class IMPSTest extends TestBase {
         Log.info("======= START : Transfer to Account Flow test =======");
 
         IMPSHelper impsHelper = new IMPSHelper(getIosDriver());
-        impsHelper.transferToAccountNumber("Vikrant","006198700002090","YESB0000061","Vikrant","Bank A/C : 006198700002090, YESB0000061","4000","₹4,000");
+        impsHelper.transferToAccountNumber("Paraj Jain","218101502680","ICIC0002181","Paraj Jain","Bank A/C : 218101502680, ICIC0002181","4000","₹4,000");
 
         Log.info("======= END : Transfer to Account Flow test =======");
 
@@ -64,7 +64,7 @@ public class IMPSTest extends TestBase {
         Log.info("======= START : Check warning error message on tranfer to account flow =======");
 
         IMPSHelper impsHelper = new IMPSHelper(getIosDriver());
-        impsHelper.warningMessagesOnAccountNumber("Beneficiary Name, Beneficiary Name cannot be empty","Vikrant","Account Number, Account Number cannot be empty","006198700002090","IFSC Code, IFSC Code cannot be empty");
+        impsHelper.warningMessagesOnAccountNumber("Beneficiary Name, Beneficiary Name cannot be empty","Paraj Jain","Account Number, Account Number cannot be empty","218101502680","IFSC Code, IFSC Code cannot be empty");
 
         Log.info("======= END : Check Check warning error message on tranfer to account flow =======");
 

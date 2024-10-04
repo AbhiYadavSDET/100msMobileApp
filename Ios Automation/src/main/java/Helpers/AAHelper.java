@@ -1,7 +1,8 @@
 package Helpers;
-import Utils.Element;
+
 import Logger.Log;
 import PageObject.*;
+import Utils.Elements;
 import Utils.MBReporter;
 import Utils.Screen;
 import io.appium.java_client.android.AndroidElement;
@@ -57,7 +58,7 @@ public class AAHelper {
         // Add the assertions
         mbReporter.verifyEqualsWithLogging(titleOnCategoryPage, expTitleOnCategoryPage, "Verify heading On Category Page", true, false, true);
 
-        if (Element.isElementPresent(driver, By.xpath("//XCUIElementTypeStaticText[@name=\"OUTGOING\"]"))) {
+        if (Elements.isElementPresent(driver, By.xpath("//XCUIElementTypeStaticText[@name=\"OUTGOING\"]"), "OUTGOING")) {
 
             // Fetch the other text on the screen
             String outgoingTitleOnDashboard = aaPage.getOutgoingTitle();
@@ -290,7 +291,7 @@ public class AAHelper {
 
         aaPage.clickOnYourSavedBankAccount();
         Log.info("Click On Your saved Bank account ");
-        List<IOSElement> elements = Element.findElements(driver, By.id("txt_transaction_type"));
+        List<IOSElement> elements = Elements.findElements(driver, By.id("txt_transaction_type"));
         int noOftransaction = elements.size();
         Log.info("no Of Transaction - " + noOftransaction);
         mbReporter.verifyTrueWithLogging(noOftransaction >= 0, "Verify No of transaction should be greater than or equal to 0", false, false);

@@ -33,7 +33,7 @@ public class HistoryPage {
     }
 
 //    public boolean isHistoryDesciptionPresent() throws InterruptedException {
-//        return Elements.isElementPresent(driver, historyDescription);
+//        return Elements.isElementPresent(driver, historyDescription, "isHistoryDesciptionPresent");
 //    }
 //
 //    public String getDescription() throws InterruptedException {

@@ -133,7 +133,7 @@ public class P2PExtraPage {
     }
 
     public boolean checkSkipReminder() throws InterruptedException {
-       return Elements.isElementPresent(driver, cta_click);
+       return Elements.isElementPresent(driver, cta_click, "checkSkipReminder");
     }
 
     public String getPortfolioValue() throws InterruptedException {
@@ -145,7 +145,7 @@ public class P2PExtraPage {
     }
 
     public boolean checkOneTimeWithdrawBottomsheet() throws InterruptedException {
-        return Elements.isElementPresent(driver, one_time_withdraw_bottomsheet);
+        return Elements.isElementPresent(driver, one_time_withdraw_bottomsheet, "checkOneTimeWithdrawBottomsheet");
     }
 
     public void clickGotItCta() throws InterruptedException {
@@ -167,11 +167,11 @@ public class P2PExtraPage {
     }
 
     public boolean checkBankHolidayBottomsheet() throws InterruptedException {
-        return Elements.isElementPresent(driver, bank_holiday_bottomsheet);
+        return Elements.isElementPresent(driver, bank_holiday_bottomsheet, "checkBankHolidayBottomsheet");
     }
 
     public boolean checkWithdrawlInProgressBottomsheet() throws InterruptedException {
-        return Elements.isElementPresent(driver, withdrawl_in_Progress_bottomsheet);
+        return Elements.isElementPresent(driver, withdrawl_in_Progress_bottomsheet, "checkWithdrawlInProgressBottomsheet");
     }
 
     public String getErrorTitleText() throws InterruptedException {
@@ -191,7 +191,7 @@ public class P2PExtraPage {
     }
 
     public boolean checkPopup() throws InterruptedException {
-        return Elements.isElementPresent(driver, ok_btn);
+        return Elements.isElementPresent(driver, ok_btn, "checkPopup");
     }
 
     public void clickEarningsTable() throws InterruptedException {
@@ -211,7 +211,7 @@ public class P2PExtraPage {
     }
 
     public boolean checkSettingOptn() throws InterruptedException {
-        return Elements.isElementPresent(driver, settings_optn);
+        return Elements.isElementPresent(driver, settings_optn, "checkSettingOptn");
     }
 
     public void clickSettingOptn() throws InterruptedException {
@@ -243,7 +243,7 @@ public class P2PExtraPage {
     }
 
     public boolean checkNetBankingOptn() throws InterruptedException {
-        return Elements.isElementPresent(driver, net_banking_optn);
+        return Elements.isElementPresent(driver, net_banking_optn, "checkNetBankingOptn");
     }
 
     public void clickAxisBankOptn() {
@@ -251,7 +251,7 @@ public class P2PExtraPage {
     }
 
     public boolean checkLocationpopup() throws InterruptedException {
-        return Elements.isElementPresent(driver, loc_popup);
+        return Elements.isElementPresent(driver, loc_popup, "checkLocationpopup");
     }
 
     public void clickAllow() {

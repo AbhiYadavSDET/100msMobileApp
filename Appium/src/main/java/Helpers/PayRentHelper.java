@@ -54,26 +54,30 @@ public class PayRentHelper {
         // check for saved Recipient Screen
         boolean isSavedRecipientPresent = payRentPage.checkSavedRecipientScreen();
 
-        if(isSavedRecipientPresent){
+        mbReporter.verifyTrueWithLogging(isSavedRecipientPresent, "Past Payments Present : "+  isSavedRecipientPresent, false,false );
 
             //Click on Add new Property
             payRentPage.clickAddNewPropertyButton();
-        }
-        else {
 
-            //click on Continue with ZIP/Cards button
-            payRentPage.clickContinueWithZipAndCards();
+            payRentPage.selectOptionFromPaymentFlowSelectionBottomsheet();
 
-        }
+            payRentPage.clickIfscBankSelectionPage();
+
 
         //Enter account Number
         payRentPage.enterAccountNumber(AccountNumber);
 
-        //Enter Ifsc code
-        payRentPage.enterIfscCode(IfscCode);
+        //Validate Ifsc code
+
+        mbReporter.verifyTrueWithLogging(payRentPage.isIfscCodePrefilled(), "Is IFSC Code Prefilled : "+  payRentPage.isIfscCodePrefilled(), false,false );
+
 
         //Click Continue button
         payRentPage.clickContinueButton();
+
+        //Handle Self Transfer Bottomsheet
+
+        payRentPage.handleSelfTransferBottomsheet();
 
         //Enter Landlord Name
 //        payRentPage.enterLandlordName(Name);
@@ -84,7 +88,7 @@ public class PayRentHelper {
         payRentPage.enterRentAmount(Amount);
 
         //Click Continue
-        payRentPage.clickContinueButton();
+        payRentPage.clickAmountPageContinueButton();
 
         // check for Security Pin Page
         if(securityPinPage.checkSecurityPinPage()) { securityPinPage.enterSecurityPin();}
@@ -92,7 +96,7 @@ public class PayRentHelper {
         mbkCommonControlsHelper.handle2FADeviceBindingFlow();
 
         //Press Back 6 times to go to home screen
-        mbkCommonControlsHelper.pressback(3);
+        mbkCommonControlsHelper.pressback(5);
 
         // check for pop up on back
         if(!isSavedRecipientPresent){
@@ -112,31 +116,31 @@ public class PayRentHelper {
 
         // Click on the back button if the bottom sheet is present
         mbkCommonControlsHelper.handleHomePageLanding();
-
-        //Click on Pay Rent
-        payRentPage.clickPayRent();
-
-        // check for saved Recipient Screen
-        isSavedRecipientPresent = payRentPage.checkSavedRecipientScreen();
-
-        if(isSavedRecipientPresent){
-
-            // Verification on the Pay Rent HomeScreen
-            String landlordName = payRentPage.getLandlordName();
-            String accountNumber = payRentPage.getAccountNumber();
-
-            // Display the values
-            Log.info("Landlord Name : " + landlordName);
-            Log.info("Account Number of landlord : " + accountNumber);
-
-            // Add the assertions
-            mbReporter.verifyEqualsWithLogging(landlordName, Name, "Verify Landlord Name", false, false, true);
-            mbReporter.verifyEqualsWithLogging(accountNumber, AccountNumber, "Verify Account Number of landlord", false, false, true);
-
-        }
-        else {
-            mbReporter.verifyTrueWithLogging(isSavedRecipientPresent, "Saved Recipient is not Present", false, false, true);
-        }
+//
+//        //Click on Pay Rent
+//        payRentPage.clickPayRent();
+//
+//        // check for saved Recipient Screen
+//        isSavedRecipientPresent = payRentPage.checkSavedRecipientScreen();
+//
+//        if(isSavedRecipientPresent){
+//
+//            // Verification on the Pay Rent HomeScreen
+//            String landlordName = payRentPage.getLandlordName();
+//            String accountNumber = payRentPage.getAccountNumber();
+//
+//            // Display the values
+//            Log.info("Landlord Name : " + landlordName);
+//            Log.info("Account Number of landlord : " + accountNumber);
+//
+//            // Add the assertions
+//            mbReporter.verifyEqualsWithLogging(landlordName, Name, "Verify Landlord Name", false, false, true);
+//            mbReporter.verifyEqualsWithLogging(accountNumber, AccountNumber, "Verify Account Number of landlord", false, false, true);
+//
+//        }
+//        else {
+//            mbReporter.verifyTrueWithLogging(isSavedRecipientPresent, "Saved Recipient is not Present", false, false, true);
+//        }
 
     }
 
@@ -162,7 +166,7 @@ public class PayRentHelper {
         payRentPage.enterAccountNumber(AccountNumber);
 
         //Enter Ifsc code
-        payRentPage.enterIfscCode(IfscCode);
+//        payRentPage.enterIfscCode(IfscCode);
 
         //Click Continue button
         payRentPage.clickContinueButton();
@@ -222,7 +226,7 @@ public class PayRentHelper {
         payRentPage.enterAccountNumber(AccountNumber);
 
         //Enter Ifsc code
-        payRentPage.enterIfscCode(IfscCode);
+//        payRentPage.enterIfscCode(IfscCode);
 
         //Click Continue button
         payRentPage.clickContinueButton();

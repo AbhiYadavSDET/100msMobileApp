@@ -97,7 +97,7 @@ public class GoldPage {
     public void clickHistory(){ Elements.click(driver, history,"Click on history");   }
 
     public boolean isErrorMessageShown() throws InterruptedException{
-        return Elements.isElementPresent(driver, errorMessage);
+        return Elements.isElementPresent(driver, errorMessage, "isErrorMessageShown");
     }
 
     public String getErrorMessage() throws InterruptedException{

@@ -17,25 +17,42 @@ public class PayRentPage {
     @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Pay Rent']")
     private AndroidElement payRent;
 
-    @AndroidFindBy(id = "btnSubmit")
+    @AndroidFindBy(id = "item_rent_payment_option")
     private AndroidElement addNewPropertyButton;
+    ////
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Transfer to Bank account']")
+    private AndroidElement paymentFlowSelectionBottomsheet;
 
-    @AndroidFindBy(xpath = "//*/android.widget.EditText[@text = 'Account Number']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Icici Bank Limited']")
+    private AndroidElement ifscBankSelectionPage;
+
+
+////
+    @AndroidFindBy(xpath = "//android.widget.EditText[@text='Bank Account Number']")
     private AndroidElement accountNumber;
 
-    @AndroidFindBy(xpath = "//*/android.widget.EditText[@text = 'IFSC Code']")
+    @AndroidFindBy(id = "global_ifsc_text")
     private AndroidElement ifscCode;
 
-    @AndroidFindBy(id = "continue_btn")
+    @AndroidFindBy(id = "go_to_proceed_to_amount")
     private AndroidElement continueButton;
+
+    @AndroidFindBy(id="submit_amount")
+    private AndroidElement amountPageContinueButton;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='It seems like you are transferring to your own account']")
+    private AndroidElement selfTransferBottomsheet;
+
+    @AndroidFindBy(id = "primary_button")
+    private AndroidElement selfTransferBottomsheet_yesContinue;
 
     @AndroidFindBy(xpath = "//*/android.widget.EditText[@text = 'Landlord Name']")
     private AndroidElement landlordName;
 
-    @AndroidFindBy(xpath = "(//android.widget.EditText)[1]")
+    @AndroidFindBy(id = "owner_name")
     private AndroidElement landlordNameField;
 
-    @AndroidFindBy(xpath = "//*/android.widget.EditText[@text = 'Enter Rent Amount']")
+    @AndroidFindBy(xpath = "(//android.widget.EditText[@resource-id, 'edit_text'])[4]")
     private AndroidElement rentAmount;
 
     @AndroidFindBy(xpath = "//*/android.widget.EditText[@text = 'CVV']")
@@ -132,17 +149,46 @@ public class PayRentPage {
     public void clickAddNewPropertyButton() {
         Elements.selectElement(driver, addNewPropertyButton, "Click on Add New Property");
     }
+    //
+
+
+    public void selectOptionFromPaymentFlowSelectionBottomsheet() {
+        Elements.selectElement(driver, paymentFlowSelectionBottomsheet, "Select Transfer to Bank Account");
+    }
+
+
+    public void clickIfscBankSelectionPage() {
+        Elements.selectElement(driver, ifscBankSelectionPage, "Select Bank from IFSC Page");
+    }
+
+
+
+    //
 
     public void enterAccountNumber(String AccountNumber){
+        Elements.selectElement(driver, accountNumber, "Select Account Number Field");
         Elements.enterToElement(driver, accountNumber, AccountNumber, "Enter Account Number");
     }
 
-    public void enterIfscCode(String IfscCode){
-        Elements.enterToElement(driver, ifscCode, IfscCode, "Enter IFSC Code");
+    public boolean isIfscCodePrefilled() throws InterruptedException {
+        return Elements.isElementPresent(driver, ifscCode);
     }
 
     public void clickContinueButton() {
         Elements.selectElement(driver, continueButton, "Click on continue button");
+    }
+
+    public void clickAmountPageContinueButton() {
+        Elements.selectElement(driver, amountPageContinueButton, "Click on continue button on Amount Page");
+    }
+
+
+
+    public void handleSelfTransferBottomsheet() throws InterruptedException {
+        if(Elements.isElementPresent(driver, selfTransferBottomsheet)){
+            Elements.selectElement(driver, selfTransferBottomsheet_yesContinue, "Click on yes continue button on Self Transfer Bottomsheet");
+        }
+
     }
 
     public void enterLandlordName(String Name ){

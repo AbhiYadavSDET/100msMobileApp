@@ -157,11 +157,11 @@ public class AAPage {
     }
 
     public Boolean checkMonthlySummeryCTA() throws InterruptedException {
-        return  Elements.isElementPresent(driver, yourMonthlySummery);
+        return  Elements.isElementPresent(driver, yourMonthlySummery, "checkMonthlySummeryCTA");
     }
 
     public boolean checkDashboardHighlightTitle() throws InterruptedException {
-        return Elements.isElementPresent(driver, dashboardHighlightTitle);
+        return Elements.isElementPresent(driver, dashboardHighlightTitle, "checkDashboardHighlightTitle");
     }
 
     public String dashboardHighlightTitletext() throws InterruptedException {
@@ -184,7 +184,7 @@ public class AAPage {
     }
 
     public Boolean isOutgoingTitlePresent() throws InterruptedException {
-        return Elements.isElementPresent(driver, outgoingTitle);
+        return Elements.isElementPresent(driver, outgoingTitle, "isOutgoingTitlePresent");
     }
 
 
@@ -193,12 +193,12 @@ public class AAPage {
     }
 
     public Boolean getCalender() throws InterruptedException {
-        return Elements.isElementPresent(driver, calender);
+        return Elements.isElementPresent(driver, calender, "getCalender");
     }
 
 
     public Boolean getIncomingOnMonthlySummary() throws InterruptedException {
-        return Elements.isElementPresent(driver, incoming);
+        return Elements.isElementPresent(driver, incoming, "getIncomingOnMonthlySummary");
     }
 
     public String getIncomingtextOnMonthlySummary() throws InterruptedException {
@@ -210,11 +210,11 @@ public class AAPage {
     }
 
     public Boolean IsInvestedtextOnMonthlySummaryVisible() throws InterruptedException {
-        return Elements.isElementPresent(driver, investedonmonthlysummery);
+        return Elements.isElementPresent(driver, investedonmonthlysummery, "IsInvestedtextOnMonthlySummaryVisible");
     }
 
     public Boolean remaingtextOnMonthlySummary() throws InterruptedException {
-        return Elements.isElementPresent(driver, remainingonmonthlysummery);
+        return Elements.isElementPresent(driver, remainingonmonthlysummery, "remaingtextOnMonthlySummary");
     }
 
     public String getInvestedtextOnMonthlySummary() throws InterruptedException {
@@ -295,7 +295,7 @@ public class AAPage {
     }
 
     public Boolean checkSettingCta() throws InterruptedException{
-        return Elements.isElementPresent(driver, settingsTitle);
+        return Elements.isElementPresent(driver, settingsTitle, "checkSettingCta");
     }
 
     public String autoRefreshext() throws InterruptedException {

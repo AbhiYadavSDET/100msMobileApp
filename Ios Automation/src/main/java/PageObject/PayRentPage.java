@@ -1,6 +1,5 @@
 package PageObject;
 
-import Utils.Element;
 import Utils.Elements;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.IOSElement;
@@ -216,27 +215,27 @@ public class PayRentPage {
 
     public boolean isNewUser() throws InterruptedException, IOException {
 
-        return Element.isElementPresent(driver, By.xpath("//XCUIElementTypeStaticText[@name=\"Continue with Zip/Cards\"]"));
+        return Elements.isElementPresent(driver, By.xpath("//XCUIElementTypeStaticText[@name=\"Continue with Zip/Cards\"]"), "isNewUser");
     }
 
     public boolean isSavedRecipientAvailable() throws InterruptedException {
-        return Element.isElementPresent(driver, By.xpath("//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeButton[3]"));
+        return Elements.isElementPresent(driver, By.xpath("//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeButton[3]"), "isSavedRecipientAvailable");
     }
 
     public boolean isPayRentVisibleOnHomeScreen() throws InterruptedException {
-        return Element.isElementPresent(driver, By.xpath("//XCUIElementTypeStaticText[@name=\"Pay Rent\"]"));
+        return Elements.isElementPresent(driver, By.xpath("//XCUIElementTypeStaticText[@name=\"Pay Rent\"]"), "isPayRentVisibleOnHomeScreen");
     }
 
     public boolean isBckButtonAvailableOnPitchScreen() throws InterruptedException {
-        return Element.isElementPresent(driver, By.xpath("//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]"));
+        return Elements.isElementPresent(driver, By.xpath("//XCUIElementTypeApplication[@name=\"MobiKwik\"]/XCUIElementTypeWindow/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]"), "isBckButtonAvailableOnPitchScreen");
     }
 
     public boolean UPIScreenOpened() throws InterruptedException {
-        return Element.isElementPresent(driver, By.xpath("//XCUIElementTypeStaticText[@name=\"Send Money via UPI\"]"));
+        return Elements.isElementPresent(driver, By.xpath("//XCUIElementTypeStaticText[@name=\"Send Money via UPI\"]"), "UPIScreenOpened");
     }
 
     public boolean isLandlordButtonAvailableOnScreen() throws InterruptedException {
-        return Element.isElementPresent(driver, By.xpath("//XCUIElementTypeTextField[@name=\"Landlord PAN\"]"));
+        return Elements.isElementPresent(driver, By.xpath("//XCUIElementTypeTextField[@name=\"Landlord PAN\"]"), "isLandlordButtonAvailableOnScreen");
     }
 
     public String faqText() throws InterruptedException {

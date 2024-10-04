@@ -20,7 +20,7 @@ public class HomePage {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"M\"]")
     private IOSElement floating_widgit;
 
-    @iOSXCUITFindBy(id = "Recharge & Pay Bills")
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name=\"Recharge & Bills\"])[1]")
     private IOSElement rechargeAndPayBills;
 
     @iOSXCUITFindBy(id = "Xtra")
@@ -42,7 +42,7 @@ public class HomePage {
     private IOSElement scanQR;
 
 
-    @iOSXCUITFindBy(id = "Wallet to Bank Transfer")
+    @iOSXCUITFindBy(id = "Wallet to Bank")
     private IOSElement imps;
 
     public HomePage(IOSDriver driver) {
@@ -51,18 +51,18 @@ public class HomePage {
     }
 
     public boolean isFloatingWidgitPresent() throws InterruptedException {
-        return Elements.isElementPresent(driver, floating_widgit);
+        return Elements.isElementPresent(driver, floating_widgit, "isFloatingWidgitPresent");
     }
 
     public boolean isBillReminderPresent() throws InterruptedException {
-        return Elements.isElementPresent(driver, billReminderBottomSheet);
+        return Elements.isElementPresent(driver, billReminderBottomSheet, "isBillReminderPresent");
     }
 
 
 
 
     public void closeFloatingWidgit() {
-        Elements.click(driver, floating_widgit ,"Flowting Widgit");
+        Elements.click(driver, floating_widgit ,"Floating Widgit");
     }
 
     public void clickOnOffers() {
@@ -74,7 +74,7 @@ public class HomePage {
     }
 
     public boolean isXtraIconPresent() throws InterruptedException {
-       return Elements.isElementPresent(driver, xtra_icon);
+       return Elements.isElementPresent(driver, xtra_icon, "isXtraIconPresent");
     }
 
     public void clickRechargeAndPayBills() {
