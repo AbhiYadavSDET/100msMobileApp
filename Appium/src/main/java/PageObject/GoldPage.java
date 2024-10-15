@@ -25,7 +25,7 @@ public class GoldPage {
     @AndroidFindBy(id = "iv_gold_balance_arrow_right")
     private AndroidElement sellGoldButton;
 
-    @AndroidFindBy(xpath = "//*/android.widget.EditText[@text = 'In Rupees']")
+    @AndroidFindBy(xpath = "//*/android.widget.EditText[@text = 'In rupees']")
     private AndroidElement textAmount;
 
     @AndroidFindBy(xpath = "//*/android.widget.EditText[@text = 'In grams']")
@@ -66,8 +66,11 @@ public class GoldPage {
     private AndroidElement error_text;
 
     //Gold  Coin
-    @AndroidFindBy(id = "goldCoinLbl")
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Gold Coin Delivery']")
     private AndroidElement goldCoin_txt;
+    @AndroidFindBy(id = "goldCoinLbl")
+    private AndroidElement goldCoin_txt1;
 
     @AndroidFindBy(id = "mkiv_image")
     private AndroidElement goldCoin_img;
@@ -199,6 +202,13 @@ public class GoldPage {
     public boolean scrollToGoldCointXT() throws InterruptedException {
         return Elements.scrollToElement(driver, goldCoin_txt);
     }
+
+    public void clickOnGoldCointXT()
+    {
+        Elements.selectElement(driver, goldCoin_txt, "Click on Gold Coin ");
+    }
+
+
     public String getGoldCoinTxt() throws InterruptedException {
         return Elements.getText(driver, goldCoin_txt, "Gold Coin txt");
     }

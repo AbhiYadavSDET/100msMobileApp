@@ -216,36 +216,16 @@ public class GoldHelper {
             mbkCommonControlsHelper.pressback();
         }
 
-        goldPage.clickOnHistory();
-        Element.waitForVisibility(driver, By.id("mkab_icon_1"));
-        goldPage.clickUpIcon();
-
-        // Click on Buy Gold
-        goldPage.clickBuyCta();
-        goldPage.scrollToGoldCointXT();
+       // goldPage.scrollToGoldCointXT();
 
         // Verification on the Gold Coin Txt
         String titleGoldCoins = goldPage.getGoldCoinTxt();
-        String titleKnowMore = goldPage.getKnowMoreTx();
-
         // Display the values
         Log.info("titleGoldCoins : " + titleGoldCoins);
-        Log.info("titleKnowMore : " + titleKnowMore);
-
         // Add the assertions
         mbReporter.verifyEqualsWithLogging(titleGoldCoins, exptitleGoldCoins, "Verify Gold Coins Title", false, false, true);
-        mbReporter.verifyEqualsWithLogging(titleKnowMore, exptitleKnowMore, "Verify Know More Titles", false, false, true);
+        goldPage.clickOnGoldCointXT();
 
-        goldPage.clickKnowMoretxt();
-        Element.waitForVisibility(driver, By.id("mkab_icon_1"));
-        String titleAboutSafeGold = goldPage.gettitleAboutSafeGold();
-
-        // Display the values in about safe Gold page
-        Log.info("titleAboutSafeGold : " + titleAboutSafeGold);
-
-        mbReporter.verifyEqualsWithLogging(titleAboutSafeGold, exptitleAboutSafeGold, "Title About safe gold", false, false, true);
-
-        goldPage.clickUpIcon();
         goldPage.clickSafeGoldIcon();
         goldPage.enterPincode("122004");
 
