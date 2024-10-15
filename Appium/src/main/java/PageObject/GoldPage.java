@@ -25,7 +25,7 @@ public class GoldPage {
     @AndroidFindBy(id = "iv_gold_balance_arrow_right")
     private AndroidElement sellGoldButton;
 
-    @AndroidFindBy(xpath = "//*/android.widget.EditText[@text = 'In Rupees']")
+    @AndroidFindBy(xpath = "//*/android.widget.EditText[@text = 'In rupees']")
     private AndroidElement textAmount;
 
     @AndroidFindBy(xpath = "//*/android.widget.EditText[@text = 'In grams']")
