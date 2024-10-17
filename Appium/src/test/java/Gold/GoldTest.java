@@ -50,7 +50,7 @@ public class GoldTest extends TestBase {
     }
 
 
-    @Test(groups = {"sanity", "goldCoin", "regression"}, priority = 0, description = "Verify Safe Gold Coin")
+    @Test(groups = {"sanity1", "goldCoin", "regression"}, priority = 1, description = "Verify Safe Gold Coin")
     public void Gold_Test03_SafeGoldCoin() throws IOException, InterruptedException {
 
         Log.info("======= START : Gold Coins Test =======");
@@ -62,7 +62,7 @@ public class GoldTest extends TestBase {
 
         // Execute the test
         GoldHelper goldHelper = new GoldHelper(getAndroidDriver());
-        goldHelper.goldCoin("Gold Coins","Know More","About SafeGold");
+        goldHelper.goldCoin("Gold Coin Delivery","Know More","About SafeGold");
 
         Log.info("======= END : Gold Coins Test =======");
 
@@ -88,5 +88,24 @@ public class GoldTest extends TestBase {
 
     }
 
+
+    @Test(groups = {"sanity", "goldBuy", "regression"}, priority = 0, description = "Verify Sip On Gold Page")
+    public void Gold_Test05_Gold_Gift() throws IOException, InterruptedException {
+
+        Log.info("======= START : Gold Gift test =======");
+
+
+        // Login to the account
+        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
+        loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
+
+        // Execute the test
+        GoldHelper goldHelper = new GoldHelper(getAndroidDriver());
+        goldHelper.giftGold("Gift Gold to your loved ones","24K Gold Coins & Bars");
+
+        Log.info("======= END : Gold Gift test =======");
+
+
+    }
 
 }
