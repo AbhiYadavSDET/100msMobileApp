@@ -116,6 +116,50 @@ public class GoldPage {
 
     @AndroidFindBy(id = "tvDate")
     private AndroidElement dropdown_list_calender;
+
+    //Gold Gift Xpath
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Gift Gold']")
+    private AndroidElement txt_gift_gold ;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Gift Gold to your loved ones']")
+    private AndroidElement gift_gold_heading ;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = '24K Digital Gold']")
+    private AndroidElement gift_gold_card_heading;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = '24K Gold Coins & Bars']")
+    private AndroidElement gift_gold_coin_heading;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Grant Access']")
+    private AndroidElement grant_access;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Continue']")
+    private AndroidElement continue_cta;
+
+    @AndroidFindBy(xpath = "//*/android.widget.Button[@text = 'Allow']")
+    private AndroidElement allow_cta;
+
+    @AndroidFindBy(id = "contact_name")
+    private AndroidElement contactName_cta;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Modify']")
+    private AndroidElement gift_gold_modify_txt;
+
+    @AndroidFindBy(xpath = "//*/android.widget.Button[@text = 'Proceed to Gift']")
+    private AndroidElement proceed_to_gift_cta;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Gifting Gold']")
+    private AndroidElement gift_gold_txt_paymentspage;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Gold Value')]")
+    private AndroidElement gift_gold_value_txt_paymentspage;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'GST')]")
+    private AndroidElement gift_gold_gst_paymentspage;
+
+    @AndroidFindBy(id = "txt_net_payable")
+    private AndroidElement gift_gold_nrtpayable_paymentspage;
+
     public GoldPage(AndroidDriver driver) {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -289,5 +333,62 @@ public class GoldPage {
         return Elements.getText(driver, heading_calender, "Get Heading of calender");
     }
 
+    //Gold Gift card
 
+    public void clickOnGiftGold() {
+        Elements.selectElement(driver, txt_gift_gold, "Click on Gift Gold on Gold Home page");
+    }
+
+    public void clickOnGiftGoldInsideGiftHomeScreen() {
+        Elements.selectElement(driver,gift_gold_card_heading, "Click on Gift Gold on Gift Gold Home page");
+    }
+
+    public String getGiftGoldHeadingOnGiftGoldHomePage() throws InterruptedException {
+        return Elements.getText(driver, gift_gold_heading, "Gift Gold Heading On Gift Gold Home Page");
+    }
+
+    public String getGiftGoldCoinHeadingOnGiftGoldHomePage() throws InterruptedException {
+        return Elements.getText(driver, gift_gold_coin_heading, "Gift Gold Coin Heading On Gift Gold Home Page");
+    }
+
+    public void clickOnGrantAccess() {
+        Elements.selectElement(driver,grant_access, "Click on Grant access");
+    }
+
+    public void clickOnContinueCta() {
+        Elements.selectElement(driver,continue_cta, "Click on Continue cta");
+    }
+
+    public void clickOnAllow() {
+        Elements.selectElement(driver,allow_cta, "Click on Allow cta");
+    }
+
+    public void clickOnContactName() {
+        Elements.selectElement(driver,contactName_cta, "Click on Contact Name");
+    }
+
+
+    public String getGiftGoldModifyTxt() throws InterruptedException {
+        return Elements.getText(driver, gift_gold_modify_txt, "Gift Gold Modify Txt");
+    }
+
+
+    public void clickOnProceedToGift() {
+        Elements.selectElement(driver,proceed_to_gift_cta, "Click on Proceed to Gift");
+    }
+
+    public String getGiftGoldTxtOnPaymentsPage() throws InterruptedException {
+        return Elements.getText(driver, gift_gold_txt_paymentspage, "Gift Gold Txt on payments Page");
+    }
+
+    public String getGiftGoldValueOnPaymentsPage() throws InterruptedException {
+        return Elements.getText(driver, gift_gold_value_txt_paymentspage, "Gift Gold value on payments page");
+    }
+
+    public String getGStOnPaymentsPage() throws InterruptedException {
+        return Elements.getText(driver, gift_gold_gst_paymentspage, "Gift Gold gst on payments page");
+    }
+    public String getNetpayableOnPaymentsPage() throws InterruptedException {
+        return Elements.getText(driver, gift_gold_nrtpayable_paymentspage, "Gift Gold net payable on payments page");
+    }
 }

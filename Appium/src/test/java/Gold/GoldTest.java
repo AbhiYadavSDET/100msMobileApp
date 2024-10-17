@@ -12,7 +12,7 @@ import java.io.IOException;
 public class GoldTest extends TestBase {
 
 
-    @Test(groups = {"sanity", "goldBuy", "regression"}, priority = 1, description = "Verify Gold Buy")
+    @Test(groups = {"sanity1", "goldBuy", "regression"}, priority = 1, description = "Verify Gold Buy")
     public void Gold_Test01_buyGold() throws IOException, InterruptedException {
 
         Log.info("======= START : Gold Buy test =======");
@@ -50,7 +50,7 @@ public class GoldTest extends TestBase {
     }
 
 
-    @Test(groups = {"sanity1", "goldCoin", "regression"}, priority = 1, description = "Verify Safe Gold Coin")
+    @Test(groups = {"sanity1", "goldCoin1", "regression1"}, priority = 1, description = "Verify Safe Gold Coin")
     public void Gold_Test03_SafeGoldCoin() throws IOException, InterruptedException {
 
         Log.info("======= START : Gold Coins Test =======");
@@ -69,7 +69,7 @@ public class GoldTest extends TestBase {
 
     }
 
-    @Test(groups = {"sanity", "goldBuy", "regression"}, priority = 1, description = "Verify Sip On Gold Page")
+    @Test(groups = {"sanity1", "goldBuy1", "regression1"}, priority = 1, description = "Verify Sip On Gold Page")
     public void Gold_Test04_Gold_Sip() throws IOException, InterruptedException {
 
         Log.info("======= START : Gold SIp test =======");
@@ -94,14 +94,13 @@ public class GoldTest extends TestBase {
 
         Log.info("======= START : Gold Gift test =======");
 
-
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
         loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372");
 
         // Execute the test
         GoldHelper goldHelper = new GoldHelper(getAndroidDriver());
-        goldHelper.giftGold("Gift Gold to your loved ones","24K Gold Coins & Bars");
+        goldHelper.giftGold("Gift Gold to your loved ones","24K Gold Coins & Bars","Modify","Gifting Gold","GST (3%)","Net Payable");
 
         Log.info("======= END : Gold Gift test =======");
 

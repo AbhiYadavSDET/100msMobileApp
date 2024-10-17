@@ -2,6 +2,7 @@ package Helpers;
 
 import Logger.Log;
 import PageObject.GoldPage;
+import PageObject.PermissionPage;
 import PageObject.SecurityPinPage;
 import Utils.Element;
 import Utils.Elements;
@@ -26,8 +27,8 @@ public class GoldHelper {
     MBKCommonControlsHelper mbkCommonControlsHelper;
     LinkedHashMap<String, String> balanceBefore;
     LinkedHashMap<String, String> balanceAfter;
-
-
+    PermissionPage permissionPage;
+    PermissionHelper permissionHelper;
     public GoldHelper(AndroidDriver driver) throws IOException {
         this.driver = driver;
         elements = new Elements(driver);
@@ -234,8 +235,6 @@ public class GoldHelper {
 
     }
 
-
-
     public void goldSip(String exptitlSipBannerTitle,String exptitlDaily,String exptitlMonthly,String exptitlCalenderViewInsideScreen) throws InterruptedException, IOException {
 
         // Tap on See All Services
@@ -283,6 +282,60 @@ public class GoldHelper {
         goldPage.clickOnCalenderDropdown();
     }
 
+    public void giftGold(String expHeadingGiftGoldOnGoldGiftHome,String expHeadingGiftGoldCoinOnGoldGiftHome,String expGiftGoldModifyTxt,String expgiftGoldTxtOnPaymentsPage,String expgetGStOnPaymentsPage,String expgetnetpayableOnPaymensPage) throws InterruptedException, IOException {
+
+        // Tap on See All Services
+        goldPage.clickAllServices();
+
+        // Swipe till the bottom
+        goldPage.scrollToBuyGold();
+
+        // Click on 99% Buy Gold
+        goldPage.clickBuyGold();
+
+        if(goldPage.checkEXploreSipBottomsheet()){
+            mbkCommonControlsHelper.pressback();
+        }
+        goldPage.clickOnGiftGold();
+        Thread.sleep(5000);
+
+        //Gift gold coin on gold Gift Home page
+        String headingGiftGoldCoinOnGoldGiftHome = goldPage.getGiftGoldCoinHeadingOnGiftGoldHomePage();
+        Log.info("headingGiftGoldCoinOnGoldGiftHome : " + headingGiftGoldCoinOnGoldGiftHome);
+        mbReporter.verifyEqualsWithLogging(headingGiftGoldCoinOnGoldGiftHome, expHeadingGiftGoldCoinOnGoldGiftHome, "Heading Gift Gold Coin On Gift Gold Home", false, false, true);
+
+        goldPage.clickOnGiftGoldInsideGiftHomeScreen();
+
+        //Mobile Permission
+        goldPage.clickOnGrantAccess();
+        goldPage.clickOnContinueCta();
+        Thread.sleep(8000);
+        goldPage.clickOnAllow();
+        goldPage.clickOnContactName();
+
+        //Modify TXT On Gold amount screen inside the gold gift
+
+        String giftGoldModifyTxt = goldPage.getGiftGoldModifyTxt();
+        Log.info("gift Gold Modify Txt : " + giftGoldModifyTxt);
+        mbReporter.verifyEqualsWithLogging(giftGoldModifyTxt, expGiftGoldModifyTxt, "Heading Modify txt On amount screen", false, false, true);
+
+        goldPage.clickOnProceedToGift();
+
+        //Verify the txt on payments page
+
+        String giftGoldTxtOnPaymentsPage = goldPage.getGiftGoldTxtOnPaymentsPage();
+        String getGStOnPaymentsPage = goldPage.getGStOnPaymentsPage();
+        String getnetpayableOnPaymensPage = goldPage.getNetpayableOnPaymentsPage();
+
+        Log.info("gift Gold Txt on payments page: " + giftGoldTxtOnPaymentsPage);
+        Log.info("gift Gold GST on payments page: " + getGStOnPaymentsPage);
+        Log.info("gift Gold Net Payable on payments page: " + getnetpayableOnPaymensPage);
+
+        mbReporter.verifyEqualsWithLogging(giftGoldTxtOnPaymentsPage, expgiftGoldTxtOnPaymentsPage, "gift Gold Txt on payments page", false, false, true);
+        mbReporter.verifyEqualsWithLogging(getGStOnPaymentsPage, expgetGStOnPaymentsPage, "gift Gold GST on payments page:", false, false, true);
+        mbReporter.verifyEqualsWithLogging(getnetpayableOnPaymensPage, expgetnetpayableOnPaymensPage, "gift Gold Net Payable on payments page", false, false, true);
+
+    }
 }
 
 
