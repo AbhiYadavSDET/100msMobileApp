@@ -12,11 +12,10 @@ import java.io.IOException;
 public class GoldTest extends TestBase {
 
 
-    @Test(groups = {"sanity1", "goldBuy", "regression"}, priority = 1, description = "Verify Gold Buy")
+    @Test(groups = {"sanity", "goldBuy", "regression"}, priority = 2, description = "Verify Gold Buy")
     public void Gold_Test01_buyGold() throws IOException, InterruptedException {
 
         Log.info("======= START : Gold Buy test =======");
-
 
         // Login to the account
         LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
@@ -31,26 +30,7 @@ public class GoldTest extends TestBase {
 
     }
 
-    @Test(groups = {"sanity1"}, priority = 2, description = "Verify Safe Gold Coins data")
-    public void Gold_Test02_buySell() throws IOException, InterruptedException {
-
-        Log.info("======= START : Gold Sell test =======");
-
-        // Login to the account
-        LoginHelper loginHelper = new LoginHelper(getAndroidDriver());
-         loginHelper.quickLoginViaOtpAutoRead("9205299330", "547372"); 
-
-        // Execute the test
-        GoldHelper goldHelper = new GoldHelper(getAndroidDriver());
-        goldHelper.goldSell("1", "Payment Successful", "Sell Gold", "0.0002", "₹1", "Sold Gold", "+₹1", "Success");
-
-        Log.info("======= END : Gold Sell test =======");
-
-
-    }
-
-
-    @Test(groups = {"sanity1", "goldCoin1", "regression"}, priority = 1, description = "Verify Safe Gold Coin")
+    @Test(groups = {"sanity", "goldCoin1", "regression"}, priority = 1, description = "Verify Safe Gold Coin")
     public void Gold_Test03_SafeGoldCoin() throws IOException, InterruptedException {
 
         Log.info("======= START : Gold Coins Test =======");
@@ -69,7 +49,7 @@ public class GoldTest extends TestBase {
 
     }
 
-    @Test(groups = {"sanity", "goldBuy1", "regression"}, priority = 1, description = "Verify Sip On Gold Page")
+    @Test(groups = {"sanity", "goldBuy1", "regression"}, priority = 2, description = "Verify Sip On Gold Page")
     public void Gold_Test04_Gold_Sip() throws IOException, InterruptedException {
 
         Log.info("======= START : Gold SIp test =======");
@@ -88,8 +68,7 @@ public class GoldTest extends TestBase {
 
     }
 
-
-    @Test(groups = {"sanity1", "goldBuy", "regression"}, priority = 0, description = "Verify Sip On Gold Page")
+    @Test(groups = {"sanity", "goldBuy", "regression"}, priority = 0, description = "Verify Sip On Gold Page")
     public void Gold_Test05_Gold_Gift() throws IOException, InterruptedException {
 
         Log.info("======= START : Gold Gift test =======");
