@@ -59,11 +59,15 @@ public class GoldHelper {
             mbkCommonControlsHelper.pressback();
         }
 
+
         // Click on Buy Gold
-        goldPage.clickBuyCta();
+        goldPage.scrollToOneTimeBuyCta();
+        goldPage.clickOnOneTimeBuyCta();
+        goldPage.scrollToStartGoldSavingsPlan();
+        goldPage.clickOnStartGoldSavingsPlan();
 
         // Enter the Gold amount
-        goldPage.enterAmount(amount);
+       // goldPage.enterAmount(amount);
 
        /* if(goldPage.isErrorTextVisible()){
             mbReporter.verifyTrueWithLogging(goldPage.isErrorTextVisible(), "Error Shown : "+ goldPage.getErrorText(),  false, false, true);
@@ -250,15 +254,13 @@ public class GoldHelper {
             mbkCommonControlsHelper.pressback();
         }
 
-        // Verification on the Gold Home Page
-        String titlSipBannerTitle = goldPage.getGoldSIPBannerTitle();
+        // Click on Buy Gold
+        goldPage.scrollToOneTimeBuyCta();
+        goldPage.clickOnDailySavings();
+        goldPage.scrollToStartGoldSavingsPlan();
+        goldPage.clickOnStartGoldSavingsPlan();
 
-        // Display the values on Gold Home Page
-        Log.info("titlSipBannerTitle : " + titlSipBannerTitle);
 
-        mbReporter.verifyEqualsWithLogging(titlSipBannerTitle, exptitlSipBannerTitle, "Title Sip Banner", false, false, true);
-
-        goldPage.clickOnSIPBannerTitle();
         // Verification on the Gold Home Page
         String titlDaily = goldPage.getDailyTitleOnGoldSipPage();
         String titlMonthly = goldPage.getMonthlyTitleOnGoldSipPage();

@@ -25,8 +25,17 @@ public class GoldPage {
     @AndroidFindBy(id = "iv_gold_balance_arrow_right")
     private AndroidElement sellGoldButton;
 
-    @AndroidFindBy(xpath = "//*/android.widget.EditText[@text = 'In rupees']")
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'In rupees']")
     private AndroidElement textAmount;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'One Time']")
+    private AndroidElement oneTimeCta;
+
+    @AndroidFindBy(xpath = "//*/android.widget.TextView[@text = 'Daily Savings']")
+    private AndroidElement dailySavingsCta;
+
+    @AndroidFindBy(xpath = "//*/android.widget.Button[@text = 'Start Gold Savings Plan']")
+    private AndroidElement startGoldSavingsPlan;
 
     @AndroidFindBy(xpath = "//*/android.widget.EditText[@text = 'In grams']")
     private AndroidElement textWeight;
@@ -184,6 +193,25 @@ public class GoldPage {
 
     public void clickBuyCta() {
         Elements.selectElement(driver, buyGoldButton, "Buy Gold");
+    }
+    public void scrollToOneTimeBuyCta() throws InterruptedException {
+        Elements.scrollToElement(driver, oneTimeCta);
+    }
+
+    public void clickOnOneTimeBuyCta() {
+        Elements.selectElement(driver, oneTimeCta, "One time cta click");
+    }
+
+    public void clickOnDailySavings() {
+        Elements.selectElement(driver, dailySavingsCta, "Daily Savings click");
+    }
+
+    public void scrollToStartGoldSavingsPlan() throws InterruptedException {
+        Elements.scrollToElement(driver, startGoldSavingsPlan);
+    }
+
+    public void clickOnStartGoldSavingsPlan() {
+        Elements.selectElement(driver, startGoldSavingsPlan, "start Gold Savings Plan on Onetime screen");
     }
 
     public void clickSellCta() {
