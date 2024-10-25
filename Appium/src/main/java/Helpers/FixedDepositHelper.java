@@ -2,6 +2,7 @@ package Helpers;
 
 import Logger.Log;
 import PageObject.FixedDepositPage;
+import PageObject.PermissionPage;
 import Utils.Element;
 import Utils.MBReporter;
 import Utils.Screen;
@@ -21,7 +22,9 @@ public class FixedDepositHelper {
     Element element;
     MBKCommonControlsHelper mbkCommonControlsHelper;
     MBReporter mbReporter;
+    PermissionPage permissionPage;
 
+    PermissionHelper permissionHelper;
     public FixedDepositHelper(AndroidDriver driver) throws IOException {
         this.driver = driver;
         fixedDepositPage = new FixedDepositPage(driver);
@@ -83,10 +86,6 @@ public class FixedDepositHelper {
         String titleFAQ = fixedDepositPage.getCTAFAQ();
         Log.info("FAQ :" + titleFAQ);
         mbReporter.verifyEqualsWithLogging(titleFAQ, expttitleFAQ, "FAQ", false, false, true);
-
-        screen.swipeUpMore(driver);
-        fixedDepositPage.clickonfirstfaq();
-
         fixedDepositPage.scrolltoNeedHelp();
         String ctaContactUs = fixedDepositPage.getCTAContactUs();
         Log.info("Contact us :" + ctaContactUs);
@@ -141,6 +140,7 @@ public class FixedDepositHelper {
 
         //Click on Book next page on amount screen
         fixedDepositPage.ctaNext();
+        permissionHelper.permissionAllow();
 
         Element.waitForVisibility(driver, By.id("tv_deposit_amount"));
         screen.swipeUpMore(driver);
@@ -402,8 +402,6 @@ public class FixedDepositHelper {
 
         // Click on  tenure filter from the list
         fixedDepositPage.clickonInterestpa();
-
-
 
     }
 
