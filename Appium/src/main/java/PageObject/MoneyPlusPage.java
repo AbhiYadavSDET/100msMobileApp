@@ -53,7 +53,7 @@ public class MoneyPlusPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Gold']")
     private AndroidElement gold_current_value;
 
-    @AndroidFindBy(id = "gold_price")
+    @AndroidFindBy(id = "tv_gold_amount")
     private AndroidElement gold_price_inside;
 
     @AndroidFindBy(id = "tvAmountRight")
@@ -80,11 +80,17 @@ public class MoneyPlusPage {
     @AndroidFindBy(id = "com.mobikwik_new.debug:id/tvSubHeading")
     private AndroidElement xtra_pitch_page_sub_heading;
 
+    @AndroidFindBy(xpath = "//*/android.widget.Button[@text = 'Explore Gold SIP']")
+    private AndroidElement explore_cta;
 
 
     public MoneyPlusPage(AndroidDriver driver) {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
+    }
+
+    public boolean checkEXploreSipBottomsheet() throws InterruptedException {
+        return Elements.isElementPresent(driver, explore_cta);
     }
 
     public void clickAllServices(){

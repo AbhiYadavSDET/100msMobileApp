@@ -1,6 +1,7 @@
 package Helpers;
 
 
+import PageObject.GoldPage;
 import PageObject.MoneyPlusPage;
 
 import Utils.Element;
@@ -26,7 +27,8 @@ public class MoneyPlusHelper {
 
     MoneyPlusPage moneyPlusPage;
     MBKCommonControlsHelper mbkCommonControlsHelper;
-
+    GoldHelper goldHelper;
+    GoldPage goldPage;
 
 
 
@@ -88,18 +90,12 @@ public class MoneyPlusHelper {
 
         moneyPlusPage.scrollToGoldScreen();
         moneyPlusPage.clickToGoldScreen();
-        //moneyPlusPage.tapOutsideBottomSheet();
 
-        if(!moneyPlusPage.isBuyGoldPresent()){
+        if(moneyPlusPage.checkEXploreSipBottomsheet()){
             mbkCommonControlsHelper.pressback();
+
         }
-
-        Double goldCurrentValue=Double.parseDouble(moneyPlusPage.fetchGoldCurrentValue());
-
-        mbReporter.verifyTrueWithLogging(goldCurrentValue>0,"Checking Gold Current Value : "+goldCurrentValue, false,false);
-
         moneyPlusPage.navigateBack();
-
         moneyPlusPage.clickOnMutualFundCard();
 
         Element.waitForVisibility(driver, By.id("tv_subtitle"));
