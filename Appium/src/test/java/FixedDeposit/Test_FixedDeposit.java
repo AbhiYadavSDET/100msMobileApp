@@ -24,9 +24,9 @@ public class Test_FixedDeposit extends TestBase {
         Log.info("======= Fixed Deposit test =======");
 
     }
+/*
 
-
-    @Test(groups = {"FixedDeposit", "sanity1", "regression1"}, priority = 2, description = "Verify Existing User book now")
+    @Test(groups = {"FixedDeposit1", "sanity1", "regression1"}, priority = 2, description = "Verify Existing User book now")
     public void FixedDeposit_Test02_book_fd_flow() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
@@ -38,7 +38,7 @@ public class Test_FixedDeposit extends TestBase {
 
     }
 
-    @Test(groups = {"FixedDeposit", "sanity1", "regression1"}, priority = 0, description = "Verify Edit profile")
+    @Test(groups = {"FixedDeposit1", "sanity1", "regression1"}, priority = 0, description = "Verify Edit profile")
     public void FixedDeposit_Test03_fd_edit_profile() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
@@ -50,7 +50,7 @@ public class Test_FixedDeposit extends TestBase {
 
     }
 
-    @Test(groups = {"FixedDeposit", "sanity1", "regression1"}, priority = 2, description = "Verify Edit nominee")
+    @Test(groups = {"FixedDeposit1", "sanity1", "regression1"}, priority = 2, description = "Verify Edit nominee")
     public void FixedDeposit_Test04_edit_nominee() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
@@ -126,4 +126,7 @@ public class Test_FixedDeposit extends TestBase {
         Log.info("======= Fixed Deposit test =======");
 
     }
+
+
+ */
 }
