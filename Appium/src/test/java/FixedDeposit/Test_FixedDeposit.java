@@ -11,7 +11,7 @@ import java.io.IOException;
 public class Test_FixedDeposit extends TestBase {
 
 
-    @Test(groups = {"FixedDeposit", "sanity", "regression"}, priority = 1, description = "Verify Existing User Fixed deposit Home Page")
+    @Test(groups = {"FixedDeposit", "sanity", "regression"}, priority = 0, description = "Verify Existing User Fixed deposit Home Page")
     public void FixedDeposit_Test01_existing_User__FD_Dashboard() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
