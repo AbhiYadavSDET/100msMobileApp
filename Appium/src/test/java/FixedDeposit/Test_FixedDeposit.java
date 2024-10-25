@@ -38,7 +38,7 @@ public class Test_FixedDeposit extends TestBase {
 
     }
 
-    @Test(groups = {"FixedDeposit", "sanity1", "regression"}, priority = 0, description = "Verify Edit profile")
+    @Test(groups = {"FixedDeposit", "sanity1", "regression1"}, priority = 0, description = "Verify Edit profile")
     public void FixedDeposit_Test03_fd_edit_profile() throws IOException, InterruptedException {
 
         LoginHelper loginHelp = new LoginHelper(getAndroidDriver());
