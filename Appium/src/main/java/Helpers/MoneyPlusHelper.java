@@ -74,20 +74,7 @@ public class MoneyPlusHelper {
 
         }
 
-
-
         Element.waitForVisibility(driver, By.id("tvNetWorth"));
-
-//        moneyPlusPage.scrollToXtraCard();
-//
-//        moneyPlusPage.clickOnXtraCard();
-//
-//        Element.waitForVisibility(driver, By.id("com.mobikwik_new.debug:id/cta"));
-//
-//        mbReporter.verifyEqualsWithLogging(moneyPlusPage.fetchXtraIntroText(), xtraIntroText, " Validating Xtra Intro Text", false,false);
-//
-//        driver.navigate().back();
-
         moneyPlusPage.scrollToGoldScreen();
         moneyPlusPage.clickToGoldScreen();
 
