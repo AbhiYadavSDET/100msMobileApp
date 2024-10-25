@@ -24,7 +24,6 @@ public class Test_FixedDeposit extends TestBase {
         Log.info("======= Fixed Deposit test =======");
 
     }
-/*
 
     @Test(groups = {"FixedDeposit1", "sanity1", "regression1"}, priority = 2, description = "Verify Existing User book now")
     public void FixedDeposit_Test02_book_fd_flow() throws IOException, InterruptedException {
@@ -128,5 +127,5 @@ public class Test_FixedDeposit extends TestBase {
     }
 
 
- */
+
 }
