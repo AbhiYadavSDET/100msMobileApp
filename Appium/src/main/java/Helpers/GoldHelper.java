@@ -63,8 +63,8 @@ public class GoldHelper {
         // Click on Buy Gold
         goldPage.scrollToOneTimeBuyCta();
         goldPage.clickOnOneTimeBuyCta();
-        goldPage.scrollToStartGoldSavingsPlan();
-        goldPage.clickOnStartGoldSavingsPlan();
+        goldPage.scrollOnBuyGoldOnOneTime();
+        goldPage.clickOnBuyGoldOnOneTime();
 
         // Enter the Gold amount
        // goldPage.enterAmount(amount);
