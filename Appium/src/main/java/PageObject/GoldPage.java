@@ -37,6 +37,9 @@ public class GoldPage {
     @AndroidFindBy(xpath = "//*/android.widget.Button[@text = 'Start Gold Savings Plan']")
     private AndroidElement startGoldSavingsPlan;
 
+    @AndroidFindBy(xpath = "//*/android.widget.Button[@text = 'Buy Gold']")
+    private AndroidElement buyGoldOnOnetimeCTA;
+
     @AndroidFindBy(xpath = "//*/android.widget.EditText[@text = 'In grams']")
     private AndroidElement textWeight;
 
@@ -217,6 +220,15 @@ public class GoldPage {
     public void clickSellCta() {
         Elements.selectElement(driver, sellGoldButton, "Sell Gold");
     }
+
+    public void scrollOnBuyGoldOnOneTime() throws InterruptedException {
+        Elements.scrollToElement(driver, buyGoldOnOnetimeCTA);
+    }
+
+    public void clickOnBuyGoldOnOneTime() {
+        Elements.selectElement(driver, buyGoldOnOnetimeCTA, "Click On Buy Gold On OneTime");
+    }
+
 
     public void enterAmount(String amount) {
         Elements.enterToElement(driver, textAmount, amount, "Amount");
