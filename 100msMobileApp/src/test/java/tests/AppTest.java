@@ -28,7 +28,7 @@ public class AppTest extends BaseTest {
 
         Assert.assertTrue(homePageHelper.isMeetingJoined(), "user is not able to join meeting");
 
-// Step 2: Leave the meeting after joining
+        // Step 2: Leave the meeting after joining
         homePageHelper.leaveMeeting();
 
         Assert.assertTrue(homePageHelper.isAtHomePage(), "User is not present at home page");

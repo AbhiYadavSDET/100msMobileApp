@@ -36,10 +36,6 @@ public class HomePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id=\"live.hms.app2:id/end_session_title\"]")
     private MobileElement endSession;
 
-    @AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.android.packageinstaller:id/permission_allow_button']")
-    private MobileElement allowPermissionButton;
-
-
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='End Session']")
     private MobileElement endSessionButton;
 
@@ -48,9 +44,7 @@ public class HomePage {
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Experience the power of 100ms']")
     private MobileElement headerText;
-
-
-
+    /*-----------------------------------------------------------------------------------------------*/
 
 
     public HomePage(AppiumDriver driver) {
@@ -100,7 +94,6 @@ public class HomePage {
     public void endMeetingSession() {
         try {
                 endCall.click();
-            // Wait for and click on the first "End Session" button
             WebDriverWait wait = new WebDriverWait(driver, 10); // Adjust timeout as needed
             wait.until(ExpectedConditions.visibilityOf(endSessionButton)).click();
 
