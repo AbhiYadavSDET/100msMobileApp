@@ -27,13 +27,13 @@ public class BaseTest {
             capabilities.setCapability("autoGrantPermissions", true);
 
             // Ensure you're connecting to the correct Appium server URL
-            URL appiumServerUrl = new URL("http://127.0.0.1:4723"); // Corrected URL for Appium v2
+            URL appiumServerUrl = new URL("http://127.0.0.1:4723"); // URL for Appium v2
             driver = new AndroidDriver<>(appiumServerUrl, capabilities);
         }
 
         // Initialize page elements using the driver, and ensure driver is not null
         if (driver != null) {
-            PageFactory.initElements(new AppiumFieldDecorator(driver), this); // Correct usage
+            PageFactory.initElements(new AppiumFieldDecorator(driver), this);
         } else {
             throw new IllegalStateException("Driver is not initialized.");
         }
@@ -43,7 +43,7 @@ public class BaseTest {
     public void tearDown() {
         if (driver != null) {
             driver.quit();
-            driver = null; // Ensure driver is reset after the test
+            driver = null;
         }
     }
 }

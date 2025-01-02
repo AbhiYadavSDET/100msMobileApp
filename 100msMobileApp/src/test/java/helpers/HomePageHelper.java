@@ -20,13 +20,12 @@ public class HomePageHelper {
 
     // Helper method to leave the meeting
     public void leaveMeeting() {
-        homePage.endMeetingSession();  // Click the "End Call" button to leave
+        homePage.endMeetingSession();
     }
 
     public boolean isAtHomePage(){
         return homePage.isAtHomePage();
     }
-
 
     public boolean isMeetingJoined(){
         return homePage.isMeetingJoined();

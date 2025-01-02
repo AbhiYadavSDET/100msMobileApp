@@ -32,7 +32,6 @@ public class AppTest extends BaseTest {
         homePageHelper.leaveMeeting();
 
         Assert.assertTrue(homePageHelper.isAtHomePage(), "User is not present at home page");
-
     }
 
     @AfterMethod
