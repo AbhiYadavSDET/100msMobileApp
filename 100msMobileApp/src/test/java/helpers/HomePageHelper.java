@@ -15,21 +15,19 @@ public class HomePageHelper {
         homePage.enterName(name);                // Enter name
         homePage.enterMeetingUrl(meetingUrl);    // Enter meeting URL
         homePage.clickJoinNow();                 // Click Join Now
-        homePage.clickJoinNowOnHomePage();       // Click Join Now on home page if required
+        homePage.clickJoinNowOnHomePage();       // Click Join Now on home page
     }
 
     // Helper method to leave the meeting
     public void leaveMeeting() {
-        homePage.endMeetingSession();  // Click the "End Call" button to leave
+        homePage.endMeetingSession();
     }
 
     public boolean isAtHomePage(){
         return homePage.isAtHomePage();
     }
 
-
     public boolean isMeetingJoined(){
         return homePage.isMeetingJoined();
     }
-
 }

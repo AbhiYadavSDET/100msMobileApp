@@ -14,7 +14,7 @@ import java.net.URL;
 
 public class BaseTest {
 
-    protected static AppiumDriver<MobileElement> driver; // Static driver
+    protected static AppiumDriver<MobileElement> driver;
 
     @BeforeMethod
     public void setUp() throws MalformedURLException {
@@ -22,18 +22,18 @@ public class BaseTest {
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setCapability("platformName", "Android");
             capabilities.setCapability("deviceName", "Pixel_4");
-            capabilities.setCapability("app", "/Users/Abhishekkumar/IdeaProjects/MK-Automation/100msMobileApp/app/base.apk");
+            capabilities.setCapability("app", "/Users/Abhishekkumar/IdeaProjects/100msMobileApp/100msMobileApp/app/base.apk");
             capabilities.setCapability("automationName", "UiAutomator2");
             capabilities.setCapability("autoGrantPermissions", true);
 
             // Ensure you're connecting to the correct Appium server URL
-            URL appiumServerUrl = new URL("http://127.0.0.1:4723"); // Corrected URL for Appium v2
+            URL appiumServerUrl = new URL("http://127.0.0.1:4723"); // URL for Appium v2
             driver = new AndroidDriver<>(appiumServerUrl, capabilities);
         }
 
         // Initialize page elements using the driver, and ensure driver is not null
         if (driver != null) {
-            PageFactory.initElements(new AppiumFieldDecorator(driver), this); // Correct usage
+            PageFactory.initElements(new AppiumFieldDecorator(driver), this);
         } else {
             throw new IllegalStateException("Driver is not initialized.");
         }
@@ -43,7 +43,7 @@ public class BaseTest {
     public void tearDown() {
         if (driver != null) {
             driver.quit();
-            driver = null; // Ensure driver is reset after the test
+            driver = null;
         }
     }
 }
